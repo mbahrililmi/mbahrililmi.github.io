@@ -263,8 +263,10 @@ AOS.init({
   mirror: false,
 });
 
-// Navbar scroll effect
-window.addEventListener("scroll", function () {
+// Navbar scroll effect with throttling
+let ticking = false;
+
+function updateNavbar() {
   const navbar = document.querySelector(".navbar");
   if (window.scrollY > 50) {
     navbar.classList.add("scrolled");
@@ -272,8 +274,16 @@ window.addEventListener("scroll", function () {
     navbar.classList.remove("scrolled");
   }
 
-  // Update mobile navigation active state
+  // Update mobile navigation active state with debounce
   updateMobileNavigation();
+  ticking = false;
+}
+
+window.addEventListener("scroll", function () {
+  if (!ticking) {
+    requestAnimationFrame(updateNavbar);
+    ticking = true;
+  }
 });
 
 // Mobile Navigation Active State
@@ -282,26 +292,30 @@ function updateMobileNavigation() {
   const navItems = document.querySelectorAll(".mobile-nav-item");
 
   let current = "";
-  const scrollPosition = window.scrollY + 100;
+  const scrollPosition = window.scrollY + 150; // Increased offset for better detection
 
   sections.forEach((section) => {
     const sectionTop = section.offsetTop;
     const sectionHeight = section.clientHeight;
 
+    // More precise section detection
     if (
-      scrollPosition >= sectionTop &&
-      scrollPosition < sectionTop + sectionHeight
+      scrollPosition >= sectionTop - 100 &&
+      scrollPosition < sectionTop + sectionHeight - 100
     ) {
       current = section.getAttribute("id");
     }
   });
 
-  navItems.forEach((item) => {
-    item.classList.remove("active");
-    if (item.getAttribute("href") === `#${current}`) {
-      item.classList.add("active");
-    }
-  });
+  // Only update if there's a clear current section
+  if (current) {
+    navItems.forEach((item) => {
+      item.classList.remove("active");
+      if (item.getAttribute("href") === `#${current}`) {
+        item.classList.add("active");
+      }
+    });
+  }
 }
 
 // Enhanced smooth scrolling for all navigation links
@@ -310,7 +324,9 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
     if (target) {
-      const headerOffset = 80;
+      // Calculate offset for mobile
+      const isMobile = window.innerWidth <= 768;
+      const headerOffset = isMobile ? 60 : 80;
       const elementPosition = target.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
 
