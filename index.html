@@ -3,387 +3,1785 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- Mobile optimization -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="M. Bahril Ilmi" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- SEO and Social Media -->
+    <meta
+      name="description"
+      content="M. Bahril Ilmi - Software Developer, Data Scientist & Lecturer with 3+ years of experience in full-stack development, digital transformation, and education."
+    />
+    <meta
+      name="keywords"
+      content="Software Developer, Data Scientist, Lecturer, Full-Stack Developer, Web Development, Digital Transformation, Computer Engineering, Education, Indonesia"
+    />
+    <meta name="author" content="M. Bahril Ilmi" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mbahrililmi.github.io/" />
+    <meta
+      property="og:title"
+      content="M. Bahril Ilmi | Software Developer & Data Scientist"
+    />
+    <meta
+      property="og:description"
+      content="Software Developer & Data Scientist with expertise in full-stack development and digital transformation solutions."
+    />
+    <meta property="og:image" content="img/M.BAHRIL ILMI_18.63.0762.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mbahrililmi.github.io/" />
+    <meta
+      property="twitter:title"
+      content="M. Bahril Ilmi | Software Developer & Data Scientist"
+    />
+    <meta
+      property="twitter:description"
+      content="Software Developer & Data Scientist with expertise in full-stack development and digital transformation solutions."
+    />
+    <meta property="twitter:image" content="img/M.BAHRIL ILMI_18.63.0762.jpg" />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
-    <!-- Boostrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
 
-    <!-- Aos -->
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS Animation -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <!-- My CSS -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-    <title>My Portfolio | M. Bahril Ilmi</title>
+    <title>M. Bahril Ilmi | Software Developer & Data Scientist</title>
   </head>
   <body id="home">
-    <!-- navbar  -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-container">
+        <div class="loading-logo">
+          <span class="loading-text">
+            <span class="text-primary">M.</span> BAHRIL ILMI
+          </span>
+        </div>
+        <div class="loading-animation">
+          <div class="loading-dots">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+          </div>
+          <div class="loading-bar">
+            <div class="loading-progress"></div>
+          </div>
+        </div>
+        <div class="loading-subtitle">
+          <span class="typing-text">Software Developer & Data Scientist</span>
+        </div>
+      </div>
+      <div class="loading-particles">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+      </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress">
+      <div class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="#">M. BAHRIL ILMI</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand fw-bold" href="#home">
+          <span class="text-primary">M.</span> BAHRIL ILMI
+        </a>
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#home">Home</a>
+              <a class="nav-link" href="#home">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#galery">Galery</a>
+              <a class="nav-link" href="#experience">Experience</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#project">Project</a>
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#certifications">Certifications</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="blank" href="https://github.com/mbahrililmi/">Github</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="blank" href="https://www.linkedin.com/in/m-bahril-ilmi-3058a019a/">linkedin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="blank" href="https://www.youtube.com/channel/UCJrKXhcnjfhVfzAyQe873zA">Youtube</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="blank" href="https://sischool.mbahrililmi.my.id/">SI School</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" target="blank" href="https://perpustakaan.mbahrililmi.my.id/">Perpustakaan</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!-- end navbar -->
 
-  <!-- Bottom Navbar -->
- <nav class="navbar navbar-dark bg-primary navbar-expand d-md-none d-lg-none d-xl-none d-xxl-none fixed-bottom">
-     <ul class="navbar-nav mx-auto nav-justified w-100 ">
-         <li class="nav-item">
-             <a href="#home" class="nav-link"><i class="bi bi-house-door"></i>
-                 <br><span class="text-sm">Home</span>
-             </a>
-         </li>
-         <li class="nav-item">
-             <a href="#about" class="nav-link"><i class="bi bi-info-circle"></i>
-                 <br><span class="text-sm">About</span>
-             </a>
-         </li>
-         <li class="nav-item">
-             <a href="#galery" class="nav-link"><i class="bi bi-columns-gap"></i>
-                 <br><span class="text-sm">Galeri</span>
-             </a>
-         </li>
-         <li class="nav-item">
-             <a href="#project" class="nav-link"><i class="bi bi-cast"></i>
-                 <br><span class="text-sm">Project</span>
-             </a>
-         </li>
-         <li class="nav-item">
-             <a href="#contact" class="nav-link"><i class="bi bi-person-rolodex"></i>
-                 <br><span class="text-sm">Contact</span>
-             </a>
-         </li>
-     </ul>
- </nav>
-
-    <!-- Jumbotron -->
-    <section class="jumbotron text-center">
-      <img src="img/M.BAHRIL ILMI_18.63.0762.jpg" alt="M.Bahril Ilmi" width="200px" height="200px" class="rounded-circle img-thumbnail" />
-      <h1 class="display-4">M. Bahril Ilmi</h1>
-      <p class="lead">Students | junior programmer</p>
-      <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="1"
-          d="M0,96L60,85.3C120,75,240,53,360,85.3C480,117,600,203,720,218.7C840,235,960,181,1080,144C1200,107,1320,85,1380,74.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- end Jumbotron - ->
-
-    <!-- About -->
-    <section id="about">
-      <div class="container">
-        <div class="row text-center mb-3">
-          <div class="col" data-aos="fade-in">
-            <h2>About Me</h2>
-          </div>
-        </div>
-        <div class="row justify-content-center fs-5 text-center">
-          <div class="col-md-4" data-aos="fade-right" data-aos-duration="1000">
-            <p>Saya M.bahril Ilmi, Mahasiswa Teknik Informatika di Universitas Islam Kalimantan, Banjarmasin, Kalimantan Selatan.</p>
-            <p>Saya berasal dari Desa Kota Pagatan, Kec. Kusan Hilir, Kab. Tanah Bumbu, Kalimantan Selatan</p>
-          </div>
-          <div class="col-md-4" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-            <p>Saya seorang freshgraduate yang memiliki kemampuan dalam membuat website portofolio, Sistem Informasi. Saya menguasai bahasa pemrograman seperti php, java, c++, javascript. Saya juga menguasai framework seperti Codeigniter, Bootstrap.</p>
-          </div>
-        </div>
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav d-lg-none">
+      <div class="mobile-nav-container">
+        <a href="#home" class="mobile-nav-item active">
+          <i class="bi bi-house-door"></i>
+          <span>Home</span>
+        </a>
+        <a href="#about" class="mobile-nav-item">
+          <i class="bi bi-person"></i>
+          <span>About</span>
+        </a>
+        <a href="#projects" class="mobile-nav-item">
+          <i class="bi bi-folder"></i>
+          <span>Projects</span>
+        </a>
+        <a href="#skills" class="mobile-nav-item">
+          <i class="bi bi-gear"></i>
+          <span>Skills</span>
+        </a>
+        <a href="#contact" class="mobile-nav-item">
+          <i class="bi bi-envelope"></i>
+          <span>Contact</span>
+        </a>
       </div>
-      <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#e2edff"
-          fill-opacity="1"
-          d="M0,128L60,144C120,160,240,192,360,208C480,224,600,224,720,192C840,160,960,96,1080,96C1200,96,1320,160,1380,192L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- end about -->
+    </nav>
 
-    <!-- Galery -->
-    <section id="galery">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg"></div>
       <div class="container">
-        <div class="row text-center">
-          <div class="col mb-3">
-            <h2>Galery</h2>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="100">
-              <img src="img/galery/2.png" class="card-img-top" alt="Project 2" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="row align-items-center min-vh-100">
+          <div class="col-lg-6 col-md-12">
+            <div class="hero-content" data-aos="fade-up">
+              <h1 class="hero-title">
+                Hello, I'm <span class="text-primary gradient-text">M. Bahril Ilmi</span>
+              </h1>
+              <h2 class="hero-subtitle floating-animation">
+                <span id="typing-text">Software Developer, Data Scientist & Lecturer</span>
+              </h2>
+              <p class="hero-description">
+                Passionate about creating innovative solutions through
+                technology and sharing knowledge through education. Currently
+                pursuing M.Kom in Digital Transformation Intelligence with 3+
+                years of experience in full-stack development and teaching.
+              </p>
+              <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary btn-lg me-3">
+                  <i class="bi bi-envelope me-2"></i>Get In Touch
+                </a>
+                <a href="#projects" class="btn btn-outline-light btn-lg">
+                  <i class="bi bi-folder me-2"></i>View Projects
+                </a>
+              </div>
+              <div class="social-links mt-4">
+                <a
+                  href="https://github.com/mbahrililmi/"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/m-bahril-ilmi-3058a019a/"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-linkedin"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCJrKXhcnjfhVfzAyQe873zA"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-youtube"></i>
+                </a>
               </div>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500">
-              <img src="img/galery/1.png" class="card-img-top" alt="Project 1" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="200">
-              <img src="img/galery/3.png" class="card-img-top" alt="Project 3" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="300">
-              <img src="img/galery/4.png" class="card-img-top" alt="Project 4" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="400">
-              <img src="img/galery/5.png" class="card-img-top" alt="Project 5" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="400">
-              <img src="img/galery/6.png" class="card-img-top" alt="Project 5" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="400">
-              <img src="img/galery/7.png" class="card-img-top" alt="Project 5" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <div class="card" data-aos="flip-right" data-aos-duration="500" data-aos-delay="400">
-              <img src="img/galery/8.png" class="card-img-top" alt="Project 5" />
-              <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div class="col-lg-6 col-md-12">
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
+              <div class="image-container">
+                <img
+                  src="img/M.BAHRIL ILMI_18.63.0762.jpg"
+                  alt="M. Bahril Ilmi"
+                  class="profile-img"
+                />
+                <div class="floating-elements">
+                  <div class="floating-element parallax-element" style="--delay: 0s">
+                    <i class="bi bi-code-slash"></i>
+                  </div>
+                  <div class="floating-element parallax-element" style="--delay: 1s">
+                    <i class="bi bi-database"></i>
+                  </div>
+                  <div class="floating-element parallax-element" style="--delay: 2s">
+                    <i class="bi bi-cloud"></i>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="1"
-          d="M0,0L60,21.3C120,43,240,85,360,133.3C480,181,600,235,720,218.7C840,203,960,117,1080,69.3C1200,21,1320,11,1380,5.3L1440,0L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
-    <!-- end Galery -->
-
-    <!-- Project -->
-    <section id="project">
-      <div class="container">
-        <div class="row text-center">
-          <div class="col mb-3">
-            <h2>Project</h2>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <h3>SI School</h3>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/sc1.png" alt="Gambar 1" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100"  data-aos="zoom-in-up" data-aos-duration="500" src="img/project/sc2.png" alt="Gambar 2" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="100" src="img/project/sc3.png" alt="Gambar 3" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="100" src="img/project/sc4.png" alt="Gambar 4" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="200" src="img/project/sc5.png" alt="Gambar 5" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="200" src="img/project/sc6.png" alt="Gambar 6" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="300" src="img/project/sc7.png" alt="Gambar 7" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100" data-aos="zoom-in-up" data-aos-duration="500" data-aos-delay="300" src="img/project/sc8.png" alt="Gambar 8" />
-          </div>
-          <h3 class="mt-3">SI Perpustakaan Handil Bakti</h3>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/p1.png" alt="Gambar 1" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/p2.png" alt="Gambar 1" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/p3.png" alt="Gambar 1" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/p4.png" alt="Gambar 1" />
-          </div>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/p5.png" alt="Gambar 1" />
-          </div>
-
-          <h3 class="mt-5 text-center mb-3">BaktiBersama</h3>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/baktibersama.png" alt="Gambar 1" />
-          </div>
-          <h3 class="mt-5 text-center mb-3">Digitaliz</h3>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/Digitaliz.png" alt="Gambar 1" />
-          </div>
-          <h3 class="mt-5 text-center mb-3">HuluTalent</h3>
-          <div class="col-lg-6 mb-3">
-            <img class="img-fluid w-100 " data-aos="zoom-in-up" data-aos-duration="500" src="img/project/hulutalent.png" alt="Gambar 1" />
-          </div>
-
-        </div>
+      <div class="scroll-indicator">
+        <a href="#about" class="scroll-down">
+          <i class="bi bi-chevron-down"></i>
+        </a>
       </div>
-    </div>
-    <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#e2edff" fill-opacity="1" d="M0,192L48,181.3C96,171,192,149,288,122.7C384,96,480,64,576,74.7C672,85,768,139,864,154.7C960,171,1056,149,1152,144C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
     </section>
-    <!-- end Project -->
 
-    <!-- contact -->
-    <section id="contact" class="jumbotron">
+    <!-- About Section -->
+    <section id="about" class="section-padding">
       <div class="container">
-        <div class="row text-center">
-          <div class="col mb-3">
-            <h2>Contact Me</h2>
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              Software Developer & Lecturer with expertise in Full-Stack
+              Development and Data Science
+            </p>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
-              <strong>Thank you</strong> We have received your message.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="about-content">
+              <h3 class="mb-4">Professional Overview</h3>
+              <p class="lead mb-4">
+                I'm M. Bahril Ilmi, a dedicated Software Developer currently
+                working at Yayasan Hasnur Centre (YHC) and serving as a Lecturer
+                at Politeknik Hasnur, with over 3 years of experience in
+                full-stack development and data science.
+              </p>
+              <p class="mb-4">
+                Currently pursuing my M.Kom degree in Digital Transformation
+                Intelligence at Universitas AMIKOM Yogyakarta, I combine
+                academic excellence with practical industry experience to
+                deliver innovative technological solutions and share knowledge
+                through teaching.
+              </p>
+              <div class="personal-info">
+                <div class="info-item">
+                  <strong>Location:</strong> Banjarmasin, Kalimantan Selatan,
+                  Indonesia
+                </div>
+                <div class="info-item">
+                  <strong>Origin:</strong> Desa Kota Pagatan, Kec. Kusan Hilir,
+                  Kab. Tanah Bumbu
+                </div>
+                <div class="info-item">
+                  <strong>Current Roles:</strong> Software Developer at YHC &
+                  Lecturer at Politeknik Hasnur
+                </div>
+                <div class="info-item">
+                  <strong>Experience:</strong> 3+ Years in Software Development
+                  & Education
+                </div>
+              </div>
             </div>
-            <form name="portofolio-contact-form">
-              <div class="mb-3">
-                <label for="nama" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="nama" aria-describedby="name" name="nama" />
+          </div>
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="education-section">
+              <h3 class="mb-4">Education</h3>
+              <div class="education-item">
+                <div class="education-icon">
+                  <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div class="education-content">
+                  <h5>M.Kom - Magister Informatika</h5>
+                  <h6>Digital Transformation Intelligence</h6>
+                  <p class="text-muted">Universitas AMIKOM Yogyakarta</p>
+                  <small class="text-primary">Mar 2024 - Oct 2025</small>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email" name="email" />
+              <div class="education-item">
+                <div class="education-icon">
+                  <i class="bi bi-mortarboard"></i>
+                </div>
+                <div class="education-content">
+                  <h5>S.Kom - Teknik Informatika</h5>
+                  <p class="text-muted">
+                    Universitas Islam Kalimantan Moch. Arsyad Al Banjari
+                  </p>
+                  <small class="text-primary">Mar 2018 - Oct 2022</small>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="pesan" class="form-label">Pesan</label>
-                <textarea class="form-control" id="pesan" rows="3" name="pesan"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-kirim">Submit</button>
-              <button class="btn btn-primary btn-loading d-none" type="button" disabled>
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Loading...
-              </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-      <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#0d6efd"
-          fill-opacity="1"
-          d="M0,128L60,128C120,128,240,128,360,138.7C480,149,600,171,720,197.3C840,224,960,256,1080,266.7C1200,277,1320,267,1380,261.3L1440,256L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-        ></path>
-      </svg>
     </section>
-    <!-- end contact -->
 
-    <!-- footer -->
-    <footer class="bg-primary text-white text-center pb-5">
-      <p>Created with <i class="bi bi-battery-half text-danger"></i> by <a href="https://www.instagram.com/hi_bbahril/" class="text-white fw-bold">M. Bahril Ilmi</a></p>
+    <!-- Experience Section -->
+    <section id="experience" class="section-padding bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">
+              Professional Experience
+            </h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              My journey in software development and data science
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="experience-timeline">
+              <!-- Current Lecturer Position -->
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <h4>Lecturer - Computer Engineering</h4>
+                    <h5 class="text-primary">Politeknik Hasnur</h5>
+                    <span class="timeline-date" data-start-date="2025-09-01"
+                      >Sep 2025 - Present •
+                      <span id="lecturer-duration">1 month</span></span
+                    >
+                    <span class="employment-type"
+                      >Freelancer • Banjarmasin, Kalimantan Selatan</span
+                    >
+                  </div>
+                  <div class="timeline-description">
+                    <p>
+                      Teaching computer engineering and software development
+                      courses at Politeknik Hasnur, Department of Computer
+                      Engineering. Delivering practical and theoretical
+                      knowledge in programming, web development, and modern
+                      software engineering practices.
+                    </p>
+                    <div class="skills-used">
+                      <span class="skill-tag">Teaching</span>
+                      <span class="skill-tag">Computer Engineering</span>
+                      <span class="skill-tag">Programming</span>
+                      <span class="skill-tag">Web Development</span>
+                      <span class="skill-tag">Software Engineering</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Current Position -->
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <h4>Software Developer</h4>
+                    <h5 class="text-primary">Yayasan Hasnur Centre (YHC)</h5>
+                    <span class="timeline-date" data-start-date="2022-02                     >Feb 2022 - Present •
+                      <span id="yhc-duration">3 years 7 months</span></span
+                    >
+                    <span class="employment-type"
+                      >Full-time • Banjarmasin, Kalimantan Selatan</span
+                    >
+                  </div>
+                  <div class="timeline-description">
+                    <p>
+                      Leading full-stack development projects and implementing
+                      digital transformation solutions. Specializing in web
+                      development, system integration, and user experience
+                      design.
+                    </p>
+                    <div class="skills-used">
+                      <span class="skill-tag">Full-Stack Development</span>
+                      <span class="skill-tag">HTML</span>
+                      <span class="skill-tag">JavaScript</span>
+                      <span class="skill-tag">PHP</span>
+                      <span class="skill-tag">MySQL</span>
+                      <span class="skill-tag">React</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Internship -->
+              <div
+                class="timeline-item"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-header">
+                    <h4>Data Science Intern</h4>
+                    <h5 class="text-primary">
+                      ID/X Partners via Rakamin Academy
+                    </h5>
+                    <span class="timeline-date"
+                      >Dec 2023 - Jan 2024 • 2 months</span
+                    >
+                    <span class="employment-type">Internship • Remote</span>
+                  </div>
+                  <div class="timeline-description">
+                    <p>
+                      Completed project-based internship program focusing on
+                      data science methodologies, machine learning algorithms,
+                      and data analysis techniques.
+                    </p>
+                    <div class="skills-used">
+                      <span class="skill-tag">Data Science</span>
+                      <span class="skill-tag">Python</span>
+                      <span class="skill-tag">Machine Learning</span>
+                      <span class="skill-tag">Data Analysis</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              Innovative solutions I've developed for various organizations
+            </p>
+          </div>
+        </div>
+
+        <!-- Featured Projects Grid -->
+        <div class="row g-4 mb-5">
+          <!-- TNYI Assessment Culture -->
+          <div class="col-lg-6 col-md-12" data-aos="fade-up">
+            <div class="project-card featured">
+              <div class="project-image">
+                <img
+                  src="img/project/sc1.png"
+                  alt="TNYI Assessment Culture"
+                  class="img-fluid"
+                />
+                <div class="project-overlay">
+                  <div class="project-actions">
+                    <a href="#" class="btn btn-light btn-sm">
+                      <i class="bi bi-eye"></i> View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-status active">Active</span>
+                  <span class="project-date">May 2024 - Present</span>
+                </div>
+                <h4>TNYI Assessment Culture</h4>
+                <p>
+                  Assessment New Ultimate Culture TNYI - Advanced platform for
+                  culture transformation and organizational development
+                  assessment.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Culture Assessment</span>
+                  <span class="tech-tag">Full-Stack</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TNYI Activation Culture -->
+          <div
+            class="col-lg-6 col-md-12"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="project-card featured">
+              <div class="project-image">
+                <img
+                  src="img/project/sc2.png"
+                  alt="TNYI Activation Culture"
+                  class="img-fluid"
+                />
+                <div class="project-overlay">
+                  <div class="project-actions">
+                    <a href="#" class="btn btn-light btn-sm">
+                      <i class="bi bi-eye"></i> View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-status active">Active</span>
+                  <span class="project-date">Jan 2024 - Present</span>
+                </div>
+                <h4>TNYI Activation Culture</h4>
+                <p>
+                  Culture Activation platform designed to drive organizational
+                  culture transformation and employee engagement initiatives.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Culture Activation</span>
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Employee Engagement</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reinventing Organization -->
+          <div
+            class="col-lg-6 col-md-12"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="project-card featured">
+              <div class="project-image">
+                <img
+                  src="img/project/p1.png"
+                  alt="Reinventing Organization"
+                  class="img-fluid"
+                />
+                <div class="project-overlay">
+                  <div class="project-actions">
+                    <a href="#" class="btn btn-light btn-sm">
+                      <i class="bi bi-eye"></i> View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-status active">Active</span>
+                  <span class="project-date">Dec 2023 - Present</span>
+                </div>
+                <h4>Reinventing Organization Hasnur Group</h4>
+                <p>
+                  Leading-edge platform for strengthening innovation and
+                  collaboration in companies. Features Idea Basket and Project
+                  Management, connecting all stakeholders to contribute to
+                  problem-solving and innovation.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Innovation Platform</span>
+                  <span class="tech-tag">Project Management</span>
+                  <span class="tech-tag">Collaboration Tools</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pagatan Connect -->
+          <div
+            class="col-lg-6 col-md-12"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="project-card featured">
+              <div class="project-image">
+                <img
+                  src="img/project/p2.png"
+                  alt="Pagatan Connect"
+                  class="img-fluid"
+                />
+                <div class="project-overlay">
+                  <div class="project-actions">
+                    <a href="#" class="btn btn-light btn-sm">
+                      <i class="bi bi-eye"></i> View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Jan 2024</span>
+                </div>
+                <h4>Pagatan Connect</h4>
+                <p>
+                  Bridge to Local Life! Discover the beauty and uniqueness of
+                  destinations in Pagatan. A portal connecting you with
+                  attractive places, local transportation, traditional markets,
+                  and daily life of Pagatan community.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Community Platform</span>
+                  <span class="tech-tag">Local Tourism</span>
+                  <span class="tech-tag">Web Development</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Projects -->
+        <div class="row g-4">
+          <!-- Hulu Talent -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-image">
+                <img
+                  src="img/project/hulutalent.png"
+                  alt="Hulu Talent"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Oct 2022 - Jun 2023</span>
+                </div>
+                <h5>Hulu Talent</h5>
+                <p>
+                  HR Platform based on Talent Management System providing
+                  integration and automation for digital talent measurement and
+                  management, designed more "human" to provide different team
+                  experience.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Full-Stack Development</span>
+                  <span class="tech-tag">User Experience (UX)</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Futuca -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="project-card">
+              <div class="project-image">
+                <img src="img/project/p3.png" alt="Futuca" class="img-fluid" />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Jun 2023 - Oct 2023</span>
+                </div>
+                <h5>Futuca</h5>
+                <p>
+                  A camera that helps us take pictures of ourselves, looking
+                  into ourselves for knowledge we have learned, understood well,
+                  and mastered as self-competence to optimize career and work
+                  preparation.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Self-Assessment</span>
+                  <span class="tech-tag">Career Tools</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIPHA -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="project-card">
+              <div class="project-image">
+                <img src="img/project/p4.png" alt="SIPHA" class="img-fluid" />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Apr 2023 - Jun 2023</span>
+                </div>
+                <h5>Sistem Informasi Akademik Politeknik Hasnur</h5>
+                <p>
+                  SIPHA - Academic Information System for Politeknik Hasnur,
+                  comprehensive platform for academic management and student
+                  services.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Academic System</span>
+                  <span class="tech-tag">Full-Stack</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-Recruitment -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-image">
+                <img
+                  src="img/project/p5.png"
+                  alt="E-Recruitment"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Sep 2022 - Feb 2023</span>
+                </div>
+                <h5>E-Recruitment Platform</h5>
+                <p>
+                  Your Best Career Development Place - Comprehensive recruitment
+                  platform for talent acquisition and career development
+                  management.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Full-Stack Development</span>
+                  <span class="tech-tag">User Experience (UX)</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Veldeva -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="project-card">
+              <div class="project-image">
+                <img
+                  src="img/project/baktibersama.png"
+                  alt="Veldeva"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Oct 2022 - Feb 2023</span>
+                </div>
+                <h5>Veldeva - Enhance Your Digital Skills</h5>
+                <p>
+                  Discover various courses designed to help your business and
+                  career in the digital field. Improve skills by taking
+                  available classes and learn from professional mentors.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Front-End Development</span>
+                  <span class="tech-tag">E-Learning Platform</span>
+                  <span class="tech-tag">Digital Education</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BaktiBersama -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="project-card">
+              <div class="project-image">
+                <img
+                  src="img/project/Digitaliz.png"
+                  alt="BaktiBersama"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Feb 2022 - Oct 2022</span>
+                </div>
+                <h5>BaktiBersama</h5>
+                <p>
+                  Official Zakat Collection Unit (UPZ) Bakti Bersama formed by
+                  Hasnur Group - Yayasan Hasnur Centre together with BAZNAS
+                  Kalimantan Selatan.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Full-Stack Development</span>
+                  <span class="tech-tag">User Experience (UX)</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Projects Row -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="project-card">
+              <div class="project-image">
+                <img src="img/project/sc3.png" alt="Kopra" class="img-fluid" />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Dec 2023</span>
+                </div>
+                <h5>Kopra - Koperasi</h5>
+                <p>
+                  Cooperative application system designed to manage and
+                  streamline cooperative operations and member services.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Web Development</span>
+                  <span class="tech-tag">Cooperative System</span>
+                  <span class="tech-tag">Member Management</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="project-card">
+              <div class="project-image">
+                <img
+                  src="img/project/sc4.png"
+                  alt="E-Ticket"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-date">Oct 2023 - Nov 2023</span>
+                </div>
+                <h5>E-Ticket System</h5>
+                <p>
+                  Ticket purchasing application - Event Organizer platform for
+                  seamless event management and ticket sales.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-tag">Event Management</span>
+                  <span class="tech-tag">E-Commerce</span>
+                  <span class="tech-tag">Ticket System</span>
+                </div>
+                <div class="project-org">
+                  <i class="bi bi-building"></i> Yayasan Hasnur Centre (YHC)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section-padding bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              Technologies and tools I work with
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <!-- Programming Languages -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <h4>Programming Languages</h4>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-name">JavaScript</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">PHP</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Python</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Java</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">C++</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web Technologies -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="bi bi-globe"></i>
+              </div>
+              <h4>Web Technologies</h4>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-name">React.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">HTML/CSS</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Bootstrap</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">CodeIgniter</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Flutter</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Data & Cloud -->
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="skill-category">
+              <div class="skill-icon">
+                <i class="bi bi-cloud-arrow-up"></i>
+              </div>
+              <h4>Data & Cloud</h4>
+              <div class="skills-list">
+                <div class="skill-item">
+                  <span class="skill-name">MySQL</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Data Analysis</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">AWS Cloud</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Alibaba Cloud</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div class="skill-item">
+                  <span class="skill-name">Docker</span>
+                  <div class="skill-bar">
+                    <div class="skill-progress" style="width: 65%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title" data-aos="fade-up">
+              Certifications & Achievements
+            </h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+              Professional certifications and continuous learning achievements
+            </p>
+          </div>
+        </div>
+
+        <!-- Latest Certifications 2025 -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-12">
+            <h4 class="text-primary mb-4" data-aos="fade-up">
+              Latest Certifications - 2025
+            </h4>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="AWS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>AWS Educate Introduction to Generative AI</h5>
+                  <p class="cert-org">Amazon Web Services (AWS)</p>
+                  <small class="cert-date">Jul 2025</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Data Science (Fresh Graduate Academy)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date"
+                    >Jul 2025 • ID: 19510439840-141</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Bisnis Digital (Micro Skill)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date"
+                    >Jun 2025 • ID: 2299820850-1963</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Data Analisis (Micro Skill)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date"
+                    >Jun 2025 • ID: 2299818850-4308</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Etika dan Budaya Digital (Micro Skill)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date"
+                    >Jun 2025 • ID: 22910030850-1146</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Kewirausahaan Digital (Micro Skill)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date"
+                    >Jun 2025 • ID: 2299803850-5887</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Certifications 2024 -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-12">
+            <h4 class="text-primary mb-4" data-aos="fade-up">
+              Professional Development - 2024
+            </h4>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="LPIA"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>LPIA-EPT (English Proficiency Test)</h5>
+                  <p class="cert-org">LEMBAGA PENDIDIKAN INDONESIA AMERIKA</p>
+                  <small class="cert-date">Aug 2024 • Score: 497</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Udemy"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Docker : Pemula sampai Mahir</h5>
+                  <p class="cert-org">Udemy</p>
+                  <small class="cert-date"
+                    >Apr 2024 • ID:
+                    UC-95d647c0-4034-40ba-8ad0-36db1d4844e3</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Artificial Intelligence (Fresh Graduate Academy)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date">Mar 2024 • Azure AI Engineer</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Udemy"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Database MySQL : Pemula sampai Mahir</h5>
+                  <p class="cert-org">Udemy</p>
+                  <small class="cert-date">Mar 2024</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Dicoding"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Belajar Dasar Visualisasi Data</h5>
+                  <p class="cert-org">Dicoding Indonesia</p>
+                  <small class="cert-date">Feb 2024 - Feb 2027</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Dicoding"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Memulai Pemrograman dengan Python</h5>
+                  <p class="cert-org">Dicoding Indonesia</p>
+                  <small class="cert-date">Feb 2024 - Feb 2027</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Core Certifications 2023 -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-12">
+            <h4 class="text-primary mb-4" data-aos="fade-up">
+              Core Professional Certifications - 2023
+            </h4>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="BNSP"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Programming and Software Developer</h5>
+                  <p class="cert-org">BNSP</p>
+                  <small class="cert-date">Oct 2023 - Oct 2026</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Alibaba"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Alibaba Cloud Certified Associate Big Data</h5>
+                  <p class="cert-org">Alibaba Cloud</p>
+                  <small class="cert-date">Nov 2023 - Nov 2025</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="DTS"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Junior Web Developer (VSGA)</h5>
+                  <p class="cert-org">Digital Talent Scholarship</p>
+                  <small class="cert-date">Sep 2023</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Google"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>IT Support Google Specialization</h5>
+                  <p class="cert-org">Coursera</p>
+                  <small class="cert-date">Jul 2023</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Dicoding"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Belajar Membuat Aplikasi Flutter untuk Pemula</h5>
+                  <p class="cert-org">Dicoding Indonesia</p>
+                  <small class="cert-date">Dec 2023 - Dec 2026</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Dicoding"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Memulai Pemrograman dengan Java</h5>
+                  <p class="cert-org">Dicoding Indonesia</p>
+                  <small class="cert-date">Dec 2023 - Dec 2026</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Foundation Certifications -->
+        <div class="row g-4">
+          <div class="col-lg-12">
+            <h4 class="text-primary mb-4" data-aos="fade-up">
+              Foundation & Early Learning
+            </h4>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up">
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Rakamin"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>ID/X Partners Data Scientist Internship</h5>
+                  <p class="cert-org">Rakamin Academy</p>
+                  <small class="cert-date">Jan 2023</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="SanberCode"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>React Js Web Frontend</h5>
+                  <p class="cert-org">SanberCode</p>
+                  <small class="cert-date">Jan 2023</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="certification-card">
+              <div class="cert-header">
+                <img
+                  src="https://via.placeholder.com/60"
+                  alt="Dicoding"
+                  class="cert-logo"
+                />
+                <div class="cert-info">
+                  <h5>Cloud Practitioner Essentials (AWS)</h5>
+                  <p class="cert-org">Dicoding Indonesia</p>
+                  <small class="cert-date">Jan 2023 - Jan 2026</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center mb-5">
+            <h2 class="section-title text-white" data-aos="fade-up">
+              Get In Touch
+            </h2>
+            <p
+              class="section-subtitle text-light"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              Let's discuss your next project or collaboration opportunity
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="contact-form-wrapper" data-aos="fade-up">
+              <div
+                class="alert alert-success alert-dismissible fade show d-none my-alert"
+                role="alert"
+              >
+                <strong>Thank you!</strong> Your message has been sent
+                successfully.
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="alert"
+                ></button>
+              </div>
+              <form name="portofolio-contact-form" class="contact-form">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="nama" class="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nama"
+                      name="nama"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      name="email"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="subject" class="form-label">Subject</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="subject"
+                    name="subject"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="pesan" class="form-label">Message</label>
+                  <textarea
+                    class="form-control"
+                    id="pesan"
+                    rows="5"
+                    name="pesan"
+                    required
+                  ></textarea>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-lg btn-kirim"
+                  >
+                    <i class="bi bi-send me-2"></i>Send Message
+                  </button>
+                  <button
+                    class="btn btn-primary btn-lg btn-loading d-none"
+                    type="button"
+                    disabled
+                  >
+                    <span
+                      class="spinner-border spinner-border-sm me-2"
+                      role="status"
+                    ></span>
+                    Sending...
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-12">
+            <div class="contact-info">
+              <div class="row text-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                  <div class="contact-info-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <h5>Location</h5>
+                    <p>Banjarmasin, Kalimantan Selatan<br />Indonesia</p>
+                  </div>
+                </div>
+                <div
+                  class="col-md-4 mb-4"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
+                  <div class="contact-info-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-envelope-fill"></i>
+                    </div>
+                    <h5>Email</h5>
+                    <p>
+                      mbahrililmi@example.com<br />contact@mbahrililmi.my.id
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="col-md-4 mb-4"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  <div class="contact-info-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-briefcase-fill"></i>
+                    </div>
+                    <h5>Current Position</h5>
+                    <p>Software Developer<br />Yayasan Hasnur Centre</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="footer-content">
+              <h4 class="text-primary mb-3">M. Bahril Ilmi</h4>
+              <p class="mb-4">
+                Software Developer & Data Scientist passionate about creating
+                innovative digital solutions. Currently pursuing M.Kom in
+                Digital Transformation Intelligence.
+              </p>
+              <div class="footer-social">
+                <a
+                  href="https://github.com/mbahrililmi/"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/m-bahril-ilmi-3058a019a/"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-linkedin"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com/channel/UCJrKXhcnjfhVfzAyQe873zA"
+                  target="_blank"
+                  class="social-link"
+                >
+                  <i class="bi bi-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="footer-links">
+              <h5 class="mb-3">Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="footer-links">
+              <h5 class="mb-3">Projects</h5>
+              <ul class="list-unstyled">
+                <li>
+                  <a href="https://sischool.mbahrililmi.my.id/" target="_blank"
+                    >SI School</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://perpustakaan.mbahrililmi.my.id/"
+                    target="_blank"
+                    >Perpustakaan</a
+                  >
+                </li>
+                <li><a href="#projects">View All Projects</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr class="footer-divider" />
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <p class="footer-copyright">
+              &copy; 2025 M. Bahril Ilmi. Made with
+              <i class="bi bi-heart-fill text-danger"></i> and passion for
+              technology.
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
-    <!-- end footer -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
 
-    <script>
-      const scriptURL = "https://script.google.com/macros/s/AKfycbx2MBbXjTGF_ISbmF4k_xQODniaFfMkobb8C2JvUeEDvOl1PyV_S3DFIleENF4UHFnf/exec";
-      const form = document.forms["portofolio-contact-form"];
-      const btnKirim = document.querySelector(".btn-kirim");
-      const btnLoading = document.querySelector(".btn-loading");
-      const myAlert = document.querySelector(".my-alert");
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        // ketika tombol submit diklik
-        // tampilkan tombol loading, hilangkan tombol kirim
-        btnLoading.classList.toggle("d-none");
-        btnKirim.classList.toggle("d-none");
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then((response) => {
-            // tampilkan tombol kirim, hilangkan tombol loading
-            btnLoading.classList.toggle("d-none");
-            btnKirim.classList.toggle("d-none");
-            // tampilkan alert
-            myAlert.classList.toggle("d-none");
-            //reset form
-            form.reset();
-            console.log("Success!", response);
-          })
-          .catch((error) => {
-            btnKirim.classList.toggle("d-none");
-            console.error("Error!", error.message);
-          });
-      });
-    </script>
+    <!-- Custom Scripts -->
+    <script src="js/main.js"></script>
   </body>
 </html>
