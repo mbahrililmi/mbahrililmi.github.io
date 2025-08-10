@@ -115,22 +115,38 @@ function initProfessionalEffects() {
     fadeObserver.observe(el);
   });
 
-  // Parallax effect for hero section
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset;
-    const heroSection = document.querySelector(".hero-section");
-    const parallaxElements = document.querySelectorAll(".parallax-element");
+  // Parallax effect for hero section - optimized for mobile
+  let ticking = false;
 
-    if (heroSection) {
-      const rate = scrolled * -0.5;
-      heroSection.style.transform = `translateY(${rate}px)`;
-    }
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Only apply parallax on desktop to avoid mobile scroll issues
+          if (window.innerWidth > 768) {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector(".hero-section");
+            const parallaxElements =
+              document.querySelectorAll(".parallax-element");
 
-    parallaxElements.forEach((element, index) => {
-      const rate = scrolled * (0.2 + index * 0.1);
-      element.style.transform = `translateY(${rate}px)`;
-    });
-  });
+            if (heroSection) {
+              const rate = scrolled * -0.3; // Reduced parallax intensity
+              heroSection.style.transform = `translateY(${rate}px)`;
+            }
+
+            parallaxElements.forEach((element, index) => {
+              const rate = scrolled * (0.1 + index * 0.05); // Reduced parallax intensity
+              element.style.transform = `translateY(${rate}px)`;
+            });
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true }
+  ); // Add passive listener for better performance
 
   // Add professional card effects
   const cards = document.querySelectorAll(
@@ -229,18 +245,31 @@ function initTypingAnimation() {
   }, 1500);
 }
 
-// Scroll Progress Indicator
+// Scroll Progress Indicator - Optimized
 function initScrollProgress() {
   const progressBar = document.querySelector(".scroll-progress-bar");
+  if (!progressBar) return;
 
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.pageYOffset;
-    const docHeight =
-      document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
+  let progressTicking = false;
 
-    progressBar.style.width = scrollPercent + "%";
-  });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!progressTicking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.pageYOffset;
+          const docHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = (scrollTop / docHeight) * 100;
+
+          progressBar.style.width = scrollPercent + "%";
+          progressTicking = false;
+        });
+        progressTicking = true;
+      }
+    },
+    { passive: true }
+  );
 }
 
 // Enhanced AOS Initialization
@@ -264,7 +293,7 @@ AOS.init({
 });
 
 // Navbar scroll effect with throttling
-let ticking = false;
+let navbarTicking = false;
 
 function updateNavbar() {
   const navbar = document.querySelector(".navbar");
@@ -276,46 +305,59 @@ function updateNavbar() {
 
   // Update mobile navigation active state with debounce
   updateMobileNavigation();
-  ticking = false;
+  navbarTicking = false;
 }
 
-window.addEventListener("scroll", function () {
-  if (!ticking) {
-    requestAnimationFrame(updateNavbar);
-    ticking = true;
-  }
-});
-
-// Mobile Navigation Active State
-function updateMobileNavigation() {
-  const sections = document.querySelectorAll("section[id]");
-  const navItems = document.querySelectorAll(".mobile-nav-item");
-
-  let current = "";
-  const scrollPosition = window.scrollY + 150; // Increased offset for better detection
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-
-    // More precise section detection
-    if (
-      scrollPosition >= sectionTop - 100 &&
-      scrollPosition < sectionTop + sectionHeight - 100
-    ) {
-      current = section.getAttribute("id");
+window.addEventListener(
+  "scroll",
+  function () {
+    if (!navbarTicking) {
+      requestAnimationFrame(updateNavbar);
+      navbarTicking = true;
     }
-  });
+  },
+  { passive: true }
+);
 
-  // Only update if there's a clear current section
-  if (current) {
-    navItems.forEach((item) => {
-      item.classList.remove("active");
-      if (item.getAttribute("href") === `#${current}`) {
-        item.classList.add("active");
+// Mobile Navigation Active State - Less Aggressive
+let navUpdateTimeout;
+
+function updateMobileNavigation() {
+  // Clear previous timeout to debounce updates
+  if (navUpdateTimeout) {
+    clearTimeout(navUpdateTimeout);
+  }
+
+  navUpdateTimeout = setTimeout(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll(".mobile-nav-item");
+
+    let current = "";
+    const scrollPosition = window.scrollY + 200; // Increased offset for more tolerance
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+
+      // More tolerant section detection - only update when clearly in section
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight - 200
+      ) {
+        current = section.getAttribute("id");
       }
     });
-  }
+
+    // Only update if there's a clear current section
+    if (current) {
+      navItems.forEach((item) => {
+        item.classList.remove("active");
+        if (item.getAttribute("href") === `#${current}`) {
+          item.classList.add("active");
+        }
+      });
+    }
+  }, 150); // Debounce for 150ms
 }
 
 // Enhanced smooth scrolling for all navigation links
@@ -344,10 +386,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Touch swipe detection for mobile
+// Touch swipe detection for mobile - DISABLED for natural scroll
 let startY = 0;
 let endY = 0;
 
+// Disable aggressive touch swipe that forces section jumping
+/*
 document.addEventListener("touchstart", function (e) {
   startY = e.touches[0].clientY;
 });
@@ -405,6 +449,7 @@ function scrollToNextSection(direction) {
     });
   }
 }
+*/
 
 // Mobile keyboard handling
 function handleMobileKeyboard() {
