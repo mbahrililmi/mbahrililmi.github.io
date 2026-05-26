@@ -202,10 +202,10 @@ function initTypingAnimation() {
   if (!typingElement) return;
 
   const texts = [
-    "Software Developer",
-    "Data Scientist",
-    "Lecturer",
+    "Software Developer at TNYI & Ruangguru",
     "Full-Stack Developer",
+    "Data Scientist",
+    "Lecturer at Politeknik Hasnur",
     "Digital Transformation Expert",
   ];
 
@@ -566,19 +566,30 @@ function typeEffect() {
 
 // Function to calculate work duration automatically
 function updateWorkDurations() {
+  const tnyiElement = document.getElementById("tnyi-duration");
+  const ruangguruElement = document.getElementById("ruangguru-duration");
+  const politalaElement = document.getElementById("politala-duration");
   const lecturerElement = document.getElementById("lecturer-duration");
   const yhcElement = document.getElementById("yhc-duration");
 
+  if (tnyiElement) {
+    tnyiElement.textContent = calculateDuration(new Date("2026-05-01"));
+  }
+
+  if (ruangguruElement) {
+    ruangguruElement.textContent = calculateDuration(new Date("2025-05-01"));
+  }
+
+  if (politalaElement) {
+    politalaElement.textContent = calculateDuration(new Date("2026-04-01"));
+  }
+
   if (lecturerElement) {
-    const lecturerStartDate = new Date("2025-09-01");
-    const lecturerDuration = calculateDuration(lecturerStartDate);
-    lecturerElement.textContent = lecturerDuration;
+    lecturerElement.textContent = calculateDuration(new Date("2025-09-01"));
   }
 
   if (yhcElement) {
-    const yhcStartDate = new Date("2022-02-01");
-    const yhcDuration = calculateDuration(yhcStartDate);
-    yhcElement.textContent = yhcDuration;
+    yhcElement.textContent = calculateDuration(new Date("2022-02-01"));
   }
 }
 
