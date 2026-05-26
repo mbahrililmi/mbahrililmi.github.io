@@ -1774,6 +1774,61 @@ a:hover { color: var(--primary-deep); }
   font-size: 1.08em;
 }
 
+/* Inline elegant links inside hero/about descriptions */
+.hero-link {
+  position: relative;
+  color: var(--primary-deep);
+  text-decoration: none;
+  background-image: linear-gradient(var(--primary-color), var(--primary-color));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: all 0.4s var(--ease-classic);
+  padding-bottom: 1px;
+}
+.hero-link strong { color: inherit; }
+.hero-link:hover {
+  color: var(--primary-color);
+  background-size: 100% 2px;
+  background-image: linear-gradient(var(--gradient-gold));
+}
+
+/* Company link in timeline header */
+.company-link {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  transition: all 0.3s var(--ease-classic);
+}
+.company-link i {
+  font-size: 0.72em;
+  opacity: 0;
+  transform: translate(-4px, 2px);
+  transition: all 0.3s var(--ease-classic);
+  color: var(--primary-deep);
+}
+.company-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gradient-gold);
+  transition: width 0.4s var(--ease-classic);
+}
+.company-link:hover {
+  color: var(--primary-deep) !important;
+}
+.company-link:hover i {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.company-link:hover::after { width: 100%; }
+
 /* Wide desktop */
 @media (max-width: 1199px) {
   .hero-title { font-size: 2.8rem; }
