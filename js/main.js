@@ -202,7 +202,7 @@ function initTypingAnimation() {
   if (!typingElement) return;
 
   const texts = [
-    "Software Developer at TNYI & Ruangguru",
+    "Software Developer at Digitaliz, TNYI & Ruangguru",
     "Full-Stack Developer",
     "Data Scientist",
     "Lecturer at Politeknik Hasnur",
