@@ -1,0 +1,1769 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QoS — Praktikum 5 Jaringan Komputer 2</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f6f9;
+        color: #1a1a2e;
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      /* HEADER */
+      .header {
+        background: linear-gradient(
+          135deg,
+          #1a237e 0%,
+          #0d47a1 60%,
+          #1565c0 100%
+        );
+        color: #fff;
+        padding: 40px 0 32px;
+        text-align: center;
+      }
+      .header-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 4px 18px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .header p {
+        font-size: 15px;
+        opacity: 0.85;
+      }
+      .meta-row {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .meta-item {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        padding: 8px 18px;
+        font-size: 13px;
+      }
+      .meta-item strong {
+        display: block;
+        font-size: 11px;
+        opacity: 0.7;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 2px;
+      }
+
+      /* LAYOUT */
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .section {
+        margin: 36px 0;
+      }
+
+      /* SECTION TITLE */
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e3e8f0;
+      }
+      .section-num {
+        background: #0d47a1;
+        color: #fff;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* CARD */
+      .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        margin-bottom: 16px;
+      }
+      .card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a237e;
+      }
+      .card p {
+        color: #444;
+        margin-bottom: 8px;
+      }
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* DIAGRAM QoS TANPA/DENGAN */
+      .qos-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 600px) {
+        .qos-compare {
+          grid-template-columns: 1fr;
+        }
+      }
+      .qos-box {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .qos-box .label-top {
+        text-align: center;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 14px;
+        padding: 6px 12px;
+        border-radius: 6px;
+      }
+      .qos-box.bad .label-top {
+        background: #fdecea;
+        color: #c62828;
+      }
+      .qos-box.good .label-top {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .flow-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 13px;
+      }
+      .pc-tag {
+        background: #e8eaf6;
+        color: #283593;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-weight: 600;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      .arrow-line {
+        flex: 1;
+        position: relative;
+        height: 2px;
+      }
+      .arrow-line .line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 8px;
+        height: 2px;
+      }
+      .arrow-line::after {
+        content: "▶";
+        position: absolute;
+        right: 0;
+        top: -7px;
+        font-size: 10px;
+      }
+      .bw-label {
+        font-size: 12px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .inet-tag {
+        background: #e3f2fd;
+        color: #0d47a1;
+        border-radius: 6px;
+        padding: 4px 10px;
+        font-weight: 600;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      /* PARAMETER TABLE */
+      .param-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .param-table th {
+        background: #1a237e;
+        color: #fff;
+        padding: 10px 14px;
+        text-align: left;
+        font-weight: 600;
+      }
+      .param-table th:first-child {
+        border-radius: 8px 0 0 0;
+      }
+      .param-table th:last-child {
+        border-radius: 0 8px 0 0;
+      }
+      .param-table td {
+        padding: 9px 14px;
+        border-bottom: 1px solid #eee;
+      }
+      .param-table tr:nth-child(even) td {
+        background: #f8f9ff;
+      }
+      .param-table tr:last-child td {
+        border-bottom: none;
+      }
+      .param-table tr:hover td {
+        background: #eef1fb;
+      }
+
+      /* MEKANISME CARDS */
+      .mech-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      @media (max-width: 600px) {
+        .mech-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .mech-card {
+        border-radius: 12px;
+        padding: 20px 16px;
+        text-align: center;
+      }
+      .mech-card.teal {
+        background: #e0f2f1;
+        border: 1.5px solid #80cbc4;
+      }
+      .mech-card.amber {
+        background: #fff8e1;
+        border: 1.5px solid #ffe082;
+      }
+      .mech-card.purple {
+        background: #ede7f6;
+        border: 1.5px solid #ce93d8;
+      }
+      .mech-card h3 {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .mech-card.teal h3 {
+        color: #00695c;
+      }
+      .mech-card.amber h3 {
+        color: #e65100;
+      }
+      .mech-card.purple h3 {
+        color: #6a1b9a;
+      }
+      .mech-card p {
+        font-size: 12px;
+        color: #555;
+        margin-bottom: 4px;
+      }
+      .mech-badge {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 12px;
+      }
+      .mech-card.teal .mech-badge {
+        background: #00897b;
+        color: #fff;
+      }
+      .mech-card.amber .mech-badge {
+        background: #ef6c00;
+        color: #fff;
+      }
+      .mech-card.purple .mech-badge {
+        background: #8e24aa;
+        color: #fff;
+      }
+
+      /* PCQ SIMULATOR */
+      .sim-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .sim-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .sim-header label {
+        font-size: 14px;
+        color: #555;
+        white-space: nowrap;
+      }
+      .sim-header input[type="range"] {
+        flex: 1;
+        accent-color: #1a237e;
+      }
+      .sim-header #userCount {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a237e;
+        min-width: 28px;
+        text-align: right;
+      }
+      .stat-row {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+      .stat-box {
+        flex: 1;
+        text-align: center;
+        background: #f4f6f9;
+        border-radius: 8px;
+        padding: 12px;
+      }
+      .stat-box .stat-label {
+        font-size: 11px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+      .stat-box .stat-val {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a237e;
+      }
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .bar-row .pc-name {
+        font-size: 13px;
+        color: #555;
+        min-width: 36px;
+      }
+      .bar-track {
+        flex: 1;
+        background: #eee;
+        border-radius: 4px;
+        height: 22px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+      .bar-row .bw-val {
+        font-size: 13px;
+        font-weight: 600;
+        min-width: 64px;
+        text-align: right;
+        color: #333;
+      }
+      .sim-note {
+        margin-top: 14px;
+        background: #e8eaf6;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 12px;
+        color: #3949ab;
+      }
+
+      /* BURST DIAGRAM */
+      .burst-svg-wrap {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+
+      /* CODE BLOCK */
+      .code-block {
+        background: #1a1a2e;
+        color: #a8d8ea;
+        border-radius: 10px;
+        padding: 18px 20px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        margin: 12px 0;
+        overflow-x: auto;
+      }
+      .code-block .cmt {
+        color: #5c8a8a;
+      }
+      .code-block .cmd {
+        color: #7ec8e3;
+      }
+      .code-block .val {
+        color: #ffd700;
+      }
+      .code-block .key {
+        color: #98fb98;
+      }
+
+      /* STEPS */
+      .steps {
+        counter-reset: step;
+      }
+      .step {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px 18px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+      .step-num {
+        background: #0d47a1;
+        color: #fff;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .step-body h4 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #1a237e;
+      }
+      .step-body p {
+        font-size: 13px;
+        color: #555;
+      }
+
+      /* TOPOLOGI */
+      .topo-wrap {
+        background: #fff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        text-align: center;
+      }
+
+      /* KESIMPULAN */
+      .kesimpulan {
+        background: #fff;
+        border-radius: 12px;
+        padding: 28px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .kesimpulan h3 {
+        color: #0d47a1;
+        font-size: 16px;
+        margin-bottom: 8px;
+        margin-top: 16px;
+      }
+      .kesimpulan h3:first-child {
+        margin-top: 0;
+      }
+      .kesimpulan p {
+        font-size: 14px;
+        color: #444;
+      }
+      .kesimpulan ul {
+        padding-left: 18px;
+        font-size: 14px;
+        color: #444;
+      }
+      .kesimpulan ul li {
+        margin-bottom: 4px;
+      }
+
+      /* HIGHLIGHT BOX */
+      .highlight {
+        border-left: 4px solid #0d47a1;
+        background: #e8eaf6;
+        border-radius: 0 8px 8px 0;
+        padding: 12px 16px;
+        margin: 12px 0;
+        font-size: 14px;
+        color: #283593;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 28px;
+        font-size: 12px;
+        color: #999;
+        border-top: 1px solid #e0e0e0;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="container">
+        <div class="header-badge">Modul Praktikum 5</div>
+        <h1>⚡ QoS — Quality of Service</h1>
+        <p>Simple Queue &amp; PCQ (Per Connection Queue) pada MikroTik</p>
+        <div class="meta-row">
+          <div class="meta-item">
+            <strong>Mata Kuliah</strong>Jaringan Komputer 2
+          </div>
+          <div class="meta-item"><strong>Kode</strong>EIK212305</div>
+          <div class="meta-item"><strong>Semester</strong>2 · 3 SKS</div>
+          <div class="meta-item"><strong>Waktu</strong>2 × 150 menit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- SECTION 1: PENGERTIAN QoS -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">1</div>
+          Pengertian QoS
+        </div>
+        <div class="card">
+          <p>
+            <strong>Quality of Service (QoS)</strong> adalah seperangkat
+            teknologi dan mekanisme untuk mengatur dan memprioritaskan lalu
+            lintas jaringan agar sumber daya (bandwidth) digunakan secara
+            <strong>optimal dan adil</strong>.
+          </p>
+          <p style="margin-top: 10px">
+            Tanpa QoS, satu pengguna bisa memonopoli seluruh bandwidth sehingga
+            pengguna lain tidak kebagian koneksi yang layak.
+          </p>
+        </div>
+
+        <div class="qos-compare">
+          <div class="qos-box bad">
+            <div class="label-top">❌ Tanpa QoS</div>
+            <div class="flow-row">
+              <span class="pc-tag">PC Gaming</span>
+              <div
+                class="arrow-line"
+                style="flex: 1; display: flex; align-items: center"
+              >
+                <div
+                  style="
+                    flex: 1;
+                    height: 4px;
+                    background: #e53935;
+                    border-radius: 2px;
+                  "
+                ></div>
+                <span style="font-size: 10px; color: #e53935">▶</span>
+              </div>
+              <span class="bw-label" style="color: #c62828">10M!</span>
+              <span class="inet-tag">Internet</span>
+            </div>
+            <div class="flow-row">
+              <span class="pc-tag" style="background: #f5f5f5; color: #888"
+                >PC Kerja</span
+              >
+              <div
+                style="flex: 1; display: flex; align-items: center; gap: 4px"
+              >
+                <div
+                  style="
+                    flex: 1;
+                    height: 1px;
+                    background: #bbb;
+                    border-style: dashed;
+                    border-width: 1px;
+                    border-color: #bbb;
+                  "
+                ></div>
+                <span style="font-size: 10px; color: #bbb">▶</span>
+              </div>
+              <span class="bw-label" style="color: #aaa">sisa...</span>
+              <span class="inet-tag" style="background: #f5f5f5; color: #888"
+                >Internet</span
+              >
+            </div>
+          </div>
+
+          <div class="qos-box good">
+            <div class="label-top">✅ Dengan QoS</div>
+            <div class="flow-row">
+              <span class="pc-tag" style="background: #fbe9e7; color: #bf360c"
+                >PC Gaming</span
+              >
+              <div style="flex: 1; display: flex; align-items: center">
+                <div
+                  style="
+                    flex: 1;
+                    height: 2.5px;
+                    background: #ef6c00;
+                    border-radius: 2px;
+                  "
+                ></div>
+                <span style="font-size: 10px; color: #ef6c00">▶</span>
+              </div>
+              <span class="bw-label" style="color: #e65100">5 Mbps</span>
+              <span class="inet-tag">Internet</span>
+            </div>
+            <div class="flow-row">
+              <span class="pc-tag">PC Kerja</span>
+              <div style="flex: 1; display: flex; align-items: center">
+                <div
+                  style="
+                    flex: 1;
+                    height: 2.5px;
+                    background: #1565c0;
+                    border-radius: 2px;
+                  "
+                ></div>
+                <span style="font-size: 10px; color: #1565c0">▶</span>
+              </div>
+              <span class="bw-label" style="color: #0d47a1">5 Mbps</span>
+              <span class="inet-tag">Internet</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight">
+          💡 <strong>Tujuan QoS:</strong> membatasi bandwidth per
+          pengguna/layanan · memprioritaskan trafik penting (VoIP, video
+          conference) · membagi bandwidth secara adil · menjamin kualitas
+          layanan minimum.
+        </div>
+      </div>
+
+      <!-- SECTION 2: PARAMETER QoS -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">2</div>
+          Parameter QoS
+        </div>
+        <div class="card">
+          <table class="param-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Definisi</th>
+                <th>Satuan</th>
+                <th>Nilai Ideal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Bandwidth</strong></td>
+                <td>Kapasitas maksimum jalur transmisi</td>
+                <td>Mbps / Kbps</td>
+                <td>Sesuai kebutuhan</td>
+              </tr>
+              <tr>
+                <td><strong>Throughput</strong></td>
+                <td>Bandwidth aktual yang berhasil digunakan</td>
+                <td>Mbps / Kbps</td>
+                <td>Mendekati bandwidth</td>
+              </tr>
+              <tr>
+                <td><strong>Latency</strong></td>
+                <td>Waktu perjalanan paket ke tujuan</td>
+                <td>ms</td>
+                <td>&lt; 150 ms (VoIP)</td>
+              </tr>
+              <tr>
+                <td><strong>Jitter</strong></td>
+                <td>Variasi keterlambatan antar paket</td>
+                <td>ms</td>
+                <td>&lt; 30 ms (VoIP)</td>
+              </tr>
+              <tr>
+                <td><strong>Packet Loss</strong></td>
+                <td>Persentase paket yang hilang</td>
+                <td>%</td>
+                <td>&lt; 1% (VoIP)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 3: MEKANISME QoS MikroTik -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">3</div>
+          Mekanisme QoS di MikroTik
+        </div>
+        <div class="mech-grid">
+          <div class="mech-card teal">
+            <h3>Simple Queue</h3>
+            <p>Mudah dikonfigurasi</p>
+            <p>Limit per IP atau subnet</p>
+            <p>Manual per pengguna</p>
+            <span class="mech-badge">Praktis · Cepat</span>
+          </div>
+          <div class="mech-card amber">
+            <h3>Queue Tree</h3>
+            <p>Membutuhkan mangle/marking</p>
+            <p>Hirarki kompleks</p>
+            <p>Prioritas per layanan</p>
+            <span class="mech-badge">Lanjutan · Advanced</span>
+          </div>
+          <div class="mech-card purple">
+            <h3>PCQ</h3>
+            <p>Otomatis bagi rata</p>
+            <p>Dinamis (aktif/nonaktif)</p>
+            <p>Tidak perlu set per IP</p>
+            <span class="mech-badge">Efisien · Adil</span>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 14px">
+          📌 Di praktikum ini fokus pada <strong>Simple Queue</strong> dan
+          <strong>PCQ</strong>. Queue Tree dipelajari di modul lanjutan.
+        </div>
+      </div>
+
+      <!-- SECTION 4: SIMPLE QUEUE -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">4</div>
+          Simple Queue
+        </div>
+        <div class="card">
+          <h3>Cara Kerja</h3>
+          <p>
+            MikroTik mencocokkan setiap paket dengan daftar Simple Queue dari
+            <strong>atas ke bawah</strong>. Begitu ada yang cocok, aturan
+            bandwidth langsung diterapkan dan paket berikutnya tidak dicek lagi
+            ke bawah.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Parameter Utama</h3>
+          <table class="param-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Keterangan</th>
+                <th>Contoh</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Target</strong></td>
+                <td>IP address atau subnet yang dibatasi</td>
+                <td>192.168.1.10/32</td>
+              </tr>
+              <tr>
+                <td><strong>Max Limit</strong></td>
+                <td>Batas bandwidth (format: upload/download)</td>
+                <td>1M/2M</td>
+              </tr>
+              <tr>
+                <td><strong>Burst Limit</strong></td>
+                <td>Batas saat burst (lebih tinggi dari max-limit)</td>
+                <td>2M/4M</td>
+              </tr>
+              <tr>
+                <td><strong>Burst Time</strong></td>
+                <td>Durasi burst diizinkan (detik)</td>
+                <td>10s/10s</td>
+              </tr>
+              <tr>
+                <td><strong>Queue Type</strong></td>
+                <td>Jenis antrian (default / PCQ)</td>
+                <td>default / PCQ-Upload</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="highlight" style="margin-top: 12px">
+            💡 <strong>Format Max Limit:</strong> upload/download — contoh
+            <code>1M/2M</code> = upload 1 Mbps, download 2 Mbps
+          </div>
+        </div>
+        <div class="card">
+          <h3>Konfigurasi — Winbox</h3>
+          <p style="margin-bottom: 10px">
+            Buka <strong>Queues → Simple Queues → [+]</strong>, isi parameter
+            berikut:
+          </p>
+          <div class="code-block">
+            <span class="cmt"
+              ># Contoh: Limit PC1 — upload 1M, download 2M</span
+            >
+            <span class="key">Name</span> : <span class="val">PC1-Limit</span>
+            <span class="key">Target</span> :
+            <span class="val">192.168.1.10/32</span>
+            <span class="key">Max Limit</span> : Upload
+            <span class="val">1M</span> / Download <span class="val">2M</span>
+            <span class="key">Comment</span> :
+            <span class="val">Limit PC1 - 1M/2M</span>
+          </div>
+          <h3 style="margin-top: 14px">Konfigurasi — CLI (Terminal Winbox)</h3>
+          <div class="code-block">
+            <span class="cmt"># PC1</span>
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">PC1-Limit</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.10</span>
+            <span class="key">max-limit=</span><span class="val">1M/2M</span>
+
+            <span class="cmt"># PC2</span>
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">PC2-Limit</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.20</span>
+            <span class="key">max-limit=</span><span class="val">512k/1M</span>
+
+            <span class="cmt"># PC3</span>
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">PC3-Limit</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.30</span>
+            <span class="key">max-limit=</span><span class="val">2M/4M</span>
+
+            <span class="cmt"># PC4</span>
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">PC4-Limit</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.40</span>
+            <span class="key">max-limit=</span><span class="val">1M/2M</span>
+          </div>
+          <p style="font-size: 13px; color: #555; margin-top: 10px">
+            Verifikasi: buka speedtest.net dari PC1 → hasil harus ≤ 2 Mbps
+            download, ≤ 1 Mbps upload.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 5: PCQ -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">5</div>
+          PCQ — Per Connection Queue
+        </div>
+        <div class="card">
+          <h3>Prinsip Kerja PCQ</h3>
+          <p>
+            PCQ adalah <strong>Queue Type</strong> khusus yang membagi bandwidth
+            secara adil kepada semua pengguna aktif <em>secara otomatis</em>.
+            Tidak perlu konfigurasi per IP — cukup satu aturan untuk seluruh
+            jaringan.
+          </p>
+          <div style="margin-top: 14px; overflow-x: auto">
+            <table
+              style="
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 13px;
+                text-align: center;
+              "
+            >
+              <tr style="background: #e8eaf6">
+                <td
+                  style="
+                    padding: 8px;
+                    font-weight: 700;
+                    border-radius: 6px 0 0 6px;
+                  "
+                >
+                  1 Pengguna
+                </td>
+                <td style="padding: 8px; color: #1a237e; font-weight: 700">
+                  → 10 Mbps masing-masing
+                </td>
+              </tr>
+              <tr style="background: #fff">
+                <td style="padding: 8px; font-weight: 700">2 Pengguna</td>
+                <td style="padding: 8px; color: #1a237e; font-weight: 700">
+                  → 5 Mbps masing-masing
+                </td>
+              </tr>
+              <tr style="background: #e8eaf6">
+                <td style="padding: 8px; font-weight: 700">4 Pengguna</td>
+                <td style="padding: 8px; color: #1a237e; font-weight: 700">
+                  → 2.5 Mbps masing-masing
+                </td>
+              </tr>
+              <tr style="background: #fff">
+                <td
+                  style="
+                    padding: 8px;
+                    font-weight: 700;
+                    border-radius: 0 0 0 6px;
+                  "
+                >
+                  8 Pengguna
+                </td>
+                <td style="padding: 8px; color: #1a237e; font-weight: 700">
+                  → 1.25 Mbps masing-masing
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- PCQ Simulator -->
+        <div class="sim-card">
+          <h3 style="margin-bottom: 16px; color: #1a237e">
+            🔢 Simulasi PCQ — Geser untuk melihat pembagian
+          </h3>
+          <div class="sim-header">
+            <label>Pengguna aktif:</label>
+            <input
+              type="range"
+              min="1"
+              max="8"
+              value="2"
+              id="userSlider"
+              oninput="updatePCQ()"
+            />
+            <span
+              id="userCount"
+              style="
+                font-size: 22px;
+                font-weight: 700;
+                color: #1a237e;
+                min-width: 28px;
+                text-align: right;
+              "
+              >2</span
+            >
+          </div>
+          <div class="stat-row">
+            <div class="stat-box">
+              <div class="stat-label">Total Bandwidth</div>
+              <div class="stat-val">10 Mbps</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Per Pengguna</div>
+              <div class="stat-val" id="perUser">5 Mbps</div>
+            </div>
+          </div>
+          <div id="pcq-bars"></div>
+          <div class="sim-note">
+            Saat pengguna baru aktif, PCQ otomatis menyesuaikan jatah bandwidth.
+            Saat pengguna tidak aktif, bandwidth-nya diberikan ke yang lain.
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 16px">
+          <h3>PCQ Classifier</h3>
+          <table class="param-table">
+            <thead>
+              <tr>
+                <th>Classifier</th>
+                <th>Digunakan untuk</th>
+                <th>Alasan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>dst-address</code></td>
+                <td>Download</td>
+                <td>Membedakan pengguna berdasarkan alamat tujuan paket</td>
+              </tr>
+              <tr>
+                <td><code>src-address</code></td>
+                <td>Upload</td>
+                <td>Membedakan pengguna berdasarkan alamat sumber paket</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Konfigurasi PCQ — Langkah Demi Langkah</h3>
+          <p style="margin-bottom: 12px; font-size: 13px; color: #555">
+            Buat dua Queue Type terlebih dahulu, kemudian buat satu Simple Queue
+            yang menggunakannya.
+          </p>
+
+          <p style="font-weight: 700; margin-bottom: 6px; color: #1a237e">
+            Langkah 1 — Buat Queue Type PCQ Download:
+          </p>
+          <div class="code-block">
+            <span class="cmt"># Queues → Queue Types → [+]</span>
+            <span class="key">Name</span> :
+            <span class="val">PCQ-Download</span>
+            <span class="key">Kind</span> : <span class="val">pcq</span>
+            <span class="key">PCQ Rate</span> : <span class="val">0</span>
+            <span class="cmt">(bagi rata otomatis)</span>
+            <span class="key">PCQ Classifier</span> :
+            <span class="val">dst-address</span>
+
+            <span class="cmt"># Via CLI:</span>
+            <span class="cmd">/queue type add</span>
+            <span class="key">name=</span><span class="val">PCQ-Download</span>
+            <span class="key">kind=</span><span class="val">pcq</span>
+            <span class="key">pcq-rate=</span><span class="val">0</span>
+            <span class="key">pcq-classifier=</span
+            ><span class="val">dst-address</span>
+          </div>
+
+          <p style="font-weight: 700; margin: 12px 0 6px; color: #1a237e">
+            Langkah 2 — Buat Queue Type PCQ Upload:
+          </p>
+          <div class="code-block">
+            <span class="cmd">/queue type add</span>
+            <span class="key">name=</span><span class="val">PCQ-Upload</span>
+            <span class="key">kind=</span><span class="val">pcq</span>
+            <span class="key">pcq-rate=</span><span class="val">0</span>
+            <span class="key">pcq-classifier=</span
+            ><span class="val">src-address</span>
+          </div>
+
+          <p style="font-weight: 700; margin: 12px 0 6px; color: #1a237e">
+            Langkah 3 — Buat Simple Queue menggunakan PCQ:
+          </p>
+          <div class="code-block">
+            <span class="cmt"># Queues → Simple Queues → [+]</span>
+            <span class="key">Name</span> :
+            <span class="val">Internet-PCQ</span>
+            <span class="key">Target</span> :
+            <span class="val">192.168.1.0/24</span>
+            <span class="key">Max Limit Upload</span> :
+            <span class="val">10M</span>
+            <span class="key">Max Limit Download</span> :
+            <span class="val">10M</span>
+            <span class="key">Queue Type Upload</span> :
+            <span class="val">PCQ-Upload</span>
+            <span class="key">Queue Type Download</span>:
+            <span class="val">PCQ-Download</span>
+
+            <span class="cmt"># Via CLI:</span>
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">Internet-PCQ</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.0/24</span> \
+            <span class="key">max-limit=</span><span class="val">10M/10M</span>
+            <span class="key">queue=</span
+            ><span class="val">PCQ-Upload/PCQ-Download</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6: BURST -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">6</div>
+          Burst
+        </div>
+        <div class="card">
+          <p>
+            Burst mengizinkan pengguna untuk
+            <strong>sementara melebihi batas bandwidth</strong>, kemudian
+            kembali ke batas normal. Berguna agar halaman web terasa cepat saat
+            pertama dimuat.
+          </p>
+        </div>
+
+        <div class="burst-svg-wrap">
+          <svg
+            width="100%"
+            viewBox="0 0 680 230"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Sumbu -->
+            <defs>
+              <marker
+                id="arr2"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path
+                  d="M2 1L8 5L2 9"
+                  fill="none"
+                  stroke="#888"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </marker>
+            </defs>
+            <line
+              x1="80"
+              y1="20"
+              x2="80"
+              y2="175"
+              stroke="#aaa"
+              stroke-width="1"
+              marker-end="url(#arr2)"
+            />
+            <line
+              x1="80"
+              y1="175"
+              x2="630"
+              y2="175"
+              stroke="#aaa"
+              stroke-width="1"
+              marker-end="url(#arr2)"
+            />
+
+            <!-- Label sumbu -->
+            <text
+              x="38"
+              y="108"
+              font-size="12"
+              fill="#888"
+              text-anchor="middle"
+              transform="rotate(-90 38 108)"
+            >
+              Kecepatan
+            </text>
+            <text x="638" y="178" font-size="12" fill="#888">Waktu →</text>
+
+            <!-- Garis burst-limit -->
+            <line
+              x1="80"
+              y1="55"
+              x2="620"
+              y2="55"
+              stroke="#bbb"
+              stroke-width="1"
+              stroke-dasharray="5 4"
+            />
+            <text x="76" y="58" font-size="12" fill="#888" text-anchor="end">
+              burst-limit (4M)
+            </text>
+
+            <!-- Garis max-limit -->
+            <line
+              x1="80"
+              y1="120"
+              x2="620"
+              y2="120"
+              stroke="#bbb"
+              stroke-width="1"
+              stroke-dasharray="5 4"
+            />
+            <text x="76" y="123" font-size="12" fill="#888" text-anchor="end">
+              max-limit (2M)
+            </text>
+
+            <!-- Area burst (shaded) -->
+            <rect
+              x="80"
+              y="55"
+              width="230"
+              height="120"
+              fill="#fff3e0"
+              opacity="0.7"
+            />
+
+            <!-- Grafik bandwidth -->
+            <polyline
+              points="80,55 310,55 310,120 600,120"
+              fill="none"
+              stroke="#e65100"
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
+            <circle cx="80" cy="55" r="5" fill="#e65100" />
+            <circle cx="310" cy="55" r="4" fill="#e65100" />
+            <circle cx="310" cy="120" r="4" fill="#e65100" />
+
+            <!-- Label fase burst -->
+            <text
+              x="195"
+              y="42"
+              font-size="12"
+              fill="#e65100"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              Fase Burst (burst-time)
+            </text>
+
+            <!-- Panah durasi burst -->
+            <line
+              x1="85"
+              y1="190"
+              x2="305"
+              y2="190"
+              stroke="#e65100"
+              stroke-width="1"
+            />
+            <polygon points="85,187 80,190 85,193" fill="#e65100" />
+            <polygon points="305,187 310,190 305,193" fill="#e65100" />
+
+            <!-- Garis vertikal pemisah -->
+            <line
+              x1="310"
+              y1="40"
+              x2="310"
+              y2="200"
+              stroke="#ccc"
+              stroke-width="1"
+              stroke-dasharray="4 3"
+            />
+            <text
+              x="310"
+              y="212"
+              font-size="11"
+              fill="#888"
+              text-anchor="middle"
+            >
+              burst-time habis
+            </text>
+
+            <!-- Label kecepatan normal -->
+            <text
+              x="455"
+              y="112"
+              font-size="12"
+              fill="#1565c0"
+              text-anchor="middle"
+              font-weight="bold"
+            >
+              Kecepatan normal
+            </text>
+          </svg>
+        </div>
+
+        <div class="card" style="margin-top: 16px">
+          <h3>Parameter Burst</h3>
+          <table class="param-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Keterangan</th>
+                <th>Contoh (Upload / Download)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>max-limit</strong></td>
+                <td>Batas bandwidth normal</td>
+                <td>1M / 2M</td>
+              </tr>
+              <tr>
+                <td><strong>burst-limit</strong></td>
+                <td>Batas saat burst (lebih tinggi)</td>
+                <td>2M / 4M</td>
+              </tr>
+              <tr>
+                <td><strong>burst-threshold</strong></td>
+                <td>Trigger: burst aktif jika rata-rata di bawah nilai ini</td>
+                <td>512k / 1M</td>
+              </tr>
+              <tr>
+                <td><strong>burst-time</strong></td>
+                <td>Durasi burst diizinkan (detik)</td>
+                <td>10s / 10s</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top: 16px">Konfigurasi Burst via CLI</h3>
+          <div class="code-block">
+            <span class="cmd">/queue simple add</span>
+            <span class="key">name=</span><span class="val">PC1-Burst</span>
+            <span class="key">target=</span
+            ><span class="val">192.168.1.10</span> \
+            <span class="key">max-limit=</span><span class="val">1M/2M</span> \
+            <span class="key">burst-limit=</span
+            ><span class="val">2M/4M</span> \
+            <span class="key">burst-threshold=</span
+            ><span class="val">512k/1M</span> \
+            <span class="key">burst-time=</span><span class="val">10s/10s</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: TOPOLOGI & LANGKAH KERJA -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">7</div>
+          Topologi Praktikum
+        </div>
+        <div class="topo-wrap">
+          <svg
+            width="100%"
+            viewBox="0 0 680 280"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arr3"
+                viewBox="0 0 10 10"
+                refX="8"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path
+                  d="M2 1L8 5L2 9"
+                  fill="none"
+                  stroke="#1565c0"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </marker>
+            </defs>
+
+            <!-- Internet -->
+            <rect
+              x="270"
+              y="20"
+              width="140"
+              height="50"
+              rx="10"
+              fill="#e3f2fd"
+              stroke="#1565c0"
+              stroke-width="1.5"
+            />
+            <text
+              x="340"
+              y="40"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+              fill="#0d47a1"
+            >
+              Internet
+            </text>
+            <text
+              x="340"
+              y="58"
+              text-anchor="middle"
+              font-size="12"
+              fill="#1565c0"
+            >
+              10 Mbps / 10 Mbps
+            </text>
+
+            <!-- Line Internet ke Router -->
+            <line
+              x1="340"
+              y1="70"
+              x2="340"
+              y2="105"
+              stroke="#1565c0"
+              stroke-width="1.5"
+              marker-end="url(#arr3)"
+            />
+            <text x="355" y="90" font-size="11" fill="#888">ether1</text>
+
+            <!-- MikroTik Router -->
+            <rect
+              x="250"
+              y="105"
+              width="180"
+              height="55"
+              rx="10"
+              fill="#1a237e"
+              stroke="#0d47a1"
+              stroke-width="1.5"
+            />
+            <text
+              x="340"
+              y="127"
+              text-anchor="middle"
+              font-size="14"
+              font-weight="bold"
+              fill="#fff"
+            >
+              MikroTik Router
+            </text>
+            <text
+              x="340"
+              y="147"
+              text-anchor="middle"
+              font-size="11"
+              fill="#90caf9"
+            >
+              ether2: 192.168.1.1/24
+            </text>
+
+            <!-- Line Router ke Switch -->
+            <line
+              x1="340"
+              y1="160"
+              x2="340"
+              y2="190"
+              stroke="#1565c0"
+              stroke-width="1.5"
+              marker-end="url(#arr3)"
+            />
+
+            <!-- Switch -->
+            <rect
+              x="270"
+              y="190"
+              width="140"
+              height="40"
+              rx="8"
+              fill="#e8eaf6"
+              stroke="#5c6bc0"
+              stroke-width="1.5"
+            />
+            <text
+              x="340"
+              y="215"
+              text-anchor="middle"
+              font-size="13"
+              font-weight="bold"
+              fill="#283593"
+            >
+              LAN Switch
+            </text>
+
+            <!-- 4 PC -->
+            <line
+              x1="100"
+              y1="230"
+              x2="270"
+              y2="210"
+              stroke="#5c6bc0"
+              stroke-width="1.2"
+            />
+            <line
+              x1="230"
+              y1="250"
+              x2="300"
+              y2="230"
+              stroke="#5c6bc0"
+              stroke-width="1.2"
+            />
+            <line
+              x1="450"
+              y1="250"
+              x2="380"
+              y2="230"
+              stroke="#5c6bc0"
+              stroke-width="1.2"
+            />
+            <line
+              x1="580"
+              y1="230"
+              x2="410"
+              y2="210"
+              stroke="#5c6bc0"
+              stroke-width="1.2"
+            />
+
+            <!-- PC boxes -->
+            <rect
+              x="40"
+              y="240"
+              width="120"
+              height="35"
+              rx="8"
+              fill="#e0f2f1"
+              stroke="#00897b"
+              stroke-width="1.5"
+            />
+            <text
+              x="100"
+              y="257"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="bold"
+              fill="#00695c"
+            >
+              PC1
+            </text>
+            <text
+              x="100"
+              y="269"
+              text-anchor="middle"
+              font-size="10"
+              fill="#00695c"
+            >
+              192.168.1.10
+            </text>
+
+            <rect
+              x="170"
+              y="255"
+              width="120"
+              height="35"
+              rx="8"
+              fill="#e0f2f1"
+              stroke="#00897b"
+              stroke-width="1.5"
+            />
+            <text
+              x="230"
+              y="272"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="bold"
+              fill="#00695c"
+            >
+              PC2
+            </text>
+            <text
+              x="230"
+              y="284"
+              text-anchor="middle"
+              font-size="10"
+              fill="#00695c"
+            >
+              192.168.1.20
+            </text>
+
+            <rect
+              x="390"
+              y="255"
+              width="120"
+              height="35"
+              rx="8"
+              fill="#e0f2f1"
+              stroke="#00897b"
+              stroke-width="1.5"
+            />
+            <text
+              x="450"
+              y="272"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="bold"
+              fill="#00695c"
+            >
+              PC3
+            </text>
+            <text
+              x="450"
+              y="284"
+              text-anchor="middle"
+              font-size="10"
+              fill="#00695c"
+            >
+              192.168.1.30
+            </text>
+
+            <rect
+              x="520"
+              y="240"
+              width="120"
+              height="35"
+              rx="8"
+              fill="#e0f2f1"
+              stroke="#00897b"
+              stroke-width="1.5"
+            />
+            <text
+              x="580"
+              y="257"
+              text-anchor="middle"
+              font-size="12"
+              font-weight="bold"
+              fill="#00695c"
+            >
+              PC4
+            </text>
+            <text
+              x="580"
+              y="269"
+              text-anchor="middle"
+              font-size="10"
+              fill="#00695c"
+            >
+              192.168.1.40
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- SECTION 8: MONITORING TORCH -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">8</div>
+          Monitoring dengan Torch
+        </div>
+        <div class="card">
+          <p>
+            Torch adalah tools bawaan MikroTik untuk memantau traffic secara
+            <strong>real-time</strong>.
+          </p>
+          <p style="margin-top: 8px">
+            Akses via:
+            <strong>Tools → Torch → pilih Interface ether2 → Start</strong>
+          </p>
+          <table class="param-table" style="margin-top: 14px">
+            <thead>
+              <tr>
+                <th>Kolom</th>
+                <th>Keterangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Src. Address</strong></td>
+                <td>IP pengirim paket</td>
+              </tr>
+              <tr>
+                <td><strong>Dst. Address</strong></td>
+                <td>IP penerima paket</td>
+              </tr>
+              <tr>
+                <td><strong>TX Rate</strong></td>
+                <td>Kecepatan upload (dari PC ke internet)</td>
+              </tr>
+              <tr>
+                <td><strong>RX Rate</strong></td>
+                <td>Kecepatan download (dari internet ke PC)</td>
+              </tr>
+              <tr>
+                <td><strong>Packets</strong></td>
+                <td>Jumlah paket per detik</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="highlight" style="margin-top: 12px">
+            💡 <strong>Tips:</strong> Gunakan filter <em>Src. Address</em> di
+            Torch untuk memantau satu IP spesifik saja.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 9: KESIMPULAN -->
+      <div class="section">
+        <div class="section-title">
+          <div class="section-num">9</div>
+          Kesimpulan
+        </div>
+        <div class="kesimpulan">
+          <h3>QoS secara umum</h3>
+          <p>
+            QoS adalah mekanisme kendali bandwidth agar jaringan digunakan
+            secara <strong>adil dan efisien</strong>. Tanpa QoS, pengguna dengan
+            aktivitas berat (streaming, download besar) bisa memonopoli seluruh
+            bandwidth.
+          </p>
+
+          <h3>Simple Queue</h3>
+          <p>
+            Paling mudah dikonfigurasi. Cocok untuk membatasi bandwidth
+            <strong>per pengguna secara manual</strong>. Kelemahan: tidak
+            skalabel — harus dibuat satu aturan per IP pengguna.
+          </p>
+
+          <h3>PCQ (Per Connection Queue)</h3>
+          <p>
+            Solusi cerdas untuk jaringan multi-pengguna. Satu aturan untuk
+            seluruh subnet, bandwidth dibagi
+            <strong>otomatis dan proporsional</strong>. Bila ada pengguna tidak
+            aktif, jatahnya diberikan ke pengguna lain sehingga bandwidth tidak
+            terbuang.
+          </p>
+
+          <h3>Burst</h3>
+          <p>
+            Bukan mekanisme terpisah, melainkan fitur tambahan pada Simple
+            Queue. Mengizinkan kecepatan lebih tinggi secara
+            <strong>sementara</strong> sebelum kembali ke batas normal. Berguna
+            untuk mempercepat loading awal (web, email).
+          </p>
+
+          <h3>Lima Parameter QoS</h3>
+          <ul>
+            <li><strong>Bandwidth</strong> — kapasitas maksimum jalur</li>
+            <li>
+              <strong>Throughput</strong> — bandwidth aktual yang terkirim
+            </li>
+            <li>
+              <strong>Latency</strong> — waktu tempuh paket (ideal &lt;150ms
+              untuk VoIP)
+            </li>
+            <li>
+              <strong>Jitter</strong> — variasi keterlambatan (ideal &lt;30ms
+              untuk VoIP)
+            </li>
+            <li>
+              <strong>Packet Loss</strong> — paket yang hilang (ideal &lt;1%
+              untuk VoIP)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /container -->
+
+    <footer>
+      Modul Praktikum Jaringan Komputer 2 &nbsp;·&nbsp; Kode EIK212305
+      &nbsp;·&nbsp; Politeknik Negeri Tanah Laut
+    </footer>
+
+    <script>
+      const COLORS = [
+        "#1D9E75",
+        "#185FA5",
+        "#7F77DD",
+        "#D85A30",
+        "#BA7517",
+        "#D4537E",
+        "#639922",
+        "#B05535",
+      ];
+      const TOTAL = 10;
+
+      function updatePCQ() {
+        const n = parseInt(document.getElementById("userSlider").value);
+        document.getElementById("userCount").textContent = n;
+        const each = (TOTAL / n).toFixed(2).replace(/\.?0+$/, "");
+        document.getElementById("perUser").textContent = each + " Mbps";
+        const pct = (100 / n).toFixed(1);
+        const container = document.getElementById("pcq-bars");
+        container.innerHTML = "";
+        for (let i = 0; i < n; i++) {
+          const row = document.createElement("div");
+          row.className = "bar-row";
+          row.innerHTML = `
+        <span class="pc-name">PC${i + 1}</span>
+        <div class="bar-track">
+          <div class="bar-fill" style="width:${pct}%;background:${COLORS[i]};opacity:0.85;"></div>
+        </div>
+        <span class="bw-val">${each} Mbps</span>
+      `;
+          container.appendChild(row);
+        }
+      }
+
+      updatePCQ();
+    </script>
+  </body>
+</html>
