@@ -1,0 +1,3895 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pertemuan 4 — Audio Editing dengan Audacity</title>
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --bg2: #161616;
+        --bg3: #1e1e1e;
+        --bg4: #252525;
+        --border: #2e2e2e;
+        --border2: #3a3a3a;
+        --text: #e8e6df;
+        --text2: #9c9a92;
+        --text3: #5c5a54;
+        --accent: #4f8ef7;
+        --accent2: #1a3a6e;
+        --accent3: #0d2244;
+        --green: #3ecf8e;
+        --green2: #0d4a2e;
+        --amber: #e8a23a;
+        --amber2: #4a2e08;
+        --red: #e05252;
+        --red2: #4a1414;
+        --purple: #a78bfa;
+        --purple2: #2d1f5e;
+        --teal: #38bdf8;
+        --teal2: #0c3044;
+        --coral: #f87171;
+        --wave-blue: #4f8ef7;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      /* HERO */
+      .hero {
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 64px 48px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          ellipse 600px 300px at 70% 50%,
+          rgba(79, 142, 247, 0.06),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--accent3);
+        border: 1px solid var(--accent2);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      .hero h1 {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1.15;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+        max-width: 680px;
+      }
+      .hero h1 span {
+        color: var(--accent);
+      }
+      .hero-sub {
+        color: var(--text2);
+        font-size: 16px;
+        max-width: 560px;
+        margin-bottom: 32px;
+      }
+      .hero-meta {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .hero-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text2);
+      }
+      .hero-meta-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--green);
+      }
+
+      /* NAV */
+      .nav-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100vh;
+        background: var(--bg2);
+        border-right: 1px solid var(--border);
+        padding: 24px 0;
+        overflow-y: auto;
+        z-index: 100;
+      }
+      .nav-logo {
+        padding: 0 20px 20px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 16px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text3);
+      }
+      .nav-section-label {
+        padding: 8px 20px 4px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text3);
+      }
+      .nav-link {
+        display: block;
+        padding: 7px 20px;
+        font-size: 13px;
+        color: var(--text2);
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        transition: all 0.15s;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .nav-link:hover {
+        color: var(--text);
+        background: var(--bg3);
+      }
+      .nav-link.active {
+        color: var(--accent);
+        border-left-color: var(--accent);
+        background: var(--accent3);
+      }
+      .nav-link.sub {
+        padding-left: 32px;
+        font-size: 12px;
+      }
+
+      /* MAIN */
+      .main {
+        margin-left: 220px;
+        min-height: 100vh;
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 56px 48px;
+        border-bottom: 1px solid var(--border);
+        max-width: 900px;
+      }
+      .section:last-child {
+        border-bottom: none;
+      }
+
+      .section-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .section-number {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        text-transform: uppercase;
+      }
+      .section-rule {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+        max-width: 40px;
+      }
+
+      .section h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+      .section h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 36px 0 12px;
+        color: var(--text);
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+      .section h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 24px 0 8px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .section p {
+        color: var(--text2);
+        margin-bottom: 14px;
+      }
+      .section p strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      /* QUOTE */
+      .blockquote {
+        border-left: 3px solid var(--accent);
+        padding: 16px 20px;
+        background: var(--bg3);
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0 28px;
+        font-size: 16px;
+        color: var(--text);
+        font-style: italic;
+      }
+
+      /* WAVEFORM SIMULATOR */
+      .waveform-demo {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        font-family: monospace;
+      }
+      .waveform-label {
+        font-size: 11px;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+      canvas.waveform {
+        width: 100%;
+        height: 80px;
+        display: block;
+        border-radius: 4px;
+        cursor: crosshair;
+      }
+      .waveform-controls {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+
+      /* BUTTONS */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid var(--border2);
+        background: var(--bg4);
+        color: var(--text);
+        transition: all 0.15s;
+        user-select: none;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent3);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #3a7de8;
+        border-color: #3a7de8;
+        color: #fff;
+      }
+      .btn-sm {
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+      .btn-danger {
+        border-color: var(--red2);
+        color: var(--red);
+      }
+      .btn-danger:hover {
+        background: var(--red2);
+        border-color: var(--red);
+      }
+      .btn-green {
+        border-color: var(--green2);
+        color: var(--green);
+      }
+      .btn-green:hover {
+        background: var(--green2);
+        border-color: var(--green);
+      }
+
+      /* KEYBOARD SHORTCUT */
+      kbd {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        padding: 2px 8px;
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        border-bottom-width: 2px;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 12px;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      /* SHORTCUT TABLE */
+      .shortcut-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        margin: 16px 0;
+      }
+      .shortcut-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: var(--bg3);
+        border-radius: 4px;
+        gap: 12px;
+      }
+      .shortcut-row:hover {
+        background: var(--bg4);
+      }
+      .shortcut-desc {
+        font-size: 13px;
+        color: var(--text2);
+        flex: 1;
+      }
+
+      /* INTERFACE MAP */
+      .interface-map {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .interface-header {
+        background: var(--bg4);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-red {
+        background: #e05252;
+      }
+      .dot-amber {
+        background: #e8a23a;
+      }
+      .dot-green {
+        background: #3ecf8e;
+      }
+      .interface-title {
+        margin-left: 8px;
+        font-size: 12px;
+        color: var(--text3);
+      }
+
+      /* EFFECT CHAIN */
+      .effect-chain {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin: 20px 0;
+        overflow-x: auto;
+        padding: 4px;
+      }
+      .effect-node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 14px 18px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        min-width: 110px;
+        cursor: pointer;
+        transition: all 0.2s;
+        position: relative;
+      }
+      .effect-node:hover {
+        border-color: var(--accent);
+        background: var(--accent3);
+      }
+      .effect-node.active {
+        border-color: var(--accent);
+        background: var(--accent3);
+      }
+      .effect-icon {
+        font-size: 22px;
+        margin-bottom: 6px;
+      }
+      .effect-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text);
+        text-align: center;
+      }
+      .effect-sub {
+        font-size: 10px;
+        color: var(--text3);
+        text-align: center;
+        margin-top: 2px;
+      }
+      .effect-arrow {
+        color: var(--text3);
+        font-size: 18px;
+        padding: 0 4px;
+        flex-shrink: 0;
+      }
+      .effect-detail {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 12px 0;
+        display: none;
+      }
+      .effect-detail.visible {
+        display: block;
+      }
+      .effect-detail h5 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--accent);
+      }
+
+      /* SLIDERS */
+      .param-row {
+        display: grid;
+        grid-template-columns: 160px 1fr 56px;
+        align-items: center;
+        gap: 12px;
+        margin: 10px 0;
+      }
+      .param-label {
+        font-size: 13px;
+        color: var(--text2);
+      }
+      .param-value {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--accent);
+        text-align: right;
+        min-width: 48px;
+      }
+      input[type="range"] {
+        width: 100%;
+        height: 4px;
+        appearance: none;
+        background: var(--border2);
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--accent);
+        border: 2px solid var(--bg);
+        cursor: pointer;
+      }
+      input[type="range"]:hover {
+        background: var(--accent2);
+      }
+
+      /* INFO CARDS */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+      }
+      .card {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px;
+        transition: border-color 0.15s;
+      }
+      .card:hover {
+        border-color: var(--border2);
+      }
+      .card-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .card-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .card-desc {
+        font-size: 12px;
+        color: var(--text2);
+        line-height: 1.5;
+      }
+
+      /* BADGE */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        margin: 2px;
+      }
+      .badge-blue {
+        background: var(--accent3);
+        color: var(--accent);
+        border: 1px solid var(--accent2);
+      }
+      .badge-green {
+        background: var(--green2);
+        color: var(--green);
+        border: 1px solid #164a30;
+      }
+      .badge-amber {
+        background: var(--amber2);
+        color: var(--amber);
+        border: 1px solid #5a3a0a;
+      }
+      .badge-red {
+        background: var(--red2);
+        color: var(--red);
+        border: 1px solid #5a1c1c;
+      }
+      .badge-purple {
+        background: var(--purple2);
+        color: var(--purple);
+        border: 1px solid #3d2c7a;
+      }
+
+      /* ACCORDION */
+      .accordion-item {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin-bottom: 8px;
+        overflow: hidden;
+      }
+      .accordion-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        cursor: pointer;
+        background: var(--bg3);
+        transition: background 0.15s;
+        user-select: none;
+      }
+      .accordion-head:hover {
+        background: var(--bg4);
+      }
+      .accordion-head h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin: 0;
+        text-transform: none;
+        letter-spacing: 0;
+      }
+      .accordion-arrow {
+        transition: transform 0.2s;
+        font-size: 16px;
+        color: var(--text3);
+      }
+      .accordion-arrow.open {
+        transform: rotate(180deg);
+      }
+      .accordion-body {
+        padding: 0 16px;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.3s ease,
+          padding 0.2s;
+        background: var(--bg2);
+      }
+      .accordion-body.open {
+        max-height: 2000px;
+        padding: 16px;
+      }
+
+      /* TABS */
+      .tab-bar {
+        display: flex;
+        gap: 2px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 20px;
+        overflow-x: auto;
+      }
+      .tab-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text2);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        background: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+      .tab-btn:hover {
+        color: var(--text);
+      }
+      .tab-btn.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+
+      /* CHECKLIST */
+      .checklist {
+        list-style: none;
+        margin: 12px 0;
+      }
+      .checklist li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--text2);
+        cursor: pointer;
+      }
+      .checklist li:last-child {
+        border-bottom: none;
+      }
+      .checklist li .check-box {
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid var(--border2);
+        border-radius: 4px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s;
+        background: var(--bg3);
+      }
+      .checklist li.done .check-box {
+        background: var(--green);
+        border-color: var(--green);
+        color: #000;
+        font-size: 11px;
+      }
+      .checklist li.done span {
+        text-decoration: line-through;
+        color: var(--text3);
+      }
+
+      /* EQ VISUALIZER */
+      #eq-canvas {
+        width: 100%;
+        height: 140px;
+        display: block;
+        border-radius: 6px;
+        background: var(--bg4);
+      }
+      .eq-bands {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .eq-band {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .eq-band label {
+        font-size: 10px;
+        color: var(--text3);
+      }
+      .eq-band input[type="range"] {
+        writing-mode: vertical-lr;
+        direction: rtl;
+        height: 80px;
+        width: 20px;
+        cursor: ns-resize;
+      }
+      .eq-band span {
+        font-size: 11px;
+        color: var(--accent);
+        font-weight: 600;
+        min-width: 32px;
+        text-align: center;
+      }
+
+      /* NOISE REDUCTION */
+      .noise-demo {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 16px 0;
+      }
+
+      /* WORKFLOW STEPS */
+      .workflow {
+        position: relative;
+        padding-left: 28px;
+        margin: 20px 0;
+      }
+      .workflow::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--border);
+      }
+      .workflow-step {
+        position: relative;
+        padding: 0 0 24px 20px;
+      }
+      .workflow-step::before {
+        content: attr(data-n);
+        position: absolute;
+        left: -28px;
+        top: 2px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent3);
+        border: 1px solid var(--accent2);
+        color: var(--accent);
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .workflow-step h5 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .workflow-step p {
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 0;
+      }
+
+      /* PRACTICE SECTION */
+      .practice-box {
+        background: var(--bg3);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 20px 0;
+      }
+      .practice-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        background: var(--bg4);
+        border-bottom: 1px solid var(--border);
+      }
+      .practice-header h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        text-transform: none;
+        letter-spacing: 0;
+        margin: 0;
+      }
+      .practice-body {
+        padding: 20px;
+      }
+
+      /* CODE BLOCK */
+      pre {
+        background: var(--bg4);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        font-family: "Cascadia Code", "Fira Code", monospace;
+        font-size: 12.5px;
+        color: var(--text2);
+        overflow-x: auto;
+        margin: 12px 0;
+        line-height: 1.6;
+      }
+      pre .c {
+        color: var(--text3);
+      }
+      pre .k {
+        color: var(--accent);
+      }
+      pre .s {
+        color: var(--green);
+      }
+      pre .n {
+        color: var(--amber);
+      }
+
+      /* COMPACT TABLE */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        margin: 16px 0;
+      }
+      .data-table th {
+        text-align: left;
+        padding: 8px 12px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text3);
+        background: var(--bg4);
+        border-bottom: 1px solid var(--border);
+      }
+      .data-table td {
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text2);
+        vertical-align: top;
+      }
+      .data-table tr:hover td {
+        background: var(--bg3);
+      }
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      /* COMPRESSOR VISUALIZER */
+      #comp-canvas {
+        width: 100%;
+        height: 180px;
+        display: block;
+        border-radius: 6px;
+        background: var(--bg4);
+      }
+
+      /* FADE */
+      .section-intro {
+        color: var(--text2);
+        font-size: 15px;
+        max-width: 700px;
+        margin-bottom: 28px;
+      }
+
+      /* MOBILE */
+      @media (max-width: 800px) {
+        .nav-sidebar {
+          display: none;
+        }
+        .main {
+          margin-left: 0;
+        }
+        .section {
+          padding: 32px 24px;
+        }
+        .hero {
+          padding: 40px 24px 32px;
+        }
+        .hero h1 {
+          font-size: 28px;
+        }
+        .shortcut-grid {
+          grid-template-columns: 1fr;
+        }
+        .eq-bands {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      /* SCROLLBAR */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg2);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+
+      /* PROGRESS */
+      .progress-ring {
+        display: block;
+        margin: 0 auto;
+      }
+
+      /* TOOLTIP */
+      [data-tip] {
+        position: relative;
+      }
+      [data-tip]::after {
+        content: attr(data-tip);
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--bg4);
+        border: 1px solid var(--border2);
+        color: var(--text);
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.15s;
+        z-index: 50;
+      }
+      [data-tip]:hover::after {
+        opacity: 1;
+      }
+
+      .highlight-box {
+        border-left: 3px solid var(--accent);
+        background: var(--accent3);
+        padding: 12px 16px;
+        border-radius: 0 8px 8px 0;
+        margin: 12px 0;
+        font-size: 13px;
+        color: var(--text);
+      }
+      .highlight-box.warn {
+        border-left-color: var(--amber);
+        background: var(--amber2);
+      }
+      .highlight-box.success {
+        border-left-color: var(--green);
+        background: var(--green2);
+      }
+      .highlight-box.danger {
+        border-left-color: var(--red);
+        background: var(--red2);
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 16px 0;
+      }
+      @media (max-width: 600px) {
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      hr.divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 28px 0;
+      }
+
+      /* Waveform selection overlay */
+      .waveform-wrap {
+        position: relative;
+      }
+      .sel-overlay {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background: rgba(79, 142, 247, 0.2);
+        border: 1px solid var(--accent);
+        pointer-events: none;
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SIDEBAR NAV -->
+    <nav class="nav-sidebar">
+      <div class="nav-logo">🎙 Audacity</div>
+      <div class="nav-section-label">Materi</div>
+      <a href="#interface" class="nav-link">1. Interface Audacity</a>
+      <a href="#shortcuts" class="nav-link sub">↳ Keyboard Shortcuts</a>
+      <a href="#import" class="nav-link">2. Import & Manage Audio</a>
+      <a href="#editing" class="nav-link">3. Selection & Basic Editing</a>
+      <a href="#effects" class="nav-link">4. Essential Audio Effects</a>
+      <a href="#noise" class="nav-link sub">↳ Noise Reduction</a>
+      <a href="#eq" class="nav-link sub">↳ Equalizer</a>
+      <a href="#comp" class="nav-link sub">↳ Compression</a>
+      <a href="#multitrack" class="nav-link">5. Multi-Track Editing</a>
+      <a href="#workflow" class="nav-link">6. Podcast Workflow</a>
+      <div class="nav-section-label" style="margin-top: 16px">Praktikum</div>
+      <a href="#lab1" class="nav-link">Lab 1 — Interface</a>
+      <a href="#lab2" class="nav-link">Lab 2 — Noise Reduction</a>
+      <a href="#lab3" class="nav-link">Lab 3 — Effects Chain</a>
+      <div class="nav-section-label" style="margin-top: 16px">Referensi</div>
+      <a href="#ringkasan" class="nav-link">Ringkasan</a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="main">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-badge">📅 Pertemuan 4</div>
+        <h1>Audio Editing<br /><span>dengan Audacity</span></h1>
+        <p class="hero-sub">
+          Rekayasa Video dan Audio — Dari raw recording ke broadcast-ready audio
+          yang terdengar profesional.
+        </p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-dot"></div>
+            Audacity (Free & Open-Source)
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-dot" style="background: var(--amber)"></div>
+            Podcast · Voice Over · Audio Cleanup
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-dot" style="background: var(--purple)"></div>
+            Multi-track · Effects Chain · Export
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: INTERFACE -->
+      <section class="section" id="interface">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 01</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Audacity Interface Deep Dive</h2>
+        <p class="section-intro">
+          Audacity adalah powerful, FREE, open-source audio editor yang capable
+          of professional results. Memahami interface-nya adalah fondasi dari
+          semua editing yang akan dilakukan.
+        </p>
+
+        <div class="blockquote">
+          "Editing is where good recordings become great audio content."
+        </div>
+
+        <!-- Interface Map Interactive -->
+        <h3>Workspace Layout</h3>
+        <p>Klik setiap area di bawah untuk mempelajari fungsinya:</p>
+
+        <div class="interface-map">
+          <div class="interface-header">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-amber"></div>
+            <div class="dot dot-green"></div>
+            <span class="interface-title">Audacity — Workspace</span>
+          </div>
+          <div id="interface-demo" style="padding: 16px">
+            <!-- Simulated Audacity UI -->
+            <div style="display: flex; flex-direction: column; gap: 2px">
+              <!-- Menu bar -->
+              <div
+                id="zone-menu"
+                onclick="showZoneInfo('menu')"
+                class="zone-row"
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: 5px 5px 0 0;
+                  padding: 6px 10px;
+                  display: flex;
+                  gap: 16px;
+                  cursor: pointer;
+                  transition: background 0.15s;
+                "
+              >
+                <span style="font-size: 11px; color: var(--text2)">File</span>
+                <span style="font-size: 11px; color: var(--text2)">Edit</span>
+                <span style="font-size: 11px; color: var(--text2)">View</span>
+                <span style="font-size: 11px; color: var(--text2)"
+                  >Transport</span
+                >
+                <span style="font-size: 11px; color: var(--text2)">Tracks</span>
+                <span style="font-size: 11px; color: var(--text2)"
+                  >Generate</span
+                >
+                <span style="font-size: 11px; color: var(--text2)">Effect</span>
+                <span style="font-size: 11px; color: var(--text2)"
+                  >Analyze</span
+                >
+              </div>
+              <!-- Transport toolbar -->
+              <div
+                id="zone-transport"
+                onclick="showZoneInfo('transport')"
+                style="
+                  background: var(--bg3);
+                  border: 1px solid var(--border);
+                  padding: 8px 10px;
+                  display: flex;
+                  gap: 10px;
+                  align-items: center;
+                  cursor: pointer;
+                  transition: background 0.15s;
+                "
+              >
+                <button class="btn btn-sm">⏮</button>
+                <button class="btn btn-sm">⏸</button>
+                <button class="btn btn-sm btn-primary">▶</button>
+                <button class="btn btn-sm">⏹</button>
+                <button class="btn btn-sm">⏭</button>
+                <button class="btn btn-sm btn-danger" style="margin-left: 4px">
+                  ⏺
+                </button>
+                <span
+                  style="font-size: 10px; color: var(--text3); margin-left: 8px"
+                  >TRANSPORT TOOLBAR — Klik untuk detail</span
+                >
+              </div>
+              <!-- Tools + Meter row -->
+              <div
+                style="
+                  background: var(--bg3);
+                  border: 1px solid var(--border);
+                  padding: 8px 10px;
+                  display: flex;
+                  gap: 12px;
+                  align-items: center;
+                  cursor: pointer;
+                "
+                id="zone-tools"
+                onclick="showZoneInfo('tools')"
+              >
+                <span
+                  style="
+                    font-size: 11px;
+                    background: var(--bg4);
+                    border: 1px solid var(--accent);
+                    color: var(--accent);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                  "
+                  >I</span
+                >
+                <span
+                  style="
+                    font-size: 11px;
+                    background: var(--bg4);
+                    border: 1px solid var(--border);
+                    color: var(--text2);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                  "
+                  >E</span
+                >
+                <span
+                  style="
+                    font-size: 11px;
+                    background: var(--bg4);
+                    border: 1px solid var(--border);
+                    color: var(--text2);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                  "
+                  >D</span
+                >
+                <span
+                  style="
+                    font-size: 11px;
+                    background: var(--bg4);
+                    border: 1px solid var(--border);
+                    color: var(--text2);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                  "
+                  >Z</span
+                >
+                <span
+                  style="
+                    font-size: 11px;
+                    background: var(--bg4);
+                    border: 1px solid var(--border);
+                    color: var(--text2);
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                  "
+                  >T</span
+                >
+                <span
+                  style="font-size: 10px; color: var(--text3); margin-left: 8px"
+                  >TOOLS TOOLBAR — Klik untuk detail</span
+                >
+              </div>
+              <!-- Timeline -->
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  padding: 4px 10px;
+                  display: flex;
+                  gap: 0;
+                  cursor: pointer;
+                "
+                id="zone-timeline"
+                onclick="showZoneInfo('timeline')"
+              >
+                <span
+                  style="
+                    font-size: 9px;
+                    color: var(--text3);
+                    display: flex;
+                    gap: 40px;
+                    padding-left: 120px;
+                  "
+                >
+                  <span>0:00</span><span>0:05</span><span>0:10</span
+                  ><span>0:15</span><span>0:20</span>
+                </span>
+              </div>
+              <!-- Track panel + waveform -->
+              <div
+                style="display: flex; gap: 0; cursor: pointer"
+                id="zone-track"
+                onclick="showZoneInfo('track')"
+              >
+                <div
+                  style="
+                    width: 120px;
+                    background: var(--bg4);
+                    border: 1px solid var(--border);
+                    padding: 8px;
+                    flex-shrink: 0;
+                  "
+                >
+                  <div
+                    style="
+                      font-size: 11px;
+                      color: var(--text);
+                      font-weight: 600;
+                      margin-bottom: 6px;
+                    "
+                  >
+                    Vocal Track
+                  </div>
+                  <div style="display: flex; gap: 4px; margin-bottom: 6px">
+                    <span
+                      style="
+                        font-size: 10px;
+                        background: var(--bg3);
+                        border: 1px solid var(--border);
+                        padding: 2px 5px;
+                        border-radius: 3px;
+                        color: var(--text2);
+                      "
+                      >M</span
+                    >
+                    <span
+                      style="
+                        font-size: 10px;
+                        background: var(--bg3);
+                        border: 1px solid var(--border);
+                        padding: 2px 5px;
+                        border-radius: 3px;
+                        color: var(--text2);
+                      "
+                      >S</span
+                    >
+                  </div>
+                  <input
+                    type="range"
+                    style="width: 100%; height: 3px"
+                    value="75"
+                    readonly
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    background: var(--bg3);
+                    border: 1px solid var(--border);
+                    position: relative;
+                    min-height: 70px;
+                    overflow: hidden;
+                  "
+                >
+                  <canvas
+                    id="preview-wave"
+                    style="width: 100%; height: 70px; display: block"
+                  ></canvas>
+                  <span
+                    style="
+                      position: absolute;
+                      right: 8px;
+                      bottom: 4px;
+                      font-size: 9px;
+                      color: var(--text3);
+                    "
+                    >WAVEFORM — Klik untuk detail</span
+                  >
+                </div>
+              </div>
+              <!-- Selection toolbar -->
+              <div
+                style="
+                  background: var(--bg4);
+                  border: 1px solid var(--border);
+                  border-radius: 0 0 5px 5px;
+                  padding: 6px 10px;
+                  display: flex;
+                  gap: 16px;
+                  cursor: pointer;
+                "
+                id="zone-sel"
+                onclick="showZoneInfo('selection')"
+              >
+                <span style="font-size: 11px; color: var(--text2)"
+                  >Start: 0:02.345</span
+                >
+                <span style="font-size: 11px; color: var(--text2)"
+                  >End: 0:05.678</span
+                >
+                <span style="font-size: 11px; color: var(--text2)"
+                  >Length: 0:03.333</span
+                >
+                <span
+                  style="
+                    font-size: 10px;
+                    color: var(--text3);
+                    margin-left: auto;
+                  "
+                  >SELECTION TOOLBAR</span
+                >
+              </div>
+            </div>
+
+            <!-- Zone Info Panel -->
+            <div
+              id="zone-info"
+              style="
+                margin-top: 12px;
+                padding: 16px;
+                background: var(--bg4);
+                border: 1px solid var(--accent2);
+                border-radius: 8px;
+                display: none;
+              "
+            >
+              <div id="zone-info-content"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools Detail Cards -->
+        <h3 id="shortcuts">Keyboard Shortcuts Penting</h3>
+        <p>
+          Hafal shortcut berikut untuk mempercepat workflow editing secara
+          drastis.
+        </p>
+
+        <div class="tab-bar">
+          <button
+            class="tab-btn active"
+            onclick="switchTab('shortcuts-tab', 'play')"
+          >
+            Playback
+          </button>
+          <button
+            class="tab-btn"
+            onclick="switchTab('shortcuts-tab', 'select')"
+          >
+            Selection
+          </button>
+          <button class="tab-btn" onclick="switchTab('shortcuts-tab', 'edit')">
+            Editing
+          </button>
+          <button class="tab-btn" onclick="switchTab('shortcuts-tab', 'view')">
+            View & Zoom
+          </button>
+        </div>
+
+        <div id="shortcuts-tab-play" class="tab-content active">
+          <div class="shortcut-grid">
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Play / Stop</span><kbd>Space</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Loop play selection</span
+              ><kbd>Shift</kbd>+<kbd>Space</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Play to selection</span><kbd>X</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Play one second</span><kbd>C</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Record</span><kbd>R</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Pause</span><kbd>P</kbd>
+            </div>
+          </div>
+        </div>
+        <div id="shortcuts-tab-select" class="tab-content">
+          <div class="shortcut-grid">
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Select All</span><kbd>Ctrl</kbd>+<kbd
+                >A</kbd
+              >
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Deselect All</span
+              ><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Select cursor to end</span
+              ><kbd>Shift</kbd>+<kbd>J</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Select start to cursor</span
+              ><kbd>Shift</kbd>+<kbd>K</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Extend selection</span
+              ><kbd>Shift</kbd>+Click
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Select entire track</span>Double-click
+              track
+            </div>
+          </div>
+        </div>
+        <div id="shortcuts-tab-edit" class="tab-content">
+          <div class="shortcut-grid">
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Cut</span><kbd>Ctrl</kbd>+<kbd>X</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Copy</span><kbd>Ctrl</kbd>+<kbd
+                >C</kbd
+              >
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Paste</span><kbd>Ctrl</kbd>+<kbd
+                >V</kbd
+              >
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Delete selection</span><kbd>Del</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Silence selection</span
+              ><kbd>Ctrl</kbd>+<kbd>L</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Undo (infinite!)</span
+              ><kbd>Ctrl</kbd>+<kbd>Z</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Redo</span><kbd>Ctrl</kbd>+<kbd
+                >Y</kbd
+              >
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Trim to selection</span
+              ><kbd>Ctrl</kbd>+<kbd>T</kbd>
+            </div>
+          </div>
+        </div>
+        <div id="shortcuts-tab-view" class="tab-content">
+          <div class="shortcut-grid">
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Zoom Normal</span><kbd>Ctrl</kbd>+<kbd
+                >1</kbd
+              >
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Zoom to Fit Project</span
+              ><kbd>Ctrl</kbd>+<kbd>2</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Zoom to Fit Selection</span
+              ><kbd>Ctrl</kbd>+<kbd>3</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Import Audio</span
+              ><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Save Project</span
+              ><kbd>Ctrl</kbd>+<kbd>S</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-desc">Export Audio</span
+              ><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: IMPORT -->
+      <section class="section" id="import">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 02</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Importing & Managing Audio Files</h2>
+        <p class="section-intro">
+          Audacity mendukung berbagai format audio. Pahami perbedaan antara
+          menyimpan <em>project</em> dan melakukan <em>export</em> untuk
+          delivery.
+        </p>
+
+        <div class="two-col">
+          <div>
+            <h3 style="margin-top: 0">Format Import (Input)</h3>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 16px;
+              "
+            >
+              <span class="badge badge-blue">WAV</span>
+              <span class="badge badge-blue">AIFF</span>
+              <span class="badge badge-green">FLAC</span>
+              <span class="badge badge-amber">MP3</span>
+              <span class="badge badge-amber">OGG</span>
+              <span class="badge badge-amber">M4A / AAC</span>
+              <span class="badge badge-amber">WMA</span>
+              <span class="badge badge-purple">+ FFmpeg</span>
+            </div>
+            <div class="highlight-box">
+              <strong>3 Cara Import:</strong><br />
+              1. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd> → Browse file<br />
+              2. <strong>Drag & Drop</strong> dari Explorer<br />
+              3. <strong>File → Open</strong> (window baru)
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-top: 0">Format Export (Output)</h3>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Format</th>
+                  <th>Kegunaan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="badge badge-green">WAV 48kHz/24bit</span>
+                  </td>
+                  <td>Master / Archiving</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-amber">MP3 192kbps</span></td>
+                  <td>Podcast delivery</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-amber">MP3 128kbps</span></td>
+                  <td>Speech-only podcast</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-blue">FLAC</span></td>
+                  <td>Lossless distribution</td>
+                </tr>
+                <tr>
+                  <td><span class="badge badge-blue">OGG</span></td>
+                  <td>Web audio</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <h3>Project vs Export</h3>
+        <div class="two-col">
+          <div class="card" style="border-color: var(--accent2)">
+            <div class="card-icon">💾</div>
+            <div class="card-title" style="color: var(--accent)">
+              Save Project (.aup3)
+            </div>
+            <div class="card-desc">
+              Menyimpan semua edits, tracks, undo history. Hanya bisa dibuka di
+              Audacity. BUKAN file untuk dikirim ke orang lain. Gunakan:
+              <kbd>Ctrl</kbd>+<kbd>S</kbd>
+            </div>
+          </div>
+          <div class="card" style="border-color: var(--green2)">
+            <div class="card-icon">📤</div>
+            <div class="card-title" style="color: var(--green)">
+              Export Audio
+            </div>
+            <div class="card-desc">
+              Membuat file deliverable (WAV, MP3, dll). Ini yang dikirim,
+              diupload, atau diserahkan. Gunakan:
+              <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>E</kbd>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box warn">
+          <strong>⚠ Penting:</strong> Jangan kirim file
+          <code>.aup3</code> kepada orang lain. Selalu
+          <strong>Export</strong> ke format standar (WAV/MP3) untuk delivery.
+        </div>
+      </section>
+
+      <!-- SECTION 3: EDITING -->
+      <section class="section" id="editing">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 03</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Selection Tools & Basic Editing</h2>
+        <p class="section-intro">
+          Editing di Audacity dimulai dari membuat selection yang tepat. Semua
+          operasi edit berlaku pada selection yang aktif.
+        </p>
+
+        <!-- Interactive Waveform Demo -->
+        <h3>Simulasi Waveform Editor</h3>
+        <p>
+          Coba operasi editing dasar di bawah. Klik dan drag di waveform untuk
+          membuat selection, lalu gunakan tombol operasi.
+        </p>
+
+        <div class="practice-box">
+          <div class="practice-header">
+            <h4>🎵 Waveform Editor — Interactive Demo</h4>
+            <span
+              style="font-size: 12px; color: var(--text3)"
+              id="waveform-status"
+              >Klik & drag untuk membuat selection</span
+            >
+          </div>
+          <div class="practice-body">
+            <div class="waveform-wrap" id="wave-wrap">
+              <canvas
+                id="main-wave"
+                style="
+                  width: 100%;
+                  height: 90px;
+                  display: block;
+                  cursor: crosshair;
+                  border-radius: 6px;
+                  background: var(--bg4);
+                "
+              ></canvas>
+              <div
+                class="sel-overlay"
+                id="sel-overlay"
+                style="display: none"
+              ></div>
+            </div>
+            <div
+              style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap"
+            >
+              <button class="btn btn-sm" onclick="waveOp('cut')">
+                <kbd style="font-size: 10px">Ctrl+X</kbd> Cut
+              </button>
+              <button class="btn btn-sm btn-danger" onclick="waveOp('delete')">
+                <kbd style="font-size: 10px">Del</kbd> Delete
+              </button>
+              <button
+                class="btn btn-sm"
+                onclick="waveOp('silence')"
+                style="border-color: var(--purple2); color: var(--purple)"
+              >
+                <kbd style="font-size: 10px">Ctrl+L</kbd> Silence
+              </button>
+              <button
+                class="btn btn-sm btn-green"
+                onclick="waveOp('normalize')"
+              >
+                Normalize
+              </button>
+              <button class="btn btn-sm" onclick="waveOp('fadein')">
+                Fade In
+              </button>
+              <button class="btn btn-sm" onclick="waveOp('fadeout')">
+                Fade Out
+              </button>
+              <button
+                class="btn btn-sm"
+                onclick="waveOp('undo')"
+                style="margin-left: auto"
+              >
+                <kbd style="font-size: 10px">Ctrl+Z</kbd> Undo
+              </button>
+              <button class="btn btn-sm btn-primary" onclick="waveReset()">
+                Reset
+              </button>
+            </div>
+            <div
+              id="wave-log"
+              style="
+                margin-top: 10px;
+                font-size: 12px;
+                color: var(--text3);
+                min-height: 20px;
+                padding: 6px 10px;
+                background: var(--bg4);
+                border-radius: 5px;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <!-- Operations Explained -->
+        <h3>Cut vs Delete vs Silence</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">✂️</div>
+            <div class="card-title">
+              Cut <kbd style="font-size: 10px">Ctrl+X</kbd>
+            </div>
+            <div class="card-desc">
+              Menghapus selection & menyimpannya ke clipboard. Gap tertutup
+              (audio setelah selection bergeser ke kiri). Dapat di-paste ulang.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🗑️</div>
+            <div class="card-title">
+              Delete <kbd style="font-size: 10px">Del</kbd>
+            </div>
+            <div class="card-desc">
+              Menghapus selection tanpa menyimpan ke clipboard. Gap tertutup.
+              Lebih cepat dari Cut jika tidak perlu paste.
+            </div>
+          </div>
+          <div class="card" style="border-color: var(--purple2)">
+            <div class="card-icon">🔇</div>
+            <div class="card-title">
+              Silence <kbd style="font-size: 10px">Ctrl+L</kbd>
+            </div>
+            <div class="card-desc">
+              Mengganti selection dengan diam (zeros). Durasi TETAP tidak
+              berubah. Cocok untuk menghapus bunyi batuk tanpa mengubah timing.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: EFFECTS -->
+      <section class="section" id="effects">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 04</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Essential Audio Effects</h2>
+        <p class="section-intro">
+          Effects yang tepat diterapkan dengan urutan yang benar adalah kunci
+          audio yang terdengar profesional. Pelajari setiap effect dan
+          parameternya.
+        </p>
+
+        <!-- Processing Chain Visual -->
+        <h3>Processing Chain untuk Voice</h3>
+        <p>
+          Klik setiap node untuk melihat detail settings yang direkomendasikan:
+        </p>
+
+        <div class="effect-chain" id="effect-chain">
+          <div
+            class="effect-node"
+            onclick="showEffect('noise')"
+            data-id="noise"
+          >
+            <div class="effect-icon">🎚️</div>
+            <div class="effect-name">Noise Reduction</div>
+            <div class="effect-sub">Step pertama</div>
+          </div>
+          <div class="effect-arrow">→</div>
+          <div
+            class="effect-node"
+            onclick="showEffect('normalize')"
+            data-id="normalize"
+          >
+            <div class="effect-icon">📊</div>
+            <div class="effect-name">Normalization</div>
+            <div class="effect-sub">Level dasar</div>
+          </div>
+          <div class="effect-arrow">→</div>
+          <div class="effect-node" onclick="showEffect('eq')" data-id="eq">
+            <div class="effect-icon">🎛️</div>
+            <div class="effect-name">EQ</div>
+            <div class="effect-sub">Frekuensi</div>
+          </div>
+          <div class="effect-arrow">→</div>
+          <div class="effect-node" onclick="showEffect('comp')" data-id="comp">
+            <div class="effect-icon">📉</div>
+            <div class="effect-name">Compression</div>
+            <div class="effect-sub">Dinamik</div>
+          </div>
+          <div class="effect-arrow">→</div>
+          <div
+            class="effect-node"
+            onclick="showEffect('limiter')"
+            data-id="limiter"
+          >
+            <div class="effect-icon">🛑</div>
+            <div class="effect-name">Limiter</div>
+            <div class="effect-sub">Safety ceiling</div>
+          </div>
+        </div>
+
+        <div class="effect-detail" id="effect-noise">
+          <h5>🎚️ Noise Reduction</h5>
+          <div class="highlight-box success">
+            Two-step process:
+            <strong>(1) Get Noise Profile → (2) Apply Reduction</strong>
+          </div>
+          <div class="workflow">
+            <div class="workflow-step" data-n="1">
+              <h5>Get Noise Profile</h5>
+              <p>
+                Select 1–2 detik audio yang HANYA berisi noise (tidak ada
+                suara/musik). Biasanya di awal atau akhir rekaman. Lalu:
+                <strong>Effect → Noise Reduction → Get Noise Profile</strong>
+              </p>
+            </div>
+            <div class="workflow-step" data-n="2">
+              <h5>Apply Noise Reduction</h5>
+              <p>
+                Pilih seluruh audio (<kbd>Ctrl+A</kbd>), lalu kembali ke Effect
+                → Noise Reduction. Atur parameter dan klik OK.
+              </p>
+            </div>
+          </div>
+          <div class="param-row">
+            <span class="param-label">Noise Reduction (dB)</span
+            ><input
+              type="range"
+              min="6"
+              max="30"
+              value="12"
+              oninput="this.nextElementSibling.textContent = this.value + ' dB'"
+            /><span class="param-value">12 dB</span>
+          </div>
+          <div class="param-row">
+            <span class="param-label">Sensitivity</span
+            ><input
+              type="range"
+              min="0"
+              max="24"
+              value="6"
+              step="0.1"
+              oninput="
+                this.nextElementSibling.textContent = parseFloat(
+                  this.value,
+                ).toFixed(1)
+              "
+            /><span class="param-value">6.0</span>
+          </div>
+          <div class="param-row">
+            <span class="param-label">Frequency Smoothing</span
+            ><input
+              type="range"
+              min="0"
+              max="12"
+              value="3"
+              oninput="
+                this.nextElementSibling.textContent = this.value + ' bands'
+              "
+            /><span class="param-value">3 bands</span>
+          </div>
+          <div class="highlight-box warn">
+            <strong>Tips:</strong> Less is more! Nilai terlalu tinggi → suara
+            "underwater"/artifact. Mulai dari 12 dB, naikkan hanya jika perlu.
+            Tidak bisa menghapus noise yang bervariasi (suara orang, traffic).
+          </div>
+        </div>
+
+        <div class="effect-detail" id="effect-normalize">
+          <h5>📊 Normalization</h5>
+          <p style="color: var(--text2); font-size: 14px">
+            Meninggikan volume seluruh audio secara proporsional sehingga sample
+            terkeras mencapai level yang ditentukan.
+          </p>
+          <div class="param-row">
+            <span class="param-label">Normalize peak to</span
+            ><input
+              type="range"
+              min="-12"
+              max="-0.1"
+              step="0.1"
+              value="-1"
+              oninput="
+                this.nextElementSibling.textContent =
+                  parseFloat(this.value).toFixed(1) + ' dB'
+              "
+            /><span class="param-value">-1.0 dB</span>
+          </div>
+          <div class="two-col" style="margin-top: 16px">
+            <div class="highlight-box">
+              <strong>Selalu centang:</strong><br />✓ Remove DC offset<br />✓
+              Normalize peak amplitude
+            </div>
+            <div class="highlight-box warn">
+              <strong>-1.0 dB</strong> memberikan sedikit headroom agar tidak
+              terjadi clipping di tahap selanjutnya.
+            </div>
+          </div>
+        </div>
+
+        <!-- EQ Section with Interactive Visualizer -->
+        <div class="effect-detail" id="effect-eq">
+          <h5 id="eq">🎛️ Equalization (EQ)</h5>
+          <p style="color: var(--text2); font-size: 14px">
+            Atur keseimbangan frekuensi audio. Geser slider EQ bands di bawah
+            untuk melihat efeknya secara visual.
+          </p>
+          <canvas id="eq-canvas"></canvas>
+          <div class="eq-bands">
+            <div class="eq-band">
+              <label>60Hz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="-8"
+                id="eq0"
+                oninput="drawEQ()"
+              /><span id="eq0v">-8</span>
+            </div>
+            <div class="eq-band">
+              <label>150Hz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="-3"
+                id="eq1"
+                oninput="drawEQ()"
+              /><span id="eq1v">-3</span>
+            </div>
+            <div class="eq-band">
+              <label>400Hz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="1"
+                id="eq2"
+                oninput="drawEQ()"
+              /><span id="eq2v">+1</span>
+            </div>
+            <div class="eq-band">
+              <label>1kHz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="2"
+                id="eq3"
+                oninput="drawEQ()"
+              /><span id="eq3v">+2</span>
+            </div>
+            <div class="eq-band">
+              <label>3kHz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="4"
+                id="eq4"
+                oninput="drawEQ()"
+              /><span id="eq4v">+4</span>
+            </div>
+            <div class="eq-band">
+              <label>6kHz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="-2"
+                id="eq5"
+                oninput="drawEQ()"
+              /><span id="eq5v">-2</span>
+            </div>
+            <div class="eq-band">
+              <label>12kHz</label
+              ><input
+                type="range"
+                min="-12"
+                max="12"
+                value="-1"
+                id="eq6"
+                oninput="drawEQ()"
+              /><span id="eq6v">-1</span>
+            </div>
+          </div>
+          <div
+            style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap"
+          >
+            <button class="btn btn-sm" onclick="eqPreset('voice')">
+              Voice Preset
+            </button>
+            <button class="btn btn-sm" onclick="eqPreset('highpass')">
+              High-Pass Filter
+            </button>
+            <button class="btn btn-sm" onclick="eqPreset('warmth')">
+              Add Warmth
+            </button>
+            <button class="btn btn-sm" onclick="eqPreset('flat')">
+              Flat (Reset)
+            </button>
+          </div>
+          <table class="data-table" style="margin-top: 16px">
+            <thead>
+              <tr>
+                <th>Frekuensi</th>
+                <th>Efek</th>
+                <th>Rekomendasi Suara</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>20–80 Hz</td>
+                <td>Rumble, handling noise</td>
+                <td>
+                  <span class="badge badge-red">↓ Cut</span> — High-pass filter
+                </td>
+              </tr>
+              <tr>
+                <td>200–400 Hz</td>
+                <td>Warmth, body</td>
+                <td>
+                  <span class="badge badge-amber">± Hati-hati</span> — muddy
+                  jika berlebihan
+                </td>
+              </tr>
+              <tr>
+                <td>2–5 kHz</td>
+                <td>Presence, clarity</td>
+                <td>
+                  <span class="badge badge-green">↑ Sedikit boost</span> —
+                  intelligibility
+                </td>
+              </tr>
+              <tr>
+                <td>6–8 kHz</td>
+                <td>Sibilance (S, SS, SH)</td>
+                <td>
+                  <span class="badge badge-red">↓ Slight cut</span> — de-essing
+                </td>
+              </tr>
+              <tr>
+                <td>10–16 kHz</td>
+                <td>Air, brightness</td>
+                <td><span class="badge badge-blue">Optional boost</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Compression with Visualizer -->
+        <div class="effect-detail" id="effect-comp">
+          <h5 id="comp">📉 Compression</h5>
+          <p style="color: var(--text2); font-size: 14px">
+            Memperkecil dynamic range: bagian pelan menjadi lebih keras, bagian
+            keras terkontrol. Hasilnya: level yang lebih konsisten dan enak
+            didengar.
+          </p>
+          <canvas id="comp-canvas"></canvas>
+          <div style="margin-top: 14px">
+            <div class="param-row">
+              <span class="param-label">Threshold</span
+              ><input
+                type="range"
+                min="-40"
+                max="-5"
+                value="-20"
+                id="comp-thresh"
+                oninput="updateComp()"
+              /><span class="param-value" id="comp-thresh-v">-20 dB</span>
+            </div>
+            <div class="param-row">
+              <span class="param-label">Ratio</span
+              ><input
+                type="range"
+                min="1.1"
+                max="10"
+                step="0.1"
+                value="3"
+                id="comp-ratio"
+                oninput="updateComp()"
+              /><span class="param-value" id="comp-ratio-v">3:1</span>
+            </div>
+            <div class="param-row">
+              <span class="param-label">Attack</span
+              ><input
+                type="range"
+                min="1"
+                max="50"
+                value="5"
+                id="comp-attack"
+                oninput="
+                  this.nextElementSibling.textContent = this.value + 'ms'
+                "
+              /><span class="param-value">5ms</span>
+            </div>
+            <div class="param-row">
+              <span class="param-label">Release</span
+              ><input
+                type="range"
+                min="50"
+                max="500"
+                value="200"
+                id="comp-release"
+                oninput="
+                  this.nextElementSibling.textContent = this.value + 'ms'
+                "
+              /><span class="param-value">200ms</span>
+            </div>
+          </div>
+          <div class="highlight-box success">
+            <strong>Nilai untuk Voice (Podcast):</strong> Threshold: -20 dB ·
+            Ratio: 3:1 · Attack: 5ms · Release: 200ms · Make-up gain: ON
+          </div>
+        </div>
+
+        <div class="effect-detail" id="effect-limiter">
+          <h5>🛑 Limiter</h5>
+          <p style="color: var(--text2); font-size: 14px">
+            Hard ceiling: tidak ada audio yang melewati batas yang ditentukan.
+            Berbeda dengan compression yang gradual — limiter adalah "brick
+            wall".
+          </p>
+          <div class="two-col">
+            <div>
+              <div class="param-row">
+                <span class="param-label">Limit to</span
+                ><input
+                  type="range"
+                  min="-3"
+                  max="-0.1"
+                  step="0.1"
+                  value="-1"
+                  oninput="
+                    this.nextElementSibling.textContent =
+                      parseFloat(this.value).toFixed(1) + ' dB'
+                  "
+                /><span class="param-value">-1.0 dB</span>
+              </div>
+              <div class="param-row">
+                <span class="param-label">Hold</span
+                ><input
+                  type="range"
+                  min="1"
+                  max="50"
+                  value="10"
+                  oninput="
+                    this.nextElementSibling.textContent = this.value + 'ms'
+                  "
+                /><span class="param-value">10ms</span>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Compression</th>
+                  <th>Limiter</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Gradual reduction</td>
+                  <td>Hard ceiling</td>
+                </tr>
+                <tr>
+                  <td>Ratio: 3:1 – 6:1</td>
+                  <td>Ratio: 20:1+</td>
+                </tr>
+                <tr>
+                  <td>Dynamic control</td>
+                  <td>Brick wall</td>
+                </tr>
+                <tr>
+                  <td>Di tengah chain</td>
+                  <td>Step terakhir</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: MULTI-TRACK -->
+      <section class="section" id="multitrack">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 05</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Multi-Track Editing & Mixing</h2>
+        <p class="section-intro">
+          Bekerja dengan beberapa track sekaligus untuk membuat podcast, music
+          production, atau sound design yang kaya dan berlapis.
+        </p>
+
+        <!-- Multi-track Mixer Simulator -->
+        <h3>Mixer Simulator</h3>
+        <p>
+          Atur level dan pan untuk setiap track. Klik Play untuk mendengar
+          simulasi mixing.
+        </p>
+
+        <div class="practice-box">
+          <div class="practice-header">
+            <h4>🎚️ Multi-Track Mixer</h4>
+            <button
+              class="btn btn-sm btn-primary"
+              onclick="playMixer()"
+              id="mixer-play-btn"
+            >
+              ▶ Play
+            </button>
+          </div>
+          <div class="practice-body" id="mixer-tracks">
+            <!-- Tracks rendered by JS -->
+          </div>
+          <div
+            style="
+              padding: 12px 20px;
+              border-top: 1px solid var(--border);
+              background: var(--bg4);
+            "
+          >
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <span style="font-size: 12px; color: var(--text3)"
+                >Master Output</span
+              >
+              <canvas
+                id="master-meter"
+                style="
+                  width: 200px;
+                  height: 20px;
+                  border-radius: 3px;
+                  background: var(--bg3);
+                "
+              ></canvas>
+            </div>
+          </div>
+        </div>
+
+        <h3>Track Controls</h3>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🔇</div>
+            <div class="card-title">Mute (M)</div>
+            <div class="card-desc">
+              Silences satu track. Track lain tetap play. Berguna untuk isolasi
+              dan perbandingan.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔊</div>
+            <div class="card-title">Solo (S)</div>
+            <div class="card-desc">
+              Hanya track ini yang play, semua track lain di-mute otomatis.
+              Quick focus pada satu track.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📶</div>
+            <div class="card-title">Gain Slider</div>
+            <div class="card-desc">
+              Volume track (-36 dB s/d +36 dB). Atur relative levels antara
+              tracks.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">↔️</div>
+            <div class="card-title">Pan Slider</div>
+            <div class="card-desc">
+              Posisi stereo (L–Center–R). Voice: Center. Supporting: sedikit ke
+              sisi untuk width.
+            </div>
+          </div>
+        </div>
+
+        <h3>Mixing Tips untuk Podcast</h3>
+        <div class="accordion-item">
+          <div class="accordion-head" onclick="toggleAccordion(this)">
+            <h4>🎵 Balancing Voice + Background Music</h4>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            <p>
+              Voice harus selalu menjadi elemen paling jelas terdengar.
+              Background music berfungsi sebagai pendukung, bukan pesaing.
+            </p>
+            <ul
+              style="
+                color: var(--text2);
+                font-size: 13px;
+                padding-left: 20px;
+                line-height: 2;
+              "
+            >
+              <li>Voice track: Gain sekitar 0 dB (reference level)</li>
+              <li>Background music: -18 dB s/d -24 dB saat voice berbicara</li>
+              <li>Gunakan Envelope Tool (E) untuk volume automation</li>
+              <li>
+                Fade musik ke bawah saat voice mulai, naik kembali saat pause
+              </li>
+              <li>
+                High-pass filter musik di 200–300 Hz untuk memberikan ruang pada
+                voice
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-head" onclick="toggleAccordion(this)">
+            <h4>🎼 Generate Audio Elements</h4>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            <div class="two-col">
+              <div>
+                <h4>Generate Menu</h4>
+                <ul
+                  style="
+                    color: var(--text2);
+                    font-size: 13px;
+                    padding-left: 18px;
+                    line-height: 2;
+                  "
+                >
+                  <li><strong>Tone</strong> — Sine, square, sawtooth waves</li>
+                  <li><strong>Silence</strong> — Insert pause yang presisi</li>
+                  <li><strong>White/Pink Noise</strong> — Ambience, testing</li>
+                  <li><strong>Chirp</strong> — Frequency sweep</li>
+                  <li><strong>DTMF Tones</strong> — Suara telepon</li>
+                  <li><strong>Pluck</strong> — Petikan string sintetis</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Use Cases</h4>
+                <ul
+                  style="
+                    color: var(--text2);
+                    font-size: 13px;
+                    padding-left: 18px;
+                    line-height: 2;
+                  "
+                >
+                  <li>Music bed untuk podcast</li>
+                  <li>Sound effects sederhana</li>
+                  <li>Test signal (sine wave 1kHz)</li>
+                  <li>Insert pause antara segmen</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: PODCAST WORKFLOW -->
+      <section class="section" id="workflow">
+        <div class="section-eyebrow">
+          <span class="section-number">Materi 06</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Podcast Production Workflow</h2>
+        <p class="section-intro">
+          Langkah-langkah lengkap dari raw recording hingga file siap publish.
+          Ikuti urutan ini setiap kali memproduksi episode.
+        </p>
+
+        <div class="workflow">
+          <div class="workflow-step" data-n="1">
+            <h5>Import Assets</h5>
+            <p>
+              Import semua file: rekaman voice, intro music, outro music,
+              jingles. Drag & drop ke Audacity atau gunakan
+              <kbd>Ctrl+Shift+I</kbd>.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="2">
+            <h5>Arrangement</h5>
+            <p>
+              Susun struktur: intro music → main content → mid-roll → outro
+              music. Gunakan Time Shift Tool (T) untuk memindahkan clips.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="3">
+            <h5>Content Editing</h5>
+            <p>
+              Hapus kesalahan, jeda panjang, um/ah yang berlebihan. Silence
+              napas yang terdengar. Rapikan cuts agar natural.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="4">
+            <h5>Noise Reduction (Voice Tracks)</h5>
+            <p>
+              Get noise profile dari section noise-only → Apply ke seluruh voice
+              track. Settings: 12 dB, Sensitivity 6.0, Smoothing 3 bands.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="5">
+            <h5>EQ</h5>
+            <p>
+              High-pass di 80 Hz (remove rumble). Presence boost 2–4 kHz
+              (clarity). Slight cut 6–8 kHz jika sibilance bermasalah.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="6">
+            <h5>Compression</h5>
+            <p>
+              Threshold -20 dB · Ratio 3:1 · Attack 5ms · Release 200ms ·
+              Make-up gain ON. Ratakan dynamics voice.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="7">
+            <h5>Mixing</h5>
+            <p>
+              Balance levels voice dan music. Fade automation (music turun saat
+              voice berbicara). Transitions antar segmen.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="8">
+            <h5>Loudness Normalization</h5>
+            <p>
+              Effect → Loudness Normalization → Target:
+              <strong>-16 LUFS</strong> untuk podcast streaming (Spotify, Apple
+              Podcasts).
+            </p>
+          </div>
+          <div class="workflow-step" data-n="9">
+            <h5>Final Limiter</h5>
+            <p>
+              Limit to -1.0 dB sebagai safety. Pastikan tidak ada clipping yang
+              lolos.
+            </p>
+          </div>
+          <div class="workflow-step" data-n="10">
+            <h5>Export</h5>
+            <p>
+              WAV 48kHz/24bit (master archive) + MP3 192kbps (delivery). Isi
+              metadata: Title, Artist, Album Art.
+            </p>
+          </div>
+        </div>
+
+        <div class="highlight-box success">
+          <strong>Loudness Standards:</strong><br />
+          Podcast/Streaming: <strong>-16 LUFS</strong> · YouTube:
+          <strong>-14 LUFS</strong> · Broadcast TV: <strong>-23 LUFS</strong>
+        </div>
+      </section>
+
+      <!-- LAB 1 -->
+      <section class="section" id="lab1">
+        <div class="section-eyebrow">
+          <span class="section-number">Praktikum 01</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Lab 1 — Interface Mastery & Basic Editing</h2>
+        <p class="section-intro">
+          Familiar dengan Audacity interface dan operasi editing dasar. Centang
+          setiap langkah setelah selesai dilakukan di Audacity.
+        </p>
+
+        <div class="practice-box">
+          <div class="practice-header">
+            <h4>✅ Checklist Praktikum 1</h4>
+            <span
+              id="lab1-progress"
+              style="font-size: 12px; color: var(--green)"
+              >0 / 10 selesai</span
+            >
+          </div>
+          <div class="practice-body">
+            <ul class="checklist" id="lab1-list">
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Buka Audacity dan kenali semua area interface (Menu,
+                  Transport, Tools, Track Panel, Timeline)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Import audio file (recording dari Pertemuan 3 atau sample
+                  file)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span>Play audio menggunakan Spacebar, pause, dan stop</span>
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Buat selection 5 detik dengan click & drag di waveform</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span>Extend selection menggunakan Shift+Click</span>
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Cut (Ctrl+X) bagian yang tidak diinginkan (silence atau
+                  mistake)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Trim audio menggunakan Ctrl+T (select apa yang ingin
+                  DIPERTAHANKAN dulu)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Split clip menggunakan Ctrl+I dan pindahkan dengan Time Shift
+                  Tool (T)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span
+                  >Silence region menggunakan Ctrl+L (bandingkan dengan
+                  Delete)</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab1')">
+                <div class="check-box"></div>
+                <span>Save Project (.aup3) dan Export Audio (WAV)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAB 2 -->
+      <section class="section" id="lab2">
+        <div class="section-eyebrow">
+          <span class="section-number">Praktikum 02</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Lab 2 — Noise Reduction & Audio Cleanup</h2>
+        <p class="section-intro">
+          Master noise reduction dan produksi clean audio. Gunakan rekaman
+          dengan background noise (kipas, hum, room tone).
+        </p>
+
+        <div class="practice-box">
+          <div class="practice-header">
+            <h4>📋 Prosedur Praktikum 2</h4>
+            <span
+              id="lab2-progress"
+              style="font-size: 12px; color: var(--green)"
+              >0 / 8 selesai</span
+            >
+          </div>
+          <div class="practice-body">
+            <ul class="checklist" id="lab2-list">
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Analisis:</strong> Dengarkan seluruh rekaman.
+                  Screenshot Analyze → Plot Spectrum. Catat frekuensi noise yang
+                  terlihat.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Cari noise-only region:</strong> Identifikasi 1–2
+                  detik audio yang HANYA berisi noise tanpa suara.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Get Noise Profile:</strong> Select noise-only region
+                  → Effect → Noise Reduction → Get Noise Profile.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Apply Reduction:</strong> Ctrl+A → Effect → Noise
+                  Reduction → Noise: 12 dB, Sensitivity: 6.0, Smoothing: 3 →
+                  OK.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Compare:</strong> Ctrl+Z untuk undo, Ctrl+Y untuk
+                  redo. Dengarkan perbedaan before/after.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Cleanup tambahan:</strong> Silence napas panjang atau
+                  pause (select + Ctrl+L). Fix pop/click: Effect → Repair.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>High-pass filter:</strong> Ctrl+A → Effect → Filter
+                  Curve EQ → Turunkan frekuensi 80 Hz ke bawah.</span
+                >
+              </li>
+              <li onclick="toggleCheck(this, 'lab2')">
+                <div class="check-box"></div>
+                <span
+                  ><strong>Export:</strong> Simpan versi cleaned sebagai WAV.
+                  Screenshot spectrum before/after untuk laporan (400
+                  kata).</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>📝 Laporan Lab 2 (400 kata) harus mencakup:</strong><br />
+          Jenis noise yang teridentifikasi · Settings yang digunakan ·
+          Assessment hasil · Perbandingan before/after (dengan screenshot
+          spectrum)
+        </div>
+      </section>
+
+      <!-- LAB 3 -->
+      <section class="section" id="lab3">
+        <div class="section-eyebrow">
+          <span class="section-number">Praktikum 03</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Lab 3 — Effects Processing Chain</h2>
+        <p class="section-intro">
+          Apply professional processing chain untuk broadcast-quality audio.
+          Gunakan audio bersih dari Lab 2.
+        </p>
+
+        <!-- Interactive chain tracker -->
+        <div class="practice-box">
+          <div class="practice-header">
+            <h4>⛓️ Processing Chain Tracker</h4>
+            <span
+              id="lab3-progress"
+              style="font-size: 12px; color: var(--green)"
+              >0 / 5 steps</span
+            >
+          </div>
+          <div class="practice-body">
+            <div id="chain-steps">
+              <div
+                class="chain-step"
+                style="
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  padding: 14px;
+                  margin-bottom: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: var(--bg4);
+                      border: 1px solid var(--border2);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--text3);
+                    "
+                    id="chain-circle-1"
+                  >
+                    1
+                  </div>
+                  <h4
+                    style="
+                      margin: 0;
+                      font-size: 14px;
+                      color: var(--text);
+                      text-transform: none;
+                      letter-spacing: 0;
+                    "
+                  >
+                    Normalization
+                  </h4>
+                  <button
+                    class="btn btn-sm btn-green"
+                    style="margin-left: auto"
+                    onclick="completeChainStep(1)"
+                  >
+                    ✓ Selesai
+                  </button>
+                </div>
+                <pre>
+Effect → Normalize
+☑ Remove DC offset
+☑ Normalize peak amplitude: -1.0 dB</pre
+                >
+              </div>
+
+              <div
+                class="chain-step"
+                style="
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  padding: 14px;
+                  margin-bottom: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: var(--bg4);
+                      border: 1px solid var(--border2);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--text3);
+                    "
+                    id="chain-circle-2"
+                  >
+                    2
+                  </div>
+                  <h4
+                    style="
+                      margin: 0;
+                      font-size: 14px;
+                      color: var(--text);
+                      text-transform: none;
+                      letter-spacing: 0;
+                    "
+                  >
+                    Equalization
+                  </h4>
+                  <button
+                    class="btn btn-sm btn-green"
+                    style="margin-left: auto"
+                    onclick="completeChainStep(2)"
+                  >
+                    ✓ Selesai
+                  </button>
+                </div>
+                <pre>
+Effect → Filter Curve EQ
+• High-pass: 80 Hz dan di bawahnya → DOWN (remove rumble)
+• Presence:  2–4 kHz → sedikit UP (clarity)
+• De-ess:    6–8 kHz → sedikit DOWN (harsh S)</pre
+                >
+              </div>
+
+              <div
+                class="chain-step"
+                style="
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  padding: 14px;
+                  margin-bottom: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: var(--bg4);
+                      border: 1px solid var(--border2);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--text3);
+                    "
+                    id="chain-circle-3"
+                  >
+                    3
+                  </div>
+                  <h4
+                    style="
+                      margin: 0;
+                      font-size: 14px;
+                      color: var(--text);
+                      text-transform: none;
+                      letter-spacing: 0;
+                    "
+                  >
+                    Compression
+                  </h4>
+                  <button
+                    class="btn btn-sm btn-green"
+                    style="margin-left: auto"
+                    onclick="completeChainStep(3)"
+                  >
+                    ✓ Selesai
+                  </button>
+                </div>
+                <pre>
+Effect → Compressor
+• Threshold:  -20 dB
+• Ratio:       3:1
+• Attack:      5 ms
+• Release:   200 ms
+• Make-up gain: ☑ ON</pre
+                >
+              </div>
+
+              <div
+                class="chain-step"
+                style="
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  padding: 14px;
+                  margin-bottom: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: var(--bg4);
+                      border: 1px solid var(--border2);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--text3);
+                    "
+                    id="chain-circle-4"
+                  >
+                    4
+                  </div>
+                  <h4
+                    style="
+                      margin: 0;
+                      font-size: 14px;
+                      color: var(--text);
+                      text-transform: none;
+                      letter-spacing: 0;
+                    "
+                  >
+                    Limiter
+                  </h4>
+                  <button
+                    class="btn btn-sm btn-green"
+                    style="margin-left: auto"
+                    onclick="completeChainStep(4)"
+                  >
+                    ✓ Selesai
+                  </button>
+                </div>
+                <pre>
+Effect → Limiter
+• Limit to:   -1.0 dB
+• Hold:        10 ms
+• Make-up gain: ☑ ON</pre
+                >
+              </div>
+
+              <div
+                class="chain-step"
+                style="
+                  border: 1px solid var(--border);
+                  border-radius: 8px;
+                  padding: 14px;
+                  margin-bottom: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    margin-bottom: 10px;
+                  "
+                >
+                  <div
+                    style="
+                      width: 28px;
+                      height: 28px;
+                      border-radius: 50%;
+                      background: var(--bg4);
+                      border: 1px solid var(--border2);
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 12px;
+                      font-weight: 700;
+                      color: var(--text3);
+                    "
+                    id="chain-circle-5"
+                  >
+                    5
+                  </div>
+                  <h4
+                    style="
+                      margin: 0;
+                      font-size: 14px;
+                      color: var(--text);
+                      text-transform: none;
+                      letter-spacing: 0;
+                    "
+                  >
+                    Export & Compare
+                  </h4>
+                  <button
+                    class="btn btn-sm btn-green"
+                    style="margin-left: auto"
+                    onclick="completeChainStep(5)"
+                  >
+                    ✓ Selesai
+                  </button>
+                </div>
+                <pre>
+1. Save project: Ctrl+S
+2. Export processed: File → Export → WAV 48kHz/24bit
+3. Dengarkan dan bandingkan dengan original
+4. Screenshot waveform before/after untuk laporan</pre
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-box">
+          <strong>📝 Laporan Lab 3 (500 kata) harus mencakup:</strong><br />
+          Rationale setiap step · Perbedaan yang terdengar · Screenshot waveform
+          before/after · Settings yang digunakan dan alasannya
+        </div>
+      </section>
+
+      <!-- RINGKASAN -->
+      <section class="section" id="ringkasan">
+        <div class="section-eyebrow">
+          <span class="section-number">Ringkasan</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2>Ringkasan Pertemuan 4</h2>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🖥️</div>
+            <div class="card-title">Interface</div>
+            <div class="card-desc">
+              Transport controls, Tools toolbar, Timeline, Track Panel,
+              Selection Toolbar, Waveform Display. Keyboard shortcuts untuk
+              efisiensi.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📁</div>
+            <div class="card-title">Import & Project</div>
+            <div class="card-desc">
+              .aup3 untuk save project, Export untuk delivery. Drag & drop atau
+              Ctrl+Shift+I. Mendukung WAV, MP3, FLAC, OGG, M4A.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">✂️</div>
+            <div class="card-title">Basic Editing</div>
+            <div class="card-desc">
+              Cut (gap tertutup), Delete (tanpa clipboard), Silence (durasi
+              tetap). Split, trim, arrange clips. Undo infinite!
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎚️</div>
+            <div class="card-title">Noise Reduction</div>
+            <div class="card-desc">
+              Two-step: Get Profile → Apply. 12 dB typical. Hanya efektif untuk
+              constant noise (fan, hum, hiss).
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎛️</div>
+            <div class="card-title">EQ</div>
+            <div class="card-desc">
+              High-pass 80 Hz (remove rumble), presence boost 2–5 kHz, de-ess
+              6–8 kHz. Filter Curve EQ di Audacity.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">📉</div>
+            <div class="card-title">Compression</div>
+            <div class="card-desc">
+              Ratakan dynamic range. Threshold -20 dB, Ratio 3:1 untuk voice.
+              Jangan over-compress (sounds lifeless).
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🛑</div>
+            <div class="card-title">Limiter</div>
+            <div class="card-desc">
+              Brick wall ceiling di -1.0 dB. Safety final. Always last step
+              before export.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎙️</div>
+            <div class="card-title">Multi-track & Podcast</div>
+            <div class="card-desc">
+              Mute/Solo/Gain/Pan per track. Podcast export: MP3 192kbps,
+              Loudness -16 LUFS untuk streaming.
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <h3>Persiapan Pertemuan 5</h3>
+        <div class="highlight-box">
+          <strong>📚 Materi Selanjutnya: Mixing & Mastering Audio</strong><br />
+          Gain staging · EQ mendalam · Dynamics (gate, expansion) · Time-based
+          effects (reverb, delay) · Automation · Loudness standards (LUFS) ·
+          Reference tracks
+        </div>
+        <div class="two-col" style="margin-top: 16px">
+          <div class="card" style="border-color: var(--amber2)">
+            <div class="card-icon">📋</div>
+            <div class="card-title" style="color: var(--amber)">
+              Tugas Sebelum P5
+            </div>
+            <div class="card-desc">
+              Selesaikan Audio Editing Project (pilih satu opsi). Simpan best
+              edited audio untuk digunakan dalam mixing exercise di pertemuan
+              berikutnya.
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔗</div>
+            <div class="card-title">Resource</div>
+            <div class="card-desc">
+              Manual resmi: <code>manual.audacityteam.org</code><br />Forum:
+              <code>forum.audacityteam.org</code><br />YouTube: "Audacity
+              Complete Tutorial 2024"
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text3);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+          "
+        >
+          Rekayasa Video dan Audio · Pertemuan 4 · Audio Editing dengan Audacity
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // ==================== INTERFACE ZONE INFO ====================
+      const zoneData = {
+        menu: {
+          title: "Menu Bar",
+          color: "#4f8ef7",
+          desc: "Akses ke semua fitur Audacity. <strong>File</strong>: import/export/save. <strong>Edit</strong>: undo, preferences. <strong>Effect</strong>: semua audio effects. <strong>Generate</strong>: buat tone, silence, noise. <strong>Analyze</strong>: spectrum analysis.",
+        },
+        transport: {
+          title: "Transport Toolbar",
+          color: "#3ecf8e",
+          desc: "<strong>⏸ Pause (P)</strong>, <strong>▶ Play (Space)</strong>, <strong>⏹ Stop (Space lagi)</strong>, <strong>⏮ Skip to Start</strong>, <strong>⏭ Skip to End</strong>, <strong>⏺ Record (R)</strong>. Shortcut keyboard jauh lebih efisien!",
+        },
+        tools: {
+          title: "Tools Toolbar",
+          color: "#e8a23a",
+          desc: "<strong>I (Selection Tool)</strong>: Select audio — default, paling sering digunakan. <strong>E (Envelope Tool)</strong>: Volume automation. <strong>D (Draw Tool)</strong>: Edit individual samples. <strong>Z (Zoom Tool)</strong>: Zoom in/out. <strong>T (Time Shift)</strong>: Pindahkan clips dalam timeline.",
+        },
+        timeline: {
+          title: "Timeline",
+          color: "#a78bfa",
+          desc: "Menampilkan waktu dalam detik atau menit. Klik untuk menempatkan cursor. Drag untuk membuat selection. Zoom in/out dengan Ctrl+Scroll.",
+        },
+        track: {
+          title: "Track Panel & Waveform",
+          color: "#38bdf8",
+          desc: "<strong>Track Panel (kiri)</strong>: Nama track, tombol Mute/Solo, Gain slider, Pan slider. <strong>Waveform (kanan)</strong>: Representasi visual audio. Biru = waveform stereo (atas=left, bawah=right). Selection ditampilkan dengan warna lebih terang.",
+        },
+        selection: {
+          title: "Selection Toolbar",
+          color: "#f87171",
+          desc: "Menampilkan posisi tepat selection: Start, End, Length, Center. Bisa diketik langsung untuk selection yang presisi hingga millisecond.",
+        },
+      };
+
+      function showZoneInfo(zone) {
+        const info = document.getElementById("zone-info");
+        const content = document.getElementById("zone-info-content");
+        const d = zoneData[zone];
+        content.innerHTML = `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:8px;height:8px;border-radius:50%;background:${d.color};flex-shrink:0;"></div><strong style="font-size:14px;color:var(--text)">${d.title}</strong></div><p style="font-size:13px;color:var(--text2);margin:0">${d.desc}</p>`;
+        info.style.display = "block";
+        info.style.borderColor = d.color + "40";
+      }
+
+      // ==================== PREVIEW WAVEFORM ====================
+      function drawPreviewWave() {
+        const canvas = document.getElementById("preview-wave");
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = canvas.offsetWidth * dpr;
+        canvas.height = canvas.offsetHeight * dpr;
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        const w = canvas.offsetWidth,
+          h = canvas.offsetHeight;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#1e1e1e";
+        ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = "#4f8ef7";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        for (let x = 0; x < w; x++) {
+          const t = x / w;
+          const y =
+            h / 2 +
+            Math.sin(t * 80 + 1) *
+              Math.random() *
+              20 *
+              Math.abs(Math.sin(t * 5));
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      window.addEventListener("load", drawPreviewWave);
+
+      // ==================== INTERACTIVE WAVEFORM EDITOR ====================
+      let waveData = [],
+        waveHistory = [],
+        waveSel = { start: -1, end: -1 },
+        isDragging = false,
+        dragStart = 0;
+      const WAVE_POINTS = 300;
+
+      function genWave() {
+        const pts = [];
+        for (let i = 0; i < WAVE_POINTS; i++) {
+          const t = i / WAVE_POINTS;
+          const env = Math.sin(t * Math.PI);
+          pts.push((Math.random() - 0.5) * 2 * env * 0.85);
+        }
+        return pts;
+      }
+
+      function drawMainWave() {
+        const canvas = document.getElementById("main-wave");
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        if (canvas.width !== canvas.offsetWidth * dpr) {
+          canvas.width = canvas.offsetWidth * dpr;
+          canvas.height = 90 * dpr;
+        }
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        const w = canvas.offsetWidth,
+          h = 90;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#1a1a1a";
+        ctx.fillRect(0, 0, w, h);
+        // Center line
+        ctx.strokeStyle = "#2e2e2e";
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, h / 2);
+        ctx.lineTo(w, h / 2);
+        ctx.stroke();
+        // Selection highlight
+        if (waveSel.start >= 0 && waveSel.end > waveSel.start) {
+          const sx = (waveSel.start / WAVE_POINTS) * w;
+          const ex = (waveSel.end / WAVE_POINTS) * w;
+          ctx.fillStyle = "rgba(79,142,247,0.18)";
+          ctx.fillRect(sx, 0, ex - sx, h);
+          ctx.strokeStyle = "rgba(79,142,247,0.6)";
+          ctx.lineWidth = 0.5;
+          ctx.strokeRect(sx, 0, ex - sx, h);
+        }
+        // Waveform
+        ctx.strokeStyle = "#4f8ef7";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        const pxPerPt = w / WAVE_POINTS;
+        waveData.forEach((v, i) => {
+          const x = i * pxPerPt;
+          const y = h / 2 + v * (h * 0.42);
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        });
+        ctx.stroke();
+      }
+
+      function initWaveEditor() {
+        waveData = genWave();
+        const canvas = document.getElementById("main-wave");
+        if (!canvas) return;
+        canvas.addEventListener("mousedown", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          dragStart = Math.floor((x / canvas.offsetWidth) * WAVE_POINTS);
+          isDragging = true;
+          waveSel = { start: dragStart, end: dragStart };
+        });
+        canvas.addEventListener("mousemove", (e) => {
+          if (!isDragging) return;
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const idx = Math.floor((x / canvas.offsetWidth) * WAVE_POINTS);
+          waveSel = {
+            start: Math.min(dragStart, idx),
+            end: Math.max(dragStart, idx),
+          };
+          drawMainWave();
+        });
+        canvas.addEventListener("mouseup", () => {
+          isDragging = false;
+          const len = waveSel.end - waveSel.start;
+          document.getElementById("waveform-status").textContent =
+            len > 2
+              ? `Selection: ${((len / WAVE_POINTS) * 100).toFixed(0)}% dipilih`
+              : "Klik & drag untuk membuat selection";
+          drawMainWave();
+        });
+        window.addEventListener("resize", drawMainWave);
+        drawMainWave();
+      }
+
+      function waveOp(op) {
+        if (waveSel.start < 0 || waveSel.end <= waveSel.start) {
+          log("⚠ Buat selection dulu (klik & drag di waveform)");
+          return;
+        }
+        waveHistory.push([...waveData]);
+        const s = waveSel.start,
+          e = waveSel.end;
+        switch (op) {
+          case "cut":
+            waveData.splice(s, e - s);
+            while (waveData.length < WAVE_POINTS) waveData.push(0);
+            log("✂ Cut: " + (e - s) + " samples dihapus, gap tertutup");
+            break;
+          case "delete":
+            waveData.splice(s, e - s);
+            while (waveData.length < WAVE_POINTS) waveData.push(0);
+            log("🗑 Delete: " + (e - s) + " samples dihapus");
+            break;
+          case "silence":
+            for (let i = s; i < e; i++) waveData[i] = 0;
+            log("🔇 Silence: " + (e - s) + " samples di-silent, durasi tetap");
+            break;
+          case "normalize":
+            const max = Math.max(...waveData.map(Math.abs));
+            if (max > 0) waveData = waveData.map((v) => (v / max) * 0.9);
+            log("📊 Normalize: peak dinaikkan ke -0.9 dBFS");
+            break;
+          case "fadein":
+            for (let i = s; i < e; i++) {
+              const t = (i - s) / (e - s);
+              waveData[i] *= t;
+            }
+            log("⬆ Fade In diterapkan ke selection");
+            break;
+          case "fadeout":
+            for (let i = s; i < e; i++) {
+              const t = 1 - (i - s) / (e - s);
+              waveData[i] *= t;
+            }
+            log("⬇ Fade Out diterapkan ke selection");
+            break;
+          case "undo":
+            if (waveHistory.length > 0) {
+              waveData = waveHistory.pop();
+              log("↩ Undo");
+            } else log("Tidak ada yang bisa di-undo");
+            break;
+        }
+        if (op !== "undo" && op !== "silence") waveSel = { start: -1, end: -1 };
+        drawMainWave();
+      }
+
+      function waveReset() {
+        waveHistory.push([...waveData]);
+        waveData = genWave();
+        waveSel = { start: -1, end: -1 };
+        drawMainWave();
+        log("🔄 Waveform di-reset ke random audio baru");
+      }
+
+      function log(msg) {
+        document.getElementById("wave-log").textContent = msg;
+      }
+
+      // ==================== TABS ====================
+      function switchTab(groupId, tab) {
+        const parent = document.getElementById(
+          groupId + "-" + tab,
+        )?.parentElement;
+        if (!parent) return;
+        parent
+          .querySelectorAll(".tab-content")
+          .forEach((c) => c.classList.remove("active"));
+        parent.parentElement
+          .querySelectorAll(".tab-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById(groupId + "-" + tab).classList.add("active");
+        event.target.classList.add("active");
+      }
+
+      // ==================== ACCORDION ====================
+      function toggleAccordion(head) {
+        const body = head.nextElementSibling;
+        const arrow = head.querySelector(".accordion-arrow");
+        body.classList.toggle("open");
+        arrow.classList.toggle("open");
+      }
+
+      // ==================== EFFECT CHAIN ====================
+      function showEffect(id) {
+        document
+          .querySelectorAll(".effect-detail")
+          .forEach((d) => d.classList.remove("visible"));
+        document
+          .querySelectorAll(".effect-node")
+          .forEach((n) => n.classList.remove("active"));
+        const detail = document.getElementById("effect-" + id);
+        const node = document.querySelector('[data-id="' + id + '"]');
+        if (detail) {
+          detail.classList.add("visible");
+          detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+        if (node) node.classList.add("active");
+        if (id === "eq") drawEQ();
+        if (id === "comp") updateComp();
+      }
+
+      // ==================== EQ VISUALIZER ====================
+      function drawEQ() {
+        const canvas = document.getElementById("eq-canvas");
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = canvas.offsetWidth * dpr;
+        canvas.height = 140 * dpr;
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        const w = canvas.offsetWidth,
+          h = 140;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#1a1a1a";
+        ctx.fillRect(0, 0, w, h);
+        // Grid
+        ctx.strokeStyle = "#2a2a2a";
+        ctx.lineWidth = 0.5;
+        [0, -6, -12, 6, 12].forEach((db) => {
+          const y = h / 2 - (db / 12) * (h / 2 - 10);
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(w, y);
+          ctx.stroke();
+          ctx.fillStyle = "#3a3a3a";
+          ctx.font = "9px monospace";
+          ctx.fillText(db + "dB", 4, y + 3);
+        });
+        // 0dB line
+        ctx.strokeStyle = "#3a3a3a";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, h / 2);
+        ctx.lineTo(w, h / 2);
+        ctx.stroke();
+        // EQ curve
+        const freqs = [60, 150, 400, 1000, 3000, 6000, 12000];
+        const vals = freqs.map((_, i) =>
+          parseFloat(document.getElementById("eq" + i)?.value || 0),
+        );
+        // Update display values
+        vals.forEach((v, i) => {
+          const el = document.getElementById("eq" + i + "v");
+          if (el) el.textContent = v >= 0 ? "+" + v : v;
+        });
+        const pts = freqs.map((f, i) => {
+          const x =
+            ((Math.log10(f) - Math.log10(20)) /
+              (Math.log10(20000) - Math.log10(20))) *
+            w;
+          const y = h / 2 - (vals[i] / 12) * (h / 2 - 10);
+          return [x, y];
+        });
+        ctx.strokeStyle = "#4f8ef7";
+        ctx.lineWidth = 2;
+        ctx.shadowColor = "#4f8ef7";
+        ctx.shadowBlur = 4;
+        ctx.beginPath();
+        ctx.moveTo(0, pts[0][1]);
+        pts.forEach(([x, y], i) => {
+          if (i === 0) ctx.lineTo(x, y);
+          else {
+            const px = pts[i - 1][0],
+              py = pts[i - 1][1];
+            const cpx = (px + x) / 2;
+            ctx.bezierCurveTo(cpx, py, cpx, y, x, y);
+          }
+        });
+        ctx.lineTo(w, pts[pts.length - 1][1]);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        // Gradient fill
+        const grad = ctx.createLinearGradient(0, 0, 0, h);
+        grad.addColorStop(0, "rgba(79,142,247,0.15)");
+        grad.addColorStop(1, "rgba(79,142,247,0)");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(0, h / 2);
+        ctx.lineTo(0, pts[0][1]);
+        pts.forEach(([x, y], i) => {
+          if (i === 0) ctx.lineTo(x, y);
+          else {
+            const px = pts[i - 1][0],
+              py = pts[i - 1][1];
+            const cpx = (px + x) / 2;
+            ctx.bezierCurveTo(cpx, py, cpx, y, x, y);
+          }
+        });
+        ctx.lineTo(w, pts[pts.length - 1][1]);
+        ctx.lineTo(w, h / 2);
+        ctx.closePath();
+        ctx.fill();
+        // Dots
+        pts.forEach(([x, y]) => {
+          ctx.fillStyle = "#4f8ef7";
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+
+      function eqPreset(type) {
+        const presets = {
+          voice: [-8, -3, 1, 2, 4, -2, -1],
+          highpass: [-12, -10, -2, 1, 2, 0, 0],
+          warmth: [-8, 2, 4, 2, 1, -1, -2],
+          flat: [0, 0, 0, 0, 0, 0, 0],
+        };
+        const p = presets[type];
+        p.forEach((v, i) => {
+          const el = document.getElementById("eq" + i);
+          if (el) el.value = v;
+        });
+        drawEQ();
+      }
+
+      // ==================== COMPRESSOR VISUALIZER ====================
+      function updateComp() {
+        const thresh = parseFloat(
+          document.getElementById("comp-thresh")?.value || -20,
+        );
+        const ratio = parseFloat(
+          document.getElementById("comp-ratio")?.value || 3,
+        );
+        document.getElementById("comp-thresh-v").textContent = thresh + " dB";
+        document.getElementById("comp-ratio-v").textContent =
+          ratio.toFixed(1) + ":1";
+        drawComp(thresh, ratio);
+      }
+
+      function drawComp(thresh, ratio) {
+        const canvas = document.getElementById("comp-canvas");
+        if (!canvas) return;
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = canvas.offsetWidth * dpr;
+        canvas.height = 180 * dpr;
+        const ctx = canvas.getContext("2d");
+        ctx.scale(dpr, dpr);
+        const w = canvas.offsetWidth,
+          h = 180;
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = "#1a1a1a";
+        ctx.fillRect(0, 0, w, h);
+        const pad = 30;
+        const pw = w - pad * 2,
+          ph = h - pad * 2;
+        // Grid
+        ctx.strokeStyle = "#2a2a2a";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= 4; i++) {
+          const x = pad + (i / 4) * pw,
+            y = pad + (i / 4) * ph;
+          ctx.beginPath();
+          ctx.moveTo(x, pad);
+          ctx.lineTo(x, pad + ph);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(pad, y);
+          ctx.lineTo(pad + pw, y);
+          ctx.stroke();
+        }
+        // Axes labels
+        ctx.fillStyle = "#3a3a3a";
+        ctx.font = "9px monospace";
+        ctx.fillText("-60", pad - 2, pad + ph + 12);
+        ctx.fillText("0", pad + pw - 4, pad + ph + 12);
+        ctx.fillText("IN", pad + pw / 2, pad + ph + 16);
+        // 1:1 reference line (light)
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(pad, pad + ph);
+        ctx.lineTo(pad + pw, pad);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        // Threshold line
+        const tx = pad + ((thresh + 60) / 60) * pw;
+        ctx.strokeStyle = "#4f8ef7";
+        ctx.lineWidth = 0.5;
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(tx, pad);
+        ctx.lineTo(tx, pad + ph);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = "#4f8ef7";
+        ctx.font = "9px monospace";
+        ctx.fillText("thresh", tx + 3, pad + 10);
+        // Transfer function
+        ctx.strokeStyle = "#3ecf8e";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        for (let i = 0; i <= pw; i++) {
+          const inDb = -60 + (i / pw) * 60;
+          let outDb;
+          if (inDb <= thresh) {
+            outDb = inDb;
+          } else {
+            outDb = thresh + (inDb - thresh) / ratio;
+          }
+          const x = pad + i;
+          const y = pad + ph - ((outDb + 60) / 60) * ph;
+          i === 0
+            ? ctx.moveTo(x, Math.max(pad, y))
+            : ctx.lineTo(x, Math.max(pad, y));
+        }
+        ctx.stroke();
+        // Labels
+        ctx.fillStyle = "#3ecf8e";
+        ctx.font = "10px monospace";
+        ctx.fillText("Output", pad + 4, pad + 20);
+        ctx.fillStyle = "#3a3a3a";
+        ctx.fillText("No compression", pad + pw - 80, pad + 20);
+      }
+
+      // ==================== MIXER ====================
+      const mixerTracks = [
+        {
+          name: "Voice",
+          icon: "🎙️",
+          gain: 0,
+          pan: 0,
+          muted: false,
+          solo: false,
+          color: "#4f8ef7",
+        },
+        {
+          name: "Intro Music",
+          icon: "🎵",
+          gain: -18,
+          pan: 0,
+          muted: false,
+          solo: false,
+          color: "#3ecf8e",
+        },
+        {
+          name: "BG Music",
+          icon: "🎶",
+          gain: -20,
+          pan: 10,
+          muted: false,
+          solo: false,
+          color: "#e8a23a",
+        },
+        {
+          name: "SFX",
+          icon: "🔔",
+          gain: -12,
+          pan: -20,
+          muted: true,
+          solo: false,
+          color: "#a78bfa",
+        },
+      ];
+
+      function renderMixer() {
+        const cont = document.getElementById("mixer-tracks");
+        if (!cont) return;
+        cont.innerHTML = mixerTracks
+          .map(
+            (t, i) => `
+    <div style="border:1px solid ${t.muted ? "var(--border)" : t.color + "40"};border-radius:8px;padding:12px 16px;margin-bottom:8px;background:var(--bg4);opacity:${t.muted ? "0.5" : "1"}">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <span style="font-size:18px">${t.icon}</span>
+        <span style="font-size:13px;font-weight:600;color:var(--text);flex:1">${t.name}</span>
+        <button onclick="toggleMute(${i})" class="btn btn-sm ${t.muted ? "btn-danger" : ""}" style="${!t.muted ? "border-color:var(--border2)" : ""}">${t.muted ? "🔇 Muted" : "M"}</button>
+        <button onclick="toggleSolo(${i})" class="btn btn-sm ${t.solo ? "" : ""}" style="border-color:${t.solo ? t.color : "var(--border2)"};color:${t.solo ? t.color : "var(--text2)"}">S</button>
+      </div>
+      <div class="param-row" style="grid-template-columns:60px 1fr 56px">
+        <span class="param-label">Gain</span>
+        <input type="range" min="-36" max="6" value="${t.gain}" oninput="updateMixerGain(${i},this.value)">
+        <span class="param-value" id="mix-gain-${i}">${t.gain} dB</span>
+      </div>
+      <div class="param-row" style="grid-template-columns:60px 1fr 56px">
+        <span class="param-label">Pan</span>
+        <input type="range" min="-50" max="50" value="${t.pan}" oninput="updateMixerPan(${i},this.value)">
+        <span class="param-value" id="mix-pan-${i}">${t.pan === 0 ? "C" : t.pan > 0 ? "R" + t.pan : "L" + Math.abs(t.pan)}</span>
+      </div>
+    </div>
+  `,
+          )
+          .join("");
+      }
+
+      function updateMixerGain(i, v) {
+        mixerTracks[i].gain = parseInt(v);
+        const el = document.getElementById("mix-gain-" + i);
+        if (el) el.textContent = v + " dB";
+      }
+      function updateMixerPan(i, v) {
+        mixerTracks[i].pan = parseInt(v);
+        const el = document.getElementById("mix-pan-" + i);
+        if (el)
+          el.textContent = v == 0 ? "C" : v > 0 ? "R" + v : "L" + Math.abs(v);
+      }
+      function toggleMute(i) {
+        mixerTracks[i].muted = !mixerTracks[i].muted;
+        renderMixer();
+      }
+      function toggleSolo(i) {
+        mixerTracks[i].solo = !mixerTracks[i].solo;
+        renderMixer();
+      }
+
+      let meterAnim;
+      function playMixer() {
+        const btn = document.getElementById("mixer-play-btn");
+        if (btn.textContent.includes("Play")) {
+          btn.textContent = "⏹ Stop";
+          animateMeter();
+        } else {
+          btn.textContent = "▶ Play";
+          if (meterAnim) cancelAnimationFrame(meterAnim);
+        }
+      }
+
+      function animateMeter() {
+        const canvas = document.getElementById("master-meter");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const w = canvas.offsetWidth,
+          h = canvas.offsetHeight;
+        canvas.width = w;
+        canvas.height = h;
+        let level = 0;
+        function frame() {
+          level = 0.3 + Math.random() * 0.5;
+          ctx.clearRect(0, 0, w, h);
+          ctx.fillStyle = "#1a1a1a";
+          ctx.fillRect(0, 0, w, h);
+          const colors = [
+            "#3ecf8e",
+            "#3ecf8e",
+            "#3ecf8e",
+            "#e8a23a",
+            "#e05252",
+          ];
+          const segments = 20;
+          for (let i = 0; i < segments; i++) {
+            const active = i / segments < level;
+            ctx.fillStyle = active
+              ? i < 14
+                ? "#3ecf8e"
+                : i < 18
+                  ? "#e8a23a"
+                  : "#e05252"
+              : "#2a2a2a";
+            ctx.fillRect(
+              2 + (i * (w - 4)) / segments,
+              2,
+              (w - 4) / segments - 1,
+              h - 4,
+            );
+          }
+          meterAnim = requestAnimationFrame(frame);
+        }
+        frame();
+      }
+
+      // ==================== CHECKLIST ====================
+      function toggleCheck(li, labId) {
+        li.classList.toggle("done");
+        updateLabProgress(labId);
+      }
+
+      function updateLabProgress(labId) {
+        const list = document.getElementById(labId + "-list");
+        if (!list) return;
+        const total = list.querySelectorAll("li").length;
+        const done = list.querySelectorAll("li.done").length;
+        const prog = document.getElementById(labId + "-progress");
+        if (prog) {
+          prog.textContent = done + " / " + total + " selesai";
+          prog.style.color =
+            done === total ? "#3ecf8e" : done > 0 ? "#e8a23a" : "var(--text3)";
+        }
+      }
+
+      // ==================== CHAIN STEPS ====================
+      const chainDone = {};
+      function completeChainStep(n) {
+        chainDone[n] = true;
+        const circle = document.getElementById("chain-circle-" + n);
+        if (circle) {
+          circle.textContent = "✓";
+          circle.style.background = "var(--green)";
+          circle.style.borderColor = "var(--green)";
+          circle.style.color = "#000";
+        }
+        const done = Object.keys(chainDone).length;
+        const prog = document.getElementById("lab3-progress");
+        if (prog) {
+          prog.textContent = done + " / 5 steps";
+          prog.style.color = done === 5 ? "#3ecf8e" : "#e8a23a";
+        }
+      }
+
+      // ==================== ACTIVE NAV ====================
+      function updateNav() {
+        const sections = document.querySelectorAll("section[id]");
+        const links = document.querySelectorAll(".nav-link");
+        let current = "";
+        sections.forEach((s) => {
+          const top = s.getBoundingClientRect().top;
+          if (top < 120) current = s.id;
+        });
+        links.forEach((l) => {
+          const href = l.getAttribute("href")?.substring(1);
+          l.classList.toggle("active", href === current);
+        });
+      }
+      window.addEventListener("scroll", updateNav, { passive: true });
+
+      // ==================== INIT ====================
+      window.addEventListener("load", () => {
+        drawPreviewWave();
+        initWaveEditor();
+        renderMixer();
+        setTimeout(() => {
+          drawEQ();
+          drawComp(-20, 3);
+        }, 200);
+      });
+    </script>
+  </body>
+</html>
