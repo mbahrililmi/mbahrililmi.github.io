@@ -6,30 +6,30 @@
     <title>Pertemuan 4 — Audio Editing dengan Audacity</title>
     <style>
       :root {
-        --bg: #0f0f0f;
-        --bg2: #161616;
-        --bg3: #1e1e1e;
-        --bg4: #252525;
-        --border: #2e2e2e;
-        --border2: #3a3a3a;
-        --text: #e8e6df;
-        --text2: #9c9a92;
-        --text3: #5c5a54;
-        --accent: #4f8ef7;
-        --accent2: #1a3a6e;
-        --accent3: #0d2244;
-        --green: #3ecf8e;
-        --green2: #0d4a2e;
-        --amber: #e8a23a;
-        --amber2: #4a2e08;
-        --red: #e05252;
-        --red2: #4a1414;
-        --purple: #a78bfa;
-        --purple2: #2d1f5e;
-        --teal: #38bdf8;
-        --teal2: #0c3044;
-        --coral: #f87171;
-        --wave-blue: #4f8ef7;
+        --bg: #f8f9fa;
+        --bg2: #f1f3f5;
+        --bg3: #e9ecef;
+        --bg4: #dee2e6;
+        --border: #ced4da;
+        --border2: #adb5bd;
+        --text: #212529;
+        --text2: #495057;
+        --text3: #868e96;
+        --accent: #2563eb;
+        --accent2: #bfdbfe;
+        --accent3: #eff6ff;
+        --green: #059669;
+        --green2: #d1fae5;
+        --amber: #d97706;
+        --amber2: #fef3c7;
+        --red: #dc2626;
+        --red2: #fee2e2;
+        --purple: #7c3aed;
+        --purple2: #ede9fe;
+        --teal: #0284c7;
+        --teal2: #e0f2fe;
+        --coral: #dc2626;
+        --wave-blue: #2563eb;
       }
       * {
         box-sizing: border-box;
@@ -185,6 +185,12 @@
       .main {
         margin-left: 220px;
         min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero {
+        width: 100%;
       }
 
       /* SECTIONS */
@@ -192,6 +198,7 @@
         padding: 56px 48px;
         border-bottom: 1px solid var(--border);
         max-width: 900px;
+        width: 100%;
       }
       .section:last-child {
         border-bottom: none;
@@ -480,7 +487,7 @@
         border-radius: 10px;
         padding: 20px;
         margin: 12px 0;
-        display: none;
+        display: block;
       }
       .effect-detail.visible {
         display: block;
@@ -735,7 +742,8 @@
         height: 140px;
         display: block;
         border-radius: 6px;
-        background: var(--bg4);
+        background: #f8f9fa;
+        border: 1px solid var(--border);
       }
       .eq-bands {
         display: grid;
@@ -917,7 +925,8 @@
         height: 180px;
         display: block;
         border-radius: 6px;
-        background: var(--bg4);
+        background: #f8f9fa;
+        border: 1px solid var(--border);
       }
 
       /* FADE */
@@ -3242,9 +3251,9 @@ Effect → Limiter
         const w = canvas.offsetWidth,
           h = canvas.offsetHeight;
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = "#1e1e1e";
+        ctx.fillStyle = "#e9ecef";
         ctx.fillRect(0, 0, w, h);
-        ctx.strokeStyle = "#4f8ef7";
+        ctx.strokeStyle = "#2563eb";
         ctx.lineWidth = 1;
         ctx.beginPath();
         for (let x = 0; x < w; x++) {
@@ -3292,10 +3301,10 @@ Effect → Limiter
         const w = canvas.offsetWidth,
           h = 90;
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = "#1a1a1a";
+        ctx.fillStyle = "#f1f3f5";
         ctx.fillRect(0, 0, w, h);
         // Center line
-        ctx.strokeStyle = "#2e2e2e";
+        ctx.strokeStyle = "#ced4da";
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(0, h / 2);
@@ -3312,7 +3321,7 @@ Effect → Limiter
           ctx.strokeRect(sx, 0, ex - sx, h);
         }
         // Waveform
-        ctx.strokeStyle = "#4f8ef7";
+        ctx.strokeStyle = "#2563eb";
         ctx.lineWidth = 1;
         ctx.beginPath();
         const pxPerPt = w / WAVE_POINTS;
@@ -3479,10 +3488,10 @@ Effect → Limiter
         const w = canvas.offsetWidth,
           h = 140;
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = "#1a1a1a";
+        ctx.fillStyle = "#f8f9fa";
         ctx.fillRect(0, 0, w, h);
         // Grid
-        ctx.strokeStyle = "#2a2a2a";
+        ctx.strokeStyle = "#dee2e6";
         ctx.lineWidth = 0.5;
         [0, -6, -12, 6, 12].forEach((db) => {
           const y = h / 2 - (db / 12) * (h / 2 - 10);
@@ -3490,12 +3499,12 @@ Effect → Limiter
           ctx.moveTo(0, y);
           ctx.lineTo(w, y);
           ctx.stroke();
-          ctx.fillStyle = "#3a3a3a";
+          ctx.fillStyle = "#868e96";
           ctx.font = "9px monospace";
           ctx.fillText(db + "dB", 4, y + 3);
         });
         // 0dB line
-        ctx.strokeStyle = "#3a3a3a";
+        ctx.strokeStyle = "#ced4da";
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(0, h / 2);
@@ -3519,9 +3528,9 @@ Effect → Limiter
           const y = h / 2 - (vals[i] / 12) * (h / 2 - 10);
           return [x, y];
         });
-        ctx.strokeStyle = "#4f8ef7";
+        ctx.strokeStyle = "#2563eb";
         ctx.lineWidth = 2;
-        ctx.shadowColor = "#4f8ef7";
+        ctx.shadowColor = "#2563eb";
         ctx.shadowBlur = 4;
         ctx.beginPath();
         ctx.moveTo(0, pts[0][1]);
@@ -3539,8 +3548,8 @@ Effect → Limiter
         ctx.shadowBlur = 0;
         // Gradient fill
         const grad = ctx.createLinearGradient(0, 0, 0, h);
-        grad.addColorStop(0, "rgba(79,142,247,0.15)");
-        grad.addColorStop(1, "rgba(79,142,247,0)");
+        grad.addColorStop(0, "rgba(37,99,235,0.15)");
+        grad.addColorStop(1, "rgba(37,99,235,0)");
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.moveTo(0, h / 2);
@@ -3560,7 +3569,7 @@ Effect → Limiter
         ctx.fill();
         // Dots
         pts.forEach(([x, y]) => {
-          ctx.fillStyle = "#4f8ef7";
+          ctx.fillStyle = "#2563eb";
           ctx.beginPath();
           ctx.arc(x, y, 4, 0, Math.PI * 2);
           ctx.fill();
@@ -3607,13 +3616,13 @@ Effect → Limiter
         const w = canvas.offsetWidth,
           h = 180;
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = "#1a1a1a";
+        ctx.fillStyle = "#f8f9fa";
         ctx.fillRect(0, 0, w, h);
         const pad = 30;
         const pw = w - pad * 2,
           ph = h - pad * 2;
         // Grid
-        ctx.strokeStyle = "#2a2a2a";
+        ctx.strokeStyle = "#dee2e6";
         ctx.lineWidth = 0.5;
         for (let i = 0; i <= 4; i++) {
           const x = pad + (i / 4) * pw,
@@ -3628,13 +3637,13 @@ Effect → Limiter
           ctx.stroke();
         }
         // Axes labels
-        ctx.fillStyle = "#3a3a3a";
+        ctx.fillStyle = "#868e96";
         ctx.font = "9px monospace";
         ctx.fillText("-60", pad - 2, pad + ph + 12);
         ctx.fillText("0", pad + pw - 4, pad + ph + 12);
         ctx.fillText("IN", pad + pw / 2, pad + ph + 16);
         // 1:1 reference line (light)
-        ctx.strokeStyle = "#333";
+        ctx.strokeStyle = "#ced4da";
         ctx.lineWidth = 1;
         ctx.setLineDash([4, 4]);
         ctx.beginPath();
@@ -3644,7 +3653,7 @@ Effect → Limiter
         ctx.setLineDash([]);
         // Threshold line
         const tx = pad + ((thresh + 60) / 60) * pw;
-        ctx.strokeStyle = "#4f8ef7";
+        ctx.strokeStyle = "#2563eb";
         ctx.lineWidth = 0.5;
         ctx.setLineDash([3, 3]);
         ctx.beginPath();
@@ -3652,7 +3661,7 @@ Effect → Limiter
         ctx.lineTo(tx, pad + ph);
         ctx.stroke();
         ctx.setLineDash([]);
-        ctx.fillStyle = "#4f8ef7";
+        ctx.fillStyle = "#2563eb";
         ctx.font = "9px monospace";
         ctx.fillText("thresh", tx + 3, pad + 10);
         // Transfer function
@@ -3675,10 +3684,10 @@ Effect → Limiter
         }
         ctx.stroke();
         // Labels
-        ctx.fillStyle = "#3ecf8e";
+        ctx.fillStyle = "#059669";
         ctx.font = "10px monospace";
         ctx.fillText("Output", pad + 4, pad + 20);
-        ctx.fillStyle = "#3a3a3a";
+        ctx.fillStyle = "#868e96";
         ctx.fillText("No compression", pad + pw - 80, pad + 20);
       }
 
@@ -3728,7 +3737,7 @@ Effect → Limiter
         cont.innerHTML = mixerTracks
           .map(
             (t, i) => `
-    <div style="border:1px solid ${t.muted ? "var(--border)" : t.color + "40"};border-radius:8px;padding:12px 16px;margin-bottom:8px;background:var(--bg4);opacity:${t.muted ? "0.5" : "1"}">
+    <div style="border:1px solid ${t.muted ? "var(--border)" : t.color + "60"};border-radius:8px;padding:12px 16px;margin-bottom:8px;background:var(--bg3);opacity:${t.muted ? "0.5" : "1"}">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
         <span style="font-size:18px">${t.icon}</span>
         <span style="font-size:13px;font-weight:600;color:var(--text);flex:1">${t.name}</span>
@@ -3795,7 +3804,7 @@ Effect → Limiter
         function frame() {
           level = 0.3 + Math.random() * 0.5;
           ctx.clearRect(0, 0, w, h);
-          ctx.fillStyle = "#1a1a1a";
+          ctx.fillStyle = "#f1f3f5";
           ctx.fillRect(0, 0, w, h);
           const colors = [
             "#3ecf8e",
@@ -3809,11 +3818,11 @@ Effect → Limiter
             const active = i / segments < level;
             ctx.fillStyle = active
               ? i < 14
-                ? "#3ecf8e"
+                ? "#059669"
                 : i < 18
-                  ? "#e8a23a"
-                  : "#e05252"
-              : "#2a2a2a";
+                  ? "#d97706"
+                  : "#dc2626"
+              : "#dee2e6";
             ctx.fillRect(
               2 + (i * (w - 4)) / segments,
               2,
