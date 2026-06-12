@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
 <title>Praktikum 4 – Firewall, NAT dan Fasttrack | Jaringan Komputer 2</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; color: #1e293b; font-size: 15px; line-height: 1.7; }
-  a { color: #1a56db; text-decoration: none; }
+  a { color: #b8893b; text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  .page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 40px 48px 36px; }
+  .page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 40px 48px 36px; }
   .page-header .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
   .badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #fff; border-radius: 20px; padding: 3px 13px; font-size: 12px; font-weight: 500; }
   .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
@@ -22,24 +23,25 @@
   .sidebar-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; padding: 0 22px 10px; }
   .toc-list { list-style: none; }
   .toc-list li a { display: block; padding: 7px 22px; color: #475569; font-size: 13.5px; border-left: 3px solid transparent; transition: all 0.18s; }
-  .toc-list li a:hover, .toc-list li a.active { color: #1a56db; background: #eff6ff; border-left-color: #1a56db; text-decoration: none; }
+  .toc-list li a:hover, .toc-list li a.active { color: #b8893b; background: #fdf8f0; border-left-color: #b8893b; text-decoration: none; }
 
-  .main-content { flex: 1; padding: 40px 48px; max-width: 900px; min-width: 0; }
+  .main-content { flex: 0 0 auto;
+  margin: 0 auto; padding: 40px 48px; max-width: 900px; min-width: 0; }
 
   .section { margin-bottom: 52px; }
   .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.35rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; }
-  .section-num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #1a56db; color: #fff; border-radius: 50%; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #b8893b; color: #fff; border-radius: 50%; font-size: 14px; font-weight: 700; flex-shrink: 0; }
 
-  .learning-objectives { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 22px 26px; margin-bottom: 16px; }
-  .learning-objectives h3 { font-size: 0.95rem; font-weight: 700; color: #1a56db; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .learning-objectives { background: #fdf8f0; border: 1px solid #bfdbfe; border-radius: 10px; padding: 22px 26px; margin-bottom: 16px; }
+  .learning-objectives h3 { font-size: 0.95rem; font-weight: 700; color: #b8893b; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
   .learning-objectives ol { padding-left: 20px; }
-  .learning-objectives ol li { margin-bottom: 5px; color: #1e40af; font-size: 14px; }
+  .learning-objectives ol li { margin-bottom: 5px; color: #7d5a1e; font-size: 14px; }
 
   .accordion { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
   .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #f8fafc; cursor: pointer; font-weight: 600; font-size: 14.5px; color: #1e293b; user-select: none; transition: background 0.15s; }
-  .accordion-header:hover { background: #eff6ff; color: #1a56db; }
+  .accordion-header:hover { background: #fdf8f0; color: #b8893b; }
   .accordion-icon { width: 22px; height: 22px; background: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: transform 0.25s, background 0.15s; flex-shrink: 0; }
-  .accordion.open .accordion-icon { transform: rotate(180deg); background: #1a56db; color: #fff; }
+  .accordion.open .accordion-icon { transform: rotate(180deg); background: #b8893b; color: #fff; }
   .accordion-body { display: none; padding: 16px 18px 18px; border-top: 1px solid #e2e8f0; background: #fff; font-size: 14px; }
   .accordion.open .accordion-body { display: block; }
 
@@ -47,19 +49,19 @@
   .code-block-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: #0f172a; font-size: 12px; color: #94a3b8; }
   .code-block pre { padding: 14px 16px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #e2e8f0; white-space: pre; line-height: 1.6; }
   .copy-btn { background: #334155; border: none; color: #cbd5e1; border-radius: 5px; padding: 3px 10px; font-size: 11.5px; cursor: pointer; transition: background 0.15s; }
-  .copy-btn:hover { background: #1a56db; color: #fff; }
+  .copy-btn:hover { background: #b8893b; color: #fff; }
 
   .steps { margin: 10px 0; }
   .step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
-  .step-num { min-width: 30px; height: 30px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .step-num { min-width: 30px; height: 30px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
   .step-body { flex: 1; }
   .step-body p { margin-bottom: 6px; font-size: 14px; }
   .step-check { display: flex; align-items: center; gap: 7px; margin-top: 6px; font-size: 12.5px; color: #64748b; cursor: pointer; }
-  .step-check input[type=checkbox] { accent-color: #1a56db; width: 15px; height: 15px; }
+  .step-check input[type=checkbox] { accent-color: #b8893b; width: 15px; height: 15px; }
 
   .callout { border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
   .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .callout-info { background: #fdf8f0; border: 1px solid #bfdbfe; color: #7d5a1e; }
   .callout-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
   .callout-tip  { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
   .callout-danger { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
@@ -67,21 +69,21 @@
   .topology { background: #0f172a; color: #7dd3fc; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; padding: 20px 24px; border-radius: 8px; overflow-x: auto; white-space: pre; margin: 14px 0; line-height: 1.6; }
 
   .tooltip { position: relative; display: inline-block; }
-  .tooltip span:first-child { border-bottom: 1.5px dashed #1a56db; cursor: help; color: #1a56db; }
+  .tooltip span:first-child { border-bottom: 1.5px dashed #b8893b; cursor: help; color: #b8893b; }
   .tooltip-text { display: none; position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background: #1e293b; color: #f1f5f9; font-size: 12px; padding: 6px 12px; border-radius: 6px; white-space: nowrap; z-index: 100; box-shadow: 0 4px 16px rgba(0,0,0,0.18); pointer-events: none; }
   .tooltip:hover .tooltip-text { display: block; }
 
   .table-wrap { overflow-x: auto; margin: 14px 0; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { background: #1a56db; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; font-weight: 600; }
-  th:hover { background: #1e3a8a; }
+  th { background: #b8893b; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; font-weight: 600; }
+  th:hover { background: #1a2942; }
   td { padding: 9px 14px; border-bottom: 1px solid #e2e8f0; }
   tr:nth-child(even) td { background: #f8fafc; }
-  tr:hover td { background: #eff6ff; }
+  tr:hover td { background: #fdf8f0; }
 
   .rubrik-grid { display: grid; gap: 10px; margin-top: 10px; }
   .rubrik-item { display: flex; align-items: flex-start; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; font-size: 14px; }
-  .rubrik-num { background: #1a56db; color: #fff; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .rubrik-num { background: #b8893b; color: #fff; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
 
   .tugas-list { list-style: none; padding: 0; }
   .tugas-list li { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; }
@@ -90,7 +92,7 @@
   .ref-list { list-style: decimal; padding-left: 22px; }
   .ref-list li { margin-bottom: 7px; font-size: 14px; color: #475569; }
 
-  footer { background: #1e3a8a; color: #cbd5e1; padding: 28px 48px; font-size: 13px; text-align: center; }
+  footer { background: #1a2942; color: #cbd5e1; padding: 28px 48px; font-size: 13px; text-align: center; }
   footer strong { color: #fff; }
 
   p { margin-bottom: 8px; }
@@ -114,8 +116,6 @@
     <span class="badge">EIK212305</span>
     <span class="badge">Semester 2</span>
     <span class="badge">3 SKS (1T+2P)</span>
-    <span class="badge">Eka Wahyu Sholeha M.Kom</span>
-    <span class="badge">Hendrik Setyo Utomo ST. MMSI</span>
   </div>
   <h1>🔥 Praktikum 4: Firewall, NAT dan Fasttrack</h1>
   <p class="subtitle">Konfigurasi Firewall Filter, Address-List, Source NAT, Destination NAT, dan FastTrack di MikroTik</p>
@@ -582,7 +582,7 @@
 
 <footer>
   <strong>Jaringan Komputer 2</strong> — EIK212305 &nbsp;|&nbsp; Semester 2 &nbsp;|&nbsp; 3 SKS (1T+2P)<br>
-  Eka Wahyu Sholeha M.Kom &amp; Hendrik Setyo Utomo ST. MMSI<br>
+  Penyusun: M. BAHRIL ILMI, S.Kom., M.Kom.<br>
   <span style="opacity:0.6;font-size:12px;">Politeknik Negeri Tanah Laut &copy; 2025</span>
 </footer>
 
@@ -624,6 +624,16 @@
       if (a.getAttribute('href') === '#' + current) a.classList.add('active');
     });
   });
-</script>
+      // Auto-number and clean sidebar links
+      (function() {
+        var links = document.querySelectorAll('.toc-link');
+        var num = 1;
+        links.forEach(function(a) {
+          var clean = a.textContent.replace(/^[^\w\d\(]+/, '').trim();
+          a.textContent = num + '. ' + clean;
+          num++;
+        });
+      })();
+    </script>
 </body>
 </html>

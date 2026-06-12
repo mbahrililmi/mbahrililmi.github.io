@@ -1,75 +1,76 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
 <title>Praktikum 8 – Studi Kasus Jaringan Terpadu | Jaringan Komputer 2</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
 .page-wrap { display: flex; min-height: 100vh; }
-.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
-.main-content { flex: 1; padding: 40px 48px; max-width: 960px; }
-.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 960px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
 .page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
 .header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
 .badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
-.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
 .toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
-.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
 .toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
 .section { margin-bottom: 48px; }
-.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
 .accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
-.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
-.accordion-header:hover { background: #eff6ff; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
 .accordion-icon { transition: transform 0.3s; }
 .accordion-header.open .accordion-icon { transform: rotate(180deg); }
 .accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
 .accordion-body.open { display: block; }
-.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
-.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
-.copy-btn:hover { background: #1e40af; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #b8893b; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #b8893b; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #7d5a1e; }
 .copy-btn.copied { background: #16a34a; }
 table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
-thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
-thead th:hover { background: #1a56db; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #b8893b; }
 tbody tr:nth-child(even) { background: #f8f9fa; }
-tbody tr:hover { background: #eff6ff; }
+tbody tr:hover { background: #fdf8f0; }
 td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
 .callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
-.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
 .callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
 .callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
 .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
 .callout-text { font-size: 0.92rem; color: #374151; }
-.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
-.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #b8893b; color: #b8893b; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1a2942; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
 .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
 .steps { counter-reset: step-counter; }
 .step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
-.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
 .step-num.done { background: #16a34a; }
 .step-content { flex: 1; padding-top: 4px; }
-.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
 .tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
 .tab-btn { padding: 10px 16px; border: none; background: none; cursor: pointer; font-size: 0.88rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
-.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
 .tab-panel { display: none; padding: 20px 0; }
 .tab-panel.active { display: block; }
 .topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
 .breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
-.breadcrumb a { color: #1a56db; text-decoration: none; }
-.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; }
 p { margin-bottom: 12px; }
 ul, ol { padding-left: 24px; margin-bottom: 12px; }
 li { margin-bottom: 4px; }
-strong { color: #1e3a8a; }
+strong { color: #1a2942; }
 .tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
 .tab-panels { padding: 0 16px; }
-footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
-.rubrik-table td:first-child { font-weight: 600; color: #1e3a8a; }
+footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+.rubrik-table td:first-child { font-weight: 600; color: #1a2942; }
 .score-high { background: #f0fdf4; color: #16a34a; font-weight: 700; }
 .score-med { background: #fffbeb; color: #d97706; font-weight: 700; }
 .score-low { background: #fef2f2; color: #dc2626; font-weight: 700; }
@@ -87,9 +88,8 @@ footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px;
       <span class="badge">📘 EIK212305</span>
       <span class="badge">📅 Semester 2</span>
       <span class="badge">⚡ 3 SKS (1T + 2P)</span>
-      <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
-      <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
-    </div>
+        <span class="badge">&#x1F468;&#x200D;&#x1F3EB; M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+  </div>
   </div>
 </div>
 
@@ -131,7 +131,7 @@ footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px;
       </div>
 
       <div style="margin-top:24px;">
-        <h3 style="font-size:1.1rem;color:#1e3a8a;margin-bottom:12px;">📋 Skenario: Jaringan Politeknik ABC</h3>
+        <h3 style="font-size:1.1rem;color:#1a2942;margin-bottom:12px;">📋 Skenario: Jaringan Politeknik ABC</h3>
         <p>Politeknik ABC memiliki dua gedung yang perlu dihubungkan secara jaringan. Anda ditugaskan sebagai Network Engineer untuk merancang dan mengimplementasikan jaringan lengkap.</p>
 
         <div class="accordion">
@@ -709,7 +709,7 @@ footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px;
           <tr><td>F. QoS</td><td>15%</td><td>15</td><td>Bandwidth limit sesuai kebutuhan, PCQ untuk WiFi</td></tr>
           <tr><td>G. VPN Site-to-Site</td><td>15%</td><td>15</td><td>Koneksi VPN berhasil, PC antar gedung bisa saling ping</td></tr>
           <tr><td>Dokumentasi &amp; Laporan</td><td>5%</td><td>5</td><td>Laporan lengkap, rapi, screenshot verifikasi ada</td></tr>
-          <tr style="background:#1e3a8a;color:#fff;"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>100</strong></td><td></td></tr>
+          <tr style="background:#1a2942;color:#fff;"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>100</strong></td><td></td></tr>
         </tbody>
       </table>
 
@@ -770,13 +770,23 @@ footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px;
       <li>Cheswick, W. et al. (2003). <em>Firewalls and Internet Security</em>. Addison-Wesley.</li>
     </ul>
     <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.2);padding-top:12px;color:#94a3b8;font-size:0.82rem;">
-      Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | Penyusun: Eka Wahyu Sholeha, M.Kom &amp; Hendrik Setyo Utomo, ST., MMSI | © 2024
+      Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | Penyusun: © 2024
     </div>
   </div>
 </footer>
 
 <script>
-document.querySelectorAll('.accordion-header').forEach(btn => {
+      // Auto-number and clean sidebar links
+      (function() {
+        var links = document.querySelectorAll('.toc-link');
+        var num = 1;
+        links.forEach(function(a) {
+          var clean = a.textContent.replace(/^[^\w\d\(]+/, '').trim();
+          a.textContent = num + '. ' + clean;
+          num++;
+        });
+      })();
+      document.querySelectorAll('.accordion-header').forEach(btn => {
   btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
 });
 function copyCode(btn) {

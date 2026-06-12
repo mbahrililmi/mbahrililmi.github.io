@@ -1,8 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
     <title>Praktikum 1 – Basic TCP/IP & DHCP | Jaringan Komputer 2</title>
     <style>
       *,
@@ -13,8 +14,8 @@
         padding: 0;
       }
       body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #f8f9fa;
+        font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        background: #faf7f2;
         color: #1a1a1a;
         line-height: 1.7;
       }
@@ -26,7 +27,7 @@
         width: 280px;
         min-height: 100vh;
         background: #fff;
-        border-right: 1px solid #e0e0e0;
+        border-right: 1px solid #e8e0d3;
         position: sticky;
         top: 0;
         height: 100vh;
@@ -35,12 +36,13 @@
         flex-shrink: 0;
       }
       .main-content {
-        flex: 1;
+        flex: 0 0 auto;
+  margin: 0 auto;
         padding: 40px 48px;
         max-width: 900px;
       }
       .page-header {
-        background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%);
+        background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%);
         color: #fff;
         padding: 32px 48px;
       }
@@ -63,7 +65,7 @@
       .toc-title {
         font-weight: 700;
         font-size: 0.85rem;
-        color: #6b7280;
+        color: #8b6a2a;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         padding: 0 20px 10px;
@@ -79,9 +81,7 @@
       }
       .toc-link:hover,
       .toc-link.active {
-        background: #eff6ff;
-        color: #1a56db;
-        border-left-color: #1a56db;
+        background: #fdf8f0; color: #b8893b; border-left-color: #b8893b;
       }
       .toc-link.indent {
         padding-left: 32px;
@@ -94,8 +94,8 @@
       .section-title {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #1e3a8a;
-        border-bottom: 2px solid #1a56db;
+        color: #1a2942;
+        border-bottom: 2px solid #b8893b;
         padding-bottom: 8px;
         margin-bottom: 20px;
         display: flex;
@@ -103,7 +103,7 @@
         gap: 10px;
       }
       .section-num {
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         width: 28px;
         height: 28px;
@@ -128,11 +128,11 @@
         justify-content: space-between;
         align-items: center;
         font-weight: 600;
-        color: #1e3a8a;
+        color: #1a2942;
         user-select: none;
       }
       .accordion-header:hover {
-        background: #eff6ff;
+        background: #fdf8f0;
       }
       .accordion-icon {
         transition: transform 0.3s;
@@ -152,7 +152,7 @@
       .code-block {
         position: relative;
         background: #f4f4f4;
-        border-left: 4px solid #1a56db;
+        border-left: 4px solid #b8893b;
         border-radius: 0 6px 6px 0;
         padding: 16px 16px 16px 20px;
         margin: 12px 0;
@@ -166,7 +166,7 @@
         position: absolute;
         top: 8px;
         right: 8px;
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         border: none;
         border-radius: 4px;
@@ -176,7 +176,7 @@
         transition: background 0.2s;
       }
       .copy-btn:hover {
-        background: #1e40af;
+        background: #7d5a1e;
       }
       .copy-btn.copied {
         background: #16a34a;
@@ -188,7 +188,7 @@
         font-size: 0.9rem;
       }
       thead th {
-        background: #1e3a8a;
+        background: #1a2942;
         color: #fff;
         padding: 10px 14px;
         text-align: left;
@@ -196,13 +196,13 @@
         user-select: none;
       }
       thead th:hover {
-        background: #1a56db;
+        background: #b8893b;
       }
       tbody tr:nth-child(even) {
         background: #f8f9fa;
       }
       tbody tr:hover {
-        background: #eff6ff;
+        background: #fdf8f0;
       }
       td,
       th {
@@ -219,8 +219,8 @@
         align-items: flex-start;
       }
       .callout-info {
-        background: #eff6ff;
-        border-left: 4px solid #1a56db;
+        background: #fdf8f0;
+        border-left: 4px solid #b8893b;
       }
       .callout-warn {
         background: #fffbeb;
@@ -242,13 +242,13 @@
       .tooltip {
         position: relative;
         display: inline;
-        border-bottom: 1px dashed #1a56db;
-        color: #1a56db;
+        border-bottom: 1px dashed #b8893b;
+        color: #b8893b;
         cursor: help;
       }
       .tooltip .tooltip-text {
         visibility: hidden;
-        background: #1e3a8a;
+        background: #1a2942;
         color: #fff;
         text-align: left;
         border-radius: 6px;
@@ -281,7 +281,7 @@
       .step-num {
         width: 32px;
         height: 32px;
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         border-radius: 50%;
         display: flex;
@@ -300,7 +300,7 @@
       }
       .step-check {
         cursor: pointer;
-        accent-color: #1a56db;
+        accent-color: #b8893b;
         width: 16px;
         height: 16px;
         margin-right: 6px;
@@ -322,8 +322,8 @@
         transition: all 0.2s;
       }
       .tab-btn.active {
-        color: #1a56db;
-        border-bottom-color: #1a56db;
+        color: #b8893b;
+        border-bottom-color: #b8893b;
         font-weight: 600;
       }
       .tab-panel {
@@ -350,11 +350,11 @@
         margin-bottom: 24px;
       }
       .breadcrumb a {
-        color: #1a56db;
+        color: #b8893b;
         text-decoration: none;
       }
       .learning-objectives {
-        background: #eff6ff;
+        background: #fdf8f0;
         border-radius: 10px;
         padding: 20px 24px;
       }
@@ -370,7 +370,7 @@
         margin-bottom: 4px;
       }
       strong {
-        color: #1e3a8a;
+        color: #1a2942;
       }
       .tab-group {
         border: 1px solid #e5e7eb;
@@ -381,14 +381,14 @@
         padding: 0 16px;
       }
       footer {
-        background: #1e3a8a;
+        background: #1a2942;
         color: #fff;
         padding: 24px 48px;
         margin-top: 40px;
         font-size: 0.88rem;
       }
       footer a {
-        color: #93c5fd;
+        color: #d4ac6e;
       }
       @media (max-width: 768px) {
         .sidebar {
@@ -418,12 +418,10 @@
           <span class="badge">📘 EIK212305</span>
           <span class="badge">📅 Semester 2</span>
           <span class="badge">⚡ 3 SKS (1T + 2P)</span>
-          <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
-          <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
+        <span class="badge">&#x1F468;&#x200D;&#x1F3EB; M. BAHRIL ILMI, S.Kom., M.Kom.</span>
         </div>
       </div>
     </div>
-
     <div class="page-wrap">
       <nav class="sidebar">
         <div class="toc-title">Daftar Isi</div>
@@ -558,7 +556,7 @@
           </div>
 
           <div id="model-layer" style="margin-top: 24px">
-            <h3 style="font-size: 1.05rem; color: #1e3a8a; margin-bottom: 12px">
+            <h3 style="font-size: 1.05rem; color: #1a2942; margin-bottom: 12px">
               Model 4 Layer TCP/IP
             </h3>
             <table>
@@ -608,7 +606,7 @@
           </div>
 
           <div id="ip-address" style="margin-top: 28px">
-            <h3 style="font-size: 1.05rem; color: #1e3a8a; margin-bottom: 12px">
+            <h3 style="font-size: 1.05rem; color: #1a2942; margin-bottom: 12px">
               Kelas IP Address (IPv4)
             </h3>
             <p>
@@ -682,7 +680,7 @@
           </div>
 
           <div id="tcp-vs-udp" style="margin-top: 28px">
-            <h3 style="font-size: 1.05rem; color: #1e3a8a; margin-bottom: 12px">
+            <h3 style="font-size: 1.05rem; color: #1a2942; margin-bottom: 12px">
               TCP vs UDP
             </h3>
             <table>
@@ -768,7 +766,7 @@
           </p>
 
           <div id="proses-dora">
-            <h3 style="font-size: 1.05rem; color: #1e3a8a; margin: 20px 0 12px">
+            <h3 style="font-size: 1.05rem; color: #1a2942; margin: 20px 0 12px">
               Proses DORA
             </h3>
             <pre class="topology">
@@ -826,7 +824,7 @@
             >
           </div>
 
-          <h3 style="font-size: 1rem; color: #1e3a8a; margin: 16px 0 8px">
+          <h3 style="font-size: 1rem; color: #1a2942; margin: 16px 0 8px">
             Cara konfigurasi di dhcpd.conf:
           </h3>
           <div class="code-block">
@@ -1295,7 +1293,7 @@
               >Cisco Packet Tracer adalah simulator jaringan yang memungkinkan
               mahasiswa berlatih konfigurasi tanpa perangkat fisik. Tersedia
               gratis di
-              <a href="https://www.netacad.com" style="color: #1a56db"
+              <a href="https://www.netacad.com" style="color: #b8893b"
                 >netacad.com</a
               >.</span
             >
@@ -1741,7 +1739,7 @@
                 margin-bottom: 12px;
               "
             >
-              <strong style="color: #1e3a8a">A. IP: 192.168.10.0/26</strong>
+              <strong style="color: #1a2942">A. IP: 192.168.10.0/26</strong>
               <ul style="margin-top: 8px; color: #374151">
                 <li>Berapa jumlah subnet yang terbentuk?</li>
                 <li>Berapa jumlah host per subnet (host yang bisa dipakai)?</li>
@@ -1768,7 +1766,7 @@
                 padding: 16px;
               "
             >
-              <strong style="color: #1e3a8a">B. IP: 172.16.0.0/20</strong>
+              <strong style="color: #1a2942">B. IP: 172.16.0.0/20</strong>
               <ul style="margin-top: 8px; color: #374151">
                 <li>Berapa jumlah subnet yang terbentuk?</li>
                 <li>Berapa jumlah host per subnet?</li>
@@ -1902,7 +1900,18 @@
     </footer>
 
     <script>
-      document.querySelectorAll(".accordion-header").forEach((btn) => {
+      // Auto-number and clean sidebar links
+      (function() {
+        var links = document.querySelectorAll('.toc-link');
+        var num = 1;
+        links.forEach(function(a) {
+          // Remove leading emoji/icon characters and trim
+          var text = a.textContent.replace(/^[\s ]*(?:[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27FF}]|[\uD83C-\uDBFF][\uDC00-\uDFFF]|⚠️?|[✂-➰])\s*/gu, '').trim();
+          a.textContent = num + '. ' + text;
+          num++;
+        });
+      })();
+            document.querySelectorAll(".accordion-header").forEach((btn) => {
         btn.addEventListener("click", () => {
           btn.classList.toggle("open");
           btn.nextElementSibling.classList.toggle("open");

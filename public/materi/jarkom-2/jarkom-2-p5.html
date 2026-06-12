@@ -1,8 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
     <title>Praktikum 5 – QoS (Quality of Service) | Jaringan Komputer 2</title>
     <style>
       *,
@@ -20,7 +21,7 @@
         line-height: 1.7;
       }
       a {
-        color: #1a56db;
+        color: #b8893b;
         text-decoration: none;
       }
       a:hover {
@@ -28,7 +29,7 @@
       }
 
       .page-header {
-        background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%);
+        background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%);
         color: #fff;
         padding: 40px 48px 36px;
       }
@@ -96,14 +97,15 @@
       }
       .toc-list li a:hover,
       .toc-list li a.active {
-        color: #1a56db;
-        background: #eff6ff;
-        border-left-color: #1a56db;
+        color: #b8893b;
+        background: #fdf8f0;
+        border-left-color: #b8893b;
         text-decoration: none;
       }
 
       .main-content {
-        flex: 1;
+        flex: 0 0 auto;
+  margin: 0 auto;
         padding: 40px 48px;
         max-width: 900px;
         min-width: 0;
@@ -129,7 +131,7 @@
         justify-content: center;
         width: 34px;
         height: 34px;
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         border-radius: 50%;
         font-size: 14px;
@@ -138,7 +140,7 @@
       }
 
       .learning-objectives {
-        background: #eff6ff;
+        background: #fdf8f0;
         border: 1px solid #bfdbfe;
         border-radius: 10px;
         padding: 22px 26px;
@@ -147,7 +149,7 @@
       .learning-objectives h3 {
         font-size: 0.95rem;
         font-weight: 700;
-        color: #1a56db;
+        color: #b8893b;
         margin-bottom: 12px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -157,7 +159,7 @@
       }
       .learning-objectives ol li {
         margin-bottom: 5px;
-        color: #1e40af;
+        color: #7d5a1e;
         font-size: 14px;
       }
 
@@ -181,8 +183,8 @@
         transition: background 0.15s;
       }
       .accordion-header:hover {
-        background: #eff6ff;
-        color: #1a56db;
+        background: #fdf8f0;
+        color: #b8893b;
       }
       .accordion-icon {
         width: 22px;
@@ -200,7 +202,7 @@
       }
       .accordion.open .accordion-icon {
         transform: rotate(180deg);
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
       }
       .accordion-body {
@@ -249,7 +251,7 @@
         transition: background 0.15s;
       }
       .copy-btn:hover {
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
       }
 
@@ -265,7 +267,7 @@
       .step-num {
         min-width: 30px;
         height: 30px;
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         border-radius: 50%;
         display: flex;
@@ -293,7 +295,7 @@
         cursor: pointer;
       }
       .step-check input[type="checkbox"] {
-        accent-color: #1a56db;
+        accent-color: #b8893b;
         width: 15px;
         height: 15px;
       }
@@ -313,9 +315,9 @@
         margin-top: 1px;
       }
       .callout-info {
-        background: #eff6ff;
+        background: #fdf8f0;
         border: 1px solid #bfdbfe;
-        color: #1e40af;
+        color: #7d5a1e;
       }
       .callout-warn {
         background: #fffbeb;
@@ -351,9 +353,9 @@
         display: inline-block;
       }
       .tooltip span:first-child {
-        border-bottom: 1.5px dashed #1a56db;
+        border-bottom: 1.5px dashed #b8893b;
         cursor: help;
-        color: #1a56db;
+        color: #b8893b;
       }
       .tooltip-text {
         display: none;
@@ -385,7 +387,7 @@
         font-size: 14px;
       }
       th {
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         padding: 10px 14px;
         text-align: left;
@@ -394,7 +396,7 @@
         font-weight: 600;
       }
       th:hover {
-        background: #1e3a8a;
+        background: #1a2942;
       }
       td {
         padding: 9px 14px;
@@ -404,7 +406,7 @@
         background: #f8fafc;
       }
       tr:hover td {
-        background: #eff6ff;
+        background: #fdf8f0;
       }
 
       .rubrik-grid {
@@ -423,7 +425,7 @@
         font-size: 14px;
       }
       .rubrik-num {
-        background: #1a56db;
+        background: #b8893b;
         color: #fff;
         border-radius: 6px;
         width: 28px;
@@ -476,7 +478,7 @@
       }
 
       footer {
-        background: #1e3a8a;
+        background: #1a2942;
         color: #cbd5e1;
         padding: 28px 48px;
         font-size: 13px;
@@ -531,8 +533,6 @@
         <span class="badge">EIK212305</span>
         <span class="badge">Semester 2</span>
         <span class="badge">3 SKS (1T+2P)</span>
-        <span class="badge">Eka Wahyu Sholeha M.Kom</span>
-        <span class="badge">Hendrik Setyo Utomo ST. MMSI</span>
       </div>
       <h1>📶 Praktikum 5: QoS (Quality of Service)</h1>
       <p class="subtitle">
@@ -1542,7 +1542,7 @@ add name=DL-All parent=Total-Download \
     <footer>
       <strong>Jaringan Komputer 2</strong> — EIK212305 &nbsp;|&nbsp; Semester 2
       &nbsp;|&nbsp; 3 SKS (1T+2P)<br />
-      Eka Wahyu Sholeha M.Kom &amp; Hendrik Setyo Utomo ST. MMSI<br />
+      Penyusun: M. BAHRIL ILMI, S.Kom., M.Kom.<br />
       <span style="opacity: 0.6; font-size: 12px"
         >Politeknik Negeri Tanah Laut &copy; 2025</span
       >
@@ -1593,6 +1593,16 @@ add name=DL-All parent=Total-Download \
             a.classList.add("active");
         });
       });
+          // Auto-number and clean sidebar links
+      (function() {
+        var links = document.querySelectorAll('.toc-link');
+        var num = 1;
+        links.forEach(function(a) {
+          var clean = a.textContent.replace(/^[^\w\d\(]+/, '').trim();
+          a.textContent = num + '. ' + clean;
+          num++;
+        });
+      })();
     </script>
   </body>
 </html>
