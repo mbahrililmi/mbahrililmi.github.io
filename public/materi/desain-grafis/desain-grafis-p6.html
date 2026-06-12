@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Desain Grafis P6 – Fotografi Jurnalistik & Photo Editing | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #fdf8f0; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-err { background: #fff1f1; border-left: 4px solid #e53e3e; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.steps { list-style: none; padding: 0; }
+.step { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #b8893b; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1a2942; }
+footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #d4ac6e; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+
+.ethics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.ethics-card { border-radius: 10px; padding: 20px; }
+.ethics-card.allowed { background: #f0fdf4; border: 2px solid #16a34a; }
+.ethics-card.notallowed { background: #fff1f1; border: 2px solid #e53e3e; }
+.ethics-card h4 { margin-bottom: 12px; font-size: 0.95rem; }
+.ethics-card.allowed h4 { color: #166534; }
+.ethics-card.notallowed h4 { color: #c53030; }
+.ethics-card ul { padding-left: 18px; }
+.ethics-card li { font-size: 0.88rem; color: #374151; }
+
+.workflow-phase { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px 20px; margin-bottom: 10px; }
+.workflow-phase h4 { color: #b8893b; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 0.95rem; }
+.workflow-phase ul { padding-left: 18px; margin: 0; }
+.workflow-phase li { font-size: 0.88rem; color: #374151; margin-bottom: 2px; }
+
+.technique-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.technique-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; }
+.technique-card h4 { font-size: 0.88rem; color: #1a2942; margin-bottom: 4px; }
+.technique-card p { font-size: 0.8rem; color: #6b7280; margin: 0; }
+
+@media (max-width: 600px) {
+  .ethics-grid { grid-template-columns: 1fr; }
+  .technique-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px;">Politeknik Negeri Tanah Laut — Desain Grafis</div>
+    <h1>📷 Pertemuan 6 — Fotografi Jurnalistik & Photo Editing</h1>
+    <p>Etika jurnalistik, workflow profesional, dan teknik retouching fundamental</p>
+    <div class="header-badges">
+      <span class="badge">📋 Desain Grafis</span>
+      <span class="badge">📅 Pertemuan 6</span>
+      <span class="badge">👨‍🏫 M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#jurnalistik">Fotografi Jurnalistik</a>
+    <a class="toc-link indent" href="#karakteristik">Karakteristik & Jenis</a>
+    <a class="toc-link indent" href="#komposisi">Prinsip Komposisi</a>
+    <a class="toc-link indent" href="#etika">Etika Foto Jurnalistik</a>
+    <a class="toc-link" href="#workflow-editing">Workflow Photo Editing</a>
+    <a class="toc-link" href="#exposure">Exposure & Tone</a>
+    <a class="toc-link" href="#color-correction">Color Correction</a>
+    <a class="toc-link" href="#sharpening">Sharpening</a>
+    <a class="toc-link" href="#noise-reduction" id="nr-anchor">Noise Reduction</a>
+    <a class="toc-link" href="#retouching">Retouching Techniques</a>
+    <a class="toc-link indent" href="#portrait-retouch">Portrait Retouching</a>
+    <a class="toc-link" href="#video">Video Pembelajaran</a>
+    <a class="toc-link" href="#praktikum">Praktikum</a>
+    <a class="toc-link indent" href="#lat1">Latihan 1: Journalistic Edit</a>
+    <a class="toc-link indent" href="#lat2">Latihan 2: Exposure & Tone</a>
+    <a class="toc-link indent" href="#lat3">Latihan 3: Portrait Retouch</a>
+    <a class="toc-link" href="#ringkasan">Ringkasan</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="/public/materi/">Materi</a> › <a href="#">Desain Grafis</a> › Pertemuan 6
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah mengikuti perkuliahan ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep fotografi jurnalistik dan photo storytelling</li>
+          <li>Melakukan photo retouching dan enhancement profesional</li>
+          <li>Memahami etika dalam photo editing untuk journalism</li>
+          <li>Melakukan exposure dan color correction yang tepat</li>
+          <li>Menggunakan retouching tools secara efektif</li>
+        </ol>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <div class="callout-text">
+          <strong>Perbedaan Image Editing vs Image Manipulation:</strong>
+          <ul style="margin-top:4px;">
+            <li><strong>Image Editing:</strong> Enhance atau correct foto — memperbaiki quality tanpa mengubah realitas</li>
+            <li><strong>Image Manipulation:</strong> Mengubah, menggabungkan, menciptakan reality baru — untuk art, advertising, creative work</li>
+          </ul>
+          <p style="margin-top:4px;">Dalam konteks jurnalistik: hanya image editing yang ethical!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOTOGRAFI JURNALISTIK -->
+    <section class="section" id="jurnalistik">
+      <div class="section-title"><span class="section-num">2</span> Fotografi Jurnalistik</div>
+      <p>Fotografi jurnalistik adalah <strong>visual storytelling yang faktual</strong> — foto yang menceritakan berita atau peristiwa secara aktual, objektif, dan impactful.</p>
+
+      <div id="karakteristik">
+        <h3 style="color:#1a2942; margin:16px 0 10px; font-size:1rem;">Karakteristik Foto Jurnalistik</h3>
+        <table>
+          <thead><tr><th>Karakteristik</th><th>Penjelasan</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Actual</strong></td><td>Kejadian nyata, bukan rekayasa</td></tr>
+            <tr><td><strong>Objective</strong></td><td>Tidak bias, mewakili fakta</td></tr>
+            <tr><td><strong>Timely</strong></td><td>Berita terkini, nilai aktualitasnya tinggi</td></tr>
+            <tr><td><strong>Newsworthy</strong></td><td>Punya nilai berita yang signifikan</td></tr>
+            <tr><td><strong>Clear</strong></td><td>Mudah dipahami pesan dan konteksnya</td></tr>
+            <tr><td><strong>Impactful</strong></td><td>Memberi dampak emosional pada audience</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="komposisi">
+        <h3 style="color:#1a2942; margin:20px 0 10px; font-size:1rem;">Prinsip Komposisi Foto Jurnalistik</h3>
+        <div class="technique-grid">
+          <div class="technique-card">
+            <h4>Rule of Thirds</h4>
+            <p>Tempatkan subject di persimpangan grid 3×3 untuk komposisi dinamis</p>
+          </div>
+          <div class="technique-card">
+            <h4>Leading Lines</h4>
+            <p>Gunakan garis alami untuk mengarahkan mata ke subject utama</p>
+          </div>
+          <div class="technique-card">
+            <h4>Framing</h4>
+            <p>Gunakan elemen foreground untuk membingkai subject</p>
+          </div>
+          <div class="technique-card">
+            <h4>Decisive Moment</h4>
+            <p>Konsep Henri Cartier-Bresson — tangkap momen puncak peristiwa</p>
+          </div>
+          <div class="technique-card">
+            <h4>Context</h4>
+            <p>Tunjukkan environment dan konteks peristiwa, bukan hanya subject</p>
+          </div>
+          <div class="technique-card">
+            <h4>Foreground-Background</h4>
+            <p>Gunakan kedalaman untuk menciptakan dimensi dan cerita visual</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="etika">
+        <h3 style="color:#1a2942; margin:20px 0 10px; font-size:1rem;">Etika Foto Jurnalistik</h3>
+        <div class="ethics-grid">
+          <div class="ethics-card allowed">
+            <h4>✅ Diperbolehkan</h4>
+            <ul>
+              <li>Crop untuk improve composition</li>
+              <li>Adjust exposure dan contrast (minimal)</li>
+              <li>Convert to Black &amp; White</li>
+              <li>Sharpening secukupnya</li>
+              <li>Color correction untuk match scene asli</li>
+            </ul>
+          </div>
+          <div class="ethics-card notallowed">
+            <h4>🚫 TIDAK Diperbolehkan</h4>
+            <ul>
+              <li>Add atau remove content dari foto</li>
+              <li>Excessive manipulation</li>
+              <li>Change reality dari scene</li>
+              <li>Misleading editing</li>
+              <li>Staging events sebelum difoto</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout callout-err">
+          <span class="callout-icon">⚠️</span>
+          <span class="callout-text"><strong>Prinsip Utama Jurnalistik:</strong> Accuracy · Honesty · Independence · Minimize Harm. Pelanggaran etika dapat mengakibatkan pemecatan, pencabutan penghargaan, dan kerusakan reputasi permanen.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="section" id="workflow-editing">
+      <div class="section-title"><span class="section-num">3</span> Workflow Photo Editing Profesional</div>
+      <div class="workflow-phase">
+        <h4>📥 Step 1: Organization</h4>
+        <ul>
+          <li>Import dan sort photos</li>
+          <li>Rate dan flag keepers</li>
+          <li>Delete obvious rejects</li>
+        </ul>
+      </div>
+      <div class="workflow-phase">
+        <h4>☀️ Step 2: Basic Adjustments</h4>
+        <ul>
+          <li>Exposure correction</li>
+          <li>White balance</li>
+          <li>Contrast adjustment</li>
+          <li>Highlights/Shadows recovery</li>
+        </ul>
+      </div>
+      <div class="workflow-phase">
+        <h4>🔍 Step 3: Detail Work</h4>
+        <ul>
+          <li>Sharpening (Filter > Sharpen)</li>
+          <li>Noise reduction</li>
+          <li>Lens correction</li>
+        </ul>
+      </div>
+      <div class="workflow-phase">
+        <h4>🎨 Step 4: Color Grading</h4>
+        <ul>
+          <li>Creative color adjustments</li>
+          <li>Mood enhancement</li>
+        </ul>
+      </div>
+      <div class="workflow-phase">
+        <h4>✨ Step 5: Final Touches</h4>
+        <ul>
+          <li>Vignette (optional)</li>
+          <li>Grain (optional untuk film look)</li>
+          <li>Output sharpening sesuai medium</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- EXPOSURE & TONE -->
+    <section class="section" id="exposure">
+      <div class="section-title"><span class="section-num">4</span> Exposure & Tone Adjustment</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'levels-tab')">Levels</button>
+          <button class="tab-btn" onclick="switchTab(this,'curves-tab')">Curves ⭐</button>
+          <button class="tab-btn" onclick="switchTab(this,'shadow-tab')">Shadows/Highlights</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" id="levels-tab">
+            <ul>
+              <li>Adjust <strong>black point</strong>, <strong>white point</strong>, dan midtones</li>
+              <li>Input levels vs Output levels</li>
+              <li>Per-channel adjustments (R, G, B terpisah)</li>
+              <li>Auto levels untuk quick fix sederhana</li>
+            </ul>
+          </div>
+          <div class="tab-panel" id="curves-tab">
+            <div class="callout callout-info" style="margin-top:0;">
+              <span class="callout-icon">⭐</span>
+              <span class="callout-text"><strong>Curves adalah adjustment paling powerful!</strong> Kontrol presisi atas seluruh tonal range, dari shadows hingga highlights.</span>
+            </div>
+            <ul>
+              <li><strong>S-curve</strong> untuk boost contrast (shadow gelap, highlight terang)</li>
+              <li>Highlight/shadow control secara independen</li>
+              <li><strong>Color grading</strong> dengan adjust individual RGB channels</li>
+              <li>Kontrol presisi atas setiap tonal range</li>
+            </ul>
+          </div>
+          <div class="tab-panel" id="shadow-tab">
+            <ul>
+              <li>Recover detail di shadows yang terlalu gelap</li>
+              <li>Tame highlights yang terlalu terang (blown out)</li>
+              <li>Preserve midtones agar wajah tidak teraffect</li>
+              <li>Berguna untuk high-contrast scenes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR CORRECTION -->
+    <section class="section" id="color-correction">
+      <div class="section-title"><span class="section-num">5</span> Color Correction</div>
+      <table>
+        <thead><tr><th>Adjustment</th><th>Fungsi</th><th>Tips Penggunaan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>White Balance</strong></td><td>Fix color cast dari lighting</td><td>Gunakan eyedropper pada neutral area (abu-abu/putih)</td></tr>
+          <tr><td><strong>Color Balance</strong></td><td>Adjust cyan-red, magenta-green, yellow-blue</td><td>Control terpisah untuk shadows/midtones/highlights</td></tr>
+          <tr><td><strong>Hue/Saturation</strong></td><td>Adjust specific colors, desaturate/oversaturate</td><td>Pilih specific color channel untuk edit selektif</td></tr>
+          <tr><td><strong>Vibrance</strong></td><td>Smart saturation yang protect skin tones</td><td>Lebih aman daripada Saturation untuk portraits</td></tr>
+          <tr><td><strong>Selective Color</strong></td><td>Adjust CMYK values untuk specific colors</td><td>Professional color grading yang sangat presisi</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SHARPENING -->
+    <section class="section" id="sharpening">
+      <div class="section-title"><span class="section-num">6</span> Sharpening</div>
+      <div class="accordion">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          Unsharp Mask (Paling Umum) <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <ul>
+            <li><strong>Amount:</strong> Strength/kekuatan sharpening</li>
+            <li><strong>Radius:</strong> Lebar edge yang akan disharpened</li>
+            <li><strong>Threshold:</strong> Protect smooth areas dari sharpening</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Smart Sharpen <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul>
+            <li>Algorithm yang lebih baik dari Unsharp Mask</li>
+            <li>Opsi untuk reduce noise sekaligus</li>
+            <li>Kontrol yang lebih detail</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          High Pass Sharpening (Advanced) <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ol>
+            <li>Duplicate layer</li>
+            <li>Filter > Other > High Pass (radius 2-5px)</li>
+            <li>Set blend mode ke Overlay atau Soft Light</li>
+            <li>Adjust opacity untuk control kekuatannya</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-text"><strong>Tips Sharpening:</strong> Sharpening selalu dilakukan <strong>terakhir</strong>. Jangan over-sharpen. Sharpening untuk screen berbeda dari untuk print. Duplicate layer untuk non-destructive sharpening.</span>
+      </div>
+    </section>
+
+    <!-- NOISE REDUCTION -->
+    <section class="section" id="noise-reduction">
+      <div class="section-title"><span class="section-num">7</span> Noise Reduction</div>
+      <ul>
+        <li>Filter > Noise > Reduce Noise</li>
+        <li><strong>Luminance noise</strong> — grainy texture, lebih mudah diatasi</li>
+        <li><strong>Color noise</strong> — colored speckles, biasanya lebih mengganggu</li>
+        <li><strong>Preserve Detail</strong> slider — trade-off antara noise reduction dan sharpness</li>
+        <li>Balance: jangan over-smooth, foto akan terlihat "plasticky"</li>
+      </ul>
+    </section>
+
+    <!-- RETOUCHING -->
+    <section class="section" id="retouching">
+      <div class="section-title"><span class="section-num">8</span> Retouching Techniques</div>
+
+      <div class="technique-grid">
+        <div class="technique-card">
+          <h4>Spot Healing Brush</h4>
+          <p>Quick fixes, blemishes kecil, content-aware healing otomatis</p>
+        </div>
+        <div class="technique-card">
+          <h4>Healing Brush</h4>
+          <p>More control, set source point manual, blend dengan surrounding</p>
+        </div>
+        <div class="technique-card">
+          <h4>Clone Stamp</h4>
+          <p>Exact copy dari source — hard edges, cocok untuk patterns</p>
+        </div>
+        <div class="technique-card">
+          <h4>Patch Tool</h4>
+          <p>Drag selection ke clean area — cocok untuk area yang lebih besar</p>
+        </div>
+        <div class="technique-card">
+          <h4>Content-Aware Fill</h4>
+          <p>Select area > Edit > Fill > Content-Aware — AI-powered removal</p>
+        </div>
+        <div class="technique-card" style="border-color:#d4ac6e; background:#fdf8f0;">
+          <h4 style="color:#7d5a1e;">Frequency Separation ⭐</h4>
+          <p>Advanced — pisahkan texture dari color untuk perfect skin retouching</p>
+        </div>
+      </div>
+
+      <div id="portrait-retouch">
+        <div class="accordion" style="margin-top:16px;">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            Portrait Retouching Checklist <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-body">
+            <table>
+              <thead><tr><th>Area</th><th>Teknik</th><th>Prinsip</th></tr></thead>
+              <tbody>
+                <tr><td>Blemishes/jerawat</td><td>Spot healing brush</td><td>Subtle, natural result</td></tr>
+                <tr><td>Skin tone even</td><td>Frequency separation atau healing brush</td><td>Jaga tekstur kulit</td></tr>
+                <tr><td>Gigi</td><td>Hue/Saturation + mask (desaturate yellow, lighten)</td><td>Natural, bukan putih bersih</td></tr>
+                <tr><td>Mata</td><td>Dodge tool atau adjustment layer</td><td>Bright tapi tidak glowing</td></tr>
+                <tr><td>Lips</td><td>Saturation + Sharpness</td><td>Enhance without overdoing</td></tr>
+                <tr><td>Contouring</td><td>Dodge and Burn</td><td>Sculpt dengan light, sangat halus</td></tr>
+              </tbody>
+            </table>
+            <div class="callout callout-tip" style="margin-top:8px;">
+              <span class="callout-icon">✅</span>
+              <span class="callout-text"><strong>IMPORTANT: Keep it natural!</strong> Avoid "plastic" look. Subtle adjustments selalu lebih professional dari heavy retouching. Less is more dalam portrait retouching.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section" id="video">
+      <div class="section-title"><span class="section-num">9</span> Video Pembelajaran</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">📰</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">What is Photojournalism?</div><div style="font-size:0.78rem; color:#6b7280;">Documentary photography explained</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">⚖️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Ethics in Photojournalism</div><div style="font-size:0.78rem; color:#6b7280;">Batasan etika dalam foto jurnalistik</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Professional Editing Workflow</div><div style="font-size:0.78rem; color:#6b7280;">Photo editing workflow in Photoshop</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Frequency Separation Retouching</div><div style="font-size:0.78rem; color:#6b7280;">Advanced skin retouching technique</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRAKTIKUM -->
+    <section class="section" id="praktikum">
+      <div class="section-title"><span class="section-num">10</span> Praktikum</div>
+
+      <div class="accordion" id="lat1">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          Latihan 1: Journalistic Photo Editing <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <p><strong>Tujuan:</strong> Ethical enhancement untuk foto jurnalistik</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Cari atau ambil foto news/event (demo, ceremony, sports, dll)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Edit dengan prinsip jurnalistik: crop composition, adjust exposure, fix white balance</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Minimal sharpening — NO content addition/removal!</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save before-after comparison side by side</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tulis caption singkat: who, what, when, where, why</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan01_Journalistic_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat2">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 2: Exposure dan Tone Adjustment <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Master curves dan levels untuk exposure correction</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan foto yang underexposed atau overexposed</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Koreksi menggunakan Levels untuk set black/white points</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan Curves untuk adjust midtones dengan S-curve</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan Shadows/Highlights untuk recover detail yang hilang</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Compare dengan auto-adjustments — mana yang lebih baik?</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan02_ExposureCorrection_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat3">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 3: Portrait Retouching <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Natural-looking portrait enhancement</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan portrait photo (self-portrait ok)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Remove blemishes menggunakan spot healing brush</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Even skin tone menggunakan frequency separation atau healing brush</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Whiten teeth sedikit dengan Hue/Saturation + mask</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Brighten eyes dan sharpen eyes/lips</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> PENTING: Keep it natural! Before-after side by side</label></div></li>
+            <li class="step"><div class="step-num">7</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan03_PortraitRetouch_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section class="section" id="ringkasan">
+      <div class="section-title"><span class="section-num">11</span> Ringkasan</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">📝</span>
+        <div class="callout-text">
+          <strong>Poin-poin kunci Pertemuan 6:</strong>
+          <ol style="margin-top:8px;">
+            <li><strong>Fotografi Jurnalistik</strong> — Konsep, karakteristik (actual, objective, timely), jenis, dan prinsip komposisi</li>
+            <li><strong>Etika Editing</strong> — Enhance quality tanpa change reality. Manipulation yang mengubah realitas tidak diperbolehkan dalam journalism</li>
+            <li><strong>Workflow Profesional</strong> — 5 tahap: organization, basic adjustments, detail work, color grading, final touches</li>
+            <li><strong>Exposure & Tone</strong> — Levels, Curves (paling powerful!), dan Shadows/Highlights</li>
+            <li><strong>Color Correction</strong> — White balance, Color Balance, Hue/Saturation, Vibrance, Selective Color</li>
+            <li><strong>Retouching</strong> — Dari Spot Healing sederhana hingga Frequency Separation yang advanced</li>
+          </ol>
+          <p style="margin-top:8px;">Yang membedakan editor amateur dan professional: <strong>attention to detail, subtlety, dan knowing when to stop.</strong> "Less is more" dalam photo editing.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+    <div>Penyusun: <strong>M. Bahril Ilmi, S.Kom., M.Kom.</strong> — Politeknik Negeri Tanah Laut</div>
+    <div><a href="desain-grafis-p5.html">← Pertemuan 5</a> &nbsp;|&nbsp; <a href="desain-grafis-p7.html">Pertemuan 7 →</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function switchTab(btn, panelId) {
+  var tabGroup = btn.closest('.tab-group');
+  tabGroup.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  tabGroup.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+window.addEventListener('scroll', function() {
+  var sections = document.querySelectorAll('section[id]');
+  var links = document.querySelectorAll('.toc-link');
+  var scrollPos = window.scrollY + 120;
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var active = document.querySelector('.toc-link[href="#' + sec.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+});
+(function() {
+  var links = document.querySelectorAll('.toc-link:not(.indent)');
+  var num = 1;
+  links.forEach(function(a) {
+    var clean = a.textContent.replace(/^[\d]+\.\s*/, '').trim();
+    a.textContent = num + '. ' + clean;
+    num++;
+  });
+})();
+</script>
+</body>
+</html>

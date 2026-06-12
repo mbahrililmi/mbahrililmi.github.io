@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Desain Grafis P2 – Desain Logo | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #fdf8f0; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.steps { list-style: none; padding: 0; }
+.step { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #b8893b; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1a2942; }
+footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #d4ac6e; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+
+.logo-types { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin: 16px 0; }
+.logo-type-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; text-align: center; transition: all 0.2s; }
+.logo-type-card:hover { border-color: #b8893b; box-shadow: 0 4px 12px rgba(184,137,59,0.12); transform: translateY(-2px); }
+.logo-type-card .logo-icon { font-size: 2rem; margin-bottom: 8px; }
+.logo-type-card h4 { font-size: 0.88rem; color: #1a2942; margin-bottom: 4px; }
+.logo-type-card p { font-size: 0.78rem; color: #6b7280; margin: 0; }
+.logo-type-card .example { font-size: 0.75rem; color: #b8893b; margin-top: 4px; font-style: italic; }
+
+.color-swatch-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 16px 0; }
+.color-swatch { border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.color-swatch .swatch { height: 60px; }
+.color-swatch .swatch-info { padding: 8px 10px; background: #fff; }
+.color-swatch .swatch-name { font-size: 0.82rem; font-weight: 600; color: #1a2942; }
+.color-swatch .swatch-meaning { font-size: 0.75rem; color: #6b7280; }
+
+.process-flow { display: flex; gap: 0; margin: 20px 0; flex-wrap: wrap; }
+.process-step { flex: 1; min-width: 120px; text-align: center; position: relative; padding: 16px 12px; }
+.process-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: #b8893b; font-size: 1.2rem; }
+.process-step:last-child::after { display: none; }
+.process-step .p-num { width: 36px; height: 36px; background: #1a2942; color: #d4ac6e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin: 0 auto 8px; }
+.process-step h4 { font-size: 0.82rem; color: #1a2942; }
+.process-step p { font-size: 0.75rem; color: #6b7280; margin: 0; }
+
+.principle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.principle-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+.principle-card h4 { color: #b8893b; font-size: 0.9rem; margin-bottom: 6px; }
+.principle-card p { font-size: 0.82rem; color: #374151; margin: 0; }
+
+@media (max-width: 600px) {
+  .logo-types { grid-template-columns: 1fr 1fr; }
+  .color-swatch-grid { grid-template-columns: 1fr 1fr; }
+  .principle-grid { grid-template-columns: 1fr 1fr; }
+  .process-flow { flex-direction: column; }
+  .process-step::after { content: '↓'; right: auto; top: auto; bottom: -12px; left: 50%; transform: translateX(-50%); }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px;">Politeknik Negeri Tanah Laut — Desain Grafis</div>
+    <h1>🎯 Pertemuan 2 — Desain Logo</h1>
+    <p>Konsep, jenis, prinsip, dan teknik pembuatan logo profesional</p>
+    <div class="header-badges">
+      <span class="badge">📋 Desain Grafis</span>
+      <span class="badge">📅 Pertemuan 2</span>
+      <span class="badge">👨‍🏫 M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#pengertian">Pengertian & Fungsi Logo</a>
+    <a class="toc-link" href="#jenis">Jenis-Jenis Logo</a>
+    <a class="toc-link" href="#proses">Proses Desain Logo</a>
+    <a class="toc-link" href="#prinsip">Prinsip Desain Logo</a>
+    <a class="toc-link" href="#teknik">Teknik Pembuatan Digital</a>
+    <a class="toc-link indent" href="#geometric">Geometric Logo</a>
+    <a class="toc-link indent" href="#typography-logo">Typography Logo</a>
+    <a class="toc-link indent" href="#pathfinder">Pathfinder Operations</a>
+    <a class="toc-link" href="#color-theory">Color Theory</a>
+    <a class="toc-link" href="#specs">Technical Specifications</a>
+    <a class="toc-link" href="#video">Video Pembelajaran</a>
+    <a class="toc-link" href="#praktikum">Praktikum</a>
+    <a class="toc-link indent" href="#lat1">Latihan 1: Geometric Logo</a>
+    <a class="toc-link indent" href="#lat2">Latihan 2: Lettermark</a>
+    <a class="toc-link indent" href="#lat3">Latihan 3: Grid System</a>
+    <a class="toc-link indent" href="#lat4">Latihan 4: Tracing</a>
+    <a class="toc-link" href="#ringkasan">Ringkasan</a>
+    <a class="toc-link" href="#tugas">Tugas</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="/public/materi/">Materi</a> › <a href="#">Desain Grafis</a> › Pertemuan 2
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah mengikuti perkuliahan ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami definisi, fungsi, dan karakteristik logo yang baik</li>
+          <li>Membedakan berbagai jenis logo dan aplikasinya</li>
+          <li>Mengikuti proses desain logo secara sistematis</li>
+          <li>Menerapkan prinsip desain dan color theory dalam logo</li>
+          <li>Membuat logo menggunakan teknik geometric, typography, dan tracing</li>
+        </ol>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Logo yang baik harus memenuhi 5 kriteria utama: <strong>Simple, Memorable, Timeless, Versatile, dan Appropriate</strong> — sering disingkat <strong>SMTVA</strong>.</span>
+      </div>
+    </section>
+
+    <!-- PENGERTIAN & FUNGSI -->
+    <section class="section" id="pengertian">
+      <div class="section-title"><span class="section-num">2</span> Pengertian & Fungsi Logo</div>
+      <p>Logo adalah <strong>simbol grafis</strong> yang merepresentasikan identitas brand atau organisasi. Logo adalah wajah visual yang pertama kali dilihat orang dan harus mengkomunikasikan nilai brand secara instan.</p>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'fungsi-tab')">Fungsi Logo</button>
+          <button class="tab-btn" onclick="switchTab(this,'karakteristik-tab')">Karakteristik Baik</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" id="fungsi-tab">
+            <table>
+              <thead><tr><th>Fungsi</th><th>Penjelasan</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Identifikasi</strong></td><td>Membedakan brand dari kompetitor</td></tr>
+                <tr><td><strong>Informasi</strong></td><td>Mengkomunikasikan value dan personality brand</td></tr>
+                <tr><td><strong>Legal Protection</strong></td><td>Trademark dan copyright perlindungan hukum</td></tr>
+                <tr><td><strong>Marketing Tool</strong></td><td>Membangun brand awareness di benak konsumen</td></tr>
+                <tr><td><strong>Symbol of Quality</strong></td><td>Mewakili standar dan reputasi perusahaan</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-panel" id="karakteristik-tab">
+            <div class="principle-grid">
+              <div class="principle-card">
+                <h4>Simple</h4>
+                <p>Mudah diingat, tidak terlalu banyak detail, efektif dalam ukuran kecil</p>
+              </div>
+              <div class="principle-card">
+                <h4>Memorable</h4>
+                <p>Unik dan distinctive, mudah diingat setelah sekali lihat</p>
+              </div>
+              <div class="principle-card">
+                <h4>Timeless</h4>
+                <p>Tidak mengikuti trend sesaat, tetap relevan bertahun-tahun</p>
+              </div>
+              <div class="principle-card">
+                <h4>Versatile</h4>
+                <p>Berfungsi di berbagai media, scalable, dan bekerja dalam monochrome</p>
+              </div>
+              <div class="principle-card">
+                <h4>Appropriate</h4>
+                <p>Cocok dengan industri dan target audience yang tepat</p>
+              </div>
+              <div class="principle-card" style="background:#fdf8f0; border-color: #d4ac6e;">
+                <h4 style="color:#7d5a1e;">Ingat: SMTVA</h4>
+                <p>Simple · Memorable · Timeless · Versatile · Appropriate</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JENIS LOGO -->
+    <section class="section" id="jenis">
+      <div class="section-title"><span class="section-num">3</span> Jenis-Jenis Logo</div>
+      <div class="logo-types">
+        <div class="logo-type-card">
+          <div class="logo-icon">Aa</div>
+          <h4>Wordmark</h4>
+          <p>Hanya menggunakan typography/text</p>
+          <div class="example">Google, Coca-Cola, Disney</div>
+        </div>
+        <div class="logo-type-card">
+          <div class="logo-icon">IBM</div>
+          <h4>Lettermark</h4>
+          <p>Inisial atau singkatan brand</p>
+          <div class="example">NASA, HBO, CNN</div>
+        </div>
+        <div class="logo-type-card">
+          <div class="logo-icon">🍎</div>
+          <h4>Pictorial Mark</h4>
+          <p>Gambar/icon yang recognizable</p>
+          <div class="example">Apple, Twitter, Target</div>
+        </div>
+        <div class="logo-type-card">
+          <div class="logo-icon">◯</div>
+          <h4>Abstract Mark</h4>
+          <p>Bentuk geometris yang simbolik</p>
+          <div class="example">Pepsi, Adidas, Nike</div>
+        </div>
+        <div class="logo-type-card">
+          <div class="logo-icon">🐔</div>
+          <h4>Mascot</h4>
+          <p>Karakter ilustrasi yang fun</p>
+          <div class="example">KFC Colonel, Tokopedia</div>
+        </div>
+        <div class="logo-type-card">
+          <div class="logo-icon">⚜️</div>
+          <h4>Emblem</h4>
+          <p>Text di dalam symbol/badge</p>
+          <div class="example">Starbucks, Harley-Davidson</div>
+        </div>
+        <div class="logo-type-card" style="border-color:#d4ac6e; background:#fdf8f0;">
+          <div class="logo-icon">🔤</div>
+          <h4>Combination Mark</h4>
+          <p>Kombinasi text dan symbol — paling versatile!</p>
+          <div class="example">Burger King, Lacoste</div>
+        </div>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text"><strong>Combination Mark</strong> adalah pilihan terbaik untuk brand baru karena paling fleksibel — bisa digunakan dalam versi penuh (symbol + text) maupun terpisah saat brand sudah dikenal.</span>
+      </div>
+    </section>
+
+    <!-- PROSES DESAIN -->
+    <section class="section" id="proses">
+      <div class="section-title"><span class="section-num">4</span> Proses Desain Logo</div>
+      <div class="process-flow">
+        <div class="process-step">
+          <div class="p-num">1</div>
+          <h4>Riset & Brief</h4>
+          <p>Pahami brand, audience, kompetitor</p>
+        </div>
+        <div class="process-step">
+          <div class="p-num">2</div>
+          <h4>Brainstorm</h4>
+          <p>Mind map, mood board, keywords</p>
+        </div>
+        <div class="process-step">
+          <div class="p-num">3</div>
+          <h4>Sketching</h4>
+          <p>10-20 ide manual di kertas</p>
+        </div>
+        <div class="process-step">
+          <div class="p-num">4</div>
+          <h4>Digitalisasi</h4>
+          <p>Trace 3-5 sketsa terbaik</p>
+        </div>
+        <div class="process-step">
+          <div class="p-num">5</div>
+          <h4>Refinement</h4>
+          <p>Adjust spacing, test ukuran</p>
+        </div>
+        <div class="process-step">
+          <div class="p-num">6</div>
+          <h4>Presentation</h4>
+          <p>Mockup di berbagai media</p>
+        </div>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-text"><strong>Jangan langsung ke digital!</strong> Sketching manual di kertas membebaskan eksplorasi ide. 10-20 sketsa kasar lebih baik dari 2-3 sketsa yang terlalu dipoles.</span>
+      </div>
+    </section>
+
+    <!-- PRINSIP DESAIN -->
+    <section class="section" id="prinsip">
+      <div class="section-title"><span class="section-num">5</span> Prinsip Desain Logo</div>
+      <div class="principle-grid">
+        <div class="principle-card">
+          <h4>Kesederhanaan</h4>
+          <p>"Less is more" — hindari detail berlebihan, fokus pada 1-2 elemen kunci</p>
+        </div>
+        <div class="principle-card">
+          <h4>Keseimbangan</h4>
+          <p>Visual weight yang seimbang — symmetrical atau asymmetrical balance</p>
+        </div>
+        <div class="principle-card">
+          <h4>Proporsi</h4>
+          <p>Relationship antar elemen, golden ratio (1.618), grid system</p>
+        </div>
+        <div class="principle-card">
+          <h4>Typography</h4>
+          <p>Pilih font sesuai personality, readability, legibility tinggi</p>
+        </div>
+        <div class="principle-card">
+          <h4>Warna</h4>
+          <p>Maksimal 2-3 warna, harus work dalam monochrome, contrast cukup</p>
+        </div>
+        <div class="principle-card">
+          <h4>Negative Space</h4>
+          <p>Ruang kosong yang fungsional — contoh: FedEx arrow, Amazon smile</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEKNIK DIGITAL -->
+    <section class="section" id="teknik">
+      <div class="section-title"><span class="section-num">6</span> Teknik Pembuatan Digital</div>
+
+      <div class="accordion" id="geometric">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          🔷 Geometric Logo <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul>
+            <li>Gunakan <strong>shape tools dasar</strong> (circle, rectangle, polygon)</li>
+            <li>Combine shapes dengan <strong>Pathfinder</strong> — Unite, Subtract, Intersect</li>
+            <li>Align dan distribute dengan presisi menggunakan Align panel</li>
+            <li>Cocok untuk logo yang geometric, modern, dan clean</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="typography-logo">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          🔤 Typography Logo <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul>
+            <li>Pilih atau custom font yang sesuai brand personality</li>
+            <li><strong>Convert text to path</strong> (Path > Object to Path)</li>
+            <li>Edit anchor points untuk customize bentuk huruf</li>
+            <li>Kerning (spasi antar huruf) dan tracking yang tepat</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="pathfinder">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          ⚙️ Pathfinder Operations (Penting!) <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <table>
+            <thead><tr><th>Operasi</th><th>Fungsi</th><th>Kapan Digunakan</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Unite</strong></td><td>Gabungkan semua shapes menjadi satu</td><td>Membuat bentuk kompleks dari beberapa shape</td></tr>
+              <tr><td><strong>Subtract</strong></td><td>Kurangi shape atas dari shape bawah</td><td>Membuat hole atau cutout</td></tr>
+              <tr><td><strong>Intersect</strong></td><td>Ambil hanya irisan dari shapes</td><td>Mengambil area overlap saja</td></tr>
+              <tr><td><strong>Exclude</strong></td><td>Inverse dari intersect</td><td>Membuat area non-overlap</td></tr>
+              <tr><td><strong>Divide</strong></td><td>Pisahkan shapes menjadi segmen terpisah</td><td>Membuat segmented design</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          ✏️ Tracing Sketsa Manual <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ol>
+            <li>Foto atau scan sketsa manual</li>
+            <li>Import ke Inkscape/Illustrator</li>
+            <li>Place di layer background, lock layer tersebut</li>
+            <li>Buat layer baru di atas untuk tracing</li>
+            <li>Trace menggunakan <strong>pen tool</strong> secara teliti</li>
+            <li>Refine dan clean up setelah tracing selesai</li>
+            <li>Delete layer sketsa, sisakan vector saja</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          📐 Grid dan Symmetry <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>Enable grid:</strong> View > Grid (atau Shift+3 di Inkscape)</li>
+            <li><strong>Snap to grid</strong> untuk presisi alignment</li>
+            <li>Create guides dengan cara drag dari ruler</li>
+            <li><strong>Symmetry Tool:</strong> Edit satu sisi, mirror otomatis</li>
+            <li>Golden ratio (1.618) untuk proporsi yang estetis</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR THEORY -->
+    <section class="section" id="color-theory">
+      <div class="section-title"><span class="section-num">7</span> Color Theory untuk Logo</div>
+      <div class="color-swatch-grid">
+        <div class="color-swatch">
+          <div class="swatch" style="background:#e53e3e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Merah</div>
+            <div class="swatch-meaning">Passion, energy, urgency</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#3182ce;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Biru</div>
+            <div class="swatch-meaning">Trust, calm, profesional</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#d69e2e;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Kuning</div>
+            <div class="swatch-meaning">Optimism, cheerful, youth</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#38a169;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Hijau</div>
+            <div class="swatch-meaning">Growth, health, nature</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#dd6b20;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Orange</div>
+            <div class="swatch-meaning">Friendly, confidence, warmth</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#805ad5;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Ungu</div>
+            <div class="swatch-meaning">Luxury, creativity, wisdom</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#1a1a1a;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Hitam</div>
+            <div class="swatch-meaning">Power, elegance, sophisticated</div>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch" style="background:#f7fafc; border:1px solid #e2e8f0;"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Putih</div>
+            <div class="swatch-meaning">Purity, simplicity, clean</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">🎨</span>
+        <span class="callout-text"><strong>Tips Warna Logo:</strong> Selalu test logo dalam grayscale. Logo yang bagus harus tetap powerful dan readable tanpa warna. Gunakan maksimal 2-3 warna untuk versatility.</span>
+      </div>
+
+      <h3 style="color:#1a2942; margin: 20px 0 12px; font-size: 1rem;">Kombinasi Warna</h3>
+      <table>
+        <thead><tr><th>Scheme</th><th>Karakteristik</th><th>Cocok untuk</th></tr></thead>
+        <tbody>
+          <tr><td>Monochromatic</td><td>Satu warna, berbeda shade</td><td>Elegant, sophisticated brands</td></tr>
+          <tr><td>Complementary</td><td>Berlawanan di color wheel</td><td>High contrast, energetic brands</td></tr>
+          <tr><td>Analogous</td><td>Berdekatan di color wheel</td><td>Harmonious, serene brands</td></tr>
+          <tr><td>Triadic</td><td>3 warna equal distance</td><td>Balanced, colorful brands</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SPECS -->
+    <section class="section" id="specs">
+      <div class="section-title"><span class="section-num">8</span> Technical Specifications</div>
+      <table>
+        <thead><tr><th>Aspek</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><strong>File Format Vector</strong></td><td>AI, SVG, EPS, PDF</td></tr>
+          <tr><td><strong>File Format Raster</strong></td><td>PNG (transparent background), JPG</td></tr>
+          <tr><td><strong>Variasi Warna</strong></td><td>Full color, Monochrome (black), Reverse (white pada bg gelap)</td></tr>
+          <tr><td><strong>Layout</strong></td><td>Horizontal version dan vertical version (jika applicable)</td></tr>
+          <tr><td><strong>Size Testing</strong></td><td>Dari favicon 16×16px hingga billboard — harus tetap jelas</td></tr>
+          <tr><td><strong>Color Mode Digital</strong></td><td>RGB untuk digital display</td></tr>
+          <tr><td><strong>Color Mode Cetak</strong></td><td>CMYK untuk printing</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section" id="video">
+      <div class="section-title"><span class="section-num">9</span> Video Pembelajaran</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Logo Design Process</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Logo design from start to finish</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Logo Design di Inkscape</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Full tutorial Inkscape logo</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">10 Logo Design Tips</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Tips dan trik profesional</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Golden Ratio Logo Design</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Proporsi matematis dalam logo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRAKTIKUM -->
+    <section class="section" id="praktikum">
+      <div class="section-title"><span class="section-num">10</span> Praktikum</div>
+
+      <div class="accordion" id="lat1">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          Latihan 1: Geometric Logo Design <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <p><strong>Tujuan:</strong> Membuat logo geometric sederhana dengan shape tools</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buka Inkscape/Illustrator dan buat document baru 1000×1000px</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat logo menggunakan minimal 3 shape dasar (circle, rectangle, triangle)</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan Pathfinder untuk combine/subtract shapes</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tema: "Mountain" atau "Arrow" — gunakan maksimal 2 warna</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Test logo dalam size kecil (50×50px) — masih terbaca?</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan01_GeometricLogo_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat2">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 2: Lettermark Logo <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Membuat monogram dari inisial nama</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Ambil 2-3 huruf inisial nama Anda</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat typography dengan font bold, pilih font yang sesuai</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Convert to path (Path > Object to Path)</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Edit anchor points untuk customize bentuk huruf</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Overlap huruf untuk membuat unique design, gunakan negative space</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat dalam monochrome (hitam/putih) dan save: <code>Latihan02_Lettermark_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat3">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 3: Logo dengan Grid System <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Memahami proporsi dan precision dengan grid</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Enable grid (View > Grid)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat lingkaran sebagai base shape</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan grid untuk membagi proporsi secara akurat</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Setiap elemen harus align dengan grid</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tema bebas (animal, icon, symbol) — export dengan guideline visible</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan03_GridLogo_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat4">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 4: Tracing dan Digitalisasi <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Mengubah sketsa manual menjadi vector</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Sketsa 3 ide logo berbeda di kertas</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Foto atau scan sketsa dengan kualitas baik</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Import ke Inkscape/Illustrator, place di layer background dan lock</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat layer baru di atas, trace dengan pen tool</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Refine dan clean up hasil tracing</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Pilih 1 desain terbaik untuk diselesaikan, save: <code>Latihan04_VectorTrace_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section class="section" id="ringkasan">
+      <div class="section-title"><span class="section-num">11</span> Ringkasan</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">📝</span>
+        <div class="callout-text">
+          <strong>Poin-poin kunci Pertemuan 2:</strong>
+          <ol style="margin-top:8px;">
+            <li><strong>Definisi & Fungsi Logo</strong> — 5 kriteria SMTVA dan 5 fungsi utama logo</li>
+            <li><strong>7 Jenis Logo</strong> — Dari wordmark hingga combination mark, masing-masing punya kekuatan berbeda</li>
+            <li><strong>Proses Desain Logo</strong> — 6 tahap: riset, brainstorm, sketching, digitalisasi, refinement, presentation</li>
+            <li><strong>6 Prinsip Desain</strong> — Simplicity, balance, proporsi, typography, warna, negative space</li>
+            <li><strong>Teknik Digital</strong> — Geometric, typography, tracing, pathfinder, grid system</li>
+            <li><strong>Color Theory</strong> — Psychology warna dan kombinasi yang sesuai brand</li>
+          </ol>
+          <p style="margin-top: 8px;">Logo yang baik adalah logo yang tidak hanya indah, tetapi <strong>fungsional, komunikatif, dan strategis</strong> dalam mewakili brand.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUGAS -->
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">12</span> Tugas</div>
+      <div style="background:#1a2942; color:#e5e7eb; border-radius:12px; padding:24px;">
+        <h3 style="color:#d4ac6e; margin-bottom:12px;">Tugas Individu: Desain Logo Personal Brand</h3>
+        <p style="opacity:0.9;">Buat logo untuk <strong>personal brand Anda sendiri</strong> (nama, inisial, atau nickname). Logo ini akan merepresentasikan Anda sebagai desainer/creative professional.</p>
+        <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div>
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Ketentuan</h4>
+            <ul style="font-size:0.88rem; padding-left:18px;">
+              <li>Minimal 5 sketsa ide berbeda di kertas</li>
+              <li>Pilih 3 terbaik untuk didigitalisasi</li>
+              <li>Selesaikan 1 desain hingga final</li>
+              <li>Buat 3 variasi: Full color, Monochrome, Reverse</li>
+              <li>Test di berbagai ukuran (16px – 1000px)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Kriteria Penilaian</h4>
+            <ul style="font-size:0.88rem; padding-left:18px;">
+              <li>Konsep & kreativitas: 25%</li>
+              <li>Kualitas eksekusi teknis: 25%</li>
+              <li>Versatility: 20%</li>
+              <li>Prinsip desain (SMTVA): 20%</li>
+              <li>Presentation & dokumentasi: 10%</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:12px; background:rgba(212,172,110,0.15); border-radius:8px; padding:12px;">
+          <strong style="color:#d4ac6e;">Deliverables:</strong>
+          <span style="font-size:0.88rem;"> Foto sketsa, screenshot 3 desain digital, file vector final (SVG/AI), PNG variations, mockup aplikasi, dan PDF presentation (1-2 hal)</span>
+        </div>
+        <div style="margin-top:8px; font-size:0.85rem; opacity:0.8;">Deadline: Sebelum pertemuan ke-3 | Format: Folder ZIP | Nama: <code style="background:rgba(255,255,255,0.1); padding:1px 6px; border-radius:3px;">Tugas02_PersonalLogo_NamaMahasiswa</code></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+    <div>Penyusun: <strong>M. Bahril Ilmi, S.Kom., M.Kom.</strong> — Politeknik Negeri Tanah Laut</div>
+    <div><a href="desain-grafis-p1.html">← Pertemuan 1</a> &nbsp;|&nbsp; <a href="desain-grafis-p3.html">Pertemuan 3 →</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function switchTab(btn, panelId) {
+  var tabGroup = btn.closest('.tab-group');
+  tabGroup.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  tabGroup.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+// Sidebar active highlight on scroll
+window.addEventListener('scroll', function() {
+  var sections = document.querySelectorAll('section[id]');
+  var links = document.querySelectorAll('.toc-link');
+  var scrollPos = window.scrollY + 120;
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var active = document.querySelector('.toc-link[href="#' + sec.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+});
+// Auto-number sidebar links
+(function() {
+  var links = document.querySelectorAll('.toc-link:not(.indent)');
+  var num = 1;
+  links.forEach(function(a) {
+    var clean = a.textContent.replace(/^[\d]+\.\s*/, '').trim();
+    a.textContent = num + '. ' + clean;
+    num++;
+  });
+})();
+</script>
+</body>
+</html>

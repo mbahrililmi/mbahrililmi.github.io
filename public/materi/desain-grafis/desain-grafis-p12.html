@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 12 – Advanced 3D Modeling | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.kbd{display:inline-block;background:var(--navy);color:#fff;font-size:.75rem;padding:2px 8px;border-radius:4px;font-family:monospace;font-weight:600;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Advanced 3D Modeling</div>
+    <div class="pertemuan-badge">Pertemuan 12</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#edit-advanced" class="toc-link">Edit Mode Lanjutan</a>
+    <a href="#modifier-stack" class="toc-link">Modifier Stack</a>
+    <a href="#boolean" class="toc-link">Boolean &amp; Array</a>
+    <a href="#hard-surface" class="toc-link">Hard Surface Modeling</a>
+    <a href="#organic" class="toc-link">Organic Modeling</a>
+    <a href="#reference" class="toc-link">Reference Images</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 12 · Desain Grafis</div>
+    <h1>Advanced 3D Modeling</h1>
+    <p class="subtitle">Teknik modeling lanjutan: Proportional Editing, Knife Tool, Modifier Stack, Boolean, Hard Surface Modeling, dan pengenalan Organic Modeling.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Advanced Modeling</span></div>
+      <div class="meta-badge">Minggu 1 dari 4: <span>3D &amp; Animasi</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar Advanced Modeling</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menggunakan teknik modeling lanjutan dalam Blender, menguasai modifier stack yang efektif, dan mampu membuat model 3D yang lebih complex, clean, dan professional menggunakan hard surface dan organic techniques.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Yang Akan Dipelajari</div>
+      <div class="grid-2" style="margin-top:10px;">
+        <ul class="styled">
+          <li>Proportional Editing untuk smooth transformasi</li>
+          <li>Knife Tool untuk custom cuts</li>
+          <li>Bridge Edge Loops</li>
+          <li>Modifier stack management</li>
+        </ul>
+        <ul class="styled">
+          <li>Array &amp; Curve modifiers</li>
+          <li>Boolean operations</li>
+          <li>Hard surface modeling workflow</li>
+          <li>Organic modeling introduction</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="edit-advanced">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Edit Mode Lanjutan</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Proportional Editing (O) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">O</span> untuk toggle Proportional Editing</li>
+          <li>Transform mempengaruhi vertices di sekitarnya</li>
+          <li><b>Scroll wheel</b> saat transform untuk adjust radius pengaruh</li>
+          <li><b>Fall-off types:</b> Smooth, Sphere, Root, Linear, Constant, Random</li>
+          <li>Berguna untuk landscape, organic shapes, smooth deformation</li>
+          <li>Contoh: Angkat area dataran untuk buat gunung</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Knife Tool (K) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">K</span> untuk activate Knife Tool</li>
+          <li>Klik untuk mulai cut, klik lagi untuk corner</li>
+          <li><span class="kbd">Enter</span> untuk confirm cut</li>
+          <li><span class="kbd">Esc</span> untuk cancel</li>
+          <li><b>Ctrl+K:</b> Knife Project – potong berdasarkan 2D object</li>
+          <li>Berguna untuk detail custom yang tidak bisa dengan loop cut</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Bridge Edge Loops <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Select 2 edge loops yang terpisah</li>
+          <li>Edge menu (Ctrl+E) → Bridge Edge Loops</li>
+          <li>Menghubungkan 2 loops dengan geometry baru</li>
+          <li>Berguna untuk menghubungkan bagian-bagian model</li>
+          <li>Twist dan segments bisa diatur</li>
+          <li>Contoh: Lengan ke badan, handle ke cangkir</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Snap Tool &amp; Precision Modeling <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">Shift+Tab</span> toggle Snapping</li>
+          <li>Snap to: Vertices, Edges, Faces, Grid</li>
+          <li>Hold <span class="kbd">Ctrl</span> untuk snap saat transform</li>
+          <li>Grid snap untuk precise alignment</li>
+          <li><b>Vertex snap:</b> Drag vertex ke vertex lain persis</li>
+          <li>Berguna untuk architectural modeling yang harus akurat</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="modifier-stack">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Modifier Stack</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Konsep Modifier Stack</div>
+      <p>Modifier diterapkan secara berurutan dari atas ke bawah. Urutan modifier sangat mempengaruhi hasil. Modifier bersifat non-destructive – model asli tidak berubah hingga modifier di-apply.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-mod-gen')">Generate</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-mod-deform')">Deform</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-mod-order')">Urutan</button>
+      </div>
+      <div id="tab-mod-gen" class="tab-panel active">
+        <div class="grid-2">
+          <div class="grid-card">
+            <div class="gc-title">Array</div>
+            <div class="gc-body">Duplikasi objek berulang. Relative/Absolute/Object Offset. Pagar, tangga, pattern.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Boolean</div>
+            <div class="gc-body">Union (gabung), Difference (kurang), Intersect. Untuk lubang, detail kompleks.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Mirror</div>
+            <div class="gc-body">Cermin di X/Y/Z. Model setengah lalu mirror. Essential untuk karakter dan objek simetris.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Subdivision Surface</div>
+            <div class="gc-body">Smooth mesh. Level viewport vs render berbeda. Control dengan edge loops.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Solidify</div>
+            <div class="gc-body">Ketebalan pada plane/thin mesh. Dinding, kertas, panel.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Bevel</div>
+            <div class="gc-body">Rounded edges. Segments untuk kualitas. Limit method untuk kontrol area.</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-mod-deform" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card">
+            <div class="gc-title">Curve</div>
+            <div class="gc-body">Deform objek mengikuti curve. Pipa melengkung, jalan berkelok, rel.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Lattice</div>
+            <div class="gc-body">Deform dengan cage. Reshape tanpa edit langsung mesh.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Displace</div>
+            <div class="gc-body">Deform berdasarkan texture. Rocky surfaces, bumpy terrain.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Smooth</div>
+            <div class="gc-body">Smooth/laplacian smooth untuk even out mesh irregularities.</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-mod-order" class="tab-panel">
+        <p style="font-size:.88rem;margin-bottom:12px;"><b>Rekomendasi urutan modifier (dari atas ke bawah):</b></p>
+        <ol class="styled">
+          <li><b>Mirror</b> – selalu pertama untuk simetri</li>
+          <li><b>Array</b> – duplikasi sebelum smooth</li>
+          <li><b>Boolean</b> – potong/gabung sebelum smooth</li>
+          <li><b>Bevel</b> – bevel edges sebelum subdivide</li>
+          <li><b>Subdivision Surface</b> – smooth terakhir</li>
+          <li><b>Displace</b> – setelah subdivide untuk detail</li>
+        </ol>
+        <p style="font-size:.85rem;margin-top:12px;color:#666;"><b>Catatan:</b> Ini panduan umum – selalu cek hasil setelah mengubah urutan.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="boolean">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Boolean &amp; Array Advanced</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Boolean Operations</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Union</div>
+          <div class="gc-body">Gabungkan 2 objek menjadi 1. Overlapping area dihapus. Hasil: 1 mesh baru.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Difference</div>
+          <div class="gc-body">Kurangi objek A dengan bentuk objek B. Membuat lubang atau potongan kompleks.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Intersect</div>
+          <div class="gc-body">Hanya bagian yang overlap tersisa. Membuat bentuk dari irisan dua objek.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Boolean Workflow</div>
+        <ol class="styled">
+          <li>Buat objek A (target – yang akan dipotong/digabung)</li>
+          <li>Buat objek B (cutter/joiner)</li>
+          <li>Select objek A</li>
+          <li>Properties → Modifier → Add → Boolean</li>
+          <li>Pilih operation: Union/Difference/Intersect</li>
+          <li>Pilih Object: objek B sebagai operand</li>
+          <li>Apply modifier</li>
+          <li>Hapus objek B (optional)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Array + Curve untuk Pattern</h3>
+      <ol class="styled">
+        <li>Buat objek yang akan diulang (misal: anak tangga)</li>
+        <li>Tambah modifier Array → Relative Offset Z, count sesuai kebutuhan</li>
+        <li>Buat Bezier Curve (Shift+A → Curve → Bezier)</li>
+        <li>Edit curve sesuai jalur yang diinginkan</li>
+        <li>Pada Array modifier: tambah Curve modifier di bawahnya</li>
+        <li>Pilih curve sebagai objek deform</li>
+        <li>Hasil: Array mengikuti jalur curve</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="hard-surface">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Hard Surface Modeling</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Hard Surface?</div>
+      <p>Hard surface modeling adalah teknik membuat objek yang memiliki permukaan keras dan sudut tegas – mesin, kendaraan, elektronik, senjata, furniture, arsitektur. Berbeda dari organic modeling yang mengutamakan smooth curves.</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Bevel untuk Sharp Edges <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Objek nyata tidak punya edge sempurna 90° – selalu ada sedikit bevel</li>
+          <li><span class="kbd">Ctrl+B</span> → Scroll untuk tambah segments</li>
+          <li>2-3 segments = realistic bevel</li>
+          <li><b>Bevel Modifier:</b> Lebih terkontrol, non-destructive</li>
+          <li><b>Limit method:</b> "Angle" untuk bevel hanya edge tajam</li>
+          <li>Bevel sebelum Subdivision Surface untuk control</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Edge Loops untuk Form Control <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">Ctrl+R</span> untuk tambah loop cut</li>
+          <li>Loop dekat edge tajam = "supporting loops"</li>
+          <li>Supporting loops menjaga bentuk saat subdivide</li>
+          <li>Semakin dekat loop ke edge, semakin tajam hasilnya setelah subdivide</li>
+          <li>Rule of thumb: 1 loop di setiap sisi edge yang ingin tetap tajam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Workflow Hard Surface <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Mulai dari primitive yang paling dekat dengan bentuk akhir</li>
+          <li>Block out bentuk besar terlebih dahulu</li>
+          <li>Tambah detail secara bertahap (dari umum ke khusus)</li>
+          <li>Gunakan Boolean untuk detail kompleks</li>
+          <li>Tambah supporting loops di area penting</li>
+          <li>Apply Bevel modifier untuk realistic edges</li>
+          <li>Optional: Subdivision Surface untuk smooth keseluruhan</li>
+          <li>Test render dari berbagai angle</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Clean Topology <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Quads (4 vertices):</b> Selalu utamakan quad faces</li>
+          <li><b>Tris (3 vertices):</b> Hindari di area deformasi</li>
+          <li><b>N-gons (5+ vertices):</b> Hindari, terutama untuk subdivision</li>
+          <li><b>Edge flow:</b> Edges mengikuti form/kontur objek</li>
+          <li><b>Pole (5+ edges):</b> Minimizekan, tempatkan di area flat</li>
+          <li><b>Supporting geometry:</b> Edge loops di sekitar sudut tajam</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="organic">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Organic Modeling Introduction</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Subdivision Surface Workflow</div>
+        <div class="gc-body">Mulai low-poly. Tambah edge loops strategis. Subdivide untuk smooth. Control form dengan edge placement. Lebih sedikit geometry = lebih mudah dikontrol.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Sculpting Basics</div>
+        <div class="gc-body">Sculpt Mode dengan Dynamic Topology. Brushes: Draw, Grab, Smooth, Crease. Untuk organic characters dan creatures. Workflow berbeda dari polygon modeling.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Retopology Concepts</div>
+        <div class="gc-body">Clean mesh di atas sculpt. Low-poly dari high-poly. Topology lebih baik untuk animasi. (Advanced topic, intro saja)</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Hard Surface vs Organic</div>
+        <div class="gc-body">Hard surface: sharp edges, mechanical, precise. Organic: flowing curves, natural, life-like. Kedua teknik bisa dikombinasikan dalam satu project.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="reference">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Reference Images</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Menambahkan Reference Image</div>
+      <ol class="styled">
+        <li>Shift+A → Image → Reference</li>
+        <li>Browse dan load image file</li>
+        <li>Posisikan di scene (G untuk move)</li>
+        <li>Align ke view (front view untuk front reference)</li>
+        <li>Gunakan Lock Object Modes untuk tidak tertrigger</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Setup 3-View Reference (Front, Side, Top)</div>
+      <ol class="styled">
+        <li>Siapkan 3 gambar referensi: front, side, top view objek</li>
+        <li>Tambah image reference di front view (Numpad 1), load front view image</li>
+        <li>Tambah lagi untuk side view (Numpad 3), load side image</li>
+        <li>Tambah lagi untuk top view (Numpad 7), load top image</li>
+        <li>Sesuaikan scale agar proporsional</li>
+        <li>Model mengikuti referensi dari 3 sisi</li>
+      </ol>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Tips Modeling dari Reference</div>
+      <p>Sering berganti-ganti view (front, side, top) untuk check proporsi. Jangan terlalu terpaku pada satu view saja. Model tampak berbeda dari setiap angle – cek selalu dari perspektif 3D. Reference adalah panduan, bukan aturan mutlak.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum Pertemuan 12</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: Hard Surface Object</div>
+      <ul class="styled">
+        <li>Buat mechanical object: robot part, tool, atau tech item</li>
+        <li>Gunakan booleans dan bevels</li>
+        <li>Pastikan clean topology</li>
+        <li>Gunakan modifier untuk efisiensi</li>
+        <li>Waktu: 60-90 menit</li>
+        <li>Export sebagai .blend file</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 2: Organic Shape Practice</div>
+      <ul class="styled">
+        <li>Buat simple character atau creature base mesh</li>
+        <li>Gunakan Subdivision Surface workflow</li>
+        <li>Mirror modifier untuk simetri</li>
+        <li>Low-poly to high-poly workflow</li>
+        <li>Fokus pada smooth, flowing forms</li>
+        <li>Waktu: 60-90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">BONUS: Modeling dari Reference</div>
+      <ul class="styled">
+        <li>Cari reference image objek (produk, kendaraan, dll)</li>
+        <li>Setup reference dalam Blender (minimal 2 view)</li>
+        <li>Model objek mengikuti reference</li>
+        <li>Fokus pada proporsi yang akurat</li>
+        <li>Waktu: 90-120 menit</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Edit Mode Advanced</div>
+        <div class="gc-body">Proportional Editing, Knife Tool, Bridge Edge Loops, Snap Tool untuk modeling presisi</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Modifiers</div>
+        <div class="gc-body">Array, Curve, Boolean, Bevel modifier – ordering yang tepat dan non-destructive workflow</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Hard &amp; Organic</div>
+        <div class="gc-body">Hard surface: supporting loops, bevel, clean topology. Organic: subdivision workflow, sculpting</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-grafis-p11.html">← Pertemuan 11</a>
+    <a href="desain-grafis-p13.html" class="next-btn">Pertemuan 13 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

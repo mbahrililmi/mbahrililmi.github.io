@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Desain Grafis P7 – Color Grading, Masking & Manipulation | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #fdf8f0; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.steps { list-style: none; padding: 0; }
+.step { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #b8893b; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1a2942; }
+footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #d4ac6e; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+
+.color-grade-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin: 16px 0; }
+.grade-card { border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.grade-preview { height: 60px; }
+.grade-info { padding: 8px; background: #fff; }
+.grade-info h4 { font-size: 0.82rem; color: #1a2942; margin: 0 0 2px; }
+.grade-info p { font-size: 0.75rem; color: #6b7280; margin: 0; }
+
+.mask-types { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.mask-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; }
+.mask-card h4 { color: #b8893b; font-size: 0.9rem; margin-bottom: 6px; }
+.mask-card p { font-size: 0.82rem; color: #374151; margin: 0 0 4px; }
+.mask-card .mask-tip { font-size: 0.78rem; color: #6b7280; }
+
+.special-effect { display: flex; gap: 14px; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; align-items: flex-start; }
+.special-effect .effect-icon { font-size: 1.8rem; flex-shrink: 0; }
+.special-effect h4 { font-size: 0.92rem; color: #1a2942; margin-bottom: 4px; }
+.special-effect p { font-size: 0.82rem; color: #6b7280; margin: 0; }
+
+.composite-checklist { background: #1a2942; border-radius: 10px; padding: 20px; color: #e5e7eb; margin: 16px 0; }
+.composite-checklist h3 { color: #d4ac6e; margin-bottom: 12px; font-size: 1rem; }
+.composite-checklist ul { padding-left: 20px; font-size: 0.88rem; }
+.composite-checklist li { margin-bottom: 6px; }
+.composite-checklist li::marker { color: #d4ac6e; }
+
+@media (max-width: 600px) {
+  .mask-types { grid-template-columns: 1fr; }
+  .color-grade-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px;">Politeknik Negeri Tanah Laut — Desain Grafis</div>
+    <h1>🎬 Pertemuan 7 — Color Grading, Masking & Image Manipulation</h1>
+    <p>Creative color grading, advanced masking, compositing, filters, dan special effects</p>
+    <div class="header-badges">
+      <span class="badge">📋 Desain Grafis</span>
+      <span class="badge">📅 Pertemuan 7</span>
+      <span class="badge">👨‍🏫 M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#color-grading">Color Grading</a>
+    <a class="toc-link indent" href="#popular-grades">Popular Color Grades</a>
+    <a class="toc-link indent" href="#grading-techniques">Teknik Color Grading</a>
+    <a class="toc-link" href="#masking">Advanced Masking</a>
+    <a class="toc-link indent" href="#mask-types">Jenis Masking</a>
+    <a class="toc-link" href="#compositing">Image Compositing</a>
+    <a class="toc-link indent" href="#matching">Matching Elements</a>
+    <a class="toc-link indent" href="#shadows-reflections">Shadows & Reflections</a>
+    <a class="toc-link" href="#filters">Filters & Effects</a>
+    <a class="toc-link indent" href="#smart-filters">Smart Filters</a>
+    <a class="toc-link" href="#special">Special Techniques</a>
+    <a class="toc-link" href="#video">Video Pembelajaran</a>
+    <a class="toc-link" href="#praktikum">Praktikum</a>
+    <a class="toc-link indent" href="#lat4">Latihan 4: Color Grade</a>
+    <a class="toc-link indent" href="#lat5">Latihan 5: Hair Masking</a>
+    <a class="toc-link indent" href="#lat6">Latihan 6: Manipulation</a>
+    <a class="toc-link indent" href="#lat7">Latihan 7: Double Exposure</a>
+    <a class="toc-link" href="#ringkasan">Ringkasan</a>
+    <a class="toc-link" href="#tugas">Tugas Akhir (Sebelum UTS)</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="/public/materi/">Materi</a> › <a href="#">Desain Grafis</a> › Pertemuan 7
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah mengikuti perkuliahan ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Menguasai teknik color grading dan color correction tingkat lanjut</li>
+          <li>Melakukan selective adjustments menggunakan masks yang advanced</li>
+          <li>Membuat photo manipulation yang realistic</li>
+          <li>Menguasai compositing techniques</li>
+          <li>Menggunakan filters dan effects secara efektif</li>
+          <li>Menciptakan special creative effects</li>
+        </ol>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Berbeda dengan foto jurnalistik (pertemuan sebelumnya), di pertemuan ini kita <strong>bebas berkreasi dan mengubah realitas</strong> untuk keperluan advertising, conceptual art, dan creative photography. Key to success: <strong>attention to detail!</strong></span>
+      </div>
+    </section>
+
+    <!-- COLOR GRADING -->
+    <section class="section" id="color-grading">
+      <div class="section-title"><span class="section-num">2</span> Color Grading</div>
+      <div class="callout callout-info" style="margin-bottom:16px;">
+        <span class="callout-icon">🎨</span>
+        <span class="callout-text"><strong>Color Correction vs Color Grading:</strong> Color correction = fix problems, make natural. Color grading = creative decisions, mood, style.</span>
+      </div>
+
+      <div id="popular-grades">
+        <h3 style="color:#1a2942; margin-bottom:12px; font-size:1rem;">Popular Color Grades</h3>
+        <div class="color-grade-grid">
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #1a5c6e, #d4762b);"></div>
+            <div class="grade-info"><h4>Teal & Orange</h4><p>Cinematic look populer</p></div>
+          </div>
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #4a5568, #9ca3af); opacity:0.8;"></div>
+            <div class="grade-info"><h4>Matte Finish</h4><p>Faded blacks, Instagram</p></div>
+          </div>
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #d4a574, #f59e0b);"></div>
+            <div class="grade-info"><h4>Warm Vintage</h4><p>Nostalgic, film-like</p></div>
+          </div>
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #1e3a5f, #3b82f6);"></div>
+            <div class="grade-info"><h4>Cool Blue</h4><p>Moody, dramatic</p></div>
+          </div>
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #1a1a1a, #6b7280);"></div>
+            <div class="grade-info"><h4>High Contrast B&W</h4><p>Timeless, powerful</p></div>
+          </div>
+          <div class="grade-card">
+            <div class="grade-preview" style="background: linear-gradient(135deg, #805ad5, #4c1d95);"></div>
+            <div class="grade-info"><h4>Monochromatic</h4><p>Single hue, artistic</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="grading-techniques">
+        <h3 style="color:#1a2942; margin:20px 0 12px; font-size:1rem;">Teknik Color Grading</h3>
+        <table>
+          <thead><tr><th>Teknik</th><th>Cara</th><th>Efek</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Curves Color Grading</strong></td><td>Adjust individual RGB channels, lift shadows, lower highlights</td><td>Cinematic color cast</td></tr>
+            <tr><td><strong>Color Lookup (LUT)</strong></td><td>Layer > New Adj Layer > Color Lookup</td><td>Instant cinematic look dari preset</td></tr>
+            <tr><td><strong>Gradient Maps</strong></td><td>Map tonal values ke colors</td><td>Dramatic duotone/tritone effects</td></tr>
+            <tr><td><strong>Split Toning</strong></td><td>Warna berbeda untuk shadows dan highlights</td><td>Cinematik, moody atmosphere</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text"><strong>Teal and Orange Tutorial:</strong> Desaturate sedikit overall → Push shadows ke arah teal (cyan/blue) dengan Curves blue channel → Push highlights ke arah orange/warm → Final mood adjustments.</span>
+      </div>
+    </section>
+
+    <!-- MASKING -->
+    <section class="section" id="masking">
+      <div class="section-title"><span class="section-num">3</span> Advanced Masking Techniques</div>
+
+      <div class="mask-types" id="mask-types">
+        <div class="mask-card">
+          <h4>Quick Mask Mode (Q)</h4>
+          <p>Visualize selection sebagai red overlay. Paint selection dengan brush.</p>
+          <div class="mask-tip">Shortcut: Tekan Q untuk toggle. Exit = active selection.</div>
+        </div>
+        <div class="mask-card">
+          <h4>Color Range Masking</h4>
+          <p>Select > Color Range. Select by color similarity dengan fuzziness control.</p>
+          <div class="mask-tip">Great untuk skies, solid colors, uniform backgrounds.</div>
+        </div>
+        <div class="mask-card">
+          <h4>Luminosity Masking</h4>
+          <p>Select by brightness. Ctrl + Click RGB channel di Channels panel.</p>
+          <div class="mask-tip">Professional technique untuk landscape photography dan sky replacement.</div>
+        </div>
+        <div class="mask-card">
+          <h4>Channel Masking</h4>
+          <p>Duplikat channel dengan contrast terbaik, increase contrast, load as selection.</p>
+          <div class="mask-tip">Perfect untuk hair, trees, smoke — edge yang sangat complex.</div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          ⭐ Select and Mask Workspace (Paling Recommended!) <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <p><strong>Cara masuk:</strong> Select > Select and Mask (atau Ctrl+Alt+R)</p>
+          <ul>
+            <li><strong>Refine Edge Brush</strong> untuk area rambut, bulu, dan detail halus</li>
+            <li><strong>Adjust Edge Detection</strong> — radius sesuai complexity subject</li>
+            <li>Smooth, Feather, Contrast adjustments</li>
+            <li><strong>Decontaminate Colors</strong> untuk remove fringe/halo</li>
+            <li>Output ke Layer with Mask untuk non-destructive result</li>
+          </ul>
+          <div class="callout callout-tip" style="margin-top:0;">
+            <span class="callout-icon">✅</span>
+            <span class="callout-text">Select and Mask adalah cara terbaik untuk membuat selection yang complex, terutama hair masking. Hasilnya jauh lebih natural dibanding manual masking.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPOSITING -->
+    <section class="section" id="compositing">
+      <div class="section-title"><span class="section-num">4</span> Image Manipulation & Compositing</div>
+
+      <div class="composite-checklist">
+        <h3>📋 Planning Composite — Checklist Sebelum Mulai</h3>
+        <ul>
+          <li>Buat concept sketch atau mood board terlebih dahulu</li>
+          <li>Kumpulkan semua source images yang diperlukan</li>
+          <li>Match perspective antar semua elemen</li>
+          <li>Match lighting direction (dari mana datangnya cahaya?)</li>
+          <li>Match color temperature semua elemen</li>
+        </ul>
+      </div>
+
+      <div id="matching">
+        <h3 style="color:#1a2942; margin:20px 0 12px; font-size:1rem;">Matching Elements — Kunci Compositing Realistis</h3>
+        <table>
+          <thead><tr><th>Elemen</th><th>Teknik</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Match Colors</strong></td><td>Image > Adjustments > Match Color, atau manual dengan Curves per channel</td></tr>
+            <tr><td><strong>Match Lighting</strong></td><td>Multiply layer dengan soft black brush untuk shadows; Screen layer untuk highlights</td></tr>
+            <tr><td><strong>Match Perspective</strong></td><td>Edit > Transform > Perspective atau Distort untuk sesuaikan sudut</td></tr>
+            <tr><td><strong>Match Sharpness</strong></td><td>Blur elemen yang terlalu tajam, atau sharpen yang kurang tajam. Consistency is key.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="shadows-reflections">
+        <h3 style="color:#1a2942; margin:20px 0 12px; font-size:1rem;">Creating Shadows & Reflections</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="callout callout-info" style="margin:0;">
+            <span class="callout-icon">🌑</span>
+            <div class="callout-text">
+              <strong>Shadow:</strong>
+              <ol style="margin-top:4px; padding-left:16px;">
+                <li>Duplicate object layer</li>
+                <li>Fill black</li>
+                <li>Transform: skew/distort ke arah ground</li>
+                <li>Gaussian Blur (radius sesuai distance)</li>
+                <li>Opacity 20-40%</li>
+                <li>Layer mask untuk fade edges</li>
+              </ol>
+            </div>
+          </div>
+          <div class="callout callout-info" style="margin:0;">
+            <span class="callout-icon">🪞</span>
+            <div class="callout-text">
+              <strong>Reflection:</strong>
+              <ol style="margin-top:4px; padding-left:16px;">
+                <li>Duplicate object layer</li>
+                <li>Flip Vertical</li>
+                <li>Position tepat di bawah object</li>
+                <li>Layer mask dengan gradient (fade to transparent)</li>
+                <li>Lower opacity 30-60%</li>
+                <li>Add blur untuk distance effect</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info" style="margin-top:16px;">
+        <span class="callout-icon">🎭</span>
+        <div class="callout-text">
+          <strong>Blend Modes untuk Compositing:</strong>
+          <ul style="margin-top:4px;">
+            <li><strong>Multiply</strong> — Darken, baik untuk shadows</li>
+            <li><strong>Screen</strong> — Lighten, baik untuk glow dan light effects</li>
+            <li><strong>Overlay</strong> — Contrast blend, memperkuat light dan dark</li>
+            <li><strong>Soft Light</strong> — Subtle, natural-looking overlay</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FILTERS -->
+    <section class="section" id="filters">
+      <div class="section-title"><span class="section-num">5</span> Filters & Effects</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'blur-tab')">Blur Filters</button>
+          <button class="tab-btn" onclick="switchTab(this,'artistic-tab')">Artistic</button>
+          <button class="tab-btn" onclick="switchTab(this,'smart-tab')">Smart Filters</button>
+          <button class="tab-btn" onclick="switchTab(this,'neural-tab')">Neural Filters</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" id="blur-tab">
+            <table>
+              <thead><tr><th>Filter</th><th>Efek</th><th>Penggunaan</th></tr></thead>
+              <tbody>
+                <tr><td>Gaussian Blur</td><td>Smooth, umum</td><td>Softening, depth of field sederhana</td></tr>
+                <tr><td>Motion Blur</td><td>Speed effect</td><td>Simulasi gerak cepat</td></tr>
+                <tr><td>Radial Blur</td><td>Zoom atau spin</td><td>Dynamic action shots</td></tr>
+                <tr><td>Lens Blur</td><td>Simulasi depth of field kamera</td><td>Bokeh effect yang realistic</td></tr>
+                <tr><td>Field Blur/Tilt-Shift</td><td>Selective focus</td><td>Miniature effect, portrait background blur</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-panel" id="artistic-tab">
+            <ul>
+              <li><strong>Oil Paint</strong> — Transform foto menjadi lukisan cat minyak</li>
+              <li><strong>Watercolor</strong> — Efek cat air yang halus</li>
+              <li><strong>Poster Edges</strong> — Posterize dengan edge emphasis</li>
+              <li><strong>Cutout</strong> — Flat paper cutout style</li>
+            </ul>
+            <div class="callout callout-warn" style="margin-top:8px;">
+              <span class="callout-icon">⚠️</span>
+              <span class="callout-text">Gunakan artistic filters dengan hemat — efeknya sering terlihat obvious dan mengurangi professional look. Preview di Filter Gallery sebelum apply.</span>
+            </div>
+          </div>
+          <div class="tab-panel" id="smart-tab">
+            <div id="smart-filters">
+              <p><strong>Smart Filters = Non-Destructive Filters!</strong></p>
+              <ol>
+                <li>Convert layer ke Smart Object terlebih dahulu: Layer > Smart Objects > Convert to Smart Object</li>
+                <li>Apply filter biasa: Filter > [Any Filter]</li>
+                <li>Filter menjadi editable di bawah layer thumbnail</li>
+                <li>Dapat adjust opacity dan blend mode filter</li>
+                <li>Dapat mask filter untuk selective application</li>
+                <li>Dapat double-click untuk edit parameter kapan saja</li>
+              </ol>
+              <div class="callout callout-tip" style="margin-top:8px;">
+                <span class="callout-icon">✅</span>
+                <span class="callout-text">Smart Filters adalah cara profesional menggunakan filters. Selalu convert ke Smart Object sebelum apply filter penting.</span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="neural-tab">
+            <ul>
+              <li><strong>Skin Smoothing</strong> — AI-powered skin retouching otomatis</li>
+              <li><strong>Style Transfer</strong> — Transfer artistic style dari painting ke foto</li>
+              <li><strong>Colorize B&W</strong> — Automatic colorization foto hitam putih</li>
+              <li><strong>Super Zoom</strong> — AI upscaling untuk enlarge image</li>
+              <li><strong>Sky Replacement</strong> — Replace langit secara otomatis</li>
+            </ul>
+            <div class="callout callout-info" style="margin-top:8px;">
+              <span class="callout-icon">🤖</span>
+              <span class="callout-text">Neural Filters tersedia di Photoshop 2021+. Membutuhkan koneksi internet untuk processing di Adobe servers. Output sebagai Smart Filter atau new layer.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIAL TECHNIQUES -->
+    <section class="section" id="special">
+      <div class="section-title"><span class="section-num">6</span> Special Techniques</div>
+
+      <div class="special-effect">
+        <span class="effect-icon">🎭</span>
+        <div>
+          <h4>Double Exposure Effect</h4>
+          <p>Stack dua foto, gunakan blend mode Screen atau Lighten. Layer mask untuk control area mana yang menampilkan masing-masing foto. Popular artistic effect untuk portrait + landscape combination.</p>
+        </div>
+      </div>
+      <div class="special-effect">
+        <span class="effect-icon">💥</span>
+        <div>
+          <h4>Dispersion Effect</h4>
+          <p>Subject yang "hancur" menjadi partikel. Gunakan Liquify filter untuk distorsi, particle brushes untuk fragment, multiple layers untuk depth effect yang meyakinkan.</p>
+        </div>
+      </div>
+      <div class="special-effect">
+        <span class="effect-icon">🪄</span>
+        <div>
+          <h4>Levitation Effect</h4>
+          <p>Shoot dua foto: dengan stool dan tanpa. Composite keduanya di Photoshop, hapus stool dari foto, tambahkan shadow di tanah untuk grounding yang natural.</p>
+        </div>
+      </div>
+      <div class="special-effect">
+        <span class="effect-icon">🔭</span>
+        <div>
+          <h4>Miniature / Tilt-Shift Effect</h4>
+          <p>Blur top dan bottom foto dengan gradient mask, increase saturation dan contrast. Hasilnya terlihat seperti foto miniature model. Cocok untuk aerial/high-angle shots.</p>
+        </div>
+      </div>
+      <div class="special-effect">
+        <span class="effect-icon">🎨</span>
+        <div>
+          <h4>Duotone / Tritone</h4>
+          <p>Convert ke grayscale, tambahkan Gradient Map adjustment layer dan map ke dua atau tiga warna. Classic vintage poster look yang timeless.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section" id="video">
+      <div class="section-title"><span class="section-num">7</span> Video Pembelajaran</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Color Grading Tutorial PRO</div><div style="font-size:0.78rem; color:#6b7280;">Cinematic color grading in Photoshop</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Photoshop Compositing</div><div style="font-size:0.78rem; color:#6b7280;">Compositing tutorial for beginners</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Advanced Masking Techniques</div><div style="font-size:0.78rem; color:#6b7280;">Select and Mask, Channel Masking</div></div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div><div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Photo Manipulation Masterclass</div><div style="font-size:0.78rem; color:#6b7280;">End-to-end manipulation tutorial</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRAKTIKUM -->
+    <section class="section" id="praktikum">
+      <div class="section-title"><span class="section-num">8</span> Praktikum</div>
+
+      <div class="accordion" id="lat4">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          Latihan 4: Color Grading — Teal and Orange <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <p><strong>Tujuan:</strong> Apply cinematic color grade pada landscape/urban photo</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Ambil landscape atau urban photo sebagai base</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Desaturate sedikit overall menggunakan Vibrance/Saturation</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Curves: Push shadows ke teal (raise blue channel in shadows)</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Curves: Push highlights ke orange (raise red, lower blue in highlights)</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Final adjustments untuk mood yang diinginkan</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save adjustment layer sebagai preset. Save: <code>Latihan04_ColorGrade_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat5">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 5: Advanced Masking — Hair Selection <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Select dan isolate subject dengan rambut detail menggunakan Select and Mask</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Cari foto person dengan rambut detail (keriting atau lurus bergelombang)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Quick Selection Tool untuk initial selection kasar</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Masuk ke Select and Mask workspace (Select > Select and Mask)</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan Refine Edge Brush di area rambut, adjust Edge Detection</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Aktifkan Decontaminate Colors, output to Layer with Mask</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Replace background dengan warna solid atau image baru</label></div></li>
+            <li class="step"><div class="step-num">7</div><div class="step-content"><label><input type="checkbox" class="step-check"> Check edges: harus terlihat natural! Save: <code>Latihan05_HairMasking_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat6">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 6: Simple Photo Manipulation <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Composite 2-3 images menjadi satu scene yang believable</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Pilih concept sederhana (terbang with balloons, giant object, person in fantasy scene)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Kumpulkan 2-3 source photos dengan lighting yang similar</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Isolate subjects menggunakan selection/masking techniques</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Composite ke background scene, match perspective dan size</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Match lighting dan colors antar elemen</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambahkan shadows untuk grounding yang natural</label></div></li>
+            <li class="step"><div class="step-num">7</div><div class="step-content"><label><input type="checkbox" class="step-check"> Overall color grade untuk unity. Refine edges. Save: <code>Latihan06_SimpleManipulation_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat7">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 7 (Bonus): Double Exposure Effect <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Create artistic double exposure dari portrait + landscape</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Pilih portrait photo (silhouette bekerja terbaik untuk efek ini)</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Pilih texture atau landscape photo yang kontras</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Stack layers, ubah blend mode ke Screen atau Lighten</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Layer mask untuk control area exposure</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Adjust opacity untuk balance antara kedua gambar</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Optional: tambahkan color grade untuk mood artistik</label></div></li>
+            <li class="step"><div class="step-num">7</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan07_DoubleExposure_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section class="section" id="ringkasan">
+      <div class="section-title"><span class="section-num">9</span> Ringkasan</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">📝</span>
+        <div class="callout-text">
+          <strong>Poin-poin kunci Pertemuan 7:</strong>
+          <ol style="margin-top:8px;">
+            <li><strong>Color Grading</strong> — Creative color adjustments menggunakan Curves, LUTs, Gradient Maps, Split Toning untuk mood dan style</li>
+            <li><strong>Advanced Masking</strong> — Quick Mask, Color Range, Luminosity, Channel Masking, dan Select and Mask workspace</li>
+            <li><strong>Photo Manipulation</strong> — Planning, blending, matching colors/lighting/perspective/sharpness, shadows, reflections, depth</li>
+            <li><strong>Filters</strong> — Blur, sharpen, artistic, dan Smart Filters untuk non-destructive effects</li>
+            <li><strong>Special Techniques</strong> — Double exposure, dispersion, levitation, miniature, duotone effects</li>
+          </ol>
+          <p style="margin-top:8px; font-weight:600; color:#1a2942;">Key takeaway: Photo manipulation yang baik adalah tentang detail. Lighting, shadows, color matching, perspective — semua harus seamless. The difference between amateur and professional work is subtlety and realism.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUGAS AKHIR -->
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">10</span> Tugas Akhir (Sebelum UTS)</div>
+      <div style="background:#1a2942; color:#e5e7eb; border-radius:12px; padding:24px;">
+        <h3 style="color:#d4ac6e; margin-bottom:12px;">Tugas Individu: Photo Editing Portfolio</h3>
+        <p style="opacity:0.9; margin-bottom:16px;">Pilih <strong>Track A</strong> (Journalistic) atau <strong>Track B</strong> (Creative Manipulation) sesuai minat Anda.</p>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:16px;">
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Track A: Journalistic Photography</h4>
+            <ul style="font-size:0.88rem; padding-left:16px;">
+              <li>Photo essay 5-7 foto satu tema</li>
+              <li>Ethical corrections only</li>
+              <li>Write captions: who, what, when, where, why</li>
+              <li>Create photo essay layout</li>
+              <li>Untuk yang tertarik journalism/news</li>
+            </ul>
+          </div>
+          <div style="background:rgba(212,172,110,0.15); border-radius:8px; padding:16px;">
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Track B: Creative Manipulation</h4>
+            <ul style="font-size:0.88rem; padding-left:16px;">
+              <li>Fantasy/surreal manipulation</li>
+              <li>Minimal 4-5 source images</li>
+              <li>Concept + sketch/mood board</li>
+              <li>Making-of documentation</li>
+              <li>Untuk yang tertarik advertising/art</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:14px; margin-bottom:12px;">
+          <h4 style="color:#d4ac6e; margin-bottom:8px;">General Requirements (Kedua Track)</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.88rem;">
+            <ul style="padding-left:16px;">
+              <li>Size: min 1920×1080</li>
+              <li>Resolution: 300 dpi</li>
+              <li>Color mode: RGB</li>
+            </ul>
+            <ul style="padding-left:16px;">
+              <li>Format: PSD/XCF + high-res export</li>
+              <li>Process screenshots</li>
+              <li>PDF presentation 2-3 halaman</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 style="color:#d4ac6e; margin-bottom:8px;">Kriteria Penilaian</h4>
+        <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; text-align:center; font-size:0.82rem;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:6px; padding:10px;">Konsep & Storytelling<br><strong style="color:#d4ac6e;">20%</strong></div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:6px; padding:10px;">Technical Execution<br><strong style="color:#d4ac6e;">30%</strong></div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:6px; padding:10px;">Attention to Detail<br><strong style="color:#d4ac6e;">20%</strong></div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:6px; padding:10px;">Creativity / Accuracy<br><strong style="color:#d4ac6e;">15%</strong></div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:6px; padding:10px;">Presentation<br><strong style="color:#d4ac6e;">15%</strong></div>
+        </div>
+
+        <div style="margin-top:12px; font-size:0.85rem; opacity:0.8;">Deadline: Sebelum pertemuan ke-8 (UTS) | Format: ZIP | Nama: <code style="background:rgba(255,255,255,0.1); padding:1px 6px; border-radius:3px;">Tugas06_PhotoEditing_TrackA_Nama</code> atau <code style="background:rgba(255,255,255,0.1); padding:1px 6px; border-radius:3px;">TrackB_Nama</code></div>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top:20px;">
+        <span class="callout-icon">📚</span>
+        <div class="callout-text">
+          <strong>Persiapan UTS (Pertemuan ke-8 = Praktik Desain):</strong>
+          <ul style="margin-top:4px;">
+            <li>Review semua modul pertemuan 1-7</li>
+            <li>Practice semua tools dasar (vector dan raster)</li>
+            <li>Bawa laptop dengan software terinstall</li>
+            <li>Prepare assets (fonts, brushes, dll)</li>
+            <li>Backup semua file penting</li>
+          </ul>
+          <p style="margin-top:6px;"><strong>Materi yang diujikan:</strong> Vector Graphics, Logo Design, Layout Design, Raster Graphics (Photoshop/GIMP), Image Editing & Manipulation.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+    <div>Penyusun: <strong>M. Bahril Ilmi, S.Kom., M.Kom.</strong> — Politeknik Negeri Tanah Laut</div>
+    <div><a href="desain-grafis-p6.html">← Pertemuan 6</a> &nbsp;|&nbsp; <a href="/public/materi/">Semua Materi</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function switchTab(btn, panelId) {
+  var tabGroup = btn.closest('.tab-group');
+  tabGroup.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  tabGroup.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+window.addEventListener('scroll', function() {
+  var sections = document.querySelectorAll('section[id]');
+  var links = document.querySelectorAll('.toc-link');
+  var scrollPos = window.scrollY + 120;
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var active = document.querySelector('.toc-link[href="#' + sec.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+});
+(function() {
+  var links = document.querySelectorAll('.toc-link:not(.indent)');
+  var num = 1;
+  links.forEach(function(a) {
+    var clean = a.textContent.replace(/^[\d]+\.\s*/, '').trim();
+    a.textContent = num + '. ' + clean;
+    num++;
+  });
+})();
+</script>
+</body>
+</html>

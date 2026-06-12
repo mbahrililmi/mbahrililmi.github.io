@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 14 – Animation Fundamentals | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.kbd{display:inline-block;background:var(--navy);color:#fff;font-size:.75rem;padding:2px 8px;border-radius:4px;font-family:monospace;font-weight:600;}
+/* 12 principles grid */
+.principles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.principle-card{background:#fff;border-radius:8px;padding:12px;border:1px solid rgba(184,137,59,.15);text-align:center;}
+.principle-num{background:var(--navy);color:#fff;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:6px;}
+.principle-name{font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.principle-desc{font-size:.72rem;color:#666;line-height:1.4;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3,.principles-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.principles-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Animation Fundamentals</div>
+    <div class="pertemuan-badge">Pertemuan 14</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar Animasi</a>
+    <a href="#principles" class="toc-link">12 Principles of Animation</a>
+    <a href="#keyframe" class="toc-link">Keyframe Animation</a>
+    <a href="#graph-editor" class="toc-link">Graph Editor</a>
+    <a href="#properties" class="toc-link">Animating Properties</a>
+    <a href="#projects" class="toc-link">Simple Projects</a>
+    <a href="#render-anim" class="toc-link">Render Animation</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 14 · Desain Grafis</div>
+    <h1>Animation Fundamentals</h1>
+    <p class="subtitle">Keyframe animation, 12 Principles of Animation, Graph Editor untuk timing dan easing, animating properties, dan rendering animation ke video.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Animation Basics</span></div>
+      <div class="meta-badge">Minggu 3 dari 4: <span>3D &amp; Animasi</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar Animasi 3D</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Animation?</div>
+      <p>Animation adalah seni menghidupkan objek statis melalui gerakan terhadap waktu. Dengan animasi, Anda dapat bercerita, showcase produk, membuat engaging content, dan mengkomunikasikan ide secara dinamis. Skill animasi sangat valuable dalam advertising, film, game, dan digital content creation.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Frame Rate</div>
+        <div class="gc-body">24 fps (film), 30 fps (TV/video), 60 fps (game). Blender default: 24 fps. Set di Output Properties.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Timeline</div>
+        <div class="gc-body">Panel bawah. Playback controls, current frame indicator (garis biru), frame range start/end.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Dope Sheet</div>
+        <div class="gc-body">Overview semua keyframe. Adjust timing dengan mudah. Shift/scale keyframe blocks.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="principles">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>12 Principles of Animation</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dikembangkan oleh Disney Animators (Frank Thomas &amp; Ollie Johnston)</div>
+      <p style="font-size:.87rem;color:#555;line-height:1.6;">Prinsip-prinsip ini dikembangkan untuk animasi tradisional tapi tetap fundamental dan relevan untuk 3D animation modern. Menguasai konsep ini membuat animasi terasa lebih hidup dan natural.</p>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-card"><div class="principle-num">1</div><div class="principle-name">Squash &amp; Stretch</div><div class="principle-desc">Fleksibilitas. Objek gepeng saat impact, memanjang saat terbang.</div></div>
+      <div class="principle-card"><div class="principle-num">2</div><div class="principle-name">Anticipation</div><div class="principle-desc">Persiapan sebelum aksi utama. Berlawanan dengan gerakan utama.</div></div>
+      <div class="principle-card"><div class="principle-num">3</div><div class="principle-name">Staging</div><div class="principle-desc">Presentasi yang jelas. Satu ide per moment.</div></div>
+      <div class="principle-card"><div class="principle-num">4</div><div class="principle-name">Pose to Pose</div><div class="principle-desc">Animasi dari pose ke pose. Isi in-between setelah.</div></div>
+      <div class="principle-card"><div class="principle-num">5</div><div class="principle-name">Follow Through</div><div class="principle-desc">Gerakan sekunder setelah gerakan utama berhenti.</div></div>
+      <div class="principle-card"><div class="principle-num">6</div><div class="principle-name">Slow In &amp; Out</div><div class="principle-desc">Easing. Mulai lambat, tengah cepat, akhir lambat.</div></div>
+      <div class="principle-card"><div class="principle-num">7</div><div class="principle-name">Arcs</div><div class="principle-desc">Gerakan mengikuti jalur lengkung, bukan garis lurus.</div></div>
+      <div class="principle-card"><div class="principle-num">8</div><div class="principle-name">Secondary Action</div><div class="principle-desc">Gerakan pendukung yang memperkuat aksi utama.</div></div>
+      <div class="principle-card"><div class="principle-num">9</div><div class="principle-name">Timing</div><div class="principle-desc">Kecepatan mendefinisikan karakter dan mood.</div></div>
+      <div class="principle-card"><div class="principle-num">10</div><div class="principle-name">Exaggeration</div><div class="principle-desc">Lebay untuk efek dramatis. Lebih dari realita.</div></div>
+      <div class="principle-card"><div class="principle-num">11</div><div class="principle-name">Solid Drawing</div><div class="principle-desc">Form, berat, volume yang konsisten.</div></div>
+      <div class="principle-card"><div class="principle-num">12</div><div class="principle-name">Appeal</div><div class="principle-desc">Karisma. Sesuatu yang menarik untuk ditonton.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="keyframe">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Keyframe Animation</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Konsep Keyframe</div>
+      <p>Keyframe adalah "snapshot" dari state objek pada frame tertentu. Blender secara otomatis menginterpolasi (menghitung) gerakan antara dua keyframe. Semakin banyak keyframe = semakin banyak kontrol, tapi lebih rumit dikelola.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Workflow Dasar Keyframe</h3>
+      <ol class="styled">
+        <li>Pergi ke frame pertama (ketik 1 di frame input atau drag timeline)</li>
+        <li>Posisikan objek sesuai pose awal</li>
+        <li>Tekan <span class="kbd">I</span> untuk Insert Keyframe menu</li>
+        <li>Pilih: Location, Rotation, Scale, atau LocRotScale</li>
+        <li>Pindah ke frame berikutnya</li>
+        <li>Ubah pose objek</li>
+        <li>Tekan <span class="kbd">I</span> lagi untuk keyframe baru</li>
+        <li>Ulangi hingga animasi selesai</li>
+        <li>Tekan <span class="kbd">Space</span> untuk play</li>
+      </ol>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Playback Controls</div>
+        <div class="gc-body">
+          <span class="kbd">Space</span> Play/pause<br>
+          <span class="kbd">←/→</span> Previous/next frame<br>
+          <span class="kbd">Shift+←/→</span> Jump ke keyframe<br>
+          <span class="kbd">Alt+A</span> Play backward
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Auto-Keyframe</div>
+        <div class="gc-body">Aktifkan record icon di Timeline. Semua perubahan transform otomatis di-key. Lebih cepat tapi hati-hati – semua perubahan ter-record!</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="graph-editor">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Graph Editor</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Graph Editor?</div>
+      <p>Graph Editor menampilkan animation curves (F-Curves) secara visual. Di sinilah Anda mengontrol timing dan easing – apakah gerakan linear (robotic) atau bezier (natural). Ini adalah perbedaan antara animasi yang terasa "kaku" dan yang terasa "hidup".</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Jenis Interpolasi</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Bezier (Default)</div>
+          <div class="gc-body">Kurva smooth dengan handle. Natural, organic. Ease in/out otomatis. Paling sering digunakan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Linear</div>
+          <div class="gc-body">Kecepatan konstan. Terasa mechanical/robotic. Bagus untuk conveyor belt, robot, mekanis.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Constant</div>
+          <div class="gc-body">Tidak ada interpolasi. Langsung snap ke value. Untuk flip-book effect atau blinking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Mengontrol Easing</h3>
+      <ul class="styled">
+        <li>Select keyframe dalam Graph Editor</li>
+        <li><span class="kbd">V</span> untuk handle type menu: Auto, Vector, Aligned, Free</li>
+        <li>Drag handle untuk control curve shape</li>
+        <li><b>Ease In:</b> Handle di awal keyframe ditarik ke atas/bawah → mulai lambat</li>
+        <li><b>Ease Out:</b> Handle di akhir keyframe → berhenti lambat</li>
+        <li>Kanan-klik keyframe → Interpolation Mode untuk ganti mode</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="properties">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Animating Different Properties</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-transform')">Transform</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-material')">Material</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-camera')">Camera</button>
+      </div>
+      <div id="tab-transform" class="tab-panel active">
+        <div class="grid-3">
+          <div class="grid-card">
+            <div class="gc-title">Location</div>
+            <div class="gc-body">Objek bergerak dalam space. X, Y, Z bisa di-key independen. Keyframe: I → Location.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Rotation</div>
+            <div class="gc-body">Objek berputar. Euler angles (lebih intuitive) atau Quaternion (lebih smooth). Keyframe: I → Rotation.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Scale</div>
+            <div class="gc-body">Objek membesar/mengecil. Squash &amp; stretch effect. Scale dari 0 untuk logo reveal. Keyframe: I → Scale.</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-material" class="tab-panel">
+        <ul class="styled">
+          <li><b>Keyframe material property:</b> Hover atas parameter → kanan-klik → Insert Keyframe</li>
+          <li><b>Alpha animation:</b> Objek fade in/out dengan animate Alpha 0→1</li>
+          <li><b>Color animation:</b> Base Color berubah warna seiring waktu</li>
+          <li><b>Emission strength:</b> Animasikan untuk glow on/off effect</li>
+          <li><b>Roughness:</b> Surface berubah dari matte ke shiny</li>
+        </ul>
+      </div>
+      <div id="tab-camera" class="tab-panel">
+        <ul class="styled">
+          <li><b>Camera position:</b> Animate G untuk camera move</li>
+          <li><b>Camera rotation:</b> Animate R untuk pan/tilt</li>
+          <li><b>Focal length:</b> Animate untuk zoom effect (pull focus)</li>
+          <li><b>Depth of field focus:</b> Animate focus distance untuk rack focus</li>
+          <li><b>Camera reveal:</b> Start dari belakang objek, move ke depan</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="projects">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Simple Animation Projects</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Bouncing Ball – Animation 101 <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Buat bola (UV Sphere)</li>
+          <li>Frame 1: Bola di atas – keyframe Location Z tinggi</li>
+          <li>Frame 12: Bola di bawah (touch ground) – keyframe Location Z rendah + Scale XY lebih besar, Z lebih kecil (squash)</li>
+          <li>Frame 24: Bola naik lagi – keyframe Location Z (lebih rendah dari awal)</li>
+          <li>Ulangi pattern dengan amplitude menurun</li>
+          <li>Gunakan Graph Editor: timing lebih cepat saat turun, lebih lambat di puncak (ease in/out)</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Logo Reveal Animation <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Buat logo 3D atau text</li>
+          <li>Frame 1: Scale = 0 atau position off-screen</li>
+          <li>Frame 20-30: Scale = 1 atau position on-screen</li>
+          <li>Tambah rotation untuk dinamisme: R Z dari 180° ke 0°</li>
+          <li>Animate emission untuk glow in effect</li>
+          <li>Ease out di akhir untuk smooth landing</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Product Turntable <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Posisikan produk di center scene</li>
+          <li>Metode 1: Animate produk – Frame 1: Rotation Z = 0, Frame 120: Z = 360</li>
+          <li>Metode 2: Animate camera orbit – gunakan Empty sebagai pivot, parent camera ke empty</li>
+          <li>Gunakan Linear interpolation untuk smooth rotation konstan</li>
+          <li>Total: 5 detik (120 frame at 24fps)</li>
+          <li>Pastikan lighting dari multiple angles</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Camera Fly-Through <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Buat scene dengan beberapa objek</li>
+          <li>Pergi ke frame 1, posisikan camera di titik start</li>
+          <li>Keyframe camera location dan rotation</li>
+          <li>Pindah ke frame 30, pindah camera ke posisi baru</li>
+          <li>Keyframe lagi, ulangi untuk path keseluruhan</li>
+          <li>Gunakan Bezier interpolation untuk smooth camera motion</li>
+          <li>Aktifkan follow path untuk lebih smooth (optional)</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="render-anim">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Rendering Animation</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Render ke Video (MP4)</div>
+      <ol class="styled">
+        <li>Output Properties → Output path: pilih folder tujuan</li>
+        <li>File Format: FFmpeg Video</li>
+        <li>Encoding → Container: MPEG-4, Codec: H.264</li>
+        <li>Output Quality: High Quality atau Perceptually Lossless</li>
+        <li>Frame range: atur Start dan End frame</li>
+        <li><span class="kbd">Ctrl+F12</span> atau Render → Render Animation</li>
+        <li>Tunggu hingga selesai – bisa lama untuk scene complex!</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Render ke Image Sequence (Safer)</div>
+      <ul class="styled">
+        <li>Format: PNG</li>
+        <li>Render frame individual – 0001.png, 0002.png, dst</li>
+        <li>Lebih aman: bisa resume jika crash</li>
+        <li>Compile ke video setelah selesai (Video Editor atau external software)</li>
+        <li>Rekomendasi untuk render panjang atau complex scene</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Tips Render Animation</div>
+      <p>Selalu test render beberapa frame dulu sebelum full render. Render malam hari untuk tidak mengganggu penggunaan komputer. Lower samples + denoise untuk balance kecepatan dan kualitas. Untuk Cycles: GPU rendering jauh lebih cepat dari CPU.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum Pertemuan 14</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: Bouncing Ball Animation</div>
+      <ul class="styled">
+        <li>Buat bola dengan material yang menarik</li>
+        <li>Animasikan 3-5 pantulan dengan squash &amp; stretch</li>
+        <li>Gunakan Graph Editor untuk proper easing</li>
+        <li>Durasi: 2-3 detik (48-72 frame)</li>
+        <li>Render sebagai video MP4</li>
+        <li>Waktu: 60-90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 2: Logo Reveal</div>
+      <ul class="styled">
+        <li>Logo sederhana atau text 3D</li>
+        <li>Animasikan entry: scale, position, atau rotation</li>
+        <li>Tambah material animation (emission glow in)</li>
+        <li>Smooth easing (ease in/out)</li>
+        <li>Durasi: 3-5 detik</li>
+        <li>Waktu: 60-90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 3: Product Turntable</div>
+      <ul class="styled">
+        <li>Gunakan produk atau objek model apapun</li>
+        <li>360° smooth rotation</li>
+        <li>Professional lighting</li>
+        <li>Loop-able animation</li>
+        <li>Durasi: 5-10 detik</li>
+        <li>Waktu: 45-60 menit</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Keyframe</div>
+        <div class="gc-body">I key untuk insert, transform + key, auto-keyframe mode, Timeline dan Dope Sheet</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Graph Editor</div>
+        <div class="gc-body">F-Curves, interpolation types (Bezier/Linear/Constant), handle manipulation untuk easing</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Projects</div>
+        <div class="gc-body">Bouncing ball, logo reveal, turntable. Render: FFmpeg MP4 atau PNG sequence</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-grafis-p13.html">← Pertemuan 13</a>
+    <a href="desain-grafis-p15.html" class="next-btn">Pertemuan 15 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

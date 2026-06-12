@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 13 – Materials, Textures &amp; Lighting | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.kbd{display:inline-block;background:var(--navy);color:#fff;font-size:.75rem;padding:2px 8px;border-radius:4px;font-family:monospace;font-weight:600;}
+/* Compare table */
+.compare-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.compare-table th{padding:10px 14px;text-align:left;}
+.compare-table th:first-child{background:var(--navy);color:#fff;}
+.compare-table th:nth-child(2){background:#2980b9;color:#fff;}
+.compare-table th:nth-child(3){background:#8e44ad;color:#fff;}
+.compare-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.12);vertical-align:top;}
+.compare-table tr:nth-child(even) td{background:rgba(184,137,59,.03);}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Materials, Textures &amp; Lighting</div>
+    <div class="pertemuan-badge">Pertemuan 13</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#shader-editor" class="toc-link">Shader Editor</a>
+    <a href="#principled-bsdf" class="toc-link">Principled BSDF</a>
+    <a href="#procedural" class="toc-link">Procedural Textures</a>
+    <a href="#uv-mapping" class="toc-link">UV Mapping</a>
+    <a href="#lighting" class="toc-link">Advanced Lighting</a>
+    <a href="#render-settings" class="toc-link">Render Settings</a>
+    <a href="#camera" class="toc-link">Camera Techniques</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 13 · Desain Grafis</div>
+    <h1>Materials, Textures &amp; Lighting</h1>
+    <p class="subtitle">Node-based material workflow, Principled BSDF, procedural textures, UV mapping, HDRI lighting, dan render optimization untuk hasil photorealistic.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Materials &amp; Lighting</span></div>
+      <div class="meta-badge">Minggu 2 dari 4: <span>3D &amp; Animasi</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar Materials &amp; Lighting</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Materials &amp; Lighting Penting?</div>
+      <p>Materials dan lighting adalah apa yang membedakan model 3D yang "flat" dengan hasil yang photorealistic. Bahkan model sederhana dapat terlihat amazing dengan materials dan lighting yang tepat, sementara model complex dapat terlihat dull tanpa perhatian pada aspek ini.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Tujuan Pembelajaran</div>
+        <div class="gc-body">Shader Editor, Principled BSDF, procedural textures, UV mapping, professional lighting, camera techniques.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Shader Editor</div>
+        <div class="gc-body">Node-based visual programming untuk material. Unlimited possibilities – buat material apapun yang bisa Anda bayangkan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Render Engines</div>
+        <div class="gc-body">Eevee: real-time, cepat. Cycles: ray-tracing, photorealistic tapi lebih lambat.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="shader-editor">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Shader Editor</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Membuka Shader Editor</div>
+      <ol class="styled">
+        <li>Buka workspace <b>Shading</b> (tab di atas)</li>
+        <li>Shader Editor muncul di bagian bawah</li>
+        <li>Select objek untuk lihat materialnya</li>
+        <li>Tekan <span class="kbd">Z</span> → Material Preview untuk lihat real-time</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Cara Kerja Node Graph</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Menambah Node</div>
+          <div class="gc-body"><span class="kbd">Shift+A</span> untuk buka Add menu. Pilih kategori: Texture, Color, Vector, Converter, Shader. Drag untuk posisikan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Menghubungkan Node</div>
+          <div class="gc-body">Drag dari socket output ke socket input. Warna socket: Kuning=warna, Hijau=shader, Ungu=vector. <span class="kbd">Ctrl+Shift+Click</span> untuk preview node.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="principled-bsdf">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Principled BSDF (Deep Dive)</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Satu Node untuk Semua Material</div>
+      <p>Principled BSDF adalah node material all-in-one yang dapat mensimulasikan hampir semua material di dunia nyata hanya dengan mengatur parameternya. Ini adalah standar industri untuk physically-based rendering (PBR).</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Parameter Utama Principled BSDF <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Base Color:</b> Warna dasar material</li>
+          <li><b>Metallic (0-1):</b> 0 = dielectric (plastik, kayu), 1 = logam</li>
+          <li><b>Roughness (0-1):</b> 0 = mirror sempurna, 1 = sangat kasar/matte</li>
+          <li><b>IOR:</b> Index of Refraction – kaca=1.45, air=1.33, berlian=2.42</li>
+          <li><b>Transmission (0-1):</b> Transparansi – 1 = full transparan (kaca)</li>
+          <li><b>Emission:</b> Warna dan strength untuk self-illuminating material</li>
+          <li><b>Alpha (0-1):</b> Transparansi umum – 0=invisible, 1=opaque</li>
+          <li><b>Specular:</b> Refleksi specular untuk non-metallic</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Contoh Material Umum</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Logam (Metal)</div>
+          <div class="gc-body">Metallic: 1.0<br>Roughness: 0.1-0.3 (polished) atau 0.5-0.8 (brushed)<br>Base Color: warna logam</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Kaca (Glass)</div>
+          <div class="gc-body">Metallic: 0<br>Roughness: 0<br>Transmission: 1.0<br>IOR: 1.45<br>Alpha: 0</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Plastik</div>
+          <div class="gc-body">Metallic: 0<br>Roughness: 0.3-0.6<br>Base Color: warna plastik<br>Specular: 0.5</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Kayu (Wood)</div>
+          <div class="gc-body">Metallic: 0<br>Roughness: 0.7-0.9<br>Base Color: coklat natural atau procedural texture</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Emissive (Neon)</div>
+          <div class="gc-body">Emission Color: warna cahaya<br>Emission Strength: 1-10 (sesuai kebutuhan)<br>Material bersinar sendiri</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Kulit (Skin)</div>
+          <div class="gc-body">Metallic: 0<br>Roughness: 0.4-0.6<br>Subsurface: 0.1-0.3<br>Base Color: flesh tone</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="procedural">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Procedural Textures</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Noise Texture <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Kegunaan:</b> Detail variation, roughness maps, bump maps, cloud effects</li>
+          <li><b>Scale:</b> Ukuran detail (kecil = detail halus, besar = kasar)</li>
+          <li><b>Detail:</b> Octaves – semakin tinggi semakin kompleks</li>
+          <li><b>Distortion:</b> Warping/twisting noise</li>
+          <li>Kombinasikan dengan ColorRamp untuk kontrol penuh</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Voronoi Texture <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Kegunaan:</b> Cell patterns, organic materials, floor tiles, stone</li>
+          <li><b>Distance metric:</b> Euclidean (bulat), Manhattan (kotak), Chebyshev</li>
+          <li><b>Scale:</b> Ukuran cell</li>
+          <li>Bisa buat pattern yang terlihat seperti kulit ular, batu akik, dll</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Wave &amp; Musgrave Texture <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Wave:</b> Sine waves – kayu, air, zebra pattern. Scale dan distortion kontrolabel.</li>
+          <li><b>Musgrave:</b> Fractal noise – terrain, batu, clouds. Natural-looking surfaces.</li>
+          <li><b>Magic:</b> Psychedelic patterns untuk effect unik</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">ColorRamp – Node Esensial <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Remap nilai 0-1 ke warna atau nilai baru</li>
+          <li>Tambah/hapus color stops untuk gradasi</li>
+          <li>Interpolation: Linear, Ease, Cardinal, Constant, B-Spline</li>
+          <li>Gunakan untuk convert grayscale texture menjadi warna</li>
+          <li>Essential untuk kontrol hasil procedural texture</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="uv-mapping">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>UV Mapping &amp; Image Textures</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Apa itu UV Mapping?</div>
+      <p style="font-size:.88rem;line-height:1.7;">UV adalah koordinat 2D yang memetakan permukaan 3D ke bidang 2D. U = horizontal, V = vertical. Dengan UV map, image texture 2D dapat ditempelkan ke model 3D dengan tepat. Seperti membuka/meratakan kulit jeruk.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>UV Unwrapping Workflow</h3>
+      <ol class="styled">
+        <li>Masuk Edit Mode, select semua (<span class="kbd">A</span>)</li>
+        <li>Pilih edges yang akan jadi seam (garis potong)</li>
+        <li><span class="kbd">Ctrl+E</span> → Mark Seam (tepi model biasanya bagus untuk seam)</li>
+        <li><span class="kbd">A</span> untuk select all lagi</li>
+        <li><span class="kbd">U</span> → Unwrap untuk proses unwrapping</li>
+        <li>Buka UV Editing workspace untuk lihat dan edit UV</li>
+        <li>Minimizekan stretching dan distorsi</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Metode Unwrap</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Smart UV Project</div>
+          <div class="gc-body">Otomatis, angle-based. Tidak perlu mark seam. Bagus untuk objek dengan banyak flat faces.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Cube/Cylinder Projection</div>
+          <div class="gc-body">Untuk bentuk kotak/silinder. Cepat tapi stretching di sudut. Bagus untuk furniture, botol.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Unwrap (Manual Seam)</div>
+          <div class="gc-body">Terbaik untuk kontrol penuh. Mark seam di tempat yang tidak terlihat, unwrap hasilnya bersih.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Project from View</div>
+          <div class="gc-body">Project dari sudut pandang current view. Flat, cocok untuk label atau decal di satu sisi.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Bump &amp; Normal Maps</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Bump Map</div>
+          <div class="gc-body">Grayscale image, simulate surface detail. Ringan, bersifat ilusi. Connect ke Normal input via Bump node.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Normal Map</div>
+          <div class="gc-body">RGB image (biru-ungu dominan). Lebih detail dari bump. Connect via Normal Map node ke Normal input.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="lighting">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Advanced Lighting</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-3point')">Three-Point</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-hdri')">HDRI</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-volumetric')">Volumetric</button>
+      </div>
+      <div id="tab-3point" class="tab-panel active">
+        <div class="grid-3">
+          <div class="grid-card">
+            <div class="gc-title">Key Light</div>
+            <div class="gc-body">Lampu utama. Posisi 45° dari subjek. Paling terang. Area light besar untuk bayangan lembut.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Fill Light</div>
+            <div class="gc-body">Mengisi bayangan dari key light. Posisi berlawanan dengan key. Intensitas 50% dari key. Ratio 2:1 atau 4:1.</div>
+          </div>
+          <div class="grid-card">
+            <div class="gc-title">Rim Light</div>
+            <div class="gc-body">Di belakang/sisi subjek. Memisahkan subjek dari background. Beri edge definition. Dramatic effect.</div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-hdri" class="tab-panel">
+        <p style="font-size:.88rem;margin-bottom:12px;"><b>HDRI (High Dynamic Range Image)</b> memberikan environment lighting yang natural dan realistis.</p>
+        <ol class="styled">
+          <li>World Properties → Color → klik tombol dot → Environment Texture</li>
+          <li>Open Image → pilih file .hdr atau .exr</li>
+          <li>Tambah Mapping node untuk kontrol rotasi</li>
+          <li>Download HDRI gratis dari Poly Haven (polyhaven.com)</li>
+        </ol>
+        <p style="font-size:.85rem;color:#666;margin-top:10px;">HDRI memberikan refleksi dan bayangan yang terlihat natural karena berasal dari foto lingkungan nyata.</p>
+      </div>
+      <div id="tab-volumetric" class="tab-panel">
+        <ul class="styled">
+          <li><b>Volumetric Lighting:</b> Light shafts, kabut, atmosfer</li>
+          <li>World Properties → Volume → Add Principled Volume shader</li>
+          <li>Atur Density untuk tebal kabut</li>
+          <li>Kombinasikan dengan spot light untuk light shaft effect</li>
+          <li><b>Emissive Materials:</b> Objek yang memancarkan cahaya sendiri – screen, LED, api</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="render-settings">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Render Settings &amp; Optimisasi</h2>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Aspek</th>
+          <th>Eevee</th>
+          <th>Cycles</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Teknologi</td>
+          <td>Rasterization (real-time)</td>
+          <td>Ray-tracing / Path tracing</td>
+        </tr>
+        <tr>
+          <td>Kecepatan</td>
+          <td>Sangat cepat</td>
+          <td>Lambat (tergantung scene)</td>
+        </tr>
+        <tr>
+          <td>Kualitas</td>
+          <td>Bagus, stylized</td>
+          <td>Photorealistic</td>
+        </tr>
+        <tr>
+          <td>Glass/Caustics</td>
+          <td>Approximasi</td>
+          <td>Akurat penuh</td>
+        </tr>
+        <tr>
+          <td>Sampling</td>
+          <td>64–256 samples</td>
+          <td>128–4096 samples</td>
+        </tr>
+        <tr>
+          <td>Cocok untuk</td>
+          <td>Motion graphics, stylized</td>
+          <td>Product viz, photoreal</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-section">
+      <h3>Tips Optimisasi Render</h3>
+      <ul class="styled">
+        <li>Aktifkan <b>Denoising</b> untuk reduce noise dengan sample lebih rendah</li>
+        <li>Test render di 50% resolution sebelum final render</li>
+        <li>Viewport samples vs Render samples – set berbeda</li>
+        <li><b>Light Path:</b> Kurangi bounces untuk Cycles yang lebih cepat</li>
+        <li>Render region (<span class="kbd">Ctrl+B</span> dalam Camera view) untuk test area tertentu</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="camera">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Camera Techniques</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Focal Length</div>
+        <div class="gc-body">
+          <b>24-35mm:</b> Wide angle – environment, arsitektur<br>
+          <b>50mm:</b> Normal – natural, documentary<br>
+          <b>85mm:</b> Portrait – flattering, less distortion<br>
+          <b>100-200mm:</b> Telephoto – product, compression
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Depth of Field</div>
+        <div class="gc-body">Camera Properties → Depth of Field → pilih Focus Object atau atur jarak. F-Stop: lebih rendah = blur lebih banyak. Memfokuskan perhatian pada subjek utama.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Komposisi Kamera</div>
+      <ul class="styled">
+        <li><b>Rule of Thirds:</b> Posisikan subjek di 1/3 frame, bukan di tengah persis</li>
+        <li><b>Leading Lines:</b> Gunakan garis dalam scene untuk memandu mata ke subjek</li>
+        <li><b>Framing:</b> Gunakan elemen scene untuk membingkai subjek</li>
+        <li><b>Negative Space:</b> Ruang kosong untuk emphasis</li>
+        <li><b>Camera roll:</b> Slight tilt untuk dynamic feeling</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Praktikum Pertemuan 13</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: Material Library (5 Materials)</div>
+      <ul class="styled">
+        <li>Buat 5 material berbeda: Plastik berwarna, Metal (brushed/polished), Kaca, Emissive/glowing, Kayu atau batu (procedural)</li>
+        <li>Apply ke objek simple dalam satu scene showcase</li>
+        <li>Render hasil dengan lighting yang baik</li>
+        <li>Waktu: 90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 2: Lighting Scenarios</div>
+      <ul class="styled">
+        <li>Setup 3 lighting berbeda untuk objek yang sama: Studio (product), Outdoor (HDRI), Dramatic (low-key)</li>
+        <li>Compare 3 render – dokumen settings yang digunakan</li>
+        <li>Waktu: 60-90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 3: UV Unwrap Practice</div>
+      <ul class="styled">
+        <li>Buat objek dengan sharp edges (mug, kotak bertekstur, dll)</li>
+        <li>Mark seams di tempat yang tepat</li>
+        <li>Unwrap dan minimizekan stretching</li>
+        <li>Apply image texture dari sebuah foto atau gambar</li>
+        <li>Waktu: 45-60 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 4: Complete Scene</div>
+      <ul class="styled">
+        <li>Gunakan model dari pertemuan 12</li>
+        <li>Apply material yang sesuai</li>
+        <li>Setup professional lighting</li>
+        <li>Test render Eevee vs Cycles – bandingkan</li>
+        <li>Waktu: 60-90 menit</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Materials</div>
+        <div class="gc-body">Shader Editor, Principled BSDF, procedural textures (Noise, Voronoi, Wave), ColorRamp node</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Texturing</div>
+        <div class="gc-body">UV unwrapping, seam marking, image textures, bump/normal maps untuk surface detail</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Lighting &amp; Render</div>
+        <div class="gc-body">Three-point, HDRI, volumetric. Eevee vs Cycles. Camera focal length dan depth of field.</div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-grafis-p12.html">← Pertemuan 12</a>
+    <a href="desain-grafis-p14.html" class="next-btn">Pertemuan 14 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Desain Grafis P1 – Pengenalan Vector | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #b8893b; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #fdf8f0; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #b8893b; color: #b8893b; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1a2942; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #b8893b; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1a2942; }
+footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #d4ac6e; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+
+/* Comparison cards */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+.compare-card { border-radius: 10px; padding: 20px; }
+.compare-card.vector { background: linear-gradient(135deg, #fdf8f0, #faf3e8); border: 1px solid #d4ac6e; }
+.compare-card.raster { background: linear-gradient(135deg, #f0f4ff, #e8eeff); border: 1px solid #93adf0; }
+.compare-card h4 { font-size: 1.05rem; margin-bottom: 12px; }
+.compare-card.vector h4 { color: #7d5a1e; }
+.compare-card.raster h4 { color: #1a3a8a; }
+.compare-card ul { padding-left: 18px; }
+.compare-card li { font-size: 0.88rem; color: #374151; }
+
+/* Tool grid */
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+.tool-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; transition: all 0.2s; }
+.tool-card:hover { border-color: #b8893b; box-shadow: 0 4px 12px rgba(184,137,59,0.12); transform: translateY(-2px); }
+.tool-card .tool-key { display: inline-block; background: #1a2942; color: #fff; border-radius: 4px; padding: 1px 7px; font-size: 0.75rem; font-family: monospace; margin-bottom: 6px; }
+.tool-card h4 { font-size: 0.9rem; color: #1a2942; margin-bottom: 4px; }
+.tool-card p { font-size: 0.8rem; color: #6b7280; margin: 0; }
+
+/* Video cards */
+.video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.video-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+.video-icon { font-size: 1.5rem; flex-shrink: 0; }
+.video-card h4 { font-size: 0.88rem; color: #1a2942; margin-bottom: 4px; }
+.video-card p { font-size: 0.78rem; color: #6b7280; margin: 0; }
+
+/* Software compare */
+.software-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.software-card { border-radius: 10px; padding: 20px; }
+.software-card.paid { background: #1a2942; color: #fff; }
+.software-card.free { background: linear-gradient(135deg, #d4fce8, #f0fdf4); border: 2px solid #16a34a; }
+.software-card.paid h4 { color: #d4ac6e; font-size: 1rem; margin-bottom: 12px; }
+.software-card.free h4 { color: #166534; font-size: 1rem; margin-bottom: 12px; }
+.software-card ul { padding-left: 18px; font-size: 0.88rem; }
+.software-card.paid li { color: #cbd5e1; }
+.software-card.free li { color: #374151; }
+
+@media (max-width: 600px) {
+  .compare-grid, .video-grid, .software-compare { grid-template-columns: 1fr; }
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px;">Politeknik Negeri Tanah Laut — Desain Grafis</div>
+    <h1>🎨 Pertemuan 1 — Pengenalan Adobe Illustrator / Inkscape</h1>
+    <p>Dasar-dasar desain grafis berbasis vector dan pengenalan software</p>
+    <div class="header-badges">
+      <span class="badge">📋 Desain Grafis</span>
+      <span class="badge">📅 Pertemuan 1</span>
+      <span class="badge">👨‍🏫 M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#vector-raster">Vector vs Raster</a>
+    <a class="toc-link" href="#software">Pengenalan Software</a>
+    <a class="toc-link" href="#interface">Interface Program</a>
+    <a class="toc-link indent" href="#menubar">Menu Bar</a>
+    <a class="toc-link indent" href="#toolbar">Toolbar</a>
+    <a class="toc-link indent" href="#panels">Panels</a>
+    <a class="toc-link" href="#tools">Tool-Tool Dasar</a>
+    <a class="toc-link indent" href="#selection-tools">Selection Tools</a>
+    <a class="toc-link indent" href="#shape-tools">Shape Tools</a>
+    <a class="toc-link indent" href="#path-tools">Pen & Path Tools</a>
+    <a class="toc-link" href="#operasi">Operasi Dasar</a>
+    <a class="toc-link" href="#workflow">Tips Workflow</a>
+    <a class="toc-link" href="#video">Video Pembelajaran</a>
+    <a class="toc-link" href="#praktikum">Praktikum</a>
+    <a class="toc-link indent" href="#lat1">Latihan 1: Bentuk Dasar</a>
+    <a class="toc-link indent" href="#lat2">Latihan 2: Manipulasi Objek</a>
+    <a class="toc-link indent" href="#lat3">Latihan 3: Pen Tool</a>
+    <a class="toc-link" href="#ringkasan">Ringkasan</a>
+    <a class="toc-link" href="#tugas">Tugas</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="/public/materi/">Materi</a> › <a href="#">Desain Grafis</a> › Pertemuan 1
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah mengikuti perkuliahan ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep dasar desain grafis berbasis <span class="tooltip">vector<span class="tooltip-text">Grafis yang dibentuk oleh persamaan matematis, bukan pixel — bisa diperbesar tanpa buram</span></span></li>
+          <li>Mengenal interface dan workspace Adobe Illustrator / Inkscape</li>
+          <li>Memahami fungsi tool-tool dasar dalam program vector</li>
+          <li>Menggunakan shape tools dan pen tool untuk membuat objek sederhana</li>
+          <li>Memahami perbedaan desain vector dan <span class="tooltip">raster<span class="tooltip-text">Grafis berbasis pixel — seperti foto digital. Kualitas menurun jika diperbesar</span></span></li>
+        </ol>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Desain grafis berbasis vector adalah keterampilan <strong>fundamental</strong> yang harus dikuasai desainer. File vector seperti SVG, AI, dan EPS dapat diperbesar ke ukuran billboard tanpa kehilangan kualitas sedikit pun.</span>
+      </div>
+    </section>
+
+    <!-- VECTOR VS RASTER -->
+    <section class="section" id="vector-raster">
+      <div class="section-title"><span class="section-num">2</span> Vector vs Raster Graphics</div>
+
+      <div class="compare-grid">
+        <div class="compare-card vector">
+          <h4>🔷 Vector Graphics</h4>
+          <ul>
+            <li>Dibuat dengan <strong>persamaan matematis</strong></li>
+            <li>Terdiri dari anchor point, path, dan fill</li>
+            <li><strong>Scalable</strong> — tidak buram saat diperbesar</li>
+            <li>File kecil untuk desain sederhana</li>
+            <li>Format: AI, SVG, EPS, PDF</li>
+            <li>Cocok untuk: Logo, icon, ilustrasi</li>
+          </ul>
+        </div>
+        <div class="compare-card raster">
+          <h4>🟦 Raster/Bitmap Graphics</h4>
+          <ul>
+            <li>Dibuat dari kumpulan <strong>pixel</strong></li>
+            <li>Resolution-dependent</li>
+            <li><strong>Tidak scalable</strong> — buram saat diperbesar</li>
+            <li>File besar untuk resolusi tinggi</li>
+            <li>Format: JPG, PNG, PSD, GIF, TIFF</li>
+            <li>Cocok untuk: Foto, texture detail tinggi</li>
+          </ul>
+        </div>
+      </div>
+
+      <table>
+        <thead><tr><th>Aspek</th><th>Vector</th><th>Raster</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Teknologi</strong></td><td>Matematika (paths, curves)</td><td>Pixel (kotak-kotak kecil)</td></tr>
+          <tr><td><strong>Scalability</strong></td><td>✅ Bebas ukuran, tetap tajam</td><td>❌ Buram jika diperbesar</td></tr>
+          <tr><td><strong>File Size</strong></td><td>Kecil (desain simple)</td><td>Besar (high resolution)</td></tr>
+          <tr><td><strong>Edit Warna</strong></td><td>Mudah, kapan saja</td><td>Terbatas pada piksel</td></tr>
+          <tr><td><strong>Software</strong></td><td>Illustrator, Inkscape</td><td>Photoshop, GIMP</td></tr>
+          <tr><td><strong>Penggunaan</strong></td><td>Logo, typography, print</td><td>Foto, realistic illustration</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text"><strong>Analogi mudah:</strong> Vector seperti <em>peta matematika</em> — instruksi untuk menggambar ulang dengan presisi sempurna. Raster seperti <em>mozaik foto</em> — jutaan kotak warna yang dilihat dari jauh terlihat seperti gambar.</span>
+      </div>
+    </section>
+
+    <!-- SOFTWARE -->
+    <section class="section" id="software">
+      <div class="section-title"><span class="section-num">3</span> Pengenalan Software</div>
+
+      <div class="software-compare">
+        <div class="software-card paid">
+          <h4>💼 Adobe Illustrator (Berbayar)</h4>
+          <ul>
+            <li>Industry standard profesional</li>
+            <li>Integrasi Adobe Creative Cloud</li>
+            <li>Tools dan fitur sangat lengkap</li>
+            <li>Harga: ~Rp 350.000/bulan</li>
+            <li>Tersedia trial 7 hari</li>
+          </ul>
+        </div>
+        <div class="software-card free">
+          <h4>🆓 Inkscape (GRATIS — Direkomendasikan)</h4>
+          <ul>
+            <li>Open source dan <strong>gratis selamanya</strong></li>
+            <li>Cross-platform: Windows, Mac, Linux</li>
+            <li>Fitur hampir setara Illustrator</li>
+            <li>Format file: SVG (standar web)</li>
+            <li>Komunitas besar, banyak tutorial</li>
+            <li>📥 <strong>Download: inkscape.org</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text"><strong>Untuk perkuliahan ini</strong>, Inkscape sangat direkomendasikan karena gratis dan fiturnya memadai. Konsep yang dipelajari di Inkscape langsung dapat diaplikasikan di Illustrator jika nanti menggunakan software berbayar.</span>
+      </div>
+    </section>
+
+    <!-- INTERFACE -->
+    <section class="section" id="interface">
+      <div class="section-title"><span class="section-num">4</span> Mengenal Interface Program</div>
+
+      <div class="accordion" id="menubar">
+        <div class="accordion-header">📌 Menu Bar <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Menu bar berada di bagian paling atas layar, berisi semua perintah dan fungsi utama:</p>
+          <table>
+            <thead><tr><th>Menu</th><th>Fungsi Utama</th></tr></thead>
+            <tbody>
+              <tr><td><strong>File</strong></td><td>New, Open, Save, Import, Export</td></tr>
+              <tr><td><strong>Edit</strong></td><td>Undo, Redo, Copy, Paste, Preferences</td></tr>
+              <tr><td><strong>Object</strong></td><td>Group, Ungroup, Transform, Align</td></tr>
+              <tr><td><strong>Path</strong></td><td>Combine, Break Apart, Boolean Operations</td></tr>
+              <tr><td><strong>Text</strong></td><td>Font, Size, Spacing, Convert to Path</td></tr>
+              <tr><td><strong>View</strong></td><td>Zoom, Grid, Guides, Rulers</td></tr>
+              <tr><td><strong>Extensions</strong></td><td>Plugin tambahan untuk fungsi khusus</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="toolbar">
+        <div class="accordion-header">🔧 Toolbar (Toolbox) <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Toolbar vertikal di sisi kiri layar berisi semua tool menggambar. Di bawah menu bar terdapat <strong>Tool Controls Bar</strong> yang menampilkan opsi tool yang sedang aktif.</p>
+          <div class="callout callout-tip">
+            <span class="callout-icon">✅</span>
+            <span class="callout-text">Setiap tool memiliki <strong>keyboard shortcut</strong> satu huruf untuk akses cepat. Hafal shortcut tool yang sering digunakan untuk efisiensi kerja!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="panels">
+        <div class="accordion-header">📊 Panel-Panel Penting <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead><tr><th>Panel</th><th>Fungsi</th><th>Akses</th></tr></thead>
+            <tbody>
+              <tr><td><strong>XML Editor</strong></td><td>Edit SVG source langsung</td><td>Ctrl+Shift+X</td></tr>
+              <tr><td><strong>Object Properties</strong></td><td>ID, label, dan atribut objek</td><td>Object menu</td></tr>
+              <tr><td><strong>Fill and Stroke</strong></td><td>Warna fill, stroke, dan style garis</td><td>Ctrl+Shift+F</td></tr>
+              <tr><td><strong>Layers</strong></td><td>Manajemen layer</td><td>Layer menu</td></tr>
+              <tr><td><strong>Align and Distribute</strong></td><td>Perataan dan distribusi objek</td><td>Ctrl+Shift+A</td></tr>
+              <tr><td><strong>Transform</strong></td><td>Transformasi presisi</td><td>Ctrl+Shift+M</td></tr>
+              <tr><td><strong>Swatches</strong></td><td>Palet warna</td><td>View > Swatches</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="section" id="tools">
+      <div class="section-title"><span class="section-num">5</span> Tool-Tool Dasar</div>
+
+      <div class="tab-group" id="tools-tab">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="tab-selection">🖱️ Selection</button>
+          <button class="tab-btn" data-tab="tab-shapes">🔷 Shape Tools</button>
+          <button class="tab-btn" data-tab="tab-path">✏️ Pen & Path</button>
+          <button class="tab-btn" data-tab="tab-other">🔤 Lainnya</button>
+        </div>
+        <div class="tab-panels">
+
+          <div id="tab-selection" class="tab-panel active" id="selection-tools">
+            <div class="tool-grid">
+              <div class="tool-card">
+                <span class="tool-key">S / F1</span>
+                <h4>Selection Tool</h4>
+                <p>Pilih, pindah, dan ubah ukuran seluruh objek. Klik dua kali untuk masuk ke dalam grup.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">N / F2</span>
+                <h4>Node Tool</h4>
+                <p>Edit anchor point individual. Ubah bentuk path dengan menggeser node.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">Z</span>
+                <h4>Zoom Tool</h4>
+                <p>Zoom in klik, zoom out Alt+klik. Shortcut: Ctrl+= dan Ctrl+-</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">H</span>
+                <h4>Hand/Pan Tool</h4>
+                <p>Geser canvas. Shortcut cepat: tahan Spasi sambil drag.</p>
+              </div>
+            </div>
+            <div class="callout callout-info">
+              <span class="callout-icon">💡</span>
+              <span class="callout-text">Klik objek sekali = mode <strong>scale/resize</strong>. Klik lagi = mode <strong>rotate/skew</strong>. Tekan <strong>Shift</strong> saat resize untuk menjaga proporsi.</span>
+            </div>
+          </div>
+
+          <div id="tab-shapes" class="tab-panel" id="shape-tools">
+            <div class="tool-grid">
+              <div class="tool-card">
+                <span class="tool-key">R / F4</span>
+                <h4>Rectangle Tool</h4>
+                <p>Buat persegi panjang. Tekan <strong>Ctrl</strong> untuk persegi sempurna.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">E / F5</span>
+                <h4>Ellipse Tool</h4>
+                <p>Buat oval. Tekan <strong>Ctrl</strong> untuk lingkaran sempurna.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">*</span>
+                <h4>Star Tool</h4>
+                <p>Buat bintang atau polygon. Atur jumlah sudut di toolbar atas.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">3D</span>
+                <h4>3D Box Tool</h4>
+                <p>Buat kotak perspektif 3D (Inkscape). Untuk efek dimensi cepat.</p>
+              </div>
+            </div>
+            <div class="callout callout-tip">
+              <span class="callout-icon">✅</span>
+              <span class="callout-text"><strong>Tips:</strong> Saat menggambar, tahan <strong>Ctrl</strong> untuk constrain proporsi, tahan <strong>Alt</strong> untuk menggambar dari titik tengah, tahan keduanya untuk lingkaran/persegi dari tengah.</span>
+            </div>
+          </div>
+
+          <div id="tab-path" class="tab-panel" id="path-tools">
+            <div class="tool-grid">
+              <div class="tool-card">
+                <span class="tool-key">P / F6</span>
+                <h4>Pen Tool (Bezier)</h4>
+                <p>Tool terpenting vector! <strong>Klik</strong> = garis lurus. <strong>Klik + Drag</strong> = kurva Bezier.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">B</span>
+                <h4>Pencil (Freehand)</h4>
+                <p>Gambar bebas seperti pensil. Otomatis dikonversi ke path.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">C</span>
+                <h4>Calligraphy</h4>
+                <p>Brush calligraphy. Menghasilkan path dengan variasi ketebalan.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">N</span>
+                <h4>Node Editor</h4>
+                <p>Edit handles Bezier. <strong>Shift+drag</strong> node = tangent independent.</p>
+              </div>
+            </div>
+            <div class="callout callout-warn">
+              <span class="callout-icon">⚠️</span>
+              <span class="callout-text"><strong>Pen Tool</strong> memerlukan latihan! Konsepnya: setiap klik membuat <strong>anchor point</strong>, dan drag dari anchor point membuat <strong>Bezier handle</strong> yang menentukan arah kurva. Tutup path dengan klik di titik awal.</span>
+            </div>
+            <div class="accordion" style="margin-top:16px;">
+              <div class="accordion-header">📚 Cara Kerja Bezier Curve <span class="accordion-icon">▼</span></div>
+              <div class="accordion-body">
+                <p>Kurva Bezier dikendalikan oleh <strong>anchor points</strong> dan <strong>control handles</strong>:</p>
+                <ul>
+                  <li><strong>Corner node</strong>: Klik biasa — membuat sudut tajam</li>
+                  <li><strong>Smooth node</strong>: Klik + drag — kurva halus, handles sejajar</li>
+                  <li><strong>Cusp node</strong>: Alt + drag handle — kurva tidak simetris</li>
+                  <li><strong>Menutup path</strong>: Klik di titik awal, atau tekan Enter</li>
+                  <li><strong>Cancel</strong>: Tekan Escape untuk batal</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-other" class="tab-panel">
+            <div class="tool-grid">
+              <div class="tool-card">
+                <span class="tool-key">T / F8</span>
+                <h4>Text Tool</h4>
+                <p>Tambahkan teks. <strong>Point text</strong>: klik. <strong>Area text</strong>: klik drag untuk kotak.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">F7</span>
+                <h4>Color Picker</h4>
+                <p>Ambil warna dari area mana pun di layar.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">G / F9</span>
+                <h4>Gradient Tool</h4>
+                <p>Buat dan edit gradien pada objek terpilih.</p>
+              </div>
+              <div class="tool-card">
+                <span class="tool-key">Ctrl+F</span>
+                <h4>Find/Replace</h4>
+                <p>Cari dan ganti teks atau atribut SVG dalam dokumen.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- OPERASI DASAR -->
+    <section class="section" id="operasi">
+      <div class="section-title"><span class="section-num">6</span> Operasi Dasar</div>
+
+      <div class="accordion">
+        <div class="accordion-header">⌨️ Shortcut Keyboard Esensial <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead><tr><th>Aksi</th><th>Shortcut</th><th>Keterangan</th></tr></thead>
+            <tbody>
+              <tr><td>Undo</td><td><code>Ctrl+Z</code></td><td>Batalkan langkah terakhir</td></tr>
+              <tr><td>Redo</td><td><code>Ctrl+Shift+Z</code></td><td>Ulangi langkah</td></tr>
+              <tr><td>Copy</td><td><code>Ctrl+C</code></td><td>Salin objek terpilih</td></tr>
+              <tr><td>Paste</td><td><code>Ctrl+V</code></td><td>Tempel di posisi pointer</td></tr>
+              <tr><td>Paste in Place</td><td><code>Ctrl+Alt+V</code></td><td>Tempel di posisi sama persis</td></tr>
+              <tr><td>Duplicate</td><td><code>Ctrl+D</code></td><td>Duplikat di atas (posisi sama)</td></tr>
+              <tr><td>Group</td><td><code>Ctrl+G</code></td><td>Grup objek terpilih</td></tr>
+              <tr><td>Ungroup</td><td><code>Ctrl+Shift+G</code></td><td>Pisah grup</td></tr>
+              <tr><td>Select All</td><td><code>Ctrl+A</code></td><td>Pilih semua objek</td></tr>
+              <tr><td>Save</td><td><code>Ctrl+S</code></td><td>Simpan file</td></tr>
+              <tr><td>Zoom Fit</td><td><code>3 / 5</code></td><td>Zoom ke drawing / halaman</td></tr>
+              <tr><td>Flip H/V</td><td><code>Object > Flip H/V</code></td><td>Cermin horizontal/vertikal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">🎨 Mengatur Fill dan Stroke <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Warna objek dikontrol oleh <strong>Fill</strong> (isi) dan <strong>Stroke</strong> (garis tepi):</p>
+          <ul>
+            <li><strong>Fill</strong>: Klik kotak warna kiri bawah — isi objek</li>
+            <li><strong>Stroke</strong>: Klik kotak warna kanan bawah — garis tepi</li>
+            <li><strong>No fill/stroke</strong>: Klik tanda X di color palette</li>
+            <li><strong>Color dialog detail</strong>: Buka dengan <code>Shift+Ctrl+F</code></li>
+            <li><strong>Gradient fill</strong>: Gunakan Gradient Tool atau dialog Fill</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">💡</span>
+            <span class="callout-text">Di status bar bawah, tertera nilai warna fill/stroke dalam format HEX atau RGBA. Klik langsung pada indikator warna di status bar untuk membuka color picker cepat.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">📐 Align & Distribute <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Buka panel dengan <code>Shift+Ctrl+A</code>. Pilih beberapa objek, lalu gunakan:</p>
+          <ul>
+            <li><strong>Align to page/drawing/selection/last selected</strong>: Tentukan referensi alignment</li>
+            <li><strong>Align left/center/right edges</strong>: Perataan horizontal</li>
+            <li><strong>Align top/center/bottom edges</strong>: Perataan vertikal</li>
+            <li><strong>Make horizontal/vertical gaps equal</strong>: Distribusi jarak merata</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="section" id="workflow">
+      <div class="section-title"><span class="section-num">7</span> Tips Workflow Profesional</div>
+      <ol>
+        <li>Gunakan <strong>keyboard shortcuts</strong> untuk efisiensi — kurangi penggunaan mouse</li>
+        <li><strong>Organize dengan Layers</strong> — beri nama layer sesuai kontennya</li>
+        <li><strong>Save berkala</strong> dengan Ctrl+S, dan buat backup dengan Save As</li>
+        <li>Gunakan <strong>Guides dan Grid</strong> (View > Grid) untuk presisi alignment</li>
+        <li><strong>Zoom in</strong> untuk detail, <strong>zoom out</strong> untuk melihat keseluruhan</li>
+        <li>Manfaatkan <strong>Snap to Grid / Snap to Objects</strong> untuk alignment akurat</li>
+        <li>Gunakan <strong>Object > Align and Distribute</strong> daripada alignment manual</li>
+      </ol>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section" id="video">
+      <div class="section-title"><span class="section-num">8</span> Video Pembelajaran</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <span class="video-icon">▶️</span>
+          <div>
+            <h4>Inkscape Beginner Tutorial – Complete Guide</h4>
+            <p>Pengenalan lengkap Inkscape dari awal untuk pemula. Durasi ~45 menit.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <span class="video-icon">▶️</span>
+          <div>
+            <h4>Mengenal Interface Inkscape (Indonesia)</h4>
+            <p>Tutorial Bahasa Indonesia tentang mengenal tools dan panel Inkscape.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <span class="video-icon">▶️</span>
+          <div>
+            <h4>Bezier Pen Tool Mastery</h4>
+            <p>Cara menguasai pen tool Bezier untuk membuat path custom apapun.</p>
+          </div>
+        </div>
+        <div class="video-card">
+          <span class="video-icon">▶️</span>
+          <div>
+            <h4>Vector vs Raster Explained</h4>
+            <p>Penjelasan visual perbedaan vector dan raster, dan kapan menggunakannya.</p>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Cari di YouTube dengan kata kunci <strong>"inkscape tutorial beginner"</strong> untuk Inkscape, atau <strong>"adobe illustrator tutorial beginner"</strong> untuk Illustrator. Saluran YouTube "Logos By Nick" sangat direkomendasikan untuk tutorial Inkscape.</span>
+      </div>
+    </section>
+
+    <!-- PRAKTIKUM -->
+    <section class="section" id="praktikum">
+      <div class="section-title"><span class="section-num">9</span> Praktikum</div>
+
+      <div class="accordion" id="lat1">
+        <div class="accordion-header">🔬 Latihan 1: Membuat Bentuk Dasar <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <div class="callout callout-info">
+            <span class="callout-icon">🎯</span>
+            <span class="callout-text"><strong>Tujuan:</strong> Mengenal dan menggunakan shape tools dasar, mengatur fill dan stroke.</span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" data-n="1">1</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buka Inkscape/Illustrator dan buat dokumen baru</strong></label>
+                <p>File › New Document. Pilih ukuran <strong>A4</strong>, orientasi Portrait, units: mm.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="2">2</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat persegi dengan fill merah, no stroke</strong></label>
+                <p>Tekan <code>R</code>, drag sambil tahan <code>Ctrl</code> untuk persegi sempurna. Buka Fill & Stroke (Ctrl+Shift+F), set fill ke merah, stroke ke "no paint".</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="3">3</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat lingkaran dengan fill biru, stroke hitam 3pt</strong></label>
+                <p>Tekan <code>E</code>, drag sambil tahan <code>Ctrl</code>. Set fill biru, stroke hitam dengan ketebalan 3px.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="4">4</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat 3 bentuk lain: segitiga kuning, bintang hijau, hexagon ungu</strong></label>
+                <p>Gunakan Star Tool (<code>*</code>) untuk segitiga (3 sudut), bintang (5 sudut), dan hexagon (6 sudut). Atur jumlah sudut di Tool Controls Bar.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="5">5</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Atur posisi dan simpan</strong></label>
+                <p>Susun kelima objek dengan rapi menggunakan Align & Distribute. Simpan: <strong>Latihan01_BentukDasar_[Nama].svg</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat2">
+        <div class="accordion-header">🔬 Latihan 2: Manipulasi Objek <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <div class="callout callout-info">
+            <span class="callout-icon">🎯</span>
+            <span class="callout-text"><strong>Tujuan:</strong> Belajar memindah, resize, rotate, dan duplicate objek untuk membuat pola.</span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" data-n="1">1</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat lingkaran kecil (40x40px) di tengah canvas</strong></label>
+                <p>Tekan <code>E</code>, tahan <code>Ctrl</code> saat drag. Di Tool Controls Bar, set width dan height ke 40px.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="2">2</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Duplicate 7 kali (total 8 lingkaran)</strong></label>
+                <p>Tekan <code>Ctrl+D</code> sebanyak 7 kali. Setiap duplikat menumpuk persis di atas aslinya.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="3">3</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Susun membentuk lingkaran besar</strong></label>
+                <p>Geser setiap lingkaran ke posisi melingkar (seperti angka jam). Gunakan Rotate untuk orientasi.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="4">4</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Beri warna berbeda setiap lingkaran, tambah persegi di tengah</strong></label>
+                <p>Klik setiap lingkaran, pilih warna berbeda. Buat persegi di tengah susunan lingkaran.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="5">5</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Simpan file</strong></label>
+                <p>File › Save As: <strong>Latihan02_ManipulasiObjek_[Nama].svg</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat3">
+        <div class="accordion-header">🔬 Latihan 3: Bermain dengan Pen Tool <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <div class="callout callout-warn">
+            <span class="callout-icon">⚠️</span>
+            <span class="callout-text"><strong>Perhatian:</strong> Pen Tool adalah tool yang paling sulit untuk dipelajari tetapi paling powerful. Jangan menyerah jika hasilnya tidak sempurna pada percobaan pertama — ini normal!</span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" data-n="1">1</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Aktifkan Pen Tool (tekan P)</strong></label>
+                <p>Pastikan mode "Create regular bezier path" aktif di Tool Controls Bar.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="2">2</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat garis lurus dengan beberapa titik</strong></label>
+                <p>Klik beberapa titik. Akhiri dengan double-klik atau Enter. Hasilnya: path dengan garis lurus.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="3">3</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat path tertutup (closed path)</strong></label>
+                <p>Klik beberapa titik, lalu klik di titik awal untuk menutup path. Hasilnya: bentuk filled polygon.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="4">4</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat kurva Bezier</strong></label>
+                <p>Klik dan <strong>drag</strong> (jangan langsung lepas) untuk membuat anchor point dengan kurva. Arah drag menentukan arah kurva.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="5">5</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> <strong>Buat 3 bentuk custom dan simpan</strong></label>
+                <p>Buat setidaknya 3 bentuk unik dengan pen tool. Simpan: <strong>Latihan03_PenTool_[Nama].svg</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section class="section" id="ringkasan">
+      <div class="section-title"><span class="section-num">10</span> Ringkasan</div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text">Pada pertemuan pertama ini, kita telah mempelajari fondasi desain vector.</span>
+      </div>
+      <table>
+        <thead><tr><th>Topik</th><th>Poin Kunci</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Konsep Vector</strong></td><td>Berbasis matematika, scalable, format SVG/AI/EPS</td></tr>
+          <tr><td><strong>Vector vs Raster</strong></td><td>Vector = scalable untuk logo; Raster = foto dan detail tinggi</td></tr>
+          <tr><td><strong>Software</strong></td><td>Inkscape (gratis, direkomendasikan) atau Adobe Illustrator</td></tr>
+          <tr><td><strong>Interface</strong></td><td>Menu bar, toolbox, panels (Fill&Stroke, Layers, Align)</td></tr>
+          <tr><td><strong>Shape Tools</strong></td><td>Rectangle (R), Ellipse (E), Star (*) — tahan Ctrl untuk presisi</td></tr>
+          <tr><td><strong>Pen Tool</strong></td><td>Klik = garis lurus; Klik+Drag = kurva Bezier; Enter = selesai</td></tr>
+          <tr><td><strong>Operasi Dasar</strong></td><td>Ctrl+Z undo, Ctrl+D duplicate, Fill & Stroke dialog</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TUGAS -->
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">11</span> Tugas Individu</div>
+      <div style="background: #fdf8f0; border: 1px solid #d4ac6e; border-radius: 10px; padding: 24px;">
+        <h3 style="color: #7d5a1e; font-size: 1.05rem; margin-bottom: 12px;">🎨 Eksplorasi Tool dan Kreativitas Bentuk — "Geometris"</h3>
+        <p style="color: #374151;">Buat sebuah komposisi desain dengan tema <strong>"Geometris"</strong> menggunakan hanya shape tools dasar (tanpa pen tool).</p>
+        <br>
+        <strong style="color: #1a2942;">Ketentuan:</strong>
+        <ul style="margin-top: 8px; color: #374151;">
+          <li>Ukuran canvas: A4 portrait</li>
+          <li>Minimal <strong>15 objek</strong> dalam komposisi</li>
+          <li>Minimal <strong>5 warna</strong> berbeda</li>
+          <li>Terapkan prinsip komposisi (balance, contrast, hierarchy)</li>
+          <li>Boleh membuat pattern, ilustrasi, atau abstract art</li>
+          <li>Format: SVG (Inkscape) + PNG export 300 dpi</li>
+        </ul>
+        <br>
+        <strong style="color: #1a2942;">Kriteria Penilaian:</strong>
+        <table style="margin-top: 8px;">
+          <thead><tr><th>Aspek</th><th>Bobot</th></tr></thead>
+          <tbody>
+            <tr><td>Penggunaan tools yang benar</td><td>25%</td></tr>
+            <tr><td>Kreativitas dan komposisi</td><td>35%</td></tr>
+            <tr><td>Harmoni warna</td><td>20%</td></tr>
+            <tr><td>Kerapian dan teknis</td><td>20%</td></tr>
+          </tbody>
+        </table>
+        <br>
+        <div class="callout callout-tip" style="margin: 0;">
+          <span class="callout-icon">📁</span>
+          <span class="callout-text">Nama file: <strong>Tugas01_DesainGeometris_[NamaMahasiswa]</strong> | Deadline: Sebelum Pertemuan 2 | Format: SVG/AI + PNG + Screenshot workspace</span>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end main-content -->
+</div><!-- end page-wrap -->
+
+<footer>
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <strong>Referensi:</strong>
+    <ul style="margin-top: 8px; color: #cbd5e1;">
+      <li>Inkscape Official Documentation — inkscape.org/doc/</li>
+      <li>Adobe Illustrator User Guide — helpx.adobe.com</li>
+      <li>Bézier Curves — Fundamental Theory of Vector Graphics</li>
+    </ul>
+    <div style="margin-top: 12px; color: #94a3b8; font-size: 0.82rem;">
+      Politeknik Negeri Tanah Laut | Desain Grafis | Penyusun: M. BAHRIL ILMI, S.Kom., M.Kom. | © 2025
+    </div>
+  </div>
+</footer>
+
+<script>
+      // Auto-number and clean sidebar links
+      (function() {
+        var links = document.querySelectorAll('.toc-link');
+        var num = 1;
+        links.forEach(function(a) {
+          var clean = a.textContent.replace(/^[^\w\d\(]+/, '').trim();
+          a.textContent = num + '. ' + clean;
+          num++;
+        });
+      })();
+      document.querySelectorAll('.accordion-header').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          btn.classList.toggle('open');
+          btn.nextElementSibling.classList.toggle('open');
+        });
+      });
+      document.querySelectorAll('.tab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var group = btn.closest('.tab-group');
+          group.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+          group.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+          btn.classList.add('active');
+          group.querySelector('#' + btn.dataset.tab).classList.add('active');
+        });
+      });
+      document.querySelectorAll('.step-check').forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var num = cb.closest('.step').querySelector('.step-num');
+          if (cb.checked) { num.classList.add('done'); num.textContent = '✓'; }
+          else { num.classList.remove('done'); num.textContent = num.dataset.n; }
+        });
+      });
+      // Highlight active TOC on scroll
+      var sections = document.querySelectorAll('section[id]');
+      window.addEventListener('scroll', function() {
+        var current = '';
+        sections.forEach(function(s) { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+        document.querySelectorAll('.toc-link').forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+      });
+</script>
+</body>
+</html>

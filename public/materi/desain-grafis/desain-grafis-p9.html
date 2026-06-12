@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 9 – Desain Iklan | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* Sidebar */
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.toc-link.indent{padding-left:32px;font-size:.78rem;color:rgba(255,255,255,.5);}
+
+/* Main */
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+
+/* Sections */
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.sub-section h4{font-size:.9rem;font-weight:600;color:var(--gold-deep);margin-bottom:8px;margin-top:12px;}
+
+/* Cards & Lists */
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+
+/* Accordion */
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+
+/* Tabs */
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+
+/* Grids */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* Highlight box */
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+
+/* Steps */
+.step-list{list-style:none;padding:0;counter-reset:steps;}
+.step-list li{counter-increment:steps;display:flex;gap:14px;margin-bottom:14px;align-items:flex-start;}
+.step-list li::before{content:counter(steps);background:var(--gold);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;flex-shrink:0;margin-top:2px;}
+.step-list li .step-content{font-size:.88rem;line-height:1.65;}
+.step-list li .step-label{font-weight:700;color:var(--navy);font-size:.88rem;}
+
+/* Color palette display */
+.color-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+.color-swatch{width:80px;text-align:center;font-size:.75rem;}
+.color-swatch .swatch{height:56px;border-radius:8px;margin-bottom:4px;border:1px solid rgba(0,0,0,.08);}
+
+/* Divider */
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+
+/* Footer nav */
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Desain Iklan &amp; Advertising</div>
+    <div class="pertemuan-badge">Pertemuan 9</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#konsep-iklan" class="toc-link">Konsep Desain Iklan</a>
+    <a href="#media-iklan" class="toc-link">Media &amp; Format Iklan</a>
+    <a href="#elemen-iklan" class="toc-link">Elemen Visual Iklan</a>
+    <a href="#cta" class="toc-link">CTA &amp; Copywriting</a>
+    <a href="#layout-style" class="toc-link">Layout Style</a>
+    <a href="#psikologi-warna" class="toc-link">Psikologi Warna</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+  </nav>
+</aside>
+
+<!-- Main -->
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 9 · Desain Grafis</div>
+    <h1>Desain Iklan &amp; Advertising Design</h1>
+    <p class="subtitle">Mempelajari prinsip AIDA, media iklan, elemen visual, copywriting, layout, dan psikologi warna untuk advertising yang efektif.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Advertising Design</span></div>
+      <div class="meta-badge">Bobot: <span>Teori + Praktikum</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <!-- Pengantar -->
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar Desain Iklan</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu membuat desain iklan yang efektif dan persuasif menggunakan prinsip-prinsip advertising design yang professional, memahami psikologi visual dalam periklanan, dan mampu membuat iklan untuk berbagai media dan format.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami prinsip AIDA dalam advertising design</li>
+        <li>Mengenal berbagai format dan media iklan</li>
+        <li>Menguasai elemen-elemen visual dalam iklan</li>
+        <li>Memahami dan menerapkan psikologi warna dalam iklan</li>
+        <li>Membuat Call-to-Action yang efektif</li>
+        <li>Memahami typografi dalam advertising</li>
+        <li>Membuat layout iklan untuk berbagai media</li>
+        <li>Memahami copywriting dasar untuk desainer grafis</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="card-title">Tentang Desain Iklan</div>
+      <p style="font-size:.88rem;line-height:1.7;">Advertising design adalah seni dan ilmu menciptakan komunikasi visual yang persuasif untuk mempromosikan produk, layanan, atau ide. Berbeda dengan desain dekoratif, advertising design harus memiliki tujuan spesifik: membuat orang mengambil action.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Prinsip AIDA -->
+  <section class="content-section" id="konsep-iklan">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Prinsip AIDA &amp; Konsep Dasar</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">A – Attention (Perhatian)</div>
+        <div class="gc-body">Tarik perhatian dalam 3 detik. Visual striking, headline kuat, warna contrast. Orang scroll cepat – harus berhenti.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">I – Interest (Minat)</div>
+        <div class="gc-body">Bangun interest dengan benefit, bukan fitur. "Apa untungnya untuk saya?" – subheadline, supporting visual, detail relevan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">D – Desire (Keinginan)</div>
+        <div class="gc-body">Create emotional connection. Testimonial, social proof, scarcity, exclusivity. Buat mereka INGIN produk Anda.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">A – Action (Tindakan)</div>
+        <div class="gc-body">CTA yang jelas dan mudah. "Beli Sekarang", "Daftar Gratis", "Hubungi Kami". Remove friction semaksimal mungkin.</div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Hierarchy Visual</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Tingkatan Visual dalam Iklan <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ol class="styled">
+            <li><b>Primary Element:</b> Hero image / visual utama – eye-catcher</li>
+            <li><b>Headline:</b> Pesan utama, terbaca dalam 1 detik</li>
+            <li><b>Subheadline:</b> Detail pendukung, elaborasi headline</li>
+            <li><b>Body Copy:</b> Detail produk, manfaat, informasi</li>
+            <li><b>CTA (Call to Action):</b> Action button / perintah</li>
+            <li><b>Branding:</b> Logo, tagline, identitas brand</li>
+          </ol>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Target Audience Analysis <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ul class="styled">
+            <li><b>Demographics:</b> Usia, gender, lokasi, pendapatan</li>
+            <li><b>Psychographics:</b> Nilai, minat, gaya hidup, kepribadian</li>
+            <li><b>Pain Points:</b> Masalah yang ingin diselesaikan</li>
+            <li><b>Behavior:</b> Kebiasaan belanja, media konsumsi</li>
+            <li><b>Message:</b> Tone dan visual yang resonan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Media Iklan -->
+  <section class="content-section" id="media-iklan">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Media &amp; Format Iklan</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-digital')">Digital</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-print')">Print</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-ooh')">OOH</button>
+      </div>
+      <div id="tab-digital" class="tab-panel active">
+        <div class="grid-2">
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Social Media Ads</h4>
+            <ul class="styled">
+              <li>Instagram Feed: 1080×1080 (Square), 1080×1350 (Portrait)</li>
+              <li>Instagram Story: 1080×1920 (9:16)</li>
+              <li>Facebook Banner: 1200×628</li>
+              <li>Twitter Header: 1500×500</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Web Display Ads</h4>
+            <ul class="styled">
+              <li>Leaderboard: 728×90</li>
+              <li>Medium Rectangle: 300×250</li>
+              <li>Skyscraper: 160×600</li>
+              <li>Large Rectangle: 336×280</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:.85rem;color:#555;margin-top:8px;">Digital ads: RGB color space, 72 DPI, file size optimal untuk web loading.</p>
+      </div>
+      <div id="tab-print" class="tab-panel">
+        <div class="grid-2">
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Format Umum</h4>
+            <ul class="styled">
+              <li>Full Page: A4 (210×297mm)</li>
+              <li>Half Page: 210×148mm (Landscape)</li>
+              <li>Quarter Page: 105×148mm</li>
+              <li>Double Page Spread: A3</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Spesifikasi Teknis</h4>
+            <ul class="styled">
+              <li>Resolution: Minimum 300 DPI</li>
+              <li>Color Mode: CMYK</li>
+              <li>Bleed: 3-5mm setiap sisi</li>
+              <li>Safe zone: 5mm dari trim</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="tab-ooh" class="tab-panel">
+        <div class="grid-2">
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Billboard &amp; Spanduk</h4>
+            <ul class="styled">
+              <li>Billboard: 14×48 feet (standard USA)</li>
+              <li>Half Billboard: 5×12 feet</li>
+              <li>Spanduk: Berbagai ukuran custom</li>
+              <li>Baliho: Skala besar</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:var(--navy);font-size:.88rem;margin-bottom:8px;">Prinsip OOH</h4>
+            <ul class="styled">
+              <li>3-5 kata maksimum untuk headline</li>
+              <li>Visual sederhana, impactful</li>
+              <li>Contrast tinggi</li>
+              <li>Font besar, mudah dibaca jarak jauh</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Elemen Visual -->
+  <section class="content-section" id="elemen-iklan">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Elemen Visual Iklan</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Headline – Kunci Pertama Perhatian <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Tujuan:</b> Hentikan scrolling, komunikasi benefit utama</li>
+          <li><b>Ukuran:</b> Paling besar, paling kontras</li>
+          <li><b>Singkat &amp; Powerful:</b> 5-8 kata optimal</li>
+          <li><b>Jenis:</b> Question, Statement, How-to, Benefit, Curiosity</li>
+          <li><b>Font:</b> Bold, impactful, sesuai brand personality</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Hero Image – Visual Utama <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Product shot:</b> Foto produk professional, clean background</li>
+          <li><b>Lifestyle:</b> Produk dalam konteks penggunaan nyata</li>
+          <li><b>People:</b> Wajah manusia sangat effective</li>
+          <li><b>Abstract:</b> Graphic/ilustrasi untuk mood dan feeling</li>
+          <li><b>Kualitas:</b> Tinggi, sharp, profesional – no blur!</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Typography dalam Advertising <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Hierarchy:</b> Headline → Subheadline → Body → CTA</li>
+          <li><b>Keterbacaan:</b> Minimal 10pt untuk body, 16pt untuk subheadline</li>
+          <li><b>Max fonts:</b> 2-3 font family</li>
+          <li><b>Personality:</b> Serif=classic/mewah, Sans=modern/clean, Script=personal/elegan</li>
+          <li><b>Contrast:</b> Dark text on light, light text on dark</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Branding Elements <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Logo:</b> Visible tapi tidak dominan (kecuali brand awareness ads)</li>
+          <li><b>Brand Colors:</b> Consistent dengan brand guidelines</li>
+          <li><b>Tagline:</b> Singkat, memorable, komunikasikan promise</li>
+          <li><b>Brand Voice:</b> Tone tulisan sesuai kepribadian brand</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- CTA & Copywriting -->
+  <section class="content-section" id="cta">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>CTA &amp; Copywriting Dasar</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Action-Oriented CTA</div>
+        <div class="gc-body">Mulai dengan kata kerja kuat: "Beli", "Dapatkan", "Coba", "Daftar", "Download". Jelas dan langsung.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Value Proposition CTA</div>
+        <div class="gc-body">"Dapatkan Gratis", "Hemat 50%", "Coba 30 Hari". Sertakan benefit langsung dalam CTA.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Urgency CTA</div>
+        <div class="gc-body">"Pesan Sekarang", "Stok Terbatas", "Penawaran Berakhir". Ciptakan rasa urgensi.</div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Desain Tombol CTA</h3>
+      <ul class="styled">
+        <li><b>Contrast Tinggi:</b> CTA harus "pop" dari background</li>
+        <li><b>Ukuran:</b> Cukup besar untuk di-tap (min 44×44px mobile)</li>
+        <li><b>Warna:</b> Berbeda dari color scheme utama untuk attention</li>
+        <li><b>Shape:</b> Rounded untuk friendly, sharp corners untuk professional</li>
+        <li><b>Whitespace:</b> Ruang sekitar CTA untuk fokus</li>
+      </ul>
+    </div>
+
+    <div class="sub-section">
+      <h3>Copywriting Persuasif</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Prinsip Copywriting untuk Desainer <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ul class="styled">
+            <li><b>Benefit vs Feature:</b> "Tidur lebih nyenyak" bukan "material kasur premium"</li>
+            <li><b>Emotional Triggers:</b> Rasa aman, cinta, status, achievement</li>
+            <li><b>Social Proof:</b> "1 Juta+ pelanggan puas"</li>
+            <li><b>Scarcity:</b> "Tersisa 5 unit", "Hanya hari ini"</li>
+            <li><b>Pain Point:</b> Acknowledge masalah, tawarkan solusi</li>
+            <li><b>Active Voice:</b> "Dapatkan diskon" vs "Diskon dapat diperoleh"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Layout Styles -->
+  <section class="content-section" id="layout-style">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Layout Style dalam Iklan</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Picture Window Layout</div>
+        <div class="gc-body">Foto/gambar mendominasi (60-80% area). Teks minimal. Visual berbicara. Cocok untuk luxury, fashion, lifestyle.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Copy Heavy Layout</div>
+        <div class="gc-body">Teks mendominasi. Headline besar, banyak body copy. Cocok untuk produk yang perlu penjelasan (tech, financial).</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Frame Layout</div>
+        <div class="gc-body">Border/frame mengelilingi konten. Konten terfokus di dalam. Elegan, formal, classic.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Grid Layout</div>
+        <div class="gc-body">Multiple produk/informasi dalam grid teratur. Cocok untuk e-commerce, katalog, showcase banyak item.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Circus Layout</div>
+        <div class="gc-body">Banyak elemen berbeda ukuran, arah, dan posisi. Energi tinggi. Cocok untuk sale, event, promosi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Mondrian Layout</div>
+        <div class="gc-body">Grid geometric dengan warna solid berbeda. Modern, bold, artistic. Cocok untuk brand yang edgy.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Psikologi Warna -->
+  <section class="content-section" id="psikologi-warna">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Psikologi Warna dalam Iklan</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title" style="color:#c0392b;">🔴 Merah</div>
+        <div class="gc-body">Urgensi, energi, passion, bahaya. Cocok: sale, food, CTA button, sport. Meningkatkan appetite.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title" style="color:#e67e22;">🟠 Oranye</div>
+        <div class="gc-body">Friendly, energi, affordable, fun. Cocok: food, youth, casual brand, CTA. Optimisme dan kreativitas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title" style="color:#f1c40f;">🟡 Kuning</div>
+        <div class="gc-body">Kebahagiaan, optimisme, perhatian. Cocok: food, leisure, kids. Paling visible dari jauh (OOH).</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title" style="color:#27ae60;">🟢 Hijau</div>
+        <div class="gc-body">Alam, kesehatan, uang, pertumbuhan. Cocok: eco, health, finance, food. Trust dan ketenangan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title" style="color:#2980b9;">🔵 Biru</div>
+        <div class="gc-body">Trust, profesional, calming, tech. Cocok: finance, tech, corporate, health. Paling disukai secara global.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title" style="color:#8e44ad;">🟣 Ungu</div>
+        <div class="gc-body">Luxury, misterius, kreatif, spiritual. Cocok: beauty, luxury, creative, wellness.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Color Combination Strategy</div>
+      <p><b>Monochromatic:</b> Satu warna, berbagai shade – elegan, cohesive. <b>Complementary:</b> Warna berlawanan di color wheel – high contrast, dynamic. <b>Analogous:</b> Warna berdekatan – harmonis, comfortable. <b>Triadic:</b> 3 warna merata – vibrant, balanced.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Praktikum -->
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum Pertemuan 9</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: Social Media Ad (Instagram)</div>
+      <ul class="styled">
+        <li>Buat iklan produk nyata atau imajiner</li>
+        <li>Format: 1080×1080px (feed) atau 1080×1920px (story)</li>
+        <li>Terapkan prinsip AIDA: Attention → CTA yang jelas</li>
+        <li>Gunakan hierarchy visual yang tepat</li>
+        <li>Apply psikologi warna sesuai industri/target</li>
+        <li>Waktu: 60-90 menit</li>
+        <li>Export: PNG dan PDF</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 2: Spanduk / Banner Promosi</div>
+      <ul class="styled">
+        <li>Tema: Event kampus, toko, atau UMKM lokal</li>
+        <li>Format: 120×40cm (spanduk) atau web banner</li>
+        <li>Max 5-7 kata pada headline</li>
+        <li>CTA yang kuat dan terlihat jelas</li>
+        <li>Waktu: 45-60 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 3: AIDA Analysis</div>
+      <ul class="styled">
+        <li>Cari 3 iklan dari brand terkenal (digital atau print)</li>
+        <li>Analisa setiap iklan menggunakan framework AIDA</li>
+        <li>Identifikasi elemen visual hierarchy</li>
+        <li>Evaluasi efektivitas CTA dan copywriting</li>
+        <li>Presentasikan temuan dalam tabel perbandingan</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- Ringkasan -->
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Prinsip</div>
+        <div class="gc-body">AIDA framework, visual hierarchy, target audience analysis, brand consistency</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Format &amp; Media</div>
+        <div class="gc-body">Digital (social media, web), Print (majalah, koran), OOH (billboard, spanduk)</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Elemen Kunci</div>
+        <div class="gc-body">Headline, hero image, typography, CTA, branding, psikologi warna</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Nav -->
+  <nav class="footer-nav">
+    <a href="desain-grafis-p7.html">← Pertemuan 7</a>
+    <a href="desain-grafis-p10.html" class="next-btn">Pertemuan 10 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
+}
+function switchTab(btn,panelId){
+  var g=btn.closest('.tab-group');
+  g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+(function(){
+  var links=document.querySelectorAll('.toc-link:not(.indent)');
+  var num=1;
+  links.forEach(function(a){
+    var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();
+    a.textContent=num+'. '+clean;
+    num++;
+  });
+})();
+window.addEventListener('scroll',function(){
+  var sections=document.querySelectorAll('.content-section');
+  var links=document.querySelectorAll('.toc-link');
+  var scrollY=window.scrollY+120;
+  sections.forEach(function(sec){
+    if(sec.offsetTop<=scrollY && sec.offsetTop+sec.offsetHeight>scrollY){
+      links.forEach(function(l){l.classList.remove('active');});
+      var id=sec.getAttribute('id');
+      var active=document.querySelector('.toc-link[href="#'+id+'"]');
+      if(active)active.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>

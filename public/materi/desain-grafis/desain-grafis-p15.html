@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 15 – Motion Graphics &amp; Final Project | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+/* Project types */
+.project-type{background:#fff;border:2px solid rgba(184,137,59,.2);border-radius:12px;padding:20px 24px;margin-bottom:14px;}
+.project-type-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.project-type-badge{background:var(--navy);color:#fff;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:20px;}
+.project-type h3{font-weight:700;color:var(--navy);font-size:.95rem;}
+/* Rubric */
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.12);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.03);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+/* Code block */
+.code-block{background:var(--navy);color:#e8f4f8;border-radius:8px;padding:16px;font-family:monospace;font-size:.83rem;line-height:1.6;margin-bottom:12px;overflow-x:auto;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Motion Graphics &amp; Final Project</div>
+    <div class="pertemuan-badge">Pertemuan 15</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#motion-graphics" class="toc-link">Motion Graphics</a>
+    <a href="#text-animation" class="toc-link">Text Animation</a>
+    <a href="#mograph-projects" class="toc-link">MoGraph Projects</a>
+    <a href="#final-project" class="toc-link">Final Project</a>
+    <a href="#rubrik" class="toc-link">Rubrik Penilaian</a>
+    <a href="#render-optimize" class="toc-link">Render Optimisasi</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#penutup" class="toc-link">Penutup</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 15 · Desain Grafis · Minggu 4 dari 4</div>
+    <h1>Motion Graphics &amp; Final Project</h1>
+    <p class="subtitle">Culmination dari modul 3D: motion graphics concepts, text animation, logo animation, final project planning dan execution, rendering optimization, dan portfolio presentation.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Motion Graphics</span></div>
+      <div class="meta-badge">Minggu 4 dari 4: <span>3D &amp; Animasi</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Culmination dari Modul 3D</div>
+      <p>Pertemuan 15 adalah minggu terakhir dari empat minggu pembelajaran 3D dan animasi. Ini adalah waktunya mengintegrasikan semua yang telah dipelajari – advanced modeling (P12), materials &amp; lighting (P13), animation fundamentals (P14) – ke dalam motion graphics dan final project yang portfolio-worthy.</p>
+    </div>
+    <div class="grid-3">
+      <div class="gc-title" style="display:none;"></div>
+      <div class="grid-card">
+        <div class="gc-title">Motion Graphics</div>
+        <div class="gc-body">Animated graphic design – typography, shapes, logos. Intersection antara desain grafis dan animasi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Text Animation</div>
+        <div class="gc-body">3D text dengan extrusion dan bevel. Animate per-huruf, scale, glow, position untuk impactful reveals.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Final Project</div>
+        <div class="gc-body">Showcase semua skills 3D dalam satu project portfolio-worthy yang akan dinilai sebagai akhir modul.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="motion-graphics">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Motion Graphics Concepts</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Apa itu Motion Graphics?</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Definisi</div>
+          <div class="gc-body">Animated graphic design – typography, shapes, logos bergerak. Blend antara desain dan animasi. Bukan character animation.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Aplikasi</div>
+          <div class="gc-body">Logo animations, title sequences, explainer videos, social media content, TV graphics, advertising, UI animations.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">MoGraph vs Character Animation</div>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:8px;">Motion Graphics</p>
+          <ul class="styled">
+            <li>Abstract, design-focused</li>
+            <li>Typography, shapes, logos</li>
+            <li>Geometric precision</li>
+            <li>Design principles apply</li>
+            <li>Fast production</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:8px;">Character Animation</p>
+          <ul class="styled">
+            <li>Organic, storytelling</li>
+            <li>Characters, creatures</li>
+            <li>Rigging diperlukan</li>
+            <li>12 Principles heavy</li>
+            <li>Lebih time-intensive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="text-animation">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Text Animation &amp; 3D Typography</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Membuat 3D Text</h3>
+      <ol class="styled">
+        <li>Shift+A → Text</li>
+        <li>Tab untuk masuk edit mode – ketik teks Anda</li>
+        <li>Tab lagi ke Object Mode</li>
+        <li>Properties → Object Data → Geometry:
+          <ul class="styled" style="margin-top:4px;">
+            <li><b>Extrude:</b> Ketebalan 3D (misal: 0.1)</li>
+            <li><b>Bevel Depth:</b> Rounded edges (misal: 0.01)</li>
+            <li><b>Bevel Resolution:</b> Kehalusan bevel</li>
+          </ul>
+        </li>
+        <li>Object Data → Font → Open Font untuk ganti typeface</li>
+        <li>Apply material untuk metallic/emissive text</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Text Animation Techniques</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Scale Reveal</div>
+          <div class="gc-body">Frame 1: Scale = 0. Frame 20: Scale = 1. Add ease in/out via Graph Editor untuk natural feel.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Position Entry</div>
+          <div class="gc-body">Start dari off-screen, animate masuk ke posisi final. Overshoot + settle back untuk bounce feel.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Glow Animation</div>
+          <div class="gc-body">Keyframe Emission Strength dari 0 ke 5+. Material "turns on". Dramatic dan eye-catching.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Per-Letter Animation</div>
+          <div class="gc-body">Object → Convert to Mesh → P → Separate by Loose Parts. Animate tiap huruf individual dengan stagger timing.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="mograph-projects">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Simple Motion Graphics Projects</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Logo Animation Sequence <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Import atau buat logo 3D (text + shape)</li>
+          <li>Stage 1 (0-1s): Elements masuk dari berbagai arah</li>
+          <li>Stage 2 (1-3s): Assemble menjadi logo lengkap</li>
+          <li>Stage 3 (3-5s): Hold dengan glow/pulse effect</li>
+          <li>Animate camera subtle untuk dynamism</li>
+          <li>Final: static hold dengan emission gentle</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Typography Reveal <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Convert text ke mesh → Separate letters</li>
+          <li>Set origin ke geometry tiap huruf</li>
+          <li>Animate tiap huruf dengan offset 2-3 frame antar huruf</li>
+          <li>Scale dari 0 ke 1, atau position dari bawah</li>
+          <li>Stagger timing untuk cascade effect</li>
+          <li>Final: semua huruf di posisi, gentle settle</li>
+        </ol>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Product Showcase Clip <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>3D produk dengan materials proper</li>
+          <li>0-5s: Turntable 360° untuk perkenalkan produk</li>
+          <li>5-8s: Camera cut ke close-up detail</li>
+          <li>8-12s: Text overlay animate masuk (nama produk, fitur)</li>
+          <li>12-15s: Wide shot dengan logo brand</li>
+          <li>Professional lighting throughout</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="final-project">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Final Project – Tugas Besar 3D</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Deskripsi Final Project</div>
+      <p>Buat sebuah animated 3D scene yang menshowcase semua skills dari pertemuan 10-15. Project ini akan menjadi portfolio piece dan dinilai sebagai culmination dari pembelajaran 3D Anda.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Pilih Salah Satu Project Type</h3>
+
+      <div class="project-type">
+        <div class="project-type-header">
+          <div class="project-type-badge">A</div>
+          <h3>Product Showcase Animation</h3>
+        </div>
+        <ul class="styled">
+          <li>Model 3D product (nyata atau imajiner)</li>
+          <li>Realistic materials dan textures</li>
+          <li>Professional lighting</li>
+          <li>Turntable atau animated reveal</li>
+          <li>Text overlay animated</li>
+          <li>Durasi: 15-30 detik</li>
+        </ul>
+      </div>
+
+      <div class="project-type">
+        <div class="project-type-header">
+          <div class="project-type-badge">B</div>
+          <h3>Logo Animation Sequence</h3>
+        </div>
+        <ul class="styled">
+          <li>3D logo design (boleh dari tugas sebelumnya)</li>
+          <li>Multiple animation stages (build, reveal, finalize)</li>
+          <li>Dynamic camera atau static composition</li>
+          <li>Effects (glow, depth of field)</li>
+          <li>Durasi: 5-15 detik</li>
+        </ul>
+      </div>
+
+      <div class="project-type">
+        <div class="project-type-header">
+          <div class="project-type-badge">C</div>
+          <h3>Motion Graphics Piece</h3>
+        </div>
+        <ul class="styled">
+          <li>Abstract atau thematic piece</li>
+          <li>Animated shapes, text, objects</li>
+          <li>Synchronized animation dengan timing bagus</li>
+          <li>Durasi: 10-20 detik</li>
+        </ul>
+      </div>
+
+      <div class="project-type">
+        <div class="project-type-header">
+          <div class="project-type-badge">D</div>
+          <h3>Animated Scene</h3>
+        </div>
+        <ul class="styled">
+          <li>Simple environment/scene</li>
+          <li>Multiple animated objects</li>
+          <li>Camera animation</li>
+          <li>Elemen storytelling sederhana</li>
+          <li>Durasi: 20-30 detik</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Minimum Requirements (Semua Project Type)</h3>
+      <div class="grid-2">
+        <div class="card" style="margin-bottom:0;">
+          <div class="card-title">Modeling</div>
+          <ul class="styled">
+            <li>Minimal 3 objek distinct</li>
+            <li>Edit mode techniques digunakan</li>
+            <li>Minimal 2 modifier efektif</li>
+            <li>Clean topology</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:0;">
+          <div class="card-title">Materials</div>
+          <ul class="styled">
+            <li>Minimal 3 material berbeda</li>
+            <li>Minimal 1 procedural material</li>
+            <li>Penggunaan Metallic, Roughness, Emission tepat</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:0;margin-top:16px;">
+          <div class="card-title">Animation</div>
+          <ul class="styled">
+            <li>Minimal 10 detik durasi</li>
+            <li>Minimal 3 property animated</li>
+            <li>Smooth dengan proper easing</li>
+            <li>No jerky movements</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:0;margin-top:16px;">
+          <div class="card-title">Rendering</div>
+          <ul class="styled">
+            <li>Min 1920×1080 Full HD</li>
+            <li>24 fps atau 30 fps</li>
+            <li>Minimal noise</li>
+            <li>Output: MP4 video</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section" style="margin-top:20px;">
+      <h3>Deliverables (Yang Dikumpulkan)</h3>
+      <div class="code-block">FinalProject_3D_NamaMahasiswa/
+├── FinalProject_Animation.mp4       ← Video render final
+├── FinalProject_Source.blend        ← File Blender
+└── Documentation/
+    ├── Wireframe.png                ← Render wireframe
+    ├── Materials_01.png, _02.png    ← Screenshot materials
+    ├── Lighting_Setup.png
+    ├── Process_Screenshots/
+    └── Presentation.pdf             ← 1-2 halaman</div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="rubrik">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Rubrik Penilaian Final Project</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Kriteria</th><th>Bobot</th><th>Deskripsi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Modeling Quality</b></td><td><span class="score-badge">20%</span></td><td>Kompleksitas, detail, clean topology, proper use of tools/modifiers</td></tr>
+        <tr><td><b>Materials &amp; Texturing</b></td><td><span class="score-badge">15%</span></td><td>Kualitas realism atau estetika, variasi, teknikal execution</td></tr>
+        <tr><td><b>Lighting</b></td><td><span class="score-badge">15%</span></td><td>Professional setup, memperkuat subjek, mood appropriate</td></tr>
+        <tr><td><b>Animation</b></td><td><span class="score-badge">25%</span></td><td>Smooth motion, easing/timing, kreativitas, principles applied</td></tr>
+        <tr><td><b>Camera &amp; Komposisi</b></td><td><span class="score-badge">10%</span></td><td>Framing efektif, komposisi baik, camera motion smooth</td></tr>
+        <tr><td><b>Overall Polish</b></td><td><span class="score-badge">10%</span></td><td>Professional finish, attention to detail, coherent aesthetic</td></tr>
+        <tr><td><b>Dokumentasi</b></td><td><span class="score-badge">5%</span></td><td>Clear documentation, proses dijelaskan, presentasi profesional</td></tr>
+        <tr><td><b>BONUS</b></td><td><span class="score-badge">+10%</span></td><td>Advanced techniques, exceptional creativity, goes beyond requirements</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="render-optimize">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Rendering Optimization</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Render Lebih Cepat <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Gunakan Eevee untuk previews, Cycles untuk final</li>
+          <li>Aktifkan Denoising untuk reduce noise dengan sample lebih rendah</li>
+          <li>Test render di 50% resolution sebelum final</li>
+          <li>GPU rendering untuk Cycles jauh lebih cepat dari CPU</li>
+          <li>Frame skip: render setiap 5 frame untuk timing check</li>
+          <li>Render region (Ctrl+B) untuk test area tertentu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Compositing Dasar (Optional) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Compositing workspace di Blender</li>
+          <li>Node-based post-processing</li>
+          <li>Color correction, bloom/glare, vignette</li>
+          <li>Lebih cepat dari re-render untuk adjustments warna</li>
+          <li>Render image sequence → composite → export video</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Common Mistakes dalam Final Project <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Scope terlalu ambisius – simplify dan polish lebih baik</li>
+          <li>Manajemen waktu buruk – mulai jauh sebelum deadline</li>
+          <li>Tidak test render berkala – cek progress sering</li>
+          <li>Lighting buruk merusak model yang bagus</li>
+          <li>Animasi jerky karena tidak pakai Graph Editor</li>
+          <li>Lupa dokumentasi dan presentation</li>
+          <li>File tidak ter-organize</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum Pertemuan 15</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: Text Animation</div>
+      <ul class="styled">
+        <li>Buat 3D text (nama Anda atau pesan)</li>
+        <li>Tambah extrude dan bevel</li>
+        <li>Apply material metallic atau emissive</li>
+        <li>Animate: scale dari 0, rotation, material glow</li>
+        <li>Durasi 3-5 detik</li>
+        <li>Waktu: 45-60 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 2: Logo Animation</div>
+      <ul class="styled">
+        <li>Logo (existing atau buat baru)</li>
+        <li>3D extrusion</li>
+        <li>Multiple animation stages: build → reveal → hold</li>
+        <li>Professional lighting</li>
+        <li>Durasi 5-10 detik, smooth transitions</li>
+        <li>Waktu: 90 menit</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 3: Final Project Development</div>
+      <ul class="styled">
+        <li>Mulai working on final project</li>
+        <li>Selesaikan modeling phase</li>
+        <li>Apply materials awal</li>
+        <li>Setup lighting</li>
+        <li>Begin animation planning (keyframe awal)</li>
+        <li>Test render beberapa frame</li>
+        <li>Waktu: Sisa sesi</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="penutup">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Penutup – Selamat!</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Selamat Menyelesaikan Modul 3D!</div>
+      <p>Anda telah menyelesaikan 4 minggu intensif pembelajaran 3D modeling dan animation dalam Blender. Dari basic modeling (P10), kuis praktikum (P11), advanced modeling (P12), materials &amp; lighting (P13), animation fundamentals (P14), hingga motion graphics &amp; final project (P15) – semua skills sudah Anda miliki!</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Skills Dikuasai</div>
+        <div class="gc-body">Complete 3D workflow, node-based materials, professional lighting, keyframe animation, motion graphics creation</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Next Steps</div>
+        <div class="gc-body">Complete final project, build portfolio, lanjutkan belajar Blender, join komunitas CG online, apply skills di project nyata</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Resources</div>
+        <div class="gc-body">Blender Guru (YouTube), CG Cookie, Blender Artists community, Poly Haven untuk assets gratis</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tips Sukses Final Project</div>
+      <div class="grid-2">
+        <ul class="styled">
+          <li><b>Simple &amp; Polish</b> lebih baik dari complex &amp; unfinished</li>
+          <li>Save version berkala (v1, v2, v3)</li>
+          <li>Test renders early dan sering</li>
+          <li>Kumpulkan dokumentasi sepanjang proses</li>
+        </ul>
+        <ul class="styled">
+          <li>Lighting is key – invest time disini</li>
+          <li>Graph Editor untuk smooth animation</li>
+          <li>Organize scene (collections, naming)</li>
+          <li>Backup file ke tempat lain</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-grafis-p14.html">← Pertemuan 14</a>
+    <a href="../index.html" class="next-btn" style="background:var(--gold);border-color:var(--gold);">Kembali ke Index →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

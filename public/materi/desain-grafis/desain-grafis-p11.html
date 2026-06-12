@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 11 – Kuis Praktikum Blender | Desain Grafis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+/* Rubric table */
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+/* Checklist */
+.checklist{list-style:none;padding:0;}
+.checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid rgba(184,137,59,.1);font-size:.88rem;}
+.checklist li:last-child{border-bottom:none;}
+.checklist li input[type=checkbox]{width:18px;height:18px;accent-color:var(--gold);flex-shrink:0;margin-top:2px;}
+/* Warning box */
+.warning-box{background:rgba(220,53,69,.06);border:1px solid rgba(220,53,69,.3);border-radius:10px;padding:16px 20px;margin-bottom:16px;}
+.warning-box .wb-title{font-weight:700;color:#c0392b;margin-bottom:8px;font-size:.9rem;}
+.warning-box p{font-size:.87rem;line-height:1.7;color:#555;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Grafis</div>
+    <div class="course-title">Kuis Praktikum Blender</div>
+    <div class="pertemuan-badge">Pertemuan 11</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar Kuis</a>
+    <a href="#format" class="toc-link">Format &amp; Aturan</a>
+    <a href="#rubrik" class="toc-link">Rubrik Penilaian</a>
+    <a href="#skenario" class="toc-link">Skenario Tugas</a>
+    <a href="#review" class="toc-link">Review Materi</a>
+    <a href="#tips" class="toc-link">Tips &amp; Strategi</a>
+    <a href="#persiapan" class="toc-link">Persiapan</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 11 · Desain Grafis</div>
+    <h1>Kuis &amp; Ujian Praktikum Blender</h1>
+    <p class="subtitle">Evaluasi kemampuan modeling 3D dasar menggunakan Blender yang telah dipelajari pada pertemuan 10. Menguji pemahaman interface, transformasi, mesh editing, modifier, material, dan rendering.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Tipe: <span>Kuis Praktikum</span></div>
+      <div class="meta-badge">Software: <span>Blender 3.x/4.x</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar Kuis Praktikum</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Tujuan Evaluasi</div>
+      <p>Kuis praktikum pertemuan 11 bertujuan untuk mengevaluasi pemahaman dan kemampuan mahasiswa dalam menggunakan Blender 3D dasar. Ini bukan UTS atau UAS – ini adalah kuis tengah modul untuk memastikan semua mahasiswa telah menguasai fondasi sebelum melanjutkan ke materi advanced di pertemuan 12-15.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Yang Diuji</div>
+        <div class="gc-body">Interface Blender, navigasi, transformasi objek, mesh editing dasar, modifier, material, dan rendering.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Format</div>
+        <div class="gc-body">Praktikum langsung di Blender. Membuat objek 3D sesuai skenario dalam waktu yang ditentukan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Output</div>
+        <div class="gc-body">File .blend + render PNG. Dikumpulkan melalui platform yang ditentukan oleh dosen.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="format">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Format &amp; Aturan Kuis</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Ketentuan Umum</div>
+      <ul class="styled">
+        <li>Kuis dilaksanakan secara individual</li>
+        <li>Durasi: 90-120 menit (sesuai arahan dosen)</li>
+        <li>Software: Blender versi 3.x atau 4.x</li>
+        <li>Tidak boleh menggunakan asset/file dari luar kecuali ditentukan</li>
+        <li>Boleh membuka dokumentasi Blender (blender.org/docs)</li>
+        <li>Dilarang copy-paste dari teman atau internet</li>
+      </ul>
+    </div>
+
+    <div class="warning-box">
+      <div class="wb-title">Peringatan</div>
+      <p>Ketidakjujuran akademik (mencontek, plagiarisme) akan mendapat nilai 0 dan sanksi akademik sesuai peraturan institusi. Kerjakan sendiri dengan kemampuan yang telah dipelajari.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Format Pengumpulan</div>
+      <ul class="styled">
+        <li>File .blend dengan nama: <b>Kuis11_NIM_Nama.blend</b></li>
+        <li>Render PNG: <b>Kuis11_NIM_Nama.png</b></li>
+        <li>Resolusi render: minimal 1280×720 (HD)</li>
+        <li>Deadline: Sesuai arahan dosen</li>
+        <li>Upload ke platform: Google Classroom / LMS</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="rubrik">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Rubrik Penilaian</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th>Kriteria</th>
+          <th>Bobot</th>
+          <th>Deskripsi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Kelengkapan Objek</b></td>
+          <td><span class="score-badge">25%</span></td>
+          <td>Semua objek yang diminta hadir dalam scene. Sesuai deskripsi skenario.</td>
+        </tr>
+        <tr>
+          <td><b>Teknik Modeling</b></td>
+          <td><span class="score-badge">25%</span></td>
+          <td>Penggunaan Edit Mode, Extrude, Loop Cut, Bevel, dan tools lainnya dengan benar.</td>
+        </tr>
+        <tr>
+          <td><b>Modifier</b></td>
+          <td><span class="score-badge">15%</span></td>
+          <td>Minimal 2 modifier digunakan secara tepat dan efektif.</td>
+        </tr>
+        <tr>
+          <td><b>Material</b></td>
+          <td><span class="score-badge">15%</span></td>
+          <td>Minimal 3 material berbeda. Warna, metallic, roughness diatur dengan tepat.</td>
+        </tr>
+        <tr>
+          <td><b>Lighting &amp; Camera</b></td>
+          <td><span class="score-badge">10%</span></td>
+          <td>Pencahayaan memadai, kamera well-positioned, komposisi render baik.</td>
+        </tr>
+        <tr>
+          <td><b>Kualitas Render</b></td>
+          <td><span class="score-badge">10%</span></td>
+          <td>Render bersih, tidak terlalu gelap/terang, resolusi cukup.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Nilai A (85-100)</div>
+        <div class="gc-body">Semua kriteria terpenuhi dengan baik. Teknik tepat, hasil rapi, creative execution.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Nilai B (70-84)</div>
+        <div class="gc-body">Mayoritas kriteria terpenuhi. Beberapa minor issue pada teknik atau material.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Nilai C (55-69)</div>
+        <div class="gc-body">Objek ada tapi teknik kurang tepat. Material atau lighting kurang optimal.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="skenario">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Skenario Tugas (Contoh)</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Skenario A: Still Life – Meja Kerja <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:10px;"><b>Deskripsi:</b> Buat scene still life berupa meja kerja sederhana dengan objek-objek di atasnya.</p>
+        <p style="margin-bottom:8px;"><b>Objek yang harus dibuat:</b></p>
+        <ul class="styled">
+          <li>Meja (1 buah) – gunakan Cube, edit proporsi</li>
+          <li>Laptop atau buku (1 buah)</li>
+          <li>Gelas minum (1 buah) – gunakan Cylinder</li>
+          <li>Lampu meja (1 buah) – optional bonus</li>
+        </ul>
+        <p style="margin-top:10px;"><b>Persyaratan teknis:</b> Edit Mode wajib digunakan, minimal 2 modifier, minimal 3 material berbeda, render dari sudut yang menarik.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Skenario B: Scene Outdoor Sederhana <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:10px;"><b>Deskripsi:</b> Buat scene outdoor sederhana dengan beberapa elemen alam dan buatan manusia.</p>
+        <ul class="styled">
+          <li>Ground plane</li>
+          <li>Minimal 2 pohon sederhana (silinder + sphere)</li>
+          <li>1 bangunan/rumah sederhana</li>
+          <li>Jalur/path (plane yang di-edit)</li>
+        </ul>
+        <p style="margin-top:10px;"><b>Persyaratan teknis:</b> Array modifier untuk elemen berulang, material dengan warna alam (hijau, coklat, abu-abu), Sun light untuk pencahayaan outdoor.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Skenario C: Product Display <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:10px;"><b>Deskripsi:</b> Buat display produk 3D sederhana (bebas memilih produk: botol, kaleng, kotak, dll).</p>
+        <ul class="styled">
+          <li>Produk utama (1 buah, detail cukup)</li>
+          <li>Alas/platform display</li>
+          <li>Background/backdrop sederhana</li>
+        </ul>
+        <p style="margin-top:10px;"><b>Persyaratan teknis:</b> Bevel modifier untuk edge halus, material realistis (metallic untuk logam, transmission untuk kaca), 3-point lighting setup, kamera dengan focal length 85mm.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="review">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Review Materi Kuis</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Poin Kunci yang Harus Dikuasai</div>
+      <p>Pastikan Anda menguasai semua poin berikut sebelum kuis. Gunakan checklist ini sebagai persiapan.</p>
+    </div>
+
+    <ul class="checklist" id="review-checklist">
+      <li><input type="checkbox"> <div><b>Interface:</b> Mengenal semua panel – 3D Viewport, Outliner, Properties, Timeline</div></li>
+      <li><input type="checkbox"> <div><b>Navigasi:</b> Orbit (Middle Mouse), Pan (Shift+MMB), Zoom (Scroll), Numpad views</div></li>
+      <li><input type="checkbox"> <div><b>Add Object:</b> Shift+A → Mesh → pilih primitives</div></li>
+      <li><input type="checkbox"> <div><b>Transform:</b> G (move), R (rotate), S (scale) + X/Y/Z untuk axis</div></li>
+      <li><input type="checkbox"> <div><b>Edit Mode:</b> Tab untuk masuk, 1/2/3 untuk vertex/edge/face select</div></li>
+      <li><input type="checkbox"> <div><b>Extrude:</b> E dalam Edit Mode untuk tarik face/edge</div></li>
+      <li><input type="checkbox"> <div><b>Loop Cut:</b> Ctrl+R untuk tambah edge loop</div></li>
+      <li><input type="checkbox"> <div><b>Inset:</b> I untuk buat face lebih kecil dalam face</div></li>
+      <li><input type="checkbox"> <div><b>Bevel:</b> Ctrl+B untuk buat edge rounded</div></li>
+      <li><input type="checkbox"> <div><b>Modifiers:</b> Properties → Wrench tab → Add Modifier</div></li>
+      <li><input type="checkbox"> <div><b>Material:</b> Properties → Material tab → New → atur Base Color, Metallic, Roughness</div></li>
+      <li><input type="checkbox"> <div><b>Lighting:</b> Shift+A → Light → Point/Sun/Area</div></li>
+      <li><input type="checkbox"> <div><b>Camera:</b> Numpad 0 untuk camera view, F12 untuk render</div></li>
+      <li><input type="checkbox"> <div><b>Save:</b> Ctrl+S untuk simpan, Ctrl+Shift+S untuk Save As</div></li>
+    </ul>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tips">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Tips &amp; Strategi Kuis</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Manajemen Waktu</div>
+        <div class="gc-body">
+          <ul class="styled" style="font-size:.82rem;">
+            <li>15 menit: Baca skenario, rencanakan</li>
+            <li>45 menit: Modeling semua objek</li>
+            <li>20 menit: Material dan lighting</li>
+            <li>10 menit: Camera setup dan render</li>
+            <li>5-10 menit: Review dan kumpul</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Prioritas</div>
+        <div class="gc-body">
+          <ul class="styled" style="font-size:.82rem;">
+            <li>Selesaikan semua objek DULU, baru detail</li>
+            <li>Simple tapi complete &gt; complex tapi tidak selesai</li>
+            <li>Jangan terlalu lama di satu objek</li>
+            <li>Render dulu, polish nanti jika ada waktu</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Common Mistakes yang Harus Dihindari <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Lupa keluar dari Edit Mode sebelum add object baru</li>
+          <li>Scale di Object Mode – gunakan Apply Scale (Ctrl+A) sebelum modifier</li>
+          <li>Render terlalu gelap – pastikan ada minimal 1 light yang cukup kuat</li>
+          <li>Modifier tidak di-apply saat diperlukan</li>
+          <li>Lupa beri material – semua objek harus punya material</li>
+          <li>Tidak save file – simpan berkala (Ctrl+S)</li>
+          <li>Menggunakan Default Cube tanpa modifikasi – edit dulu!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Shortcut Paling Penting untuk Kuis <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <div class="grid-2">
+          <ul class="styled">
+            <li><b>Shift+A:</b> Add object</li>
+            <li><b>Tab:</b> Edit/Object mode toggle</li>
+            <li><b>G/R/S:</b> Transform</li>
+            <li><b>X/Y/Z setelah transform:</b> Axis constraint</li>
+            <li><b>E:</b> Extrude</li>
+            <li><b>I:</b> Inset</li>
+            <li><b>Ctrl+R:</b> Loop cut</li>
+          </ul>
+          <ul class="styled">
+            <li><b>Ctrl+B:</b> Bevel</li>
+            <li><b>A:</b> Select All</li>
+            <li><b>Alt+Click:</b> Loop select</li>
+            <li><b>Numpad 0:</b> Camera view</li>
+            <li><b>F12:</b> Render</li>
+            <li><b>Ctrl+S:</b> Save</li>
+            <li><b>Z:</b> Viewport shading pie</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="persiapan">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Persiapan Sebelum Kuis</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Checklist Persiapan Teknis</div>
+      <ul class="checklist">
+        <li><input type="checkbox"> <div>Blender terinstall dan berjalan normal di komputer</div></li>
+        <li><input type="checkbox"> <div>Familiar dengan interface – bisa navigasi tanpa berpikir lama</div></li>
+        <li><input type="checkbox"> <div>Latihan modeling minimal 3 objek sederhana sebelum kuis</div></li>
+        <li><input type="checkbox"> <div>Tahu cara render dan save file .blend</div></li>
+        <li><input type="checkbox"> <div>Sudah berlatih semua shortcut yang akan digunakan</div></li>
+        <li><input type="checkbox"> <div>Folder output siap untuk menyimpan file kuis</div></li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Pesan Dosen</div>
+      <p>Kuis ini bukan untuk menakuti, melainkan untuk memastikan fondasi Blender Anda kuat sebelum masuk ke materi advanced. Yang terpenting adalah Anda memahami workflow dasar dan dapat menggunakannya secara praktis. Practice makes perfect – latih terus sebelum kuis!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-grafis-p10.html">← Pertemuan 10</a>
+    <a href="desain-grafis-p12.html" class="next-btn">Pertemuan 12 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Grafis</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

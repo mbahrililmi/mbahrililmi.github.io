@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+<title>Desain Grafis P3 – Desain Layout | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; background: #faf7f2; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e8e0d3; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #8b6a2a; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 0 0 auto; margin: 0 auto; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a2942 0%, #2c3e6b 60%, #1a2942 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; font-family: 'Playfair Display', serif; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #fdf8f0; color: #b8893b; border-left-color: #b8893b; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1a2942; border-bottom: 2px solid #b8893b; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; }
+.section-num { background: #b8893b; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; font-family: 'Inter', sans-serif; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1a2942; user-select: none; }
+.accordion-header:hover { background: #fdf8f0; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1a2942; color: #fff; padding: 10px 14px; text-align: left; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #fdf8f0; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #fdf8f0; border-left: 4px solid #b8893b; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.steps { list-style: none; padding: 0; }
+.step { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #b8893b; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #b8893b; border-bottom-color: #b8893b; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #b8893b; text-decoration: none; }
+.learning-objectives { background: #fdf8f0; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; border-left: 4px solid #b8893b; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1a2942; }
+footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #d4ac6e; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+
+.principle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.principle-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+.principle-card h4 { color: #b8893b; font-size: 0.9rem; margin-bottom: 6px; }
+.principle-card p { font-size: 0.82rem; color: #374151; margin: 0; }
+
+.layout-demo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.layout-box { background: #f9fafb; border: 2px dashed #d4ac6e; border-radius: 8px; padding: 20px 12px; text-align: center; min-height: 100px; }
+.layout-box h4 { font-size: 0.82rem; color: #1a2942; margin-bottom: 4px; }
+.layout-box p { font-size: 0.75rem; color: #6b7280; margin: 0; }
+
+.size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.size-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px 16px; }
+.size-card h4 { font-size: 0.88rem; color: #1a2942; margin-bottom: 6px; }
+.size-card ul { font-size: 0.82rem; padding-left: 16px; margin: 0; }
+
+.workflow-steps { display: flex; flex-direction: column; gap: 0; }
+.wf-step { display: flex; gap: 16px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #f0ebe0; }
+.wf-step:last-child { border-bottom: none; }
+.wf-num { width: 28px; height: 28px; background: #b8893b; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.wf-content h4 { font-size: 0.9rem; color: #1a2942; margin-bottom: 2px; }
+.wf-content p { font-size: 0.82rem; color: #6b7280; margin: 0; }
+
+@media (max-width: 600px) {
+  .principle-row { grid-template-columns: 1fr; }
+  .layout-demo { grid-template-columns: 1fr 1fr; }
+  .size-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 4px;">Politeknik Negeri Tanah Laut — Desain Grafis</div>
+    <h1>📐 Pertemuan 3 — Desain Layout (Undangan & Backdrop)</h1>
+    <p>Prinsip layout, grid system, typography, dan desain aplikasi cetak</p>
+    <div class="header-badges">
+      <span class="badge">📋 Desain Grafis</span>
+      <span class="badge">📅 Pertemuan 3</span>
+      <span class="badge">👨‍🏫 M. BAHRIL ILMI, S.Kom., M.Kom.</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#prinsip-layout">Prinsip-Prinsip Layout</a>
+    <a class="toc-link indent" href="#balance">Balance</a>
+    <a class="toc-link indent" href="#hierarchy">Hierarchy</a>
+    <a class="toc-link indent" href="#other-principles">Prinsip Lainnya</a>
+    <a class="toc-link" href="#grid">Grid System</a>
+    <a class="toc-link" href="#typography-layout">Typography dalam Layout</a>
+    <a class="toc-link" href="#color-harmony">Color Harmony</a>
+    <a class="toc-link" href="#undangan">Desain Undangan</a>
+    <a class="toc-link" href="#backdrop">Desain Backdrop</a>
+    <a class="toc-link" href="#workflow">Workflow Praktis</a>
+    <a class="toc-link" href="#video">Video Pembelajaran</a>
+    <a class="toc-link" href="#praktikum">Praktikum</a>
+    <a class="toc-link indent" href="#lat1">Latihan 1: Grid Exploration</a>
+    <a class="toc-link indent" href="#lat2">Latihan 2: Desain Undangan</a>
+    <a class="toc-link indent" href="#lat3">Latihan 3: Backdrop</a>
+    <a class="toc-link indent" href="#lat4">Latihan 4: Typography Hierarchy</a>
+    <a class="toc-link" href="#ringkasan">Ringkasan</a>
+    <a class="toc-link" href="#tugas">Tugas</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="/public/materi/">Materi</a> › <a href="#">Desain Grafis</a> › Pertemuan 3
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah mengikuti perkuliahan ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami prinsip-prinsip layout dan komposisi desain</li>
+          <li>Mengenal grid system dan penggunaannya dalam layout</li>
+          <li>Memahami hierarchy, balance, dan spacing dalam desain</li>
+          <li>Membuat desain undangan dengan berbagai tema</li>
+          <li>Membuat desain backdrop untuk event</li>
+          <li>Mengaplikasikan typography dan color harmony dalam layout</li>
+          <li>Memahami ukuran cetak dan bleed untuk printing</li>
+        </ol>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Layout yang baik tidak hanya <strong>indah dipandang</strong>, tetapi juga <strong>fungsional</strong> dan <strong>mudah dipahami</strong>. Visual hierarchy menentukan apa yang dilihat pertama kali oleh mata pembaca.</span>
+      </div>
+    </section>
+
+    <!-- PRINSIP LAYOUT -->
+    <section class="section" id="prinsip-layout">
+      <div class="section-title"><span class="section-num">2</span> Prinsip-Prinsip Layout Design</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab(this,'principles-tab')">8 Prinsip Utama</button>
+          <button class="tab-btn" onclick="switchTab(this,'balance-tab')">Balance Detail</button>
+          <button class="tab-btn" onclick="switchTab(this,'hierarchy-tab')">Hierarchy Detail</button>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel active" id="principles-tab">
+            <div class="principle-row">
+              <div class="principle-card" id="balance">
+                <h4>1. Balance</h4>
+                <p>Keseimbangan visual — symmetrical (formal), asymmetrical (dynamic), atau radial</p>
+              </div>
+              <div class="principle-card" id="hierarchy">
+                <h4>2. Hierarchy</h4>
+                <p>Urutan baca: size besar = penting. Top-center = prominent</p>
+              </div>
+              <div class="principle-card" id="other-principles">
+                <h4>3. Contrast</h4>
+                <p>Perbedaan size, color, atau font untuk menarik perhatian</p>
+              </div>
+              <div class="principle-card">
+                <h4>4. Alignment</h4>
+                <p>Left, center, right, atau justified — konsisten adalah kunci</p>
+              </div>
+              <div class="principle-card">
+                <h4>5. Proximity</h4>
+                <p>Elemen yang terkait ditempatkan berdekatan, beri white space untuk separasi</p>
+              </div>
+              <div class="principle-card">
+                <h4>6. Repetition</h4>
+                <p>Konsistensi warna, font, dan style untuk unity dan coherence</p>
+              </div>
+              <div class="principle-card">
+                <h4>7. White Space</h4>
+                <p>Ruang kosong bukan "wasted space" — memberi breathing room dan professional look</p>
+              </div>
+              <div class="principle-card">
+                <h4>8. Unity</h4>
+                <p>Semua elemen terasa cohesive, consistent style, harmonis dan tidak chaos</p>
+              </div>
+            </div>
+          </div>
+          <div class="tab-panel" id="balance-tab">
+            <table>
+              <thead><tr><th>Jenis Balance</th><th>Karakteristik</th><th>Cocok untuk</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Symmetrical</strong></td><td>Formal, traditional, stable — elemen sama di kedua sisi</td><td>Undangan pernikahan formal</td></tr>
+                <tr><td><strong>Asymmetrical</strong></td><td>Dynamic, modern, energetic — visual weight seimbang tapi tidak mirror</td><td>Event casual, contemporary design</td></tr>
+                <tr><td><strong>Radial</strong></td><td>Elemen tersebar dari center point — focal point kuat di tengah</td><td>Circular compositions, mandalas</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-panel" id="hierarchy-tab">
+            <p><strong>Contoh hierarchy untuk undangan event:</strong></p>
+            <table>
+              <thead><tr><th>Level</th><th>Elemen</th><th>Visual Treatment</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Level 1</strong></td><td>Nama acara / judul</td><td>Font paling besar, bold, eye-catching</td></tr>
+                <tr><td><strong>Level 2</strong></td><td>Nama pengantin / pembicara</td><td>Medium-large, distinct style</td></tr>
+                <tr><td><strong>Level 3</strong></td><td>Tanggal, waktu, tempat</td><td>Medium, clear dan readable</td></tr>
+                <tr><td><strong>Level 4</strong></td><td>Info tambahan, RSVP, dress code</td><td>Kecil, secondary importance</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID SYSTEM -->
+    <section class="section" id="grid">
+      <div class="section-title"><span class="section-num">3</span> Grid System</div>
+      <p>Grid adalah <strong>framework invisible</strong> untuk mengorganisir content dengan terstruktur. Grid memberikan consistency dan alignment yang profesional.</p>
+
+      <div class="layout-demo">
+        <div class="layout-box">
+          <div style="background:#b8893b; height:8px; border-radius:4px; margin-bottom:8px;"></div>
+          <div style="background:#e5e7eb; height:6px; border-radius:4px; margin-bottom:4px;"></div>
+          <div style="background:#e5e7eb; height:6px; border-radius:4px; margin-bottom:4px;"></div>
+          <div style="background:#e5e7eb; height:6px; border-radius:4px;"></div>
+          <h4>Manuscript Grid</h4>
+          <p>Single column, text-heavy</p>
+        </div>
+        <div class="layout-box">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-bottom:8px;">
+            <div style="background:#b8893b; height:20px; border-radius:3px;"></div>
+            <div style="background:#b8893b; height:20px; border-radius:3px;"></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px;">
+            <div style="background:#e5e7eb; height:10px; border-radius:3px;"></div>
+            <div style="background:#e5e7eb; height:10px; border-radius:3px;"></div>
+          </div>
+          <h4>Column Grid</h4>
+          <p>Multi-column, magazine/newsletter</p>
+        </div>
+        <div class="layout-box">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:3px;">
+            <div style="background:#b8893b; height:15px; border-radius:3px;"></div>
+            <div style="background:#b8893b; height:15px; border-radius:3px;"></div>
+            <div style="background:#b8893b; height:15px; border-radius:3px;"></div>
+            <div style="background:#e5e7eb; height:10px; border-radius:3px;"></div>
+            <div style="background:#e5e7eb; height:10px; border-radius:3px;"></div>
+            <div style="background:#e5e7eb; height:10px; border-radius:3px;"></div>
+            <div style="background:#fdf8f0; height:10px; border-radius:3px; border:1px solid #d4ac6e;"></div>
+            <div style="background:#fdf8f0; height:10px; border-radius:3px; border:1px solid #d4ac6e;"></div>
+            <div style="background:#fdf8f0; height:10px; border-radius:3px; border:1px solid #d4ac6e;"></div>
+          </div>
+          <h4>Modular Grid</h4>
+          <p>Rows + columns, complex layouts</p>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text">Cara menggunakan grid di Inkscape/Illustrator: Set margins, buat column grids, tambahkan guides untuk alignment, dan <strong>know when to break the grid</strong> untuk emphasis visual.</span>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section" id="typography-layout">
+      <div class="section-title"><span class="section-num">4</span> Typography dalam Layout</div>
+      <table>
+        <thead><tr><th>Aspek</th><th>Panduan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pemilihan Font</strong></td><td>Maksimal 2-3 font families. Pairing: Serif + Sans-serif bekerja dengan baik</td></tr>
+          <tr><td><strong>Ukuran Heading</strong></td><td>24–72pt (tergantung media). Backdrop: sangat besar, terbaca dari 3-5 meter</td></tr>
+          <tr><td><strong>Ukuran Subheading</strong></td><td>18–36pt</td></tr>
+          <tr><td><strong>Ukuran Body</strong></td><td>10–14pt untuk print, minimal 16px untuk digital</td></tr>
+          <tr><td><strong>Kerning</strong></td><td>Spasi antar huruf — perlu diperhatikan untuk display text besar</td></tr>
+          <tr><td><strong>Leading</strong></td><td>Spasi antar baris (line height) — 1.5x font size adalah standar yang nyaman</td></tr>
+          <tr><td><strong>Line Length</strong></td><td>Ideal 50-75 karakter per baris untuk body text</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- COLOR HARMONY -->
+    <section class="section" id="color-harmony">
+      <div class="section-title"><span class="section-num">5</span> Color Harmony dalam Layout</div>
+      <table>
+        <thead><tr><th>Theme</th><th>Color Recommendation</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Wedding Formal</strong></td><td>Soft pastels, gold, white, ivory</td></tr>
+          <tr><td><strong>Corporate Event</strong></td><td>Blue, gray, professional tones</td></tr>
+          <tr><td><strong>Birthday Party</strong></td><td>Bright, cheerful colors</td></tr>
+          <tr><td><strong>Graduation</strong></td><td>Gold, navy, maroon — prestigious</td></tr>
+          <tr><td><strong>Casual Event</strong></td><td>Vibrant, complementary colors</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-info">
+        <span class="callout-icon">🎨</span>
+        <span class="callout-text"><strong>Rule 60-30-10:</strong> 60% dominant color (background) · 30% secondary color (main elements) · 10% accent color (highlights, CTA). Proporsi ini menciptakan komposisi warna yang seimbang dan profesional.</span>
+      </div>
+    </section>
+
+    <!-- DESAIN UNDANGAN -->
+    <section class="section" id="undangan">
+      <div class="section-title"><span class="section-num">6</span> Desain Undangan</div>
+
+      <div class="accordion">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          📋 Elemen Penting Undangan <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <ul>
+            <li><strong>Judul/nama acara</strong> — paling menonjol secara visual</li>
+            <li><strong>Nama host/penyelenggara</strong></li>
+            <li><strong>Tanggal dan waktu</strong> — harus sangat jelas</li>
+            <li><strong>Lokasi/venue</strong></li>
+            <li>Dress code (jika ada)</li>
+            <li>RSVP info (contact dan deadline)</li>
+            <li>Ornamen dan dekorasi sesuai tema</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="size-grid">
+        <div class="size-card">
+          <h4>📏 Ukuran Standar Undangan</h4>
+          <ul>
+            <li>10 × 14 cm (portrait)</li>
+            <li>14 × 10 cm (landscape)</li>
+            <li>15 × 21 cm (portrait — paling umum)</li>
+            <li>21 × 15 cm (landscape)</li>
+            <li>Custom sesuai kebutuhan</li>
+          </ul>
+        </div>
+        <div class="size-card">
+          <h4>⚙️ Spesifikasi Cetak Undangan</h4>
+          <ul>
+            <li>Resolution: 300 dpi</li>
+            <li>Color mode: CMYK</li>
+            <li>Bleed: 3mm di semua sisi</li>
+            <li>Safe area: 5mm dari tepi</li>
+            <li>Format export: PDF, PNG</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESAIN BACKDROP -->
+    <section class="section" id="backdrop">
+      <div class="section-title"><span class="section-num">7</span> Desain Backdrop</div>
+
+      <div class="accordion">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          🖼️ Jenis dan Ukuran Backdrop <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <table>
+            <thead><tr><th>Jenis</th><th>Ukuran Umum</th><th>Penggunaan</th></tr></thead>
+            <tbody>
+              <tr><td>Photo Booth</td><td>2 × 3 meter</td><td>Photo session informal</td></tr>
+              <tr><td>Medium Event</td><td>3 × 4 meter</td><td>Seminar, workshop, gathering</td></tr>
+              <tr><td>Stage Backdrop</td><td>4 × 6 meter</td><td>Conference, concert, large event</td></tr>
+              <tr><td>Step and Repeat</td><td>Custom</td><td>Press conference, sponsor backdrop</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-text">
+          <strong>Checklist Desain Backdrop:</strong>
+          <ul style="margin-top:6px;">
+            <li><strong>LARGE TEXT</strong> — harus terbaca dari jarak 3-5 meter</li>
+            <li><strong>HIGH CONTRAST</strong> — jelas untuk foto</li>
+            <li><strong>SIMPLE composition</strong> — jangan terlalu ramai</li>
+            <li><strong>HORIZONTAL layout</strong> — landscape orientation</li>
+            <li><strong>RESOLUTION tinggi</strong> — minimal 150 dpi untuk ukuran cetak</li>
+            <li><strong>SAFE AREA</strong> — jangan letakkan elemen penting di tepi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="section" id="workflow">
+      <div class="section-title"><span class="section-num">8</span> Workflow Praktis</div>
+      <div class="workflow-steps">
+        <div class="wf-step">
+          <div class="wf-num">1</div>
+          <div class="wf-content"><h4>Setup Document</h4><p>Tentukan size, orientation, bleed. Color mode: CMYK untuk cetak, RGB untuk digital</p></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">2</div>
+          <div class="wf-content"><h4>Create Grid/Guides</h4><p>Set margins, buat column grids, tambahkan guides untuk alignment</p></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">3</div>
+          <div class="wf-content"><h4>Establish Hierarchy</h4><p>Block out dengan shapes dulu, tentukan level informasi dan size relationships</p></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">4</div>
+          <div class="wf-content"><h4>Add Content</h4><p>Typography placement, images dan graphics, ornaments dan dekorations</p></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">5</div>
+          <div class="wf-content"><h4>Refine</h4><p>Fine-tune spacing, adjust colors, check alignment, proofread text berkali-kali!</p></div>
+        </div>
+        <div class="wf-step">
+          <div class="wf-num">6</div>
+          <div class="wf-content"><h4>Export</h4><p>PDF untuk printing (CMYK, with bleed), PNG/JPG untuk digital, simpan SVG/AI source</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section" id="video">
+      <div class="section-title"><span class="section-num">9</span> Video Pembelajaran</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Layout Design Principles</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Graphic design course fundamentals</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Desain Undangan di Inkscape</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Tutorial lengkap step by step</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Tutorial Backdrop Event</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Large format design dengan Illustrator</div>
+          </div>
+        </div>
+        <div style="background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; display:flex; gap:12px;">
+          <span style="font-size:1.5rem;">▶️</span>
+          <div>
+            <div style="font-size:0.88rem; font-weight:600; color:#1a2942;">Grid System for Beginners</div>
+            <div style="font-size:0.78rem; color:#6b7280;">Dasar-dasar penggunaan grid</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRAKTIKUM -->
+    <section class="section" id="praktikum">
+      <div class="section-title"><span class="section-num">10</span> Praktikum</div>
+
+      <div class="accordion" id="lat1">
+        <div class="accordion-header open" onclick="toggleAccordion(this)">
+          Latihan 1: Eksplorasi Layout dengan Grid <span class="accordion-icon" style="transform:rotate(180deg)">▼</span>
+        </div>
+        <div class="accordion-body open">
+          <p><strong>Tujuan:</strong> Memahami penggunaan grid system</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat document A4 portrait</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Setup 3-column grid dengan margin 2cm</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat 3 layout berbeda: Symmetrical, Asymmetrical, Free layout (breaking grid)</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan placeholder text dan shapes untuk mengisi layout</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Observe bagaimana grid membantu alignment</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan01_GridExploration_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat2">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 2: Desain Undangan Simple <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Membuat undangan dengan hierarchy yang jelas | Tema: Birthday Party</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat document 15 × 21 cm, portrait, 300dpi</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Include semua elemen: Judul "You're Invited!", nama, event, date, time, venue</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan maksimal 2 fonts dan 2-3 warna</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambahkan simple ornaments yang sesuai tema</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Terapkan prinsip hierarchy dan alignment dengan baik</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan02_UndanganSimple_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat3">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 3: Backdrop Photo Booth <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Membuat backdrop untuk photo booth | Tema: Graduation 2026</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat document 200 × 300 cm (2m × 3m), landscape, 150 dpi</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambahkan judul besar yang terbaca dari jauh</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambahkan decorative elements (graduate cap, diploma, stars, dll)</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Gunakan high contrast colors</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Test dengan zoom out: Apakah text terbaca dengan jelas?</label></div></li>
+            <li class="step"><div class="step-num">6</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan03_Backdrop_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="lat4">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          Latihan 4: Typography Hierarchy <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Tujuan:</strong> Melatih membuat hierarchy informasi yang efektif</p>
+          <ul class="steps">
+            <li class="step"><div class="step-num">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat poster A4 untuk seminar</label></div></li>
+            <li class="step"><div class="step-num">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Include: judul seminar, pembicara, tanggal/waktu/tempat, deskripsi, contact RSVP</label></div></li>
+            <li class="step"><div class="step-num">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Buat 3 versi dengan hierarchy yang berbeda</label></div></li>
+            <li class="step"><div class="step-num">4</div><div class="step-content"><label><input type="checkbox" class="step-check"> Bandingkan: versi mana yang paling effective dalam menyampaikan informasi?</label></div></li>
+            <li class="step"><div class="step-num">5</div><div class="step-content"><label><input type="checkbox" class="step-check"> Save: <code>Latihan04_Hierarchy_Nama</code></label></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RINGKASAN -->
+    <section class="section" id="ringkasan">
+      <div class="section-title"><span class="section-num">11</span> Ringkasan</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">📝</span>
+        <div class="callout-text">
+          <strong>Poin-poin kunci Pertemuan 3:</strong>
+          <ol style="margin-top:8px;">
+            <li><strong>8 Prinsip Layout</strong> — Balance, hierarchy, contrast, alignment, proximity, repetition, white space, unity</li>
+            <li><strong>Grid System</strong> — Manuscript, column, modular, dan hierarchical grid untuk organizing content</li>
+            <li><strong>Typography</strong> — Pemilihan font, hierarchy tipografi, spacing, dan readability</li>
+            <li><strong>Color Harmony</strong> — Color schemes dan rule 60-30-10 untuk komposisi warna</li>
+            <li><strong>Desain Undangan</strong> — Elemen penting, format, ukuran standar, dan spesifikasi cetak</li>
+            <li><strong>Desain Backdrop</strong> — Large format considerations: ukuran text, contrast, resolution, safe area</li>
+          </ol>
+          <p style="margin-top:8px;">Layout yang baik adalah tentang <strong>mengorganisir informasi secara visual</strong> sehingga mudah dipahami. Prinsip ini bersifat universal untuk semua jenis desain.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TUGAS -->
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">12</span> Tugas</div>
+      <div style="background:#1a2942; color:#e5e7eb; border-radius:12px; padding:24px;">
+        <h3 style="color:#d4ac6e; margin-bottom:12px;">Tugas Individu: Desain Undangan & Backdrop untuk Event</h3>
+        <p style="opacity:0.9;">Buat 1 set desain lengkap untuk satu event pilihan: Seminar/Workshop, Pernikahan, Ulang Tahun, Company Gathering, atau Graduation Party.</p>
+        <div style="margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div>
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Deliverables</h4>
+            <ul style="font-size:0.88rem; padding-left:18px;">
+              <li>Undangan 15×21 cm, 300dpi, CMYK, PDF</li>
+              <li>Backdrop 200×300 cm, 150dpi, CMYK, PDF</li>
+              <li>Design system: warna, font, style konsisten</li>
+              <li>PDF presentation 1 halaman</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:#d4ac6e; margin-bottom:8px;">Kriteria Penilaian</h4>
+            <ul style="font-size:0.88rem; padding-left:18px;">
+              <li>Konsep & kreativitas: 20%</li>
+              <li>Penerapan prinsip layout: 25%</li>
+              <li>Typography & readability: 20%</li>
+              <li>Technical execution: 20%</li>
+              <li>Consistency & cohesiveness: 10%</li>
+              <li>Presentation: 5%</li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:8px; font-size:0.85rem; opacity:0.8;">Deadline: Sebelum pertemuan ke-4 | Nama: <code style="background:rgba(255,255,255,0.1); padding:1px 6px; border-radius:3px;">Tugas03_LayoutDesign_NamaMahasiswa</code></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <div style="max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+    <div>Penyusun: <strong>M. Bahril Ilmi, S.Kom., M.Kom.</strong> — Politeknik Negeri Tanah Laut</div>
+    <div><a href="desain-grafis-p2.html">← Pertemuan 2</a> &nbsp;|&nbsp; <a href="desain-grafis-p4.html">Pertemuan 4 →</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleAccordion(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+function switchTab(btn, panelId) {
+  var tabGroup = btn.closest('.tab-group');
+  tabGroup.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  tabGroup.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+window.addEventListener('scroll', function() {
+  var sections = document.querySelectorAll('section[id]');
+  var links = document.querySelectorAll('.toc-link');
+  var scrollPos = window.scrollY + 120;
+  sections.forEach(function(sec) {
+    if (sec.offsetTop <= scrollPos && sec.offsetTop + sec.offsetHeight > scrollPos) {
+      links.forEach(function(l){ l.classList.remove('active'); });
+      var active = document.querySelector('.toc-link[href="#' + sec.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+});
+(function() {
+  var links = document.querySelectorAll('.toc-link:not(.indent)');
+  var num = 1;
+  links.forEach(function(a) {
+    var clean = a.textContent.replace(/^[\d]+\.\s*/, '').trim();
+    a.textContent = num + '. ' + clean;
+    num++;
+  });
+})();
+</script>
+</body>
+</html>
