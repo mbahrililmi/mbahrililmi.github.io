@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarkom 4 - P1: Static Routing | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+footer { background: #1e3a8a; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>&#x1F4BB; Pertemuan 1 &amp; 2 — Static Routing</h1>
+  <p>Jaringan Komputer 4 | Politeknik Negeri Tanah Laut</p>
+  <div class="header-badges">
+    <span class="badge">&#x1F4CB; EIK214306</span>
+    <span class="badge">&#x1F4DA; Semester 4</span>
+    <span class="badge">&#x23F1; 3 SKS (1T + 2P)</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Hendrik Setyo Utomo, ST., MMSI</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Arif Supriyanto, S.Kom., M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">&#x1F3AF; Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#teori">&#x1F4D6; Teori Dasar</a>
+    <a class="toc-link indent" href="#teori-routing">Konsep Routing</a>
+    <a class="toc-link indent" href="#teori-table">Routing Table</a>
+    <a class="toc-link indent" href="#teori-ad">Administrative Distance</a>
+    <a class="toc-link indent" href="#teori-summarization">Summarization</a>
+    <a class="toc-link" href="#lab1">&#x1F9EA; Lab 1: 2 Router</a>
+    <a class="toc-link" href="#lab2">&#x1F9EA; Lab 2: 3 Router</a>
+    <a class="toc-link" href="#lab3">&#x1F9EA; Lab 3: 4 Router</a>
+    <a class="toc-link" href="#lab4">&#x1F9EA; Lab 4: Summarization</a>
+    <a class="toc-link" href="#lab5">&#x1F9EA; Lab 5: Default Route</a>
+    <a class="toc-link" href="#lab6">&#x1F9EA; Lab 6: Point-to-Point</a>
+    <a class="toc-link" href="#lab7">&#x1F9EA; Lab 7: Prioritas Routing</a>
+    <a class="toc-link" href="#rubrik">&#x1F4CB; Rubrik &amp; Tugas</a>
+    <a class="toc-link" href="#referensi">&#x1F4DA; Referensi</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Jarkom 4</a> &rsaquo; <a href="#">Pertemuan 1-2</a> &rsaquo; Static Routing
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep <span class="tooltip">routing<span class="tooltip-text">Proses memilih jalur terbaik untuk mengirim paket data</span></span> statis pada Layer 3 OSI</li>
+          <li>Mengkonfigurasi static route pada router MikroTik untuk berbagai topologi</li>
+          <li>Memahami dan menerapkan route summarization untuk efisiensi tabel routing</li>
+          <li>Mengkonfigurasi default route sebagai <span class="tooltip">gateway<span class="tooltip-text">Pintu keluar jaringan menuju jaringan lain</span></span> of last resort</li>
+          <li>Memahami konsep point-to-point addressing dengan /32</li>
+          <li>Memahami prioritas routing berdasarkan prefix length dan Administrative Distance</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <div class="section-title"><span class="section-num">2</span> Teori Dasar</div>
+
+      <div class="accordion" id="teori-routing">
+        <div class="accordion-header">&#x1F4D6; Konsep Routing (Layer 3 OSI) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><span class="tooltip">Routing<span class="tooltip-text">Proses memilih jalur terbaik untuk mengirim paket data</span></span> adalah proses penentuan jalur terbaik untuk meneruskan paket data dari sumber ke tujuan melalui jaringan. Routing bekerja di <strong>Layer 3 (Network Layer)</strong> model OSI menggunakan IP Address.</p>
+          <p>Terdapat dua jenis routing utama:</p>
+          <ul>
+            <li><strong>Static Routing</strong>: Rute dikonfigurasi manual oleh administrator. Cocok untuk jaringan kecil dan stabil.</li>
+            <li><strong>Dynamic Routing</strong>: Rute dipelajari otomatis menggunakan protokol seperti <span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span> atau <span class="tooltip">BGP<span class="tooltip-text">Border Gateway Protocol: protokol routing antar jaringan besar/ISP</span></span>.</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#x1F4A1;</span>
+            <span class="callout-text"><strong>Catatan:</strong> Static routing tidak memerlukan overhead pemrosesan CPU seperti dynamic routing, namun membutuhkan konfigurasi manual setiap ada perubahan topologi.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-table">
+        <div class="accordion-header">&#x1F4CB; Routing Table dan Flag Routing <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>Routing table adalah database yang menyimpan informasi jalur ke jaringan-jaringan tujuan. Setiap entri routing table memiliki flag yang menunjukkan status dan jenis route:</p>
+          <table>
+            <thead>
+              <tr><th>Flag</th><th>Keterangan</th><th>Contoh</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>A</strong></td><td>Active - route sedang aktif digunakan</td><td>A S 192.168.1.0/24</td></tr>
+              <tr><td><strong>D</strong></td><td>Dynamic - route dari protokol dinamis</td><td>A D 10.0.0.0/8</td></tr>
+              <tr><td><strong>C</strong></td><td>Connected - interface langsung terhubung</td><td>A C 192.168.0.0/24</td></tr>
+              <tr><td><strong>S</strong></td><td>Static - route dikonfigurasi manual</td><td>A S 172.16.0.0/16</td></tr>
+              <tr><td><strong>o</strong></td><td>OSPF - route dari protokol OSPF</td><td>A o 10.1.0.0/24</td></tr>
+              <tr><td><strong>b</strong></td><td>BGP - route dari protokol BGP</td><td>A b 203.0.113.0/24</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout-warn">
+            <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+            <span class="callout-text"><strong>Penting:</strong> Route hanya digunakan jika memiliki flag <strong>A (Active)</strong>. Route tanpa flag A berarti tidak aktif dan tidak digunakan untuk forwarding paket.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-ad">
+        <div class="accordion-header">&#x1F522; Administrative Distance <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Administrative Distance (AD)</strong> adalah nilai kepercayaan suatu sumber routing. Semakin kecil nilai AD, semakin dipercaya dan diprioritaskan route tersebut.</p>
+          <table>
+            <thead>
+              <tr><th>Sumber Route</th><th>Administrative Distance</th><th>Prioritas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Connected</td><td>0</td><td>Tertinggi</td></tr>
+              <tr><td>Static</td><td>1</td><td>Sangat Tinggi</td></tr>
+              <tr><td>eBGP</td><td>20</td><td>Tinggi</td></tr>
+              <tr><td><span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span></td><td>110</td><td>Sedang</td></tr>
+              <tr><td>RIP</td><td>120</td><td>Rendah</td></tr>
+              <tr><td>iBGP</td><td>200</td><td>Sangat Rendah</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout-tip">
+            <span class="callout-icon">&#x2705;</span>
+            <span class="callout-text"><strong>Tips:</strong> Jika ada dua route ke tujuan yang sama dengan AD berbeda, router akan memilih route dengan AD lebih kecil. Jika AD sama, lihat metric (prefix length yang lebih panjang = lebih spesifik = diprioritaskan).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-summarization">
+        <div class="accordion-header">&#x1F5C2;&#xFE0F; Route Summarization dan Default Route <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Route Summarization</strong> (agregasi route) adalah teknik menggabungkan beberapa route spesifik menjadi satu route yang lebih umum untuk menyederhanakan routing table.</p>
+          <p><strong>Contoh Summarization:</strong></p>
+          <ul>
+            <li>192.168.0.0/24, 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24</li>
+            <li>Dapat diringkas menjadi: <strong>192.168.0.0/22</strong></li>
+            <li>Alasan: 4 network (/24) = 2² → pinjam 2 bit dari host bit → /22</li>
+          </ul>
+
+          <p><strong>Default Route (Gateway of Last Resort):</strong></p>
+          <p>Default route menggunakan prefix <strong>0.0.0.0/0</strong> dan cocok dengan SEMUA tujuan yang tidak ada di routing table. Digunakan sebagai "jalan terakhir" ketika tidak ada route spesifik yang cocok.</p>
+
+          <p><strong>Point-to-Point Addressing (/32):</strong></p>
+          <p>Prefix /32 menunjuk pada satu host spesifik. Digunakan untuk menentukan gateway yang tidak langsung terhubung melalui <span class="tooltip">subnet<span class="tooltip-text">Pembagian jaringan menjadi bagian-bagian lebih kecil</span></span> yang sama.</p>
+
+          <div class="callout callout-info">
+            <span class="callout-icon">&#x1F4A1;</span>
+            <span class="callout-text"><strong>Rumus Summarization:</strong> Jumlah network yang diringkas harus merupakan pangkat 2 (2, 4, 8, 16...). Network pertama harus merupakan kelipatan dari jumlah tersebut.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab1">
+      <div class="section-title"><span class="section-num">3</span> Lab 1: Static Routing 2 Router</div>
+
+      <div class="topology">
+ PC1                  R1                    R2                  PC2
+[PC1]──────[ether2]──[R1]──[ether1]────[ether1]──[R2]──[ether2]──────[PC2]
+192.168.1.2     192.168.1.1   10.10.10.1  10.10.10.2   192.168.2.1    192.168.2.2
+/24                 /24           /30        /30          /24             /24
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Skenario:</strong> PC1 (192.168.1.0/24) terhubung ke R1, PC2 (192.168.2.0/24) terhubung ke R2. R1 dan R2 dihubungkan via link 10.10.10.0/30. Konfigurasi static route bidirectional agar PC1 dan PC2 dapat saling berkomunikasi.</span>
+      </div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="tab-r1-l1">Konfigurasi R1</button>
+          <button class="tab-btn" data-tab="tab-r2-l1">Konfigurasi R2</button>
+          <button class="tab-btn" data-tab="tab-verify-l1">Verifikasi</button>
+        </div>
+        <div id="tab-r1-l1" class="tab-panel active">
+          <p><strong>Konfigurasi R1:</strong></p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" data-n="1">1</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Setting IP Address ether1 (WAN ke R2)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=10.10.10.1/30 interface=ether1</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="2">2</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Setting IP Address ether2 (LAN ke PC1)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=ether2</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="3">3</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Tambah Static Route ke network 192.168.2.0/24 (di belakang R2)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.2.0/24 gateway=10.10.10.2</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="4">4</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Verifikasi routing table R1</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-r2-l1" class="tab-panel">
+          <p><strong>Konfigurasi R2:</strong></p>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num" data-n="1">1</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Setting IP Address ether1 (WAN ke R1)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=10.10.10.2/30 interface=ether1</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="2">2</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Setting IP Address ether2 (LAN ke PC2)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.2.1/24 interface=ether2</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num" data-n="3">3</div>
+              <div class="step-content">
+                <label><input type="checkbox" class="step-check"> Tambah Static Route ke network 192.168.1.0/24 (di belakang R1)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.1.0/24 gateway=10.10.10.1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-verify-l1" class="tab-panel">
+          <p><strong>Output Routing Table (R1) — yang diharapkan:</strong></p>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>Flags: X - disabled, A - active, D - dynamic,
+       C - connect, S - static, r - rip, b - bgp, o - ospf
+
+ #      DST-ADDRESS        PREF-SRC        GATEWAY         DISTANCE
+ 0 A S  192.168.2.0/24                     10.10.10.2             1
+ 1 A C  192.168.1.0/24     192.168.1.1     ether2                 0
+ 2 A C  10.10.10.0/30      10.10.10.1      ether1                 0</div>
+          <div class="callout callout-tip">
+            <span class="callout-icon">&#x2705;</span>
+            <span class="callout-text"><strong>Tips Verifikasi:</strong> Pastikan flag <strong>A S</strong> muncul pada static route yang ditambahkan. "A" berarti Active, "S" berarti Static. Jika hanya "S" tanpa "A", periksa apakah gateway dapat dijangkau.</span>
+          </div>
+          <p><strong>Test konektivitas dari PC1:</strong></p>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>ping 192.168.2.2</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab2">
+      <div class="section-title"><span class="section-num">4</span> Lab 2: Static Routing 3 Router</div>
+
+      <div class="topology">
+PC1──[R1]──[ether1:10.10.10.1]────[10.10.10.2:ether1]──[R2]──[ether2:20.20.20.1]────[20.20.20.2:ether1]──[R3]──[ether2]──PC3
+     ether2                                              ether2                                              ether2
+  192.168.1.1                                         192.168.2.1                                        192.168.3.1
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">Konfigurasi Lengkap 3 Router <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <div class="tab-group">
+            <div class="tab-bar">
+              <button class="tab-btn active" data-tab="tab-r1-l2">R1</button>
+              <button class="tab-btn" data-tab="tab-r2-l2">R2</button>
+              <button class="tab-btn" data-tab="tab-r3-l2">R3</button>
+            </div>
+            <div id="tab-r1-l2" class="tab-panel active">
+              <div class="steps">
+                <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> IP Address R1</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=ether2
+/ip address add address=10.10.10.1/30 interface=ether1</div></div></div>
+                <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Static Route R1 → ke network di balik R2 dan R3</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.2.0/24 gateway=10.10.10.2
+/ip route add dst-address=192.168.3.0/24 gateway=10.10.10.2
+/ip route add dst-address=20.20.20.0/30 gateway=10.10.10.2</div></div></div>
+              </div>
+            </div>
+            <div id="tab-r2-l2" class="tab-panel">
+              <div class="steps">
+                <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> IP Address R2</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=10.10.10.2/30 interface=ether1
+/ip address add address=192.168.2.1/24 interface=ether2
+/ip address add address=20.20.20.1/30 interface=ether3</div></div></div>
+                <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Static Route R2</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.1.0/24 gateway=10.10.10.1
+/ip route add dst-address=192.168.3.0/24 gateway=20.20.20.2</div></div></div>
+              </div>
+            </div>
+            <div id="tab-r3-l2" class="tab-panel">
+              <div class="steps">
+                <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> IP Address R3</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=20.20.20.2/30 interface=ether1
+/ip address add address=192.168.3.1/24 interface=ether2</div></div></div>
+                <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Static Route R3</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.1.0/24 gateway=20.20.20.1
+/ip route add dst-address=192.168.2.0/24 gateway=20.20.20.1
+/ip route add dst-address=10.10.10.0/30 gateway=20.20.20.1</div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab3">
+      <div class="section-title"><span class="section-num">5</span> Lab 3: Static Routing 4 Router</div>
+
+      <div class="topology">
+[PC1]──[R1]──ether1:11.11.11.1/30──11.11.11.2:ether1──[R2]──ether2:22.22.22.1/30──22.22.22.2:ether1──[R3]──ether2:33.33.33.1/30──33.33.33.2:ether1──[R4]──[PC4]
+ .1.0/24  .1.1                                    .2.1                                    .3.1                                       .4.1  .4.0/24
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Penting:</strong> Pada topologi 4 router, pastikan SETIAP router memiliki route ke SEMUA network yang ada, termasuk link antar-router (WAN links). Routing harus bersifat bidirectional.</span>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">Contoh Konfigurasi R1 (4 Router) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <div class="steps">
+            <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> IP Address R1</label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=ether2
+/ip address add address=11.11.11.1/30 interface=ether1</div></div></div>
+            <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Static Routes R1 ke semua network</label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.2.0/24 gateway=11.11.11.2
+/ip route add dst-address=192.168.3.0/24 gateway=11.11.11.2
+/ip route add dst-address=192.168.4.0/24 gateway=11.11.11.2
+/ip route add dst-address=22.22.22.0/30 gateway=11.11.11.2
+/ip route add dst-address=33.33.33.0/30 gateway=11.11.11.2</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab4">
+      <div class="section-title"><span class="section-num">6</span> Lab 4: Route Summarization</div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Skenario:</strong> R1 memiliki 4 network LAN: 192.168.0.0/24, 192.168.1.0/24, 192.168.2.0/24, 192.168.3.0/24. Alih-alih memasukkan 4 route di R2, gunakan summarization menjadi 1 route 192.168.0.0/22.</span>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">Perhitungan Summarization <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Langkah perhitungan:</strong></p>
+          <ol>
+            <li>Network: 192.168.0.0, 192.168.1.0, 192.168.2.0, 192.168.3.0</li>
+            <li>Jumlah network = 4 = 2² → perlu meminjam 2 bit</li>
+            <li>Prefix asli = /24, pinjam 2 bit ke kiri → /22</li>
+            <li>Summary address = 192.168.0.0/22 (mencakup .0.0 s/d .3.255)</li>
+          </ol>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>Verifikasi:
+192.168.0.0/22 mencakup:
+  192.168.0.0 - 192.168.0.255
+  192.168.1.0 - 192.168.1.255
+  192.168.2.0 - 192.168.2.255
+  192.168.3.0 - 192.168.3.255</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Konfigurasi summarization di R2 (menggantikan 4 route individual)</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Di R2: satu summary route menggantikan 4 route spesifik
+/ip route add dst-address=192.168.0.0/22 gateway=10.10.10.1</div></div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Verifikasi routing table R2</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Seharusnya hanya 1 route A S untuk 192.168.0.0/22</div></div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Test konektivitas ke semua 4 network</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>ping 192.168.0.1
+ping 192.168.1.1
+ping 192.168.2.1
+ping 192.168.3.1</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab5">
+      <div class="section-title"><span class="section-num">7</span> Lab 5: Default Route (0.0.0.0/0)</div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Default Route</strong> dengan prefix 0.0.0.0/0 akan cocok dengan semua tujuan yang tidak ada entri spesifiknya di routing table. Ini adalah "jalur terakhir" — gateway of last resort.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambahkan default route menuju <span class="tooltip">gateway<span class="tooltip-text">Pintu keluar jaringan menuju jaringan lain</span></span> ISP</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Default route - cocok dengan semua tujuan
+/ip route add dst-address=0.0.0.0/0 gateway=10.10.10.2</div></div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Verifikasi default route aktif</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Lihat baris dengan DST-ADDRESS = 0.0.0.0/0 dan flag A S</div></div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Test ke IP internet (simulasi)</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>ping 8.8.8.8
+# Paket akan diteruskan via default route jika tidak ada route spesifik</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab6">
+      <div class="section-title"><span class="section-num">8</span> Lab 6: Point-to-Point Addressing (/32)</div>
+
+      <div class="topology">
+R1 (10.10.10.10/32) ──── Link Point-to-Point ──── R2
+Loopback/host: 10.10.10.10          Network tujuan: 20.20.20.20/32
+      </div>
+
+      <p>Point-to-point addressing menggunakan prefix <strong>/32</strong> yang menunjuk pada satu host tunggal. Berguna untuk routing ke gateway yang tidak berada di <span class="tooltip">subnet<span class="tooltip-text">Pembagian jaringan menjadi bagian-bagian lebih kecil</span></span> yang sama.</p>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Konfigurasi point-to-point route di R1</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Route ke host 20.20.20.20 menggunakan /32
+/ip route add dst-address=20.20.20.20/32 gateway=10.10.10.10
+
+# Atau: route ke network lain via gateway yang ditentukan dengan /32
+/ip route add dst-address=192.168.5.0/24 gateway=10.10.10.10</div></div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Verifikasi route /32</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print where dst-address="20.20.20.20/32"</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab7">
+      <div class="section-title"><span class="section-num">9</span> Lab 7: Prioritas Routing</div>
+
+      <p>Router menentukan route terbaik berdasarkan dua kriteria utama (dari yang paling diprioritaskan):</p>
+      <ol>
+        <li><strong>Prefix Length (Longest Match)</strong>: Prefix yang lebih panjang/spesifik selalu menang, terlepas dari AD</li>
+        <li><strong>Administrative Distance</strong>: Jika prefix sama, AD lebih kecil diprioritaskan</li>
+      </ol>
+
+      <table>
+        <thead>
+          <tr><th>Route</th><th>Prefix</th><th>AD</th><th>Dipilih?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Static ke 192.168.1.0/24</td><td>/24</td><td>1</td><td>Ya (lebih spesifik)</td></tr>
+          <tr><td>Static ke 192.168.0.0/22</td><td>/22</td><td>1</td><td>Tidak (kurang spesifik)</td></tr>
+          <tr><td>Default 0.0.0.0/0</td><td>/0</td><td>1</td><td>Hanya jika tidak ada yang cocok</td></tr>
+          <tr><td>OSPF ke 10.0.0.0/8</td><td>/8</td><td>110</td><td>Bergantung pada prefix tujuan</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Penting:</strong> Longest Prefix Match SELALU menang atas Administrative Distance. Route /32 akan selalu dipilih daripada /0 meskipun AD-nya lebih tinggi.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content"><label><input type="checkbox" class="step-check"> Tambah route dengan prefix berbeda untuk network yang sama</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Route spesifik (lebih diprioritaskan)
+/ip route add dst-address=192.168.1.10/32 gateway=10.10.10.2
+
+# Route umum
+/ip route add dst-address=192.168.1.0/24 gateway=10.10.10.3
+
+# Default route (paling rendah prioritas)
+/ip route add dst-address=0.0.0.0/0 gateway=10.10.10.4</div></div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content"><label><input type="checkbox" class="step-check"> Verifikasi route lookup (route mana yang digunakan)</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Cek route yang akan digunakan untuk tujuan tertentu
+/ip route check 192.168.1.10</div></div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content"><label><input type="checkbox" class="step-check"> Test dengan traceroute untuk membuktikan</label>
+        <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/tool traceroute 192.168.1.10</div></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="rubrik">
+      <div class="section-title"><span class="section-num">10</span> Rubrik Penilaian &amp; Tugas</div>
+
+      <table>
+        <thead>
+          <tr><th>No</th><th>Lab</th><th>Komponen Penilaian</th><th>Bobot</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Lab 1</td><td>Static Route 2 Router - konfigurasi &amp; verifikasi "A S"</td><td>15%</td></tr>
+          <tr><td>2</td><td>Lab 2</td><td>Static Route 3 Router - semua network saling terhubung</td><td>15%</td></tr>
+          <tr><td>3</td><td>Lab 3</td><td>Static Route 4 Router - konfigurasi lengkap bidirectional</td><td>15%</td></tr>
+          <tr><td>4</td><td>Lab 4</td><td>Summarization - perhitungan benar &amp; route efisien</td><td>15%</td></tr>
+          <tr><td>5</td><td>Lab 5</td><td>Default Route - 0.0.0.0/0 aktif &amp; fungsional</td><td>10%</td></tr>
+          <tr><td>6</td><td>Lab 6</td><td>Point-to-point /32 - konfigurasi &amp; pengujian</td><td>15%</td></tr>
+          <tr><td>7</td><td>Lab 7</td><td>Prioritas routing - analisis longest prefix match</td><td>15%</td></tr>
+          <tr><td>8</td><td>Semua</td><td>Laporan praktikum (dokumentasi screenshot &amp; analisis)</td><td>Bonus</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">&#x2705;</span>
+        <span class="callout-text"><strong>Tugas:</strong> Buat topologi 3 router dengan kondisi: (1) Konfigurasikan static routing penuh, (2) Implementasikan summarization di router tengah, (3) Tambahkan default route, (4) Buktikan prioritas routing dengan percobaan. Dokumentasikan dengan screenshot routing table dan hasil ping/traceroute.</span>
+      </div>
+    </section>
+
+    <section class="section" id="referensi">
+      <div class="section-title"><span class="section-num">11</span> Referensi</div>
+      <ul>
+        <li>MikroTik. (2023). <em>MTCRE - MikroTik Certified Routing Engineer Study Guide</em>. MikroTik.</li>
+        <li>MikroTik Wiki. <em>IP/Route</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:IP/Route" style="color:#1a56db;">wiki.mikrotik.com/wiki/Manual:IP/Route</a></li>
+        <li>Cisco Networking Academy. (2020). <em>CCNA Routing and Switching: Routing Essentials</em>. Cisco Press.</li>
+        <li>Lammle, T. (2019). <em>CompTIA Network+ Study Guide</em>. Sybex.</li>
+        <li>MikroTik. <em>RouterOS Documentation - Static Routes</em>. <a href="https://help.mikrotik.com" style="color:#1a56db;">help.mikrotik.com</a></li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 4 (EIK214306)</strong> — Politeknik Negeri Tanah Laut<br>
+  Penyusun: Hendrik Setyo Utomo, ST., MMSI &amp; Arif Supriyanto, S.Kom., M.Cs<br>
+  Pertemuan 1-2: Static Routing
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+// Active TOC tracking
+window.addEventListener('scroll', () => {
+  const sections = document.querySelectorAll('section[id]');
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < 120 && top > -sec.offsetHeight) {
+      document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.toc-link[href="#${sec.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>

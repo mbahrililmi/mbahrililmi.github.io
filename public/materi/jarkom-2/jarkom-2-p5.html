@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praktikum 5 – QoS (Quality of Service) | Jaringan Komputer 2</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f8fafc;
+        color: #1e293b;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      a {
+        color: #1a56db;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .page-header {
+        background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%);
+        color: #fff;
+        padding: 40px 48px 36px;
+      }
+      .page-header .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: #fff;
+        border-radius: 20px;
+        padding: 3px 13px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .page-header .subtitle {
+        font-size: 1rem;
+        opacity: 0.88;
+        max-width: 720px;
+      }
+
+      .page-wrap {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 280px;
+        min-width: 280px;
+        background: #fff;
+        border-right: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 28px 0 40px;
+        flex-shrink: 0;
+      }
+      .sidebar-title {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #94a3b8;
+        padding: 0 22px 10px;
+      }
+      .toc-list {
+        list-style: none;
+      }
+      .toc-list li a {
+        display: block;
+        padding: 7px 22px;
+        color: #475569;
+        font-size: 13.5px;
+        border-left: 3px solid transparent;
+        transition: all 0.18s;
+      }
+      .toc-list li a:hover,
+      .toc-list li a.active {
+        color: #1a56db;
+        background: #eff6ff;
+        border-left-color: #1a56db;
+        text-decoration: none;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 40px 48px;
+        max-width: 900px;
+        min-width: 0;
+      }
+
+      .section {
+        margin-bottom: 52px;
+      }
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e2e8f0;
+      }
+      .section-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        background: #1a56db;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .learning-objectives {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 10px;
+        padding: 22px 26px;
+        margin-bottom: 16px;
+      }
+      .learning-objectives h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1a56db;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .learning-objectives ol {
+        padding-left: 20px;
+      }
+      .learning-objectives ol li {
+        margin-bottom: 5px;
+        color: #1e40af;
+        font-size: 14px;
+      }
+
+      .accordion {
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        background: #f8fafc;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14.5px;
+        color: #1e293b;
+        user-select: none;
+        transition: background 0.15s;
+      }
+      .accordion-header:hover {
+        background: #eff6ff;
+        color: #1a56db;
+      }
+      .accordion-icon {
+        width: 22px;
+        height: 22px;
+        background: #e2e8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        transition:
+          transform 0.25s,
+          background 0.15s;
+        flex-shrink: 0;
+      }
+      .accordion.open .accordion-icon {
+        transform: rotate(180deg);
+        background: #1a56db;
+        color: #fff;
+      }
+      .accordion-body {
+        display: none;
+        padding: 16px 18px 18px;
+        border-top: 1px solid #e2e8f0;
+        background: #fff;
+        font-size: 14px;
+      }
+      .accordion.open .accordion-body {
+        display: block;
+      }
+
+      .code-block {
+        background: #1e293b;
+        border-radius: 8px;
+        margin: 12px 0;
+        overflow: hidden;
+      }
+      .code-block-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 14px;
+        background: #0f172a;
+        font-size: 12px;
+        color: #94a3b8;
+      }
+      .code-block pre {
+        padding: 14px 16px;
+        overflow-x: auto;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 13px;
+        color: #e2e8f0;
+        white-space: pre;
+        line-height: 1.6;
+      }
+      .copy-btn {
+        background: #334155;
+        border: none;
+        color: #cbd5e1;
+        border-radius: 5px;
+        padding: 3px 10px;
+        font-size: 11.5px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .copy-btn:hover {
+        background: #1a56db;
+        color: #fff;
+      }
+
+      .steps {
+        margin: 10px 0;
+      }
+      .step {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        align-items: flex-start;
+      }
+      .step-num {
+        min-width: 30px;
+        height: 30px;
+        background: #1a56db;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .step-body {
+        flex: 1;
+      }
+      .step-body p {
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .step-check {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 6px;
+        font-size: 12.5px;
+        color: #64748b;
+        cursor: pointer;
+      }
+      .step-check input[type="checkbox"] {
+        accent-color: #1a56db;
+        width: 15px;
+        height: 15px;
+      }
+
+      .callout {
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin: 14px 0;
+        font-size: 14px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .callout-icon {
+        font-size: 18px;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .callout-info {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #1e40af;
+      }
+      .callout-warn {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        color: #92400e;
+      }
+      .callout-tip {
+        background: #f0fdf4;
+        border: 1px solid #bbf7d0;
+        color: #14532d;
+      }
+      .callout-danger {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #991b1b;
+      }
+
+      .topology {
+        background: #0f172a;
+        color: #7dd3fc;
+        font-family: "Consolas", "Courier New", monospace;
+        font-size: 13px;
+        padding: 20px 24px;
+        border-radius: 8px;
+        overflow-x: auto;
+        white-space: pre;
+        margin: 14px 0;
+        line-height: 1.6;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+      .tooltip span:first-child {
+        border-bottom: 1.5px dashed #1a56db;
+        cursor: help;
+        color: #1a56db;
+      }
+      .tooltip-text {
+        display: none;
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1e293b;
+        color: #f1f5f9;
+        font-size: 12px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        white-space: nowrap;
+        z-index: 100;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        pointer-events: none;
+      }
+      .tooltip:hover .tooltip-text {
+        display: block;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        margin: 14px 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      th {
+        background: #1a56db;
+        color: #fff;
+        padding: 10px 14px;
+        text-align: left;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 600;
+      }
+      th:hover {
+        background: #1e3a8a;
+      }
+      td {
+        padding: 9px 14px;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      tr:nth-child(even) td {
+        background: #f8fafc;
+      }
+      tr:hover td {
+        background: #eff6ff;
+      }
+
+      .rubrik-grid {
+        display: grid;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .rubrik-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      .rubrik-num {
+        background: #1a56db;
+        color: #fff;
+        border-radius: 6px;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      .tugas-list {
+        list-style: none;
+        padding: 0;
+      }
+      .tugas-list li {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 16px;
+      }
+      .tugas-num {
+        background: #f59e0b;
+        color: #fff;
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .ref-list {
+        list-style: decimal;
+        padding-left: 22px;
+      }
+      .ref-list li {
+        margin-bottom: 7px;
+        font-size: 14px;
+        color: #475569;
+      }
+
+      footer {
+        background: #1e3a8a;
+        color: #cbd5e1;
+        padding: 28px 48px;
+        font-size: 13px;
+        text-align: center;
+      }
+      footer strong {
+        color: #fff;
+      }
+
+      p {
+        margin-bottom: 8px;
+      }
+      ul,
+      ol {
+        padding-left: 20px;
+        margin-bottom: 8px;
+      }
+      li {
+        margin-bottom: 3px;
+      }
+      h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 14px 0 8px;
+      }
+
+      @media (max-width: 768px) {
+        .page-wrap {
+          flex-direction: column;
+        }
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .main-content {
+          padding: 24px 18px;
+        }
+        .page-header {
+          padding: 28px 18px 24px;
+        }
+        footer {
+          padding: 20px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-header">
+      <div class="badges">
+        <span class="badge">EIK212305</span>
+        <span class="badge">Semester 2</span>
+        <span class="badge">3 SKS (1T+2P)</span>
+        <span class="badge">Eka Wahyu Sholeha M.Kom</span>
+        <span class="badge">Hendrik Setyo Utomo ST. MMSI</span>
+      </div>
+      <h1>📶 Praktikum 5: QoS (Quality of Service)</h1>
+      <p class="subtitle">
+        Manajemen bandwidth dengan Simple Queue, PCQ, dan Burst di MikroTik
+        RouterOS
+      </p>
+    </div>
+
+    <div class="page-wrap">
+      <aside class="sidebar">
+        <div class="sidebar-title">Daftar Isi</div>
+        <ul class="toc-list">
+          <li><a href="#tujuan">🎯 Tujuan Pembelajaran</a></li>
+          <li><a href="#teori">📖 Teori QoS</a></li>
+          <li><a href="#prak-a">🔬 Praktikum A: Simple Queue</a></li>
+          <li><a href="#prak-b">🔬 Praktikum B: PCQ</a></li>
+          <li><a href="#prak-c">🔬 Praktikum C: Burst</a></li>
+          <li><a href="#prak-e">🔬 Praktikum D: Queue Tree</a></li>
+          <li><a href="#prak-d">🔬 Praktikum E: Monitoring Queue</a></li>
+          <li><a href="#rubrik">📊 Rubrik Penilaian</a></li>
+          <li><a href="#tugas">📝 Tugas Laporan</a></li>
+          <li><a href="#referensi">📚 Referensi</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <section class="section" id="tujuan">
+          <h2 class="section-title">
+            <span class="section-num">1</span> Tujuan Pembelajaran
+          </h2>
+          <div class="learning-objectives">
+            <h3>🎯 Setelah menyelesaikan praktikum ini, mahasiswa mampu:</h3>
+            <ol type="a">
+              <li>
+                Menjelaskan konsep
+                <span class="tooltip"
+                  ><span>QoS</span
+                  ><span class="tooltip-text"
+                    >Quality of Service: teknologi mengatur prioritas lalu
+                    lintas jaringan</span
+                  ></span
+                >
+                (Quality of Service)
+              </li>
+              <li>
+                Memahami perbedaan
+                <span class="tooltip"
+                  ><span>Simple Queue</span
+                  ><span class="tooltip-text"
+                    >Metode limit bandwidth per IP, paling sederhana di
+                    MikroTik</span
+                  ></span
+                >
+                dan Queue Tree
+              </li>
+              <li>
+                Mengkonfigurasi Simple Queue untuk membatasi bandwidth per
+                pengguna
+              </li>
+              <li>
+                Mengkonfigurasi
+                <span class="tooltip"
+                  ><span>PCQ</span
+                  ><span class="tooltip-text"
+                    >Per Connection Queue: membagi bandwidth secara adil dan
+                    dinamis</span
+                  ></span
+                >
+                (Per Connection Queue) untuk pembagian bandwidth adil
+              </li>
+              <li>Melakukan pengujian dan verifikasi konfigurasi QoS</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="teori">
+          <h2 class="section-title">
+            <span class="section-num">2</span> Teori QoS
+          </h2>
+
+          <div class="accordion open" id="acc-qos">
+            <div class="accordion-header" onclick="toggleAccordion('acc-qos')">
+              <span>📡 Konsep QoS (Quality of Service)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                <strong>QoS (Quality of Service)</strong> adalah seperangkat
+                teknologi yang mengatur dan memprioritaskan lalu lintas jaringan
+                agar bandwidth digunakan secara optimal dan adil. Tanpa QoS,
+                satu pengguna berpotensi menghabiskan seluruh bandwidth
+                jaringan.
+              </p>
+              <h4>Parameter QoS Penting:</h4>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th onclick="sortTable(this)">Parameter</th>
+                      <th onclick="sortTable(this)">Deskripsi</th>
+                      <th onclick="sortTable(this)">Nilai Ideal (VoIP)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Bandwidth</strong></td>
+                      <td>Kapasitas maksimum jalur jaringan (Mbps/Kbps)</td>
+                      <td>Sesuai kebutuhan</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Throughput</strong></td>
+                      <td>Bandwidth aktual yang berhasil digunakan</td>
+                      <td>Mendekati bandwidth</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Latency</strong></td>
+                      <td>Waktu yang dibutuhkan paket mencapai tujuan (ms)</td>
+                      <td>&lt; 150 ms</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Jitter</strong></td>
+                      <td>Variasi keterlambatan antar paket (ms)</td>
+                      <td>&lt; 30 ms</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Packet Loss</strong></td>
+                      <td>Persentase paket yang hilang dalam transmisi</td>
+                      <td>&lt; 1%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion" id="acc-mekanisme">
+            <div
+              class="accordion-header"
+              onclick="toggleAccordion('acc-mekanisme')"
+            >
+              <span>⚙️ Mekanisme QoS di MikroTik</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th onclick="sortTable(this)">Mekanisme</th>
+                      <th onclick="sortTable(this)">Deskripsi</th>
+                      <th onclick="sortTable(this)">Kelebihan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Simple Queue</strong></td>
+                      <td>Limit bandwidth per IP/subnet, paling sederhana</td>
+                      <td>Mudah dikonfigurasi</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Queue Tree</strong></td>
+                      <td>Hierarki queue parent-child, berbasis Mangle</td>
+                      <td>Sangat fleksibel</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PCQ (Per Connection Queue)</strong></td>
+                      <td>
+                        Membagi bandwidth adil antar pengguna aktif secara
+                        dinamis
+                      </td>
+                      <td>Otomatis, adil, tidak perlu setting per IP</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                Format <strong>Max-Limit</strong> pada Simple Queue:
+                <code>[upload]/[download]</code><br />
+                Contoh: <code>1M/2M</code> artinya upload max 1 Mbps, download
+                max 2 Mbps.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion" id="acc-pcq">
+            <div class="accordion-header" onclick="toggleAccordion('acc-pcq')">
+              <span>⚖️ PCQ (Per Connection Queue)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                <strong>PCQ</strong> membagi total bandwidth secara merata
+                kepada semua pengguna yang aktif secara dinamis:
+              </p>
+              <ul>
+                <li>1 pengguna aktif → mendapat semua bandwidth</li>
+                <li>2 pengguna aktif → masing-masing mendapat 1/2 bandwidth</li>
+                <li>5 pengguna aktif → masing-masing mendapat 1/5 bandwidth</li>
+              </ul>
+              <p><strong>PCQ Classifier:</strong></p>
+              <ul>
+                <li>
+                  <code>dst-address</code> → untuk
+                  <strong>download</strong> (trafik menuju PC)
+                </li>
+                <li>
+                  <code>src-address</code> → untuk
+                  <strong>upload</strong> (trafik dari PC)
+                </li>
+              </ul>
+              <div class="callout callout-tip">
+                <span class="callout-icon">💡</span>
+                <div>
+                  PCQ sangat cocok untuk hotspot atau jaringan publik di mana
+                  jumlah pengguna tidak dapat diprediksi dan semua pengguna
+                  berhak mendapat porsi bandwidth yang adil.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion" id="acc-burst">
+            <div
+              class="accordion-header"
+              onclick="toggleAccordion('acc-burst')"
+            >
+              <span>🚀 Burst</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <p>
+                <strong>Burst</strong> adalah fitur yang mengizinkan pengguna
+                untuk melebihi batas bandwidth normal untuk waktu singkat.
+                Sangat berguna untuk membuat browsing terasa cepat walaupun
+                limit bandwidth rendah.
+              </p>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th onclick="sortTable(this)">Parameter</th>
+                      <th onclick="sortTable(this)">Deskripsi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>burst-limit</strong></td>
+                      <td>Batas kecepatan maksimum saat burst aktif</td>
+                    </tr>
+                    <tr>
+                      <td><strong>burst-threshold</strong></td>
+                      <td>
+                        Rata-rata kecepatan di bawah nilai ini agar burst aktif
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>burst-time</strong></td>
+                      <td>
+                        Periode waktu untuk menghitung rata-rata kecepatan
+                        (detik)
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="prak-a">
+          <h2 class="section-title">
+            <span class="section-num">3</span> Praktikum A: Simple Queue (Limit
+            per User)
+          </h2>
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>
+              Membatasi bandwidth per pengguna menggunakan
+              <strong>Simple Queue</strong>, metode paling sederhana di
+              MikroTik.
+            </div>
+          </div>
+
+          <h4>Topologi Jaringan:</h4>
+          <div class="topology">
+            [Internet 10Mbps/10Mbps] | ether1 (IP Publik) [MikroTik RouterBoard]
+            ether2 (192.168.1.1/24) | [LAN Switch] |
+            +--------+--------+--------+ | | | | PC1 PC2 PC3 PC4 .10 .20 .30 .40
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <p><strong>Login ke MikroTik via Winbox</strong></p>
+                <p>
+                  Buka Winbox, masukkan IP/MAC MikroTik, login dengan kredensial
+                  admin.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Berhasil login ke MikroTik</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <p><strong>Buka Queues → Simple Queues di Winbox</strong></p>
+                <p>
+                  Navigasi ke menu <strong>Queues</strong> → tab
+                  <strong>Simple Queues</strong> untuk melihat daftar queue yang
+                  ada.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Membuka menu Simple Queues</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Buat queue untuk PC1 (download 2Mbps / upload
+                    1Mbps):</strong
+                  >
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue simple add name=PC1-Limit target=192.168.1.10 max-limit=1M/2M comment="Limit PC1"</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue PC1-Limit dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <p><strong>Buat queue untuk PC2 dan PC3:</strong></p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue simple add name=PC2-Limit target=192.168.1.20 max-limit=512k/1M
+/queue simple add name=PC3-Limit target=192.168.1.30 max-limit=2M/4M</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue PC2 dan PC3 dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">5</div>
+              <div class="step-body">
+                <p><strong>Verifikasi daftar queue di Winbox:</strong></p>
+                <p>
+                  Buka <strong>Queues → Simple Queues</strong>. Pastikan semua
+                  queue muncul dengan status aktif (centang hijau).
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Semua queue terlihat dan
+                  aktif</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">6</div>
+              <div class="step-body">
+                <p><strong>Uji dengan speedtest.net:</strong></p>
+                <p>
+                  Dari masing-masing PC, akses
+                  <a href="https://speedtest.net" target="_blank"
+                    >speedtest.net</a
+                  >. Hasil kecepatan tidak boleh melebihi limit yang telah
+                  dikonfigurasi.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Hasil speedtest sesuai limit yang
+                  dikonfigurasi</label
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="prak-b">
+          <h2 class="section-title">
+            <span class="section-num">4</span> Praktikum B: PCQ (Bandwidth
+            Sharing Adil)
+          </h2>
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>
+              <strong>PCQ (Per Connection Queue)</strong> membagi bandwidth
+              secara otomatis dan adil kepada semua pengguna yang aktif, tanpa
+              harus mengatur limit per IP.
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Buat Queue Type untuk PCQ Download dan Upload:</strong
+                  >
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue type add name=PCQ-Download kind=pcq pcq-rate=0 pcq-classifier=dst-address
+/queue type add name=PCQ-Upload kind=pcq pcq-rate=0 pcq-classifier=src-address</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue Type PCQ-Download dan
+                  PCQ-Upload dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Buat Simple Queue menggunakan PCQ untuk seluruh subnet
+                    LAN:</strong
+                  >
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue simple add name=Internet-Sharing target=192.168.1.0/24 max-limit=10M/10M queue=PCQ-Upload/PCQ-Download comment="PCQ - Fair bandwidth sharing"</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue Internet-Sharing dengan PCQ
+                  dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <p>
+                  <strong>Verifikasi pembagian bandwidth yang adil:</strong>
+                </p>
+                <ul>
+                  <li>1 pengguna aktif download → gunakan hingga 10 Mbps</li>
+                  <li>
+                    2 pengguna aktif download → masing-masing hingga 5 Mbps
+                  </li>
+                  <li>
+                    4 pengguna aktif download → masing-masing hingga 2,5 Mbps
+                  </li>
+                </ul>
+                <p>
+                  Uji dengan mendownload file besar bersamaan dari beberapa PC.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Verifikasi PCQ — bandwidth terbagi
+                  adil saat multi-user</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-tip">
+            <span class="callout-icon">💡</span>
+            <div>
+              Nilai <code>pcq-rate=0</code> berarti tidak ada batas per koneksi
+              — router akan membagi total bandwidth secara otomatis. Jika ingin
+              membatasi per koneksi, isi nilai pcq-rate (mis.
+              <code>pcq-rate=2M</code>).
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="prak-c">
+          <h2 class="section-title">
+            <span class="section-num">5</span> Praktikum C: Burst
+          </h2>
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>
+              <strong>Burst</strong> memungkinkan pengguna melebihi batas
+              bandwidth sesaat saat baru memulai unduhan. Membuat pengalaman
+              browsing terasa lebih cepat.
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <p>
+                  <strong>Buat queue dengan parameter Burst untuk PC1:</strong>
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue simple add name=PC1-Burst target=192.168.1.10 max-limit=1M/2M burst-limit=2M/4M burst-threshold=512k/1M burst-time=10s/10s comment="PC1 with Burst"</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue PC1-Burst dengan parameter
+                  burst dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <p><strong>Uji perilaku Burst:</strong></p>
+                <p>Download file besar dari PC1. Perhatikan:</p>
+                <ul>
+                  <li>
+                    Kecepatan <strong>awal download</strong> → sesuai
+                    burst-limit (2Mbps/4Mbps)
+                  </li>
+                  <li>
+                    Setelah beberapa detik → kecepatan turun ke max-limit normal
+                    (1Mbps/2Mbps)
+                  </li>
+                </ul>
+                <label class="step-check"
+                  ><input type="checkbox" /> Burst terverifikasi — kecepatan
+                  awal lebih tinggi lalu menurun</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="callout callout-warn">
+            <span class="callout-icon">⚠️</span>
+            <div>
+              Burst aktif hanya ketika rata-rata penggunaan bandwidth di bawah
+              <strong>burst-threshold</strong>. Jika pengguna terus-menerus
+              mengunduh, burst tidak akan aktif kembali sampai penggunaan turun.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="prak-e">
+          <h2 class="section-title">
+            <span class="section-num">6</span> Praktikum D: Queue Tree
+          </h2>
+
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>
+              <strong>Queue Tree</strong> adalah metode QoS yang lebih canggih
+              dibandingkan Simple Queue. Queue Tree menggunakan sistem
+              <em>parent-child</em> (hierarki) dan bergantung pada
+              <span class="tooltip"
+                ><span>Mangle</span
+                ><span class="tooltip-text"
+                  >Fitur MikroTik untuk menandai (marking) paket berdasarkan
+                  aturan tertentu</span
+                ></span
+              >
+              untuk menandai paket terlebih dahulu. Cocok untuk jaringan
+              kompleks yang membutuhkan prioritas berbeda untuk tiap jenis
+              traffic.
+            </div>
+          </div>
+
+          <div class="accordion" id="acc-qt-konsep">
+            <div
+              class="accordion-header"
+              onclick="toggleAccordion('acc-qt-konsep')"
+            >
+              <span>📖 Konsep Queue Tree vs Simple Queue</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-body">
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Aspek</th>
+                      <th>Simple Queue</th>
+                      <th>Queue Tree</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Kemudahan konfigurasi</td>
+                      <td>✅ Mudah</td>
+                      <td>⚠️ Lebih kompleks</td>
+                    </tr>
+                    <tr>
+                      <td>Hierarki / Parent-Child</td>
+                      <td>❌ Tidak ada</td>
+                      <td>✅ Ada (fleksibel)</td>
+                    </tr>
+                    <tr>
+                      <td>Memerlukan Mangle</td>
+                      <td>❌ Tidak</td>
+                      <td>✅ Ya</td>
+                    </tr>
+                    <tr>
+                      <td>Prioritas per traffic</td>
+                      <td>Terbatas</td>
+                      <td>✅ Sangat fleksibel</td>
+                    </tr>
+                    <tr>
+                      <td>Use case</td>
+                      <td>Limit per IP sederhana</td>
+                      <td>Prioritas VoIP, video, data berbeda</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin-top: 10px">
+                <strong>Cara kerja Queue Tree:</strong>
+              </p>
+              <ol>
+                <li>
+                  Mangle menandai (<em>mark</em>) paket berdasarkan kriteria
+                  (IP, protokol, port, dll.)
+                </li>
+                <li>
+                  Queue Tree menangkap paket berdasarkan tanda (<em>mark</em>)
+                  tersebut
+                </li>
+                <li>
+                  Hierarchy parent mengatur total bandwidth, child mengatur
+                  prioritas dan porsi
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="steps" style="margin-top: 16px">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Langkah 1: Buat Mangle untuk menandai paket (traffic
+                    marking)</strong
+                  >
+                </p>
+                <p>
+                  Contoh: tandai traffic download dari internet (in-interface
+                  ether1 = WAN) dan upload ke internet.
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/ip firewall mangle
+add chain=forward action=mark-packet in-interface=ether1 \
+    new-packet-mark=download-mark passthrough=no \
+    comment="Tandai traffic download dari WAN"
+add chain=forward action=mark-packet out-interface=ether1 \
+    new-packet-mark=upload-mark passthrough=no \
+    comment="Tandai traffic upload ke WAN"</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Mangle mark-packet untuk download
+                  dan upload dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Langkah 2: Buat Parent Queue (total bandwidth)</strong
+                  >
+                </p>
+                <p>
+                  Parent Queue mengatur total bandwidth yang tersedia untuk
+                  internet.
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue tree
+add name=Total-Download parent=ether2 max-limit=10M \
+    comment="Parent: total bandwidth download ke LAN"
+add name=Total-Upload parent=ether1 max-limit=10M \
+    comment="Parent: total bandwidth upload ke WAN"</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Parent Queue untuk download dan
+                  upload dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <p>
+                  <strong
+                    >Langkah 3: Buat Child Queue dengan prioritas
+                    berbeda</strong
+                  >
+                </p>
+                <p>
+                  Child Queue digunakan untuk memberikan prioritas berbeda
+                  kepada jenis traffic yang berbeda.
+                  <strong>Prioritas 1 = tertinggi</strong>, 8 = terendah.
+                </p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue tree
+# Child Download dengan prioritas
+add name=DL-Priority-1 parent=Total-Download \
+    packet-mark=download-mark priority=1 limit-at=3M max-limit=10M \
+    comment="Download prioritas tinggi (VoIP, video call)"
+
+# Atau tanpa Mangle, gunakan PCQ sebagai child queue type:
+add name=DL-All parent=Total-Download \
+    packet-mark=download-mark queue=PCQ-Download max-limit=10M \
+    comment="Download semua user - PCQ adil"</pre
+                  >
+                </div>
+                <div class="callout callout-tip">
+                  <span class="callout-icon">💡</span>
+                  <div>
+                    <strong>Tips:</strong> <code>limit-at</code> = bandwidth
+                    minimum yang <em>dijamin</em> untuk child ini.
+                    <code>max-limit</code> = batas maksimum yang bisa dipakai
+                    jika parent masih punya bandwidth sisa.
+                  </div>
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Child Queue dengan prioritas
+                  dibuat</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div class="step-body">
+                <p><strong>Langkah 4: Verifikasi Queue Tree</strong></p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/queue tree print
+# Tampil daftar parent dan child queue
+# Kolom "bytes" menunjukkan traffic yang sudah diproses
+
+# Atau di Winbox:
+# Queues → Queue Tree → lihat grafik real-time</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Queue Tree aktif dan memproses
+                  traffic</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-warn">
+            <span class="callout-icon">⚠️</span>
+            <div>
+              <strong>Penting:</strong> Jika menggunakan Queue Tree,
+              <strong>hapus atau nonaktifkan Simple Queue</strong> yang memiliki
+              target sama agar tidak terjadi konflik. Keduanya akan saling
+              berebut mengatur traffic yang sama.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="prak-d">
+          <h2 class="section-title">
+            <span class="section-num">7</span> Praktikum E: Monitoring Queue
+          </h2>
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>
+              Memantau penggunaan bandwidth secara real-time menggunakan fitur
+              monitoring MikroTik.
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div class="step-body">
+                <p><strong>Pantau bandwidth real-time di Winbox:</strong></p>
+                <p>
+                  Buka <strong>Queues → Simple Queues</strong> → klik dua kali
+                  pada queue → pilih tab <strong>Traffic</strong>. Grafik akan
+                  menampilkan penggunaan bandwidth upload dan download secara
+                  real-time.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Grafik traffic queue diamati</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div class="step-body">
+                <p><strong>Pantau dengan Torch (per-IP traffic):</strong></p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>/tool torch interface=ether2</pre>
+                </div>
+                <p>
+                  Atau di Winbox: <strong>Tools → Torch</strong>, pilih
+                  interface ether2.
+                </p>
+                <label class="step-check"
+                  ><input type="checkbox" /> Torch menampilkan trafik per
+                  IP</label
+                >
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div class="step-body">
+                <p><strong>Bandwidth Test antar perangkat:</strong></p>
+                <div class="code-block">
+                  <div class="code-block-header">
+                    <span>RouterOS CLI</span
+                    ><button class="copy-btn" onclick="copyCode(this)">
+                      📋 Salin
+                    </button>
+                  </div>
+                  <pre>
+/tool bandwidth-test address=192.168.1.10 direction=both</pre
+                  >
+                </div>
+                <label class="step-check"
+                  ><input type="checkbox" /> Bandwidth test berhasil
+                  dijalankan</label
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="rubrik">
+          <h2 class="section-title">
+            <span class="section-num">8</span> Rubrik Penilaian
+          </h2>
+          <div class="rubrik-grid">
+            <div class="rubrik-item">
+              <div class="rubrik-num">1</div>
+              <div>
+                <strong>Simple Queue per user</strong> — Limit bandwidth per IP
+                terverifikasi dengan speedtest
+              </div>
+            </div>
+            <div class="rubrik-item">
+              <div class="rubrik-num">2</div>
+              <div>
+                <strong>PCQ</strong> — Bandwidth dibagi rata saat multi-user
+                aktif (diverifikasi dengan download bersamaan)
+              </div>
+            </div>
+            <div class="rubrik-item">
+              <div class="rubrik-num">3</div>
+              <div>
+                <strong>Monitoring bandwidth</strong> — Grafik traffic queue dan
+                bandwidth test berhasil dilakukan
+              </div>
+            </div>
+            <div class="rubrik-item">
+              <div class="rubrik-num">4</div>
+              <div>
+                <strong>Konsep QoS</strong> — Mampu menjelaskan bandwidth,
+                latency, jitter, dan perbedaan Simple Queue vs PCQ
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="tugas">
+          <h2 class="section-title">
+            <span class="section-num">9</span> Tugas Laporan
+          </h2>
+          <ul class="tugas-list">
+            <li>
+              <span class="tugas-num">1</span
+              ><span
+                >Implementasikan <strong>Simple Queue</strong> untuk membatasi
+                bandwidth 3 PC berbeda dengan nilai limit berbeda.
+                Dokumentasikan dan uji!</span
+              >
+            </li>
+            <li>
+              <span class="tugas-num">2</span
+              ><span
+                >Implementasikan <strong>PCQ</strong> minimal 4 PC. Uji dengan
+                download file besar bersamaan. Bandingkan kecepatan
+                masing-masing PC!</span
+              >
+            </li>
+            <li>
+              <span class="tugas-num">3</span
+              ><span
+                >Jelaskan perbedaan <strong>Simple Queue</strong> dan
+                <strong>PCQ</strong>. Kapan sebaiknya menggunakan masing-masing
+                metode?</span
+              >
+            </li>
+            <li>
+              <span class="tugas-num">4</span
+              ><span
+                >Konfigurasi <strong>Burst</strong> pada salah satu queue.
+                Jelaskan bagaimana Burst bekerja berdasarkan hasil
+                pengujian!</span
+              >
+            </li>
+            <li>
+              <span class="tugas-num">5</span
+              ><span
+                >Buat laporan lengkap dengan dokumentasi konfigurasi, grafik
+                traffic dari Torch, dan hasil bandwidth test!</span
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="referensi">
+          <h2 class="section-title">
+            <span class="section-num">10</span> Referensi
+          </h2>
+          <ol class="ref-list">
+            <li>
+              MikroTik Documentation. (2024). <em>Queues</em>.
+              <a href="https://wiki.mikrotik.com/wiki/Queues" target="_blank"
+                >https://wiki.mikrotik.com/wiki/Queues</a
+              >
+            </li>
+            <li>
+              MikroTik Documentation. (2024). <em>PCQ</em>.
+              <a
+                href="https://wiki.mikrotik.com/wiki/PCQ_in_theory"
+                target="_blank"
+                >https://wiki.mikrotik.com/wiki/PCQ_in_theory</a
+              >
+            </li>
+            <li>
+              Ferguson, P., &amp; Huston, G. (1998).
+              <em>Quality of Service</em>. Wiley.
+            </li>
+            <li>
+              Szigeti, T., &amp; Hattingh, C. (2004).
+              <em>End-to-End QoS Network Design</em>. Cisco Press.
+            </li>
+          </ol>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <strong>Jaringan Komputer 2</strong> — EIK212305 &nbsp;|&nbsp; Semester 2
+      &nbsp;|&nbsp; 3 SKS (1T+2P)<br />
+      Eka Wahyu Sholeha M.Kom &amp; Hendrik Setyo Utomo ST. MMSI<br />
+      <span style="opacity: 0.6; font-size: 12px"
+        >Politeknik Negeri Tanah Laut &copy; 2025</span
+      >
+    </footer>
+
+    <script>
+      function toggleAccordion(id) {
+        document.getElementById(id).classList.toggle("open");
+      }
+      function copyCode(btn) {
+        const pre = btn.closest(".code-block").querySelector("pre");
+        navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+          const orig = btn.innerHTML;
+          btn.innerHTML = "✅ Tersalin!";
+          btn.style.background = "#16a34a";
+          btn.style.color = "#fff";
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = "";
+            btn.style.color = "";
+          }, 2000);
+        });
+      }
+      function sortTable(th) {
+        const table = th.closest("table");
+        const tbody = table.querySelector("tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+        const idx = Array.from(th.parentElement.children).indexOf(th);
+        const asc = th.dataset.asc !== "true";
+        th.dataset.asc = asc;
+        rows.sort((a, b) => {
+          const at = a.cells[idx]?.textContent.trim() || "";
+          const bt = b.cells[idx]?.textContent.trim() || "";
+          return asc ? at.localeCompare(bt) : bt.localeCompare(at);
+        });
+        rows.forEach((r) => tbody.appendChild(r));
+      }
+      const sections = document.querySelectorAll(".section");
+      const tocLinks = document.querySelectorAll(".toc-list a");
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 100) current = s.id;
+        });
+        tocLinks.forEach((a) => {
+          a.classList.remove("active");
+          if (a.getAttribute("href") === "#" + current)
+            a.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

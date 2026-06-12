@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarkom 4 - P3: Routing Policy | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+footer { background: #1e3a8a; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>&#x1F9ED; Pertemuan 5 — Routing Policy</h1>
+  <p>Jaringan Komputer 4 | Politeknik Negeri Tanah Laut</p>
+  <div class="header-badges">
+    <span class="badge">&#x1F4CB; EIK214306</span>
+    <span class="badge">&#x1F4DA; Semester 4</span>
+    <span class="badge">&#x23F1; 3 SKS (1T + 2P)</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Hendrik Setyo Utomo, ST., MMSI</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Arif Supriyanto, S.Kom., M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">&#x1F3AF; Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#teori">&#x1F4D6; Teori Dasar</a>
+    <a class="toc-link indent" href="#teori-rp">Routing Policy</a>
+    <a class="toc-link indent" href="#teori-pbr">Policy Based Routing</a>
+    <a class="toc-link indent" href="#teori-mark">Routing Mark</a>
+    <a class="toc-link indent" href="#teori-tipe">Tipe Route</a>
+    <a class="toc-link indent" href="#teori-nat">NAT Masquerade</a>
+    <a class="toc-link" href="#lab12">&#x1F9EA; Lab 12: Routing Policy</a>
+    <a class="toc-link indent" href="#lab12-topologi">Topologi</a>
+    <a class="toc-link indent" href="#lab12-config">Konfigurasi</a>
+    <a class="toc-link indent" href="#lab12-verify">Verifikasi</a>
+    <a class="toc-link" href="#referensi">&#x1F4DA; Referensi</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Jarkom 4</a> &rsaquo; <a href="#">Pertemuan 5</a> &rsaquo; Routing Policy
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep Routing Policy dan Policy Based Routing (PBR)</li>
+          <li>Mengkonfigurasi mangle untuk menandai (marking) paket berdasarkan source/destination</li>
+          <li>Membuat tabel routing terpisah menggunakan routing-mark</li>
+          <li>Mengarahkan traffic dari network berbeda ke jalur yang berbeda</li>
+          <li>Mengkonfigurasi <span class="tooltip">NAT<span class="tooltip-text">Network Address Translation: menerjemahkan IP privat ke IP publik</span></span> masquerade untuk multi-WAN</li>
+          <li>Memverifikasi routing policy dengan traceroute dari sumber berbeda</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <div class="section-title"><span class="section-num">2</span> Teori Dasar</div>
+
+      <div class="accordion" id="teori-rp">
+        <div class="accordion-header">&#x1F9ED; Routing Policy <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Routing Policy</strong> adalah mekanisme pengambilan keputusan routing yang lebih kompleks dari sekadar melihat destination address. Policy routing mempertimbangkan berbagai kriteria:</p>
+          <ul>
+            <li><strong>Source address</strong>: Dari jaringan mana paket berasal</li>
+            <li><strong>Destination address</strong>: Ke mana paket dituju</li>
+            <li><strong>Interface</strong>: Dari interface mana paket masuk</li>
+            <li><strong>ToS (Type of Service)</strong>: Jenis layanan dalam header IP</li>
+            <li><strong>Mangle marking</strong>: Label yang diberikan oleh aturan firewall mangle</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#x1F4A1;</span>
+            <span class="callout-text"><strong>Perbedaan dari Static Routing Biasa:</strong> Static routing biasa hanya melihat <em>destination address</em>. Routing policy dapat membuat keputusan berdasarkan <em>siapa pengirimnya</em>, bukan hanya <em>ke mana tujuannya</em>.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-pbr">
+        <div class="accordion-header">&#x1F4CD; Policy Based Routing (PBR) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Policy Based Routing (PBR)</strong> memungkinkan administrator untuk menentukan jalur routing berdasarkan kebijakan tertentu, bukan hanya tabel routing standar.</p>
+          <p><strong>Contoh use case PBR:</strong></p>
+          <ul>
+            <li>Departemen IT (192.168.1.0/24) selalu keluar via ISP1 (dedicated/cepat)</li>
+            <li>Departemen Umum (192.168.10.0/24) keluar via ISP2 (lebih murah)</li>
+            <li>Traffic VoIP diarahkan ke jalur dengan latensi rendah</li>
+            <li>Traffic backup/download diarahkan ke jalur <span class="tooltip">bandwidth<span class="tooltip-text">Kapasitas maksimum jalur data, diukur dalam Mbps/Gbps</span></span> besar</li>
+          </ul>
+          <p>PBR di MikroTik diimplementasikan menggunakan kombinasi <strong>Mangle</strong> + <strong>Routing Table</strong> + <strong>Route dengan routing-mark</strong>.</p>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-mark">
+        <div class="accordion-header">&#x1F3F7;&#xFE0F; Routing Mark (Mangle) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Routing Mark</strong> adalah label yang diberikan kepada paket melalui aturan firewall mangle. Paket yang memiliki routing-mark tertentu akan mencari route di tabel routing yang sesuai dengan mark tersebut.</p>
+          <p><strong>Alur kerja PBR dengan Mangle:</strong></p>
+          <ol>
+            <li>Paket masuk dari PC1 (192.168.1.x) → Mangle mencocokkan src-address</li>
+            <li>Mangle memberikan routing-mark "ISP1-traffic" pada paket</li>
+            <li>Router mencari route di tabel routing yang memiliki routing-mark "ISP1-traffic"</li>
+            <li>Paket diteruskan sesuai route di tabel tersebut</li>
+          </ol>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Contoh struktur mangle rule
+/ip firewall mangle add chain=prerouting \
+    src-address=192.168.1.0/24 \
+    action=mark-routing \
+    new-routing-mark=ISP1-traffic \
+    passthrough=yes</div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-tipe">
+        <div class="accordion-header">&#x1F4CB; Tipe Route di MikroTik <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead>
+              <tr><th>Tipe</th><th>Flag</th><th>Perilaku</th><th>Penggunaan</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>unicast</strong></td><td>A S</td><td>Paket diteruskan ke gateway tujuan</td><td>Route normal biasa</td></tr>
+              <tr><td><strong>blackhole</strong></td><td>A SB</td><td>Paket di-drop diam-diam (no response)</td><td>Block traffic tanpa notifikasi</td></tr>
+              <tr><td><strong>prohibit</strong></td><td>A SP</td><td>Paket di-drop + ICMP code 13 (communication administratively prohibited)</td><td>Block dengan pemberitahuan</td></tr>
+              <tr><td><strong>unreachable</strong></td><td>A SU</td><td>Paket di-drop + ICMP code 1 (host unreachable)</td><td>Simulasi host tidak bisa dijangkau</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-nat">
+        <div class="accordion-header">&#x1F310; NAT Masquerade <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><span class="tooltip">NAT<span class="tooltip-text">Network Address Translation: menerjemahkan IP privat ke IP publik</span></span> Masquerade adalah tipe NAT dinamis yang secara otomatis mengganti source IP paket dari IP private ke IP public interface yang digunakan.</p>
+          <p>Pada konfigurasi multi-WAN dengan Routing Policy, diperlukan masquerade di <strong>setiap interface WAN</strong> agar return traffic dapat diterima dengan benar.</p>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># NAT Masquerade untuk ether1 (WAN ke ISP1)
+/ip firewall nat add chain=srcnat action=masquerade out-interface=ether1
+
+# NAT Masquerade untuk ether2 (WAN ke ISP2)
+/ip firewall nat add chain=srcnat action=masquerade out-interface=ether2</div>
+          <div class="callout callout-warn">
+            <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+            <span class="callout-text"><strong>Penting:</strong> Tanpa masquerade yang benar pada setiap WAN interface, traffic yang keluar via ISP2 tidak akan mendapatkan reply karena source IP private tidak dikenali di internet.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab12">
+      <div class="section-title"><span class="section-num">3</span> Lab 12: Routing Policy</div>
+
+      <div id="lab12-topologi">
+        <div class="topology">
+PC1 (192.168.1.0/24)──────┐
+                           ├──[R1]──ether1:12.12.12.1/30──[R2]──ether3(200.x.x.x)
+PC2 (192.168.10.0/24)─────┘    └──ether2:21.21.21.1/30──[R2]──ether4(200.x.x.x)
+
+R1 Interface:
+  ether3 → 192.168.1.1/24 (LAN PC1)
+  ether4 → 192.168.10.1/24 (LAN PC2)
+  ether1 → 12.12.12.1/30 (WAN 1 ke R2)
+  ether2 → 21.21.21.1/30 (WAN 2 ke R2)
+
+Kebijakan:
+  Traffic dari PC1 (192.168.1.0/24) → keluar via ether1 (12.12.12.0/30)
+  Traffic dari PC2 (192.168.10.0/24) → keluar via ether2 (21.21.21.0/30)
+        </div>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Tujuan Lab 12:</strong> Traffic dari jaringan yang berbeda (PC1 dan PC2) harus melewati jalur WAN yang berbeda (ether1 dan ether2) meskipun keduanya terhubung ke router yang sama.</span>
+      </div>
+
+      <div id="lab12-config">
+        <div class="tab-group">
+          <div class="tab-bar">
+            <button class="tab-btn active" data-tab="tab-ip-l12">1. IP Address</button>
+            <button class="tab-btn" data-tab="tab-mangle-l12">2. Mangle</button>
+            <button class="tab-btn" data-tab="tab-route-l12">3. Route</button>
+            <button class="tab-btn" data-tab="tab-nat-l12">4. NAT</button>
+          </div>
+          <div id="tab-ip-l12" class="tab-panel active">
+            <div class="steps">
+              <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Konfigurasi IP Address R1</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=ether3
+/ip address add address=192.168.10.1/24 interface=ether4
+/ip address add address=12.12.12.1/30 interface=ether1
+/ip address add address=21.21.21.1/30 interface=ether2</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Konfigurasi IP Address R2</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=12.12.12.2/30 interface=ether1
+/ip address add address=21.21.21.2/30 interface=ether2
+/ip address add address=200.200.200.1/24 interface=ether3
+/ip address add address=200.200.100.1/24 interface=ether4</div>
+              </div></div>
+            </div>
+          </div>
+          <div id="tab-mangle-l12" class="tab-panel">
+            <p><strong>Konfigurasi Mangle di R1 untuk marking traffic:</strong></p>
+            <div class="steps">
+              <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Mark routing untuk traffic dari PC1 (192.168.1.0/24)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle add chain=prerouting \
+    src-address=192.168.1.0/24 \
+    action=mark-routing \
+    new-routing-mark=ke-ISP1 \
+    passthrough=yes \
+    comment="Traffic PC1 via ISP1"</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Mark routing untuk traffic dari PC2 (192.168.10.0/24)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle add chain=prerouting \
+    src-address=192.168.10.0/24 \
+    action=mark-routing \
+    new-routing-mark=ke-ISP2 \
+    passthrough=yes \
+    comment="Traffic PC2 via ISP2"</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Verifikasi mangle rules</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle print</div>
+              </div></div>
+            </div>
+          </div>
+          <div id="tab-route-l12" class="tab-panel">
+            <p><strong>Konfigurasi Route dengan routing-mark di R1:</strong></p>
+            <div class="steps">
+              <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Route utama (tanpa mark) - default</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip route add dst-address=0.0.0.0/0 gateway=12.12.12.2
+/ip route add dst-address=200.200.200.0/24 gateway=12.12.12.2
+/ip route add dst-address=200.200.100.0/24 gateway=21.21.21.2</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Route untuk mark "ke-ISP1" (traffic PC1)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=12.12.12.2 \
+    routing-mark=ke-ISP1</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Route untuk mark "ke-ISP2" (traffic PC2)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=21.21.21.2 \
+    routing-mark=ke-ISP2</div>
+              </div></div>
+            </div>
+          </div>
+          <div id="tab-nat-l12" class="tab-panel">
+            <p><strong>Konfigurasi NAT Masquerade di R1:</strong></p>
+            <div class="steps">
+              <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Masquerade untuk ether1 (ISP1)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall nat add chain=srcnat action=masquerade \
+    out-interface=ether1 comment="NAT ke ISP1"</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Masquerade untuk ether2 (ISP2)</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall nat add chain=srcnat action=masquerade \
+    out-interface=ether2 comment="NAT ke ISP2"</div>
+              </div></div>
+              <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+                <label><input type="checkbox" class="step-check"> Verifikasi NAT rules</label>
+                <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall nat print</div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="lab12-verify">
+        <h3 style="color:#1e3a8a; margin:20px 0 12px;">Verifikasi Routing Policy</h3>
+        <div class="steps">
+          <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+            <label><input type="checkbox" class="step-check"> Traceroute dari PC1 (harus via 12.12.12.2)</label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Dari PC1:
+tracert 200.200.200.1
+# Hop 1: 192.168.1.1 (R1)
+# Hop 2: 12.12.12.2 (R2 via ether1 - ISP1) ← BENAR</div>
+          </div></div>
+          <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+            <label><input type="checkbox" class="step-check"> Traceroute dari PC2 (harus via 21.21.21.2)</label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Dari PC2:
+tracert 200.200.100.1
+# Hop 1: 192.168.10.1 (R1)
+# Hop 2: 21.21.21.2 (R2 via ether2 - ISP2) ← BENAR</div>
+          </div></div>
+          <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+            <label><input type="checkbox" class="step-check"> Monitor mangle rule hits (statistik)</label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle print stats
+# Lihat kolom "packets" dan "bytes" bertambah sesuai traffic</div>
+          </div></div>
+        </div>
+
+        <div class="callout callout-tip">
+          <span class="callout-icon">&#x2705;</span>
+          <span class="callout-text"><strong>Tips Troubleshooting:</strong> Jika routing policy tidak bekerja, cek urutan mangle rules (/ip firewall mangle print). Aturan diproses dari atas ke bawah. Juga pastikan <code>passthrough=yes</code> agar paket bisa diproses aturan berikutnya setelah di-mark.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="referensi">
+      <div class="section-title"><span class="section-num">4</span> Referensi</div>
+      <ul>
+        <li>MikroTik. (2023). <em>MTCRE - MikroTik Certified Routing Engineer</em>. MikroTik.</li>
+        <li>MikroTik Wiki. <em>Policy Based Routing</em>. <a href="https://wiki.mikrotik.com/wiki/Policy_Based_Routing" style="color:#1a56db;">wiki.mikrotik.com</a></li>
+        <li>MikroTik Wiki. <em>Mangle</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:IP/Firewall/Mangle" style="color:#1a56db;">wiki.mikrotik.com/wiki/Manual:IP/Firewall/Mangle</a></li>
+        <li>MikroTik Wiki. <em>NAT</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:IP/Firewall/NAT" style="color:#1a56db;">wiki.mikrotik.com</a></li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 4 (EIK214306)</strong> — Politeknik Negeri Tanah Laut<br>
+  Penyusun: Hendrik Setyo Utomo, ST., MMSI &amp; Arif Supriyanto, S.Kom., M.Cs<br>
+  Pertemuan 5: Routing Policy
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+</script>
+</body>
+</html>

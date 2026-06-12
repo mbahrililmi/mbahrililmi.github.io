@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 2 – Routing | Jaringan Komputer 2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="font-size:0.85rem;opacity:0.8;margin-bottom:4px;">Politeknik Negeri Tanah Laut — Jaringan Komputer 2</div>
+    <h1>🔀 Praktikum 2: Routing (Static, RIP, OSPF, BGP)</h1>
+    <p style="opacity:0.9;margin-top:6px;font-size:0.95rem;">Konfigurasi dan implementasi protokol routing statis dan dinamis pada jaringan komputer</p>
+    <div class="header-badges">
+      <span class="badge">📘 EIK212305</span>
+      <span class="badge">📅 Semester 2</span>
+      <span class="badge">⚡ 3 SKS (1T + 2P)</span>
+      <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
+      <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#tujuan" class="toc-link">🎯 Tujuan Pembelajaran</a>
+    <a href="#teori-routing" class="toc-link">📖 Teori Routing</a>
+    <a href="#static-routing" class="toc-link indent">Static Routing</a>
+    <a href="#rip" class="toc-link indent">RIP</a>
+    <a href="#ospf" class="toc-link indent">OSPF</a>
+    <a href="#bgp" class="toc-link indent">BGP</a>
+    <a href="#perbandingan" class="toc-link">📊 Perbandingan Protokol</a>
+    <a href="#topologi" class="toc-link">🗺️ Topologi Lab</a>
+    <a href="#lab-static" class="toc-link">🔬 Lab: Static Route</a>
+    <a href="#lab-rip" class="toc-link">🔬 Lab: RIP v2</a>
+    <a href="#lab-ospf" class="toc-link">🔬 Lab: OSPF</a>
+    <a href="#tugas" class="toc-link">📝 Tugas</a>
+    <a href="#referensi" class="toc-link">📚 Referensi</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Beranda</a> › <a href="#">Jaringan Komputer 2</a> › Praktikum 2
+    </div>
+
+    <!-- TUJUAN -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah menyelesaikan praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Menjelaskan konsep dan mekanisme <span class="tooltip">routing<span class="tooltip-text">Proses memilih jalur terbaik untuk mengirim paket data</span></span> pada jaringan komputer</li>
+          <li>Membedakan routing statis dan dinamis beserta kelebihan dan kekurangannya</li>
+          <li>Mengkonfigurasi static route pada perangkat Cisco dan MikroTik</li>
+          <li>Mengkonfigurasi protokol RIP v2 pada jaringan multi-router</li>
+          <li>Mengkonfigurasi protokol <span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span> pada Cisco IOS</li>
+          <li>Memahami konsep dasar <span class="tooltip">BGP<span class="tooltip-text">Border Gateway Protocol: protokol routing antar jaringan besar/ISP</span></span> sebagai protokol routing antar-AS</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TEORI ROUTING -->
+    <section class="section" id="teori-routing">
+      <div class="section-title"><span class="section-num">2</span> Teori Routing</div>
+
+      <p><strong>Routing</strong> adalah proses memilih jalur terbaik untuk mengirimkan paket data dari sumber ke tujuan melalui jaringan yang saling terhubung. Router menggunakan <em>routing table</em> untuk menentukan ke mana paket harus dikirimkan berdasarkan IP tujuan.</p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Router membuat keputusan <span class="tooltip">routing<span class="tooltip-text">Proses memilih jalur terbaik untuk mengirim paket data</span></span> berdasarkan <strong>Longest Prefix Match</strong> — rute dengan prefix terpanjang (spesifik) yang cocok dengan IP tujuan akan dipilih.</span>
+      </div>
+
+      <div id="static-routing" style="margin-top:24px;">
+        <div class="accordion">
+          <div class="accordion-header">📌 Static Routing (Routing Statis) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p>Static routing dikonfigurasi secara manual oleh administrator. Router tidak belajar rute secara otomatis. Cocok untuk jaringan kecil atau koneksi ke satu arah (stub network).</p>
+            <p><strong>Kelebihan:</strong> Aman, tidak ada overhead protokol, mudah diprediksi<br>
+            <strong>Kekurangan:</strong> Tidak scalable, tidak ada failover otomatis, administrasi manual</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="rip" style="margin-top:8px;">
+        <div class="accordion">
+          <div class="accordion-header">🔄 RIP (Routing Information Protocol) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p>RIP adalah protokol <em>Distance Vector</em> yang menggunakan algoritma <strong>Bellman-Ford</strong>. Metrik RIP adalah <em>hop count</em> (jumlah router yang dilewati).</p>
+            <ul>
+              <li><strong>Hop count maksimum:</strong> 15 (hop ke-16 dianggap tidak terjangkau)</li>
+              <li><strong>Update interval:</strong> 30 detik (broadcast/multicast tabel routing)</li>
+              <li><strong>Konvergensi:</strong> Lambat (~beberapa menit untuk jaringan besar)</li>
+              <li><strong>RIPv1:</strong> Classful, broadcast — <strong>RIPv2:</strong> Classless, multicast 224.0.0.9, mendukung VLSM</li>
+            </ul>
+            <div class="callout callout-warn">
+              <span class="callout-icon">⚠️</span>
+              <span class="callout-text">RIP tidak cocok untuk jaringan besar karena batas 15 hop dan konvergensi yang lambat. Gunakan OSPF atau BGP untuk jaringan besar.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ospf" style="margin-top:8px;">
+        <div class="accordion">
+          <div class="accordion-header">⚡ OSPF (Open Shortest Path First) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p><span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span> adalah protokol <em>Link State</em> yang menggunakan algoritma <strong>Dijkstra (SPF)</strong> untuk menghitung jalur terpendek.</p>
+            <ul>
+              <li><strong>Area 0 (Backbone):</strong> Area pusat yang wajib ada, semua area lain harus terhubung ke Area 0</li>
+              <li><strong>DR/BDR:</strong> Designated Router / Backup DR untuk mengurangi traffic LSA pada segmen multi-access</li>
+              <li><strong>LSA (Link State Advertisement):</strong> Pesan yang berisi informasi topologi jaringan</li>
+              <li><strong>LSDB:</strong> Database state link, dimiliki setiap router OSPF di area yang sama</li>
+              <li><strong>Metrik:</strong> Cost (berdasarkan bandwidth: Cost = 10^8 / bandwidth)</li>
+              <li><strong>Konvergensi:</strong> Cepat, cocok untuk jaringan enterprise besar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="bgp" style="margin-top:8px;">
+        <div class="accordion">
+          <div class="accordion-header">🌐 BGP (Border Gateway Protocol) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p><span class="tooltip">BGP<span class="tooltip-text">Border Gateway Protocol: protokol routing antar jaringan besar/ISP</span></span> adalah protokol <em>Path Vector</em> yang digunakan untuk <span class="tooltip">routing<span class="tooltip-text">Proses memilih jalur terbaik untuk mengirim paket data</span></span> antar <strong>Autonomous System (AS)</strong>. BGP adalah protokol routing internet global.</p>
+            <ul>
+              <li><strong>Port:</strong> TCP 179</li>
+              <li><strong>iBGP:</strong> BGP di dalam satu AS</li>
+              <li><strong>eBGP:</strong> BGP antar AS yang berbeda</li>
+              <li><strong>AS Number:</strong> Identifier unik setiap jaringan/organisasi (1-65535 publik, 64512-65535 privat)</li>
+              <li><strong>Atribut:</strong> AS-PATH, NEXT-HOP, LOCAL-PREF, MED — digunakan untuk pemilihan rute</li>
+            </ul>
+            <div class="callout callout-info">
+              <span class="callout-icon">💡</span>
+              <span class="callout-text">BGP mengelola lebih dari 900.000 prefix di internet global (per 2024). Setiap ISP besar menggunakan BGP untuk pertukaran rute dengan ISP lain.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERBANDINGAN -->
+    <section class="section" id="perbandingan">
+      <div class="section-title"><span class="section-num">3</span> Perbandingan Protokol Routing</div>
+      <p>Klik header kolom untuk mengurutkan tabel:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Protokol</th>
+            <th>Jenis</th>
+            <th>Algoritma</th>
+            <th>Metrik</th>
+            <th>Skala</th>
+            <th>Konvergensi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Static</strong></td><td>Manual</td><td>—</td><td>AD (manual)</td><td>Kecil</td><td>Instan</td></tr>
+          <tr><td><strong>RIP v2</strong></td><td>Distance Vector</td><td>Bellman-Ford</td><td>Hop Count</td><td>Kecil (&lt;15 hop)</td><td>Lambat (~menit)</td></tr>
+          <tr><td><strong>OSPF</strong></td><td>Link State</td><td>Dijkstra (SPF)</td><td>Cost (bandwidth)</td><td>Besar (enterprise)</td><td>Cepat (&lt;detik)</td></tr>
+          <tr><td><strong>EIGRP</strong></td><td>Hybrid</td><td>DUAL</td><td>Bandwidth+Delay</td><td>Besar (Cisco only)</td><td>Sangat cepat</td></tr>
+          <tr><td><strong>BGP</strong></td><td>Path Vector</td><td>Best Path</td><td>AS-PATH+Atribut</td><td>Internet (global)</td><td>Lambat (stabilitas)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text"><strong>AD (Administrative Distance):</strong> Static=1, EIGRP=90, OSPF=110, RIP=120, BGP external=20. Semakin kecil AD, semakin dipercaya.</span>
+      </div>
+    </section>
+
+    <!-- TOPOLOGI -->
+    <section class="section" id="topologi">
+      <div class="section-title"><span class="section-num">4</span> Topologi Jaringan Lab</div>
+      <pre class="topology">
+  [PC0]─────────────[Router0]──────────[Router1]──────────[Router2]─────────[PC5]
+  192.168.1.10      fa0/0              s0/0  s0/1         s0/0  s0/1        fa0/0
+                    192.168.1.1   10.0.0.1  10.0.0.2  20.0.0.1  20.0.0.2  192.168.3.1
+                                                                            192.168.3.10
+
+  NETWORK ADDRESSES:
+  ├── LAN1: 192.168.1.0/24  (PC0 ↔ Router0 fa0/0)
+  ├── WAN1: 10.0.0.0/30     (Router0 s0/0 ↔ Router1 s0/1)
+  ├── WAN2: 20.0.0.0/30     (Router1 s0/0 ↔ Router2 s0/1)
+  └── LAN2: 192.168.3.0/24  (Router2 fa0/0 ↔ PC5)</pre>
+    </section>
+
+    <!-- LAB: STATIC -->
+    <section class="section" id="lab-static">
+      <div class="section-title"><span class="section-num">5</span> Lab: Konfigurasi Static Route</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="static-cisco">🔵 Cisco IOS</button>
+          <button class="tab-btn" data-tab="static-mikrotik">🔴 MikroTik</button>
+        </div>
+        <div class="tab-panels">
+          <div id="static-cisco" class="tab-panel active">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Konfigurasi Router0 (Cisco)</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router> enable
+Router# configure terminal
+Router(config)# hostname Router0
+
+! Konfigurasi interface LAN
+Router0(config)# interface fastethernet 0/0
+Router0(config-if)# ip address 192.168.1.1 255.255.255.0
+Router0(config-if)# no shutdown
+Router0(config-if)# exit
+
+! Konfigurasi interface WAN ke Router1
+Router0(config)# interface serial 0/0
+Router0(config-if)# ip address 10.0.0.1 255.255.255.252
+Router0(config-if)# clock rate 64000
+Router0(config-if)# no shutdown
+Router0(config-if)# exit
+
+! Tambah static route ke LAN Router1 (192.168.3.0/24)
+Router0(config)# ip route 192.168.3.0 255.255.255.0 10.0.0.2
+Router0(config)# end
+Router0# write memory</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Konfigurasi Router2 (Cisco)</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router> enable
+Router# configure terminal
+Router(config)# hostname Router2
+
+Router2(config)# interface fastethernet 0/0
+Router2(config-if)# ip address 192.168.3.1 255.255.255.0
+Router2(config-if)# no shutdown
+Router2(config-if)# exit
+
+Router2(config)# interface serial 0/0
+Router2(config-if)# ip address 20.0.0.2 255.255.255.252
+Router2(config-if)# no shutdown
+Router2(config-if)# exit
+
+! Static route ke LAN Router0
+Router2(config)# ip route 192.168.1.0 255.255.255.0 20.0.0.1
+Router2(config)# end
+Router2# write memory</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Verifikasi routing table</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router0# show ip route
+Router0# show ip interface brief
+Router0# ping 192.168.3.1 source 192.168.1.1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="static-mikrotik" class="tab-panel">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Tambah IP Address di MikroTik</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Konfigurasi IP di Winbox terminal
+/ip address add address=192.168.1.1/24 interface=ether1
+/ip address add address=10.0.0.1/30 interface=ether2
+/ip address print</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Tambah Static Route di MikroTik</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>/ip route add dst-address=192.168.3.0/24 gateway=10.0.0.2
+/ip route print</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Verifikasi dengan ping</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>/ping 192.168.3.10 count=4
+/tool traceroute 192.168.3.10</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB: RIP -->
+    <section class="section" id="lab-rip">
+      <div class="section-title"><span class="section-num">6</span> Lab: Konfigurasi RIP v2</div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text">Gunakan topologi 3 router yang sama. Hapus konfigurasi static route sebelum mengaktifkan RIP untuk menghindari konflik.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan RIP v2 di Router0</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router0(config)# router rip
+Router0(config-router)# version 2
+Router0(config-router)# no auto-summary
+Router0(config-router)# network 192.168.1.0
+Router0(config-router)# network 10.0.0.0
+Router0(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan RIP v2 di Router1</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router1(config)# router rip
+Router1(config-router)# version 2
+Router1(config-router)# no auto-summary
+Router1(config-router)# network 10.0.0.0
+Router1(config-router)# network 20.0.0.0
+Router1(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan RIP v2 di Router2</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router2(config)# router rip
+Router2(config-router)# version 2
+Router2(config-router)# no auto-summary
+Router2(config-router)# network 20.0.0.0
+Router2(config-router)# network 192.168.3.0
+Router2(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="4">4</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi RIP</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router0# show ip route rip
+Router0# show ip rip database
+Router0# debug ip rip   ! (hati-hati di production!)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB: OSPF -->
+    <section class="section" id="lab-ospf">
+      <div class="section-title"><span class="section-num">7</span> Lab: Konfigurasi OSPF</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan OSPF di Router0</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">Router0(config)# router ospf 1
+Router0(config-router)# router-id 1.1.1.1
+Router0(config-router)# network 192.168.1.0 0.0.0.255 area 0
+Router0(config-router)# network 10.0.0.0 0.0.0.3 area 0
+Router0(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan OSPF di Router1</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router1(config)# router ospf 1
+Router1(config-router)# router-id 2.2.2.2
+Router1(config-router)# network 10.0.0.0 0.0.0.3 area 0
+Router1(config-router)# network 20.0.0.0 0.0.0.3 area 0
+Router1(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan OSPF di Router2</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>Router2(config)# router ospf 1
+Router2(config-router)# router-id 3.3.3.3
+Router2(config-router)# network 20.0.0.0 0.0.0.3 area 0
+Router2(config-router)# network 192.168.3.0 0.0.0.255 area 0
+Router2(config-router)# end</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="4">4</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi OSPF Neighbors &amp; Routes</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">Router0# show ip ospf neighbor
+Router0# show ip ospf database
+Router0# show ip route ospf
+Router0# show ip ospf interface</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text">Pastikan <strong>Router ID</strong> setiap router unik dalam satu domain OSPF. Router ID dipilih dari: (1) konfigurasi manual, (2) IP tertinggi loopback, (3) IP tertinggi interface aktif.</span>
+      </div>
+    </section>
+
+    <!-- TUGAS -->
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">8</span> Tugas</div>
+      <ol>
+        <li>Implementasikan topologi dengan 4 router (tambah Router3 + LAN3 192.168.5.0/24) menggunakan static routing. Pastikan semua PC bisa saling ping.</li>
+        <li>Konfigurasi ulang topologi 4 router menggunakan OSPF multi-area (LAN1+WAN1 di Area 1, WAN2+WAN3 di Area 0, LAN3 di Area 2).</li>
+        <li>Bandingkan waktu konvergensi RIP vs OSPF: putus salah satu link, catat berapa lama routing kembali normal.</li>
+        <li>Buat laporan dengan tabel routing (show ip route) setiap router untuk setiap skenario (Static/RIP/OSPF).</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;">
+    <strong>Referensi:</strong>
+    <ul style="margin-top:8px;color:#cbd5e1;">
+      <li>Lammle, T. (2016). <em>CCNA Routing and Switching Study Guide</em>. Sybex.</li>
+      <li>Doyle, J., &amp; Carroll, J. (2005). <em>Routing TCP/IP Volume I</em>, 2nd Ed. Cisco Press.</li>
+      <li>RFC 2328 — OSPF Version 2. IETF.</li>
+      <li>RFC 4271 — A Border Gateway Protocol 4 (BGP-4). IETF.</li>
+    </ul>
+    <div style="margin-top:12px;color:#94a3b8;font-size:0.82rem;">Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | © 2024</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.toc-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

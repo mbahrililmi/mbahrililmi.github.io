@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 2 – Fail Over dan Load Balance | Jaringan Komputer 4</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-danger { background: #fef2f2; border-left: 4px solid #dc2626; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="font-size:0.82rem; opacity:0.8; margin-bottom:4px;">Jaringan Komputer 4 / EIK214306</div>
+  <h1>&#9878; Praktikum 2 &#8211; Fail Over dan Load Balance</h1>
+  <p style="opacity:0.9; font-size:0.95rem; margin-top:8px;">Konfigurasi Fail Over dengan check-gateway, target-scope, dan Load Balancing multi-gateway di MikroTik</p>
+  <div class="header-badges">
+    <span class="badge">EIK214306</span>
+    <span class="badge">Semester 4</span>
+    <span class="badge">3 SKS (1T+2P)</span>
+    <span class="badge">Hendrik Setyo Utomo ST. MMSI</span>
+    <span class="badge">Arif Supriyanto S.Kom. M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#tujuan" class="toc-link">Tujuan Pembelajaran</a>
+    <a href="#teori" class="toc-link">Materi Teori</a>
+    <a href="#redundansi" class="toc-link indent">&#9656; Redundansi Jaringan</a>
+    <a href="#failover-teori" class="toc-link indent">&#9656; Fail Over</a>
+    <a href="#checkgw" class="toc-link indent">&#9656; Check-Gateway</a>
+    <a href="#scope" class="toc-link indent">&#9656; Scope &amp; Target-Scope</a>
+    <a href="#lb-teori" class="toc-link indent">&#9656; Load Balancing</a>
+    <a href="#perbandingan" class="toc-link indent">&#9656; Perbandingan FO vs LB</a>
+    <a href="#lab8" class="toc-link">Lab 8 &#8211; Fail Over</a>
+    <a href="#lab9" class="toc-link">Lab 9 &#8211; Tanpa Check-GW</a>
+    <a href="#lab10" class="toc-link">Lab 10 &#8211; Target Scope</a>
+    <a href="#lab11" class="toc-link">Lab 11 &#8211; Load Balancing</a>
+    <a href="#rubrik" class="toc-link">Rubrik Penilaian</a>
+    <a href="#tugas" class="toc-link">Tugas</a>
+    <a href="#referensi" class="toc-link">Referensi</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Beranda</a> &rsaquo; <a href="#">Jaringan Komputer 4</a> &rsaquo; Praktikum 2
+    </div>
+
+    <!-- TUJUAN -->
+    <section id="tujuan" class="section">
+      <div class="section-title">
+        <span class="section-num">1</span> Tujuan Pembelajaran
+      </div>
+      <div class="learning-objectives">
+        <ol type="a">
+          <li>Memahami konsep <strong>Fail Over</strong> pada jaringan komputer</li>
+          <li>Memahami konsep <strong>Load Balancing</strong> pada jaringan komputer</li>
+          <li>Mengimplementasikan Fail Over menggunakan parameter <strong>check-gateway</strong></li>
+          <li>Memahami penggunaan <strong>target-scope</strong> pada Fail Over</li>
+          <li>Mengimplementasikan <strong>Load Balancing</strong> pada Router Mikrotik</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- TEORI -->
+    <section id="teori" class="section">
+      <div class="section-title">
+        <span class="section-num">2</span> Materi Teori
+      </div>
+
+      <div id="redundansi" class="accordion">
+        <div class="accordion-header">
+          Redundansi Jaringan
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Redundansi jaringan</strong> adalah konsep menyediakan jalur cadangan agar konektivitas jaringan tetap terjaga meskipun terjadi kerusakan atau gangguan pada jalur utama.</p>
+          <p>Redundansi sangat penting diterapkan pada:</p>
+          <ul>
+            <li><strong>Data Center</strong> &#8211; karena downtime berdampak besar pada bisnis</li>
+            <li><strong>ISP (Internet Service Provider)</strong> &#8211; untuk menjamin SLA kepada pelanggan</li>
+            <li><strong>Jaringan Perusahaan</strong> &#8211; terutama yang mengandalkan konektivitas internet 24/7</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#8505;&#65039;</span>
+            <span class="callout-text">Dua mekanisme utama redundansi yang akan dipelajari adalah <strong>Fail Over</strong> (jalur cadangan aktif saat jalur utama down) dan <strong>Load Balancing</strong> (semua jalur aktif bersamaan untuk mendistribusikan traffic).</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="failover-teori" class="accordion">
+        <div class="accordion-header">
+          Fail Over
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Fail Over</strong> adalah mekanisme perpindahan otomatis dari jalur utama ke jalur cadangan ketika jalur utama mengalami gangguan (down).</p>
+          <p><strong>Cara kerja Fail Over di MikroTik:</strong></p>
+          <ol>
+            <li>Router menggunakan route dengan nilai <strong>distance TERENDAH</strong> sebagai jalur utama</li>
+            <li>Route backup diberi nilai <strong>distance LEBIH TINGGI</strong> (contoh: distance=2)</li>
+            <li>Parameter <code>check-gateway=ping</code> memonitor kondisi gateway secara berkala</li>
+            <li>Jika ping ke gateway utama gagal, router otomatis beralih ke route backup</li>
+          </ol>
+          <div class="callout callout-tip">
+            <span class="callout-icon">&#128161;</span>
+            <span class="callout-text"><strong>Distance</strong> default pada static route adalah <strong>1</strong>. Route dengan distance=1 akan diprioritaskan dibanding distance=2. Semakin kecil nilainya, semakin diprioritaskan oleh router.</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="checkgw" class="accordion">
+        <div class="accordion-header">
+          Parameter Check-Gateway
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p>Parameter <code>check-gateway</code> pada route menentukan metode yang digunakan router untuk memonitor ketersediaan <span class="tooltip">gateway<span class="tooltip-text">Gateway: router atau perangkat yang menjadi pintu keluar menuju jaringan lain atau internet</span></span>.</p>
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortTable(this)">Nilai &#8597;</th>
+                <th onclick="sortTable(this)">Cara Kerja &#8597;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ping</code></td>
+                <td>Router melakukan ping ke gateway secara berkala. Jika ping gagal beberapa kali, gateway dianggap down dan route dinonaktifkan.</td>
+              </tr>
+              <tr>
+                <td><code>arp</code></td>
+                <td>Router menggunakan protokol ARP untuk memeriksa ketersediaan gateway di jaringan lokal (layer 2).</td>
+              </tr>
+              <tr>
+                <td><em>(kosong)</em></td>
+                <td>Tidak ada pengecekan. Fail Over <strong>TIDAK akan bekerja</strong> meskipun gateway benar-benar down.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="callout callout-danger">
+            <span class="callout-icon">&#9888;&#65039;</span>
+            <span class="callout-text"><strong>PENTING:</strong> Parameter <code>check-gateway</code> <strong>WAJIB</strong> dikonfigurasi pada jalur utama agar Fail Over berfungsi! Jika ada 3 jalur, <code>check-gateway</code> harus ada di jalur 1 dan jalur 2. Jalur terakhir (backup paling akhir) tidak perlu dikonfigurasi check-gateway.</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="scope" class="accordion">
+        <div class="accordion-header">
+          Scope dan Target-Scope
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p>Dua parameter ini mengontrol bagaimana MikroTik menemukan <span class="tooltip">next-hop<span class="tooltip-text">Next-hop: router berikutnya yang harus dilewati untuk mencapai tujuan akhir</span></span> dalam tabel routing:</p>
+          <ul>
+            <li><strong>scope</strong>: kemampuan jangkauan router saat mencari next-hop (default: 30)</li>
+            <li><strong>target-scope</strong>: jarak maksimum yang diperbolehkan untuk mencapai gateway tujuan</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#128161;</span>
+            <span class="callout-text"><strong>Analogi:</strong> Bayangkan <em>scope</em> adalah kemampuan jangkauan tangan kita, sedangkan <em>target-scope</em> adalah jarak ke tujuan. Jika <code>target-scope &gt; scope</code>, kita tidak bisa menggapai tujuan tersebut secara langsung.</span>
+          </div>
+          <p>Parameter ini digunakan ketika gateway yang dituju <strong>tidak terhubung langsung</strong> ke router, sehingga perlu melewati router perantara untuk sampai ke gateway tersebut.</p>
+        </div>
+      </div>
+
+      <div id="lb-teori" class="accordion">
+        <div class="accordion-header">
+          Load Balancing
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Load Balancing</strong> adalah teknik mendistribusikan beban traffic ke beberapa jalur secara <strong>BERSAMAAN</strong>. Berbeda dengan Fail Over, semua jalur aktif sekaligus untuk memaksimalkan penggunaan bandwidth.</p>
+          <p>Pada MikroTik, Load Balancing dilakukan dengan mendefinisikan multiple gateway dalam satu route. <strong>Rasio distribusi</strong> ditentukan dari berapa kali sebuah gateway disebutkan dalam konfigurasi.</p>
+          <p><strong>Contoh rasio 2:1 (ISP1=20Mb mendapat 2x lebih banyak traffic dari ISP2=10Mb):</strong></p>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=192.168.4.0/24 gateway=12.12.12.2,12.12.12.2,13.13.13.3</div>
+          <ul>
+            <li>ISP1 (<code>12.12.12.2</code>) disebut <strong>2 kali</strong> &#8594; mendapat 2/3 traffic</li>
+            <li>ISP2 (<code>13.13.13.3</code>) disebut <strong>1 kali</strong> &#8594; mendapat 1/3 traffic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="perbandingan" class="accordion">
+        <div class="accordion-header">
+          Perbandingan Fail Over vs Load Balancing
+          <span class="accordion-icon">&#9660;</span>
+        </div>
+        <div class="accordion-body">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="sortTable(this)">Aspek &#8597;</th>
+                <th onclick="sortTable(this)">Fail Over &#8597;</th>
+                <th onclick="sortTable(this)">Load Balancing &#8597;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Penggunaan jalur</td>
+                <td>Hanya jalur utama aktif</td>
+                <td>Semua jalur aktif bersamaan</td>
+              </tr>
+              <tr>
+                <td>Efisiensi Bandwidth</td>
+                <td>Rendah (1 jalur idle)</td>
+                <td>Tinggi (semua jalur terpakai)</td>
+              </tr>
+              <tr>
+                <td>Kompleksitas Konfigurasi</td>
+                <td>Sederhana</td>
+                <td>Lebih kompleks</td>
+              </tr>
+              <tr>
+                <td>Ketersediaan (Availability)</td>
+                <td>Tinggi</td>
+                <td>Sangat tinggi</td>
+              </tr>
+              <tr>
+                <td>Cocok untuk</td>
+                <td>Link kritis, koneksi penting</td>
+                <td>Optimasi bandwidth, multi-ISP</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB 8 -->
+    <section id="lab8" class="section">
+      <div class="section-title">
+        <span class="section-num">3</span> Lab 8 &#8211; Konfigurasi Fail Over
+      </div>
+
+      <p><strong>Tujuan:</strong> Jalur via R2 sebagai <em>prioritas utama</em>. Jika R2 down, router otomatis beralih ke jalur via R3.</p>
+
+      <p><strong>Topologi Jaringan:</strong></p>
+      <div class="topology">         &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; R2 &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+        /  12.12.12.0/24     \ 24.24.24.0/24
+       /                      \
+     R1                        R4 &#9472;&#9472;&#9472; 192.168.4.0/24 &#9472;&#9472;&#9472; PC1
+       \                      /
+        \  13.13.13.0/24     / 34.34.34.0/24
+         &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472; R3 &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#8505;&#65039;</span>
+        <span class="callout-text">Terdapat 4 router: <strong>R1</strong> (sumber traffic), <strong>R2</strong> (jalur utama atas), <strong>R3</strong> (jalur backup bawah), <strong>R4</strong> (tujuan akhir, terhubung ke PC1 di subnet 192.168.4.0/24).</span>
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Konfigurasi IP Address di semua router</strong></p>
+            <p><em>R1 &#8211; dua interface ke R2 dan R3:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip address add address=12.12.12.1/24 interface=ether1
+/ip address add address=13.13.13.1/24 interface=ether2</div>
+            <p><em>R2 &#8211; interface ke R1 dan ke R4:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip address add address=12.12.12.2/24 interface=ether1
+/ip address add address=24.24.24.2/24 interface=ether2</div>
+            <p><em>R3 &#8211; interface ke R1 dan ke R4:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip address add address=13.13.13.3/24 interface=ether1
+/ip address add address=34.34.34.3/24 interface=ether2</div>
+            <p><em>R4 &#8211; interface ke R2, R3, dan ke PC1:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip address add address=24.24.24.4/24 interface=ether1
+/ip address add address=34.34.34.4/24 interface=ether2
+/ip address add address=192.168.4.1/24 interface=ether3</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Konfigurasi Static Routing di R1 (kunci Fail Over)</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=24.24.24.0/24 gateway=12.12.12.2
+/ip route add dst-address=34.34.34.0/24 gateway=13.13.13.3
+/ip route add dst-address=192.168.4.0/24 gateway=12.12.12.2 check-gateway=ping
+/ip route add dst-address=192.168.4.0/24 gateway=13.13.13.3 distance=2</div>
+            <div class="callout callout-warn">
+              <span class="callout-icon">&#128204;</span>
+              <span class="callout-text"><strong>Penjelasan:</strong> <code>check-gateway=ping</code> memerintahkan R1 untuk secara berkala melakukan ping ke gateway <code>12.12.12.2</code> (R2). Jika ping gagal, route ini dinonaktifkan dan route backup (distance=2) via <code>13.13.13.3</code> otomatis aktif.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Konfigurasi routing di R2, R3, dan R4</strong></p>
+            <p><em>R2:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=13.13.13.0/24 gateway=12.12.12.1
+/ip route add dst-address=34.34.34.0/24 gateway=24.24.24.4
+/ip route add dst-address=192.168.4.0/24 gateway=24.24.24.4</div>
+            <p><em>R3:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=12.12.12.0/24 gateway=13.13.13.1
+/ip route add dst-address=24.24.24.0/24 gateway=34.34.34.4
+/ip route add dst-address=192.168.4.0/24 gateway=34.34.34.4</div>
+            <p><em>R4:</em></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=12.12.12.0/24 gateway=24.24.24.2
+/ip route add dst-address=13.13.13.0/24 gateway=34.34.34.3</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Verifikasi tabel routing R1 kondisi normal</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route print</div>
+            <p>Kondisi normal: route ke <code>192.168.4.0/24</code> via <code>12.12.12.2</code> berstatus <strong>A S</strong> (Active Static) sebagai jalur utama. Route via <code>13.13.13.3</code> dengan distance=2 dalam keadaan standby (tidak aktif selama jalur utama hidup).</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Pengujian traceroute kondisi normal (dari R1)</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/tool traceroute 192.168.4.2</div>
+            <p>Hasil yang diharapkan: paket melewati R2, jalur: <code>12.12.12.2</code> &#8594; <code>24.24.24.4</code> &#8594; <code>192.168.4.2</code></p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Simulasi R2 down &#8211; jalankan perintah ini di router R2</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/interface disable ether1</div>
+            <p>Amati tabel routing R1. Setelah beberapa detik (sesuai interval check-gateway), route utama via R2 akan dinonaktifkan secara otomatis dan route backup via R3 menjadi aktif.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Traceroute setelah failover terjadi</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/tool traceroute 192.168.4.2</div>
+            <p>Hasil: paket sekarang melewati R3, jalur: <code>13.13.13.3</code> &#8594; <code>34.34.34.4</code> &#8594; <code>192.168.4.2</code>. Fail Over <strong>berhasil</strong>!</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LAB 9 -->
+    <section id="lab9" class="section">
+      <div class="section-title">
+        <span class="section-num">4</span> Lab 9 &#8211; Fail Over WITHOUT Check-Gateway
+      </div>
+
+      <p>Lab ini membuktikan secara langsung bahwa Fail Over <strong>TIDAK bekerja</strong> tanpa parameter <code>check-gateway</code> pada route utama.</p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Nonaktifkan route dengan check-gateway dan buat route baru tanpanya</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route disable [route yang menggunakan check-gateway]
+/ip route add dst-address=192.168.4.0/24 gateway=12.12.12.2</div>
+            <p>Kali ini route utama dikonfigurasi <strong>tanpa</strong> parameter <code>check-gateway</code>.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Simulasikan R2 down kembali (di R2) dan uji traceroute dari R1</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/tool traceroute 192.168.4.2</div>
+            <p>Hasil: traceroute akan <strong>TIMEOUT</strong>! Router tidak mengetahui bahwa gateway sudah down sehingga tetap mengirim paket ke R2 yang sudah tidak aktif.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p><strong>Kesimpulan Perbandingan:</strong></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Konfigurasi Route Utama</th>
+            <th>Kondisi Saat Gateway Down</th>
+            <th>Status Fail Over</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dengan <code>check-gateway=ping</code></td>
+            <td>Otomatis beralih ke jalur backup</td>
+            <td style="color:#16a34a; font-weight:700;">OK &#10004;</td>
+          </tr>
+          <tr>
+            <td>Tanpa <code>check-gateway</code></td>
+            <td>Tetap mengirim ke gateway mati &#8594; TIMEOUT</td>
+            <td style="color:#dc2626; font-weight:700;">GAGAL &#10008;</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- LAB 10 -->
+    <section id="lab10" class="section">
+      <div class="section-title">
+        <span class="section-num">5</span> Lab 10 &#8211; Fail Over dengan Target-Scope
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#9888;&#65039;</span>
+        <span class="callout-text"><strong>Skenario Masalah:</strong> Link R1&#8211;R2 dalam kondisi baik, namun link R2&#8211;R4 mengalami gangguan (down). R1 tetap bisa ping ke R2 (gateway langsung), sehingga check-gateway biasa tidak mendeteksi masalah. Akibatnya Fail Over tidak aktif meskipun paket tidak dapat mencapai PC1.</span>
+      </div>
+
+      <p><strong>Solusi:</strong> Gunakan <code>target-scope</code> dengan gateway yang tidak terhubung langsung ke R1 (yaitu <code>24.24.24.4</code> yang berada di balik R2).</p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Modifikasi route dengan mengubah gateway dan menambah target-scope</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route set [route] gateway=24.24.24.4 target-scope=30</div>
+            <p>Perubahan utama: gateway diubah dari <code>12.12.12.2</code> (terhubung langsung ke R1) menjadi <code>24.24.24.4</code> (tidak langsung, berada di sisi R4). Dengan begitu, check-gateway akan memonitor <code>24.24.24.4</code> yang akan gagal jika link R2&#8211;R4 down.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Simulasikan link R2&#8211;R4 down dan verifikasi failover</strong></p>
+            <p>Nonaktifkan interface R4 yang mengarah ke R2, kemudian lakukan traceroute dari R1 ke PC1.</p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/tool traceroute 192.168.4.2</div>
+            <p>Hasil: karena gateway yang dimonitor adalah <code>24.24.24.4</code>, ketika link R2&#8211;R4 down, ping ke <code>24.24.24.4</code> akan gagal dan Fail Over akan berfungsi dengan benar, beralih ke jalur via R3.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LAB 11 -->
+    <section id="lab11" class="section">
+      <div class="section-title">
+        <span class="section-num">6</span> Lab 11 &#8211; Load Balancing
+      </div>
+
+      <p><strong>Skenario:</strong> ISP1 memiliki bandwidth 20 Mbps, ISP2 memiliki 10 Mbps. Traffic didistribusikan dengan rasio 2:1 sesuai kapasitas masing-masing ISP.</p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Nonaktifkan semua route Fail Over yang sebelumnya dikonfigurasi</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route disable [semua fail over routes ke 192.168.4.0/24]</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Tambahkan route Load Balancing dengan rasio 2:1</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/ip route add dst-address=192.168.4.0/24 gateway=12.12.12.2,12.12.12.2,13.13.13.3</div>
+            <div class="callout callout-info">
+              <span class="callout-icon">&#8505;&#65039;</span>
+              <span class="callout-text"><strong>Penjelasan Rasio:</strong> <code>12.12.12.2</code> ditulis <strong>2 kali</strong> &#8594; mendapat 2/3 dari total traffic (proporsional dengan kapasitas 20 Mbps). <code>13.13.13.3</code> ditulis <strong>1 kali</strong> &#8594; mendapat 1/3 traffic (sesuai kapasitas 10 Mbps). Total = 30 Mbps terdistribusi.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <p><input type="checkbox" class="step-check"><strong>Verifikasi dengan traceroute berulang dari R1</strong></p>
+            <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">&#128203; Salin</button>/tool traceroute 192.168.4.2</div>
+            <p>Lakukan traceroute beberapa kali dan amati bahwa koneksi menggunakan kedua jalur (via R2 dan via R3) secara bergantian sesuai rasio yang dikonfigurasi.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RUBRIK -->
+    <section id="rubrik" class="section">
+      <div class="section-title">
+        <span class="section-num">7</span> Rubrik Penilaian
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Kriteria Penilaian</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mampu memahami konsep Fail Over dan Load Balance</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Mampu mengimplementasikan Fail Over dan Load Balance</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TUGAS -->
+    <section id="tugas" class="section">
+      <div class="section-title">
+        <span class="section-num">8</span> Tugas
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#128221;</span>
+        <span class="callout-text"><strong>Tugas:</strong> Buatlah laporan dari hasil praktik lab di atas (Lab 8 &#8211; Lab 11) dan kumpulkan dengan format <strong>PDF</strong>!</span>
+      </div>
+    </section>
+
+    <!-- REFERENSI -->
+    <section id="referensi" class="section">
+      <div class="section-title">
+        <span class="section-num">9</span> Referensi
+      </div>
+      <ol>
+        <li>MTCRE MikroTik &#8211; Certified Routing Engineer</li>
+        <li>Dokumentasi Resmi MikroTik &#8211; <a href="https://wiki.mikrotik.com" target="_blank" style="color:#1a56db;">https://wiki.mikrotik.com</a></li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><strong>Jaringan Komputer 4</strong> &#8211; EIK214306 | Semester 4 | 3 SKS (1T+2P)</p>
+  <p style="margin-top:6px;">Hendrik Setyo Utomo ST. MMSI &amp; Arif Supriyanto S.Kom. M.Cs</p>
+  <p style="margin-top:6px; opacity:0.7;">Politeknik Negeri Tanah Laut &nbsp;|&nbsp; <a href="https://wiki.mikrotik.com" target="_blank">wiki.mikrotik.com</a></p>
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(h => {
+  h.addEventListener('click', () => {
+    h.classList.toggle('open');
+    const body = h.nextElementSibling;
+    body.classList.toggle('open');
+  });
+});
+function copyCode(btn) {
+  const block = btn.parentElement;
+  const text = block.innerText.replace('\u{1F4CB} Salin','').replace('✅ Tersalin!','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Tersalin!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '\u{1F4CB} Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+function sortTable(th) {
+  const table = th.closest('table');
+  const tbody = table.querySelector('tbody');
+  const idx = Array.from(th.parentElement.children).indexOf(th);
+  const rows = Array.from(tbody.rows);
+  const asc = th.dataset.asc !== 'true';
+  rows.sort((a, b) => {
+    const av = a.cells[idx]?.innerText || '';
+    const bv = b.cells[idx]?.innerText || '';
+    return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  th.dataset.asc = asc;
+  rows.forEach(r => tbody.appendChild(r));
+}
+const sections = document.querySelectorAll('section[id]');
+const tocLinks = document.querySelectorAll('.toc-link');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  tocLinks.forEach(l => { l.classList.toggle('active', l.getAttribute('href') === '#' + cur); });
+});
+</script>
+</body>
+</html>

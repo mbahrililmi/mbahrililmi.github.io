@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Materi Kuliah — M. Bahril Ilmi</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --gold: #b8893b;
+        --gold-soft: #d4ac6e;
+        --gold-deep: #8b6a2a;
+        --gold-light: #e6c989;
+        --navy: #1a2942;
+        --navy-soft: #223354;
+        --ivory: #faf7f2;
+        --ivory-soft: #f5efe6;
+        --cream: #f9f6f0;
+        --paper: #ffffff;
+        --text-dark: #1f2937;
+        --text-body: #374151;
+        --text-muted: #6b7280;
+        --border: #e8e0d3;
+        --border-gold: #d4ac6e;
+        --shadow-md: 0 4px 20px rgba(31, 41, 55, 0.07);
+        --shadow-lg: 0 12px 40px rgba(31, 41, 55, 0.1);
+        --shadow-gold: 0 8px 30px rgba(184, 137, 59, 0.18);
+        --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", "Helvetica Neue", sans-serif;
+        background: var(--ivory);
+        color: var(--text-dark);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 15% 25%,
+            rgba(184, 137, 59, 0.04),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 85% 75%,
+            rgba(26, 41, 66, 0.03),
+            transparent 40%
+          );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: -0.01em;
+      }
+
+      /* ─── TOPBAR ─────────────────────────────────────── */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(250, 247, 242, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+      }
+      .topbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .topbar-brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text-dark);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .topbar-brand span {
+        color: var(--gold);
+      }
+      .topbar-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+      .topbar-breadcrumb a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .topbar-breadcrumb a:hover {
+        color: var(--gold);
+      }
+      .topbar-breadcrumb .sep {
+        color: var(--border-gold);
+      }
+      .topbar-breadcrumb .current {
+        color: var(--gold);
+        font-weight: 500;
+      }
+
+      /* ─── HERO ───────────────────────────────────────── */
+      .hero {
+        position: relative;
+        background: var(--navy);
+        color: #fff;
+        padding: 80px 32px 72px;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 700px 400px at 80% 50%,
+            rgba(184, 137, 59, 0.18),
+            transparent
+          ),
+          radial-gradient(
+            ellipse 400px 600px at 10% 80%,
+            rgba(184, 137, 59, 0.08),
+            transparent
+          );
+        pointer-events: none;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          var(--gold-light),
+          var(--gold),
+          transparent
+        );
+      }
+      .hero-inner {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 48px;
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        margin-bottom: 16px;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .hero h1 span {
+        color: var(--gold-light);
+      }
+      .hero-sub {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 540px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      .hero-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .hero-stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gold-light);
+        line-height: 1;
+      }
+      .hero-stat-label {
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .hero-deco {
+        flex-shrink: 0;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 1px solid rgba(184, 137, 59, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .hero-deco::before {
+        content: "";
+        position: absolute;
+        inset: -12px;
+        border-radius: 50%;
+        border: 1px solid rgba(184, 137, 59, 0.12);
+      }
+      .hero-deco-icon {
+        font-size: 4rem;
+        opacity: 0.85;
+      }
+
+      /* ─── MAIN LAYOUT ────────────────────────────────── */
+      .page-body {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 64px 32px 80px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ─── SECTION HEADER ─────────────────────────────── */
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 32px;
+      }
+      .section-label-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--border-gold), transparent);
+        max-width: 80px;
+      }
+      .section-label-tag {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        background: rgba(184, 137, 59, 0.08);
+        border: 1px solid rgba(184, 137, 59, 0.2);
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+
+      /* ─── COURSE CARD ────────────────────────────────── */
+      .course-block {
+        margin-bottom: 64px;
+      }
+      .course-header {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 16px 16px 0 0;
+        padding: 28px 32px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-bottom: 2px solid var(--gold);
+        box-shadow: var(--shadow-md);
+      }
+      .course-icon-wrap {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, var(--navy), var(--navy-soft));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+      }
+      .course-meta {
+        flex: 1;
+      }
+      .course-code {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 4px;
+      }
+      .course-title {
+        font-size: 1.4rem;
+        color: var(--text-dark);
+        margin-bottom: 6px;
+      }
+      .course-desc {
+        font-size: 0.84rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .course-badge-count {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .course-badge-count .num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+      .course-badge-count .lbl {
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        opacity: 0.85;
+      }
+
+      /* ─── PRAKTIKUM GRID ─────────────────────────────── */
+      .praktikum-grid {
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-top: none;
+        border-radius: 0 0 16px 16px;
+        padding: 24px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+        box-shadow: var(--shadow-md);
+      }
+
+      .prak-card {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: all 0.25s var(--ease);
+        position: relative;
+        overflow: hidden;
+      }
+      .prak-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s var(--ease);
+      }
+      .prak-card:hover {
+        border-color: var(--border-gold);
+        box-shadow: var(--shadow-gold);
+        transform: translateY(-3px);
+        color: inherit;
+      }
+      .prak-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .prak-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .prak-num {
+        font-family: "Playfair Display", serif;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--gold);
+        background: rgba(184, 137, 59, 0.1);
+        border: 1px solid rgba(184, 137, 59, 0.2);
+        padding: 3px 9px;
+        border-radius: 20px;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .prak-arrow {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .prak-card:hover .prak-arrow {
+        color: var(--gold);
+        transform: translateX(3px);
+      }
+      .prak-title {
+        font-family: "Playfair Display", serif;
+        font-size: 0.98rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        line-height: 1.4;
+      }
+      .prak-topic {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .prak-topic i {
+        color: var(--gold-soft);
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .prak-footer {
+        margin-top: auto;
+        padding-top: 10px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .prak-open-btn {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--gold);
+        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .prak-open-btn i {
+        font-size: 0.8rem;
+      }
+      .prak-tag {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        background: var(--ivory-soft);
+        padding: 2px 7px;
+        border-radius: 4px;
+      }
+
+      /* ─── DIVIDER ────────────────────────────────────── */
+      .ornamental-divider {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 56px 0 48px;
+      }
+      .ornamental-divider::before,
+      .ornamental-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--border-gold),
+          transparent
+        );
+      }
+      .ornamental-divider-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold-soft);
+      }
+
+      /* ─── FOOTER ─────────────────────────────────────── */
+      .page-footer {
+        position: relative;
+        z-index: 1;
+        background: var(--navy);
+        color: rgba(255, 255, 255, 0.6);
+        text-align: center;
+        padding: 32px;
+        font-size: 0.82rem;
+      }
+      .page-footer a {
+        color: var(--gold-light);
+        text-decoration: none;
+      }
+      .page-footer a:hover {
+        color: var(--gold);
+      }
+      .page-footer-sep {
+        margin: 0 10px;
+        opacity: 0.3;
+      }
+
+      /* ─── SEARCH / FILTER BAR ────────────────────────── */
+      .filter-bar {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 360px;
+        box-shadow: var(--shadow-md);
+      }
+      .filter-bar i {
+        color: var(--gold-soft);
+        font-size: 0.95rem;
+      }
+      .filter-bar input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 0.88rem;
+        color: var(--text-dark);
+        width: 100%;
+        font-family: "Inter", sans-serif;
+      }
+      .filter-bar input::placeholder {
+        color: var(--text-muted);
+      }
+
+      /* ─── TOP ROW (breadcrumb + search) ──────────────── */
+      .top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+      }
+      .top-row-left h2 {
+        font-size: 1.6rem;
+        color: var(--text-dark);
+        margin-bottom: 4px;
+      }
+      .top-row-left p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+      }
+
+      /* ─── RESPONSIVE ─────────────────────────────────── */
+      @media (max-width: 768px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-deco {
+          display: none;
+        }
+        .hero {
+          padding: 56px 24px 52px;
+        }
+        .page-body {
+          padding: 40px 20px 60px;
+        }
+        .course-header {
+          flex-wrap: wrap;
+        }
+        .praktikum-grid {
+          grid-template-columns: 1fr;
+        }
+        .topbar-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div class="topbar-inner">
+        <a href="../../index.html" class="topbar-brand">
+          <span>M.</span> BAHRIL ILMI
+        </a>
+        <div class="topbar-breadcrumb">
+          <a href="../../index.html"
+            ><i class="bi bi-house-door"></i> Beranda</a
+          >
+          <span class="sep">›</span>
+          <span class="current">Materi Kuliah</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-eyebrow">Katalog Materi</div>
+          <h1>Materi <span>Kuliah</span></h1>
+          <p class="hero-sub">
+            Kumpulan modul praktikum dan materi perkuliahan yang dirancang untuk
+            mendukung proses belajar secara mandiri dan terstruktur.
+          </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-num">2</span>
+              <span class="hero-stat-label">Mata Kuliah</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">16</span>
+              <span class="hero-stat-label">Praktikum</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">2</span>
+              <span class="hero-stat-label">Semester</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-deco">
+          <span class="hero-deco-icon">🎓</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE BODY -->
+    <div class="page-body">
+      <!-- TOP ROW -->
+      <div class="top-row">
+        <div class="top-row-left">
+          <h2>Daftar Mata Kuliah</h2>
+          <p>Pilih mata kuliah di bawah untuk mengakses modul praktikum.</p>
+        </div>
+        <div class="filter-bar">
+          <i class="bi bi-search"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Cari praktikum..."
+            oninput="filterCards(this.value)"
+          />
+        </div>
+      </div>
+
+      <!-- ─── JARKOM 2 ─── -->
+      <div class="section-label">
+        <span class="section-label-tag">Mata Kuliah 01</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="course-block" id="course-jarkom2">
+        <div class="course-header">
+          <div class="course-icon-wrap">🌐</div>
+          <div class="course-meta">
+            <div class="course-code">Jaringan Komputer 2 · MikroTik</div>
+            <h3 class="course-title">Jaringan Komputer 2</h3>
+            <p class="course-desc">
+              Praktikum mendalam tentang konfigurasi jaringan menggunakan
+              MikroTik RouterOS — mulai dari TCP/IP dasar, routing, wireless,
+              hingga VPN dan load balancing.
+            </p>
+          </div>
+          <div class="course-badge-count">
+            <span class="num">8</span>
+            <span class="lbl">Modul</span>
+          </div>
+        </div>
+
+        <div class="praktikum-grid" id="grid-jarkom2">
+          <a class="prak-card" href="jarkom-2/jarkom-2-p1.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 01</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Basic TCP/IP & DHCP</div>
+            <div class="prak-topic">
+              <i class="bi bi-diagram-3"></i>
+              Konfigurasi IP Address, Subnet, Gateway, dan Dynamic Host
+              Configuration Protocol
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">TCP/IP · DHCP</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p2.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 02</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Routing</div>
+            <div class="prak-topic">
+              <i class="bi bi-diagram-3"></i>
+              Static routing, dynamic routing, dan konfigurasi tabel routing
+              antar jaringan
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Static · Dynamic</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p3.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 03</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Wireless LAN</div>
+            <div class="prak-topic">
+              <i class="bi bi-wifi"></i>
+              Konfigurasi access point, mode wireless, keamanan jaringan
+              nirkabel, dan bridging
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Wi-Fi · AP · Security</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p4.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 04</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Firewall, NAT & Fasttrack</div>
+            <div class="prak-topic">
+              <i class="bi bi-shield-check"></i>
+              Konfigurasi firewall rules, Network Address Translation, dan
+              optimasi Fasttrack
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Firewall · NAT</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p5.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 05</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">QoS (Quality of Service)</div>
+            <div class="prak-topic">
+              <i class="bi bi-speedometer2"></i>
+              Manajemen bandwidth, priority queue, traffic shaping, dan mangle
+              marking
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Queue · Bandwidth</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p6.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 06</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Tunnels & VPN</div>
+            <div class="prak-topic">
+              <i class="bi bi-lock"></i>
+              Konfigurasi tunnel GRE, PPTP, L2TP, dan IPsec untuk koneksi
+              jaringan aman
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">VPN · IPsec · L2TP</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p7.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 07</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Load Balancing & Failover</div>
+            <div class="prak-topic">
+              <i class="bi bi-distribute-horizontal"></i>
+              Konfigurasi multi-WAN, distribusi beban trafik, dan automatic
+              failover
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Multi-WAN · HA</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-2/jarkom-2-p8.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 08</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Studi Kasus Jaringan Terpadu</div>
+            <div class="prak-topic">
+              <i class="bi bi-building"></i>
+              Implementasi jaringan lengkap perusahaan: integrasi semua materi
+              ke dalam satu skenario nyata
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Studi Kasus</span>
+            </div>
+          </a>
+        </div>
+        <!-- /praktikum-grid -->
+      </div>
+      <!-- /course-block jarkom2 -->
+
+      <!-- DIVIDER -->
+      <div class="ornamental-divider">
+        <div class="ornamental-divider-dot"></div>
+        <div class="ornamental-divider-dot"></div>
+        <div class="ornamental-divider-dot"></div>
+      </div>
+
+      <!-- ─── JARKOM 4 ─── -->
+      <div class="section-label">
+        <span class="section-label-tag">Mata Kuliah 02</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="course-block" id="course-jarkom4">
+        <div class="course-header">
+          <div class="course-icon-wrap">🔗</div>
+          <div class="course-meta">
+            <div class="course-code">
+              Jaringan Komputer 4 · Routing Lanjutan
+            </div>
+            <h3 class="course-title">Jaringan Komputer 4</h3>
+            <p class="course-desc">
+              Praktikum routing lanjutan mencakup static & dynamic routing,
+              OSPF, BGP, VLAN, bridging, hingga studi kasus integrasi jaringan
+              enterprise skala besar.
+            </p>
+          </div>
+          <div class="course-badge-count">
+            <span class="num">8</span>
+            <span class="lbl">Modul</span>
+          </div>
+        </div>
+
+        <div class="praktikum-grid" id="grid-jarkom4">
+          <a class="prak-card" href="jarkom-4/jarkom-4-p1.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 01</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Static Routing</div>
+            <div class="prak-topic">
+              <i class="bi bi-signpost-2"></i>
+              Konfigurasi rute statis, administrative distance, dan routing
+              table management
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Static · Route</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p2.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 02</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Fail Over & Load Balance</div>
+            <div class="prak-topic">
+              <i class="bi bi-distribute-horizontal"></i>
+              Strategi redundansi koneksi, PCC load balancing, dan automatic
+              failover routing
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Failover · PCC</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p3.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 03</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Routing Policy</div>
+            <div class="prak-topic">
+              <i class="bi bi-funnel"></i>
+              Policy-based routing, route marking, firewall mangle, dan
+              pengaturan prioritas trafik
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Policy · Mangle</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p4.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 04</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Routing Type</div>
+            <div class="prak-topic">
+              <i class="bi bi-arrows-angle-expand"></i>
+              Perbandingan tipe routing: unicast, multicast, broadcast, dan
+              manipulasi TTL
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Unicast · TTL</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p5.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 05</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">OSPF MikroTik</div>
+            <div class="prak-topic">
+              <i class="bi bi-hdd-network"></i>
+              Open Shortest Path First: area, DR/BDR election, link-state
+              database, redistribusi
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">OSPF · IGP</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p6.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 06</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">BGP MikroTik</div>
+            <div class="prak-topic">
+              <i class="bi bi-globe2"></i>
+              Border Gateway Protocol: iBGP, eBGP, AS number, BGP attributes,
+              dan route filtering
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">BGP · AS · EGP</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p7.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 07</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">VLAN & Bridging MikroTik</div>
+            <div class="prak-topic">
+              <i class="bi bi-layers"></i>
+              Virtual LAN, trunk port, access port, inter-VLAN routing, dan
+              konfigurasi bridge
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">VLAN · Bridge</span>
+            </div>
+          </a>
+
+          <a class="prak-card" href="jarkom-4/jarkom-4-p8.html">
+            <div class="prak-top">
+              <span class="prak-num">P — 08</span>
+              <i class="bi bi-arrow-right prak-arrow"></i>
+            </div>
+            <div class="prak-title">Studi Kasus Integrasi</div>
+            <div class="prak-topic">
+              <i class="bi bi-building"></i>
+              Implementasi jaringan enterprise lengkap: OSPF + BGP + VLAN + VPN
+              dalam satu topologi
+            </div>
+            <div class="prak-footer">
+              <span class="prak-open-btn"
+                ><i class="bi bi-book-open"></i> Buka Modul</span
+              >
+              <span class="prak-tag">Studi Kasus</span>
+            </div>
+          </a>
+        </div>
+        <!-- /praktikum-grid -->
+      </div>
+      <!-- /course-block jarkom4 -->
+    </div>
+    <!-- /page-body -->
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <div>
+        <a href="../../index.html">M. Bahril Ilmi</a>
+        <span class="page-footer-sep">·</span>
+        Materi Kuliah
+        <span class="page-footer-sep">·</span>
+        POLITALA
+      </div>
+    </footer>
+
+    <!-- SEARCH SCRIPT -->
+    <script>
+      function filterCards(query) {
+        const q = query.toLowerCase().trim();
+        document.querySelectorAll(".prak-card").forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = !q || text.includes(q) ? "" : "none";
+        });
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 6 – Tunnels &amp; VPN | Jaringan Komputer 2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="font-size:0.85rem;opacity:0.8;margin-bottom:4px;">Politeknik Negeri Tanah Laut — Jaringan Komputer 2</div>
+    <h1>🔐 Praktikum 6: Tunnels &amp; VPN</h1>
+    <p style="opacity:0.9;margin-top:6px;font-size:0.95rem;">Konfigurasi tunneling, PPP, IP Pool, PPTP VPN, dan L2TP/IPsec pada MikroTik</p>
+    <div class="header-badges">
+      <span class="badge">📘 EIK212305</span>
+      <span class="badge">📅 Semester 2</span>
+      <span class="badge">⚡ 3 SKS (1T + 2P)</span>
+      <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
+      <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#tujuan" class="toc-link">🎯 Tujuan Pembelajaran</a>
+    <a href="#teori-vpn" class="toc-link">📖 Teori VPN &amp; Tunneling</a>
+    <a href="#perbandingan-vpn" class="toc-link indent">Perbandingan Protokol VPN</a>
+    <a href="#topologi" class="toc-link">🗺️ Topologi Lab</a>
+    <a href="#lab-ippool" class="toc-link">🔬 Lab: IP Pool</a>
+    <a href="#lab-ppp-profile" class="toc-link">🔬 Lab: PPP Profile</a>
+    <a href="#lab-ppp-secret" class="toc-link">🔬 Lab: PPP Secrets</a>
+    <a href="#lab-pptp-server" class="toc-link">🔬 Lab: PPTP Server</a>
+    <a href="#lab-pptp-client" class="toc-link">🔬 Lab: PPTP Client</a>
+    <a href="#lab-l2tp" class="toc-link">🔬 Lab: L2TP/IPsec</a>
+    <a href="#lab-windows-vpn" class="toc-link">🔬 Lab: Windows VPN Client</a>
+    <a href="#tugas" class="toc-link">📝 Tugas</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Beranda</a> › <a href="#">Jaringan Komputer 2</a> › Praktikum 6
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah menyelesaikan praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Menjelaskan konsep tunneling dan enkapsulasi paket dalam <span class="tooltip">VPN<span class="tooltip-text">Virtual Private Network: koneksi aman terenkripsi melalui internet publik</span></span></li>
+          <li>Membedakan Remote Access VPN dan Site-to-Site VPN</li>
+          <li>Mengkonfigurasi IP Pool untuk manajemen alamat VPN klien</li>
+          <li>Mengkonfigurasi PPP Profile dan PPP Secrets pada MikroTik</li>
+          <li>Mengimplementasikan PPTP VPN Server dan mengkoneksikan klien</li>
+          <li>Mengkonfigurasi L2TP/IPsec untuk keamanan lebih tinggi</li>
+          <li>Menghubungkan Windows sebagai VPN klien ke MikroTik</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori-vpn">
+      <div class="section-title"><span class="section-num">2</span> Teori VPN &amp; Tunneling</div>
+
+      <p><strong>Tunneling</strong> adalah teknik mengenkapsulasi protokol jaringan di dalam protokol lain, menciptakan "terowongan" virtual melalui jaringan publik. <span class="tooltip">VPN<span class="tooltip-text">Virtual Private Network: koneksi aman terenkripsi melalui internet publik</span></span> menggunakan tunneling untuk memberikan koneksi privat yang terenkripsi melalui internet.</p>
+
+      <div class="accordion">
+        <div class="accordion-header">🏠 Remote Access VPN <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Memungkinkan pengguna individual (mobile/remote worker) terhubung ke jaringan kantor dari mana saja melalui internet. Contoh: karyawan WFH yang mengakses server internal.</p>
+          <pre class="topology" style="font-size:0.82rem;">
+  [Laptop WFH]──Internet──[VPN Server / MikroTik]──[Jaringan Kantor]
+  IP: 10.10.10.2                IP: 203.x.x.x          192.168.1.0/24</pre>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">🏢 Site-to-Site VPN <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Menghubungkan dua atau lebih jaringan (gedung/cabang) secara permanent melalui internet. Router di kedua sisi membentuk tunnel otomatis.</p>
+          <pre class="topology" style="font-size:0.82rem;">
+  [Gedung A]──[MikroTik A]──Internet──[MikroTik B]──[Gedung B]
+  192.168.1.0/24  203.0.113.1     203.0.113.5  192.168.2.0/24
+               ←─────── PPTP/L2TP Tunnel ───────→</pre>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">📡 PPP (Point-to-Point Protocol) <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>PPP adalah protokol data link layer yang menyediakan koneksi point-to-point. Mendukung autentikasi (PAP, CHAP, MS-CHAPv2), enkripsi, dan kompresi.</p>
+          <ul>
+            <li><strong>PAP:</strong> Password Authentication Protocol — password dikirim clear text (tidak aman)</li>
+            <li><strong>CHAP:</strong> Challenge-Handshake Authentication Protocol — hash MD5 (lebih aman)</li>
+            <li><strong>MS-CHAPv2:</strong> Microsoft CHAP v2 — digunakan PPTP/L2TP, mendukung MPPE</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="perbandingan-vpn" style="margin-top:24px;">
+        <h3 style="font-size:1.05rem;color:#1e3a8a;margin-bottom:12px;">Perbandingan Protokol VPN</h3>
+        <table>
+          <thead>
+            <tr><th>Protokol</th><th>Port</th><th>Enkripsi</th><th>Keamanan</th><th>Kecepatan</th><th>Penggunaan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>PPTP</strong></td><td>TCP 1723</td><td>MPPE (RC4)</td><td>⚠️ Lemah</td><td>Cepat</td><td>Legacy, tidak direkomendasikan</td></tr>
+            <tr><td><strong>L2TP</strong></td><td>UDP 1701</td><td>Tidak ada (butuh IPsec)</td><td>⚠️ Tergantung IPsec</td><td>Sedang</td><td>Kombinasi dengan IPsec</td></tr>
+            <tr><td><strong>L2TP/IPsec</strong></td><td>UDP 500, 4500, 1701</td><td>AES-256</td><td>✅ Kuat</td><td>Sedang</td><td>Remote access enterprise</td></tr>
+            <tr><td><strong>SSTP</strong></td><td>TCP 443</td><td>TLS</td><td>✅ Kuat</td><td>Baik</td><td>Melewati firewall (port 443)</td></tr>
+            <tr><td><strong>OpenVPN</strong></td><td>UDP 1194 / TCP 443</td><td>AES-256 + TLS</td><td>✅ Sangat kuat</td><td>Baik</td><td>Open source, lintas platform</td></tr>
+            <tr><td><strong>WireGuard</strong></td><td>UDP 51820</td><td>ChaCha20</td><td>✅ Modern</td><td>Sangat cepat</td><td>VPN modern, ringan</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="topologi">
+      <div class="section-title"><span class="section-num">3</span> Topologi Lab VPN</div>
+      <pre class="topology">
+  ╔══════════════════════════════════════════════════════╗
+  ║  Skenario Remote Access VPN                          ║
+  ╚══════════════════════════════════════════════════════╝
+
+  [Klien Laptop]──────Internet──────[MikroTik VPN Server]
+  IP: DHCP ISP                       WAN: 203.0.113.10/30
+  VPN IP: 10.10.10.2 (dari pool)     LAN: 192.168.1.1/24
+                                     VPN Pool: 10.10.10.0/24
+                                          |
+                                     [Jaringan LAN]
+                                     192.168.1.0/24
+
+  ╔══════════════════════════════════════════════════════╗
+  ║  Skenario Site-to-Site VPN                           ║
+  ╚══════════════════════════════════════════════════════╝
+
+  [LAN A] ←→ [MikroTik A] ←→ Internet ←→ [MikroTik B] ←→ [LAN B]
+  .1.0/24    203.0.113.1                  203.0.113.5    .2.0/24
+             ←─────────── PPTP Tunnel ──────────────→</pre>
+    </section>
+
+    <section class="section" id="lab-ippool">
+      <div class="section-title"><span class="section-num">4</span> Lab: Konfigurasi IP Pool</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat IP Pool untuk klien VPN</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add \
+  name="VPN-Pool" \
+  ranges=10.10.10.10-10.10.10.50
+
+/ip pool print</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-ppp-profile">
+      <div class="section-title"><span class="section-num">5</span> Lab: PPP Profile</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat PPP Profile</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ppp profile add \
+  name="VPN-Profile" \
+  local-address=10.10.10.1 \
+  remote-address=VPN-Pool \
+  use-encryption=yes \
+  dns-server=8.8.8.8,8.8.4.4 \
+  only-one=yes \
+  comment="Profile untuk VPN clients"
+
+/ppp profile print</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">💡</span>
+        <span class="callout-text"><strong>local-address</strong> adalah IP VPN yang digunakan router (server side). <strong>remote-address</strong> adalah IP yang diberikan ke klien, bisa IP langsung atau nama Pool.</span>
+      </div>
+    </section>
+
+    <section class="section" id="lab-ppp-secret">
+      <div class="section-title"><span class="section-num">6</span> Lab: PPP Secrets (Akun VPN)</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Tambah akun VPN user</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ppp secret add \
+  name="user1" \
+  password="Password123!" \
+  service=pptp \
+  profile=VPN-Profile \
+  comment="Akun VPN User 1"
+
+/ppp secret add \
+  name="user2" \
+  password="SecretPass456!" \
+  service=any \
+  profile=VPN-Profile
+
+/ppp secret print</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-pptp-server">
+      <div class="section-title"><span class="section-num">7</span> Lab: PPTP VPN Server</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan PPTP Server</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface pptp-server server set \
+  enabled=yes \
+  default-profile=VPN-Profile \
+  authentication=mschap2 \
+  mrru=1600</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Izinkan port PPTP di firewall</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add \
+  chain=input \
+  protocol=tcp \
+  dst-port=1723 \
+  action=accept \
+  comment="Allow PPTP"
+
+/ip firewall filter add \
+  chain=input \
+  protocol=gre \
+  action=accept \
+  comment="Allow GRE (PPTP encapsulation)"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Tambah route untuk akses LAN dari VPN</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Ini akan otomatis ketika klien terhubung
+# Verifikasi dengan:
+/ip route print</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-text">PPTP dianggap tidak aman secara modern karena kelemahan dalam protokol MS-CHAPv2 dan MPPE. Untuk keamanan yang lebih baik, gunakan L2TP/IPsec atau WireGuard.</span>
+      </div>
+    </section>
+
+    <section class="section" id="lab-pptp-client">
+      <div class="section-title"><span class="section-num">8</span> Lab: PPTP Client (MikroTik ke MikroTik)</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat PPTP Client Interface</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface pptp-client add \
+  name="VPN-to-HQ" \
+  connect-to=203.0.113.10 \
+  user=user1 \
+  password="Password123!" \
+  profile=default \
+  add-default-route=no \
+  disabled=no</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Tambah route melalui tunnel</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add \
+  dst-address=192.168.1.0/24 \
+  gateway=VPN-to-HQ \
+  comment="Route ke LAN pusat via VPN"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi tunnel</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface pptp-client print
+/ping 192.168.1.1   # Ping ke LAN HQ melalui tunnel</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-l2tp">
+      <div class="section-title"><span class="section-num">9</span> Lab: L2TP/IPsec Server</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aktifkan L2TP Server</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface l2tp-server server set \
+  enabled=yes \
+  default-profile=VPN-Profile \
+  authentication=mschap2 \
+  use-ipsec=yes \
+  ipsec-secret="IPsecSharedKey123" \
+  mrru=1600</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buka port L2TP/IPsec di firewall</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add \
+  chain=input protocol=udp \
+  dst-port=1701,500,4500 \
+  action=accept \
+  comment="Allow L2TP/IPsec"
+
+/ip firewall filter add \
+  chain=input protocol=ipsec-esp \
+  action=accept \
+  comment="Allow IPsec ESP"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-windows-vpn">
+      <div class="section-title"><span class="section-num">10</span> Lab: Windows VPN Client</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="vpn-pptp-win">PPTP (Windows)</button>
+          <button class="tab-btn" data-tab="vpn-l2tp-win">L2TP/IPsec (Windows)</button>
+        </div>
+        <div class="tab-panels">
+          <div id="vpn-pptp-win" class="tab-panel active">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Buka VPN Settings di Windows</strong></label>
+                  <p>Settings → Network &amp; Internet → VPN → Add a VPN connection</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Isi konfigurasi VPN</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>VPN Provider     : Windows (built-in)
+Connection Name  : VPN-Politeknik
+Server Name/IP   : 203.0.113.10
+VPN Type         : PPTP
+Sign-in Info     : Username and Password
+Username         : user1
+Password         : Password123!</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Hubungkan &amp; verifikasi</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di CMD setelah terhubung:
+ipconfig /all
+# Akan muncul interface PPP dengan IP 10.10.10.x
+
+ping 192.168.1.1  # Ping LAN server melalui VPN</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="vpn-l2tp-win" class="tab-panel">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Buat koneksi L2TP/IPsec di Windows</strong></label>
+                  <p>Settings → VPN → Add VPN → pilih tipe: <strong>L2TP/IPsec with pre-shared key</strong></p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Isi Pre-shared Key</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button>VPN Type         : L2TP/IPsec with pre-shared key
+Pre-shared Key   : IPsecSharedKey123
+Username         : user1
+Password         : Password123!</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Edit registry jika NAT traversal diperlukan</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di PowerShell (Run as Admin) - aktifkan NAT-T
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\PolicyAgent" -Name "AssumeUDPEncapsulationContextOnSendRule" -Value 2 -Type DWord
+# Restart Windows setelah perubahan ini</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">11</span> Tugas</div>
+      <ol>
+        <li>Implementasikan Remote Access VPN menggunakan L2TP/IPsec. Buat minimal 3 akun user dengan profil berbeda (bandwidth limit berbeda).</li>
+        <li>Implementasikan Site-to-Site VPN antara dua MikroTik (simulasikan dengan 2 router). Pastikan PC di kedua sisi bisa saling ping.</li>
+        <li>Bandingkan keamanan PPTP vs L2TP/IPsec. Gunakan Wireshark untuk menangkap paket VPN dan amati perbedaan enkripsinya.</li>
+        <li>Buat dokumentasi lengkap termasuk: topologi, addressing table, langkah konfigurasi, dan screenshot hasil pengujian konektivitas.</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;">
+    <strong>Referensi:</strong>
+    <ul style="margin-top:8px;color:#cbd5e1;">
+      <li>MikroTik Documentation. <em>PPTP</em> &amp; <em>L2TP</em>. wiki.mikrotik.com</li>
+      <li>RFC 2661 — Layer Two Tunneling Protocol "L2TP". IETF.</li>
+      <li>RFC 2637 — Point-to-Point Tunneling Protocol (PPTP). IETF.</li>
+      <li>Schneier, B. et al. (1999). <em>Cryptanalysis of Microsoft's PPTP</em>. Counterpane.</li>
+    </ul>
+    <div style="margin-top:12px;color:#94a3b8;font-size:0.82rem;">Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | © 2024</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.toc-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

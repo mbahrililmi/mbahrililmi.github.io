@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarkom 4 - P4: Routing Type | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.route-type-card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+.route-type-card h4 { color: #1e3a8a; margin-bottom: 8px; }
+footer { background: #1e3a8a; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>&#x1F9F1; Pertemuan 6 — Routing Type</h1>
+  <p>Jaringan Komputer 4 | Politeknik Negeri Tanah Laut</p>
+  <div class="header-badges">
+    <span class="badge">&#x1F4CB; EIK214306</span>
+    <span class="badge">&#x1F4DA; Semester 4</span>
+    <span class="badge">&#x23F1; 3 SKS (1T + 2P)</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Hendrik Setyo Utomo, ST., MMSI</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Arif Supriyanto, S.Kom., M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">&#x1F3AF; Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#teori">&#x1F4D6; Teori Dasar</a>
+    <a class="toc-link indent" href="#teori-tipe">4 Tipe Route</a>
+    <a class="toc-link indent" href="#teori-icmp">ICMP Type 3</a>
+    <a class="toc-link indent" href="#teori-ttl">TTL</a>
+    <a class="toc-link indent" href="#teori-mangle">Mangle</a>
+    <a class="toc-link" href="#lab12">&#x1F9EA; Lab 12: Unicast</a>
+    <a class="toc-link" href="#lab13">&#x1F9EA; Lab 13: Blackhole</a>
+    <a class="toc-link" href="#lab14">&#x1F9EA; Lab 14: Prohibit</a>
+    <a class="toc-link" href="#lab15">&#x1F9EA; Lab 15: Unreachable</a>
+    <a class="toc-link" href="#lab16">&#x1F9EA; Lab 16: Routing Mark PBR</a>
+    <a class="toc-link" href="#lab17">&#x1F9EA; Lab 17: Change TTL</a>
+    <a class="toc-link" href="#perbandingan">&#x1F4CA; Perbandingan</a>
+    <a class="toc-link" href="#referensi">&#x1F4DA; Referensi</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Jarkom 4</a> &rsaquo; <a href="#">Pertemuan 6</a> &rsaquo; Routing Type
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami dan membedakan 4 tipe route di MikroTik: unicast, blackhole, prohibit, unreachable</li>
+          <li>Mengkonfigurasi setiap tipe route dan mengamati perbedaan responsnya</li>
+          <li>Memahami ICMP Type 3 Destination Unreachable dan kode-kodenya</li>
+          <li>Memahami konsep TTL (Time to Live) dan cara mengubahnya dengan Mangle</li>
+          <li>Mengimplementasikan Routing Mark PBR (lanjutan dari P3)</li>
+          <li>Mengkonfigurasi Change TTL menggunakan Mangle postrouting</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <div class="section-title"><span class="section-num">2</span> Teori Dasar</div>
+
+      <div class="accordion" id="teori-tipe">
+        <div class="accordion-header">&#x1F9F1; 4 Tipe Route di MikroTik <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>MikroTik RouterOS mendukung empat tipe route yang memiliki perilaku berbeda saat menerima paket:</p>
+
+          <div class="route-type-card">
+            <h4>1. Unicast (Default)</h4>
+            <p>Paket diteruskan ke <span class="tooltip">gateway<span class="tooltip-text">Pintu keluar jaringan menuju jaringan lain</span></span> yang ditentukan. Ini adalah tipe route standar untuk forwarding paket normal.</p>
+            <p><strong>Flag:</strong> A S | <strong>Respon ping:</strong> Reply normal</p>
+          </div>
+
+          <div class="route-type-card">
+            <h4>2. Blackhole</h4>
+            <p>Paket di-drop secara diam-diam tanpa mengirim ICMP error balik ke pengirim. Pengirim tidak tahu paketnya dibuang.</p>
+            <p><strong>Flag:</strong> A SB | <strong>Respon ping:</strong> Timeout (no reply)</p>
+          </div>
+
+          <div class="route-type-card">
+            <h4>3. Prohibit</h4>
+            <p>Paket di-drop dan router mengirim ICMP Type 3 Code 13 (Communication Administratively Prohibited) ke pengirim.</p>
+            <p><strong>Flag:</strong> A SP | <strong>Respon ping:</strong> "Communication administratively prohibited"</p>
+          </div>
+
+          <div class="route-type-card">
+            <h4>4. Unreachable</h4>
+            <p>Paket di-drop dan router mengirim ICMP Type 3 Code 1 (Host Unreachable) ke pengirim.</p>
+            <p><strong>Flag:</strong> A SU | <strong>Respon ping:</strong> "Host unreachable"</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-icmp">
+        <div class="accordion-header">&#x1F4E1; ICMP Type 3 - Destination Unreachable <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>ICMP Type 3</strong> adalah pesan error yang dikirim router/host ketika paket tidak dapat diteruskan. Setiap code menjelaskan alasan yang berbeda:</p>
+          <table>
+            <thead>
+              <tr><th>Code</th><th>Nama</th><th>Penyebab</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>Net Unreachable</td><td>Jaringan tujuan tidak bisa dijangkau</td></tr>
+              <tr><td>1</td><td>Host Unreachable</td><td>Host tujuan tidak bisa dijangkau (tipe: unreachable)</td></tr>
+              <tr><td>2</td><td>Protocol Unreachable</td><td>Protokol tidak didukung host tujuan</td></tr>
+              <tr><td>3</td><td>Port Unreachable</td><td>Port tidak tersedia di host tujuan</td></tr>
+              <tr><td>13</td><td>Communication Administratively Prohibited</td><td>Diblokir oleh kebijakan admin (tipe: prohibit)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-ttl">
+        <div class="accordion-header">&#x23F1; TTL (Time to Live) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>TTL (Time to Live)</strong> adalah nilai dalam header IP yang menentukan berapa banyak hop (router) yang dapat dilalui paket sebelum dibuang. Setiap router yang memproses paket akan mengurangi TTL sebesar 1.</p>
+          <p><strong>Nilai TTL Default:</strong></p>
+          <ul>
+            <li><strong>Linux/MikroTik</strong>: TTL = 64</li>
+            <li><strong>Windows</strong>: TTL = 128</li>
+            <li><strong>Cisco IOS</strong>: TTL = 255</li>
+          </ul>
+          <p>Jika TTL mencapai 0, router mengirim ICMP Type 11 (Time Exceeded) dan membuang paket. Inilah yang digunakan oleh traceroute untuk memetakan jalur.</p>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#x1F4A1;</span>
+            <span class="callout-text"><strong>Kegunaan mengubah TTL:</strong> Mengubah TTL dapat digunakan untuk membatasi "jarak tempuh" paket, atau untuk menyembunyikan berapa banyak hop di jaringan internal Anda dari pengguna eksternal.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-mangle">
+        <div class="accordion-header">&#x1F528; Mangle - Packet Marking <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Mangle</strong> adalah tabel di firewall MikroTik yang digunakan untuk memanipulasi paket. Berbeda dari filter (yang hanya accept/drop), mangle dapat:</p>
+          <ul>
+            <li><strong>packet-mark</strong>: Menandai paket untuk diproses QoS</li>
+            <li><strong>connection-mark</strong>: Menandai seluruh koneksi</li>
+            <li><strong>routing-mark</strong>: Menandai paket untuk routing policy</li>
+            <li><strong>change-ttl</strong>: Mengubah nilai TTL paket</li>
+            <li><strong>change-mss</strong>: Mengubah Maximum Segment Size</li>
+          </ul>
+          <p><strong>Chain Mangle:</strong></p>
+          <ul>
+            <li><strong>prerouting</strong>: Sebelum routing decision (untuk traffic masuk ke router)</li>
+            <li><strong>postrouting</strong>: Setelah routing decision (untuk traffic keluar dari router)</li>
+            <li><strong>forward</strong>: Traffic yang melewati router (tidak ditujukan untuk router)</li>
+            <li><strong>input</strong>: Traffic yang ditujukan ke router itu sendiri</li>
+            <li><strong>output</strong>: Traffic yang berasal dari router itu sendiri</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab12">
+      <div class="section-title"><span class="section-num">3</span> Lab 12: Unicast Route</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text">Unicast adalah tipe route default - paket diteruskan ke gateway. Ini adalah route normal yang sudah dipelajari di P1.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambah unicast route (default, tidak perlu specify type)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Unicast adalah default - tidak perlu parameter tambahan
+/ip route add dst-address=192.168.100.0/24 gateway=10.10.10.2
+
+# Atau explicit:
+/ip route add dst-address=192.168.100.0/24 gateway=10.10.10.2 type=unicast</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi - flag harus "A S"</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Output: A S  192.168.100.0/24  10.10.10.2  1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping (harus reply)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.100.1
+# Hasil: 64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=x ms</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab13">
+      <div class="section-title"><span class="section-num">4</span> Lab 13: Blackhole Route</div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Blackhole:</strong> Paket di-drop DIAM-DIAM. Pengirim mendapat timeout dan tidak tahu apakah tujuan ada atau tidak. Berguna untuk membuang traffic tertentu tanpa memberikan informasi kepada penyerang.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambah blackhole route</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.200.0/24 type=blackhole</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi - flag "A SB" (B = Blackhole)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Output: A SB  192.168.200.0/24  (blackhole)</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping - harus TIMEOUT (bukan reply, bukan error)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.200.1
+# Hasil: Request timeout for icmp_seq 1
+#        Request timeout for icmp_seq 2
+# (TIDAK ada reply, TIDAK ada error message)</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab14">
+      <div class="section-title"><span class="section-num">5</span> Lab 14: Prohibit Route</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Prohibit:</strong> Paket di-drop dan pengirim mendapat ICMP Type 3 Code 13 "Communication administratively prohibited". Pengirim tahu traffic diblokir oleh kebijakan admin.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambah prohibit route</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.201.0/24 type=prohibit</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi - flag "A SP" (P = Prohibit)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Output: A SP  192.168.201.0/24</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping - harus mendapat ICMP error Code 13</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.201.1
+# Hasil: From 10.10.10.1 icmp_seq=1 Packet filtered
+#        (atau "Communication administratively prohibited")</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab15">
+      <div class="section-title"><span class="section-num">6</span> Lab 15: Unreachable Route</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Unreachable:</strong> Paket di-drop dan pengirim mendapat ICMP Type 3 Code 1 "Host unreachable". Memberikan kesan bahwa host tersebut tidak bisa dijangkau.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambah unreachable route</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=192.168.202.0/24 type=unreachable</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi - flag "A SU" (U = Unreachable)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Output: A SU  192.168.202.0/24</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping - harus mendapat ICMP error Code 1</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.202.1
+# Hasil: From 10.10.10.1: Destination Host Unreachable
+#        (ICMP Type 3 Code 1)</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab16">
+      <div class="section-title"><span class="section-num">7</span> Lab 16: Routing Mark PBR (Lanjutan)</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text">Lab 16 menggunakan topologi yang sama dengan Lab 12 (P3). Ini adalah implementasi Policy Based Routing menggunakan Routing Mark yang lebih detail.</span>
+      </div>
+      <div class="topology">
+PC1 (192.168.1.0/24)────[R1]────ether1:12.12.12.0/30────[R2]
+PC2 (192.168.10.0/24)──┘     └──ether2:21.21.21.0/30────[R2]
+
+Kebijakan PBR:
+  PC1 → mark "ISP1-mark" → route via 12.12.12.2
+  PC2 → mark "ISP2-mark" → route via 21.21.21.2
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat mangle rule untuk PC1 dan PC2</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle
+add chain=prerouting src-address=192.168.1.0/24 \
+    action=mark-routing new-routing-mark=ISP1-mark passthrough=yes
+add chain=prerouting src-address=192.168.10.0/24 \
+    action=mark-routing new-routing-mark=ISP2-mark passthrough=yes</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat routing table dengan mark ISP1</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=12.12.12.2 \
+    routing-mark=ISP1-mark</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat routing table dengan mark ISP2</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=21.21.21.2 \
+    routing-mark=ISP2-mark</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab17">
+      <div class="section-title"><span class="section-num">8</span> Lab 17: Change TTL dengan Mangle</div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Use Case:</strong> Mengubah TTL paket yang meninggalkan router. Misalnya: mengubah TTL menjadi 10 agar paket dari jaringan internal tidak dapat melakukan traceroute melebihi 10 hop ke luar.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi TTL default dengan traceroute (sebelum perubahan)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping -c1 8.8.8.8
+# Lihat TTL di reply, biasanya 64 (Linux) atau 128 (Windows)</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi mangle change-ttl di postrouting (ubah TTL=64 → TTL=10)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall mangle add chain=postrouting \
+    out-interface=ether1 \
+    action=change-ttl \
+    new-ttl=set:10 \
+    comment="Ubah TTL ke 10 untuk traffic keluar"</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi TTL setelah perubahan</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 8.8.8.8
+# TTL di paket yang dikirim sekarang = 10
+# Jika jarak ke tujuan > 10 hop, paket akan dibuang
+
+# Untuk melihat paket: gunakan Wireshark atau
+/tool sniffer quick interface=ether1 ip-protocol=icmp</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Coba traceroute (harusnya berhenti setelah hop ke-10)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/tool traceroute 8.8.8.8
+# Traceroute berhenti setelah 10 hop karena TTL habis</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="perbandingan">
+      <div class="section-title"><span class="section-num">9</span> Tabel Perbandingan 4 Tipe Route</div>
+      <table>
+        <thead>
+          <tr><th>Tipe</th><th>Flag</th><th>Aksi</th><th>ICMP Response</th><th>Pengirim Tahu?</th><th>Use Case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>unicast</strong></td><td>A S</td><td>Forward ke gateway</td><td>Reply normal</td><td>Ya (reply)</td><td>Routing normal</td></tr>
+          <tr><td><strong>blackhole</strong></td><td>A SB</td><td>Drop diam-diam</td><td>Tidak ada</td><td>Tidak (timeout)</td><td>Block traffic tanpa info</td></tr>
+          <tr><td><strong>prohibit</strong></td><td>A SP</td><td>Drop + ICMP code 13</td><td>Comm. admin. prohibited</td><td>Ya (tahu diblok)</td><td>Block eksplisit dengan notifikasi</td></tr>
+          <tr><td><strong>unreachable</strong></td><td>A SU</td><td>Drop + ICMP code 1</td><td>Host unreachable</td><td>Ya (tahu tidak ada)</td><td>Simulasi host tidak ada</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="referensi">
+      <div class="section-title"><span class="section-num">10</span> Referensi</div>
+      <ul>
+        <li>MikroTik Wiki. <em>IP/Route - Route Types</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:IP/Route" style="color:#1a56db;">wiki.mikrotik.com</a></li>
+        <li>MikroTik Wiki. <em>Mangle</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:IP/Firewall/Mangle" style="color:#1a56db;">wiki.mikrotik.com</a></li>
+        <li>RFC 792. (1981). <em>Internet Control Message Protocol</em>. IETF.</li>
+        <li>Forouzan, B. A. (2013). <em>Data Communications and Networking</em>. McGraw-Hill.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 4 (EIK214306)</strong> — Politeknik Negeri Tanah Laut<br>
+  Penyusun: Hendrik Setyo Utomo, ST., MMSI &amp; Arif Supriyanto, S.Kom., M.Cs<br>
+  Pertemuan 6: Routing Type
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarkom 4 - P5: OSPF MikroTik | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+.ospf-state { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; margin: 12px 0; }
+.state-box { background: #e5e7eb; border-radius: 4px; padding: 4px 10px; font-size: 0.82rem; font-family: monospace; }
+.state-arrow { color: #1a56db; font-weight: bold; }
+.state-box.active-state { background: #1a56db; color: white; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+footer { background: #1e3a8a; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>&#x1F310; Pertemuan 7 &amp; 8 — OSPF MikroTik</h1>
+  <p>Jaringan Komputer 4 | Politeknik Negeri Tanah Laut</p>
+  <div class="header-badges">
+    <span class="badge">&#x1F4CB; EIK214306</span>
+    <span class="badge">&#x1F4DA; Semester 4</span>
+    <span class="badge">&#x23F1; 3 SKS (1T + 2P)</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Hendrik Setyo Utomo, ST., MMSI</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Arif Supriyanto, S.Kom., M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">&#x1F3AF; Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#teori">&#x1F4D6; Teori OSPF</a>
+    <a class="toc-link indent" href="#teori-dasar">Dasar OSPF</a>
+    <a class="toc-link indent" href="#teori-ls-vs-dv">LS vs DV</a>
+    <a class="toc-link indent" href="#teori-adjacency">Proses Adjacency</a>
+    <a class="toc-link indent" href="#teori-paket">Paket OSPF</a>
+    <a class="toc-link indent" href="#teori-area">Area &amp; Jenis Router</a>
+    <a class="toc-link indent" href="#teori-drbdr">DR &amp; BDR</a>
+    <a class="toc-link" href="#lab18">&#x1F9EA; Lab 18: OSPF Basic</a>
+    <a class="toc-link" href="#lab19">&#x1F9EA; Lab 19: Passive Interface</a>
+    <a class="toc-link" href="#lab20">&#x1F9EA; Lab 20: Auth MD5</a>
+    <a class="toc-link" href="#lab21">&#x1F9EA; Lab 21: Router ID</a>
+    <a class="toc-link" href="#lab22">&#x1F9EA; Lab 22: Hello &amp; Dead</a>
+    <a class="toc-link" href="#lab23">&#x1F9EA; Lab 23: DR &amp; BDR</a>
+    <a class="toc-link" href="#lab24">&#x1F9EA; Lab 24: LSA Type 1&amp;2</a>
+    <a class="toc-link" href="#lsa-types">&#x1F4CB; LSA Types 3-5</a>
+    <a class="toc-link" href="#referensi">&#x1F4DA; Referensi</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Jarkom 4</a> &rsaquo; <a href="#">Pertemuan 7-8</a> &rsaquo; OSPF MikroTik
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep <span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span> sebagai protokol routing Link State</li>
+          <li>Mengkonfigurasi OSPF basic pada MikroTik dan memverifikasi adjacency</li>
+          <li>Mengkonfigurasi passive interface untuk interface ke client</li>
+          <li>Mengimplementasikan autentikasi OSPF MD5 untuk keamanan</li>
+          <li>Memahami dan mengkonfigurasi Router ID secara manual</li>
+          <li>Memahami Hello/Dead interval dan dampaknya terhadap adjacency</li>
+          <li>Memahami pemilihan DR dan BDR pada jaringan multi-access</li>
+          <li>Memahami LSA Type 1 (Router) dan Type 2 (Network)</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <div class="section-title"><span class="section-num">2</span> Teori OSPF</div>
+
+      <div class="accordion" id="teori-dasar">
+        <div class="accordion-header">&#x1F4D6; Dasar OSPF <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong><span class="tooltip">OSPF<span class="tooltip-text">Open Shortest Path First: protokol routing dinamis yang mencari jalur terpendek</span></span> (Open Shortest Path First)</strong> adalah protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra (SPF - Shortest Path First) untuk menghitung jalur terpendek.</p>
+          <ul>
+            <li><strong>RFC</strong>: 2328 (OSPFv2), 5340 (OSPFv3 untuk IPv6)</li>
+            <li><strong>Protokol IP</strong>: Nomor 89</li>
+            <li><strong>Administrative Distance</strong>: 110</li>
+            <li><strong>Multicast</strong>: 224.0.0.5 (All OSPF Routers), 224.0.0.6 (DR/BDR)</li>
+            <li><strong>Metric</strong>: Cost (berbasis bandwidth) = 100 Mbps / bandwidth</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-ls-vs-dv">
+        <div class="accordion-header">&#x1F4CA; Link State vs Distance Vector <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead>
+              <tr><th>Aspek</th><th>Link State (OSPF)</th><th>Distance Vector (RIP)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Algoritma</td><td>Dijkstra (SPF)</td><td>Bellman-Ford</td></tr>
+              <tr><td>Pengetahuan topologi</td><td>Peta jaringan lengkap (LSDB)</td><td>Hanya tahu jarak ke tetangga</td></tr>
+              <tr><td>Konvergensi</td><td>Cepat</td><td>Lambat (masalah count-to-infinity)</td></tr>
+              <tr><td>Beban CPU/Memori</td><td>Lebih besar</td><td>Lebih kecil</td></tr>
+              <tr><td>Update</td><td>Triggered (saat ada perubahan)</td><td>Periodik (setiap 30 detik)</td></tr>
+              <tr><td>Skalabilitas</td><td>Sangat baik (dengan area)</td><td>Terbatas (max 15 hop)</td></tr>
+              <tr><td>Contoh protokol</td><td>OSPF, IS-IS</td><td>RIP, EIGRP</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-adjacency">
+        <div class="accordion-header">&#x1F504; Proses Pembentukan Adjacency OSPF <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>OSPF membentuk adjacency (hubungan tetangga) melalui beberapa tahap:</p>
+          <div class="ospf-state">
+            <span class="state-box">Down</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box">Init</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box">2-Way</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box">ExStart</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box">Exchange</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box">Loading</span>
+            <span class="state-arrow">→</span>
+            <span class="state-box active-state">Full</span>
+          </div>
+          <ul>
+            <li><strong>Down</strong>: Belum ada Hello diterima</li>
+            <li><strong>Init</strong>: Hello diterima tapi RID kita belum ada di paket Hello tetangga</li>
+            <li><strong>2-Way</strong>: Melihat RID kita di Hello tetangga - DR/BDR dipilih di sini</li>
+            <li><strong>ExStart</strong>: Negosiasi master/slave untuk pertukaran DBD</li>
+            <li><strong>Exchange</strong>: Bertukar Database Description (ringkasan LSDB)</li>
+            <li><strong>Loading</strong>: Meminta LSA yang belum dimiliki (LSR/LSU)</li>
+            <li><strong>Full</strong>: Adjacency terbentuk penuh, LSDB sinkron</li>
+          </ul>
+          <div class="callout callout-tip">
+            <span class="callout-icon">&#x2705;</span>
+            <span class="callout-text"><strong>Tips:</strong> State yang diinginkan adalah <strong>Full</strong>. State 2-Way pada non-DR/BDR adalah normal (hanya DR/BDR yang mencapai Full dengan semua router).</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-paket">
+        <div class="accordion-header">&#x1F4E8; Paket OSPF <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead>
+              <tr><th>Tipe</th><th>Nama</th><th>Fungsi</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Hello</td><td>Menemukan & mempertahankan tetangga</td></tr>
+              <tr><td>2</td><td>DBD (Database Description)</td><td>Ringkasan LSDB untuk sinkronisasi</td></tr>
+              <tr><td>3</td><td>LSR (Link State Request)</td><td>Meminta LSA tertentu</td></tr>
+              <tr><td>4</td><td>LSU (Link State Update)</td><td>Mengirim satu atau lebih LSA</td></tr>
+              <tr><td>5</td><td>LSAck (LS Acknowledgment)</td><td>Konfirmasi penerimaan LSA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-area">
+        <div class="accordion-header">&#x1F3D7;&#xFE0F; Area OSPF &amp; Jenis Router <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>OSPF menggunakan konsep <strong>area</strong> untuk membagi jaringan menjadi bagian lebih kecil dan mengurangi overhead routing.</p>
+          <p><strong>Area Backbone (Area 0)</strong>: Area pusat yang harus ada. Semua area lain harus terhubung ke Area 0.</p>
+          <p><strong>Jenis Router OSPF:</strong></p>
+          <ul>
+            <li><strong>Internal Router</strong>: Semua interface dalam satu area</li>
+            <li><strong>Backbone Router</strong>: Setidaknya satu interface di Area 0</li>
+            <li><strong>ABR (Area Border Router)</strong>: Interface di lebih dari satu area</li>
+            <li><strong>ASBR (AS Boundary Router)</strong>: Terhubung ke domain routing lain (redistribute)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-drbdr">
+        <div class="accordion-header">&#x1F451; DR &amp; BDR (Designated Router) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>Pada jaringan multi-access (Ethernet), semua router tidak perlu membentuk adjacency penuh dengan semua router lain (n*(n-1)/2 adjacency). DR dan BDR mengurangi jumlah adjacency.</p>
+          <p><strong>Peran DR (Designated Router):</strong></p>
+          <ul>
+            <li>Semua router lain membentuk adjacency Full hanya dengan DR dan BDR</li>
+            <li>DR mendistribusikan LSA ke semua router</li>
+            <li>Mengurangi flooding LSA</li>
+          </ul>
+          <p><strong>Pemilihan DR/BDR:</strong></p>
+          <ol>
+            <li><strong>Priority tertinggi</strong> dipilih sebagai DR (default priority=1, range 0-255)</li>
+            <li>Jika priority sama, <strong>Router ID tertinggi</strong> dipilih</li>
+            <li>Priority=0 berarti router TIDAK mau menjadi DR/BDR</li>
+          </ol>
+          <p><strong>Router ID (RID) - Urutan Prioritas:</strong></p>
+          <ol>
+            <li>RID yang dikonfigurasi manual (paling diprioritaskan)</li>
+            <li>IP tertinggi dari loopback interface yang aktif</li>
+            <li>IP tertinggi dari interface fisik yang aktif</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab18">
+      <div class="section-title"><span class="section-num">3</span> Lab 18: OSPF Basic</div>
+
+      <div class="topology">
+[PC1]──[R1]──10.10.10.0/30──[R2]──20.20.20.0/30──[R3]──[PC3]
+ .1.0/24  .1.1          .2.1  .2.2          .3.1  .3.2  .3.0/24
+
+R1: RID=1.1.1.1, ether1→PC1 (192.168.1.0/24), ether2→R2 (10.10.10.0/30)
+R2: RID=2.2.2.2, ether1→R1, ether2→R3, ether3→PC2 (192.168.2.0/24)
+R3: RID=3.3.3.3, ether1→R2 (20.20.20.0/30), ether2→PC3 (192.168.3.0/24)
+      </div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="tab-r1-l18">R1</button>
+          <button class="tab-btn" data-tab="tab-r2-l18">R2</button>
+          <button class="tab-btn" data-tab="tab-r3-l18">R3</button>
+          <button class="tab-btn" data-tab="tab-verify-l18">Verifikasi</button>
+        </div>
+        <div id="tab-r1-l18" class="tab-panel active">
+          <div class="steps">
+            <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> IP Address R1</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=ether1
+/ip address add address=10.10.10.1/30 interface=ether2</div>
+            </div></div>
+            <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Konfigurasi OSPF Instance R1</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf instance add name=default router-id=1.1.1.1</div>
+            </div></div>
+            <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Tambah network ke OSPF Area 0</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf network add network=192.168.1.0/24 area=backbone
+/routing ospf network add network=10.10.10.0/30 area=backbone</div>
+            </div></div>
+          </div>
+        </div>
+        <div id="tab-r2-l18" class="tab-panel">
+          <div class="steps">
+            <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> IP Address R2</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=10.10.10.2/30 interface=ether1
+/ip address add address=20.20.20.1/30 interface=ether2
+/ip address add address=192.168.2.1/24 interface=ether3</div>
+            </div></div>
+            <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Konfigurasi OSPF R2</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf instance add name=default router-id=2.2.2.2
+/routing ospf network add network=10.10.10.0/30 area=backbone
+/routing ospf network add network=20.20.20.0/30 area=backbone
+/routing ospf network add network=192.168.2.0/24 area=backbone</div>
+            </div></div>
+          </div>
+        </div>
+        <div id="tab-r3-l18" class="tab-panel">
+          <div class="steps">
+            <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> IP Address &amp; OSPF R3</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=20.20.20.2/30 interface=ether1
+/ip address add address=192.168.3.1/24 interface=ether2
+/routing ospf instance add name=default router-id=3.3.3.3
+/routing ospf network add network=20.20.20.0/30 area=backbone
+/routing ospf network add network=192.168.3.0/24 area=backbone</div>
+            </div></div>
+          </div>
+        </div>
+        <div id="tab-verify-l18" class="tab-panel">
+          <div class="steps">
+            <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Cek routing table - harus muncul "ADo" (AD=110)</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+# Harus muncul route dengan flag A Do (Active, Dynamic, OSPF)
+# Distance = 110</div>
+            </div></div>
+            <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Cek OSPF neighbor state</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf neighbor print
+# State harus "Full"
+# Jika "ExStart" atau "Exchange" lama = ada masalah MTU</div>
+            </div></div>
+            <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+              <label><input type="checkbox" class="step-check"> Test ping antar jaringan</label>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.3.1 src-address=192.168.1.1
+# Harus reply</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab19">
+      <div class="section-title"><span class="section-num">4</span> Lab 19: Passive Interface</div>
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Passive Interface:</strong> Interface yang di-passive tidak akan mengirim/menerima paket Hello OSPF. Network tetap diiklankan ke neighbor lain, tapi tidak ada adjacency yang terbentuk di interface tersebut. Digunakan untuk interface yang terhubung ke client (tidak perlu adjacency dengan PC).</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Set interface ke PC sebagai passive</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface add interface=ether1 passive=yes
+# ether1 adalah interface yang terhubung ke PC/client</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi - interface passive tidak muncul di neighbor</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface print
+# ether1 harus muncul dengan passive=yes
+
+/routing ospf neighbor print
+# Tidak ada neighbor dari ether1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Cek network masih diiklankan</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Di router lain, lihat routing table
+/ip route print
+# Network 192.168.1.0/24 masih harus muncul sebagai OSPF route</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab20">
+      <div class="section-title"><span class="section-num">5</span> Lab 20: Authentication MD5</div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Penting:</strong> Authentication OSPF harus dikonfigurasi SAMA di kedua ujung link. Jika satu router pakai MD5 dan yang lain tidak, adjacency tidak akan terbentuk.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi MD5 authentication di R1</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface add interface=ether2 \
+    authentication=md5 \
+    authentication-key=123 \
+    comment="Auth MD5 ke R2"</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi MD5 authentication di R2 (harus sama)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface add interface=ether1 \
+    authentication=md5 \
+    authentication-key=123</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi neighbor state = Full</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf neighbor print
+# State harus tetap "Full" setelah auth dikonfigurasi</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab21">
+      <div class="section-title"><span class="section-num">6</span> Lab 21: Router ID Manual</div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Set Router ID manual di instance OSPF</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf instance set [find name=default] router-id=1.1.1.1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi Router ID</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf instance print
+# Router ID harus = 1.1.1.1
+
+/routing ospf neighbor print
+# RID neighbor harus sesuai</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab22">
+      <div class="section-title"><span class="section-num">7</span> Lab 22: Hello &amp; Dead Interval</div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>KRITIS:</strong> Hello interval dan Dead interval HARUS sama di kedua ujung link OSPF. Jika berbeda, adjacency tidak akan terbentuk. Default: hello=10s, dead=40s.</span>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Ubah hello dan dead interval di R1 ether2</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface add interface=ether2 \
+    hello-interval=15 \
+    dead-interval=60</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Ubah interval yang SAMA di R2 ether1</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf interface add interface=ether1 \
+    hello-interval=15 \
+    dead-interval=60</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi neighbor state = Full</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf neighbor print
+# Jika interval berbeda: state akan stuck di "Init" atau tidak ada neighbor</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab23">
+      <div class="section-title"><span class="section-num">8</span> Lab 23: DR &amp; BDR</div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Set priority tinggi di R1 untuk jadi DR</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf interface add interface=ether2 priority=10
+# R2 dan R3 biarkan default priority=1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Reset OSPF process (DR/BDR tidak berubah tanpa reset)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf instance disable [find name=default]
+/routing ospf instance enable [find name=default]</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi DR address di neighbor</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf neighbor print
+# Lihat kolom "dr-address" harus = IP R1
+# Lihat kolom "role" = DR/BDR/DROther</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab24">
+      <div class="section-title"><span class="section-num">9</span> Lab 24: LSA Type 1 &amp; Type 2</div>
+      <div class="accordion">
+        <div class="accordion-header">Penjelasan LSA Type 1 dan Type 2 <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <ul>
+            <li><strong>LSA Type 1 (Router LSA)</strong>: Dibuat oleh setiap router. Berisi informasi tentang interface dan link router tersebut. Hanya flood dalam satu area.</li>
+            <li><strong>LSA Type 2 (Network LSA)</strong>: Dibuat oleh DR. Berisi informasi tentang semua router yang terhubung ke jaringan multi-access. Hanya flood dalam satu area.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Lihat semua LSA di database</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf lsa print</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Filter LSA Type 1 (Router LSA)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf lsa print where type=router
+# Muncul LSA dari setiap router (R1, R2, R3)</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Filter LSA Type 2 (Network LSA dari DR)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/routing ospf lsa print where type=network
+# Muncul LSA dari DR saja
+# Advertising-router = RID DR</div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- LSA TYPES 3-5 -->
+    <section class="section" id="lsa-types">
+      <div class="section-title"><span class="section-num">10</span> LSA Types 3, 4, dan 5 (OSPF Multi-Area)</div>
+
+      <p>Selain LSA Type 1 (Router) dan Type 2 (Network) yang beroperasi dalam satu area, OSPF juga memiliki LSA yang digunakan untuk komunikasi <strong>antar area</strong> dan ke jaringan <strong>eksternal</strong>.</p>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Konteks:</strong> LSA Type 3, 4, dan 5 hanya relevan pada topologi OSPF <strong>multi-area</strong> (lebih dari satu area). Pada single-area OSPF seperti lab sebelumnya, hanya Type 1 dan Type 2 yang ada.</span>
+      </div>
+
+      <table>
+        <thead>
+          <tr><th>Tipe LSA</th><th>Nama</th><th>Dibuat Oleh</th><th>Wilayah Penyebaran</th><th>Fungsi</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Type 1</strong></td>
+            <td>Router LSA</td>
+            <td>Setiap router</td>
+            <td>Dalam satu area saja</td>
+            <td>Mendeskripsikan link dan status interface router</td>
+          </tr>
+          <tr>
+            <td><strong>Type 2</strong></td>
+            <td>Network LSA</td>
+            <td>DR (Designated Router)</td>
+            <td>Dalam satu area saja</td>
+            <td>Mendeskripsikan router yang terhubung ke segment multi-access</td>
+          </tr>
+          <tr style="background:#fef9c3;">
+            <td><strong>Type 3</strong></td>
+            <td>Summary LSA</td>
+            <td><span class="tooltip">ABR<span class="tooltip-text">Area Border Router: router yang menghubungkan dua area OSPF berbeda</span></span></td>
+            <td>Antar area (dari non-backbone ke backbone dan sebaliknya)</td>
+            <td>Mengiklankan network dari satu area ke area lain (summary rute)</td>
+          </tr>
+          <tr style="background:#fef9c3;">
+            <td><strong>Type 4</strong></td>
+            <td>ASBR Summary LSA</td>
+            <td>ABR</td>
+            <td>Antar area</td>
+            <td>Memberitahu lokasi (IP) dari <span class="tooltip">ASBR<span class="tooltip-text">AS Boundary Router: router yang menghubungkan OSPF dengan routing protocol lain (misal RIP, BGP)</span></span> agar router lain tahu cara mencapai rute eksternal</td>
+          </tr>
+          <tr style="background:#fef9c3;">
+            <td><strong>Type 5</strong></td>
+            <td>AS External LSA</td>
+            <td><span class="tooltip">ASBR<span class="tooltip-text">AS Boundary Router: router yang menghubungkan OSPF dengan routing protocol lain</span></span></td>
+            <td>Seluruh domain OSPF (semua area)</td>
+            <td>Mengiklankan rute dari protokol lain (RIP, BGP, static) yang di-redistribusi ke OSPF</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:20px;">
+        <h3 style="font-size:1.0rem;color:#1e3a8a;margin-bottom:12px;">Ilustrasi Alur LSA dalam Multi-Area OSPF</h3>
+        <pre class="topology">                    ┌──────────────────────────────────────────────────────────────┐
+                    │                    Domain OSPF                               │
+  ┌─────────────┐  │  ┌──────────────┐         ┌──────────────┐                  │
+  │  Protokol   │  │  │   Area 1     │         │   Area 0     │                  │
+  │  Lain (RIP/ │  │  │              │  Type 3  │  (Backbone)  │  Type 3          │
+  │  BGP/Static)│  │  │  Router LSA  │◄────────►│              │◄────────► Area 2 │
+  └──────┬──────┘  │  │  (Type 1)   │          │  Router LSA  │                  │
+         │ Type 5  │  │  Network LSA │          │  (Type 1)   │                  │
+         └────────►│  │  (Type 2)   │          │  Network LSA │                  │
+   redistribute    │  │              │          │  (Type 2)   │                  │
+         └────────►│  └──────┬───────┘          └──────┬───────┘                  │
+                   │         │  ABR                     │ ABR                     │
+                   │         │ (mengirim Type 3)         │ (mengirim Type 3)       │
+                   │     ASBR│ (mengirim Type 4)         │                         │
+                   └─────────────────────────────────────────────────────────────--┘</pre>
+      </div>
+
+      <div class="accordion" style="margin-top:16px;">
+        <div class="accordion-header">&#x1F4DD; Detail LSA Type 3 — Summary LSA <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Kapan dibuat?</strong> Saat sebuah <strong>ABR</strong> (router yang berada di dua area) perlu mengiklankan jaringan dari Area 1 ke Area 0, atau sebaliknya.</p>
+          <p><strong>Analoginya:</strong> Seperti "buletin" yang dikirim oleh ABR ke area lain, berisi ringkasan prefix jaringan yang ada di area asalnya.</p>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Melihat LSA Type 3 di database OSPF MikroTik:
+/routing ospf lsa print where type=summary
+# atau pada v7:
+/routing/ospf/lsa print where type=summary-network</div>
+          <div class="callout callout-tip">
+            <span class="callout-icon">&#x2705;</span>
+            <span class="callout-text">LSA Type 3 hanya dikirim antar area — TIDAK disebarkan di dalam area yang sama. Ini yang menyebabkan router dalam satu area tidak melihat detail topologi area lain, hanya melihat summarized prefix-nya.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">&#x1F4DD; Detail LSA Type 4 — ASBR Summary LSA <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Masalah yang dipecahkan:</strong> Saat ada ASBR di Area 1 yang meredistribusi rute eksternal (Type 5), router di Area 2 perlu tahu "di mana ASBR itu berada" agar bisa mencapai rute eksternal tersebut.</p>
+          <p><strong>Siapa yang membuat?</strong> ABR yang menghubungkan area tempat ASBR berada dengan area lain.</p>
+          <p><strong>Isi:</strong> Router ID dari ASBR + cost untuk mencapai ASBR tersebut.</p>
+          <p><strong>Analogi:</strong> LSA Type 4 adalah "petunjuk jalan" menuju ASBR, sedangkan LSA Type 5 adalah "isi informasi rute eksternal" yang diiklankan ASBR.</p>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">&#x1F4DD; Detail LSA Type 5 — AS External LSA <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Kapan dibuat?</strong> Saat sebuah <strong>ASBR</strong> melakukan <em>redistribusi</em> — yaitu memasukkan rute dari protokol lain (RIP, BGP, static route) ke dalam domain OSPF.</p>
+          <p><strong>Disebarkan ke:</strong> Seluruh domain OSPF (semua area), kecuali area Stub dan NSSA.</p>
+          <p><strong>Metric Type:</strong></p>
+          <ul>
+            <li><strong>Type 1 (E1)</strong>: Cost dihitung dari ASBR + cost internal OSPF (lebih akurat)</li>
+            <li><strong>Type 2 (E2)</strong>: Cost hanya dari ASBR, tidak termasuk cost internal (default)</li>
+          </ul>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Contoh redistribusi static route ke OSPF di MikroTik (membuat ASBR):
+/routing ospf instance set default redistribute-static=as-type-1
+# atau type-2 (default)
+/routing ospf instance set default redistribute-static=as-type-2
+
+# Melihat LSA Type 5 di database:
+/routing ospf lsa print where type=as-external</div>
+        </div>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top:16px;">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Catatan penting:</strong> Area <strong>Stub</strong> tidak menerima LSA Type 5 (AS External). Sebagai gantinya, ABR mengirimkan sebuah <em>default route</em> (Type 3) ke area tersebut. Ini berguna untuk mengurangi ukuran LSDB di area yang tidak perlu tahu detail rute eksternal.</span>
+      </div>
+    </section>
+
+    <section class="section" id="referensi">
+      <div class="section-title"><span class="section-num">11</span> Referensi</div>
+      <ul>
+        <li>RFC 2328. (1998). <em>OSPF Version 2</em>. IETF.</li>
+        <li>MikroTik Wiki. <em>OSPF</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:Routing/OSPF" style="color:#1a56db;">wiki.mikrotik.com/wiki/Manual:Routing/OSPF</a></li>
+        <li>MikroTik. (2023). <em>MTCRE - MikroTik Certified Routing Engineer</em>.</li>
+        <li>Doyle, J. &amp; Carroll, J. (2005). <em>Routing TCP/IP Volume 1</em>. Cisco Press.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 4 (EIK214306)</strong> — Politeknik Negeri Tanah Laut<br>
+  Penyusun: Hendrik Setyo Utomo, ST., MMSI &amp; Arif Supriyanto, S.Kom., M.Cs<br>
+  Pertemuan 7-8: OSPF MikroTik
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+</script>
+</body>
+</html>

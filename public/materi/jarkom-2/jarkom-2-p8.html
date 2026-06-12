@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 8 – Studi Kasus Jaringan Terpadu | Jaringan Komputer 2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 960px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 16px; border: none; background: none; cursor: pointer; font-size: 0.88rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.82rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+.rubrik-table td:first-child { font-weight: 600; color: #1e3a8a; }
+.score-high { background: #f0fdf4; color: #16a34a; font-weight: 700; }
+.score-med { background: #fffbeb; color: #d97706; font-weight: 700; }
+.score-low { background: #fef2f2; color: #dc2626; font-weight: 700; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="font-size:0.85rem;opacity:0.8;margin-bottom:4px;">Politeknik Negeri Tanah Laut — Jaringan Komputer 2</div>
+    <h1>🏛️ Praktikum 8: Studi Kasus Implementasi Jaringan Terpadu</h1>
+    <p style="opacity:0.9;margin-top:6px;font-size:0.95rem;">Implementasi jaringan lengkap: Routing, DHCP, NAT, Firewall, Wireless, QoS, dan VPN untuk Politeknik ABC</p>
+    <div class="header-badges">
+      <span class="badge">📘 EIK212305</span>
+      <span class="badge">📅 Semester 2</span>
+      <span class="badge">⚡ 3 SKS (1T + 2P)</span>
+      <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
+      <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#tujuan" class="toc-link">🎯 Tujuan &amp; Skenario</a>
+    <a href="#addressing" class="toc-link">📋 Addressing Table</a>
+    <a href="#topologi" class="toc-link">🗺️ Topologi Lengkap</a>
+    <a href="#impl-a" class="toc-link">🔬 A: IP &amp; Routing</a>
+    <a href="#impl-b" class="toc-link">🔬 B: DHCP Server</a>
+    <a href="#impl-c" class="toc-link">🔬 C: NAT Masquerade</a>
+    <a href="#impl-d" class="toc-link">🔬 D: Firewall</a>
+    <a href="#impl-e" class="toc-link">🔬 E: Wireless AP</a>
+    <a href="#impl-f" class="toc-link">🔬 F: QoS</a>
+    <a href="#impl-g" class="toc-link">🔬 G: VPN Site-to-Site</a>
+    <a href="#verifikasi" class="toc-link">✅ Verifikasi Lengkap</a>
+    <a href="#rubrik" class="toc-link">📊 Rubrik Penilaian</a>
+    <a href="#laporan" class="toc-link">📝 Panduan Laporan</a>
+    <a href="#referensi" class="toc-link">📚 Referensi</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Beranda</a> › <a href="#">Jaringan Komputer 2</a> › Praktikum 8 (Studi Kasus)
+    </div>
+
+    <!-- TUJUAN & SKENARIO -->
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan &amp; Skenario</div>
+      <div class="learning-objectives">
+        <strong>Tujuan Pembelajaran:</strong>
+        <ol style="margin-top:10px;">
+          <li>Mengintegrasikan seluruh materi Jaringan Komputer 2 dalam satu implementasi nyata</li>
+          <li>Merancang dan mengimplementasikan jaringan multi-gedung dengan berbagai layanan</li>
+          <li>Memecahkan masalah jaringan kompleks secara sistematis</li>
+          <li>Mendokumentasikan proses implementasi secara profesional</li>
+        </ol>
+      </div>
+
+      <div style="margin-top:24px;">
+        <h3 style="font-size:1.1rem;color:#1e3a8a;margin-bottom:12px;">📋 Skenario: Jaringan Politeknik ABC</h3>
+        <p>Politeknik ABC memiliki dua gedung yang perlu dihubungkan secara jaringan. Anda ditugaskan sebagai Network Engineer untuk merancang dan mengimplementasikan jaringan lengkap.</p>
+
+        <div class="accordion">
+          <div class="accordion-header">🏢 Gedung Utama — Kebutuhan Jaringan <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <ul>
+              <li><strong>LAN Staf Admin</strong> (192.168.10.0/24) — 50 pengguna, DHCP, akses internet penuh</li>
+              <li><strong>LAN Lab Komputer</strong> (192.168.20.0/24) — 30 PC, IP statis, akses terbatas</li>
+              <li><strong>WiFi Mahasiswa</strong> (192.168.30.0/24) — SSID "Politala-Student", WPA2, DHCP, bandwidth 1M/user</li>
+              <li><strong>Firewall</strong> — blokir sosmed jam 08:00-16:00, izinkan semua established</li>
+              <li><strong>NAT Masquerade</strong> — semua LAN akses internet via 1 IP publik</li>
+              <li><strong>QoS</strong> — Staf: 5Mbps priority, Lab: 2Mbps, Mahasiswa: 1Mbps/user (PCQ)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">🏗️ Gedung Cabang — Kebutuhan Jaringan <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <ul>
+              <li><strong>LAN Cabang</strong> (192.168.40.0/24) — 20 pengguna, DHCP</li>
+              <li><strong>VPN Site-to-Site</strong> ke Gedung Utama via PPTP</li>
+              <li>Akses ke server di Gedung Utama (192.168.10.x) melalui VPN</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion">
+          <div class="accordion-header">🌐 Remote Access VPN <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <ul>
+              <li>Dosen/Staf bisa mengakses jaringan dari rumah via PPTP VPN</li>
+              <li>Pool IP VPN: 10.10.10.10-50</li>
+              <li>Akses ke server file (192.168.10.5) dan sistem akademik (192.168.10.6)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDRESSING TABLE -->
+    <section class="section" id="addressing">
+      <div class="section-title"><span class="section-num">2</span> Addressing Table</div>
+      <table>
+        <thead>
+          <tr><th>Perangkat</th><th>Interface</th><th>IP Address</th><th>Subnet Mask</th><th>Gateway</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Router Utama</strong></td><td>ether1 (WAN)</td><td>203.0.113.1</td><td>/30</td><td>203.0.113.2</td><td>Koneksi ISP</td></tr>
+          <tr><td><strong>Router Utama</strong></td><td>ether2 (LAN Admin)</td><td>192.168.10.1</td><td>/24</td><td>—</td><td>Gateway Staf Admin</td></tr>
+          <tr><td><strong>Router Utama</strong></td><td>ether3 (LAN Lab)</td><td>192.168.20.1</td><td>/24</td><td>—</td><td>Gateway Lab Komputer</td></tr>
+          <tr><td><strong>Router Utama</strong></td><td>wlan1 (WiFi)</td><td>192.168.30.1</td><td>/24</td><td>—</td><td>Gateway Mahasiswa</td></tr>
+          <tr><td><strong>Router Cabang</strong></td><td>ether1 (WAN)</td><td>203.0.114.1</td><td>/30</td><td>203.0.114.2</td><td>Koneksi ISP Cabang</td></tr>
+          <tr><td><strong>Router Cabang</strong></td><td>ether2 (LAN)</td><td>192.168.40.1</td><td>/24</td><td>—</td><td>Gateway LAN Cabang</td></tr>
+          <tr><td><strong>Server File</strong></td><td>eth0</td><td>192.168.10.5</td><td>/24</td><td>192.168.10.1</td><td>File Server</td></tr>
+          <tr><td><strong>Server Akademik</strong></td><td>eth0</td><td>192.168.10.6</td><td>/24</td><td>192.168.10.1</td><td>Sistem Informasi</td></tr>
+          <tr><td><strong>VPN Pool</strong></td><td>pptp0</td><td>10.10.10.10-50</td><td>/24</td><td>10.10.10.1</td><td>Remote Access VPN</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- TOPOLOGI -->
+    <section class="section" id="topologi">
+      <div class="section-title"><span class="section-num">3</span> Topologi Jaringan Lengkap</div>
+      <pre class="topology">
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║                    POLITEKNIK ABC — TOPOLOGI JARINGAN                ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+
+  [INTERNET / ISP]
+         |
+   203.0.113.1/30
+         |
+  ┌──────────────────────────────────────────────────────┐
+  │           GEDUNG UTAMA — Router MikroTik             │
+  │  ether1: WAN 203.0.113.1   wlan1: WiFi 192.168.30.1  │
+  │  ether2: Admin 192.168.10.1                          │
+  │  ether3: Lab   192.168.20.1                          │
+  │  PPTP VPN Server: Pool 10.10.10.0/24                 │
+  └───────────────────┬──────────────────────────────────┘
+          ┌───────────┼───────────────┬─────────────┐
+          |           |               |             |
+    [Switch LAN]  [Switch Lab]   [WiFi AP]   [VPN Tunnel]
+    192.168.10.x  192.168.20.x  192.168.30.x    |
+    (DHCP)        (IP Statis)   (DHCP+PCQ)      |
+     50 PC          30 PC        Mahasiswa     ~~~ Internet ~~~
+                                                   |
+                                         ┌─────────┴──────────┐
+                                         │  GEDUNG CABANG     │
+                                         │  Router MikroTik   │
+                                         │  WAN: 203.0.114.1  │
+                                         │  LAN: 192.168.40.1 │
+                                         └──────────┬─────────┘
+                                                    |
+                                              [Switch LAN]
+                                              192.168.40.x
+                                               20 PC (DHCP)
+
+  Remote Access VPN:
+  [Laptop Dosen] ──── Internet ──── VPN 10.10.10.x ──── LAN Admin</pre>
+    </section>
+
+    <!-- IMPLEMENTASI A: IP & ROUTING -->
+    <section class="section" id="impl-a">
+      <div class="section-title"><span class="section-num">4</span> Implementasi A: Konfigurasi IP &amp; Routing Dasar</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Konfigurasi semua IP address Router Utama</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip address add address=203.0.113.1/30 interface=ether1 comment="WAN-ISP"
+/ip address add address=192.168.10.1/24 interface=ether2 comment="LAN-Admin"
+/ip address add address=192.168.20.1/24 interface=ether3 comment="LAN-Lab"
+/ip address add address=192.168.30.1/24 interface=wlan1 comment="WiFi-Mahasiswa"
+/ip address print</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Tambah default route &amp; konfigurasi DNS</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.2
+/ip dns set servers=8.8.8.8,8.8.4.4 allow-remote-requests=yes
+/ip dns print</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Konfigurasi Router Cabang</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+/ip address add address=203.0.114.1/30 interface=ether1 comment="WAN-ISP-Cabang"
+/ip address add address=192.168.40.1/24 interface=ether2 comment="LAN-Cabang"
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.114.2
+/ip dns set servers=8.8.8.8,8.8.4.4</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI B: DHCP -->
+    <section class="section" id="impl-b">
+      <div class="section-title"><span class="section-num">5</span> Implementasi B: DHCP Server (3 LAN)</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="dhcp-admin">LAN Admin</button>
+          <button class="tab-btn" data-tab="dhcp-wifi">WiFi Mahasiswa</button>
+          <button class="tab-btn" data-tab="dhcp-cabang">LAN Cabang</button>
+        </div>
+        <div class="tab-panels">
+          <div id="dhcp-admin" class="tab-panel active">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Buat IP Pool untuk Admin</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="Pool-Admin" ranges=192.168.10.100-192.168.10.200</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Buat DHCP Server Admin</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip dhcp-server add \
+  name="DHCP-Admin" \
+  interface=ether2 \
+  address-pool=Pool-Admin \
+  lease-time=1d \
+  disabled=no
+
+/ip dhcp-server network add \
+  address=192.168.10.0/24 \
+  gateway=192.168.10.1 \
+  dns-server=8.8.8.8,192.168.10.1 \
+  comment="Network Admin"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="dhcp-wifi" class="tab-panel">
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="Pool-WiFi" ranges=192.168.30.10-192.168.30.250
+
+/ip dhcp-server add \
+  name="DHCP-WiFi" \
+  interface=wlan1 \
+  address-pool=Pool-WiFi \
+  lease-time=8h \
+  disabled=no
+
+/ip dhcp-server network add \
+  address=192.168.30.0/24 \
+  gateway=192.168.30.1 \
+  dns-server=8.8.8.8 \
+  comment="Network WiFi Mahasiswa"</div>
+          </div>
+          <div id="dhcp-cabang" class="tab-panel">
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+/ip pool add name="Pool-Cabang" ranges=192.168.40.100-192.168.40.200
+
+/ip dhcp-server add \
+  name="DHCP-Cabang" \
+  interface=ether2 \
+  address-pool=Pool-Cabang \
+  lease-time=1d \
+  disabled=no
+
+/ip dhcp-server network add \
+  address=192.168.40.0/24 \
+  gateway=192.168.40.1 \
+  dns-server=8.8.8.8</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI C: NAT -->
+    <section class="section" id="impl-c">
+      <div class="section-title"><span class="section-num">6</span> Implementasi C: NAT Masquerade</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>NAT Masquerade Router Utama</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall nat add \
+  chain=srcnat \
+  out-interface=ether1 \
+  action=masquerade \
+  comment="NAT semua LAN ke internet"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>NAT Masquerade Router Cabang</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+/ip firewall nat add \
+  chain=srcnat \
+  out-interface=ether1 \
+  action=masquerade \
+  comment="NAT Cabang ke internet"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI D: FIREWALL -->
+    <section class="section" id="impl-d">
+      <div class="section-title"><span class="section-num">7</span> Implementasi D: Firewall</div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <span class="callout-text">Urutan rule firewall sangat penting! Rule diproses dari atas ke bawah. Selalu letakkan rule established/related di paling atas.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Aturan dasar (established, related, invalid)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add chain=input connection-state=established,related action=accept
+/ip firewall filter add chain=forward connection-state=established,related action=accept
+/ip firewall filter add chain=input connection-state=invalid action=drop
+/ip firewall filter add chain=forward connection-state=invalid action=drop</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Blokir akses sosial media dari WiFi Mahasiswa (jam kerja)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Buat address list untuk IP sosmed (contoh)
+/ip firewall address-list add list=sosmed address=31.13.64.0/18 comment="Facebook"
+/ip firewall address-list add list=sosmed address=157.240.0.0/17 comment="Instagram"
+/ip firewall address-list add list=sosmed address=104.244.42.0/24 comment="Twitter/X"
+
+# Blokir sosmed dari WiFi mahasiswa
+/ip firewall filter add \
+  chain=forward \
+  src-address=192.168.30.0/24 \
+  dst-address-list=sosmed \
+  action=drop \
+  comment="Blokir sosmed dari WiFi"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Proteksi akses router dari internet</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add \
+  chain=input \
+  in-interface=ether1 \
+  dst-port=8291,22,23,80 \
+  protocol=tcp \
+  action=drop \
+  comment="Block router access dari WAN"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="4">4</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Izinkan ICMP (ping) dari semua LAN</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add chain=input protocol=icmp action=accept comment="Allow ICMP"
+/ip firewall filter add chain=forward protocol=icmp action=accept comment="Allow ICMP forward"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI E: WIRELESS -->
+    <section class="section" id="impl-e">
+      <div class="section-title"><span class="section-num">8</span> Implementasi E: Wireless AP WPA2</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat Security Profile WPA2</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface wireless security-profiles add \
+  name="Politala-WPA2" \
+  mode=dynamic-keys \
+  authentication-types=wpa2-psk \
+  unicast-ciphers=aes-ccm \
+  group-ciphers=aes-ccm \
+  wpa2-pre-shared-key="PolitalaStudent2024!"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Konfigurasi wlan1 sebagai AP</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface wireless set wlan1 \
+  mode=ap-bridge \
+  ssid="Politala-Student" \
+  frequency=2437 \
+  band=2ghz-b/g/n \
+  channel-width=20mhz \
+  security-profile=Politala-WPA2 \
+  hide-ssid=no \
+  disabled=no</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI F: QoS -->
+    <section class="section" id="impl-f">
+      <div class="section-title"><span class="section-num">9</span> Implementasi F: QoS (Quality of Service)</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Simple Queue untuk LAN Admin (prioritas tinggi)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple add \
+  name="QoS-Admin" \
+  target=192.168.10.0/24 \
+  max-limit=5M/5M \
+  limit-at=2M/2M \
+  priority=1 \
+  comment="Bandwidth Staf Admin"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Simple Queue untuk LAN Lab</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple add \
+  name="QoS-Lab" \
+  target=192.168.20.0/24 \
+  max-limit=2M/2M \
+  limit-at=512k/512k \
+  priority=4 \
+  comment="Bandwidth Lab Komputer"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>PCQ untuk WiFi Mahasiswa (1Mbps per user)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue type add \
+  name="PCQ-Student-DL" kind=pcq pcq-classifier=dst-address pcq-rate=1M
+/queue type add \
+  name="PCQ-Student-UL" kind=pcq pcq-classifier=src-address pcq-rate=512k
+
+/queue simple add \
+  name="QoS-WiFi" \
+  target=192.168.30.0/24 \
+  max-limit=20M/10M \
+  queue=PCQ-Student-UL/PCQ-Student-DL \
+  priority=8 \
+  comment="PCQ WiFi Mahasiswa"</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTASI G: VPN -->
+    <section class="section" id="impl-g">
+      <div class="section-title"><span class="section-num">10</span> Implementasi G: VPN PPTP Site-to-Site</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="vpn-server-main">Router Utama (Server)</button>
+          <button class="tab-btn" data-tab="vpn-client-branch">Router Cabang (Client)</button>
+          <button class="tab-btn" data-tab="vpn-remote">Remote Access</button>
+        </div>
+        <div class="tab-panels">
+          <div id="vpn-server-main" class="tab-panel active">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Setup IP Pool dan PPP Profile</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="VPN-Pool" ranges=10.10.10.10-10.10.10.50
+/ppp profile add \
+  name="VPN-Profile" \
+  local-address=10.10.10.1 \
+  remote-address=VPN-Pool \
+  use-encryption=yes \
+  dns-server=8.8.8.8</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Tambah PPP Secrets (akun VPN)</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ppp secret add name="cabang" password="CabangPass123" service=pptp profile=VPN-Profile comment="Site-to-Site Cabang"
+/ppp secret add name="dosen1" password="Dosen1Pass" service=pptp profile=VPN-Profile comment="Remote Access Dosen"
+/ppp secret add name="staff1" password="Staff1Pass" service=pptp profile=VPN-Profile comment="Remote Access Staf"</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Aktifkan PPTP Server dan buka port</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface pptp-server server set enabled=yes default-profile=VPN-Profile authentication=mschap2
+/ip firewall filter add chain=input protocol=tcp dst-port=1723 action=accept comment="Allow PPTP"
+/ip firewall filter add chain=input protocol=gre action=accept comment="Allow GRE"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="vpn-client-branch" class="tab-panel">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Buat PPTP Client di Router Cabang</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+/interface pptp-client add \
+  name="VPN-HQ" \
+  connect-to=203.0.113.1 \
+  user=cabang \
+  password="CabangPass123" \
+  add-default-route=no \
+  disabled=no</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Tambah route ke jaringan Gedung Utama</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=192.168.10.0/24 gateway=VPN-HQ comment="Route ke LAN Admin HQ"
+/ip route add dst-address=192.168.20.0/24 gateway=VPN-HQ comment="Route ke LAN Lab HQ"</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Tambah route di Router Utama ke LAN Cabang</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Kembali di Router Utama
+/ip route add dst-address=192.168.40.0/24 gateway=10.10.10.1 comment="Route ke LAN Cabang via VPN"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="vpn-remote" class="tab-panel">
+            <div class="callout callout-info">
+              <span class="callout-icon">💡</span>
+              <span class="callout-text">Untuk Remote Access, dosen/staf cukup mengkonfigurasi VPN client di Windows/macOS menggunakan username dan password yang telah dibuat di PPP Secrets.</span>
+            </div>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">Konfigurasi VPN Windows:
+- Server: 203.0.113.1
+- Tipe: PPTP
+- Username: dosen1 / staff1
+- Password: sesuai yang dikonfigurasi
+- Setelah terhubung, bisa akses 192.168.10.5 (File Server)
+  dan 192.168.10.6 (Sistem Akademik)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERIFIKASI -->
+    <section class="section" id="verifikasi">
+      <div class="section-title"><span class="section-num">11</span> Checklist Verifikasi Lengkap</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi IP Address semua interface</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip address print</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi DHCP berjalan &amp; ada lease aktif</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip dhcp-server print
+/ip dhcp-server lease print</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Test konektivitas internet dari setiap subnet</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ping 8.8.8.8 count=4 src-address=192.168.10.1
+/ping 8.8.8.8 count=4 src-address=192.168.20.1
+/ping 8.8.8.8 count=4 src-address=192.168.30.1</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="4">4</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi NAT bekerja (cek IP publik)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall nat print stats
+/tool fetch url=http://ifconfig.me as-value output=user</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="5">5</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi VPN site-to-site (ping antar gedung)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Dari Router Cabang - ping ke LAN Admin HQ
+/ping 192.168.10.1 count=4
+# Dari Router Utama - ping ke LAN Cabang
+/ping 192.168.40.1 count=4</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="6">6</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi QoS (bandwidth test per subnet)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple print stats
+# Dari PC di setiap subnet - jalankan speedtest.net
+# Bandingkan dengan max-limit yang dikonfigurasi</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="7">7</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi WiFi bisa terhubung dengan WPA2</strong></label>
+            <p>Dari smartphone/laptop → scan WiFi → pilih "Politala-Student" → masukkan password → verifikasi mendapat IP 192.168.30.x</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RUBRIK PENILAIAN -->
+    <section class="section" id="rubrik">
+      <div class="section-title"><span class="section-num">12</span> Rubrik Penilaian</div>
+      <table class="rubrik-table">
+        <thead>
+          <tr><th>Komponen</th><th>Bobot</th><th>Nilai Maks</th><th>Kriteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A. Konfigurasi IP &amp; Routing</td><td>10%</td><td>10</td><td>Semua interface ter-IP, routing ke internet berfungsi</td></tr>
+          <tr><td>B. DHCP Server (3 LAN)</td><td>15%</td><td>15</td><td>Klien mendapat IP otomatis dari pool yang benar</td></tr>
+          <tr><td>C. NAT Masquerade</td><td>10%</td><td>10</td><td>Semua LAN bisa akses internet via 1 IP publik</td></tr>
+          <tr><td>D. Firewall</td><td>20%</td><td>20</td><td>Rule established/related, proteksi router, blokir sosmed WiFi</td></tr>
+          <tr><td>E. Wireless AP WPA2</td><td>10%</td><td>10</td><td>AP aktif dengan SSID benar, WPA2 terkonfigurasi, klien bisa connect</td></tr>
+          <tr><td>F. QoS</td><td>15%</td><td>15</td><td>Bandwidth limit sesuai kebutuhan, PCQ untuk WiFi</td></tr>
+          <tr><td>G. VPN Site-to-Site</td><td>15%</td><td>15</td><td>Koneksi VPN berhasil, PC antar gedung bisa saling ping</td></tr>
+          <tr><td>Dokumentasi &amp; Laporan</td><td>5%</td><td>5</td><td>Laporan lengkap, rapi, screenshot verifikasi ada</td></tr>
+          <tr style="background:#1e3a8a;color:#fff;"><td><strong>TOTAL</strong></td><td><strong>100%</strong></td><td><strong>100</strong></td><td></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text"><strong>Tips mendapat nilai maksimal:</strong> Dokumentasikan setiap langkah dengan screenshot. Tampilkan output <code>print</code> untuk setiap konfigurasi. Sertakan tabel addressing lengkap di laporan.</span>
+      </div>
+    </section>
+
+    <!-- PANDUAN LAPORAN -->
+    <section class="section" id="laporan">
+      <div class="section-title"><span class="section-num">13</span> Panduan Penulisan Laporan</div>
+
+      <div class="accordion">
+        <div class="accordion-header">📄 Struktur Laporan Praktikum <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <ol>
+            <li><strong>Halaman Judul</strong> — Nama, NIM, Kelas, Tanggal, Mata Kuliah</li>
+            <li><strong>Tujuan Praktikum</strong> — Salin dari modul, tambahkan pemahaman sendiri</li>
+            <li><strong>Dasar Teori</strong> — Penjelasan singkat setiap teknologi yang digunakan (min. 2 halaman)</li>
+            <li><strong>Topologi Jaringan</strong> — Gambar topologi lengkap dengan addressing table</li>
+            <li><strong>Langkah Kerja</strong> — Setiap implementasi (A-G) dengan screenshot perintah dan hasilnya</li>
+            <li><strong>Hasil Pengujian</strong> — Tabel hasil ping, speedtest, dan verifikasi setiap komponen</li>
+            <li><strong>Analisis</strong> — Mengapa konfigurasi tersebut dipilih, masalah yang ditemui dan solusinya</li>
+            <li><strong>Kesimpulan</strong> — Rangkuman implementasi dan pembelajaran yang didapat</li>
+            <li><strong>Daftar Pustaka</strong> — Minimal 3 referensi yang relevan</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">📸 Screenshot yang Wajib Ada <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <ul>
+            <li>Output <code>/ip address print</code> Router Utama</li>
+            <li>Output <code>/ip dhcp-server lease print</code> — ada klien yang mendapat IP</li>
+            <li>Output <code>/ip firewall filter print</code> — semua rule firewall</li>
+            <li>Output <code>/ip firewall nat print stats</code> — NAT dengan counter &gt; 0</li>
+            <li>Screenshot WiFi tersambung di smartphone/laptop</li>
+            <li>Output ping antar gedung melalui VPN (berhasil)</li>
+            <li>Speedtest dari PC di setiap subnet — menunjukkan bandwidth sesuai QoS</li>
+            <li>Output <code>/queue simple print stats</code> — counter menunjukkan traffic</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;">
+    <strong>Referensi Utama:</strong>
+    <ul style="margin-top:8px;color:#cbd5e1;">
+      <li>MikroTik Documentation. <em>RouterOS Complete Guide</em>. wiki.mikrotik.com</li>
+      <li>Forouzan, B.A. (2013). <em>Data Communications and Networking</em>, 5th Ed. McGraw-Hill.</li>
+      <li>Tanenbaum, A.S. &amp; Wetherall, D. (2011). <em>Computer Networks</em>, 5th Ed. Pearson.</li>
+      <li>Lammle, T. (2016). <em>CompTIA Network+ Study Guide</em>. Sybex.</li>
+      <li>Cheswick, W. et al. (2003). <em>Firewalls and Internet Security</em>. Addison-Wesley.</li>
+    </ul>
+    <div style="margin-top:16px;border-top:1px solid rgba(255,255,255,0.2);padding-top:12px;color:#94a3b8;font-size:0.82rem;">
+      Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | Penyusun: Eka Wahyu Sholeha, M.Kom &amp; Hendrik Setyo Utomo, ST., MMSI | © 2024
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.toc-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

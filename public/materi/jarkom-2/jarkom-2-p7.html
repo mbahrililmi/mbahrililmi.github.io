@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 7 – Load Balancing &amp; Failover | Jaringan Komputer 2</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-title { font-weight: 700; font-size: 0.85rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.tab-group { border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; }
+.tab-panels { padding: 0 16px; }
+footer { background: #1e3a8a; color: #fff; padding: 24px 48px; margin-top: 40px; font-size: 0.88rem; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div style="font-size:0.85rem;opacity:0.8;margin-bottom:4px;">Politeknik Negeri Tanah Laut — Jaringan Komputer 2</div>
+    <h1>🔄 Praktikum 7: Load Balancing &amp; Failover</h1>
+    <p style="opacity:0.9;margin-top:6px;font-size:0.95rem;">Konfigurasi dual-WAN dengan PCC Load Balancing dan Failover otomatis menggunakan Netwatch</p>
+    <div class="header-badges">
+      <span class="badge">📘 EIK212305</span>
+      <span class="badge">📅 Semester 2</span>
+      <span class="badge">⚡ 3 SKS (1T + 2P)</span>
+      <span class="badge">👩‍🏫 Eka Wahyu Sholeha, M.Kom</span>
+      <span class="badge">👨‍🏫 Hendrik Setyo Utomo, ST., MMSI</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#tujuan" class="toc-link">🎯 Tujuan Pembelajaran</a>
+    <a href="#teori-lb" class="toc-link">📖 Teori Load Balancing</a>
+    <a href="#metode" class="toc-link indent">Metode Load Balancing</a>
+    <a href="#teori-failover" class="toc-link">📖 Teori Failover</a>
+    <a href="#topologi" class="toc-link">🗺️ Topologi Dual WAN</a>
+    <a href="#lab-setup" class="toc-link">🔬 Lab: Setup Dual WAN</a>
+    <a href="#lab-mangle" class="toc-link">🔬 Lab: PCC Mangle</a>
+    <a href="#lab-routing" class="toc-link">🔬 Lab: Policy Routing</a>
+    <a href="#lab-netwatch" class="toc-link">🔬 Lab: Netwatch Failover</a>
+    <a href="#lab-test" class="toc-link">🔬 Lab: Pengujian</a>
+    <a href="#tugas" class="toc-link">📝 Tugas</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Beranda</a> › <a href="#">Jaringan Komputer 2</a> › Praktikum 7
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah menyelesaikan praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Menjelaskan konsep Load Balancing dan manfaatnya dalam jaringan dual-WAN</li>
+          <li>Membedakan metode ECMP, Nth, dan PCC dalam load balancing MikroTik</li>
+          <li>Menjelaskan konsep Failover dan pentingnya dalam high-availability</li>
+          <li>Mengkonfigurasi dual-WAN dengan PCC Load Balancing menggunakan Mangle</li>
+          <li>Mengkonfigurasi Netwatch untuk monitoring dan failover otomatis</li>
+          <li>Melakukan pengujian failover dengan memutus salah satu jalur WAN</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori-lb">
+      <div class="section-title"><span class="section-num">2</span> Teori Load Balancing</div>
+
+      <p><strong>Load Balancing</strong> adalah teknik mendistribusikan lalu lintas jaringan ke beberapa jalur/server secara merata untuk memaksimalkan penggunaan sumber daya, meningkatkan <span class="tooltip">bandwidth<span class="tooltip-text">Kapasitas maksimum jalur data, diukur dalam Mbps/Gbps</span></span> total, dan mencegah bottleneck. Dalam konteks dual-WAN, load balancing memungkinkan dua koneksi ISP digunakan secara bersamaan.</p>
+
+      <div id="metode">
+        <h3 style="font-size:1.05rem;color:#1e3a8a;margin:20px 0 12px;">Metode Load Balancing MikroTik</h3>
+        <div class="accordion">
+          <div class="accordion-header">🔀 ECMP (Equal Cost Multi Path) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p>Cara termudah — tambahkan dua default route dengan distance yang sama. RouterOS akan membagi traffic secara otomatis berdasarkan destination address.</p>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.1 distance=1
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.114.1 distance=1</div>
+            <p><strong>Kekurangan:</strong> Koneksi satu sesi bisa berpindah jalur (tidak persistent), bermasalah untuk HTTPS/VPN.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">🔢 Nth (Round Robin) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p>Mendistribusikan koneksi baru secara bergantian (round-robin) menggunakan counter. Setiap N paket/koneksi dikirim ke jalur berikutnya.</p>
+            <p><strong>Contoh:</strong> Nth=2/2: koneksi ke-1 ke ISP1, ke-2 ke ISP2, ke-3 ke ISP1, dst.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion-header">🎯 PCC (Per Connection Classifier) <span class="accordion-icon">▼</span></div>
+          <div class="accordion-body">
+            <p>PCC mengklasifikasikan koneksi berdasarkan hash kombinasi atribut (src-address, dst-address, src-port, dst-port). Satu koneksi selalu melewati jalur yang sama (<em>sticky per connection</em>) — mengatasi masalah ECMP.</p>
+            <ul>
+              <li><strong>Classifier:</strong> both-addresses, both-ports, dst-address-and-port, src-address-and-port</li>
+              <li><strong>Per-Connection-Classifier=X/N:</strong> X = jalur ke berapa, N = total jalur</li>
+              <li>Cocok untuk dual-WAN dengan connection-sensitive protocols (HTTPS, VoIP, VPN)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.05rem;color:#1e3a8a;margin:24px 0 12px;">Perbandingan Metode</h3>
+      <table>
+        <thead><tr><th>Metode</th><th>Mekanisme</th><th>Sticky Connection</th><th>Kompleksitas</th><th>Kasus Penggunaan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ECMP</strong></td><td>Route equal cost</td><td>❌ Tidak</td><td>Rendah</td><td>Traffic tidak sensitif sesi</td></tr>
+          <tr><td><strong>Nth</strong></td><td>Round-robin counter</td><td>✅ Per koneksi baru</td><td>Sedang</td><td>Distribusi merata sederhana</td></tr>
+          <tr><td><strong>PCC</strong></td><td>Hash atribut koneksi</td><td>✅ Persistent per sesi</td><td>Tinggi</td><td>Dual-WAN enterprise</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section" id="teori-failover">
+      <div class="section-title"><span class="section-num">3</span> Teori Failover</div>
+
+      <p><strong>Failover</strong> adalah mekanisme perpindahan otomatis ke jalur cadangan ketika jalur utama mengalami gangguan. Tujuannya adalah memastikan ketersediaan layanan (<em>high availability</em>) meski ada kegagalan satu jalur.</p>
+
+      <div class="accordion">
+        <div class="accordion-header">👁️ Netwatch — Monitoring &amp; Script Trigger <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Netwatch adalah fitur MikroTik yang melakukan ping berkala ke host tertentu. Jika host tidak merespons, Netwatch menjalankan skrip "down". Jika kembali merespons, menjalankan skrip "up".</p>
+          <ul>
+            <li><strong>Host:</strong> IP yang di-ping untuk mendeteksi status ISP (misal: 8.8.8.8)</li>
+            <li><strong>Interval:</strong> Seberapa sering ping dikirim (mis: 10s)</li>
+            <li><strong>Timeout:</strong> Berapa lama menunggu respons (mis: 5s)</li>
+            <li><strong>Up Script:</strong> Dijalankan saat host kembali online</li>
+            <li><strong>Down Script:</strong> Dijalankan saat host tidak merespons</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-header">🔀 Check-Gateway &amp; Recursive Gateway <span class="accordion-icon">▼</span></div>
+        <div class="accordion-body">
+          <p><strong>check-gateway=ping:</strong> MikroTik secara aktif memonitor status gateway dengan mengirimkan paket ICMP (ping). Route dinonaktifkan otomatis jika gateway tidak merespons dalam waktu yang ditentukan. Ini adalah mekanisme dasar <span class="tooltip">failover<span class="tooltip-text">Pengalihan otomatis ke jalur cadangan saat jalur utama bermasalah</span></span> di MikroTik.</p>
+
+          <div class="callout callout-info" style="margin:12px 0;">
+            <span class="callout-icon">💡</span>
+            <span class="callout-text"><strong>Check-gateway options:</strong>
+              <ul style="margin-top:6px;">
+                <li><code>ping</code> — kirim ICMP ping ke gateway, tandai route inactive jika tidak ada reply</li>
+                <li><code>arp</code> — gunakan ARP request (lebih ringan tapi hanya efektif untuk same-subnet gateway)</li>
+                <li>kosong — tidak ada pengecekan (route tidak otomatis dinonaktifkan)</li>
+              </ul>
+            </span>
+          </div>
+
+          <h4 style="color:#1e3a8a;margin:16px 0 8px;font-size:0.95rem;">🔁 Recursive Gateway — Penjelasan Mendalam</h4>
+          <p><strong>Recursive Gateway</strong> adalah teknik routing di mana gateway pada sebuah route ditentukan berdasarkan status <em>keterjangkauan</em> (<span class="tooltip">reachability<span class="tooltip-text">Kemampuan untuk mencapai/menjangkau sebuah host atau jaringan</span></span>) terhadap alamat target tertentu, bukan alamat gateway lokal secara langsung.</p>
+
+          <p><strong>Mengapa perlu Recursive Gateway?</strong></p>
+          <p>Permasalahan umum: ISP memiliki gateway lokal (misal <code>192.168.1.1</code>) yang <em>selalu merespons</em> ping meskipun koneksi ke internet sebenarnya terputus (karena masalah di upstream ISP). Akibatnya, <code>check-gateway=ping</code> biasa tidak akan mendeteksi kegagalan ini.</p>
+
+          <p><strong>Solusi dengan Recursive Gateway:</strong> Tambahkan route ke IP yang benar-benar ada di internet (misal <code>8.8.8.8</code>) melalui gateway ISP, kemudian gunakan IP internet tersebut sebagai <em>gateway efektif</em> untuk default route.</p>
+
+          <pre class="topology">Skenario TANPA Recursive Gateway:
+  ISP-1 Gateway (192.168.1.1) masih merespons ping...
+  ...tapi koneksi internet upstream ISP-1 putus!
+  → check-gateway=ping TIDAK mendeteksi kegagalan ini
+  → MikroTik tetap kirim trafik via ISP-1 → GAGAL!
+
+Skenario DENGAN Recursive Gateway:
+  Tambah route: 8.8.8.8 via 192.168.1.1 (scope=10)
+  Default route: 0.0.0.0/0 via 8.8.8.8 check-gateway=ping (target-scope=11)
+  
+  → Jika 8.8.8.8 tidak terjangkau (internet ISP-1 putus):
+     MikroTik mendeteksi 8.8.8.8 tidak reachable
+     → Default route dinonaktifkan → trafik dialihkan ke ISP-2 ✅</pre>
+
+          <p style="margin-top:12px;"><strong>Konfigurasi Recursive Gateway:</strong></p>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button># Step 1: Tambah route ke IP Internet (8.8.8.8) via gateway ISP-1
+# scope=10 = digunakan untuk "lookup" gateway, bukan untuk forward paket
+/ip route add dst-address=8.8.8.8/32 gateway=192.168.1.1 scope=10
+
+# Step 2: Default route menggunakan 8.8.8.8 sebagai gateway recursive
+# target-scope=11 harus lebih besar dari scope route 8.8.8.8 (scope=10)
+/ip route add dst-address=0.0.0.0/0 gateway=8.8.8.8 \
+    target-scope=11 distance=1 comment="Primary via ISP-1 (Recursive)"
+
+# Step 3: Route backup via ISP-2 (langsung, non-recursive)
+/ip route add dst-address=0.0.0.0/0 gateway=192.168.2.1 \
+    distance=2 check-gateway=ping comment="Backup ISP-2"</div>
+
+          <div class="callout callout-tip" style="margin-top:12px;">
+            <span class="callout-icon">✅</span>
+            <span class="callout-text"><strong>Kapan gunakan Recursive Gateway?</strong> Saat ISP Anda memiliki gateway lokal yang tetap aktif meskipun koneksi internetnya terputus. Recursive Gateway memastikan MikroTik benar-benar menguji konektivitas ke internet, bukan hanya ke gateway ISP lokal.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="topologi">
+      <div class="section-title"><span class="section-num">4</span> Topologi Dual WAN</div>
+      <pre class="topology">
+  [ISP-1 (Telkom)]              [ISP-2 (Indosat)]
+  GW: 203.0.113.1               GW: 203.0.114.1
+  IP: 203.0.113.2/30             IP: 203.0.114.2/30
+         |                              |
+       ether1                        ether2
+         |                              |
+         +──────[MikroTik]──────────────+
+                    |
+                  ether3
+                192.168.1.1/24
+                    |
+               [Switch LAN]
+             ┌──────┴──────┐
+          [PC-A]         [PC-B]
+          .10             .20
+
+  KEBIJAKAN ROUTING:
+  ├── Koneksi ganjil (hash=0) → ISP-1 (ether1)
+  └── Koneksi genap (hash=1) → ISP-2 (ether2)</pre>
+    </section>
+
+    <section class="section" id="lab-setup">
+      <div class="section-title"><span class="section-num">5</span> Lab: Setup Dual WAN</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Konfigurasi IP Address kedua WAN</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip address add address=203.0.113.2/30 interface=ether1 comment="ISP-1"
+/ip address add address=203.0.114.2/30 interface=ether2 comment="ISP-2"
+/ip address add address=192.168.1.1/24 interface=ether3 comment="LAN"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat dua routing table terpisah</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/routing table add name=ISP1 fib
+/routing table add name=ISP2 fib</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Tambah route di setiap tabel</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Default route via ISP1
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.1 \
+  routing-table=ISP1 check-gateway=ping
+
+# Default route via ISP2
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.114.1 \
+  routing-table=ISP2 check-gateway=ping
+
+# Default route utama (main table) - gunakan ISP1 sebagai primary
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.1 distance=1
+/ip route add dst-address=0.0.0.0/0 gateway=203.0.114.1 distance=2</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-mangle">
+      <div class="section-title"><span class="section-num">6</span> Lab: PCC Mangle Rules</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Mark koneksi untuk ISP1 (PCC 0/2)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall mangle add \
+  chain=prerouting \
+  in-interface=ether3 \
+  connection-state=new \
+  per-connection-classifier=both-addresses:2/0 \
+  action=mark-connection \
+  new-connection-mark=ISP1-conn \
+  passthrough=yes \
+  comment="PCC untuk ISP1"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Mark koneksi untuk ISP2 (PCC 1/2)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall mangle add \
+  chain=prerouting \
+  in-interface=ether3 \
+  connection-state=new \
+  per-connection-classifier=both-addresses:2/1 \
+  action=mark-connection \
+  new-connection-mark=ISP2-conn \
+  passthrough=yes \
+  comment="PCC untuk ISP2"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Mark paket berdasarkan connection mark</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall mangle add \
+  chain=prerouting \
+  connection-mark=ISP1-conn \
+  action=mark-routing \
+  new-routing-mark=ISP1 \
+  passthrough=no
+
+/ip firewall mangle add \
+  chain=prerouting \
+  connection-mark=ISP2-conn \
+  action=mark-routing \
+  new-routing-mark=ISP2 \
+  passthrough=no</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="4">4</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>NAT Masquerade untuk kedua ISP</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall nat add \
+  chain=srcnat out-interface=ether1 action=masquerade
+
+/ip firewall nat add \
+  chain=srcnat out-interface=ether2 action=masquerade</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-routing">
+      <div class="section-title"><span class="section-num">7</span> Lab: Policy Routing</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Route berdasarkan routing mark</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=0.0.0.0/0 \
+  gateway=203.0.113.1 \
+  routing-table=ISP1
+
+/ip route add dst-address=0.0.0.0/0 \
+  gateway=203.0.114.1 \
+  routing-table=ISP2</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Verifikasi routing rules</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route print
+/ip firewall mangle print stats
+/ip route rule print</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab-netwatch">
+      <div class="section-title"><span class="section-num">8</span> Lab: Netwatch Failover</div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num" data-n="1">1</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Konfigurasi Netwatch untuk ISP1 (monitor 8.8.8.8 via ether1)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/tool netwatch add \
+  host=8.8.8.8 \
+  interval=10s \
+  timeout=5s \
+  up-script="/ip route set [find comment=\"ISP1-Primary\"] disabled=no" \
+  down-script="/ip route set [find comment=\"ISP1-Primary\"] disabled=yes" \
+  comment="Monitor ISP1"</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="2">2</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat skrip failover yang lebih lengkap</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Up script ISP1 (ISP1 kembali online)
+:log info "ISP1 UP - switching traffic back to ISP1"
+/ip route set [find comment="failover"] disabled=yes
+/ip route set [find comment="ISP1-Primary"] disabled=no
+
+# Down script ISP1 (ISP1 mati - failover ke ISP2)
+:log warning "ISP1 DOWN - failing over to ISP2"
+/ip route set [find comment="ISP1-Primary"] disabled=yes
+/ip route set [find comment="failover"] disabled=no</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" data-n="3">3</div>
+          <div class="step-content">
+            <label><input type="checkbox" class="step-check"> <strong>Buat route backup (disabled saat ISP1 aktif)</strong></label>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add \
+  dst-address=0.0.0.0/0 \
+  gateway=203.0.114.1 \
+  distance=2 \
+  disabled=yes \
+  comment="failover"
+
+/ip route print</div>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">✅</span>
+        <span class="callout-text">Gunakan <strong>check-gateway=ping</strong> pada route untuk monitoring otomatis oleh RouterOS. Ini lebih ringan dari Netwatch untuk deteksi gateway down, tapi Netwatch lebih fleksibel karena bisa menjalankan skrip.</span>
+      </div>
+    </section>
+
+    <section class="section" id="lab-test">
+      <div class="section-title"><span class="section-num">9</span> Lab: Pengujian Load Balancing &amp; Failover</div>
+
+      <div class="tab-group">
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="test-lb">Load Balancing</button>
+          <button class="tab-btn" data-tab="test-failover">Failover</button>
+        </div>
+        <div class="tab-panels">
+          <div id="test-lb" class="tab-panel active">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Cek IP publik dari beberapa browser/tool</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Dari CLI MikroTik
+/tool fetch url=http://ifconfig.me as-value output=user
+
+# Dari PC klien
+# Buka curl atau whatismyip.com berulang kali
+# Jika berhasil, akan muncul IP ISP1 dan ISP2 bergantian</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Monitor traffic di kedua interface WAN</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/tool torch interface=ether1
+/tool torch interface=ether2
+# Keduanya harus menunjukkan traffic yang aktif</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="test-failover" class="tab-panel">
+            <div class="steps">
+              <div class="step">
+                <div class="step-num" data-n="1">1</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Simulasikan ISP1 down</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Disable interface ISP1 (simulasi putus koneksi)
+/interface disable ether1
+
+# Atau tambah route ke host yang di-ping yang tidak ada
+/ip route add dst-address=8.8.8.8/32 gateway=203.0.113.1 blackhole</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="2">2</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Pantau log dan status</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/log print where topics~"netwatch"
+/tool netwatch print
+/ip route print</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="3">3</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Verifikasi traffic pindah ke ISP2</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ping 8.8.8.8  # Harus masih bisa ping
+/ip route print  # Route ISP1 harus disabled
+/tool torch interface=ether2  # Traffic harus ada di ether2</div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num" data-n="4">4</div>
+                <div class="step-content">
+                  <label><input type="checkbox" class="step-check"> <strong>Pulihkan ISP1 dan verifikasi failback</strong></label>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface enable ether1
+# Tunggu ~15 detik untuk Netwatch mendeteksi
+/log print where topics~"netwatch"
+# Harus ada pesan "ISP1 UP"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tugas">
+      <div class="section-title"><span class="section-num">10</span> Tugas</div>
+      <ol>
+        <li>Implementasikan load balancing PCC dengan 3 ISP (ether1, ether2, ether3 sebagai WAN, ether4 sebagai LAN). Gunakan PCC 3 jalur (x/3 untuk x=0,1,2).</li>
+        <li>Implementasikan failover dengan prioritas: ISP1 (utama) → ISP2 (cadangan 1) → ISP3 (cadangan 2). Gunakan Netwatch untuk otomasi.</li>
+        <li>Ukur throughput sebelum dan sesudah load balancing dengan 4 PC klien mengunduh secara bersamaan. Dokumentasikan hasilnya.</li>
+        <li>Hitung downtime selama failover berlangsung (dari ISP1 mati sampai koneksi beralih ke ISP2). Bandingkan antara metode check-gateway dan Netwatch.</li>
+      </ol>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div style="max-width:1100px;margin:0 auto;">
+    <strong>Referensi:</strong>
+    <ul style="margin-top:8px;color:#cbd5e1;">
+      <li>MikroTik Documentation. <em>Load Balancing</em>. wiki.mikrotik.com/wiki/Load_Balancing</li>
+      <li>MikroTik Documentation. <em>Netwatch</em>. wiki.mikrotik.com/wiki/Netwatch</li>
+      <li>Boutaba, R. et al. (2018). <em>A Comprehensive Survey on Machine Learning for Networking</em>. JNCA.</li>
+    </ul>
+    <div style="margin-top:12px;color:#94a3b8;font-size:0.82rem;">Politeknik Negeri Tanah Laut | Jaringan Komputer 2 (EIK212305) | © 2024</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if(window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.toc-link').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

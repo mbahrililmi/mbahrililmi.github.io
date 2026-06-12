@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jarkom 4 - P7: VLAN dan Bridging MikroTik | POLITALA</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, Helvetica, sans-serif; background: #f8f9fa; color: #1a1a1a; line-height: 1.7; }
+.page-wrap { display: flex; min-height: 100vh; }
+.sidebar { width: 280px; min-height: 100vh; background: #fff; border-right: 1px solid #e0e0e0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 0; flex-shrink: 0; }
+.sidebar-title { font-size: 0.78rem; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; padding: 0 20px 10px; }
+.main-content { flex: 1; padding: 40px 48px; max-width: 900px; }
+.page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 32px 48px; }
+.page-header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+.page-header p { opacity: 0.85; font-size: 0.95rem; }
+.header-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.badge { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; font-size: 0.82rem; }
+.toc-link { display: block; padding: 8px 20px; color: #374151; text-decoration: none; font-size: 0.88rem; border-left: 3px solid transparent; transition: all 0.2s; }
+.toc-link:hover, .toc-link.active { background: #eff6ff; color: #1a56db; border-left-color: #1a56db; }
+.toc-link.indent { padding-left: 32px; font-size: 0.83rem; color: #6b7280; }
+.section { margin-bottom: 48px; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #1e3a8a; border-bottom: 2px solid #1a56db; padding-bottom: 8px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.section-num { background: #1a56db; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.accordion { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+.accordion-header { background: #f9fafb; padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1e3a8a; user-select: none; }
+.accordion-header:hover { background: #eff6ff; }
+.accordion-icon { transition: transform 0.3s; }
+.accordion-header.open .accordion-icon { transform: rotate(180deg); }
+.accordion-body { padding: 16px 18px; background: #fff; display: none; border-top: 1px solid #e5e7eb; }
+.accordion-body.open { display: block; }
+.code-block { position: relative; background: #f4f4f4; border-left: 4px solid #1a56db; border-radius: 0 6px 6px 0; padding: 16px 16px 16px 20px; margin: 12px 0; font-family: 'Courier New', monospace; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; line-height: 1.6; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #1a56db; color: #fff; border: none; border-radius: 4px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: #1e40af; }
+.copy-btn.copied { background: #16a34a; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+thead th { background: #1e3a8a; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; }
+thead th:hover { background: #1a56db; }
+tbody tr:nth-child(even) { background: #f8f9fa; }
+tbody tr:hover { background: #eff6ff; }
+td, th { padding: 9px 14px; border: 1px solid #e5e7eb; vertical-align: top; }
+.callout { border-radius: 8px; padding: 14px 18px; margin: 16px 0; display: flex; gap: 12px; align-items: flex-start; }
+.callout-info { background: #eff6ff; border-left: 4px solid #1a56db; }
+.callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; }
+.callout-tip { background: #f0fdf4; border-left: 4px solid #16a34a; }
+.callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+.callout-text { font-size: 0.92rem; color: #374151; }
+.tooltip { position: relative; display: inline; border-bottom: 1px dashed #1a56db; color: #1a56db; cursor: help; }
+.tooltip .tooltip-text { visibility: hidden; background: #1e3a8a; color: #fff; text-align: left; border-radius: 6px; padding: 8px 12px; position: absolute; z-index: 100; bottom: 125%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.82rem; line-height: 1.5; opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+.steps { counter-reset: step-counter; }
+.step { display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start; }
+.step-num { width: 32px; height: 32px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.step-num.done { background: #16a34a; }
+.step-content { flex: 1; padding-top: 4px; }
+.step-check { cursor: pointer; accent-color: #1a56db; width: 16px; height: 16px; margin-right: 6px; }
+.tab-bar { display: flex; border-bottom: 2px solid #e5e7eb; margin-bottom: 0; flex-wrap: wrap; }
+.tab-btn { padding: 10px 20px; border: none; background: none; cursor: pointer; font-size: 0.9rem; color: #6b7280; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+.tab-btn.active { color: #1a56db; border-bottom-color: #1a56db; font-weight: 600; }
+.tab-panel { display: none; padding: 20px 0; }
+.tab-panel.active { display: block; }
+.topology { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.8; overflow-x: auto; white-space: pre; }
+.breadcrumb { font-size: 0.82rem; color: #6b7280; margin-bottom: 24px; }
+.breadcrumb a { color: #1a56db; text-decoration: none; }
+.learning-objectives { background: #eff6ff; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+p { margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 12px; }
+li { margin-bottom: 4px; }
+strong { color: #1e3a8a; }
+.vlan-tag-visual { background: #f8f9fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; font-family: monospace; font-size: 0.85rem; margin: 12px 0; }
+footer { background: #1e3a8a; color: #e5e7eb; padding: 24px 48px; font-size: 0.88rem; margin-top: 40px; }
+footer a { color: #93c5fd; }
+@media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>&#x1F5A7; Pertemuan 11 &amp; 12 — VLAN dan Bridging MikroTik</h1>
+  <p>Jaringan Komputer 4 | Politeknik Negeri Tanah Laut</p>
+  <div class="header-badges">
+    <span class="badge">&#x1F4CB; EIK214306</span>
+    <span class="badge">&#x1F4DA; Semester 4</span>
+    <span class="badge">&#x23F1; 3 SKS (1T + 2P)</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Hendrik Setyo Utomo, ST., MMSI</span>
+    <span class="badge">&#x1F468;&#x200D;&#x1F3EB; Arif Supriyanto, S.Kom., M.Cs</span>
+  </div>
+</div>
+
+<div class="page-wrap">
+  <nav class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <a class="toc-link" href="#tujuan">&#x1F3AF; Tujuan Pembelajaran</a>
+    <a class="toc-link" href="#teori">&#x1F4D6; Teori Dasar</a>
+    <a class="toc-link indent" href="#teori-vlan">Konsep VLAN</a>
+    <a class="toc-link indent" href="#teori-8021q">IEEE 802.1Q</a>
+    <a class="toc-link indent" href="#teori-trunk">Access vs Trunk</a>
+    <a class="toc-link indent" href="#teori-bridge">Bridging</a>
+    <a class="toc-link indent" href="#teori-ros7">Bridge VLAN Filtering</a>
+    <a class="toc-link" href="#lab28">&#x1F9EA; Lab 28: Bridge Dasar</a>
+    <a class="toc-link" href="#lab29">&#x1F9EA; Lab 29: VLAN Tagging</a>
+    <a class="toc-link" href="#lab30">&#x1F9EA; Lab 30: Inter-VLAN Routing</a>
+    <a class="toc-link" href="#referensi">&#x1F4DA; Referensi</a>
+  </nav>
+
+  <div class="main-content">
+    <div class="breadcrumb">
+      <a href="#">Jarkom 4</a> &rsaquo; <a href="#">Pertemuan 11-12</a> &rsaquo; VLAN dan Bridging
+    </div>
+
+    <section class="section" id="tujuan">
+      <div class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</div>
+      <div class="learning-objectives">
+        <strong>Setelah praktikum ini, mahasiswa mampu:</strong>
+        <ol style="margin-top:10px;">
+          <li>Memahami konsep <span class="tooltip">VLAN<span class="tooltip-text">Virtual LAN: pemisahan logis jaringan tanpa perlu kabel fisik berbeda</span></span> dan manfaatnya dalam segmentasi jaringan</li>
+          <li>Memahami VLAN tagging IEEE 802.1Q</li>
+          <li>Mengkonfigurasi bridge dasar di MikroTik</li>
+          <li>Mengkonfigurasi VLAN dengan Bridge VLAN Filtering (RouterOS v7)</li>
+          <li>Mengkonfigurasi Inter-VLAN Routing dengan metode Router-on-a-Stick</li>
+          <li>Memverifikasi konektivitas antar VLAN</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <div class="section-title"><span class="section-num">2</span> Teori Dasar</div>
+
+      <div class="accordion" id="teori-vlan">
+        <div class="accordion-header">&#x1F5A7; Konsep VLAN <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong><span class="tooltip">VLAN<span class="tooltip-text">Virtual LAN: pemisahan logis jaringan tanpa perlu kabel fisik berbeda</span></span> (Virtual Local Area Network)</strong> adalah teknologi yang memungkinkan segmentasi jaringan secara logis tanpa memerlukan perangkat keras tambahan.</p>
+          <p><strong>Manfaat VLAN:</strong></p>
+          <ul>
+            <li><strong>Keamanan</strong>: Memisahkan traffic antar departemen (HR tidak bisa akses R&D)</li>
+            <li><strong>Efisiensi</strong>: Mengurangi broadcast domain - broadcast tidak menyebar ke semua port</li>
+            <li><strong>Fleksibilitas</strong>: User dapat dipindahkan antar VLAN tanpa mengubah kabel fisik</li>
+            <li><strong>Skalabilitas</strong>: Satu switch fisik bisa jadi banyak switch virtual</li>
+          </ul>
+          <div class="callout callout-info">
+            <span class="callout-icon">&#x1F4A1;</span>
+            <span class="callout-text"><strong>Penting:</strong> VLAN bekerja di Layer 2. Komunikasi antar VLAN memerlukan perangkat Layer 3 (router atau Layer 3 switch). Ini yang disebut Inter-VLAN Routing.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-8021q">
+        <div class="accordion-header">&#x1F3F7;&#xFE0F; IEEE 802.1Q VLAN Tagging <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>Standard IEEE 802.1Q mendefinisikan cara menambahkan tag VLAN ke frame Ethernet:</p>
+          <div class="vlan-tag-visual">
+[Ethernet Header] [802.1Q Tag (4 byte)] [Payload] [FCS]
+                   └─ TPID: 0x8100
+                   └─ PCP: 3 bit (Priority)
+                   └─ DEI: 1 bit (Drop Eligible)
+                   └─ VID: 12 bit (VLAN ID) = 0-4095
+                            (VLAN yang valid: 1-4094)
+          </div>
+          <p><strong>VLAN ID (VID):</strong></p>
+          <ul>
+            <li>Range: 1 - 4094</li>
+            <li>VLAN 1: Default VLAN (tidak disarankan untuk data)</li>
+            <li>VLAN 0 dan 4095: Reserved</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-trunk">
+        <div class="accordion-header">&#x1F503; Access Port vs Trunk Port <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <table>
+            <thead>
+              <tr><th>Aspek</th><th>Access Port</th><th>Trunk Port</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Jumlah VLAN</td><td>Satu VLAN</td><td>Banyak VLAN</td></tr>
+              <tr><td>VLAN Tag</td><td>Tidak ada (untagged)</td><td>Ada (tagged dengan 802.1Q)</td></tr>
+              <tr><td>Koneksi ke</td><td>End device (PC, printer)</td><td>Switch lain, router, server multi-VLAN</td></tr>
+              <tr><td>Frame yang dikirim</td><td>Frame biasa tanpa tag</td><td>Frame dengan VLAN tag</td></tr>
+              <tr><td>Konfigurasi MikroTik</td><td>pvid=VID, untagged</td><td>tagged (multiple VLAN)</td></tr>
+              <tr><td>Analogi</td><td>Jalan satu lajur</td><td>Jalan tol multi-lajur</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-bridge">
+        <div class="accordion-header">&#x1F309; Bridging di MikroTik <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p><strong>Bridge</strong> di MikroTik menggabungkan beberapa interface menjadi satu domain Layer 2. Mirip dengan switch virtual yang dikelola oleh RouterOS.</p>
+          <p><strong>Cara kerja Bridge:</strong></p>
+          <ul>
+            <li>Membangun MAC Address Table dari source MAC frame yang diterima</li>
+            <li>Meneruskan frame berdasarkan destination MAC</li>
+            <li>Mem-flood frame ke semua port jika destination MAC tidak dikenal</li>
+          </ul>
+          <p><strong>Penggunaan Bridge:</strong></p>
+          <ul>
+            <li>Menghubungkan beberapa interface dalam satu broadcast domain</li>
+            <li>Dasar untuk konfigurasi VLAN dengan Bridge VLAN Filtering</li>
+            <li>Transparent bridging untuk melewatkan traffic Layer 2</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="teori-ros7">
+        <div class="accordion-header">&#x2699;&#xFE0F; Bridge VLAN Filtering (RouterOS v7) <span class="accordion-icon">&#x25BC;</span></div>
+        <div class="accordion-body">
+          <p>RouterOS v7 menggunakan <strong>Bridge VLAN Filtering</strong> sebagai cara utama konfigurasi VLAN. Ini lebih efisien karena menggunakan hardware offloading.</p>
+          <p><strong>Konsep utama:</strong></p>
+          <ul>
+            <li><strong>pvid (Port VLAN ID)</strong>: VLAN ID default untuk frame untagged yang masuk ke port ini</li>
+            <li><strong>tagged</strong>: Port ini menerima/mengirim frame dengan tag VLAN tertentu</li>
+            <li><strong>untagged</strong>: Port ini menerima/mengirim frame tanpa tag (access port)</li>
+          </ul>
+          <div class="callout callout-warn">
+            <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+            <span class="callout-text"><strong>KRITIS:</strong> Aktifkan <code>vlan-filtering=yes</code> di bridge SETELAH semua konfigurasi VLAN selesai. Mengaktifkan sebelum konfigurasi lengkap dapat memutus koneksi ke router!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab28">
+      <div class="section-title"><span class="section-num">3</span> Lab 28: Bridge Dasar</div>
+
+      <div class="topology">
+[PC1]──ether2──[MikroTik]──ether3──[PC2]
+               (Bridge br-lan)
+               IP Bridge: 192.168.1.1/24
+
+PC1: 192.168.1.2/24, GW 192.168.1.1
+PC2: 192.168.1.3/24, GW 192.168.1.1
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Skenario:</strong> Jadikan MikroTik sebagai switch dengan menggabungkan ether2 dan ether3 ke dalam satu bridge. PC1 dan PC2 akan berada di subnet yang sama.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat bridge br-lan</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/interface bridge add name=br-lan comment="Bridge LAN"</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambahkan ether2 dan ether3 ke bridge</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/interface bridge port add bridge=br-lan interface=ether2
+/interface bridge port add bridge=br-lan interface=ether3</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambahkan IP Address pada bridge interface</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip address add address=192.168.1.1/24 interface=br-lan</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi bridge dan host table</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/interface bridge port print
+/interface bridge host print
+# MAC address PC1 dan PC2 harus muncul di host table</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="5">5</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping dari PC1 ke PC2 dan ke gateway</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.1.3  # PC1 ke PC2
+ping 192.168.1.1  # PC1 ke gateway (bridge IP)</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab29">
+      <div class="section-title"><span class="section-num">4</span> Lab 29: VLAN Tagging dengan Bridge VLAN Filtering</div>
+
+      <div class="topology">
+[PC-HRD]──ether2──[MikroTik]──ether1──[Trunk ke SW/Router lain]
+                  [MikroTik]──ether3──[PC-Lab]
+
+VLAN 10 (HRD):  ether2 (access) + ether1 (trunk tagged)
+VLAN 20 (Lab):  ether3 (access) + ether1 (trunk tagged)
+
+IP Gateway:
+  VLAN 10: 192.168.10.1/24
+  VLAN 20: 192.168.20.1/24
+      </div>
+
+      <div class="callout callout-warn">
+        <span class="callout-icon">&#x26A0;&#xFE0F;</span>
+        <span class="callout-text"><strong>Urutan Konfigurasi Penting!</strong> Aktifkan vlan-filtering=yes di AKHIR setelah semua konfigurasi VLAN selesai. Jika diaktifkan sebelumnya, koneksi ke router bisa terputus.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat bridge (BELUM aktifkan vlan-filtering)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge add name=br-vlan vlan-filtering=no</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambahkan semua interface ke bridge</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge port add bridge=br-vlan interface=ether1
+/interface bridge port add bridge=br-vlan interface=ether2
+/interface bridge port add bridge=br-vlan interface=ether3</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi VLAN 10 (HRD): ether2=access, ether1=trunk</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge vlan add bridge=br-vlan vlan-ids=10 \
+    tagged=ether1 untagged=ether2
+
+# Set PVID ether2 untuk VLAN 10
+/interface bridge port set [find interface=ether2] pvid=10</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi VLAN 20 (Lab): ether3=access, ether1=trunk</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge vlan add bridge=br-vlan vlan-ids=20 \
+    tagged=ether1 untagged=ether3
+
+# Set PVID ether3 untuk VLAN 20
+/interface bridge port set [find interface=ether3] pvid=20</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="5">5</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat VLAN interface untuk routing</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface vlan add name=vlan10 vlan-id=10 interface=br-vlan
+/interface vlan add name=vlan20 vlan-id=20 interface=br-vlan
+
+/ip address add address=192.168.10.1/24 interface=vlan10
+/ip address add address=192.168.20.1/24 interface=vlan20</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="6">6</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> AKTIFKAN vlan-filtering (langkah terakhir!)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge set br-vlan vlan-filtering=yes</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="7">7</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi konfigurasi VLAN</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge vlan print
+# Harus muncul VLAN 10 dan VLAN 20 dengan port yang benar</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section" id="lab30">
+      <div class="section-title"><span class="section-num">5</span> Lab 30: Inter-VLAN Routing (Router-on-a-Stick)</div>
+
+      <div class="topology">
+[PC-HRD (192.168.10.2)]──VLAN10──┐
+                                  ├──[MikroTik Router]──ether1──[Trunk]──[Switch]
+[PC-Lab (192.168.20.2)]──VLAN20──┘
+
+Router-on-a-Stick:
+  vlan10 interface: 192.168.10.1/24 (gateway VLAN 10)
+  vlan20 interface: 192.168.20.1/24 (gateway VLAN 20)
+  Traffic antar VLAN melewati router ini
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">&#x1F4A1;</span>
+        <span class="callout-text"><strong>Router-on-a-Stick:</strong> Metode Inter-VLAN routing menggunakan satu physical interface pada router yang terhubung ke trunk port switch. Router membuat sub-interface (virtual interface) untuk setiap VLAN.</span>
+      </div>
+
+      <div class="steps">
+        <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Buat VLAN sub-interface pada ether1 (trunk port)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface vlan add name=vlan10 vlan-id=10 interface=ether1
+/interface vlan add name=vlan20 vlan-id=20 interface=ether1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Tambahkan IP Address (gateway) untuk setiap VLAN</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip address add address=192.168.10.1/24 interface=vlan10
+/ip address add address=192.168.20.1/24 interface=vlan20</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Konfigurasi DHCP Server untuk setiap VLAN (opsional)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># DHCP untuk VLAN 10
+/ip pool add name=pool-vlan10 ranges=192.168.10.100-192.168.10.200
+/ip dhcp-server network add address=192.168.10.0/24 gateway=192.168.10.1 dns-server=8.8.8.8
+/ip dhcp-server add name=dhcp-vlan10 interface=vlan10 address-pool=pool-vlan10
+
+# DHCP untuk VLAN 20
+/ip pool add name=pool-vlan20 ranges=192.168.20.100-192.168.20.200
+/ip dhcp-server network add address=192.168.20.0/24 gateway=192.168.20.1 dns-server=8.8.8.8
+/ip dhcp-server add name=dhcp-vlan20 interface=vlan20 address-pool=pool-vlan20</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Test ping dari PC-HRD (VLAN 10) ke PC-Lab (VLAN 20)</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Dari PC-HRD (192.168.10.2):
+ping 192.168.20.2
+# Harus reply - traffic melalui router di 192.168.10.1 → 192.168.20.1</div>
+        </div></div>
+        <div class="step"><div class="step-num" data-n="5">5</div><div class="step-content">
+          <label><input type="checkbox" class="step-check"> Verifikasi routing table dan interface</label>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip address print
+# Harus muncul: vlan10: 192.168.10.1/24 dan vlan20: 192.168.20.1/24
+
+/ip route print
+# Connected route ke kedua subnet harus ada</div>
+        </div></div>
+      </div>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">&#x2705;</span>
+        <span class="callout-text"><strong>Tips Troubleshooting:</strong> Jika ping antar VLAN gagal, cek: (1) PC menggunakan IP yang benar dengan gateway yang benar, (2) VLAN tagging benar di switch, (3) Interface VLAN di router aktif, (4) Tidak ada firewall yang memblokir traffic antar VLAN.</span>
+      </div>
+    </section>
+
+    <section class="section" id="referensi">
+      <div class="section-title"><span class="section-num">6</span> Referensi</div>
+      <ul>
+        <li>IEEE 802.1Q. (2018). <em>IEEE Standard for Local and Metropolitan Area Networks—Bridges and Bridged Networks</em>. IEEE.</li>
+        <li>MikroTik Wiki. <em>Bridge VLAN Table</em>. <a href="https://wiki.mikrotik.com/wiki/Bridge_VLAN_Table" style="color:#1a56db;">wiki.mikrotik.com/wiki/Bridge_VLAN_Table</a></li>
+        <li>MikroTik Wiki. <em>VLAN</em>. <a href="https://wiki.mikrotik.com/wiki/Manual:Interface/VLAN" style="color:#1a56db;">wiki.mikrotik.com/wiki/Manual:Interface/VLAN</a></li>
+        <li>MikroTik. (2023). <em>MTCNA - MikroTik Certified Network Associate</em>.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 4 (EIK214306)</strong> — Politeknik Negeri Tanah Laut<br>
+  Penyusun: Hendrik Setyo Utomo, ST., MMSI &amp; Arif Supriyanto, S.Kom., M.Cs<br>
+  Pertemuan 11-12: VLAN dan Bridging MikroTik
+</footer>
+
+<script>
+document.querySelectorAll('.accordion-header').forEach(btn => {
+  btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
+});
+function copyCode(btn) {
+  const block = btn.closest('.code-block');
+  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
+  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
+    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tab-group');
+    group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    group.querySelector('#' + btn.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('.step-check').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const num = cb.closest('.step').querySelector('.step-num');
+    if(cb.checked){num.classList.add('done');num.textContent='✓';}
+    else{num.classList.remove('done');num.textContent=num.dataset.n;}
+  });
+});
+document.querySelectorAll('thead th').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = th.closest('table'); const col = [...th.parentElement.children].indexOf(th);
+    const rows = [...table.querySelector('tbody').rows];
+    const asc = th.dataset.asc !== 'true';
+    rows.sort((a,b)=>a.cells[col].innerText.localeCompare(b.cells[col].innerText,'id')*(asc?1:-1));
+    rows.forEach(r=>table.querySelector('tbody').appendChild(r));
+    th.dataset.asc=asc;
+  });
+});
+</script>
+</body>
+</html>

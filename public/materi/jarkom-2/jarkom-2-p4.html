@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Praktikum 4 – Firewall, NAT dan Fasttrack | Jaringan Komputer 2</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; color: #1e293b; font-size: 15px; line-height: 1.7; }
+  a { color: #1a56db; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .page-header { background: linear-gradient(135deg, #1a56db 0%, #1e3a8a 100%); color: #fff; padding: 40px 48px 36px; }
+  .page-header .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .badge { background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: #fff; border-radius: 20px; padding: 3px 13px; font-size: 12px; font-weight: 500; }
+  .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .page-header .subtitle { font-size: 1rem; opacity: 0.88; max-width: 720px; }
+
+  .page-wrap { display: flex; min-height: 100vh; }
+
+  .sidebar { width: 280px; min-width: 280px; background: #fff; border-right: 1px solid #e2e8f0; position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 28px 0 40px; flex-shrink: 0; }
+  .sidebar-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; padding: 0 22px 10px; }
+  .toc-list { list-style: none; }
+  .toc-list li a { display: block; padding: 7px 22px; color: #475569; font-size: 13.5px; border-left: 3px solid transparent; transition: all 0.18s; }
+  .toc-list li a:hover, .toc-list li a.active { color: #1a56db; background: #eff6ff; border-left-color: #1a56db; text-decoration: none; }
+
+  .main-content { flex: 1; padding: 40px 48px; max-width: 900px; min-width: 0; }
+
+  .section { margin-bottom: 52px; }
+  .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.35rem; font-weight: 700; color: #1e293b; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e2e8f0; }
+  .section-num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; background: #1a56db; color: #fff; border-radius: 50%; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+
+  .learning-objectives { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 22px 26px; margin-bottom: 16px; }
+  .learning-objectives h3 { font-size: 0.95rem; font-weight: 700; color: #1a56db; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .learning-objectives ol { padding-left: 20px; }
+  .learning-objectives ol li { margin-bottom: 5px; color: #1e40af; font-size: 14px; }
+
+  .accordion { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #f8fafc; cursor: pointer; font-weight: 600; font-size: 14.5px; color: #1e293b; user-select: none; transition: background 0.15s; }
+  .accordion-header:hover { background: #eff6ff; color: #1a56db; }
+  .accordion-icon { width: 22px; height: 22px; background: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: transform 0.25s, background 0.15s; flex-shrink: 0; }
+  .accordion.open .accordion-icon { transform: rotate(180deg); background: #1a56db; color: #fff; }
+  .accordion-body { display: none; padding: 16px 18px 18px; border-top: 1px solid #e2e8f0; background: #fff; font-size: 14px; }
+  .accordion.open .accordion-body { display: block; }
+
+  .code-block { background: #1e293b; border-radius: 8px; margin: 12px 0; overflow: hidden; }
+  .code-block-header { display: flex; align-items: center; justify-content: space-between; padding: 8px 14px; background: #0f172a; font-size: 12px; color: #94a3b8; }
+  .code-block pre { padding: 14px 16px; overflow-x: auto; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; color: #e2e8f0; white-space: pre; line-height: 1.6; }
+  .copy-btn { background: #334155; border: none; color: #cbd5e1; border-radius: 5px; padding: 3px 10px; font-size: 11.5px; cursor: pointer; transition: background 0.15s; }
+  .copy-btn:hover { background: #1a56db; color: #fff; }
+
+  .steps { margin: 10px 0; }
+  .step { display: flex; gap: 14px; margin-bottom: 18px; align-items: flex-start; }
+  .step-num { min-width: 30px; height: 30px; background: #1a56db; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .step-body { flex: 1; }
+  .step-body p { margin-bottom: 6px; font-size: 14px; }
+  .step-check { display: flex; align-items: center; gap: 7px; margin-top: 6px; font-size: 12.5px; color: #64748b; cursor: pointer; }
+  .step-check input[type=checkbox] { accent-color: #1a56db; width: 15px; height: 15px; }
+
+  .callout { border-radius: 8px; padding: 14px 18px; margin: 14px 0; font-size: 14px; display: flex; gap: 10px; align-items: flex-start; }
+  .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .callout-info { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; }
+  .callout-warn { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+  .callout-tip  { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; }
+  .callout-danger { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+  .topology { background: #0f172a; color: #7dd3fc; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; padding: 20px 24px; border-radius: 8px; overflow-x: auto; white-space: pre; margin: 14px 0; line-height: 1.6; }
+
+  .tooltip { position: relative; display: inline-block; }
+  .tooltip span:first-child { border-bottom: 1.5px dashed #1a56db; cursor: help; color: #1a56db; }
+  .tooltip-text { display: none; position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background: #1e293b; color: #f1f5f9; font-size: 12px; padding: 6px 12px; border-radius: 6px; white-space: nowrap; z-index: 100; box-shadow: 0 4px 16px rgba(0,0,0,0.18); pointer-events: none; }
+  .tooltip:hover .tooltip-text { display: block; }
+
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: #1a56db; color: #fff; padding: 10px 14px; text-align: left; cursor: pointer; user-select: none; font-weight: 600; }
+  th:hover { background: #1e3a8a; }
+  td { padding: 9px 14px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) td { background: #f8fafc; }
+  tr:hover td { background: #eff6ff; }
+
+  .rubrik-grid { display: grid; gap: 10px; margin-top: 10px; }
+  .rubrik-item { display: flex; align-items: flex-start; gap: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; font-size: 14px; }
+  .rubrik-num { background: #1a56db; color: #fff; border-radius: 6px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+
+  .tugas-list { list-style: none; padding: 0; }
+  .tugas-list li { display: flex; gap: 12px; margin-bottom: 12px; font-size: 14px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; }
+  .tugas-num { background: #f59e0b; color: #fff; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  .ref-list { list-style: decimal; padding-left: 22px; }
+  .ref-list li { margin-bottom: 7px; font-size: 14px; color: #475569; }
+
+  footer { background: #1e3a8a; color: #cbd5e1; padding: 28px 48px; font-size: 13px; text-align: center; }
+  footer strong { color: #fff; }
+
+  p { margin-bottom: 8px; }
+  ul, ol { padding-left: 20px; margin-bottom: 8px; }
+  li { margin-bottom: 3px; }
+  h4 { font-size: 1rem; font-weight: 700; color: #1e293b; margin: 14px 0 8px; }
+
+  @media (max-width: 768px) {
+    .page-wrap { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main-content { padding: 24px 18px; }
+    .page-header { padding: 28px 18px 24px; }
+    footer { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="badges">
+    <span class="badge">EIK212305</span>
+    <span class="badge">Semester 2</span>
+    <span class="badge">3 SKS (1T+2P)</span>
+    <span class="badge">Eka Wahyu Sholeha M.Kom</span>
+    <span class="badge">Hendrik Setyo Utomo ST. MMSI</span>
+  </div>
+  <h1>🔥 Praktikum 4: Firewall, NAT dan Fasttrack</h1>
+  <p class="subtitle">Konfigurasi Firewall Filter, Address-List, Source NAT, Destination NAT, dan FastTrack di MikroTik</p>
+</div>
+
+<div class="page-wrap">
+  <aside class="sidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <ul class="toc-list">
+      <li><a href="#tujuan">🎯 Tujuan Pembelajaran</a></li>
+      <li><a href="#teori">📖 Teori Firewall</a></li>
+      <li><a href="#prak-a">🔬 Praktikum A: Firewall Filter Dasar</a></li>
+      <li><a href="#prak-b">🔬 Praktikum B: Address-List</a></li>
+      <li><a href="#prak-c">🔬 Praktikum C: Source NAT</a></li>
+      <li><a href="#prak-d">🔬 Praktikum D: Destination NAT</a></li>
+      <li><a href="#prak-e">🔬 Praktikum E: FastTrack</a></li>
+      <li><a href="#rubrik">📊 Rubrik Penilaian</a></li>
+      <li><a href="#tugas">📝 Tugas Laporan</a></li>
+      <li><a href="#referensi">📚 Referensi</a></li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+
+    <section class="section" id="tujuan">
+      <h2 class="section-title"><span class="section-num">1</span> Tujuan Pembelajaran</h2>
+      <div class="learning-objectives">
+        <h3>🎯 Setelah menyelesaikan praktikum ini, mahasiswa mampu:</h3>
+        <ol type="a">
+          <li>Menjelaskan konsep dan prinsip dasar <span class="tooltip"><span>Firewall</span><span class="tooltip-text">Sistem keamanan jaringan yang memantau lalu lintas</span></span></li>
+          <li>Mengkonfigurasi Firewall Filter pada MikroTik RouterOS</li>
+          <li>Menggunakan <span class="tooltip"><span>Address-List</span><span class="tooltip-text">Fitur pengelompokan IP ke dalam daftar bernama</span></span> untuk manajemen IP</li>
+          <li>Memahami dan mengkonfigurasi <span class="tooltip"><span>Source NAT</span><span class="tooltip-text">Mengubah IP sumber agar LAN bisa akses internet</span></span> (Masquerade)</li>
+          <li>Memahami dan mengkonfigurasi <span class="tooltip"><span>Destination NAT</span><span class="tooltip-text">Mengubah IP tujuan untuk expose server LAN ke internet</span></span> (Port Forwarding)</li>
+          <li>Mengaktifkan <span class="tooltip"><span>FastTrack</span><span class="tooltip-text">Fitur MikroTik untuk mempercepat pemrosesan paket di kernel</span></span> untuk optimasi throughput</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="teori">
+      <h2 class="section-title"><span class="section-num">2</span> Teori Firewall</h2>
+
+      <div class="accordion open" id="acc-prinsip">
+        <div class="accordion-header" onclick="toggleAccordion('acc-prinsip')">
+          <span>🛡️ Prinsip Dasar Firewall</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Firewall</strong> adalah sistem keamanan yang memantau dan mengontrol lalu lintas jaringan masuk dan keluar berdasarkan aturan keamanan yang telah ditentukan.</p>
+          <p>Terdapat 2 prinsip dasar Firewall:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th onclick="sortTable(this)">Prinsip</th><th onclick="sortTable(this)">Deskripsi</th><th onclick="sortTable(this)">Rekomendasi</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Default DENY</strong></td><td>Blokir semua, izinkan yang spesifik</td><td>✅ DIREKOMENDASIKAN</td></tr>
+                <tr><td><strong>Default ALLOW</strong></td><td>Izinkan semua, blokir yang spesifik</td><td>❌ Kurang aman</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-tip">
+            <span class="callout-icon">💡</span>
+            <div>Gunakan prinsip <strong>Default DENY</strong> untuk keamanan maksimal. Lebih baik memblokir semua kemudian mengizinkan yang diperlukan.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-chain">
+        <div class="accordion-header" onclick="toggleAccordion('acc-chain')">
+          <span>🔗 Chain INPUT / FORWARD / OUTPUT</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>MikroTik Firewall Filter memiliki 3 chain utama:</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th onclick="sortTable(this)">Chain</th><th onclick="sortTable(this)">Deskripsi</th><th onclick="sortTable(this)">Contoh Penggunaan</th></tr></thead>
+              <tbody>
+                <tr><td><strong>INPUT</strong></td><td>Paket ditujukan ke router sendiri</td><td>Akses Winbox, SSH, PING ke router</td></tr>
+                <tr><td><strong>OUTPUT</strong></td><td>Paket berasal dari router sendiri</td><td>Router kirim update, DNS query</td></tr>
+                <tr><td><strong>FORWARD</strong></td><td>Paket diteruskan melalui router</td><td>PC LAN akses internet, antar LAN</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h4>Actions yang tersedia:</h4>
+          <ul>
+            <li><strong>accept</strong> — Izinkan paket lewat</li>
+            <li><strong>drop</strong> — Buang paket diam-diam (tanpa notifikasi ke pengirim)</li>
+            <li><strong>reject</strong> — Buang paket dan kirim notifikasi ke pengirim</li>
+            <li><strong>log</strong> — Catat informasi paket ke log</li>
+            <li><strong>jump</strong> — Lompat ke chain lain</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-state">
+        <div class="accordion-header" onclick="toggleAccordion('acc-state')">
+          <span>📡 Connection State</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p>MikroTik melacak kondisi setiap koneksi jaringan (<em>stateful firewall</em>):</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th onclick="sortTable(this)">State</th><th onclick="sortTable(this)">Deskripsi</th></tr></thead>
+              <tbody>
+                <tr><td><strong>established</strong></td><td>Koneksi yang sudah ada dan aktif</td></tr>
+                <tr><td><strong>related</strong></td><td>Koneksi terkait dengan koneksi yang sudah ada (mis. FTP data)</td></tr>
+                <tr><td><strong>new</strong></td><td>Paket pertama dari koneksi baru</td></tr>
+                <tr><td><strong>invalid</strong></td><td>Paket tidak sesuai state koneksi mana pun (harus di-drop)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout callout-info">
+            <span class="callout-icon">ℹ️</span>
+            <div>Aturan pertama yang direkomendasikan: <strong>accept established,related</strong> dan <strong>drop invalid</strong> untuk optimasi pemrosesan firewall.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-addrlist">
+        <div class="accordion-header" onclick="toggleAccordion('acc-addrlist')">
+          <span>📋 Address-List</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>Address-List</strong> adalah fitur MikroTik untuk mengelompokkan satu atau lebih alamat IP ke dalam sebuah daftar bernama. Berguna untuk manajemen firewall yang lebih efisien.</p>
+          <p>Kegunaan utama:</p>
+          <ul>
+            <li><strong>Blacklist</strong>: Daftar IP yang diblokir aksesnya</li>
+            <li><strong>Whitelist</strong>: Daftar IP yang selalu diizinkan</li>
+            <li>Manajemen kelompok IP (mis. IP server, IP admin)</li>
+            <li>Membuat aturan firewall lebih simpel dan mudah dikelola</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-nat">
+        <div class="accordion-header" onclick="toggleAccordion('acc-nat')">
+          <span>🔄 NAT (Network Address Translation)</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><span class="tooltip"><span>NAT</span><span class="tooltip-text">Network Address Translation: menerjemahkan alamat IP dalam paket</span></span> memungkinkan beberapa perangkat berbagi satu alamat IP publik.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th onclick="sortTable(this)">Jenis NAT</th><th onclick="sortTable(this)">Chain</th><th onclick="sortTable(this)">Action</th><th onclick="sortTable(this)">Fungsi</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Source NAT (SNAT / Masquerade)</strong></td><td>srcnat</td><td>masquerade</td><td>Ubah IP SUMBER agar LAN bisa akses internet melalui satu IP publik</td></tr>
+                <tr><td><strong>Destination NAT (DNAT / Port Forwarding)</strong></td><td>dstnat</td><td>dst-nat</td><td>Ubah IP TUJUAN untuk meneruskan koneksi ke server di LAN</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion" id="acc-fasttrack">
+        <div class="accordion-header" onclick="toggleAccordion('acc-fasttrack')">
+          <span>⚡ FastTrack</span>
+          <span class="accordion-icon">▼</span>
+        </div>
+        <div class="accordion-body">
+          <p><strong>FastTrack</strong> adalah fitur MikroTik yang memproses paket secara langsung di level kernel tanpa melalui full firewall processing. Hal ini dapat meningkatkan throughput secara signifikan.</p>
+          <p><strong>FastTrack mem-bypass:</strong></p>
+          <ul>
+            <li>Mangle rules</li>
+            <li>Queue (Simple Queue dan Queue Tree)</li>
+            <li>Sebagian besar pemrosesan di layer atas kernel</li>
+          </ul>
+          <div class="callout callout-danger">
+            <span class="callout-icon">⚠️</span>
+            <div><strong>PERINGATAN:</strong> FastTrack mem-bypass proses connection tracking dan sebagian firewall! Gunakan dengan hati-hati. Jika menggunakan QoS/Mangle, FastTrack bisa mengganggu fungsionalitasnya.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prak-a">
+      <h2 class="section-title"><span class="section-num">3</span> Praktikum A: Firewall Filter Dasar</h2>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Konfigurasi firewall filter dasar menggunakan prinsip <strong>Default Deny</strong> pada MikroTik RouterOS.</div>
+      </div>
+      <h4>Topologi Jaringan:</h4>
+      <div class="topology">[Internet] --- ether1 [MikroTik] ether2 --- [LAN 192.168.1.0/24]</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p><strong>Login ke MikroTik via Winbox</strong></p>
+            <p>Buka aplikasi Winbox, masukkan IP atau MAC address MikroTik, login dengan username dan password.</p>
+            <label class="step-check"><input type="checkbox"> Sudah login ke MikroTik via Winbox</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p><strong>Allow established/related INPUT:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=input connection-state=established,related action=accept comment="Allow established/related INPUT"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan established/related INPUT ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <p><strong>Drop invalid INPUT:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=input connection-state=invalid action=drop comment="Drop invalid INPUT"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan drop invalid INPUT ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <p><strong>Allow ICMP dari LAN:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=input protocol=icmp src-address=192.168.1.0/24 action=accept comment="Allow ICMP from LAN"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan ICMP dari LAN ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <p><strong>Allow Winbox dari LAN (port TCP 8291):</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=input protocol=tcp dst-port=8291 src-address=192.168.1.0/24 action=accept comment="Allow Winbox"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan Winbox dari LAN ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <p><strong>Drop semua INPUT dari internet (Default Deny):</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=input in-interface=ether1 action=drop comment="Drop all from internet"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan default deny dari internet ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-body">
+            <p><strong>Allow FORWARD dari LAN ke internet:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=forward in-interface=ether2 out-interface=ether1 action=accept comment="Allow LAN to internet"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan FORWARD LAN ke internet ditambahkan</label>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <div><strong>Urutan Sangat Penting!</strong> Aturan firewall diproses dari atas ke bawah. Pastikan aturan accept established/related berada di paling atas untuk performa optimal.</div>
+      </div>
+    </section>
+
+    <section class="section" id="prak-b">
+      <h2 class="section-title"><span class="section-num">4</span> Praktikum B: Address-List</h2>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div>Menggunakan <strong>Address-List</strong> untuk memblokir IP tertentu secara mudah dan terorganisir dengan konsep blacklist.</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p><strong>Buat Address-List blacklist dan tambahkan IP:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall address-list add list=blacklist address=192.168.1.50</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> IP 192.168.1.50 ditambahkan ke blacklist</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p><strong>Buat aturan firewall untuk drop IP dalam blacklist:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=forward src-address-list=blacklist action=drop comment="Block blacklisted IPs"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan firewall drop blacklist ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <p><strong>Uji konfigurasi:</strong></p>
+            <p>Dari komputer dengan IP yang ada di blacklist (192.168.1.50), coba akses internet. Akses harus ditolak.</p>
+            <label class="step-check"><input type="checkbox"> Pengujian berhasil — IP blacklist tidak dapat akses internet</label>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-tip">
+        <span class="callout-icon">💡</span>
+        <div>Anda dapat menambahkan beberapa IP ke dalam satu Address-List dengan menjalankan perintah <code>/ip firewall address-list add</code> berulang kali menggunakan nama list yang sama.</div>
+      </div>
+    </section>
+
+    <section class="section" id="prak-c">
+      <h2 class="section-title"><span class="section-num">5</span> Praktikum C: Source NAT (Masquerade)</h2>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div><strong>Source NAT (Masquerade)</strong> memungkinkan semua perangkat di LAN mengakses internet menggunakan satu IP publik milik router.</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p><strong>Tambahkan aturan masquerade pada interface WAN (ether1):</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall nat add chain=srcnat out-interface=ether1 action=masquerade comment="Masquerade LAN ke Internet"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan masquerade ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p><strong>Verifikasi — ping ke internet dari PC di LAN:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>Windows CMD / Linux Terminal</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>ping 8.8.8.8</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> PC LAN berhasil ping ke internet (8.8.8.8)</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="prak-d">
+      <h2 class="section-title"><span class="section-num">6</span> Praktikum D: Destination NAT (Port Forwarding)</h2>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div><strong>Destination NAT (Port Forwarding)</strong> memungkinkan server di jaringan LAN dapat diakses dari internet melalui IP publik router.</div>
+      </div>
+      <h4>Skenario:</h4>
+      <p>Web server berada di IP <strong>192.168.1.100 port 80</strong>. Akses dari internet melalui port <strong>8080</strong> pada IP publik router.</p>
+      <div class="topology">[Internet] --port 8080--> [MikroTik IP Publik:8080]
+         |
+         v  (dst-nat)
+         |
+[192.168.1.100:80]  (Web Server LAN)</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p><strong>Tambahkan aturan DNAT (Port Forwarding):</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall nat add chain=dstnat protocol=tcp dst-port=8080 action=dst-nat to-addresses=192.168.1.100 to-ports=80 comment="Port Forward 8080 ke Web Server"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan DNAT ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p><strong>Verifikasi akses dari internet:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>Browser URL</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>http://[IP-publik-router]:8080</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Web server berhasil diakses dari internet melalui port 8080</label>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚠️</span>
+        <div>Pastikan juga sudah mengizinkan port 8080 di aturan firewall filter INPUT atau FORWARD agar koneksi tidak terblokir oleh firewall.</div>
+      </div>
+    </section>
+
+    <section class="section" id="prak-e">
+      <h2 class="section-title"><span class="section-num">7</span> Praktikum E: FastTrack</h2>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ️</span>
+        <div><strong>FastTrack</strong> meningkatkan throughput dengan memproses paket established/related secara langsung di kernel, melewati proses firewall penuh.</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <p><strong>Tambahkan aturan fasttrack-connection untuk koneksi established/related:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=forward connection-state=established,related action=fasttrack-connection comment="FastTrack established/related"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan fasttrack-connection ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <p><strong>Tambahkan aturan accept setelah FastTrack:</strong></p>
+            <div class="code-block">
+              <div class="code-block-header"><span>RouterOS CLI</span><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button></div>
+              <pre>/ip firewall filter add chain=forward connection-state=established,related action=accept comment="Accept established/related"</pre>
+            </div>
+            <label class="step-check"><input type="checkbox"> Aturan accept established/related ditambahkan</label>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <p><strong>Verifikasi dengan Tools → Torch:</strong></p>
+            <p>Di Winbox, buka <strong>Tools → Torch</strong>, pilih interface ether1. Amati trafik dan throughput yang meningkat setelah FastTrack diaktifkan.</p>
+            <label class="step-check"><input type="checkbox"> Verifikasi dengan Torch selesai, throughput meningkat</label>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-danger">
+        <span class="callout-icon">🚨</span>
+        <div><strong>PENTING — Urutan Aturan:</strong> Pastikan aturan FastTrack berada <strong>DI ATAS</strong> aturan drop. Urutan aturan firewall sangat penting karena diproses dari atas ke bawah. FastTrack mem-bypass QoS dan Mangle — tidak cocok digunakan bersama konfigurasi bandwidth management!</div>
+      </div>
+    </section>
+
+    <section class="section" id="rubrik">
+      <h2 class="section-title"><span class="section-num">8</span> Rubrik Penilaian</h2>
+      <div class="rubrik-grid">
+        <div class="rubrik-item"><div class="rubrik-num">1</div><div><strong>Firewall Filter Dasar</strong> — Filter INPUT/FORWARD terkonfigurasi dengan benar sesuai prinsip Default Deny</div></div>
+        <div class="rubrik-item"><div class="rubrik-num">2</div><div><strong>Address-List</strong> — IP yang di-blacklist berhasil diblokir dan terverifikasi pengujiannya</div></div>
+        <div class="rubrik-item"><div class="rubrik-num">3</div><div><strong>Source NAT Masquerade</strong> — LAN dapat mengakses internet melalui satu IP publik router</div></div>
+        <div class="rubrik-item"><div class="rubrik-num">4</div><div><strong>Destination NAT Port Forwarding</strong> — Server internal dapat dijangkau dari internet melalui IP publik router</div></div>
+        <div class="rubrik-item"><div class="rubrik-num">5</div><div><strong>FastTrack</strong> — FastTrack aktif dan throughput meningkat (diverifikasi dengan Torch)</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="tugas">
+      <h2 class="section-title"><span class="section-num">9</span> Tugas Laporan</h2>
+      <ul class="tugas-list">
+        <li><span class="tugas-num">1</span><span>Implementasikan Firewall Filter dengan kebijakan <strong>Default Deny</strong>. Dokumentasikan setiap aturan beserta alasannya!</span></li>
+        <li><span class="tugas-num">2</span><span>Buat <strong>Address-List</strong> untuk memblokir minimal 5 alamat IP. Uji dan dokumentasikan hasilnya!</span></li>
+        <li><span class="tugas-num">3</span><span>Konfigurasi <strong>Source NAT (Masquerade)</strong> agar PC di LAN dapat mengakses internet. Sertakan bukti ping ke 8.8.8.8!</span></li>
+        <li><span class="tugas-num">4</span><span>Konfigurasi <strong>Port Forwarding</strong> untuk meneruskan koneksi port 80 dari internet ke web server di jaringan lokal. Uji dan dokumentasikan!</span></li>
+        <li><span class="tugas-num">5</span><span>Aktifkan <strong>FastTrack</strong> dan jelaskan dampaknya terhadap kinerja jaringan berdasarkan hasil pengujian!</span></li>
+      </ul>
+    </section>
+
+    <section class="section" id="referensi">
+      <h2 class="section-title"><span class="section-num">10</span> Referensi</h2>
+      <ol class="ref-list">
+        <li>MikroTik Documentation. (2024). <em>Firewall</em>. <a href="https://wiki.mikrotik.com/wiki/Firewall" target="_blank">https://wiki.mikrotik.com/wiki/Firewall</a></li>
+        <li>MikroTik Documentation. (2024). <em>NAT</em>. <a href="https://wiki.mikrotik.com/wiki/NAT" target="_blank">https://wiki.mikrotik.com/wiki/NAT</a></li>
+        <li>MikroTik Documentation. (2024). <em>FastTrack</em>. <a href="https://wiki.mikrotik.com/wiki/FastTrack" target="_blank">https://wiki.mikrotik.com/wiki/FastTrack</a></li>
+        <li>Forouzan, B.A. (2010). <em>Data Communications and Networking</em>. 5th Ed. McGraw-Hill.</li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <strong>Jaringan Komputer 2</strong> — EIK212305 &nbsp;|&nbsp; Semester 2 &nbsp;|&nbsp; 3 SKS (1T+2P)<br>
+  Eka Wahyu Sholeha M.Kom &amp; Hendrik Setyo Utomo ST. MMSI<br>
+  <span style="opacity:0.6;font-size:12px;">Politeknik Negeri Tanah Laut &copy; 2025</span>
+</footer>
+
+<script>
+  function toggleAccordion(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+  function copyCode(btn) {
+    const pre = btn.closest('.code-block').querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Tersalin!';
+      btn.style.background = '#16a34a';
+      btn.style.color = '#fff';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 2000);
+    });
+  }
+  function sortTable(th) {
+    const table = th.closest('table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const idx = Array.from(th.parentElement.children).indexOf(th);
+    const asc = th.dataset.asc !== 'true';
+    th.dataset.asc = asc;
+    rows.sort((a, b) => {
+      const at = a.cells[idx]?.textContent.trim() || '';
+      const bt = b.cells[idx]?.textContent.trim() || '';
+      return asc ? at.localeCompare(bt) : bt.localeCompare(at);
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  }
+  const sections = document.querySelectorAll('.section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+    tocLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
