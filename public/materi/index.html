@@ -328,6 +328,75 @@
         gap: 20px;
         border-bottom: 2px solid var(--gold);
         box-shadow: var(--shadow-md);
+        cursor: pointer;
+        user-select: none;
+        transition:
+          box-shadow 0.3s var(--ease),
+          border-radius 0.3s var(--ease),
+          transform 0.3s var(--ease);
+      }
+      .course-header:hover {
+        box-shadow: var(--shadow-gold);
+        transform: translateY(-2px);
+      }
+      /* Collapsed state: header becomes a standalone rounded card */
+      .course-block:not(.open) .course-header {
+        border-radius: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .course-toggle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        flex-shrink: 0;
+        margin-left: 8px;
+        color: var(--gold);
+      }
+      .course-toggle .chev {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border-gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        color: var(--gold);
+        background: var(--ivory-soft);
+        transition:
+          transform 0.35s var(--ease),
+          background 0.3s var(--ease),
+          color 0.3s var(--ease);
+      }
+      .course-toggle .toggle-label {
+        font-size: 0.62rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+      }
+      .course-block.open .course-toggle .chev {
+        transform: rotate(180deg);
+        background: var(--gold);
+        color: #fff;
+      }
+      .praktikum-grid {
+        display: none !important;
+      }
+      .course-block.open .praktikum-grid {
+        display: grid !important;
+        animation: gridReveal 0.35s var(--ease);
+      }
+      @keyframes gridReveal {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
       .course-icon-wrap {
         width: 56px;
@@ -1609,7 +1678,7 @@
       </div>
     </footer>
 
-    <!-- SEARCH SCRIPT -->
+    <!-- SEARCH & TOGGLE SCRIPT -->
     <script>
       function filterCards(query) {
         const q = query.toLowerCase().trim();
@@ -1617,7 +1686,42 @@
           const text = card.textContent.toLowerCase();
           card.style.display = !q || text.includes(q) ? "" : "none";
         });
+        // Saat mencari: buka semua matkul agar hasil terlihat.
+        // Saat kosong: kembalikan ke keadaan tertutup.
+        document.querySelectorAll(".course-block").forEach((block) => {
+          if (q) {
+            const hasMatch = Array.from(
+              block.querySelectorAll(".prak-card"),
+            ).some((c) => c.style.display !== "none");
+            block.classList.toggle("open", hasMatch);
+            block.style.display = hasMatch ? "" : "none";
+          } else {
+            block.classList.remove("open");
+            block.style.display = "";
+          }
+        });
       }
+
+      // Jadikan seluruh course-header sebagai tombol buka/tutup daftar modul
+      document.querySelectorAll(".course-block").forEach((block) => {
+        const header = block.querySelector(".course-header");
+        if (!header) return;
+
+        // Sisipkan indikator chevron + label di ujung kanan header
+        const toggle = document.createElement("div");
+        toggle.className = "course-toggle";
+        toggle.innerHTML =
+          '<span class="chev"><i class="bi bi-chevron-down"></i></span>' +
+          '<span class="toggle-label">Lihat</span>';
+        header.appendChild(toggle);
+
+        header.addEventListener("click", () => {
+          const isOpen = block.classList.toggle("open");
+          toggle.querySelector(".toggle-label").textContent = isOpen
+            ? "Tutup"
+            : "Lihat";
+        });
+      });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
