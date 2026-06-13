@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 3 – Visual Literacy &amp; Visual Rhetoric | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Visual Literacy &amp; Visual Rhetoric</div>
+    <div class="pertemuan-badge">Pertemuan 3</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#visual-literacy" class="toc-link">Visual Literacy</a>
+    <a href="#levels-meaning" class="toc-link">Levels of Meaning</a>
+    <a href="#visual-rhetoric" class="toc-link">Visual Rhetoric</a>
+    <a href="#ethos-pathos-logos" class="toc-link">Ethos, Pathos, Logos</a>
+    <a href="#strategi" class="toc-link">Strategi Rhetorical</a>
+    <a href="#semiotics" class="toc-link">Intro Semiotics</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 3 · Desain Komunikasi Visual</div>
+    <h1>Visual Literacy &amp; Visual Rhetoric</h1>
+    <p class="subtitle">Kemampuan "membaca" dan "menulis" secara visual, serta bagaimana visual membujuk melalui ethos, pathos, logos — plus pengenalan semiotics.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Persuasi Visual</span></div>
+      <div class="meta-badge">Teori: <span>Aristotle's Appeals</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Visual Memiliki Rhetorical Power</div>
+      <p>Sejak zaman Yunani kuno, rhetoric dipelajari sebagai seni persuasi melalui bahasa. Di era modern, visual memiliki kekuatan persuasif yang sama — bahkan mungkin lebih kuat. Sebuah foto dapat memicu emosi instant, sebuah logo dapat membangun trust, sebuah infografis dapat mengubah opini. Dalam pertemuan ini Anda belajar bagaimana visual "berargumen" dan bagaimana meng-craft pesan visual yang tidak hanya inform, tetapi juga persuade dan inspire action.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Menjelaskan konsep visual literacy dan pentingnya di era digital</li>
+        <li>Mengidentifikasi elemen "bahasa" visual</li>
+        <li>Memahami konsep visual rhetoric dan persuasi visual</li>
+        <li>Menerapkan ethos, pathos, logos dalam konteks visual</li>
+        <li>Menganalisis pesan visual secara kritis</li>
+        <li>Memahami dasar-dasar semiotics</li>
+        <li>Merancang komunikasi visual yang persuasif</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="visual-literacy">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Visual Literacy</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Visual Reading</div><div class="gc-body">Decode pesan visual, identifikasi elemen dan prinsip desain, kenali konvensi dan simbol.</div></div>
+      <div class="grid-card"><div class="gc-title">Visual Writing</div><div class="gc-body">Encode ide ke dalam visual, pilih strategi visual yang tepat, compose pesan efektif.</div></div>
+      <div class="grid-card"><div class="gc-title">Critical Visual Thinking</div><div class="gc-body">Analyze visual arguments, evaluate evidence, deteksi bias dan manipulasi.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Mengapa Visual Literacy Penting? <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Information overload:</b> Kita terekspos 5000+ pesan visual per hari</li>
+          <li><b>Digital age:</b> Social media didominasi visual — Instagram, TikTok, Pinterest. Emoji dan memes sebagai bahasa visual baru</li>
+          <li><b>Era misinformasi:</b> Fake news, deep fakes, photo manipulation — visual literacy melindungi dari deception</li>
+          <li><b>Professional necessity:</b> Hampir semua profesi melibatkan komunikasi visual — presentations, reports, social media</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">"Grammar" of Visual Language <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Visual Vocabulary (elemen):</b> dot, line, shape, form, space, texture, color, typography</li>
+          <li><b>Visual Syntax (prinsip):</b> balance, contrast, emphasis, unity, movement, rhythm, proportion</li>
+          <li><b>Visual Context:</b> cultural (makna simbol per budaya), historical, social, medium (print vs digital)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="levels-meaning">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Levels of Meaning</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">1. Denotative</div>
+        <div class="gc-body"><b>What you see.</b> Makna literal, deskriptif, objektif. Contoh: "apel" = buah bulat merah.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">2. Connotative</div>
+        <div class="gc-body"><b>What it suggests.</b> Makna asosiatif, simbolik, emosional. Contoh: apel → kesehatan, godaan, teknologi (Apple Inc.).</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">3. Ideological</div>
+        <div class="gc-body"><b>What beliefs it promotes.</b> Nilai, asumsi, worldview di balik visual. Memerlukan analisis kritis.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Framework Visual Analysis</div>
+      <ul class="styled">
+        <li><b>Content:</b> Apa yang literally ditampilkan? Subjek, objek, setting, warna, teks?</li>
+        <li><b>Context:</b> Di mana muncul? Kapan? Siapa creator? Siapa audiens?</li>
+        <li><b>Composition:</b> Bagaimana elemen diatur? Focal point? Visual hierarchy?</li>
+        <li><b>Codes &amp; Conventions:</b> Simbol/ikon? Genre conventions? Kode kultural?</li>
+        <li><b>Connotations:</b> Makna asosiatif? Emosi yang ditimbulkan?</li>
+        <li><b>Rhetoric:</b> Apa argumennya? Bagaimana membujuk?</li>
+        <li><b>Ideology:</b> Worldview apa yang dipresentasikan? Kepentingan siapa?</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="visual-rhetoric">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Visual Rhetoric</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Key Premises</div>
+      <p>Visual <b>tidak pernah netral</b> atau objektif. Visual membuat argumen dan memajukan posisi tertentu. Setiap pilihan visual adalah pilihan rhetorical. Memahami visual rhetoric membantu Anda baik dalam <b>menganalisis</b> maupun <b>menciptakan</b> desain.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Types of Visual Arguments</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Categorical Claims</div><div class="gc-body">"X adalah anggota kategori Y". Contoh: iklan menampilkan produk di antara barang mewah → "ini produk luxury".</div></div>
+        <div class="grid-card"><div class="gc-title">Causal Claims</div><div class="gc-body">"X menyebabkan Y". Contoh: iklan anti-rokok menampilkan rokok → paru-paru rusak.</div></div>
+        <div class="grid-card"><div class="gc-title">Evaluative Claims</div><div class="gc-body">"X itu baik/buruk". Contoh: poster lingkungan — alam asri vs polusi.</div></div>
+        <div class="grid-card"><div class="gc-title">Proposal Claims</div><div class="gc-body">"Kita seharusnya melakukan X". Contoh: poster kesehatan publik mengajak vaksinasi.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ethos-pathos-logos">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Ethos, Pathos, Logos</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-ethos')">ETHOS</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-pathos')">PATHOS</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-logos')">LOGOS</button>
+      </div>
+      <div id="tab-ethos" class="tab-panel active">
+        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Credibility — Appeal berbasis kredibilitas dan trustworthiness</p>
+        <ul class="styled">
+          <li><b>Professional design quality:</b> layout bersih, branding konsisten, imagery berkualitas tinggi</li>
+          <li><b>Authoritative imagery:</b> jas lab, diploma, expert testimonials dengan foto</li>
+          <li><b>Brand symbols:</b> logo established, award badges, "as seen in" media logos</li>
+          <li><b>Contoh:</b> iklan medis menampilkan dokter di rumah sakit, financial services dengan corporate blue</li>
+          <li><b>Red flags (weak ethos):</b> desain buruk, typo, stock photo generik, branding inkonsisten</li>
+        </ul>
+      </div>
+      <div id="tab-pathos" class="tab-panel">
+        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Emotion — Appeal ke emosi, nilai, dan kepercayaan audiens</p>
+        <ul class="styled">
+          <li><b>Emotional imagery:</b> wajah berekspresi, human interest, before/after, bayi &amp; hewan lucu</li>
+          <li><b>Color psychology:</b> merah=urgency, biru=trust, kuning=optimisme, hitam=luxury</li>
+          <li><b>Visual metaphors:</b> journey, growth, light vs darkness</li>
+          <li><b>Composition:</b> low angle=power, high angle=vulnerability, close-up=intimacy</li>
+          <li><b>Etika:</b> bedakan emotional appeal yang sah vs manipulasi dan fear-mongering</li>
+        </ul>
+      </div>
+      <div id="tab-logos" class="tab-panel">
+        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Logic — Appeal ke nalar, fakta, dan bukti</p>
+        <ul class="styled">
+          <li><b>Data visualization:</b> charts, graphs, infographics, comparison tables, timelines</li>
+          <li><b>Demonstrative images:</b> before/after, step-by-step, diagram cara kerja</li>
+          <li><b>Textual evidence:</b> quotes ahli, research findings, testimonial spesifik</li>
+          <li><b>Clean design:</b> visual hierarchy logis, fokus pada fakta</li>
+          <li><b>Balance:</b> pure logos bisa kering — kombinasikan dengan ethos dan pathos</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="strategi">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Strategi Visual Rhetorical</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Juxtaposition</div><div class="gc-body">Menempatkan elemen kontras berdampingan: before/after, problem vs solution.</div></div>
+      <div class="grid-card"><div class="gc-title">Framing</div><div class="gc-body">Apa yang dimasukkan vs dikecualikan. Camera angle, distance, konteks.</div></div>
+      <div class="grid-card"><div class="gc-title">Metaphor &amp; Symbolism</div><div class="gc-body">Representasi visual dari konsep abstrak — journey, war, growth.</div></div>
+      <div class="grid-card"><div class="gc-title">Identification</div><div class="gc-body">Koneksi viewer dengan subjek — "people like you", aspirational imagery.</div></div>
+      <div class="grid-card"><div class="gc-title">Narrative</div><div class="gc-body">Bercerita melalui visual sequence atau single image yang suggest cerita besar.</div></div>
+      <div class="grid-card"><div class="gc-title">Scale &amp; Absence</div><div class="gc-body">Ukuran menunjukkan kepentingan. Yang TIDAK ditampilkan juga berbicara.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="semiotics">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Introduction to Semiotics</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Semiotics = Ilmu tentang Tanda</div>
+      <p>Semiotics mempelajari signs dan bagaimana mereka menciptakan makna. Founder: Ferdinand de Saussure dan Charles Sanders Peirce. Sebuah <b>sign</b> terdiri dari <b>SIGNIFIER</b> (bentuk: gambar, kata, suara) dan <b>SIGNIFIED</b> (konsep/makna). Contoh: tanda oktagonal merah (signifier) → STOP (signified).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Peirce's Trichotomy of Signs</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">ICON</div>
+          <div class="gc-body"><b>Menyerupai</b> yang direpresentasikan. Foto, ilustrasi realistis, peta. Dalam desain: trash can icon, packaging menampilkan isi produk.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">INDEX</div>
+          <div class="gc-body"><b>Koneksi langsung/kausal.</b> Asap → api, jejak kaki → seseorang lewat. Dalam desain: progress bar, loading spinner, pointer cursor.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">SYMBOL</div>
+          <div class="gc-body"><b>Arbitrary, konvensional.</b> Makna dipelajari secara kultural. Bendera, simbol agama, traffic light. Dalam desain: Nike swoosh, color coding.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Codes dan Conventions <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Technical codes:</b> camera angle, lighting (high-key=positif, low-key=dramatis), editing</li>
+          <li><b>Symbolic codes:</b> objek, setting, body language, pakaian, warna, tipografi</li>
+          <li><b>Written codes:</b> bahasa, headline, caption, slogan</li>
+          <li>Memahami codes membantu decode pesan existing dan encode pesan baru secara efektif</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum &amp; Tugas</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Visual Rhetorical Analysis</div>
+      <ul class="styled">
+        <li>Pilih 2 visual: 1 product advertising + 1 social cause campaign</li>
+        <li>Analisis lengkap: Description, Context, Ethos/Pathos/Logos (rating 1-10), Strategies, Semiotic analysis, Evaluation</li>
+        <li>Format: PDF 1500-2000 kata dengan gambar berkualitas</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 2: Design a Persuasive Poster</div>
+      <ul class="styled">
+        <li>Pilih cause: environmental, public health, education, atau social justice</li>
+        <li>Tentukan strategi: primary appeal (ethos/pathos/logos), tone, key message (max 10 kata)</li>
+        <li>3 concept sketches → pilih terkuat → eksekusi digital A3, 300 DPI</li>
+        <li>Submit: research &amp; strategy + sketches + final poster + design rationale</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 3: Semiotic Deconstruction</div>
+      <ul class="styled">
+        <li>Sign inventory: minimal 15-20 signs (tabel Signifier | Signified | Type)</li>
+        <li>Analisis denotation vs connotation dua kolom</li>
+        <li>Ideological analysis: worldview apa yang dipromosikan? Apa yang TIDAK ditampilkan?</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">TUGAS BESAR: Analisis Visual Rhetoric (Bobot 14%)</div>
+      <p>Analisis komprehensif sebuah kampanye (iklan produk / kampanye sosial / political campaign, minimal 3 creative pieces, max 5 tahun terakhir). <b>Written analysis</b> 8-12 halaman (70%) + <b>presentasi</b> 10-12 menit (30%). Due: Pertemuan 5, sebelum kuis.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p2.html">← Pertemuan 2</a>
+    <a href="desain-komunikasi-visual-p4.html" class="next-btn">Pertemuan 4 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

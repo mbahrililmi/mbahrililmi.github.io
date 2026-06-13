@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 14 – Podcast &amp; Video Release | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Podcast &amp; Video Release</div>
+    <div class="pertemuan-badge">Pertemuan 14</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#podcast" class="toc-link">Podcast Production</a>
+    <a href="#audacity" class="toc-link">Audio Editing (Audacity)</a>
+    <a href="#video-release" class="toc-link">Video Release Production</a>
+    <a href="#video-editing" class="toc-link">Video Editing</a>
+    <a href="#distribution" class="toc-link">Distribution &amp; Promotion</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 14 · Desain Komunikasi Visual</div>
+    <h1>Podcast &amp; Video Release</h1>
+    <p class="subtitle">Podcast production workflow, audio editing dengan Audacity, video release production, scripting dan storyboarding, video editing dengan DaVinci Resolve/Kdenlive, dan distribusi konten.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Audio &amp; Video Content</span></div>
+      <div class="meta-badge">Tools: <span>Audacity · DaVinci Resolve</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami podcast production workflow dari concept hingga distribution</li>
+        <li>Merencanakan podcast content dengan effective storytelling</li>
+        <li>Mengoperasikan Audacity untuk audio recording dan editing</li>
+        <li>Merancang podcast cover art yang platform-compliant</li>
+        <li>Memahami video release concepts dan production planning</li>
+        <li>Menggunakan DaVinci Resolve/Kdenlive untuk video editing</li>
+        <li>Menerapkan scripting dan storyboarding techniques</li>
+        <li>Mendistribusikan content melalui channels yang tepat</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="podcast">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Podcast Production Fundamentals</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Planning &amp; Strategy</div>
+        <div class="gc-body">Tentukan niche dan target audience. Format: solo, interview, panel, narrative. Durasi konsisten (20-45 menit umum). Episode structure: intro → konten → outro + CTA. Content calendar untuk konsistensi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Recording Best Practices</div>
+        <div class="gc-body">Ruangan tenang, minim echo (kain/karpet membantu). Mikrofon 10-15cm dari mulut. Test level sebelum rekam penuh (peak -12 sampai -6 dB). Rekam room tone untuk editing. Headphone untuk monitoring.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Podcast Cover Art Design <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Spesifikasi:</b> 3000×3000px, JPG/PNG, RGB, di bawah 512KB (Apple/Spotify)</li>
+          <li>Harus terbaca di ukuran thumbnail kecil (perangkat mobile)</li>
+          <li>Judul podcast jelas, font besar dan tebal</li>
+          <li>Maksimal 2-3 elemen visual — simplicity wins</li>
+          <li>Warna kontras dan konsisten dengan brand</li>
+          <li>Hindari kata "podcast" dalam artwork (redundan di platform)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Podcast Tips Kunci</div>
+      <p>Consistency beats perfection — publish teratur. Audio yang "cukup baik" lebih baik dari sempurna tapi telat. Hook pendengar dalam 30 detik pertama. Show notes meningkatkan SEO. Batch record beberapa episode untuk efisiensi.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="audacity">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Audio Editing dengan Audacity</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Interface dan Tools Dasar <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Waveform display:</b> visualisasi audio per track</li>
+          <li><b>Selection tool:</b> pilih bagian audio untuk edit</li>
+          <li><b>Record (R), Play (Space), Stop</b></li>
+          <li><b>Zoom:</b> Ctrl+scroll untuk detail editing</li>
+          <li><b>Multiple tracks:</b> voice, musik, sound effects terpisah</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Basic Editing Techniques <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Cut/Delete:</b> hapus bagian tidak perlu (um, jeda panjang, kesalahan)</li>
+          <li><b>Fade In/Out:</b> Effect → Fading — transisi halus</li>
+          <li><b>Amplify/Normalize:</b> seragamkan volume</li>
+          <li><b>Noise Reduction:</b> Effect → Noise Reduction — sampel noise dulu, lalu apply</li>
+          <li><b>Compression:</b> ratakan dinamika volume suara</li>
+          <li><b>Mixing musik:</b> background music di -20dB di bawah voice, ducking saat bicara</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Export untuk Podcast <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Format: MP3, 128-192 kbps untuk spoken word</li>
+          <li>Mono cukup untuk voice-only (file lebih kecil); stereo jika ada musik</li>
+          <li>Tambahkan metadata: judul episode, artist, album (nama show)</li>
+          <li>Target loudness: -16 LUFS (stereo) / -19 LUFS (mono) standar podcast</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="video-release">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Video Release Production</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Video Release</div>
+      <p>Video release adalah konten video untuk komunikasi PR/promosi — company news, event recap, product launch, atau profile video. Seperti photo release, video release dirancang agar mudah digunakan media dan dibagikan di platform digital.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Pre-Production: Scripting &amp; Storyboarding</h3>
+      <ul class="styled">
+        <li><b>Script:</b> dua kolom — VISUAL (apa yang terlihat) | AUDIO (narasi/dialog/musik)</li>
+        <li><b>Storyboard:</b> sketsa per shot dengan keterangan: shot type, durasi, camera movement</li>
+        <li>Contoh shot list: wide shot exterior (3s, static) → medium shot orang masuk (2s, follow) → close-up detail (1s) → POV walkthrough (4s, dolly)</li>
+      </ul>
+    </div>
+
+    <div class="sub-section">
+      <h3>Shooting Basics</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Three-Point Lighting</div><div class="gc-body">Key light (utama, 45°), Fill light (lawan key, lembut), Back light (pisahkan subjek dari background).</div></div>
+        <div class="grid-card"><div class="gc-title">Komposisi</div><div class="gc-body">Rule of thirds, headroom tepat, eye-line untuk interview, stabilisasi (tripod wajib).</div></div>
+        <div class="grid-card"><div class="gc-title">Audio</div><div class="gc-body">Clean audio lebih penting dari visual bagus. Mic eksternal &gt; mic kamera. Monitor dengan headphone.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="video-editing">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Video Editing</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-resolve')">DaVinci Resolve</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-kdenlive')">Kdenlive</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-teknik')">Teknik Editing</button>
+      </div>
+      <div id="tab-resolve" class="tab-panel active">
+        <p style="font-size:.88rem;margin-bottom:10px;">Gratis, professional-grade. 7 workspace (pages):</p>
+        <ol class="styled">
+          <li><b>MEDIA:</b> import dan organize footage</li>
+          <li><b>CUT:</b> editing cepat yang disederhanakan</li>
+          <li><b>EDIT:</b> timeline editing tradisional (waktu terbanyak di sini)</li>
+          <li><b>FUSION:</b> motion graphics dan VFX</li>
+          <li><b>COLOR:</b> color grading — kekuatan utama Resolve</li>
+          <li><b>FAIRLIGHT:</b> audio editing dan mixing</li>
+          <li><b>DELIVER:</b> export video final</li>
+        </ol>
+      </div>
+      <div id="tab-kdenlive" class="tab-panel">
+        <ul class="styled">
+          <li>Open source, ringan — alternatif untuk komputer spek rendah</li>
+          <li>Multi-track timeline: video dan audio tracks terpisah</li>
+          <li>Project bin untuk organize clips</li>
+          <li>Effects dan transitions built-in</li>
+          <li>Title tool untuk teks/lower thirds</li>
+          <li>Render dengan preset (MP4 H.264 untuk web)</li>
+        </ul>
+      </div>
+      <div id="tab-teknik" class="tab-panel">
+        <ul class="styled">
+          <li><b>Cut on action:</b> potong saat ada gerakan untuk transisi mulus</li>
+          <li><b>J-cut/L-cut:</b> audio mendahului/mengikuti visual — natural flow</li>
+          <li><b>Pacing:</b> ritme cut menyesuaikan mood (cepat = energi, lambat = emosional)</li>
+          <li><b>B-roll:</b> footage pendukung menutupi cut dan menambah konteks</li>
+          <li><b>Color grade</b> untuk cohesive look</li>
+          <li><b>Text/titles:</b> besar, kontras tinggi, durasi cukup untuk dibaca</li>
+          <li><b>Export per platform:</b> 16:9 YouTube, 9:16 Reels/TikTok, 1:1 feed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="distribution">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Distribution &amp; Promotion</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Podcast Distribution</div>
+        <div class="gc-body">Hosting (Spotify for Creators, Podbean, dll) → RSS feed → otomatis ke Spotify, Apple Podcasts. Show notes per episode. Audiogram/teaser untuk social media promotion.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Video Distribution</div>
+        <div class="gc-body">YouTube (long-form + SEO), Reels/TikTok (short vertical), website embed, kirim ke media untuk video release PR. Thumbnail menarik = CTR tinggi. Captions meningkatkan engagement.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Common Mistakes <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Tidak test audio sebelum rekaman penuh</li>
+          <li>Merekam di lingkungan berisik</li>
+          <li>Background music terlalu keras</li>
+          <li>Handheld camera goyang — gunakan tripod</li>
+          <li>Over-editing audio (terdengar tidak natural)</li>
+          <li>Mengabaikan spesifikasi platform</li>
+          <li>Tidak ada CTA di akhir konten</li>
+          <li>Menyerah setelah beberapa episode — konsistensi adalah kunci</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum &amp; Tugas</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum: Podcast Episode + Video Release</div>
+      <ul class="styled">
+        <li><b>Podcast episode lengkap:</b> 5-10 menit, intro/outro, edited di Audacity</li>
+        <li><b>Podcast cover art:</b> 3000×3000px sesuai spesifikasi platform</li>
+        <li><b>Show notes:</b> deskripsi episode + timestamps</li>
+        <li><b>Short video teaser:</b> 30-60 detik untuk promosi episode</li>
+        <li>Alternatif: <b>video release</b> 1-2 menit + storyboard + audio podcast excerpt</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">TUGAS INDIVIDUAL: Content Series Proposal</div>
+      <p>Proposal seri konten (podcast atau video): (1) series concept 2-3 halaman, (2) content strategy, (3) production plan, (4) visual identity package (cover art + brand guidelines), (5) distribution strategy, (6) optional pilot episode untuk bonus. Deliverable: proposal PDF 8-12 halaman + visual identity + content calendar bulan pertama.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p13.html">← Pertemuan 13</a>
+    <a href="desain-komunikasi-visual-p15.html" class="next-btn">Pertemuan 15 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

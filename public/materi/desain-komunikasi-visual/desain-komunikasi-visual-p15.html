@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 15 – Online Advertising (Social Media) | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Online Advertising (Social Media)</div>
+    <div class="pertemuan-badge">Pertemuan 15</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#landscape" class="toc-link">Advertising Landscape</a>
+    <a href="#specs" class="toc-link">Platform Specifications</a>
+    <a href="#copywriting" class="toc-link">Ad Copywriting</a>
+    <a href="#video-static" class="toc-link">Video vs Static Ads</a>
+    <a href="#canva-ads" class="toc-link">Creating Ads dengan Canva</a>
+    <a href="#optimization" class="toc-link">Campaign Optimization</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Penutup</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 15 · Desain Komunikasi Visual</div>
+    <h1>Online Advertising — Social Media</h1>
+    <p class="subtitle">Social media advertising landscape, spesifikasi desain per platform, ad copywriting, video vs static ads, pembuatan ads dengan Canva, dan campaign optimization.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Social Media Ads</span></div>
+      <div class="meta-badge">Platform: <span>FB · IG · TikTok</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami social media advertising landscape</li>
+        <li>Membedakan ad formats antar platform utama</li>
+        <li>Menerapkan platform-specific design specifications</li>
+        <li>Menguasai ad copywriting principles</li>
+        <li>Memahami targeting dan audience segmentation dasar</li>
+        <li>Menggunakan Canva untuk professional social media ads</li>
+        <li>Membedakan efektivitas video vs static ads</li>
+        <li>Mengevaluasi ad performance metrics</li>
+        <li>Menerapkan mobile-first advertising best practices</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="landscape">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Social Media Advertising Landscape</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Facebook/Meta</div><div class="gc-body">Audience terbesar dan terluas. Targeting detail. Format: feed, story, carousel, video. Demografi cenderung dewasa.</div></div>
+      <div class="grid-card"><div class="gc-title">Instagram</div><div class="gc-body">Visual-first. Reels dominan. Audience 18-34. Lifestyle, fashion, F&amp;B sangat cocok.</div></div>
+      <div class="grid-card"><div class="gc-title">TikTok</div><div class="gc-body">Video pendek vertikal. Gen Z &amp; millennial. Native-feel ads perform terbaik — "Don't make ads, make TikToks".</div></div>
+      <div class="grid-card"><div class="gc-title">X (Twitter)</div><div class="gc-body">Real-time conversation, news. Text-heavy ads bisa works. Audiens profesional dan tech-savvy.</div></div>
+      <div class="grid-card"><div class="gc-title">LinkedIn</div><div class="gc-body">B2B, professional. CPC tinggi tapi targeting jabatan/industri presisi. Konten formal.</div></div>
+      <div class="grid-card"><div class="gc-title">YouTube</div><div class="gc-body">Video ads skippable/non-skippable, bumper 6 detik. Jangkauan luas, intent pencarian.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Advertising Objectives &amp; Funnel <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Awareness (top funnel):</b> reach, brand awareness — visual impactful, jangkauan luas</li>
+          <li><b>Consideration (middle):</b> traffic, engagement, video views — konten bernilai</li>
+          <li><b>Conversion (bottom):</b> sales, leads, app install — CTA kuat, penawaran jelas</li>
+          <li>Desain ads harus menyesuaikan tahap funnel yang ditarget</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="specs">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Platform Design Specifications</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Format</th><th>Ukuran</th><th>Catatan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>FB/IG Feed Square</td><td>1080×1080 (1:1)</td><td>Paling fleksibel</td></tr>
+        <tr><td>IG Feed Portrait</td><td>1080×1350 (4:5)</td><td>Lebih banyak ruang layar mobile</td></tr>
+        <tr><td>IG/FB Story &amp; Reels</td><td>1080×1920 (9:16)</td><td>Safe zone: hindari 250px atas &amp; bawah (UI overlay)</td></tr>
+        <tr><td>TikTok</td><td>1080×1920 (9:16)</td><td>Video 9-15 detik optimal, native-feel</td></tr>
+        <tr><td>FB Link Ad</td><td>1200×628 (1.91:1)</td><td>Landscape untuk link preview</td></tr>
+        <tr><td>X Header/Card</td><td>1200×675 (16:9)</td><td>Summary card with large image</td></tr>
+        <tr><td>LinkedIn Sponsored</td><td>1200×627</td><td>Tone profesional</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <div class="hb-title">Aturan Umum Lintas Platform</div>
+      <p>Mobile-first selalu. Teks pada gambar minimal (Meta merekomendasikan &lt;20% area). Logo terlihat tapi tidak dominan. Visual harus stop the scroll dalam 1-2 detik. Selalu cek spesifikasi terbaru — platform sering berubah.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="copywriting">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Ad Copywriting Principles</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Core Fundamentals</div>
+        <div class="gc-body">Hook di kalimat pertama. Benefit, bukan fitur. Bahasa audiens, bukan jargon. Satu pesan per ad. CTA jelas. Singkat — mobile screen kecil.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Platform-Appropriate Copy</div>
+        <div class="gc-body">IG: casual + emoji secukupnya. TikTok: bahasa native gen-Z, trends. LinkedIn: profesional, data-driven. FB: storytelling boleh lebih panjang.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Persuasion Techniques <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Social proof:</b> "10.000+ pelanggan puas", rating bintang, testimonial</li>
+          <li><b>Scarcity &amp; urgency:</b> "Stok terbatas", "Berakhir malam ini"</li>
+          <li><b>Problem-agitate-solve:</b> angkat masalah → perbesar → tawarkan solusi</li>
+          <li><b>Curiosity gap:</b> buat penasaran tanpa clickbait menyesatkan</li>
+          <li><b>Specificity:</b> "Hemat Rp 250.000" lebih kuat dari "Hemat besar"</li>
+          <li>Etika: jangan janji palsu — merusak trust dan melanggar kebijakan platform</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="video-static">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Video vs Static Ads</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Video Ads</div>
+        <div class="gc-body"><b>Kelebihan:</b> engagement lebih tinggi, storytelling, demo produk. <b>Kunci:</b> hook 3 detik pertama, works tanpa suara (captions!), 9-15 detik untuk feed, branding muncul awal.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Static Ads</div>
+        <div class="gc-body"><b>Kelebihan:</b> murah dan cepat diproduksi, pesan instant, mudah A/B test. <b>Kunci:</b> satu visual kuat, headline besar, CTA jelas. Cocok untuk penawaran langsung dan retargeting.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Kapan Pakai Yang Mana?</div>
+      <ul class="styled">
+        <li><b>Video:</b> brand awareness, produk yang perlu demo, storytelling emosional, TikTok/Reels</li>
+        <li><b>Static:</b> promo/diskon langsung, retargeting, budget produksi terbatas, A/B testing cepat</li>
+        <li><b>Carousel:</b> multiple produk, step-by-step, before-after</li>
+        <li>Best practice: kombinasikan keduanya dalam satu campaign</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="canva-ads">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Creating Ads dengan Canva</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Workflow Pembuatan Ads</div>
+      <ol class="styled">
+        <li>Pilih template sesuai format (Instagram Post, Story, Facebook Ad)</li>
+        <li>Atau custom size sesuai spesifikasi platform</li>
+        <li>Setup Brand Kit: logo, warna, font brand</li>
+        <li>Ganti visual dengan foto produk/asset sendiri</li>
+        <li>Headline singkat dan besar — terbaca di thumbnail</li>
+        <li>Tambahkan CTA element (button-style shape + teks)</li>
+        <li>Magic Resize untuk adaptasi ke format lain sekaligus</li>
+        <li>Export: PNG (statis), MP4 (animated/video)</li>
+      </ol>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Desain Ads di Canva <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Gunakan animasi sederhana untuk feed ads (fade, rise) — gerakan menarik mata</li>
+          <li>Kontras warna CTA dengan background</li>
+          <li>Maksimal 2 font dalam satu ad</li>
+          <li>Konsisten dengan brand kit di semua variasi</li>
+          <li>Buat 2-3 variasi untuk A/B testing</li>
+          <li>Preview dalam ukuran kecil — masih terbaca?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="optimization">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Campaign Execution &amp; Optimization</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">CTR</div><div class="gc-body">Click-through rate — efektivitas creative menarik klik. Rendah? Ganti visual/headline.</div></div>
+      <div class="grid-card"><div class="gc-title">CPC / CPM</div><div class="gc-body">Cost per click / per 1000 impressions — efisiensi budget. Bandingkan antar creative.</div></div>
+      <div class="grid-card"><div class="gc-title">ROAS</div><div class="gc-body">Return on ad spend — revenue per rupiah iklan. Metrik bisnis utama untuk conversion campaign.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Optimization Loop</div>
+      <ol class="styled">
+        <li>Launch dengan 2-3 variasi creative</li>
+        <li>Monitor 3-7 hari (beri waktu learning phase)</li>
+        <li>Matikan creative berkinerja buruk</li>
+        <li>Scale yang berkinerja baik</li>
+        <li>Buat variasi baru dari pemenang (iterate)</li>
+        <li>Refresh creative berkala — ad fatigue itu nyata</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum &amp; Penutup</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum: Social Media Ad Campaign</div>
+      <ul class="styled">
+        <li>Pilih produk/jasa (nyata atau fiktif)</li>
+        <li>Buat ads untuk 3 format: IG feed (1080×1080), Story/Reels (1080×1920), FB link ad (1200×628)</li>
+        <li>Copywriting per platform dengan CTA jelas</li>
+        <li>2 variasi untuk A/B test salah satu format + hipotesis</li>
+        <li>Tools: Canva dengan brand kit konsisten</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Penutup Semester</div>
+      <p>Selamat! Anda telah menyelesaikan perjalanan lengkap Desain Komunikasi Visual — dari teori persepsi, Gestalt, visual rhetoric, semiotics, hingga keterampilan praktis: branding, GIMP/Inkscape, vector lanjutan, tools promosi, photo release, in house journal, EDM, podcast/video, dan social media advertising. Persiapkan portfolio dan final project Anda untuk UAS. Semua skill ini adalah bekal nyata untuk karir di industri kreatif!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p14.html">← Pertemuan 14</a>
+    <a href="../index.html" class="next-btn" style="background:var(--gold);border-color:var(--gold);">Kembali ke Index →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

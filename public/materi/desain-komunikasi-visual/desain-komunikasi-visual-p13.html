@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 13 – Digital Brosur &amp; EDM | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Digital Brosur &amp; EDM</div>
+    <div class="pertemuan-badge">Pertemuan 13</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#digital-vs-print" class="toc-link">Digital vs Print Brosur</a>
+    <a href="#email-marketing" class="toc-link">Email Marketing</a>
+    <a href="#edm-design" class="toc-link">EDM Design Principles</a>
+    <a href="#tools" class="toc-link">Tools: Canva &amp; GIMP</a>
+    <a href="#ab-testing" class="toc-link">A/B Testing &amp; Metrics</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 13 · Desain Komunikasi Visual</div>
+    <h1>Digital Brosur/Pamflet &amp; Email Direct Marketing</h1>
+    <p class="subtitle">Interactive PDF, email marketing best practices, mobile-responsive EDM design, CTA yang mendorong konversi, A/B testing, dan metrics untuk optimasi campaign.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Digital Marketing Design</span></div>
+      <div class="meta-badge">Tools: <span>Canva · GIMP</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami perbedaan digital dan print brosur/pamflet</li>
+        <li>Merancang interactive PDF dengan navigasi dan elemen interaktif</li>
+        <li>Menerapkan email marketing best practices dalam desain EDM</li>
+        <li>Mengimplementasikan mobile-responsive design principles</li>
+        <li>Merancang visual hierarchy untuk email marketing</li>
+        <li>Membuat CTA yang mendorong konversi</li>
+        <li>Menggunakan Canva dan GIMP untuk produksi</li>
+        <li>Memahami A/B testing dan metrics email marketing</li>
+        <li>Menerapkan accessibility standards</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="digital-vs-print">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Digital vs Print Brosur</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Karakteristik Digital Brosur</div>
+        <div class="gc-body">RGB color, 72-150 DPI, dilihat di layar (sering mobile), bisa interaktif (link, navigasi, video), distribusi instant dan gratis, mudah diupdate, ukuran file penting.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Design Considerations</div>
+        <div class="gc-body">Landscape orientation lebih cocok untuk layar. Font lebih besar (min 12-14pt). Kontras kuat untuk berbagai layar. Navigasi jelas antar halaman. Single-page scroll juga opsi.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Interactive PDF Features <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Hyperlinks:</b> ke website, email, telepon</li>
+          <li><b>Internal navigation:</b> tombol ke halaman/section tertentu, table of contents clickable</li>
+          <li><b>Bookmarks:</b> struktur navigasi di sidebar PDF reader</li>
+          <li><b>Embedded media:</b> (terbatas dukungan) — lebih aman link ke video online</li>
+          <li><b>Tips:</b> file di bawah 10MB, test di beberapa PDF reader, sediakan versi print-friendly, alt text untuk accessibility</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="email-marketing">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Email Marketing Fundamentals</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Email Marketing?</div>
+      <p>Email marketing memiliki ROI tertinggi di antara channel digital (~$36-42 per $1). Audience yang owned (bukan pinjam platform), targeting personal, dan measurable penuh. EDM (Email Direct Marketing) = email promosi yang dirancang untuk action spesifik.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Jenis Email</div><div class="gc-body">Newsletter (rutin, informatif), Promotional (penawaran), Transactional (konfirmasi), Welcome series, Re-engagement.</div></div>
+      <div class="grid-card"><div class="gc-title">Anatomy Email</div><div class="gc-body">Subject line → preheader → header/hero → body → CTA → footer (unsubscribe, kontak, social).</div></div>
+      <div class="grid-card"><div class="gc-title">Legal &amp; Etika</div><div class="gc-body">Wajib: unsubscribe link, identitas pengirim jelas, izin (opt-in). Jangan beli email list!</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="edm-design">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>EDM Design Principles</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-mobile')">Mobile-Responsive</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-hierarchy')">Visual Hierarchy</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-cta-edm')">CTA Design</button>
+      </div>
+      <div id="tab-mobile" class="tab-panel active">
+        <ul class="styled">
+          <li>60%+ email dibuka di mobile — design mobile-first</li>
+          <li>Single column layout untuk mobile</li>
+          <li>Lebar email 600-640px standar</li>
+          <li>Font minimal 14-16px untuk body</li>
+          <li>Tombol CTA minimal 44×44px (thumb-friendly)</li>
+          <li>Compress gambar — total email di bawah 102KB ideal</li>
+          <li>Test di email client nyata (Gmail, Outlook, mobile), bukan hanya preview</li>
+        </ul>
+      </div>
+      <div id="tab-hierarchy" class="tab-panel">
+        <ul class="styled">
+          <li>Informasi terpenting <b>above the fold</b> (terlihat tanpa scroll)</li>
+          <li>Satu pesan utama per email</li>
+          <li>Flow: hero visual → headline → benefit singkat → CTA</li>
+          <li>Design untuk <b>scanning</b>, bukan reading — paragraf pendek, bullet</li>
+          <li>Jangan image-only — banyak user mematikan gambar (plus alt text wajib)</li>
+        </ul>
+      </div>
+      <div id="tab-cta-edm" class="tab-panel">
+        <ul class="styled">
+          <li>Satu primary CTA — terlalu banyak menciptakan kebingungan</li>
+          <li>Button, bukan text link, untuk primary action</li>
+          <li>Warna kontras dengan keseluruhan email</li>
+          <li>Copy action-oriented: "Klaim Diskon", "Daftar Sekarang", "Lihat Koleksi"</li>
+          <li>Ulangi CTA di akhir email untuk pembaca yang scroll penuh</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tools">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Tools: Canva &amp; GIMP untuk EDM</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Canva untuk Email Design</div>
+        <div class="gc-body">Template email/newsletter siap pakai. Resize untuk format berbeda. Export PNG per section untuk email builder. Brand kit untuk konsistensi warna/font. Drag-and-drop cepat untuk non-coder.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">GIMP untuk Image Processing</div>
+        <div class="gc-body">Kompres dan resize gambar (Export As → kualitas JPG 70-85%). Crop hero image ke rasio tepat. Optimasi file size tanpa kehilangan kualitas visual. Batch processing untuk banyak gambar.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Workflow Interactive PDF</div>
+      <ol class="styled">
+        <li>Define purpose dan audience</li>
+        <li>Outline struktur konten (4-6 halaman)</li>
+        <li>Daftar elemen interaktif yang dibutuhkan</li>
+        <li>Sketch layout per halaman</li>
+        <li>Desain di Canva → export PDF</li>
+        <li>Tambahkan link/navigasi (Canva mendukung link saat export PDF)</li>
+        <li>Test interactivity di beberapa PDF reader</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ab-testing">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>A/B Testing &amp; Metrics</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>A/B Testing Fundamentals</h3>
+      <ul class="styled">
+        <li><b>Test satu variabel</b> dalam satu waktu: subject line, hero image, warna CTA, copy</li>
+        <li>Sample size memadai dan durasi cukup untuk signifikansi</li>
+        <li>Dokumentasikan semua hasil untuk pembelajaran kampanye berikutnya</li>
+        <li>Insight per segmen — yang works untuk satu audiens belum tentu untuk yang lain</li>
+      </ul>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Open Rate</div><div class="gc-body">% penerima yang membuka. Dipengaruhi subject line, sender name, timing. Benchmark ~20%.</div></div>
+      <div class="grid-card"><div class="gc-title">Click-Through Rate</div><div class="gc-body">% yang klik link/CTA. Dipengaruhi desain, hierarchy, CTA. Benchmark ~2-3%.</div></div>
+      <div class="grid-card"><div class="gc-title">Conversion Rate</div><div class="gc-body">% yang menyelesaikan action (beli, daftar). Metrik bisnis sesungguhnya.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Common Mistakes EDM <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Image-only emails (accessibility &amp; deliverability buruk)</li>
+          <li>Teks terlalu kecil di mobile</li>
+          <li>Terlalu banyak CTA</li>
+          <li>Tidak test mobile sebelum kirim</li>
+          <li>Broken links dan missing unsubscribe</li>
+          <li>File terlalu besar — loading lambat</li>
+          <li>Branding tidak konsisten dengan touchpoint lain</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum &amp; Tugas</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum: Digital Brosur + EDM Campaign</div>
+      <ul class="styled">
+        <li><b>Interactive digital brosur (PDF):</b> 4-6 halaman, navigasi, hyperlinks, mobile-readable</li>
+        <li><b>EDM campaign series:</b> minimal 2 email dengan desain konsisten</li>
+        <li>Evaluasi: first impression, mobile-responsiveness, visual hierarchy, CTA effectiveness</li>
+        <li>Sertakan A/B test proposal: elemen yang ditest, versi A/B, hipotesis, success metric</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">TUGAS INDIVIDUAL: Personal Brand EDM Campaign</div>
+      <p>Buat kampanye email untuk personal brand Anda: (1) definisi audience, (2) seri 3 email — welcome, value/content, promotional — dengan desain konsisten, (3) campaign strategy document 2-3 halaman, (4) A/B test proposal, (5) mobile preview screenshots + source files.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p12.html">← Pertemuan 12</a>
+    <a href="desain-komunikasi-visual-p14.html" class="next-btn">Pertemuan 14 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

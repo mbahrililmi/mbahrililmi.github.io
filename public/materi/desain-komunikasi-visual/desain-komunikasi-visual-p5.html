@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 5 – Visual Attention | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Visual Attention</div>
+    <div class="pertemuan-badge">Pertemuan 5</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#psychology" class="toc-link">Psychology of Attention</a>
+    <a href="#hierarchy" class="toc-link">Visual Hierarchy</a>
+    <a href="#contrast" class="toc-link">Contrast Principles</a>
+    <a href="#eye-tracking" class="toc-link">Eye-Tracking Patterns</a>
+    <a href="#cta" class="toc-link">Call-to-Action Design</a>
+    <a href="#optimization" class="toc-link">Attention Optimization</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Kuis</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 5 · Desain Komunikasi Visual</div>
+    <h1>Visual Attention</h1>
+    <p class="subtitle">Psikologi perhatian, visual hierarchy, kontras, eye-tracking patterns (Z-pattern, F-pattern), dan desain CTA yang efektif untuk era attention span singkat.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Attention &amp; Hierarchy</span></div>
+      <div class="meta-badge">Aplikasi: <span>Web · Iklan · UI</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Attention adalah Mata Uang Era Digital</div>
+      <p>Audiens modern memiliki attention span yang semakin pendek — Anda punya hitungan detik untuk menarik perhatian sebelum mereka scroll. Pertemuan ini membahas bagaimana attention bekerja secara psikologis dan teknik konkret untuk mengarahkan mata viewer ke elemen yang paling penting.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami prinsip psikologi attention</li>
+        <li>Membedakan bottom-up dan top-down attention</li>
+        <li>Menerapkan visual hierarchy untuk guide attention</li>
+        <li>Menggunakan kontras untuk menciptakan focal points</li>
+        <li>Mengaplikasikan eye-tracking patterns (Z-pattern, F-pattern)</li>
+        <li>Merancang call-to-action yang efektif</li>
+        <li>Mengoptimalkan desain untuk limited attention spans</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="psychology">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Psychology of Attention</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Bottom-Up Attention</div>
+        <div class="gc-body"><b>Stimulus-driven, otomatis.</b> Dipicu oleh properti visual: warna mencolok, gerakan, kontras tinggi, ukuran besar, hal yang tidak terduga. Desainer mengontrol ini melalui visual properties.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Top-Down Attention</div>
+        <div class="gc-body"><b>Goal-driven, disengaja.</b> Dipandu tujuan dan ekspektasi viewer: mencari tombol "beli", mencari harga. Desainer mendukung ini dengan konvensi dan penempatan yang predictable.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Attention Span dan Implikasinya <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Rata-rata waktu memutuskan untuk tetap di halaman web: ~3-5 detik</li>
+          <li>Viewer melakukan scanning, bukan reading — desain harus scannable</li>
+          <li>First impression terbentuk dalam 50 milidetik</li>
+          <li><b>Implikasi:</b> pesan utama harus instantly visible, hierarchy harus jelas, hilangkan elemen yang tidak perlu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Selective Attention &amp; Banner Blindness <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Selective attention:</b> kita fokus pada stimuli tertentu dan mengabaikan lainnya</li>
+          <li><b>Banner blindness:</b> pengguna web otomatis mengabaikan area yang terlihat seperti iklan</li>
+          <li><b>Inattentional blindness:</b> kita melewatkan hal yang tidak kita perhatikan (Invisible Gorilla)</li>
+          <li><b>Pelajaran:</b> jangan buat konten penting terlihat seperti iklan; integrasikan dengan konten natural</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="hierarchy">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Visual Hierarchy</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p>Visual hierarchy adalah pengaturan elemen yang menunjukkan <b>urutan kepentingan</b> — memandu mata viewer dari elemen terpenting ke yang kurang penting dalam urutan yang Anda inginkan.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Size &amp; Scale</div><div class="gc-body">Elemen besar dilihat pertama. Headline &gt; subheadline &gt; body.</div></div>
+      <div class="grid-card"><div class="gc-title">Color &amp; Contrast</div><div class="gc-body">Warna cerah dan kontras tinggi menarik mata. Satu accent color untuk fokus.</div></div>
+      <div class="grid-card"><div class="gc-title">Position</div><div class="gc-body">Atas dan tengah dilihat lebih dulu. Posisi mengikuti reading pattern.</div></div>
+      <div class="grid-card"><div class="gc-title">Whitespace</div><div class="gc-body">Ruang kosong di sekitar elemen membuatnya menonjol — isolation effect.</div></div>
+      <div class="grid-card"><div class="gc-title">Typography Weight</div><div class="gc-body">Bold, italic, dan ukuran berbeda menciptakan tingkatan informasi.</div></div>
+      <div class="grid-card"><div class="gc-title">Visual Cues</div><div class="gc-body">Panah, garis, gaze direction dari foto orang mengarahkan perhatian.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Squint Test — Evaluasi Hierarchy <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Cara cepat mengevaluasi visual hierarchy:</p>
+        <ol class="styled">
+          <li>Lihat desain Anda sambil menyipitkan mata (atau blur image)</li>
+          <li>Elemen apa yang masih terlihat menonjol?</li>
+          <li>Apakah itu elemen yang memang ingin Anda tonjolkan?</li>
+          <li>Jika yang menonjol adalah elemen sekunder — hierarchy perlu diperbaiki</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="contrast">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Contrast Principles</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Color Contrast</div><div class="gc-body">Dark vs light, complementary colors. Pastikan rasio WCAG 4.5:1 untuk teks.</div></div>
+      <div class="grid-card"><div class="gc-title">Size Contrast</div><div class="gc-body">Besar vs kecil — perbedaan harus signifikan agar terlihat disengaja.</div></div>
+      <div class="grid-card"><div class="gc-title">Shape Contrast</div><div class="gc-body">Lingkaran di antara kotak-kotak akan menonjol. Organic vs geometric.</div></div>
+      <div class="grid-card"><div class="gc-title">Type Contrast</div><div class="gc-body">Serif vs sans-serif, bold vs light, besar vs kecil — maksimal 2-3 fonts.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Menggunakan Kontras Secara Efektif</div>
+      <ul class="styled">
+        <li>Satu focal point utama — jika semua menonjol, tidak ada yang menonjol</li>
+        <li>Kontras harus jelas dan disengaja, bukan samar</li>
+        <li>Gunakan kontras untuk CTA — warna berbeda dari skema utama</li>
+        <li>Kontras juga untuk readability, bukan hanya emphasis</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="eye-tracking">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Eye-Tracking Patterns</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-z')">Z-Pattern</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-f')">F-Pattern</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-gutenberg')">Gutenberg Diagram</button>
+      </div>
+      <div id="tab-z" class="tab-panel active">
+        <ul class="styled">
+          <li>Mata bergerak: kiri-atas → kanan-atas → diagonal ke kiri-bawah → kanan-bawah</li>
+          <li>Cocok untuk: desain sederhana dengan sedikit teks — landing pages, iklan, poster</li>
+          <li><b>Strategi:</b> logo di kiri-atas, navigasi/info di kanan-atas, konten di tengah diagonal, CTA di kanan-bawah</li>
+        </ul>
+      </div>
+      <div id="tab-f" class="tab-panel">
+        <ul class="styled">
+          <li>Mata scan: horizontal atas penuh → horizontal kedua lebih pendek → vertical scan di kiri</li>
+          <li>Cocok untuk: halaman text-heavy — artikel, blog, search results</li>
+          <li><b>Strategi:</b> informasi penting di 2 paragraf pertama, subheading yang descriptive, front-load keywords di awal baris</li>
+        </ul>
+      </div>
+      <div id="tab-gutenberg" class="tab-panel">
+        <ul class="styled">
+          <li>Membagi layout jadi 4 kuadran: Primary (kiri-atas), Strong fallow (kanan-atas), Weak fallow (kiri-bawah), Terminal (kanan-bawah)</li>
+          <li>Reading gravity bergerak dari kiri-atas ke kanan-bawah</li>
+          <li><b>Strategi:</b> mulai dengan hook di primary area, akhiri dengan CTA di terminal area</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="cta">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Call-to-Action (CTA) Design</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Anatomy of Effective CTA</div>
+      <ul class="styled">
+        <li><b>Action verb:</b> "Download", "Daftar", "Beli", "Coba Gratis" — mulai dengan kata kerja</li>
+        <li><b>Value clarity:</b> apa yang user dapatkan? "Download Gratis E-book"</li>
+        <li><b>Urgency (optional):</b> "Sekarang", "Hari Ini", "Terbatas"</li>
+        <li><b>Ukuran:</b> cukup besar untuk terlihat dan di-tap (min 44×44px mobile)</li>
+        <li><b>Warna:</b> kontras dengan sekitar — accent color khusus CTA</li>
+        <li><b>Whitespace:</b> beri ruang agar CTA terisolasi dan menonjol</li>
+      </ul>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">First-Person Works</div><div class="gc-body">"Mulai Trial Saya" sering outperform "Mulai Trial Anda" dalam A/B test.</div></div>
+      <div class="grid-card"><div class="gc-title">One Primary CTA</div><div class="gc-body">Terlalu banyak CTA = decision paralysis. Satu primary, sisanya secondary (ghost button).</div></div>
+      <div class="grid-card"><div class="gc-title">Above the Fold</div><div class="gc-body">CTA utama terlihat tanpa scroll, dan diulang di akhir halaman.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="optimization">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Attention Optimization Strategies</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Reduce Cognitive Load</div><div class="gc-body">Hilangkan elemen tidak perlu, batasi pilihan, gunakan konvensi familiar, progressive disclosure.</div></div>
+      <div class="grid-card"><div class="gc-title">Create Clear Focus</div><div class="gc-body">Satu pesan utama per layar/halaman, focal point jelas, supporting elements yang benar-benar mendukung.</div></div>
+      <div class="grid-card"><div class="gc-title">Optimize untuk Scanning</div><div class="gc-body">Subheadings deskriptif, bullet points, paragraf pendek, bold untuk keyword penting.</div></div>
+      <div class="grid-card"><div class="gc-title">Readable Text</div><div class="gc-body">Min 16px untuk body web, line-height 1.5-1.7, line length 50-75 karakter, kontras cukup.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum &amp; Kuis</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Visual Hierarchy Analysis</div>
+      <ul class="styled">
+        <li>Koleksi contoh desain (web, poster, iklan)</li>
+        <li>Identifikasi hierarchy: apa yang dilihat ke-1, ke-2, ke-3?</li>
+        <li>Analisis teknik yang digunakan (size, color, position, whitespace)</li>
+        <li>Lakukan squint test dan evaluasi</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 2: Create Hierarchy Variations</div>
+      <ul class="styled">
+        <li>Buat 1 konten yang sama dalam 3 hierarchy berbeda</li>
+        <li>Setiap versi menonjolkan elemen yang berbeda</li>
+        <li>Bandingkan: bagaimana perubahan hierarchy mengubah pesan?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 3 &amp; 4: Eye-Tracking + CTA Design</div>
+      <ul class="styled">
+        <li>Desain layout mengikuti Z-pattern dan F-pattern</li>
+        <li>Buat CTA untuk 5 skenario: e-commerce, newsletter, app landing, donation, webinar</li>
+        <li>Variasikan copy, warna, ukuran — pilih versi terbaik dengan justifikasi</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Kuis Pertemuan 5</div>
+      <p>Kuis mencakup materi pertemuan 1-5: multiple choice, true/false, short answer, visual analysis, dan scenario. Pelajari kembali: prinsip desain, Gestalt, visual rhetoric, semiotics, dan visual attention. Tugas Analisis Visual Rhetoric (P3) dikumpulkan sebelum kuis.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p4.html">← Pertemuan 4</a>
+    <a href="desain-komunikasi-visual-p6.html" class="next-btn">Pertemuan 6 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

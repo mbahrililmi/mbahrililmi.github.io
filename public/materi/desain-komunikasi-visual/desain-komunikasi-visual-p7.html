@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 7 – Software Desain Grafis 2D (GIMP &amp; Inkscape) | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.kbd{display:inline-block;background:var(--navy);color:#fff;font-size:.75rem;padding:2px 8px;border-radius:4px;font-family:monospace;font-weight:600;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Software Desain Grafis 2D</div>
+    <div class="pertemuan-badge">Pertemuan 7</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#raster-vector" class="toc-link">Raster vs Vector</a>
+    <a href="#gimp" class="toc-link">GIMP</a>
+    <a href="#inkscape" class="toc-link">Inkscape</a>
+    <a href="#workflows" class="toc-link">Common Workflows</a>
+    <a href="#file-formats" class="toc-link">File Formats &amp; Export</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 7 · Desain Komunikasi Visual</div>
+    <h1>Software Desain Grafis 2D — GIMP &amp; Inkscape</h1>
+    <p class="subtitle">Memahami perbedaan raster dan vector graphics, menguasai GIMP untuk image editing dan Inkscape untuk vector graphics, plus file formats dan export workflow.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Software: <span>GIMP · Inkscape</span></div>
+      <div class="meta-badge">Tipe: <span>Hands-on Praktikum</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami perbedaan fundamental raster dan vector graphics</li>
+        <li>Menjelaskan kelebihan dan kekurangan masing-masing format</li>
+        <li>Mengoperasikan GIMP untuk raster image editing</li>
+        <li>Menggunakan Inkscape untuk vector graphics</li>
+        <li>Memilih software yang tepat untuk project tertentu</li>
+        <li>Menerapkan workflow efisien dalam kedua aplikasi</li>
+        <li>Mengintegrasikan output GIMP dan Inkscape dalam satu project</li>
+        <li>Memahami format file dan export options</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="raster-vector">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Raster vs Vector</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Aspek</th><th>Raster (Bitmap)</th><th>Vector</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Terdiri dari</td><td>Pixels (titik warna)</td><td>Paths matematis (titik, garis, kurva)</td></tr>
+        <tr><td>Scaling</td><td>Pecah/blur saat diperbesar</td><td>Tajam di ukuran apapun</td></tr>
+        <tr><td>File size</td><td>Besar (tergantung resolusi)</td><td>Relatif kecil</td></tr>
+        <tr><td>Cocok untuk</td><td>Foto, digital painting, photo editing</td><td>Logo, ikon, ilustrasi, tipografi</td></tr>
+        <tr><td>Software</td><td>GIMP, Photoshop</td><td>Inkscape, Illustrator</td></tr>
+        <tr><td>Format</td><td>JPG, PNG, GIF, TIFF, XCF, PSD</td><td>SVG, AI, EPS, PDF</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <div class="hb-title">When to Use Which?</div>
+      <p><b>Gunakan raster (GIMP)</b> untuk: edit foto, manipulasi gambar, digital painting, texture, web graphics dengan efek kompleks. <b>Gunakan vector (Inkscape)</b> untuk: logo, ikon, ilustrasi flat, infografis, desain yang harus discale (kartu nama hingga billboard). <b>Banyak project menggunakan keduanya:</b> logo vector + foto raster dalam satu poster.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="gimp">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>GIMP — Raster Editing</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Interface Overview <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Toolbox (kiri):</b> selection, paint, transform tools</li>
+          <li><b>Tool Options:</b> di bawah toolbox — setting tool aktif</li>
+          <li><b>Canvas (tengah):</b> area kerja image</li>
+          <li><b>Layers/Channels/Paths (kanan):</b> panel dockable</li>
+          <li><b>Single-Window Mode:</b> Windows → Single-Window Mode (recommended)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Essential Tools <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Selection tools:</b> Rectangle (R), Ellipse (E), Free Select/Lasso (F), Fuzzy Select/Magic Wand (U), Select by Color</li>
+          <li><b>Move (M)</b> dan <b>Crop (Shift+C)</b></li>
+          <li><b>Transform:</b> Scale, Rotate, Flip, Perspective (Shift+T unified transform)</li>
+          <li><b>Paint:</b> Pencil (N), Paintbrush (P), Eraser (Shift+E), Bucket Fill (Shift+B), Gradient (G)</li>
+          <li><b>Clone (C)</b> dan <b>Heal (H):</b> retouching — hapus objek/noda</li>
+          <li><b>Text (T):</b> tambah teks sebagai layer terpisah</li>
+          <li><b>Color Picker (O):</b> ambil warna dari image</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Working dengan Layers <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Layer = lembar transparan bertumpuk — edit non-destructive</li>
+          <li>Selalu duplicate layer sebelum edit besar (safety backup)</li>
+          <li><b>Layer modes:</b> Multiply, Screen, Overlay untuk blending effects</li>
+          <li><b>Opacity:</b> transparansi per layer</li>
+          <li><b>Layer mask:</b> sembunyikan bagian layer tanpa menghapus</li>
+          <li>Flatten hanya saat export final</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Adjustment Penting <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Colors → Levels:</b> perbaiki exposure dengan histogram</li>
+          <li><b>Colors → Curves:</b> kontrol tonal paling powerful</li>
+          <li><b>Colors → Hue-Saturation:</b> ubah warna dan intensitas</li>
+          <li><b>Colors → Brightness-Contrast:</b> penyesuaian cepat</li>
+          <li><b>Filters:</b> Blur, Sharpen, Artistic, Light and Shadow</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="inkscape">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Inkscape — Vector Graphics</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Essential Tools <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">S</span> Selection tool — pilih, pindah, scale, rotate objek</li>
+          <li><span class="kbd">N</span> Node tool — edit titik dan kurva path</li>
+          <li><span class="kbd">R</span> Rectangle, <span class="kbd">E</span> Ellipse, <span class="kbd">*</span> Star/Polygon</li>
+          <li><span class="kbd">B</span> Bezier/Pen tool — gambar path custom</li>
+          <li><span class="kbd">P</span> Pencil — freehand drawing</li>
+          <li><span class="kbd">T</span> Text tool</li>
+          <li><span class="kbd">G</span> Gradient tool</li>
+          <li><span class="kbd">F7</span> Dropper — ambil warna</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Path Operations (Boolean) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">Ctrl++</span> Union — gabungkan shapes</li>
+          <li><span class="kbd">Ctrl+−</span> Difference — potong shape atas dari bawah</li>
+          <li><span class="kbd">Ctrl+*</span> Intersection — hanya area overlap</li>
+          <li><span class="kbd">Ctrl+^</span> Exclusion — semua kecuali overlap</li>
+          <li>Path → Object to Path (<span class="kbd">Shift+Ctrl+C</span>): convert shape/text ke editable path</li>
+          <li>Kombinasi path operations = teknik utama desain logo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Fill, Stroke &amp; Alignment <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><span class="kbd">Shift+Ctrl+F</span> Fill and Stroke dialog — warna, gradient, pattern, stroke width</li>
+          <li>Klik palette = fill; Shift+klik = stroke</li>
+          <li><span class="kbd">Shift+Ctrl+A</span> Align and Distribute — rata kiri/tengah/kanan, distribusi merata</li>
+          <li>Object → Raise/Lower untuk z-order (Page Up/Down)</li>
+          <li>Group: <span class="kbd">Ctrl+G</span>, Ungroup: <span class="kbd">Shift+Ctrl+G</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="workflows">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Common Workflows</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-photo')">Photo Enhancement</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-composite')">Compositing</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-logo')">Logo Sederhana</button>
+      </div>
+      <div id="tab-photo" class="tab-panel active">
+        <p style="font-size:.85rem;color:#666;margin-bottom:8px;">GIMP:</p>
+        <ol class="styled">
+          <li>Open image → Duplicate layer (backup)</li>
+          <li>Adjustments: Colors → Levels, Curves, Hue-Saturation</li>
+          <li>Retouching: Clone dan Heal tools</li>
+          <li>Crop jika perlu</li>
+          <li>Export: File → Export As (JPG/PNG)</li>
+        </ol>
+      </div>
+      <div id="tab-composite" class="tab-panel">
+        <p style="font-size:.85rem;color:#666;margin-bottom:8px;">GIMP:</p>
+        <ol class="styled">
+          <li>Open base image + open gambar tambahan</li>
+          <li>Select, copy, paste as new layers</li>
+          <li>Hapus background dengan selection + delete (atau layer mask)</li>
+          <li>Blend dengan layer modes dan opacity</li>
+          <li>Adjust colors untuk konsistensi antar elemen</li>
+          <li>Export final</li>
+        </ol>
+      </div>
+      <div id="tab-logo" class="tab-panel">
+        <p style="font-size:.85rem;color:#666;margin-bottom:8px;">Inkscape:</p>
+        <ol class="styled">
+          <li>New document</li>
+          <li>Gambar shapes dasar (circle, rectangle)</li>
+          <li>Gunakan path operations (union, difference)</li>
+          <li>Tambahkan teks, sesuaikan font</li>
+          <li>Atur fill colors, hilangkan stroke (atau sebaliknya)</li>
+          <li>Align elements dan group</li>
+          <li>Save SVG (master) + export PNG</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="file-formats">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>File Formats &amp; Export</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Format Raster</div>
+        <div class="gc-body">
+          <b>JPG:</b> foto, lossy, file kecil — no transparency<br>
+          <b>PNG:</b> lossless, support transparency — web graphics<br>
+          <b>GIF:</b> animasi sederhana, 256 warna<br>
+          <b>TIFF:</b> print quality, lossless<br>
+          <b>XCF:</b> native GIMP — simpan layers
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Format Vector</div>
+        <div class="gc-body">
+          <b>SVG:</b> standar web, native Inkscape, editable<br>
+          <b>PDF:</b> print dan dokumen, universal<br>
+          <b>EPS:</b> legacy print format<br>
+          <b>AI:</b> Adobe Illustrator (Inkscape bisa import)
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Export Guidelines</div>
+      <ul class="styled">
+        <li><b>Web:</b> PNG/JPG, 72 DPI, RGB, optimasi ukuran file</li>
+        <li><b>Print:</b> PDF/TIFF, 300 DPI, CMYK (perhatikan konversi warna)</li>
+        <li><b>Logo delivery:</b> SVG + PNG (berbagai ukuran) + PDF</li>
+        <li>Selalu simpan file master (XCF/SVG) terpisah dari export</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 7</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Latihan 1: GIMP Photo Enhancement</div>
+      <ul class="styled">
+        <li>Pilih foto dengan exposure/warna kurang baik</li>
+        <li>Perbaiki dengan Levels, Curves, Hue-Saturation</li>
+        <li>Retouch noda/objek mengganggu dengan Clone/Heal</li>
+        <li>Export before-after comparison</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Latihan 2: GIMP Composite</div>
+      <ul class="styled">
+        <li>Gabungkan minimal 3 gambar menjadi satu komposisi</li>
+        <li>Gunakan layers, layer mask, dan blending modes</li>
+        <li>Pastikan pencahayaan dan warna konsisten</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Latihan 3: Inkscape Vector Practice</div>
+      <ul class="styled">
+        <li>Buat logo sederhana dengan path operations</li>
+        <li>Buat 4 ikon flat dengan style konsisten</li>
+        <li>Latih Bezier tool: trace bentuk sederhana</li>
+        <li>Export SVG + PNG</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Latihan 4: Integrasi GIMP + Inkscape</div>
+      <ul class="styled">
+        <li>Buat poster sederhana: foto (edit di GIMP) + logo dan teks vector (Inkscape)</li>
+        <li>Workflow: edit foto di GIMP → export PNG → import ke Inkscape → layout final</li>
+        <li>Export hasil akhir sebagai PNG dan PDF</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p6.html">← Pertemuan 6</a>
+    <a href="desain-komunikasi-visual-p9.html" class="next-btn">Pertemuan 9 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

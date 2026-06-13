@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 12 – In House Journal | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">In House Journal</div>
+    <div class="pertemuan-badge">Pertemuan 12</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#fungsi" class="toc-link">Tujuan &amp; Fungsi</a>
+    <a href="#corporate-journalism" class="toc-link">Corporate Journalism</a>
+    <a href="#layout" class="toc-link">Magazine Layout</a>
+    <a href="#grid" class="toc-link">Grid Systems</a>
+    <a href="#typography" class="toc-link">Typography Publikasi</a>
+    <a href="#workflow" class="toc-link">Production Workflow</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Kuis</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 12 · Desain Komunikasi Visual</div>
+    <h1>In House Journal</h1>
+    <p class="subtitle">Corporate journalism dan editorial design — magazine layout, grid systems, typography untuk publikasi, dan production workflow dari konsep hingga distribusi.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Editorial Design</span></div>
+      <div class="meta-badge">Software: <span>Scribus · Canva · GIMP</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami fungsi in house journal dalam corporate communications</li>
+        <li>Membedakan in house journal dari publikasi eksternal</li>
+        <li>Menerapkan prinsip corporate journalism</li>
+        <li>Merancang magazine layout yang engaging dan readable</li>
+        <li>Menggunakan grid systems dalam editorial design</li>
+        <li>Menerapkan typography principles untuk publikasi</li>
+        <li>Menggunakan Scribus/GIMP/Canva untuk journal production</li>
+        <li>Memahami production workflow konsep → distribusi</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="fungsi">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Tujuan &amp; Fungsi In House Journal</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p>In house journal adalah publikasi internal organisasi (majalah, buletin, newsletter) yang ditujukan untuk karyawan, anggota, atau stakeholder internal — sarana komunikasi korporat yang membangun budaya, engagement, dan keterbukaan informasi.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Informasi</div><div class="gc-body">Kebijakan baru, perkembangan organisasi, pengumuman penting.</div></div>
+      <div class="grid-card"><div class="gc-title">Engagement</div><div class="gc-body">Profil karyawan, prestasi tim, kegiatan sosial — rasa memiliki.</div></div>
+      <div class="grid-card"><div class="gc-title">Budaya</div><div class="gc-body">Memperkuat nilai-nilai, visi-misi, dan identitas organisasi.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">In House Journal vs Publikasi Eksternal <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Audiens:</b> internal (karyawan/anggota) vs publik/customer</li>
+          <li><b>Tone:</b> lebih personal dan familial vs formal/promotional</li>
+          <li><b>Konten:</b> internal news, profil orang dalam vs produk dan brand story</li>
+          <li><b>Tujuan:</b> engagement dan budaya vs marketing dan reputasi</li>
+          <li>Karakteristik efektif: relevan bagi pembaca internal, konsisten terbit, desain menarik, kontribusi dua arah</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="corporate-journalism">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Corporate Journalism Principles</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Story Types</div>
+        <div class="gc-body">News (pengumuman, milestone), Feature (profil, behind-the-scenes), How-to (tips kerja), Opinion/editorial, Photo story (event coverage), Q&amp;A/interview.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Writing Style</div>
+        <div class="gc-body">Inverted pyramid untuk news (terpenting dulu). Lead menarik. Bahasa jelas, hindari jargon korporat berlebihan. Kutipan langsung menghidupkan cerita. Human interest angle.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Ethical Considerations <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Akurasi — verifikasi fakta meski publikasi internal</li>
+          <li>Keseimbangan antara kepentingan manajemen dan suara karyawan</li>
+          <li>Privasi — izin sebelum mempublikasi foto/cerita personal</li>
+          <li>Kredit untuk penulis dan fotografer</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="layout">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Magazine Layout &amp; Editorial Design</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Anatomy of Magazine Layout</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Headline &amp; Deck</div><div class="gc-body">Judul utama + subjudul/ringkasan yang menarik pembaca masuk.</div></div>
+        <div class="grid-card"><div class="gc-title">Body Text &amp; Columns</div><div class="gc-body">Teks artikel dalam kolom-kolom yang readable.</div></div>
+        <div class="grid-card"><div class="gc-title">Images &amp; Captions</div><div class="gc-body">Foto/ilustrasi dengan caption — visual anchor halaman.</div></div>
+        <div class="grid-card"><div class="gc-title">Pull Quotes</div><div class="gc-body">Kutipan menarik diperbesar — visual break dan hook.</div></div>
+        <div class="grid-card"><div class="gc-title">Folios</div><div class="gc-body">Nomor halaman, nama publikasi, edisi di tepi halaman.</div></div>
+        <div class="grid-card"><div class="gc-title">White Space</div><div class="gc-body">Ruang napas — kunci layout elegan dan readable.</div></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Common Magazine Layouts <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Classic/Symmetrical:</b> formal, seimbang — cocok untuk konten serius</li>
+          <li><b>Modular:</b> blok-blok konten dalam grid — newsletter, berita pendek</li>
+          <li><b>Picture-dominant:</b> foto besar mendominasi spread — feature, photo story</li>
+          <li><b>Type-dominant:</b> tipografi sebagai hero — opinion, editorial</li>
+          <li><b>Spread design:</b> dua halaman sebagai satu kanvas — feature utama</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="grid">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Grid Systems</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Grid?</div>
+      <p>Grid memberi struktur, konsistensi, dan kecepatan kerja. Pembaca merasakan keteraturan tanpa menyadarinya. Grid bukan penjara — setelah dikuasai, melanggar grid secara sengaja menjadi teknik desain yang kuat.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Komponen Grid</div>
+        <div class="gc-body"><b>Margins:</b> tepi halaman. <b>Columns:</b> kolom vertikal konten. <b>Gutters:</b> jarak antar kolom. <b>Rows/baseline grid:</b> ritme vertikal. <b>Modules:</b> unit kotak hasil perpotongan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Jenis Grid untuk Majalah</div>
+        <div class="gc-body"><b>2-column:</b> simple, formal. <b>3-column:</b> paling umum, fleksibel. <b>4+ column:</b> kompleks, banyak kombinasi. <b>Modular grid:</b> kontrol horizontal + vertikal.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Implementing Grid (Scribus/Canva)</div>
+      <ol class="styled">
+        <li>New Document → set page size (A4 umum untuk journal)</li>
+        <li>Page → Manage Guides → buat grid kolom</li>
+        <li>Set columns (3-4 tipikal) dan gutter width (4-5mm)</li>
+        <li>Set margins (15-20mm)</li>
+        <li>Save sebagai template untuk konsistensi antar halaman</li>
+        <li>Elemen boleh span 1, 2, atau 3 kolom — variasi dalam keteraturan</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="typography">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Typography untuk Publikasi</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Typography Hierarchy</div>
+        <div class="gc-body">Headline (24-48pt) → Deck (14-18pt) → Subheading (12-14pt bold) → Body (9-11pt) → Caption (8-9pt italic). Konsisten di seluruh publikasi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Font Selection</div>
+        <div class="gc-body">Serif untuk body cetak (readable panjang — Georgia, PT Serif). Sans-serif untuk heading dan caption (Inter, Open Sans). Max 2-3 font families.</div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Typography Best Practices <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Line length 45-75 karakter per baris</li>
+          <li>Leading (line spacing) 120-145% dari font size</li>
+          <li>Hindari widow/orphan (kata tunggal di akhir/awal kolom)</li>
+          <li>Justified text butuh hyphenation; left-align lebih aman</li>
+          <li>Drop caps untuk pembuka artikel feature</li>
+          <li>Pull quotes 18-24pt dengan style berbeda</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="workflow">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Production Workflow</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Konsep ke Distribusi</div>
+      <ol class="styled">
+        <li><b>Planning:</b> tema edisi, rubrik, penanggung jawab konten, timeline</li>
+        <li><b>Content development:</b> penulisan artikel, fotografi, wawancara</li>
+        <li><b>Design phase:</b> layout per halaman mengikuti grid dan template</li>
+        <li><b>Review &amp; approval:</b> proofreading, persetujuan manajemen/redaksi</li>
+        <li><b>Production:</b> export print-ready PDF (CMYK, 300 DPI, bleed) atau versi digital</li>
+        <li><b>Distribution:</b> cetak fisik, email PDF, intranet, atau web version</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum &amp; Kuis</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Grid System Analysis &amp; Application</div>
+      <ul class="styled">
+        <li>Koleksi contoh spread majalah, identifikasi grid yang digunakan</li>
+        <li>Comparative analysis antar majalah</li>
+        <li>Desain grid Anda sendiri (3-column, A4) sebagai template</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 2: In House Journal Spread Design</div>
+      <ul class="styled">
+        <li>Pilih konteks: kampus, perusahaan fiktif, atau organisasi</li>
+        <li>Buat konten: 1 artikel + foto + caption + pull quote</li>
+        <li>Desain spread 2 halaman mengikuti grid</li>
+        <li>Requirements: hierarchy jelas, typography konsisten, white space terjaga</li>
+        <li>Tools: Scribus, Canva, atau Inkscape</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">KUIS 1: Materi Pertemuan 1–12</div>
+      <p>Mencakup: orientasi DKV, visual perception &amp; Gestalt, visual rhetoric, semiotics, visual attention, brand identity, software 2D (GIMP/Inkscape/Canva), vector lanjutan, tools promosi, photo release, dan in house journal. Review semua materi, terminologi kunci, dan aplikasi praktisnya.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p11.html">← Pertemuan 11</a>
+    <a href="desain-komunikasi-visual-p13.html" class="next-btn">Pertemuan 13 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

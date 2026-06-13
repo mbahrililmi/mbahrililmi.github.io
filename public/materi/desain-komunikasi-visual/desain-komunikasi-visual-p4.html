@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 4 – Visual Syntax &amp; Semiotics | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Visual Syntax &amp; Semiotics</div>
+    <div class="pertemuan-badge">Pertemuan 4</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#visual-syntax" class="toc-link">Visual Syntax</a>
+    <a href="#semiotics-depth" class="toc-link">Semiotics in Depth</a>
+    <a href="#barthes" class="toc-link">Denotation, Connotation, Myth</a>
+    <a href="#cultural-codes" class="toc-link">Cultural Codes</a>
+    <a href="#applying" class="toc-link">Applying Semiotics</a>
+    <a href="#praktikum" class="toc-link">Praktikum &amp; Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 4 · Desain Komunikasi Visual</div>
+    <h1>Visual Syntax &amp; Semiotics</h1>
+    <p class="subtitle">Memahami "grammar" komunikasi visual, teori Saussure dan Peirce, tiga level makna Barthes, dan cultural codes untuk merancang visual dengan lapisan makna yang disengaja.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Topik: <span>Semiotika Desain</span></div>
+      <div class="meta-badge">Teori: <span>Saussure · Peirce · Barthes</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami konsep visual syntax sebagai "grammar" komunikasi visual dan mampu menganalisis struktur semiotic dalam pesan visual — termasuk denotation, connotation, dan myth — untuk merancang desain dengan intentional semiotic layers.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami konsep visual syntax sebagai "grammar" komunikasi visual</li>
+        <li>Menerapkan aturan komposisi dan arrangement untuk meaning-making</li>
+        <li>Menganalisis struktur semiotic dalam pesan visual</li>
+        <li>Membedakan denotation, connotation, dan myth</li>
+        <li>Memahami konsep signifier dan signified secara mendalam</li>
+        <li>Mengidentifikasi cultural codes dalam interpretasi visual</li>
+        <li>Merancang visual dengan intentional semiotic layers</li>
+        <li>Menggunakan semiotic analysis untuk evaluate dan improve designs</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="visual-syntax">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Visual Syntax — Grammar Desain</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Visual Syntax?</div>
+      <p>Seperti bahasa verbal memiliki grammar (susunan kata membentuk kalimat bermakna), visual juga memiliki "aturan" — bagaimana posisi, ukuran, dan hubungan antar elemen menciptakan makna. Posisi elemen dalam frame BUKAN kebetulan: ia mengkomunikasikan nilai informasi.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Spatial Dimensions — Makna dari Posisi</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Kiri vs Kanan</div>
+          <div class="gc-body"><b>Kiri = Given</b> (informasi yang sudah diketahui/familiar). <b>Kanan = New</b> (informasi baru/penting). Itulah mengapa banyak iklan menempatkan produk di kanan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Atas vs Bawah</div>
+          <div class="gc-body"><b>Atas = Ideal</b> (janji, impian, emosi). <b>Bawah = Real</b> (fakta, informasi praktis, detail produk).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Center vs Margin</div>
+          <div class="gc-body"><b>Center = nucleus</b> informasi terpenting. <b>Margin = subordinate</b>, elemen pendukung.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Salience (Keterlihatan)</div>
+          <div class="gc-body">Ukuran, ketajaman fokus, kontras warna, dan posisi foreground menentukan elemen mana yang paling menarik perhatian.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Visual Modality — Seberapa "Nyata" Tampilannya? <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>High modality:</b> fotografi realistis — kredibel, faktual, "ini benar terjadi"</li>
+          <li><b>Medium modality:</b> ilustrasi detail — interpretive namun representasional</li>
+          <li><b>Low modality:</b> ikon, kartun, abstrak — konseptual, universal, playful</li>
+          <li>Pilihan modality adalah pilihan rhetorical: berita pakai foto, instruksi keselamatan pakai ikon</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Vectors dan Interactive Meanings <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Vectors:</b> garis imajiner yang dibentuk gaze (arah pandang), gesture, atau garis nyata — mengarahkan mata viewer</li>
+          <li><b>Demand gaze:</b> subjek menatap langsung ke viewer — menuntut hubungan/respons</li>
+          <li><b>Offer gaze:</b> subjek tidak menatap viewer — viewer sebagai observer</li>
+          <li><b>Distance:</b> close-up = intim, medium = sosial, long shot = impersonal</li>
+          <li><b>Angle:</b> low angle = subjek powerful, high angle = subjek lemah, eye level = setara</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="semiotics-depth">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Semiotics in Depth</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Saussure: Dyadic Model</div>
+        <div class="gc-body">Sign = <b>Signifier</b> (bentuk fisik) + <b>Signified</b> (konsep mental). Hubungan keduanya arbitrary dan dipelajari secara kultural. Makna muncul dari <b>perbedaan</b> antar sign dalam sistem.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Peirce: Triadic Model</div>
+        <div class="gc-body"><b>Representamen</b> (sign vehicle) + <b>Object</b> (yang dirujuk) + <b>Interpretant</b> (makna di benak interpreter). Makna tergantung siapa yang menginterpretasi.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Review: Icon · Index · Symbol (Peirce)</div>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Tipe</th><th>Hubungan</th><th>Contoh Desain</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Icon</b></td><td>Menyerupai objeknya</td><td>Foto produk, ikon trash can, peta</td></tr>
+          <tr><td><b>Index</b></td><td>Koneksi langsung/kausal</td><td>Progress bar, loading spinner, asap → api</td></tr>
+          <tr><td><b>Symbol</b></td><td>Arbitrary, konvensional</td><td>Logo Nike, traffic light, bendera</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;color:#666;">Catatan: banyak sign adalah kombinasi — foto adalah icon (menyerupai) DAN index (disebabkan cahaya dari subjek).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="barthes">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Barthes: Denotation, Connotation, Myth</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Level 1: Denotation</div>
+        <div class="gc-body">Makna literal — apa yang secara objektif terlihat. "Seorang wanita memegang bunga mawar merah."</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Level 2: Connotation</div>
+        <div class="gc-body">Makna asosiatif — romantis, cinta, feminitas, valentine. Dipengaruhi budaya dan pengalaman personal.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Level 3: Myth</div>
+        <div class="gc-body">Ideologi yang dinaturalisasi — "cinta romantis diekspresikan melalui pemberian hadiah", konsumerisme sebagai bahasa kasih sayang.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Myth Penting bagi Desainer?</div>
+      <p>Myth (menurut Roland Barthes) adalah connotation yang sudah begitu melekat sehingga terasa "alami" dan tidak dipertanyakan — padahal merupakan konstruksi budaya. Iklan sering memanfaatkan myth: "kesuksesan = mobil mewah", "kecantikan = kulit putih". Desainer yang sadar myth dapat menggunakannya secara strategis — atau menantangnya secara etis.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="cultural-codes">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Cultural Codes</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Kode Budaya Mempengaruhi Interpretasi</div>
+      <ul class="styled">
+        <li><b>Warna:</b> putih = suci (Barat) vs duka (Timur); merah = bahaya (Barat) vs keberuntungan (China)</li>
+        <li><b>Gesture:</b> thumbs up positif di Barat, ofensif di beberapa negara Timur Tengah</li>
+        <li><b>Reading direction:</b> kiri-ke-kanan vs kanan-ke-kiri mempengaruhi persepsi layout dan sequence</li>
+        <li><b>Simbol religius dan nasional:</b> bermakna kuat — gunakan dengan hati-hati</li>
+        <li><b>Dress code dan setting:</b> mengkomunikasikan kelas sosial, profesi, era</li>
+      </ul>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Implikasi untuk Desain Internasional <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Riset target market sebelum mendesain untuk budaya lain</li>
+          <li>Test desain dengan native audience</li>
+          <li>Hindari asumsi bahwa simbol Anda universal</li>
+          <li>Global brands sering melakukan localization (McDonald's, Coca-Cola menyesuaikan visual per region)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="applying">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Applying Semiotics to Design</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Semiotic Design Strategy</h3>
+      <ol class="styled">
+        <li><b>Define intended meaning:</b> Apa yang ingin dikomunikasikan (denotative DAN connotative)?</li>
+        <li><b>Identify audience codes:</b> Kode kultural apa yang dipahami target audience?</li>
+        <li><b>Select signs intentionally:</b> Pilih warna, imagery, tipografi yang membawa konotasi yang diinginkan</li>
+        <li><b>Layer meanings:</b> Bangun denotation jelas, connotation kaya, dan hindari myth bermasalah</li>
+        <li><b>Test interpretation:</b> Apakah audiens menginterpretasi sesuai intensi?</li>
+      </ol>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Case Study: Semiotika Logo <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Apple:</b> apel tergigit — icon (bentuk apel) + symbol (knowledge, temptation, simplicity)</li>
+          <li><b>Amazon:</b> panah A→Z (semua tersedia) + bentuk senyuman (kepuasan) — index dan symbol sekaligus</li>
+          <li><b>FedEx:</b> hidden arrow di negative space — closure + index (kecepatan, presisi)</li>
+          <li><b>Twitter/X:</b> burung = kebebasan, kicauan; rebrand X = pergeseran makna yang disengaja</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Ethical Considerations <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Hindari memperkuat stereotype melalui pemilihan sign</li>
+          <li>Waspadai cultural appropriation</li>
+          <li>Jangan gunakan koneksi semiotik yang menyesatkan (mis. visual "natural" untuk produk yang tidak natural)</li>
+          <li>Pertimbangkan dampak ideologis desain Anda terhadap masyarakat</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum &amp; Tugas</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Visual Syntax Analysis</div>
+      <ul class="styled">
+        <li>Koleksi 4 contoh desain (iklan, poster, web)</li>
+        <li>Analisis: spatial structure (kiri/kanan, atas/bawah, center/margin), reading path, modality, interactive meanings (gaze, distance, angle)</li>
+        <li>Buat visual report dengan annotation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 2: Denotation–Connotation–Myth Analysis</div>
+      <ul class="styled">
+        <li>Pilih 2 iklan</li>
+        <li>Analisis tiga level untuk masing-masing + synthesis 1-2 halaman per iklan</li>
+        <li>Reflection: bagaimana analisis ini mengubah cara Anda melihat iklan?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum 3 &amp; 4: Sign Identification + Cultural Codes</div>
+      <ul class="styled">
+        <li>Koleksi dan kategorisasi sign: icon, index, symbol dengan justifikasi</li>
+        <li>Design challenge: buat 1 sign untuk konsep yang sama dalam 3 bentuk (icon, index, symbol)</li>
+        <li>Cross-cultural research untuk 3 elemen visual</li>
+      </ul>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">TUGAS: Proyek Semiotika (Bobot 14%)</div>
+      <p>Analisis semiotik komprehensif terhadap satu subjek visual (kampanye/identitas brand), kemudian buat <b>redesign concept</b> dengan eksekusi digital dan design rationale 2-3 halaman yang menjelaskan setiap pilihan semiotik Anda.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-komunikasi-visual-p3.html">← Pertemuan 3</a>
+    <a href="desain-komunikasi-visual-p5.html" class="next-btn">Pertemuan 5 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>

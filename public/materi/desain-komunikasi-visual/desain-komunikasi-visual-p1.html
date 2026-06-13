@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 1 – Kontrak Kuliah &amp; Orientasi DKV | Desain Komunikasi Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Komunikasi Visual</div>
+    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
+    <div class="pertemuan-badge">Pertemuan 1</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
+    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
+    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
+    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
+    <a href="#proses-desain" class="toc-link">Proses Desain</a>
+    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
+    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 1 · Desain Komunikasi Visual</div>
+    <h1>Kontrak Kuliah &amp; Orientasi DKV</h1>
+    <p class="subtitle">Memahami kontrak perkuliahan, silabus, sistem penilaian, serta orientasi ruang lingkup Desain Komunikasi Visual dan peranannya dalam komunikasi modern.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami kontrak perkuliahan, silabus, sistem penilaian, dan mendapatkan orientasi tentang ruang lingkup Desain Komunikasi Visual serta peranannya dalam komunikasi modern.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Selamat Datang di Mata Kuliah DKV!</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setiap hari kita dibombardir ribuan pesan visual — iklan media sosial, poster di jalanan, kemasan produk, hingga interface aplikasi smartphone. Semua dirancang dengan tujuan tertentu: menarik perhatian, menyampaikan informasi, mempengaruhi perilaku, atau membangun identitas brand. Mata kuliah ini membekali Anda dengan pemahaman teoretis dan keterampilan praktis dalam menciptakan komunikasi visual yang efektif.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Yang membedakan DKV dari seni murni adalah fokusnya pada <b>fungsi</b> dan <b>komunikasi</b>. Desain yang baik bukan hanya estetis, tetapi harus mencapai tujuan komunikasinya.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami aturan dan ekspektasi perkuliahan DKV</li>
+        <li>Mengetahui sistematika penilaian dan komponen evaluasi</li>
+        <li>Memahami definisi dan ruang lingkup Desain Komunikasi Visual</li>
+        <li>Menjelaskan peran DKV dalam komunikasi massa modern</li>
+        <li>Mengidentifikasi berbagai bidang aplikasi DKV</li>
+        <li>Mengenal tools dan software yang akan digunakan</li>
+        <li>Memahami pentingnya visual literacy di era digital</li>
+        <li>Mengevaluasi contoh desain komunikasi visual yang efektif</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="kontrak">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Kontrak Perkuliahan</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Informasi Mata Kuliah</div>
+        <div class="gc-body">
+          <b>Mata Kuliah:</b> Desain Komunikasi Visual<br>
+          <b>SKS:</b> 3 SKS · <b>Semester:</b> 2<br>
+          <b>Dosen:</b> M. Bahril Ilmi, S.Kom., M.Kom.<br>
+          <b>Durasi:</b> 150 menit per pertemuan
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Metode Pembelajaran</div>
+        <div class="gc-body">
+          Ceramah &amp; Diskusi (30%)<br>
+          Demonstrasi &amp; Tutorial (20%)<br>
+          Praktikum &amp; Project Work (40%)<br>
+          Presentasi &amp; Critique Sessions (10%)
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Peraturan Kehadiran <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Minimal 75% kehadiran untuk mengikuti ujian</li>
+          <li>Keterlambatan &gt;15 menit = dianggap tidak hadir</li>
+          <li>Toleransi keterlambatan 3x dalam semester</li>
+          <li>Izin tidak hadir harus dengan surat resmi</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tugas &amp; Deadline <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Tugas dikumpulkan tepat waktu (on-time submission)</li>
+          <li>Keterlambatan: -10% per hari (maksimal 3 hari)</li>
+          <li>Setelah 3 hari: nilai 0</li>
+          <li>Plagiarisme = nilai 0 untuk tugas tersebut</li>
+          <li>Simpan file backup dan ikuti format penamaan file</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Academic Integrity &amp; Etika <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Tidak ada toleransi untuk plagiarisme</li>
+          <li>Cite sources dengan benar</li>
+          <li>Kerja kelompok = kontribusi semua member</li>
+          <li>Original work untuk individual assignments</li>
+          <li>HP silent mode selama kuliah, laptop hanya untuk pembelajaran</li>
+          <li>Komunikasi formal melalui email institusi dengan subject jelas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="penilaian">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Sistem Penilaian</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Kehadiran &amp; Partisipasi</b></td><td><span class="score-badge">10%</span></td><td>Minimal kehadiran 75%</td></tr>
+        <tr><td><b>Tugas Mingguan/Praktikum</b></td><td><span class="score-badge">20%</span></td><td>14-16 tugas praktik</td></tr>
+        <tr><td><b>Quiz</b></td><td><span class="score-badge">10%</span></td><td>3-4 quiz selama semester</td></tr>
+        <tr><td><b>Tugas Besar/Project</b></td><td><span class="score-badge">20%</span></td><td>2-3 major projects</td></tr>
+        <tr><td><b>UTS</b></td><td><span class="score-badge">20%</span></td><td>Teori + Praktik</td></tr>
+        <tr><td><b>UAS</b></td><td><span class="score-badge">20%</span></td><td>Portfolio + Final Project</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">A : 85–100</div><div class="gc-body">Excellent</div></div>
+      <div class="grid-card"><div class="gc-title">AB : 80–84 · B : 75–79</div><div class="gc-body">Very Good · Good</div></div>
+      <div class="grid-card"><div class="gc-title">BC : 70–74 · C : 65–69</div><div class="gc-body">Fairly Good · Fair (D: 55–64, E: &lt;55)</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="apa-itu-dkv">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Apa itu Desain Komunikasi Visual?</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p>Desain Komunikasi Visual adalah <b>proses kreatif</b> yang mengombinasikan <b>elemen-elemen visual</b> — gambar, tipografi, warna, dan layout — untuk <b>menyampaikan pesan</b> kepada <b>audience tertentu</b> dengan <b>tujuan spesifik</b>.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>DKV vs Fine Art</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Aspek</th><th>Fine Art</th><th>DKV</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Tujuan Utama</td><td>Ekspresi pribadi artist</td><td>Komunikasi efektif kepada audience</td></tr>
+          <tr><td>Client</td><td>Diri sendiri/gallery</td><td>Client dengan kebutuhan spesifik</td></tr>
+          <tr><td>Fungsi</td><td>Tidak harus fungsional</td><td>Harus solve problem komunikasi</td></tr>
+          <tr><td>Interpretasi</td><td>Terbuka, subjektif</td><td>Jelas, targeted message</td></tr>
+          <tr><td>Success Metric</td><td>Nilai estetis, emosional</td><td>Mencapai tujuan komunikasi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <h3>Bidang Aplikasi DKV</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Branding &amp; Identity</div><div class="gc-body">Logo, corporate identity, brand guidelines, packaging. Contoh: Nike swoosh — simple tapi instantly recognizable.</div></div>
+        <div class="grid-card"><div class="gc-title">Advertising &amp; Marketing</div><div class="gc-body">Print ads, digital ads, campaign visual identity, promotional materials.</div></div>
+        <div class="grid-card"><div class="gc-title">Information Design</div><div class="gc-body">Infographics, wayfinding systems, instruction manuals, data visualization.</div></div>
+        <div class="grid-card"><div class="gc-title">Editorial Design</div><div class="gc-body">Magazine layout, book design, newspaper, digital publications.</div></div>
+        <div class="grid-card"><div class="gc-title">Digital &amp; Interactive</div><div class="gc-body">Website design, UI/UX, social media content, motion graphics.</div></div>
+        <div class="grid-card"><div class="gc-title">Environmental Graphics</div><div class="gc-body">Public signage, exhibition design, retail environments. Contoh: airport wayfinding.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="elemen-prinsip">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Elemen &amp; Prinsip Desain</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-elemen')">Elemen Dasar</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-prinsip')">Prinsip Desain</button>
+      </div>
+      <div id="tab-elemen" class="tab-panel active">
+        <div class="grid-3">
+          <div class="grid-card"><div class="gc-title">Line (Garis)</div><div class="gc-body">Membentuk shapes, mengarahkan eye movement, menciptakan texture dan motion.</div></div>
+          <div class="grid-card"><div class="gc-title">Shape (Bentuk)</div><div class="gc-body">Geometric (circle, square), organic (natural), abstract. Positive dan negative shapes.</div></div>
+          <div class="grid-card"><div class="gc-title">Color (Warna)</div><div class="gc-body">Hue, saturation, value. Psychology dan meaning dari setiap warna.</div></div>
+          <div class="grid-card"><div class="gc-title">Texture (Tekstur)</div><div class="gc-body">Visual dan tactile texture. Menambah depth, interest, dan realism.</div></div>
+          <div class="grid-card"><div class="gc-title">Space (Ruang)</div><div class="gc-body">Positive/negative space, white space, depth, proximity, dan grouping.</div></div>
+          <div class="grid-card"><div class="gc-title">Typography</div><div class="gc-body">Typeface choice, hierarchy, readability, spacing (kerning, leading, tracking).</div></div>
+        </div>
+      </div>
+      <div id="tab-prinsip" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Balance</div><div class="gc-body">Symmetrical (formal), asymmetrical (dynamic), radial (center focus).</div></div>
+          <div class="grid-card"><div class="gc-title">Contrast</div><div class="gc-body">Size, color, type contrast — menciptakan focal point dan visual interest.</div></div>
+          <div class="grid-card"><div class="gc-title">Emphasis</div><div class="gc-body">Focal point — di mana mata tertarik pertama kali. Hierarchy melalui size, color, placement.</div></div>
+          <div class="grid-card"><div class="gc-title">Movement &amp; Rhythm</div><div class="gc-body">Eye flow, direction, repetition yang creates pattern.</div></div>
+          <div class="grid-card"><div class="gc-title">Proportion &amp; Scale</div><div class="gc-body">Relative size, golden ratio (1:1.618), hierarchy by size.</div></div>
+          <div class="grid-card"><div class="gc-title">Unity &amp; White Space</div><div class="gc-body">Semua elemen bekerja bersama. White space memberi breathing room dan elegance.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="proses-desain">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Proses Desain</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Desain Bukan Magic — Ada Metodologi</div>
+      <ol class="styled">
+        <li><b>Research &amp; Discovery:</b> Pahami problem, analisis target audience, study kompetitor, define constraints</li>
+        <li><b>Concept Development:</b> Brainstorming, sketching thumbnails, mind mapping, mood boards</li>
+        <li><b>Design Execution:</b> Digital mockups, multiple variations, apply design principles</li>
+        <li><b>Feedback &amp; Revision:</b> Presentasi ke client, terima critique, implementasi perubahan</li>
+        <li><b>Finalization:</b> Final files dalam berbagai format, asset organization, dokumentasi</li>
+        <li><b>Delivery &amp; Implementation:</b> Hand off ke client/production, quality control, follow up</li>
+      </ol>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Visual Literacy — Mengapa Penting?</div>
+      <p>90% informasi yang dikirim ke otak adalah visual. Visual diproses 60.000x lebih cepat daripada teks. Visual literacy — kemampuan interpret, understand, dan create pesan visual — adalah skill esensial di era digital.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="karir-tren">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Karir &amp; Tren DKV</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Graphic Designer</div><div class="gc-body">General design berbagai media — agency, in-house, atau freelance.</div></div>
+      <div class="grid-card"><div class="gc-title">UI/UX Designer</div><div class="gc-body">Interface dan experience design. High demand di tech industry.</div></div>
+      <div class="grid-card"><div class="gc-title">Brand Identity Designer</div><div class="gc-body">Spesialis logo dan brand systems, corporate identity.</div></div>
+      <div class="grid-card"><div class="gc-title">Motion Graphics Designer</div><div class="gc-body">Animated graphics untuk video, broadcast, digital content.</div></div>
+      <div class="grid-card"><div class="gc-title">Illustrator</div><div class="gc-body">Digital/editorial illustration, character design.</div></div>
+      <div class="grid-card"><div class="gc-title">Art Director</div><div class="gc-body">Lead creative teams, oversee visual consistency.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tren Terkini dalam DKV <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Minimalism:</b> Less is more — clean, uncluttered designs</li>
+          <li><b>Bold Typography:</b> Type as hero, large-scale expressive typography</li>
+          <li><b>Gradients:</b> Soft, vibrant color transitions</li>
+          <li><b>3D &amp; Depth:</b> 3D typography, isometric illustrations</li>
+          <li><b>Dark Mode:</b> Dark backgrounds, modern sleek look</li>
+          <li><b>Inclusive Design:</b> Accessibility untuk semua, diverse representation</li>
+          <li><b>Motion &amp; Animation:</b> Micro-interactions, animated logos, kinetic typography</li>
+          <li><b>Authentic Design:</b> Real photography, imperfect handmade aesthetics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tools">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Tools &amp; Resources</h2>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-adobe')">Adobe CC</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-free')">Free Alternatives</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-resources')">Learning Resources</button>
+      </div>
+      <div id="tab-adobe" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Adobe Photoshop:</b> Photo editing, raster graphics</li>
+          <li><b>Adobe Illustrator:</b> Vector graphics</li>
+          <li><b>Adobe InDesign:</b> Layout dan publikasi</li>
+          <li><b>Adobe After Effects:</b> Motion graphics (optional)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Berbayar, namun industry standard.</p>
+      </div>
+      <div id="tab-free" class="tab-panel">
+        <ul class="styled">
+          <li><b>GIMP:</b> Alternative Photoshop (raster editing)</li>
+          <li><b>Inkscape:</b> Alternative Illustrator (vector)</li>
+          <li><b>Scribus:</b> Alternative InDesign (layout)</li>
+          <li><b>Canva:</b> Online design tool (freemium)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Gratis dan cukup powerful — akan banyak digunakan dalam perkuliahan ini.</p>
+      </div>
+      <div id="tab-resources" class="tab-panel">
+        <ul class="styled">
+          <li><b>Buku:</b> "The Non-Designer's Design Book" (Robin Williams), "Thinking with Type" (Ellen Lupton), "Logo Design Love" (David Airey)</li>
+          <li><b>Inspiration:</b> Behance.net, Dribbble.com, Pinterest</li>
+          <li><b>Assets:</b> Google Fonts, Unsplash/Pexels (foto gratis), Adobe Color</li>
+          <li><b>YouTube:</b> The Futur, Satori Graphics, Will Paterson</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Praktikum Pertemuan 1</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Latihan 1: Visual Analysis Exercise</div>
+      <ul class="styled">
+        <li>Pilih 3 contoh desain menonjol (majalah, poster, iklan, kemasan)</li>
+        <li>Analisis: Purpose, Target Audience, Visual Elements, Design Principles, Effectiveness, Improvement</li>
+        <li>Deliverable: PDF dengan screenshot + analisis tertulis</li>
+        <li>File naming: NIM_Nama_P1_VisualAnalysis.pdf</li>
+        <li>Deadline: Pertemuan berikutnya</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Latihan 2: Software Orientation</div>
+      <ul class="styled">
+        <li>Install software pilihan (Adobe CC atau GIMP/Inkscape)</li>
+        <li>Eksplorasi interface: toolbox, panels, workspace</li>
+        <li>Ikuti satu tutorial sederhana di YouTube</li>
+        <li>Buat simple composition (shapes, text, color) dan export</li>
+        <li>Deliverable: Screenshot interface + komposisi + refleksi singkat (PDF)</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="desain-komunikasi-visual-p2.html" class="next-btn">Pertemuan 2 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+</body>
+</html>
