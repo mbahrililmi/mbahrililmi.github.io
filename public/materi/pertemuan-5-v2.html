@@ -1,0 +1,3065 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pertemuan 5 — Mixing & Mastering Audio</title>
+    <style>
+      :root {
+        --bg: #0f1117;
+        --bg2: #181c27;
+        --bg3: #1e2333;
+        --card: #222840;
+        --border: rgba(255, 255, 255, 0.08);
+        --border2: rgba(255, 255, 255, 0.14);
+        --text: #e8eaf2;
+        --text2: #9ba3c0;
+        --text3: #5c6485;
+        --purple: #7c6ff5;
+        --purple2: #a89ff8;
+        --purple-bg: rgba(124, 111, 245, 0.12);
+        --teal: #2ec4a0;
+        --teal2: #5ddec3;
+        --teal-bg: rgba(46, 196, 160, 0.1);
+        --amber: #f0a500;
+        --amber2: #ffc94d;
+        --amber-bg: rgba(240, 165, 0, 0.1);
+        --coral: #e8593c;
+        --coral2: #f07d64;
+        --coral-bg: rgba(232, 89, 60, 0.1);
+        --blue: #4a90e2;
+        --blue-bg: rgba(74, 144, 226, 0.1);
+        --green: #3db56a;
+        --radius: 12px;
+        --radius-sm: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family:
+          "Segoe UI",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      /* ── HEADER ── */
+      .site-header {
+        background: linear-gradient(
+          135deg,
+          #0a0d1a 0%,
+          #111830 50%,
+          #0f1520 100%
+        );
+        border-bottom: 1px solid var(--border2);
+        padding: 2.5rem 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .site-header::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -80px;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+          circle,
+          rgba(124, 111, 245, 0.15) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .site-header::after {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: 10%;
+        width: 300px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(46, 196, 160, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .header-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem 2rem;
+        position: relative;
+        z-index: 1;
+      }
+      .eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--purple2);
+        margin-bottom: 0.6rem;
+      }
+      .header-inner h1 {
+        font-size: clamp(26px, 4vw, 40px);
+        font-weight: 700;
+        line-height: 1.15;
+        background: linear-gradient(
+          135deg,
+          #fff 0%,
+          var(--purple2) 60%,
+          var(--teal2) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.75rem;
+      }
+      .header-sub {
+        font-size: 15px;
+        color: var(--text2);
+        max-width: 520px;
+        margin-bottom: 1.25rem;
+      }
+      .badge-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        border: 1px solid;
+      }
+      .b-purple {
+        background: var(--purple-bg);
+        color: var(--purple2);
+        border-color: rgba(124, 111, 245, 0.3);
+      }
+      .b-teal {
+        background: var(--teal-bg);
+        color: var(--teal2);
+        border-color: rgba(46, 196, 160, 0.3);
+      }
+      .b-amber {
+        background: var(--amber-bg);
+        color: var(--amber2);
+        border-color: rgba(240, 165, 0, 0.3);
+      }
+      .b-coral {
+        background: var(--coral-bg);
+        color: var(--coral2);
+        border-color: rgba(232, 89, 60, 0.3);
+      }
+
+      /* WAVEFORM CANVAS HERO */
+      #hero-canvas {
+        width: 100%;
+        height: 80px;
+        display: block;
+        margin-top: 1.5rem;
+        opacity: 0.7;
+      }
+
+      /* ── NAV ── */
+      nav {
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+      }
+      .nav-btn {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 0.75rem 1.1rem;
+        background: none;
+        border: none;
+        color: var(--text3);
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+        transition: 0.15s;
+        white-space: nowrap;
+      }
+      .nav-btn.active,
+      .nav-btn:hover {
+        color: var(--text);
+        border-bottom-color: var(--purple);
+      }
+      .nav-btn.active {
+        color: var(--purple2);
+      }
+
+      /* ── MAIN LAYOUT ── */
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      .tab-section {
+        display: none;
+      }
+      .tab-section.active {
+        display: block;
+      }
+
+      /* ── CARDS ── */
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        margin-bottom: 1.25rem;
+        transition: border-color 0.2s;
+      }
+      .card:hover {
+        border-color: var(--border2);
+      }
+      .card-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 0.85rem;
+        color: var(--text);
+      }
+      .card-body {
+        font-size: 14px;
+        color: var(--text2);
+        line-height: 1.75;
+      }
+
+      /* ── SECTION HEADINGS ── */
+      .section-heading {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 1.25rem;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .section-heading span {
+        font-size: 22px;
+      }
+
+      /* ── COMPARE GRID ── */
+      .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .cmp-card {
+        border-radius: var(--radius-sm);
+        padding: 1.1rem 1.2rem;
+        border: 1px solid;
+      }
+      .cmp-mix {
+        background: var(--purple-bg);
+        border-color: rgba(124, 111, 245, 0.25);
+      }
+      .cmp-mas {
+        background: var(--teal-bg);
+        border-color: rgba(46, 196, 160, 0.25);
+      }
+      .cmp-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .cmp-mix .cmp-title {
+        color: var(--purple2);
+      }
+      .cmp-mas .cmp-title {
+        color: var(--teal2);
+      }
+      .cmp-item {
+        font-size: 13px;
+        line-height: 1.9;
+        color: var(--text2);
+      }
+
+      /* ── GAIN STAGING ── */
+      .meter-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0.55rem 0;
+      }
+      .meter-label {
+        font-size: 12px;
+        color: var(--text2);
+        width: 110px;
+        flex-shrink: 0;
+      }
+      .meter-track {
+        flex: 1;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .meter-fill {
+        height: 100%;
+        border-radius: 6px;
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .meter-val {
+        font-size: 12px;
+        font-weight: 600;
+        width: 95px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+
+      /* ── ANIMATED WAVEFORM DEMO ── */
+      .waveform-demo {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        margin: 1rem 0;
+      }
+      .waveform-demo canvas {
+        display: block;
+        width: 100%;
+      }
+
+      /* ── FREQUENCY SPECTRUM ── */
+      .freq-container {
+        margin: 1rem 0;
+      }
+      .freq-bars-wrap {
+        display: flex;
+        gap: 4px;
+        height: 120px;
+        align-items: flex-end;
+        padding: 0 4px;
+      }
+      .freq-bar-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+      }
+      .freq-bar-fill {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .freq-bar-fill::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30%;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        border-radius: 4px 4px 0 0;
+      }
+      .freq-bar-fill.selected {
+        box-shadow: 0 0 12px currentColor;
+        filter: brightness(1.3);
+      }
+      .freq-bar-label {
+        font-size: 9px;
+        color: var(--text3);
+        margin-top: 5px;
+        text-align: center;
+      }
+      .freq-info-box {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius-sm);
+        padding: 0.85rem 1rem;
+        font-size: 13px;
+        color: var(--text2);
+        margin-top: 0.75rem;
+        min-height: 52px;
+        transition: all 0.25s;
+        line-height: 1.7;
+      }
+      .freq-axis {
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: var(--text3);
+        padding: 0 4px;
+        margin-bottom: 4px;
+      }
+
+      /* ── EQ CURVE CANVAS ── */
+      .eq-canvas-wrap {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        margin: 1rem 0;
+        position: relative;
+      }
+      .eq-controls {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 0.75rem;
+      }
+      .eq-ctrl {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 0.65rem 0.75rem;
+      }
+      .eq-ctrl-label {
+        font-size: 11px;
+        color: var(--text3);
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .eq-ctrl-val {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+        color: var(--text);
+      }
+      .eq-ctrl input[type="range"] {
+        width: 100%;
+        margin-top: 0.15rem;
+      }
+
+      /* ── COMPRESSOR VISUAL ── */
+      .comp-visual-wrap {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        margin: 1rem 0;
+      }
+      .comp-params {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 0.75rem;
+      }
+      .comp-param {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 0.9rem;
+      }
+      .comp-param-name {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text3);
+        margin-bottom: 0.25rem;
+      }
+      .comp-param-val {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+        color: var(--text);
+      }
+      .comp-param input[type="range"] {
+        width: 100%;
+      }
+      .comp-param-desc {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: 0.3rem;
+        line-height: 1.5;
+      }
+      .comp-character {
+        background: var(--purple-bg);
+        border: 1px solid rgba(124, 111, 245, 0.2);
+        border-radius: var(--radius-sm);
+        padding: 0.85rem 1rem;
+        font-size: 13px;
+        color: var(--text2);
+        margin-top: 0.75rem;
+        line-height: 1.7;
+      }
+
+      /* ── REVERB DEMO ── */
+      .reverb-types {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 1rem 0;
+      }
+      .rv-card {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .rv-card:hover {
+        border-color: var(--border2);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .rv-card.active {
+        border-color: var(--teal);
+        background: var(--teal-bg);
+      }
+      .rv-card .rv-name {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .rv-card.active .rv-name {
+        color: var(--teal2);
+      }
+      .rv-time {
+        font-size: 11px;
+        color: var(--text3);
+      }
+      .rv-canvas-wrap {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        margin-top: 0.75rem;
+      }
+
+      /* ── PANNING VISUAL ── */
+      .pan-stage {
+        position: relative;
+        height: 100px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        margin: 1rem 0;
+        overflow: hidden;
+      }
+      .pan-center-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .pan-label {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 10px;
+        color: var(--text3);
+        font-weight: 600;
+      }
+      .pan-elem {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        padding: 3px 9px;
+        border-radius: 14px;
+        font-size: 10px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ── LUFS ── */
+      .lufs-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0.55rem 0;
+      }
+      .lufs-name {
+        font-size: 13px;
+        width: 115px;
+        flex-shrink: 0;
+        color: var(--text2);
+      }
+      .lufs-track {
+        flex: 1;
+        height: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 7px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--border);
+      }
+      .lufs-fill {
+        height: 100%;
+        border-radius: 7px;
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .lufs-fill::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 40%;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.25),
+          transparent
+        );
+      }
+      .lufs-val {
+        font-size: 12px;
+        font-weight: 600;
+        width: 70px;
+        text-align: right;
+        color: var(--text2);
+      }
+
+      /* ── WORKFLOW STEPS ── */
+      .wf-list {
+        margin: 1rem 0;
+      }
+      .wf-step {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 1rem;
+        align-items: flex-start;
+      }
+      .wf-num {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .wf-purple {
+        background: var(--purple-bg);
+        color: var(--purple2);
+        border: 1px solid rgba(124, 111, 245, 0.3);
+      }
+      .wf-teal {
+        background: var(--teal-bg);
+        color: var(--teal2);
+        border: 1px solid rgba(46, 196, 160, 0.3);
+      }
+      .wf-amber {
+        background: var(--amber-bg);
+        color: var(--amber2);
+        border: 1px solid rgba(240, 165, 0, 0.3);
+      }
+      .wf-content {
+      }
+      .wf-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+      .wf-detail {
+        font-size: 13px;
+        color: var(--text2);
+        line-height: 1.7;
+      }
+      .wf-connector {
+        width: 1px;
+        height: 12px;
+        background: var(--border2);
+        margin-left: 15px;
+        margin-bottom: 0.1rem;
+      }
+
+      /* ── PRAKTIKUM ── */
+      .prak-header {
+        background: linear-gradient(135deg, var(--purple-bg), var(--teal-bg));
+        border: 1px solid rgba(124, 111, 245, 0.2);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .prak-num {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--purple2);
+        margin-bottom: 0.4rem;
+      }
+      .prak-title {
+        font-size: 19px;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+      .prak-sub {
+        font-size: 13px;
+        color: var(--text2);
+      }
+
+      .step-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin: 1rem 0;
+      }
+      .sf-step {
+        display: flex;
+        gap: 14px;
+        position: relative;
+      }
+      .sf-step:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        left: 17px;
+        top: 38px;
+        bottom: -10px;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--border2), transparent);
+      }
+      .sf-dot {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: var(--bg3);
+        border: 2px solid var(--border2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        flex-shrink: 0;
+        color: var(--text3);
+        transition: all 0.3s;
+      }
+      .sf-step.done .sf-dot {
+        background: var(--teal-bg);
+        border-color: var(--teal);
+        color: var(--teal2);
+      }
+      .sf-step.active .sf-dot {
+        background: var(--purple-bg);
+        border-color: var(--purple);
+        color: var(--purple2);
+        box-shadow: 0 0 12px rgba(124, 111, 245, 0.3);
+      }
+      .sf-content {
+        padding: 0.4rem 0 1.2rem;
+        flex: 1;
+      }
+      .sf-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        transition: 0.3s;
+      }
+      .sf-step.active .sf-title {
+        color: var(--purple2);
+      }
+      .sf-step.done .sf-title {
+        color: var(--teal2);
+      }
+      .sf-body {
+        font-size: 13px;
+        color: var(--text2);
+        line-height: 1.7;
+      }
+      .sf-code {
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.5rem 0.75rem;
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+        color: var(--amber2);
+        margin: 0.4rem 0;
+        display: inline-block;
+      }
+      .sf-tag {
+        display: inline-block;
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-weight: 600;
+        margin-top: 0.4rem;
+      }
+
+      .step-nav {
+        display: flex;
+        gap: 8px;
+        margin-top: 0.5rem;
+      }
+      .btn {
+        padding: 0.55rem 1.1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border2);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--border2);
+      }
+      .btn-primary {
+        background: var(--purple-bg);
+        border-color: rgba(124, 111, 245, 0.4);
+        color: var(--purple2);
+      }
+      .btn-primary:hover {
+        background: rgba(124, 111, 245, 0.2);
+      }
+
+      /* ── DELIVERABLE BOX ── */
+      .deliverable {
+        background: rgba(46, 196, 160, 0.06);
+        border: 1px solid rgba(46, 196, 160, 0.2);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        margin-top: 1rem;
+      }
+      .del-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--teal2);
+        margin-bottom: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .del-item {
+        font-size: 13px;
+        color: var(--text2);
+        margin-bottom: 0.35rem;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .del-check {
+        color: var(--teal);
+        flex-shrink: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      /* ── SCORING ── */
+      .score-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .score-table th {
+        text-align: left;
+        padding: 0.6rem 0.85rem;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text3);
+        border-bottom: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .score-table td {
+        padding: 0.6rem 0.85rem;
+        border-bottom: 1px solid var(--border);
+        color: var(--text2);
+      }
+      .score-table tr:last-child td {
+        border: none;
+      }
+      .score-pill {
+        display: inline-block;
+        background: var(--teal-bg);
+        color: var(--teal2);
+        border-radius: 12px;
+        padding: 2px 10px;
+        font-size: 11px;
+        font-weight: 700;
+        border: 1px solid rgba(46, 196, 160, 0.3);
+      }
+
+      /* ── INFO / WARN NOTES ── */
+      .info-note {
+        background: var(--blue-bg);
+        border: 1px solid rgba(74, 144, 226, 0.25);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 1rem;
+        font-size: 13px;
+        color: #88baf5;
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+      .warn-note {
+        background: var(--amber-bg);
+        border: 1px solid rgba(240, 165, 0, 0.25);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 1rem;
+        font-size: 13px;
+        color: var(--amber2);
+        margin: 0.75rem 0;
+        line-height: 1.6;
+      }
+
+      /* ── DELAY CALC ── */
+      .delay-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-top: 0.75rem;
+      }
+      .delay-cell {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 0.6rem 0.85rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .delay-cell.highlight {
+        background: var(--purple-bg);
+        border-color: rgba(124, 111, 245, 0.3);
+      }
+      .delay-note {
+        font-size: 13px;
+        color: var(--text2);
+      }
+      .delay-ms {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .delay-cell.highlight .delay-note,
+      .delay-cell.highlight .delay-ms {
+        color: var(--purple2);
+      }
+
+      /* ── RANGE INPUTS ── */
+      input[type="range"] {
+        -webkit-appearance: none;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.1);
+        outline: none;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--purple);
+        cursor: pointer;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition: 0.1s;
+      }
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+      }
+
+      /* ── SIGNAL CHAIN ── */
+      .signal-chain {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin: 1rem 0;
+        flex-wrap: wrap;
+      }
+      .sc-node {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 0.4rem 0.75rem;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: all 0.3s;
+      }
+      .sc-arrow {
+        color: var(--text3);
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .sc-node.active-node {
+        background: var(--purple-bg);
+        border-color: var(--purple);
+        color: var(--purple2);
+        box-shadow: 0 0 10px rgba(124, 111, 245, 0.25);
+      }
+
+      /* ── DIVIDER ── */
+      .divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 1.75rem 0;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text3);
+        font-size: 12px;
+        border-top: 1px solid var(--border);
+        margin-top: 1rem;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border2);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #444;
+      }
+
+      @media (max-width: 600px) {
+        .compare-grid,
+        .comp-params,
+        .eq-controls,
+        .reverb-types {
+          grid-template-columns: 1fr;
+        }
+        .delay-grid {
+          grid-template-columns: 1fr;
+        }
+        main {
+          padding: 1.25rem;
+        }
+        .header-inner {
+          padding: 0 1.25rem 1.5rem;
+        }
+        .nav-inner {
+          padding: 0 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="eyebrow">Rekayasa Video &amp; Audio · Pertemuan 5</div>
+        <h1>Mixing &amp; Mastering Audio</h1>
+        <p class="header-sub">
+          Dari rekaman mentah ke audio profesional — menguasai balancing, EQ,
+          compression, reverb, dan loudness standards untuk berbagai platform.
+        </p>
+        <div class="badge-row">
+          <span class="badge b-purple">Mixing Multi-Track</span>
+          <span class="badge b-teal">EQ &amp; Compression</span>
+          <span class="badge b-amber">Reverb &amp; Delay</span>
+          <span class="badge b-coral">Loudness LUFS</span>
+        </div>
+        <canvas id="hero-canvas" height="80"></canvas>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+    <nav>
+      <div class="nav-inner">
+        <button class="nav-btn active" onclick="switchTab('materi')">
+          📖 Materi
+        </button>
+        <button class="nav-btn" onclick="switchTab('visualisasi')">
+          🎛 Visualisasi Interaktif
+        </button>
+        <button class="nav-btn" onclick="switchTab('workflow')">
+          🔄 Workflow
+        </button>
+        <button class="nav-btn" onclick="switchTab('praktikum')">
+          📝 Praktikum
+        </button>
+      </div>
+    </nav>
+
+    <!-- ═══════════════════════════ MAIN ═══════════════════════════ -->
+    <main>
+      <!-- ════════════════ TAB: MATERI ════════════════ -->
+      <section id="tab-materi" class="tab-section active">
+        <h2 class="section-heading">
+          <span>🎚</span> Konsep Dasar Mixing &amp; Mastering
+        </h2>
+
+        <div class="card">
+          <div class="card-title">Apa bedanya Mixing dan Mastering?</div>
+          <div class="compare-grid">
+            <div class="cmp-card cmp-mix">
+              <div class="cmp-title">🎛 Mixing</div>
+              <div class="cmp-item">
+                • Bekerja dengan banyak track terpisah<br />
+                • Volume, pan, EQ, compression per-track<br />
+                • Tambah reverb, delay, dan efek karakter<br />
+                • Output: stereo mixdown (file 2-track)<br />
+                • Analogi: <em>memasak bahan menjadi hidangan</em>
+              </div>
+            </div>
+            <div class="cmp-card cmp-mas">
+              <div class="cmp-title">💿 Mastering</div>
+              <div class="cmp-item">
+                • Bekerja dengan 1 file stereo mix final<br />
+                • EQ halus, bus compression, loudness<br />
+                • Siapkan untuk streaming, podcast, CD<br />
+                • Output: file master siap distribusi<br />
+                • Analogi: <em>plating dan presentasi hidangan</em>
+              </div>
+            </div>
+          </div>
+          <div class="info-note">
+            💡 Dalam produksi komersial, mixing dan mastering dilakukan oleh
+            engineer berbeda. Untuk podcast, YouTube, dan konten mandiri — kamu
+            perlu menguasai keduanya.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Gain Staging — Level yang Tepat di Setiap Tahap
+          </div>
+          <div class="card-body" style="margin-bottom: 1rem">
+            Gain staging adalah seni mengatur level sinyal di setiap tahap
+            proses audio agar tidak terlalu keras (clipping/distorsi) dan tidak
+            terlalu pelan (noise). Setiap tahap punya target yang berbeda.
+          </div>
+          <div id="gain-meters"></div>
+          <div class="warn-note">
+            ⚠️ Kesalahan umum: langsung menaikkan semua fader karena terasa
+            terlalu pelan → hasil clipping dan distorsi. Gunakan compression dan
+            mastering limiter untuk mencapai loudness — bukan fader!
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Spektrum Frekuensi — Klik bar untuk penjelasan
+          </div>
+          <div class="freq-container">
+            <div class="freq-axis" id="freqAxis"></div>
+            <div class="freq-bars-wrap" id="freqBars"></div>
+          </div>
+          <div class="freq-info-box" id="freqInfo">
+            👆 Klik salah satu bar frekuensi untuk melihat penjelasan detail,
+            karakter suara, dan tips penggunaannya.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Stereo Panning — Penempatan Elemen dalam Ruang
+          </div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Setiap instrumen menempati posisi tertentu dalam panorama stereo.
+            Penempatan yang tepat menciptakan mix yang lebar, jelas, dan nyaman
+            didengar.
+          </div>
+          <div class="pan-stage" id="panStage">
+            <div class="pan-center-line"></div>
+            <div class="pan-label" style="left: 10px">← L</div>
+            <div class="pan-label" style="right: 10px">R →</div>
+          </div>
+          <div class="card-body">
+            Elemen terpenting — vokal lead, bass, kick, snare — selalu di tengah
+            agar konsisten di semua sistem pemutaran termasuk mono. Elemen
+            pendukung dipan ke samping untuk lebar stereo.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Loudness Standards per Platform (LUFS)</div>
+          <div class="card-body" style="margin-bottom: 0.85rem">
+            LUFS (Loudness Units Full Scale) mengukur kenyaringan yang
+            dipersepsikan telinga — bukan hanya peak level. Setiap platform
+            punya target berbeda dan akan <em>menurunkan</em> volume otomatis
+            jika melebihi target.
+          </div>
+          <div id="lufsPanel"></div>
+          <div class="info-note">
+            💡 Mastering lebih keras dari target = platform normalisasi turun =
+            usaha sia-sia. Lebih bijak master tepat di target dan jaga dynamics
+            tetap hidup.
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════ TAB: VISUALISASI ════════════════ -->
+      <section id="tab-visualisasi" class="tab-section">
+        <h2 class="section-heading">
+          <span>🎛</span> Alat Visual &amp; Interaktif
+        </h2>
+
+        <!-- WAVEFORM ANIMASI -->
+        <div class="card">
+          <div class="card-title">Demo Waveform — Raw vs Mixed vs Mastered</div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Perhatikan perbedaan bentuk waveform di setiap tahap. Raw recording
+            memiliki banyak variasi level. Mix yang baik lebih konsisten. Master
+            final memiliki density dan loudness yang optimal.
+          </div>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              margin-bottom: 0.75rem;
+              flex-wrap: wrap;
+            "
+          >
+            <button
+              class="btn btn-primary"
+              id="btn-raw"
+              onclick="setWaveMode('raw')"
+            >
+              Raw Recording
+            </button>
+            <button class="btn" id="btn-mix" onclick="setWaveMode('mix')">
+              After Mixing
+            </button>
+            <button class="btn" id="btn-master" onclick="setWaveMode('master')">
+              After Mastering
+            </button>
+          </div>
+          <div class="waveform-demo">
+            <canvas id="waveCanvas" height="120"></canvas>
+          </div>
+          <div
+            id="waveDesc"
+            style="
+              font-size: 13px;
+              color: var(--text2);
+              margin-top: 0.5rem;
+              min-height: 40px;
+              transition: 0.3s;
+            "
+          ></div>
+        </div>
+
+        <!-- EQ VISUALIZER -->
+        <div class="card">
+          <div class="card-title">
+            EQ Curve Visualizer — Geser untuk melihat efek
+          </div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Atur tiap band EQ dan lihat bagaimana kurva frekuensi berubah secara
+            real-time. Ini adalah cara berpikir seorang audio engineer saat
+            melakukan EQ.
+          </div>
+          <div class="eq-canvas-wrap">
+            <canvas
+              id="eqCanvas"
+              height="200"
+              style="width: 100%; display: block"
+            ></canvas>
+          </div>
+          <div class="eq-controls">
+            <div class="eq-ctrl">
+              <div class="eq-ctrl-label">HPF (80 Hz)</div>
+              <div class="eq-ctrl-val" id="v-hpf">Off</div>
+              <input
+                type="range"
+                id="sl-hpf"
+                min="0"
+                max="1"
+                step="1"
+                value="0"
+                oninput="drawEQ()"
+              />
+              <div
+                style="font-size: 10px; color: var(--text3); margin-top: 0.3rem"
+              >
+                High-pass filter — hapus rumble
+              </div>
+            </div>
+            <div class="eq-ctrl">
+              <div class="eq-ctrl-label">Low Mid (300 Hz)</div>
+              <div class="eq-ctrl-val" id="v-lm">0 dB</div>
+              <input
+                type="range"
+                id="sl-lm"
+                min="-12"
+                max="6"
+                value="0"
+                oninput="drawEQ()"
+              />
+              <div
+                style="font-size: 10px; color: var(--text3); margin-top: 0.3rem"
+              >
+                Cut muddy, boost warmth
+              </div>
+            </div>
+            <div class="eq-ctrl">
+              <div class="eq-ctrl-label">Presence (3 kHz)</div>
+              <div class="eq-ctrl-val" id="v-pr">0 dB</div>
+              <input
+                type="range"
+                id="sl-pr"
+                min="-12"
+                max="12"
+                value="0"
+                oninput="drawEQ()"
+              />
+              <div
+                style="font-size: 10px; color: var(--text3); margin-top: 0.3rem"
+              >
+                Boost clarity vokal
+              </div>
+            </div>
+            <div class="eq-ctrl">
+              <div class="eq-ctrl-label">Air (10 kHz)</div>
+              <div class="eq-ctrl-val" id="v-air">0 dB</div>
+              <input
+                type="range"
+                id="sl-air"
+                min="-8"
+                max="8"
+                value="0"
+                oninput="drawEQ()"
+              />
+              <div
+                style="font-size: 10px; color: var(--text3); margin-top: 0.3rem"
+              >
+                Sparkle dan openness
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPRESSOR -->
+        <div class="card">
+          <div class="card-title">
+            Compressor Simulator — Real-time Transfer Curve
+          </div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Transfer curve menunjukkan hubungan input vs output level. Garis
+            diagonal = tanpa compression. Semakin bengkok = semakin kuat
+            compression.
+          </div>
+          <div class="comp-visual-wrap">
+            <canvas
+              id="compCanvas"
+              height="220"
+              style="width: 100%; display: block"
+            ></canvas>
+          </div>
+          <div class="comp-params">
+            <div class="comp-param">
+              <div class="comp-param-name">Threshold</div>
+              <div class="comp-param-val" id="v-thr">-20 dB</div>
+              <input
+                type="range"
+                id="sl-thr"
+                min="-40"
+                max="0"
+                value="-20"
+                oninput="updateComp()"
+              />
+              <div class="comp-param-desc">
+                Level mulai compression. Lebih rendah = lebih banyak material
+                ter-compress.
+              </div>
+            </div>
+            <div class="comp-param">
+              <div class="comp-param-name">Ratio</div>
+              <div class="comp-param-val" id="v-rat">4:1</div>
+              <input
+                type="range"
+                id="sl-rat"
+                min="1"
+                max="20"
+                step="0.5"
+                value="4"
+                oninput="updateComp()"
+              />
+              <div class="comp-param-desc">
+                Kekuatan compression. 2:1 lembut · 4:1 standar · 10:1+ =
+                limiting.
+              </div>
+            </div>
+            <div class="comp-param">
+              <div class="comp-param-name">Attack</div>
+              <div class="comp-param-val" id="v-atk">10 ms</div>
+              <input
+                type="range"
+                id="sl-atk"
+                min="1"
+                max="150"
+                value="10"
+                oninput="updateComp()"
+              />
+              <div class="comp-param-desc">
+                Kecepatan respon. Cepat = kurangi punch. Lambat = biarkan
+                transient lewat.
+              </div>
+            </div>
+            <div class="comp-param">
+              <div class="comp-param-name">Release</div>
+              <div class="comp-param-val" id="v-rel">200 ms</div>
+              <input
+                type="range"
+                id="sl-rel"
+                min="20"
+                max="500"
+                value="200"
+                oninput="updateComp()"
+              />
+              <div class="comp-param-desc">
+                Kecepatan berhenti. Terlalu cepat = pumping. 100–300 ms =
+                natural.
+              </div>
+            </div>
+          </div>
+          <div class="comp-character" id="compChar"></div>
+        </div>
+
+        <!-- REVERB DECAY DEMO -->
+        <div class="card">
+          <div class="card-title">
+            Reverb Decay Visualizer — Pilih jenis reverb
+          </div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Reverb menciptakan ilusi ruang dengan memantulkan suara. Decay time
+            dan karakter berbeda-beda tergantung jenis reverb.
+          </div>
+          <div class="reverb-types" id="reverbTypes"></div>
+          <div class="rv-canvas-wrap">
+            <canvas
+              id="rvCanvas"
+              height="130"
+              style="width: 100%; display: block"
+            ></canvas>
+          </div>
+          <div
+            class="freq-info-box"
+            id="rvDesc"
+            style="margin-top: 0.75rem"
+          ></div>
+        </div>
+
+        <!-- DELAY CALC -->
+        <div class="card">
+          <div class="card-title">Kalkulator Delay — Sinkron ke Tempo Lagu</div>
+          <div class="card-body" style="margin-bottom: 0.75rem">
+            Delay yang sinkron dengan tempo terdengar musikal dan tidak
+            mengganggu. Rumus:
+            <strong>60.000 ÷ BPM = quarter note delay (ms)</strong>.
+          </div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 14px;
+              margin: 0.5rem 0;
+            "
+          >
+            <span
+              style="
+                font-size: 13px;
+                color: var(--text2);
+                width: 50px;
+                flex-shrink: 0;
+              "
+              >BPM</span
+            >
+            <input
+              type="range"
+              id="sl-bpm"
+              min="60"
+              max="200"
+              value="120"
+              oninput="updateDelay()"
+              style="flex: 1"
+            />
+            <span
+              id="v-bpm"
+              style="
+                font-size: 16px;
+                font-weight: 700;
+                min-width: 40px;
+                text-align: right;
+              "
+              >120</span
+            >
+          </div>
+          <div class="delay-grid" id="delayGrid"></div>
+        </div>
+      </section>
+
+      <!-- ════════════════ TAB: WORKFLOW ════════════════ -->
+      <section id="tab-workflow" class="tab-section">
+        <h2 class="section-heading"><span>🔄</span> Alur Kerja Lengkap</h2>
+
+        <div class="card">
+          <div class="card-title">
+            Mixing Chain — 8 Langkah dari Track ke Mix
+          </div>
+          <div class="signal-chain" id="mixChain"></div>
+          <div class="wf-list" id="mixWorkflow"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            Mastering Chain — 5 Langkah ke File Siap Distribusi
+          </div>
+          <div class="signal-chain" id="masterChain"></div>
+          <div class="wf-list" id="masterWorkflow"></div>
+          <div class="info-note">
+            📌 Urutan mastering chain tidak boleh dibalik: EQ → Compression →
+            Loudness → Limiter. Limiter selalu jadi langkah paling akhir sebelum
+            ekspor.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">EQ Terapan per Instrumen</div>
+          <div id="eqGuideGrid"></div>
+        </div>
+      </section>
+
+      <!-- ════════════════ TAB: PRAKTIKUM ════════════════ -->
+      <section id="tab-praktikum" class="tab-section">
+        <h2 class="section-heading"><span>📝</span> Panduan Praktikum</h2>
+
+        <!-- PRAKTIKUM 1 -->
+        <div class="prak-header">
+          <div class="prak-num">Praktikum 1</div>
+          <div class="prak-title">Podcast Mix Multi-Track</div>
+          <div class="prak-sub">
+            Membuat mix podcast yang seimbang antara vokal dan musik latar
+            menggunakan Audacity
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Skenario</div>
+          <div class="card-body">
+            Kamu adalah audio engineer untuk episode podcast. Tugasmu: mix
+            rekaman vokal (hasil rekaman sendiri atau dari tugas sebelumnya)
+            dengan musik latar royalty-free sehingga vokal tetap jelas dan musik
+            mendukung tanpa mendominasi.
+          </div>
+          <div class="info-note" style="margin-top: 0.75rem">
+            🎵 Download musik latar royalty-free dari
+            <strong>YouTube Audio Library</strong> (studio.youtube.com → Audio
+            Library) atau
+            <strong>Free Music Archive</strong> (freemusicarchive.org).
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Langkah Kerja — Praktikum 1</div>
+          <div class="step-flow" id="prak1Steps"></div>
+          <div class="step-nav">
+            <button class="btn" onclick="prevStep(1)">← Sebelumnya</button>
+            <button class="btn btn-primary" onclick="nextStep(1)">
+              Selanjutnya →
+            </button>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-title">📦 Deliverable Praktikum 1</div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span>File audio mix final — MP3, 192 kbps</span>
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span
+              >Screenshot waveform kedua track di Audacity (sebelum dan sesudah
+              EQ)</span
+            >
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span
+              >Laporan 400 kata: keputusan mixing, tantangan yang dihadapi, dan
+              perbedaan dengan audio mentah</span
+            >
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- PRAKTIKUM 2 -->
+        <div
+          class="prak-header"
+          style="
+            background: linear-gradient(
+              135deg,
+              var(--teal-bg),
+              var(--amber-bg)
+            );
+            border-color: rgba(46, 196, 160, 0.2);
+          "
+        >
+          <div class="prak-num" style="color: var(--teal2)">Praktikum 2</div>
+          <div class="prak-title">Mastering Simulation</div>
+          <div class="prak-sub">
+            Terapkan mastering chain ke hasil mix dan ukur loudness dengan
+            target LUFS platform
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Langkah Kerja — Praktikum 2</div>
+          <div class="step-flow" id="prak2Steps"></div>
+          <div class="step-nav">
+            <button class="btn" onclick="prevStep(2)">← Sebelumnya</button>
+            <button
+              class="btn btn-primary"
+              onclick="nextStep(2)"
+              style="
+                background: var(--teal-bg);
+                border-color: rgba(46, 196, 160, 0.4);
+                color: var(--teal2);
+              "
+            >
+              Selanjutnya →
+            </button>
+          </div>
+        </div>
+
+        <div class="deliverable">
+          <div class="del-title">📦 Deliverable Praktikum 2</div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span>File mix original (pre-mastering)</span>
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span>File master — WAV 48kHz / 24-bit (archive)</span>
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span>File delivery — MP3 192 kbps</span>
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span>Screenshot Plot Spectrum sebelum dan sesudah mastering</span>
+          </div>
+          <div class="del-item">
+            <span class="del-check">✓</span
+            ><span
+              >Laporan 500 kata: keputusan mastering, perbandingan
+              sebelum/sesudah, hasil LUFS, catatan A/B listening test</span
+            >
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- RUBRIK -->
+        <div class="card">
+          <div class="card-title">Rubrik Penilaian</div>
+          <table class="score-table">
+            <thead>
+              <tr>
+                <th>Aspek</th>
+                <th>Kriteria Penilaian</th>
+                <th>Bobot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kualitas audio akhir</td>
+                <td>
+                  Vokal jelas terdengar di atas musik latar, tidak ada clipping
+                  atau distorsi, dynamic range terjaga
+                </td>
+                <td><span class="score-pill">30%</span></td>
+              </tr>
+              <tr>
+                <td>Penerapan EQ</td>
+                <td>
+                  HPF diterapkan dengan benar pada kedua track, ada bukti
+                  frequency management yang tepat via screenshot spectrum
+                </td>
+                <td><span class="score-pill">20%</span></td>
+              </tr>
+              <tr>
+                <td>Loudness &amp; Level</td>
+                <td>
+                  File master mencapai -16 LUFS ±1 LU, peak tidak melebihi -1
+                  dBFS, tidak ada distorsi limiting
+                </td>
+                <td><span class="score-pill">20%</span></td>
+              </tr>
+              <tr>
+                <td>Kelengkapan file</td>
+                <td>
+                  Semua deliverable tersedia (WAV master, MP3 delivery,
+                  screenshot, laporan)
+                </td>
+                <td><span class="score-pill">15%</span></td>
+              </tr>
+              <tr>
+                <td>Laporan teknis</td>
+                <td>
+                  Menjelaskan keputusan teknis dengan jelas, ada analisis
+                  sebelum/sesudah, dan refleksi hasil A/B listening
+                </td>
+                <td><span class="score-pill">15%</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Pertemuan 5 — Rekayasa Video &amp; Audio &nbsp;·&nbsp; Mixing &amp;
+      Mastering Audio &nbsp;·&nbsp; Politeknik Negeri Tanah Laut
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════ -->
+    <script>
+      // ── TAB SWITCHING ─────────────────────────────
+      function switchTab(id) {
+        document
+          .querySelectorAll(".tab-section")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document.getElementById("tab-" + id).classList.add("active");
+        event.target.classList.add("active");
+        if (id === "visualisasi") {
+          setTimeout(() => {
+            drawEQ();
+            drawComp();
+            drawReverb();
+          }, 50);
+        }
+      }
+
+      // ── HERO WAVEFORM ANIMATION ────────────────────
+      (function () {
+        const canvas = document.getElementById("hero-canvas");
+        const ctx = canvas.getContext("2d");
+        let t = 0,
+          w,
+          h;
+        function resize() {
+          w = canvas.width = canvas.offsetWidth;
+          h = canvas.height = 80;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        function draw() {
+          ctx.clearRect(0, 0, w, h);
+          const layers = [
+            {
+              color: "rgba(124,111,245,0.6)",
+              freq: 0.8,
+              amp: 18,
+              speed: 0.022,
+              off: 0,
+            },
+            {
+              color: "rgba(46,196,160,0.45)",
+              freq: 1.3,
+              amp: 12,
+              speed: 0.031,
+              off: 1.2,
+            },
+            {
+              color: "rgba(240,165,0,0.3)",
+              freq: 0.55,
+              amp: 22,
+              speed: 0.015,
+              off: 2.4,
+            },
+            {
+              color: "rgba(232,89,60,0.25)",
+              freq: 2.1,
+              amp: 8,
+              speed: 0.04,
+              off: 3.6,
+            },
+          ];
+          layers.forEach((l) => {
+            ctx.beginPath();
+            ctx.strokeStyle = l.color;
+            ctx.lineWidth = 1.5;
+            for (let x = 0; x < w; x++) {
+              const y =
+                h / 2 +
+                Math.sin((x / w) * Math.PI * 2 * l.freq + t * l.speed + l.off) *
+                  l.amp +
+                Math.sin(
+                  (x / w) * Math.PI * 4 * l.freq + t * l.speed * 1.7 + l.off,
+                ) *
+                  (l.amp * 0.4) +
+                Math.sin((x / w) * Math.PI * l.freq * 0.5 + t * l.speed * 0.6) *
+                  (l.amp * 0.25);
+              x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+          });
+          t++;
+          requestAnimationFrame(draw);
+        }
+        draw();
+      })();
+
+      // ── GAIN METERS ────────────────────────────────
+      (function () {
+        const data = [
+          {
+            label: "Track individu",
+            pct: 55,
+            color: "#2ec4a0",
+            val: "-12 s/d -6 dBFS",
+          },
+          {
+            label: "Rough mix",
+            pct: 70,
+            color: "#f0a500",
+            val: "-10 s/d -6 dBFS",
+          },
+          {
+            label: "Pre-mastering",
+            pct: 80,
+            color: "#7c6ff5",
+            val: "-6 s/d -3 dBFS",
+          },
+          {
+            label: "Final master",
+            pct: 97,
+            color: "#e8593c",
+            val: "-1 s/d -0.3 dBFS",
+          },
+        ];
+        const wrap = document.getElementById("gain-meters");
+        data.forEach((d) => {
+          wrap.innerHTML += `
+    <div class="meter-row">
+      <span class="meter-label">${d.label}</span>
+      <div class="meter-track"><div class="meter-fill" data-pct="${d.pct}" style="width:0%;background:${d.color}"></div></div>
+      <span class="meter-val" style="color:${d.color}">${d.val}</span>
+    </div>`;
+        });
+        setTimeout(() => {
+          wrap.querySelectorAll(".meter-fill").forEach((el) => {
+            el.style.width = el.dataset.pct + "%";
+          });
+        }, 300);
+      })();
+
+      // ── FREQUENCY BARS ──────────────────────────────
+      (function () {
+        const freqs = [
+          {
+            label: "Sub",
+            hz: "20–60",
+            color: "#534AB7",
+            h: 30,
+            info: '<strong style="color:#a89ff8">Sub-bass (20–60 Hz)</strong> — lebih dirasakan daripada didengar. Fundamental kick drum dan bass synth. Terlalu banyak = mix muddy dan boomy. Biasanya di-HPF dari instrumen non-bass dan non-kick. Sering terasa di dada saat volume keras.',
+          },
+          {
+            label: "Bass",
+            hz: "60–200",
+            color: "#7c6ff5",
+            h: 65,
+            info: '<strong style="color:#a89ff8">Bass (60–200 Hz)</strong> — kehangatan, power, dan body suara. Bass gitar dan suara pria fundamental berada di sini. Terlalu banyak = muddy dan menutupi instrumen lain. Terlalu sedikit = suara tipis dan lemah seperti speaker HP.',
+          },
+          {
+            label: "Low Mid",
+            hz: "200–500",
+            color: "#f0a500",
+            h: 82,
+            info: '<strong style="color:#ffc94d">Low-mids (200–500 Hz)</strong> — body dan fullness. Sering jadi sumber "kemudingan" — suara boxy atau honky yang tidak enak. Area bermasalah yang sering dipotong saat mixing vokal. Gitar akustik punya body di sini.',
+          },
+          {
+            label: "Mid",
+            hz: "500–2k",
+            color: "#2ec4a0",
+            h: 95,
+            info: '<strong style="color:#5ddec3">Midrange (500 Hz – 2 kHz)</strong> — presence dan clarity inti. Intelligibilitas vokal sangat bergantung pada range ini. Terlalu banyak = terdengar seperti telepon. Terlalu sedikit = vokal terpendam dalam mix.',
+          },
+          {
+            label: "Upper Mid",
+            hz: "2–5k",
+            color: "#3db56a",
+            h: 78,
+            info: '<strong style="color:#6ed99a">Upper mids / Presence (2–5 kHz)</strong> — clarity, definisi, dan attack. Konsonan vokal (T, P, K) dan crack snare berada di sini. Kritis untuk intelligibilitas. Terlalu banyak = harsh dan melelahkan telinga setelah lama didengarkan.',
+          },
+          {
+            label: "Brilliance",
+            hz: "5–10k",
+            color: "#e8593c",
+            h: 55,
+            info: '<strong style="color:#f07d64">Brilliance & Sibilance (5–10 kHz)</strong> — kecerahan dan kejelasan. Simbal dan sibilans vokal (S, SH, CH) ada di sini. De-esser bekerja di range 6–8 kHz untuk kurangi sibilans keras. Terlalu banyak = harsh dan painful.',
+          },
+          {
+            label: "Air",
+            hz: "10–20k",
+            color: "#BA7517",
+            h: 30,
+            info: '<strong style="color:#ffc94d">Air & Sparkle (10–20 kHz)</strong> — keterbukaan dan shimmer. Cymbal shimmer dan akustik ruangan ada di sini. Boost lembut di high shelf bisa membuat mix terasa "terbuka" dan modern. Banyak orang tidak bisa mendengar di atas 16 kHz.',
+          },
+        ];
+        const axisEl = document.getElementById("freqAxis");
+        axisEl.innerHTML = freqs.map((f) => `<span>${f.hz} Hz</span>`).join("");
+        const wrap = document.getElementById("freqBars");
+        freqs.forEach((f, i) => {
+          const col = document.createElement("div");
+          col.className = "freq-bar-col";
+          col.innerHTML = `
+      <div class="freq-bar-fill" style="height:${f.h}px;background:${f.color};color:${f.color}" id="fbar${i}"></div>
+      <div class="freq-bar-label">${f.label}</div>`;
+          col.onclick = () => {
+            document
+              .querySelectorAll(".freq-bar-fill")
+              .forEach((b) => b.classList.remove("selected"));
+            col.querySelector(".freq-bar-fill").classList.add("selected");
+            const box = document.getElementById("freqInfo");
+            box.style.opacity = 0;
+            setTimeout(() => {
+              box.innerHTML = f.info;
+              box.style.opacity = 1;
+            }, 150);
+          };
+          wrap.appendChild(col);
+        });
+        // animate bars on load
+        setTimeout(() => {
+          freqs.forEach((f, i) => {
+            const el = document.getElementById("fbar" + i);
+            el.style.height = "0px";
+            el.style.transition = "none";
+            setTimeout(() => {
+              el.style.transition = `height 0.8s cubic-bezier(.4,0,.2,1) ${i * 0.07}s`;
+              el.style.height = f.h + "px";
+            }, 200);
+          });
+        }, 100);
+      })();
+
+      // ── PANNING STAGE ──────────────────────────────
+      (function () {
+        const stage = document.getElementById("panStage");
+        const elements = [
+          {
+            label: "Lead Vokal",
+            x: 50,
+            y: 22,
+            c: "#7c6ff5",
+            bg: "rgba(124,111,245,0.18)",
+          },
+          {
+            label: "Kick / Snare",
+            x: 50,
+            y: 50,
+            c: "#7c6ff5",
+            bg: "rgba(124,111,245,0.18)",
+          },
+          {
+            label: "Bass",
+            x: 50,
+            y: 78,
+            c: "#7c6ff5",
+            bg: "rgba(124,111,245,0.18)",
+          },
+          {
+            label: "Gitar L",
+            x: 16,
+            y: 32,
+            c: "#f0a500",
+            bg: "rgba(240,165,0,0.15)",
+          },
+          {
+            label: "BG Vokal L",
+            x: 20,
+            y: 68,
+            c: "#f0a500",
+            bg: "rgba(240,165,0,0.15)",
+          },
+          {
+            label: "Pad L",
+            x: 10,
+            y: 55,
+            c: "#2ec4a0",
+            bg: "rgba(46,196,160,0.12)",
+          },
+          {
+            label: "Gitar R",
+            x: 84,
+            y: 32,
+            c: "#f0a500",
+            bg: "rgba(240,165,0,0.15)",
+          },
+          {
+            label: "BG Vokal R",
+            x: 80,
+            y: 68,
+            c: "#f0a500",
+            bg: "rgba(240,165,0,0.15)",
+          },
+          {
+            label: "Pad R",
+            x: 90,
+            y: 55,
+            c: "#2ec4a0",
+            bg: "rgba(46,196,160,0.12)",
+          },
+        ];
+        elements.forEach((el, i) => {
+          const div = document.createElement("div");
+          div.className = "pan-elem";
+          div.textContent = el.label;
+          div.style.cssText = `left:${el.x}%;top:${el.y}%;color:${el.c};background:${el.bg};border:1px solid ${el.c}40;opacity:0;transition:opacity 0.4s ${i * 0.08}s`;
+          stage.appendChild(div);
+          setTimeout(
+            () => {
+              div.style.opacity = "1";
+            },
+            300 + i * 80,
+          );
+        });
+      })();
+
+      // ── LUFS PANEL ─────────────────────────────────
+      (function () {
+        const data = [
+          { name: "Spotify", lufs: -14, pct: 62, color: "#2ec4a0" },
+          { name: "YouTube", lufs: -14, pct: 62, color: "#e8593c" },
+          { name: "Apple Music", lufs: -16, pct: 55, color: "#a89ff8" },
+          { name: "Podcast", lufs: -16, pct: 55, color: "#7c6ff5" },
+          { name: "Broadcast TV", lufs: -23, pct: 30, color: "#f0a500" },
+          { name: "CD / Lama", lufs: -9, pct: 80, color: "#5c6485" },
+        ];
+        const wrap = document.getElementById("lufsPanel");
+        data.forEach((d) => {
+          wrap.innerHTML += `<div class="lufs-row">
+      <span class="lufs-name">${d.name}</span>
+      <div class="lufs-track"><div class="lufs-fill" data-pct="${d.pct}" style="width:0%;background:${d.color}"></div></div>
+      <span class="lufs-val">${d.lufs} LUFS</span>
+    </div>`;
+        });
+        setTimeout(() => {
+          wrap.querySelectorAll(".lufs-fill").forEach((el) => {
+            el.style.transition = "width 1.2s cubic-bezier(.4,0,.2,1)";
+            el.style.width = el.dataset.pct + "%";
+          });
+        }, 400);
+      })();
+
+      // ── WAVEFORM DEMO ───────────────────────────────
+      let waveMode = "raw";
+      const waveDescs = {
+        raw: "Raw recording: level sangat bervariasi — ada bagian yang sangat pelan dan bagian yang hampir clipping. Noise floor terlihat di bagian senyap.",
+        mix: "Setelah mixing: level lebih konsisten berkat compression. EQ sudah diterapkan. Volume automation membuat musik latar turun saat vokal berbicara.",
+        master:
+          "Setelah mastering: waveform lebih padat (dense) dan loud. Limiter memastikan tidak ada yang melebihi ceiling -1 dBFS. Siap distribusi.",
+      };
+      function setWaveMode(mode) {
+        waveMode = mode;
+        ["raw", "mix", "master"].forEach((m) => {
+          const btn = document.getElementById("btn-" + m);
+          if (btn) {
+            btn.className = m === mode ? "btn btn-primary" : "btn";
+          }
+        });
+        const desc = document.getElementById("waveDesc");
+        desc.style.opacity = 0;
+        setTimeout(() => {
+          desc.textContent = waveDescs[mode];
+          desc.style.opacity = 1;
+        }, 150);
+        drawWave();
+      }
+      function drawWave() {
+        const canvas = document.getElementById("waveCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const W = (canvas.width = canvas.offsetWidth);
+        const H = (canvas.height = 120);
+        ctx.clearRect(0, 0, W, H);
+        const midY = H / 2;
+        ctx.strokeStyle =
+          waveMode === "raw"
+            ? "#7c6ff5"
+            : waveMode === "mix"
+              ? "#2ec4a0"
+              : "#f0a500";
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        const segs = 200;
+        for (let i = 0; i <= segs; i++) {
+          const x = (i / segs) * W;
+          let amp;
+          if (waveMode === "raw") {
+            amp =
+              (Math.sin(i * 0.18) * 30 +
+                Math.sin(i * 0.41) * 15 +
+                Math.sin(i * 0.7) * 8 +
+                (Math.random() - 0.5) * 20) *
+              0.9;
+            if (Math.abs(amp) > 45) amp = Math.sign(amp) * 48;
+          } else if (waveMode === "mix") {
+            amp =
+              (Math.sin(i * 0.18) * 22 +
+                Math.sin(i * 0.41) * 10 +
+                Math.sin(i * 0.7) * 5) *
+              0.85;
+          } else {
+            amp =
+              (Math.sin(i * 0.18) * 32 +
+                Math.sin(i * 0.41) * 14 +
+                Math.sin(i * 0.7) * 7) *
+              0.98;
+            if (Math.abs(amp) > 45) amp = Math.sign(amp) * 45;
+          }
+          const y = midY + amp;
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        // mirror
+        ctx.globalAlpha = 0.4;
+        ctx.beginPath();
+        for (let i = 0; i <= segs; i++) {
+          const x = (i / segs) * W;
+          let amp;
+          if (waveMode === "raw") {
+            amp =
+              -(
+                Math.sin(i * 0.18) * 30 +
+                Math.sin(i * 0.41) * 15 +
+                Math.sin(i * 0.7) * 8 +
+                (Math.random() - 0.5) * 20
+              ) * 0.9;
+          } else if (waveMode === "mix") {
+            amp =
+              -(
+                Math.sin(i * 0.18) * 22 +
+                Math.sin(i * 0.41) * 10 +
+                Math.sin(i * 0.7) * 5
+              ) * 0.85;
+          } else {
+            amp =
+              -(
+                Math.sin(i * 0.18) * 32 +
+                Math.sin(i * 0.41) * 14 +
+                Math.sin(i * 0.7) * 7
+              ) * 0.98;
+            if (Math.abs(amp) > 45) amp = Math.sign(amp) * 45;
+          }
+          const y = midY + amp;
+          i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        // animate label
+        ctx.fillStyle =
+          waveMode === "raw"
+            ? "rgba(124,111,245,0.8)"
+            : waveMode === "mix"
+              ? "rgba(46,196,160,0.8)"
+              : "rgba(240,165,0,0.8)";
+        ctx.font = "11px system-ui";
+        const labels = {
+          raw: "RAW RECORDING",
+          mix: "AFTER MIXING",
+          master: "AFTER MASTERING",
+        };
+        ctx.fillText(labels[waveMode], 12, 16);
+        setWaveMode.desc = waveDescs[waveMode];
+      }
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          drawWave();
+          document.getElementById("waveDesc").textContent = waveDescs.raw;
+        }, 100);
+      });
+
+      // ── EQ CURVE CANVAS ────────────────────────────
+      function drawEQ() {
+        const canvas = document.getElementById("eqCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const W = (canvas.width = canvas.offsetWidth);
+        const H = 200;
+        canvas.height = H;
+        ctx.clearRect(0, 0, W, H);
+
+        const hpf = parseInt(document.getElementById("sl-hpf").value);
+        const lm = parseInt(document.getElementById("sl-lm").value);
+        const pr = parseInt(document.getElementById("sl-pr").value);
+        const air = parseInt(document.getElementById("sl-air").value);
+
+        document.getElementById("v-hpf").textContent = hpf
+          ? "On (80 Hz)"
+          : "Off";
+        document.getElementById("v-lm").textContent =
+          (lm > 0 ? "+" : "") + lm + " dB";
+        document.getElementById("v-pr").textContent =
+          (pr > 0 ? "+" : "") + pr + " dB";
+        document.getElementById("v-air").textContent =
+          (air > 0 ? "+" : "") + air + " dB";
+
+        // Grid
+        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        ctx.lineWidth = 0.5;
+        [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9].forEach((x) => {
+          ctx.beginPath();
+          ctx.moveTo(x * W, 0);
+          ctx.lineTo(x * W, H);
+          ctx.stroke();
+        });
+        [-12, -6, 0, 6, 12].forEach((db) => {
+          const y = H / 2 - (db / 12) * (H / 2 - 20);
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(W, y);
+          ctx.stroke();
+          ctx.fillStyle = "rgba(255,255,255,0.2)";
+          ctx.font = "10px system-ui";
+          ctx.fillText((db > 0 ? "+" : "") + db + " dB", 4, y - 2);
+        });
+
+        // Flat reference
+        ctx.strokeStyle = "rgba(255,255,255,0.12)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(0, H / 2);
+        ctx.lineTo(W, H / 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Frequency to X mapping (log scale)
+        const freqToX = (f) => {
+          const mn = Math.log10(20),
+            mx = Math.log10(20000);
+          return ((Math.log10(f) - mn) / (mx - mn)) * W;
+        };
+
+        // EQ curve computation
+        function getGain(f) {
+          let g = 0;
+          if (hpf && f < 150) {
+            g += Math.min(0, -18 * (1 - f / 80));
+            if (f < 40) g = -30;
+          }
+          if (lm !== 0) {
+            const cf = 300;
+            const bw = 2;
+            g +=
+              lm *
+              Math.exp(
+                -Math.pow(Math.log2(f / cf), 2) / (2 * Math.pow(bw / 2, 2)),
+              );
+          }
+          if (pr !== 0) {
+            const cf = 3000;
+            const bw = 2.5;
+            g +=
+              pr *
+              Math.exp(
+                -Math.pow(Math.log2(f / cf), 2) / (2 * Math.pow(bw / 2, 2)),
+              );
+          }
+          if (air !== 0) {
+            const shelf = 8000;
+            g += air * Math.max(0, Math.min(1, (f - shelf) / shelf));
+          }
+          return g;
+        }
+
+        // Draw curve
+        const grad = ctx.createLinearGradient(0, 0, W, 0);
+        grad.addColorStop(0, "#7c6ff5");
+        grad.addColorStop(0.5, "#2ec4a0");
+        grad.addColorStop(1, "#f0a500");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = "#7c6ff5";
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        for (let x = 0; x < W; x++) {
+          const f = Math.pow(
+            10,
+            Math.log10(20) + (x / W) * (Math.log10(20000) - Math.log10(20)),
+          );
+          const g = getGain(f);
+          const y = H / 2 - (g / 12) * (H / 2 - 20);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Fill under curve
+        ctx.save();
+        ctx.beginPath();
+        for (let x = 0; x < W; x++) {
+          const f = Math.pow(
+            10,
+            Math.log10(20) + (x / W) * (Math.log10(20000) - Math.log10(20)),
+          );
+          const y = H / 2 - (getGain(f) / 12) * (H / 2 - 20);
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.lineTo(W, H / 2);
+        ctx.lineTo(0, H / 2);
+        ctx.closePath();
+        ctx.fillStyle = "rgba(124,111,245,0.08)";
+        ctx.fill();
+        ctx.restore();
+
+        // Freq labels at bottom
+        [50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000].forEach((f) => {
+          const x = freqToX(f);
+          ctx.fillStyle = "rgba(255,255,255,0.25)";
+          ctx.font = "9px system-ui";
+          const lbl = f >= 1000 ? f / 1000 + "k" : f + "";
+          ctx.fillText(lbl, x - 8, H - 4);
+        });
+      }
+
+      // ── COMPRESSOR CANVAS ───────────────────────────
+      function drawComp() {
+        const canvas = document.getElementById("compCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const W = (canvas.width = canvas.offsetWidth);
+        const H = 220;
+        canvas.height = H;
+        ctx.clearRect(0, 0, W, H);
+
+        const thr = parseInt(document.getElementById("sl-thr").value);
+        const ratio = parseFloat(document.getElementById("sl-rat").value);
+
+        const pad = 40;
+        const plotW = W - pad * 2;
+        const plotH = H - pad * 2;
+
+        // Grid
+        ctx.strokeStyle = "rgba(255,255,255,0.06)";
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i <= 4; i++) {
+          const x = pad + i * (plotW / 4),
+            y = pad + i * (plotH / 4);
+          ctx.beginPath();
+          ctx.moveTo(x, pad);
+          ctx.lineTo(x, pad + plotH);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(pad, y);
+          ctx.lineTo(pad + plotW, y);
+          ctx.stroke();
+        }
+        ctx.fillStyle = "rgba(255,255,255,0.25)";
+        ctx.font = "9px system-ui";
+        ctx.fillText("IN →", pad + plotW - 20, H - 6);
+        ctx.save();
+        ctx.translate(10, pad + plotH / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText("OUT ↑", 0, 0);
+        ctx.restore();
+
+        // Map dB to pixels
+        const dBmin = -40,
+          dBmax = 0;
+        const dBtoX = (db) => pad + ((db - dBmin) / (dBmax - dBmin)) * plotW;
+        const dBtoY = (db) =>
+          pad + plotH - ((db - dBmin) / (dBmax - dBmin)) * plotH;
+
+        // Reference line (no compression)
+        ctx.strokeStyle = "rgba(255,255,255,0.15)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(dBtoX(dBmin), dBtoY(dBmin));
+        ctx.lineTo(dBtoX(dBmax), dBtoY(dBmax));
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Threshold line
+        ctx.strokeStyle = "rgba(240,165,0,0.4)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 4]);
+        ctx.beginPath();
+        ctx.moveTo(dBtoX(thr), pad);
+        ctx.lineTo(dBtoX(thr), pad + plotH);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = "rgba(240,165,0,0.7)";
+        ctx.font = "10px system-ui";
+        ctx.fillText("THR " + thr + " dB", dBtoX(thr) + 4, pad + 14);
+
+        // Compression curve
+        const grad = ctx.createLinearGradient(0, 0, W, 0);
+        grad.addColorStop(0, "#7c6ff5");
+        grad.addColorStop(1, "#e8593c");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = "#7c6ff5";
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        for (let db = dBmin; db <= dBmax; db += 0.5) {
+          let out;
+          if (db <= thr) {
+            out = db;
+          } else {
+            out = thr + (db - thr) / ratio;
+          }
+          const x = dBtoX(db);
+          const y = dBtoY(out);
+          db === dBmin ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      function updateComp() {
+        const thr = parseInt(document.getElementById("sl-thr").value);
+        const ratio = parseFloat(document.getElementById("sl-rat").value);
+        const atk = parseInt(document.getElementById("sl-atk").value);
+        const rel = parseInt(document.getElementById("sl-rel").value);
+        document.getElementById("v-thr").textContent = thr + " dB";
+        document.getElementById("v-rat").textContent = ratio + ":1";
+        document.getElementById("v-atk").textContent = atk + " ms";
+        document.getElementById("v-rel").textContent = rel + " ms";
+        drawComp();
+
+        let lines = [];
+        if (ratio >= 10)
+          lines.push(
+            "⚠️ Ratio sangat tinggi — ini masuk wilayah <strong>limiting</strong>, bukan compression. Hati-hati distorsi jika berlebihan.",
+          );
+        else if (ratio >= 7)
+          lines.push(
+            "Compression <strong>agresif</strong> — cocok untuk drum, bass yang sangat dinamik, atau efek dramatis.",
+          );
+        else if (ratio >= 4)
+          lines.push(
+            "Compression <strong>moderat</strong> — standar untuk vokal podcast dan instrumen kebanyakan.",
+          );
+        else
+          lines.push(
+            "Compression <strong>lembut</strong> — sangat transparan, mempertahankan karakter dan dinamik natural. Ideal untuk bus/glue compression.",
+          );
+        if (atk <= 5)
+          lines.push(
+            "Attack sangat cepat — transient ter-compress, suara smooth tapi bisa kehilangan punch dan kejutan.",
+          );
+        else if (atk <= 20)
+          lines.push(
+            "Attack normal — transient awal dibiarkan lewat, punch terjaga, baru kemudian compression bekerja.",
+          );
+        else
+          lines.push(
+            'Attack lambat — transient sepenuhnya lewat, suara terasa "hidup" dan memiliki impact lebih kuat.',
+          );
+        if (rel <= 60)
+          lines.push(
+            "Release sangat cepat — bisa terdengar pumping atau breathing pada material dengan transient rapat.",
+          );
+        else if (rel <= 200)
+          lines.push(
+            "Release natural — sesuai untuk vokal dan musik pada umumnya.",
+          );
+        else
+          lines.push(
+            "Release lambat — compression halus dan smooth, namun bisa over-compress di antara frase panjang.",
+          );
+        document.getElementById("compChar").innerHTML = lines
+          .map((l) => "• " + l)
+          .join("<br>");
+      }
+      updateComp();
+
+      // ── REVERB DECAY VISUALIZER ─────────────────────
+      const reverbData = [
+        {
+          name: "Room",
+          decay: 0.6,
+          char: "bright",
+          color: "#7c6ff5",
+          desc: 'Ruang kecil, intim. Decay pendek membuat suara terasa "hidup" tanpa terasa jauh. Paling umum untuk vokal podcast dan instrumen yang butuh sedikit ruang. Tidak mengganggu intelligibilitas.',
+        },
+        {
+          name: "Hall",
+          decay: 2.2,
+          char: "smooth",
+          color: "#2ec4a0",
+          desc: "Concert hall besar. Megah dan spacious. Cocok untuk orkestra, musik sinematik, dan choir. Jangan pakai untuk vokal podcast — suara terdengar jauh dan tidak natural.",
+        },
+        {
+          name: "Plate",
+          decay: 1.4,
+          char: "bright",
+          color: "#f0a500",
+          desc: "Reverb mekanis vintage. Karakter cerah, padat, dan modern. Klasik untuk snare drum dan vokal pop/rock. Suara khas dari rekaman era 60–80an.",
+        },
+        {
+          name: "Spring",
+          decay: 0.9,
+          char: "metallic",
+          color: "#e8593c",
+          desc: "Reverb pegas mekanis dari amplifier gitar. Karakter metalik, bouncy, dan sedikit kasar. Digunakan secara kreatif untuk gitar, bass, dan efek retro/surf music.",
+        },
+        {
+          name: "Chamber",
+          decay: 1.8,
+          char: "natural",
+          color: "#4a90e2",
+          desc: "Echo chamber berukuran sedang. Natural dan seimbang — terdengar seperti rekaman di ruangan kosong yang bagus. General purpose yang bekerja baik untuk vokal dan instrumen.",
+        },
+        {
+          name: "Shimmer",
+          decay: 4.0,
+          char: "ethereal",
+          color: "#3db56a",
+          desc: 'Reverb modern dengan pitch-shifting. Ethereal, ajaib, dan very "cinematic". Untuk efek kreatif dan ambient — bukan penggunaan natural. Populer dalam musik electronic dan cinematic.',
+        },
+      ];
+      let selectedReverb = 0;
+      (function () {
+        const grid = document.getElementById("reverbTypes");
+        reverbData.forEach((r, i) => {
+          const el = document.createElement("div");
+          el.className = "rv-card" + (i === 0 ? " active" : "");
+          el.innerHTML = `<div class="rv-name">${r.name}</div><div class="rv-time">Decay: ~${r.decay}s</div>`;
+          el.onclick = () => {
+            document
+              .querySelectorAll(".rv-card")
+              .forEach((c) => c.classList.remove("active"));
+            el.classList.add("active");
+            selectedReverb = i;
+            drawReverb();
+            const d = document.getElementById("rvDesc");
+            d.style.opacity = 0;
+            setTimeout(() => {
+              d.innerHTML =
+                '<strong style="color:' +
+                r.color +
+                '">' +
+                r.name +
+                "</strong> — " +
+                r.desc;
+              d.style.opacity = 1;
+            }, 150);
+          };
+          grid.appendChild(el);
+        });
+        document.getElementById("rvDesc").innerHTML =
+          '<strong style="color:' +
+          reverbData[0].color +
+          '">' +
+          reverbData[0].name +
+          "</strong> — " +
+          reverbData[0].desc;
+      })();
+
+      function drawReverb() {
+        const canvas = document.getElementById("rvCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const W = (canvas.width = canvas.offsetWidth);
+        const H = 130;
+        canvas.height = H;
+        ctx.clearRect(0, 0, W, H);
+        const r = reverbData[selectedReverb];
+        const steps = 220;
+        // Initial signal spike
+        ctx.strokeStyle = r.color;
+        ctx.lineWidth = 2;
+        ctx.shadowColor = r.color;
+        ctx.shadowBlur = 6;
+        ctx.beginPath();
+        ctx.moveTo(20, H - 10);
+        ctx.lineTo(20, 15);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+        // Decay tail
+        ctx.lineWidth = 1.5;
+        const tailWidth = W - 40;
+        const decayK = r.decay * 0.9;
+        for (let i = 0; i < steps; i++) {
+          const x = 20 + (i / steps) * tailWidth;
+          const t = (i / steps) * 5;
+          const env = Math.exp(-t / decayK);
+          let osc;
+          if (r.char === "metallic")
+            osc =
+              Math.sin(t * 28 + Math.random() * 0.3) * 0.8 +
+              Math.sin(t * 19) * 0.2;
+          else if (r.char === "bright")
+            osc = Math.sin(t * 15) * 0.7 + Math.sin(t * 8) * 0.3;
+          else if (r.char === "ethereal")
+            osc = Math.sin(t * 6 + Math.sin(t * 2) * 0.5);
+          else osc = Math.sin(t * 10) * 0.6 + Math.sin(t * 6.5) * 0.4;
+          const amp = env * osc * (H * 0.38);
+          ctx.strokeStyle = r.color;
+          ctx.globalAlpha = Math.max(0.05, env);
+          ctx.beginPath();
+          ctx.moveTo(x, H / 2 + amp);
+          ctx.lineTo(x + tailWidth / steps, H / 2);
+          ctx.stroke();
+        }
+        ctx.globalAlpha = 1;
+        // Decay time label
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.font = "10px system-ui";
+        ctx.fillText(`Decay: ~${r.decay}s`, W - 75, 16);
+        ctx.fillText("Attack →", 25, H - 2);
+        // Animate (simple fade-in shimmer effect for shimmer reverb)
+        if (r.char === "ethereal") {
+          let shim = 0;
+          function shimmerAnim() {
+            if (
+              selectedReverb !==
+              reverbData.findIndex((rv) => rv.name === "Shimmer")
+            )
+              return;
+            shim++;
+            ctx.save();
+            ctx.globalAlpha = 0.04 * Math.sin(shim * 0.05);
+            ctx.fillStyle = r.color;
+            ctx.fillRect(0, 0, W, H);
+            ctx.restore();
+            requestAnimationFrame(shimmerAnim);
+          }
+          shimmerAnim();
+        }
+      }
+
+      // ── DELAY CALCULATOR ────────────────────────────
+      function updateDelay() {
+        const bpm = parseInt(document.getElementById("sl-bpm").value);
+        document.getElementById("v-bpm").textContent = bpm;
+        const qn = Math.round(60000 / bpm);
+        const rows = [
+          ["Whole note (4 ketuk)", qn * 4, false],
+          ["Half note (2 ketuk)", qn * 2, false],
+          ["Quarter note ♩", qn, true],
+          ["Dotted quarter", Math.round(qn * 1.5), false],
+          ["Eighth note ♪", Math.round(qn / 2), false],
+          ["Triplet eighth", Math.round(qn / 3), false],
+          ["Sixteenth ♬", Math.round(qn / 4), false],
+        ];
+        const grid = document.getElementById("delayGrid");
+        grid.innerHTML = rows
+          .map(
+            (r) => `
+    <div class="delay-cell${r[2] ? " highlight" : ""}">
+      <span class="delay-note">${r[0]}${r[2] ? " ★" : ""}</span>
+      <span class="delay-ms">${r[1]} ms</span>
+    </div>`,
+          )
+          .join("");
+      }
+      updateDelay();
+
+      // ── WORKFLOW DATA ───────────────────────────────
+      (function () {
+        const mixSteps = [
+          { num: "1", label: "Organisasi", cls: "wf-purple" },
+          { num: "2", label: "Balance", cls: "wf-purple" },
+          { num: "3", label: "Panning", cls: "wf-purple" },
+          { num: "4", label: "EQ", cls: "wf-teal" },
+          { num: "5", label: "Compression", cls: "wf-teal" },
+          { num: "6", label: "Efek", cls: "wf-teal" },
+          { num: "7", label: "Automation", cls: "wf-amber" },
+          { num: "8", label: "QC", cls: "wf-amber" },
+        ];
+        const masterSteps = [
+          { num: "1", label: "Persiapan", cls: "wf-purple" },
+          { num: "2", label: "EQ", cls: "wf-teal" },
+          { num: "3", label: "Compression", cls: "wf-teal" },
+          { num: "4", label: "Loudness", cls: "wf-amber" },
+          { num: "5", label: "Limiter", cls: "wf-amber" },
+        ];
+        const mixWFs = [
+          {
+            title: "Organisasi & Setup",
+            detail:
+              "Import semua track, beri nama jelas, atur routing ke bus, set level awal dengan fader untuk rough balance yang cepat.",
+            cls: "wf-purple",
+          },
+          {
+            title: "Balance Kasar (Static Mix)",
+            detail:
+              "Putar semua track sekaligus. Atur fader hingga semua elemen terdengar. Tujuan: ballpark yang baik — jangan terlalu lama di tahap ini.",
+            cls: "wf-purple",
+          },
+          {
+            title: "Panning",
+            detail:
+              "Vokal lead, bass, kick, snare = center. Gitar pendukung, pad, background vokal = sisi kiri/kanan. Jaga keseimbangan berat antara L dan R.",
+            cls: "wf-purple",
+          },
+          {
+            title: "EQ per Track",
+            detail:
+              "Subtractive first: HPF di 80–100 Hz semua track. Potong frekuensi bermasalah (muddy, boxy). Baru boost yang perlu ditingkatkan. Selalu dengarkan dalam konteks full mix.",
+            cls: "wf-teal",
+          },
+          {
+            title: "Compression per Track",
+            detail:
+              "Ratakan dinamik vokal. Kontrol transient drum. Target 2–6 dB gain reduction. Jangan over-compress — dinamik yang hidup membuat musik terasa lebih ekspresif.",
+            cls: "wf-teal",
+          },
+          {
+            title: "Efek (Reverb & Delay)",
+            detail:
+              "Tambah kedalaman dan ruang. Gunakan pre-delay 10–30 ms pada reverb vokal untuk clarity. Delay sinkron dengan tempo (60000÷BPM ms). Moderasi adalah kunci.",
+            cls: "wf-teal",
+          },
+          {
+            title: "Level Automation",
+            detail:
+              "Volume rides manual: turunkan musik latar saat vokal berbicara, naikkan saat jeda. Fade in di intro, fade out di outro. Transisi yang smooth terdengar profesional.",
+            cls: "wf-amber",
+          },
+          {
+            title: "Referensi & Quality Check",
+            detail:
+              "Bandingkan dengan reference track profesional. Dengarkan dalam mono (phone speaker). Check di headphone, komputer, dan HP. Istirahat telinga 15 menit sebelum final review.",
+            cls: "wf-amber",
+          },
+        ];
+        const masterWFs = [
+          {
+            title: "Persiapan",
+            detail:
+              "Import mix stereo. Pastikan peak di bawah -3 dBFS dan ada headroom. Muat reference track di track terpisah (muted) untuk perbandingan.",
+            cls: "wf-purple",
+          },
+          {
+            title: "EQ Halus (Linear Phase)",
+            detail:
+              "Koreksi ketidakseimbangan tonal. Maksimal ±3 dB. High shelf +1–2 dB jika gelap. Cut -1–2 dB di 200–400 Hz jika muddy. Kurang itu lebih.",
+            cls: "wf-teal",
+          },
+          {
+            title: "Bus Compression (Glue)",
+            detail:
+              "Ratio 1.5:1–2:1, gain reduction 1–2 dB maksimal. Fungsi: merekatkan semua elemen mix dan meningkatkan perceived loudness.",
+            cls: "wf-teal",
+          },
+          {
+            title: "Loudness Normalization",
+            detail:
+              "Target sesuai platform: -16 LUFS untuk podcast, -14 LUFS untuk streaming musik. Gunakan loudness meter untuk verifikasi akurat.",
+            cls: "wf-amber",
+          },
+          {
+            title: "Limiting",
+            detail:
+              "Ceiling: -1.0 dBFS. Limiter adalah pertahanan terakhir. Jangan paksa terlalu banyak gain reduction — hasilnya distorsi dan pumping.",
+            cls: "wf-amber",
+          },
+        ];
+
+        function buildChain(containerId, steps) {
+          const el = document.getElementById(containerId);
+          steps.forEach((s, i) => {
+            el.innerHTML += `<div class="sc-node" id="${containerId}-${i}">${s.label}</div>`;
+            if (i < steps.length - 1)
+              el.innerHTML += `<span class="sc-arrow">→</span>`;
+          });
+          let cur = 0;
+          function tick() {
+            document
+              .querySelectorAll(`[id^="${containerId}-"]`)
+              .forEach((n, i) => {
+                n.classList.toggle("active-node", i === cur);
+              });
+            cur = (cur + 1) % steps.length;
+          }
+          tick();
+          setInterval(tick, 1400);
+        }
+        function buildWF(containerId, data) {
+          const el = document.getElementById(containerId);
+          data.forEach((d, i) => {
+            el.innerHTML += `
+        <div class="wf-step">
+          <div class="wf-num ${d.cls}">${i + 1}</div>
+          <div class="wf-content">
+            <div class="wf-title">${d.title}</div>
+            <div class="wf-detail">${d.detail}</div>
+          </div>
+        </div>`;
+            if (i < data.length - 1)
+              el.innerHTML += `<div class="wf-connector"></div>`;
+          });
+        }
+        buildChain("mixChain", mixSteps);
+        buildChain("masterChain", masterSteps);
+        buildWF("mixWorkflow", mixWFs);
+        buildWF("masterWorkflow", masterWFs);
+
+        // EQ Guide
+        const eqInstrs = [
+          {
+            name: "Vokal / Podcast",
+            color: "#7c6ff5",
+            tips: [
+              "HPF di 80–100 Hz — hapus rumble dan noise lantai",
+              'Cut lembut di 200–300 Hz jika terdengar "boxy"',
+              "Boost di 2–5 kHz untuk clarity dan presence vokal",
+              "De-ess / cut di 6–8 kHz jika sibilans (S, SH) terlalu keras",
+            ],
+          },
+          {
+            name: "Gitar Akustik",
+            color: "#f0a500",
+            tips: [
+              "HPF di 80–100 Hz untuk bersihkan frekuensi rendah",
+              'Cut di 200–300 Hz jika terdengar "boxy" atau muddy',
+              "Boost di 3–5 kHz untuk attack dan definition",
+              'High shelf +1–2 dB di 10–12 kHz untuk "air" dan sparkle',
+            ],
+          },
+          {
+            name: "Bass / Synth Bass",
+            color: "#534AB7",
+            tips: [
+              "HPF di 30–40 Hz — hapus sub-rumble di bawah fundamental",
+              'Boost di 60–100 Hz untuk body dan "thump"',
+              "Boost di 2–3 kHz untuk attack pick/finger agar terdengar dalam mix",
+              "Hindari boost low-mid (200–500 Hz) — bersaing dengan vokal",
+            ],
+          },
+          {
+            name: "Musik Latar (Podcast)",
+            color: "#2ec4a0",
+            tips: [
+              "HPF agresif di 200–300 Hz — biarkan space untuk vokal di low-end",
+              "Cut di 2–5 kHz agar musik tidak bersaing dengan presence vokal",
+              'LPF di 8–10 kHz agar musik terasa "di belakang" vokal',
+              "Level saat vokal berbicara: idealnya -18 s/d -20 dBFS",
+            ],
+          },
+        ];
+        const grid = document.getElementById("eqGuideGrid");
+        eqInstrs.forEach((ei) => {
+          grid.innerHTML += `<div style="background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);padding:.85rem 1rem;margin-bottom:.75rem;border-left:3px solid ${ei.color}">
+      <div style="font-size:14px;font-weight:600;margin-bottom:.5rem;color:${ei.color}">${ei.name}</div>
+      ${ei.tips.map((t) => `<div style="font-size:13px;color:var(--text2);margin-bottom:.25rem;line-height:1.6">• ${t}</div>`).join("")}
+    </div>`;
+        });
+      })();
+
+      // ── PRAKTIKUM STEPS ─────────────────────────────
+      const prak1Data = [
+        {
+          title: "Setup Audacity",
+          body: "Buka Audacity. Import track vokal (File → Import → Audio). Import track musik latar. Kedua track akan muncul sebagai waveform terpisah. Putar bersama untuk dengar rough balance awal.",
+          tag: "Setup",
+          tagColor: "#7c6ff5",
+        },
+        {
+          title: "Balance Level Awal",
+          body: 'Gunakan gain slider di sisi kiri tiap track. Target: vokal terdengar jelas di atas musik. Angka kasar: vokal ≈ -6 dBFS peak, musik ≈ -18 dBFS. Ini "static mix" sebelum EQ.',
+          tag: "Level",
+          tagColor: "#f0a500",
+        },
+        {
+          title: "EQ Track Vokal",
+          body: "Klik track vokal → Effect → Filter Curve EQ. Terapkan HPF di 80–100 Hz (tarik ujung kiri kurva ke bawah). Boost lembut di 2–4 kHz (+2–3 dB) untuk clarity. Klik Preview sebelum Apply.",
+          tag: "EQ",
+          tagColor: "#2ec4a0",
+          code: "Effect → Filter Curve EQ",
+        },
+        {
+          title: "EQ Track Musik Latar",
+          body: "Klik track musik → Effect → Filter Curve EQ. HPF agresif di 200–300 Hz untuk beri ruang vokal di low-end. Cut di 2–5 kHz (presence vokal) agar musik tidak bersaing. Apply.",
+          tag: "EQ",
+          tagColor: "#2ec4a0",
+          code: "Effect → Filter Curve EQ",
+        },
+        {
+          title: "Compression Vokal",
+          body: 'Klik track vokal → Effect → Compressor. Threshold: -20 dB, Ratio: 3:1, Attack: 5 ms, Release: 200 ms. Centang "Make-up Gain". Apply. Tujuan: ratakan dinamik suara yang berfluktuasi.',
+          tag: "Compression",
+          tagColor: "#e8593c",
+          code: "Effect → Compressor",
+        },
+        {
+          title: "Volume Automation",
+          body: "Pilih Envelope Tool (E di toolbar). Klik track musik latar untuk buat titik kontrol volume. Turunkan volume musik saat vokal bicara. Naikkan saat ada jeda panjang. Fade in di awal, fade out di akhir.",
+          tag: "Automation",
+          tagColor: "#534AB7",
+        },
+        {
+          title: "Limiting & Export",
+          body: "Pilih semua track (Ctrl+A). Effect → Limiter → -1 dB. Apply. Kemudian File → Export → Export Audio. Format: MP3, Quality: 192 kbps. Beri nama file yang jelas.",
+          tag: "Export",
+          tagColor: "#2ec4a0",
+          code: "Effect → Limiter → -1 dB",
+        },
+        {
+          title: "Quality Check",
+          body: "Dengarkan hasil mix di headphone, speaker komputer, dan speaker HP. Vokal harus tetap jelas di semua perangkat. Pastikan tidak ada clipping (waveform menyentuh atas/bawah) atau distorsi.",
+          tag: "QC",
+          tagColor: "#3db56a",
+        },
+      ];
+      const prak2Data = [
+        {
+          title: "Buka Project Baru",
+          body: 'Buka Audacity project baru. Import file mix dari Praktikum 1. Analyze → Plot Spectrum. Screenshot ini sebagai baseline "sebelum mastering". Simpan screenshot-nya.',
+          tag: "Setup",
+          tagColor: "#7c6ff5",
+          code: "Analyze → Plot Spectrum",
+        },
+        {
+          title: "Cek Headroom",
+          body: "Lihat peak level di mix. Jika melebihi -3 dBFS: Effect → Amplify → masukkan nilai negatif untuk kurangi. Jika di bawah -6 dBFS: biarkan saja — proses mastering akan menaikkan level.",
+          tag: "Level",
+          tagColor: "#f0a500",
+          code: "Effect → Amplify",
+        },
+        {
+          title: "EQ Mastering",
+          body: "Effect → Filter Curve EQ. Koreksi halus berdasarkan telinga: terlalu gelap → high shelf +1–2 dB di 10 kHz. Terlalu muddy → cut -1–2 dB di 200–400 Hz. Terlalu tipis → low shelf +1–2 dB di 100 Hz. Maksimal ±3 dB.",
+          tag: "EQ",
+          tagColor: "#2ec4a0",
+          code: "Effect → Filter Curve EQ (maks ±3 dB)",
+        },
+        {
+          title: "Bus Compression (Glue)",
+          body: 'Effect → Compressor. Threshold: -15 dB, Ratio: 2:1, Attack: 10 ms, Release: 300 ms. Target: gain reduction 1–2 dB saja. Ini berfungsi untuk "merekatkan" semua elemen mix.',
+          tag: "Compression",
+          tagColor: "#e8593c",
+          code: "Threshold -15dB · Ratio 2:1 · GR 1–2 dB",
+        },
+        {
+          title: "Loudness Normalization",
+          body: 'Effect → Loudness Normalization. Target: -16 LUFS (standar podcast). Centang "Treat mono as dual-mono". Apply. Ini yang menentukan apakah audio kamu sesuai standar platform.',
+          tag: "LUFS",
+          tagColor: "#f0a500",
+          code: "Effect → Loudness Normalization → -16 LUFS",
+        },
+        {
+          title: "Limiting",
+          body: "Effect → Limiter. Limit to: -1.0 dB. Apply. Ini adalah langkah TERAKHIR sebelum ekspor. Periksa hasilnya — tidak boleh ada distorsi atau pumping. Jika ada, kurangi level sebelum limiter.",
+          tag: "Limiter",
+          tagColor: "#e8593c",
+          code: "Effect → Limiter → -1.0 dB",
+        },
+        {
+          title: "Screenshot After",
+          body: 'Analyze → Plot Spectrum lagi. Screenshot sebagai "sesudah mastering". Bandingkan dengan screenshot pertama — kamu harus bisa melihat perbedaan kurva spektrum setelah EQ dan normalisasi.',
+          tag: "Analisis",
+          tagColor: "#3db56a",
+          code: "Analyze → Plot Spectrum → screenshot",
+        },
+        {
+          title: "Export Dua Format",
+          body: "(1) WAV Master Archive: File → Export → Export as WAV → 48000 Hz / 24-bit. (2) Delivery: File → Export → Export Audio → MP3 / 192 kbps. Kedua file harus disimpan dengan nama yang berbeda.",
+          tag: "Export",
+          tagColor: "#2ec4a0",
+          code: "WAV 48kHz/24-bit + MP3 192kbps",
+        },
+        {
+          title: "A/B Listening Test",
+          body: "Dengarkan pre-mastering vs post-mastering secara bergantian di: headphone, speaker HP, dan speaker komputer. Catat perbedaan yang kamu dengar untuk laporan. Ini latihan kritis engineer audio.",
+          tag: "QC",
+          tagColor: "#534AB7",
+        },
+      ];
+      let prak1Active = 0,
+        prak2Active = 0;
+
+      function renderPrakSteps(id, data, activeIdx) {
+        const el = document.getElementById(id);
+        el.innerHTML = "";
+        data.forEach((d, i) => {
+          const isDone = i < activeIdx;
+          const isActive = i === activeIdx;
+          const div = document.createElement("div");
+          div.className =
+            "sf-step" + (isDone ? " done" : "") + (isActive ? " active" : "");
+          div.innerHTML = `
+      <div class="sf-dot">${isDone ? "✓" : i + 1}</div>
+      <div class="sf-content">
+        <div class="sf-title">${d.title}</div>
+        ${
+          isActive
+            ? `<div class="sf-body">${d.body}${d.code ? `<br><code class="sf-code">${d.code}</code>` : ""}</div>
+        ${d.tag ? `<span class="sf-tag" style="background:${d.tagColor}20;color:${d.tagColor};border:1px solid ${d.tagColor}40">${d.tag}</span>` : ""}`
+            : ""
+        }
+      </div>`;
+          el.appendChild(div);
+        });
+      }
+      function nextStep(id) {
+        if (id === 1 && prak1Active < prak1Data.length - 1) {
+          prak1Active++;
+          renderPrakSteps("prak1Steps", prak1Data, prak1Active);
+        }
+        if (id === 2 && prak2Active < prak2Data.length - 1) {
+          prak2Active++;
+          renderPrakSteps("prak2Steps", prak2Data, prak2Active);
+        }
+      }
+      function prevStep(id) {
+        if (id === 1 && prak1Active > 0) {
+          prak1Active--;
+          renderPrakSteps("prak1Steps", prak1Data, prak1Active);
+        }
+        if (id === 2 && prak2Active > 0) {
+          prak2Active--;
+          renderPrakSteps("prak2Steps", prak2Data, prak2Active);
+        }
+      }
+      renderPrakSteps("prak1Steps", prak1Data, 0);
+      renderPrakSteps("prak2Steps", prak2Data, 0);
+
+      // ── INIT ON LOAD ────────────────────────────────
+      window.addEventListener("resize", () => {
+        drawEQ();
+        drawComp();
+        drawReverb();
+        drawWave();
+      });
+      window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          drawReverb();
+        }, 200);
+      });
+    </script>
+  </body>
+</html>
