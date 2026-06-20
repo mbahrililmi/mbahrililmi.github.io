@@ -112,7 +112,7 @@ footer a { color: #d4ac6e; }
 }
 
 /* === DKV-style Overrides Enhanced === */
-.sidebar{width:260px!important;min-width:260px;background:#1a2942!important;color:#fff;border-right:none!important;padding:0!important;}
+.sidebar{display:flex!important;flex-direction:column!important;width:260px!important;min-width:260px;background:#1a2942!important;color:#fff;border-right:none!important;padding:0!important;height:100vh!important;position:sticky!important;top:0!important;}
 .sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
 .sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#d4ac6e;margin-bottom:4px;}
 .sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;margin-top:4px;}
@@ -183,32 +183,13 @@ footer a { color: #d4ac6e; }
   .callout{flex-direction:column;gap:6px;}
   pre.topology{white-space:pre;overflow-x:scroll;}
 }
-/* === DKV-style Overrides Enhanced === */
-.sidebar{width:260px!important;min-width:260px;background:#1a2942!important;color:#fff;border-right:none!important;padding:0!important;}
-.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
-.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#d4ac6e;margin-bottom:4px;}
-.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;margin-top:4px;}
-.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:#b8893b;color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
-.toc-nav{padding-top:8px;}
-.toc-section-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.45);padding:12px 20px 4px;}
-.toc-title,.sidebar-title{display:none!important;}
-.toc-link{color:rgba(255,255,255,.75)!important;}
-.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12)!important;color:#d4ac6e!important;border-left-color:#b8893b!important;}
-.toc-link.indent{color:rgba(255,255,255,.5)!important;}
-.page-header{border-radius:16px!important;margin-bottom:36px!important;padding:44px 48px!important;position:relative!important;overflow:hidden!important;}
-.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;pointer-events:none;z-index:0;}
-.page-header>*{position:relative;z-index:1;}
-.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#d4ac6e;margin-bottom:8px;}
-.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:10px;}
-.page-header .subtitle{opacity:.85;font-size:.95rem;margin-bottom:20px;}
-.header-meta{display:flex;gap:10px;flex-wrap:wrap;}
-.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:#fff;}
-.meta-badge span{color:#d4ac6e;font-weight:600;}
-/* Section title — match DKV visual style */
-.section-title{border-bottom:none!important;font-family:'Playfair Display',serif!important;font-size:1.35rem!important;color:#1a2942!important;margin-bottom:20px!important;}
-.section-num{border-radius:8px!important;width:32px!important;height:32px!important;font-size:.85rem!important;}
-.learning-objectives{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08))!important;border:1px solid rgba(184,137,59,.25)!important;border-left:4px solid #b8893b!important;border-radius:10px!important;}
-
+/* === Footer Navigation === */
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;flex-wrap:wrap;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:#1a2942;transition:all .2s;display:flex;align-items:center;gap:8px;text-decoration:none;}
+.footer-nav a:hover{background:#b8893b;color:#fff;border-color:#b8893b;text-decoration:none;}
+.footer-nav .next-btn{background:#1a2942;color:#fff;border-color:#1a2942;}
+.footer-nav .next-btn:hover{background:#b8893b;border-color:#b8893b;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#999;}
 </style>
 </head>
 <body>
@@ -874,6 +855,12 @@ footer a { color: #d4ac6e; }
       </div>
     </section>
 
+  
+  <nav class="footer-nav">
+    <a href="../index.html">← Katalog Materi</a>
+    <a href="desain-grafis-p2.html" class="next-btn">Pertemuan 2 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut &middot; M. Bahril Ilmi, S.Kom., M.Kom.</div>
   </div><!-- end main-content -->
 </div><!-- end page-wrap -->
 
