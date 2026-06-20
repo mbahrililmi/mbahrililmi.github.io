@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 3 – Teknik Rekaman Audio | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Teknik Rekaman Audio</div>
+    <div class="pertemuan-badge">Pertemuan 3</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar &amp; Tujuan</a>
+    <a href="#jenis-mic" class="toc-link">Jenis-Jenis Microphone</a>
+    <a href="#polar-pattern" class="toc-link">Polar Patterns</a>
+    <a href="#interface-preamp" class="toc-link">Audio Interface &amp; Preamp</a>
+    <a href="#gain-staging" class="toc-link">Gain Staging</a>
+    <a href="#placement" class="toc-link">Teknik Microphone Placement</a>
+    <a href="#monitoring" class="toc-link">Monitoring &amp; Talent</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#tips" class="toc-link">Troubleshooting</a>
+    <a href="#tugas" class="toc-link">Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 3 · Rekayasa Video dan Audio</div>
+    <h1>Teknik Rekaman Audio</h1>
+    <p class="subtitle">Memahami dan mempraktikkan teknik rekaman audio menggunakan berbagai jenis mikrofon, polar pattern, gain staging, microphone placement, hingga recording environment yang baik.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar &amp; Tujuan Pembelajaran</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami dan mempraktikkan teknik rekaman audio menggunakan berbagai jenis mikrofon dan konfigurasi rekaman.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">"The Microphone is the First Link in the Audio Chain"</div>
+      <p style="font-size:.88rem;line-height:1.75;">Recording audio adalah seni dan sains. Sebagus apapun tools editing dan mixing yang dimiliki, semuanya dimulai dari <b>RECORDING</b> yang baik. Prinsip "Garbage In, Garbage Out" sangat berlaku di audio production — recording yang buruk tidak bisa diperbaiki sepenuhnya di post-production.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Dengan free tools (Audacity + microphone budget/built-in), recording profesional bisa dicapai dengan teknik yang tepat. <b>Pengetahuan dan teknik lebih penting daripada harga peralatan.</b></p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Mengidentifikasi dan menjelaskan karakteristik tiga tipe microphone utama: dynamic, condenser, dan ribbon</li>
+        <li>Memahami dan mengaplikasikan microphone polar pattern (cardioid, omnidirectional, bidirectional, shotgun)</li>
+        <li>Melakukan setup audio interface dan preamp dengan benar</li>
+        <li>Menerapkan prinsip gain staging untuk level recording optimal</li>
+        <li>Menggunakan teknik microphone placement yang tepat untuk berbagai sumber suara</li>
+        <li>Memahami karakteristik recording environment dan acoustic treatment dasar</li>
+        <li>Melakukan recording session menggunakan Audacity dengan hasil berkualitas</li>
+        <li>Troubleshoot masalah recording umum (hum, noise, distortion)</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="jenis-mic">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Jenis-Jenis Microphone</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-dynamic')">Dynamic</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-condenser')">Condenser</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-ribbon')">Ribbon</button>
+      </div>
+      <div id="tab-dynamic" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Teknologi:</b> moving coil dalam magnetic field — gelombang suara menggerakkan diaphragm yang terpasang ke coil, menghasilkan sinyal listrik. Konstruksi simpel dan robust.</p>
+        <ul class="styled" style="margin-top:10px;">
+          <li><b>Durability:</b> sangat rugged · <b>Sensitivity:</b> kurang sensitif (perlu sumber lebih keras)</li>
+          <li><b>Phantom power:</b> TIDAK diperlukan · <b>SPL handling:</b> excellent (tahan sumber sangat keras)</li>
+          <li><b>Model populer:</b> Shure SM57 (instrument standard, ~$100), Shure SM58 (live vocal standard, ~$100), Electrovoice RE20 (broadcast standard, ~$450)</li>
+          <li><b>Best for:</b> live vocal, instrumen keras (drum, ampli gitar), podcast/broadcast, budget setup</li>
+        </ul>
+      </div>
+      <div id="tab-condenser" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Teknologi:</b> capacitor dengan diaphragm bermuatan listrik — gelombang suara mengubah capacitance. Membutuhkan phantom power (+48V).</p>
+        <div class="grid-2" style="margin-top:10px;">
+          <div class="grid-card"><div class="gc-title">Large Diaphragm (LDC)</div><div class="gc-body">Diaphragm &gt;1 inch, suara hangat dan rich. Bagus untuk vokal, voice over. Contoh: Audio-Technica AT2020, Rode NT1-A.</div></div>
+          <div class="grid-card"><div class="gc-title">Small Diaphragm (SDC)</div><div class="gc-body">Diaphragm &lt;1 inch, akurat dan transparan. Bagus untuk instrumen, gitar akustik, cymbal. Contoh: Rode M5.</div></div>
+        </div>
+        <ul class="styled" style="margin-top:10px;">
+          <li><b>Model budget:</b> Audio-Technica AT2020 (~$100), Behringer C-1 (~$50)</li>
+          <li><b>Model profesional:</b> Neumann U87 (~$3500), AKG C414 (~$1000+)</li>
+          <li><b>Best for:</b> studio vocal, instrumen akustik, room ambience, sound effects detail</li>
+        </ul>
+      </div>
+      <div id="tab-ribbon" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Teknologi:</b> ribbon aluminium tipis tersuspensi dalam magnetic field, bergetar mengikuti gelombang suara. Konstruksi sangat delicate, teknologi "vintage" klasik.</p>
+        <ul class="styled" style="margin-top:10px;">
+          <li><b>Durability:</b> sangat fragile (angin, suara keras bisa merusak) · <b>Frequency response:</b> smooth, natural, tidak harsh</li>
+          <li><b>Phantom power:</b> ribbon tradisional TIDAK (bisa merusak), ribbon aktif modern YA (cek manual!)</li>
+          <li><b>Model populer:</b> Royer R-121 (~$1400), sE Electronics VR1/VR2 (~$300-400, phantom-safe)</li>
+          <li><b>Best for:</b> vokal smooth, gitar cabinet, brass instrument, string section, karakter vintage</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Tabel Perbandingan Jenis Microphone</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Feature</th><th>Dynamic</th><th>Condenser</th><th>Ribbon</th></tr></thead>
+        <tbody>
+          <tr><td>Durability</td><td>Excellent</td><td>Fair</td><td>Poor</td></tr>
+          <tr><td>Sensitivity</td><td>Low</td><td>High</td><td>Medium</td></tr>
+          <tr><td>Detail/Accuracy</td><td>Good</td><td>Excellent</td><td>Very Good</td></tr>
+          <tr><td>Phantom Power</td><td>No</td><td>YES</td><td>Varies</td></tr>
+          <tr><td>Price (entry)</td><td>$50-150</td><td>$50-200</td><td>$300+</td></tr>
+          <tr><td>Best For</td><td>Loud/Live</td><td>Studio</td><td>Smooth sound</td></tr>
+          <tr><td>SPL Handling</td><td>Excellent</td><td>Good</td><td>Limited</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="polar-pattern">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Microphone Polar Patterns</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Polar pattern menunjukkan sensitivitas microphone terhadap suara dari arah berbeda. Memahami polar pattern sangat penting untuk placement dan rejection background noise.</p>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Cardioid (Heart-shaped)</div><div class="gc-body">Paling sensitif di depan (0°), pickup baik di sisi (90°/270°), rejection di belakang (180°). Pattern paling umum digunakan. Variasi: supercardioid, hypercardioid (lebih sempit). Cocok untuk live/studio vocal, instrumen, podcast.</div></div>
+      <div class="grid-card"><div class="gc-title">Omnidirectional</div><div class="gc-body">Sensitivitas sama di segala arah (360°), tanpa proximity effect, suara natural dan uncolored. Cocok untuk room ambience, orchestra, namun membutuhkan ruangan yang acoustically baik.</div></div>
+      <div class="grid-card"><div class="gc-title">Bidirectional / Figure-8</div><div class="gc-body">Sensitif di depan dan belakang (0° &amp; 180°), rejection maksimum di sisi. Pattern klasik mikrofon ribbon. Cocok untuk interview 2 orang, Blumlein stereo, teknik MS stereo.</div></div>
+      <div class="grid-card"><div class="gc-title">Shotgun (Line/Lobar)</div><div class="gc-body">Sangat directional dengan interference tube panjang, harus diarahkan presisi ke sumber. Standar film/video (boom mic). Cocok untuk produksi film, wildlife recording, broadcast olahraga.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Penggunaan per Pattern <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Cardioid:</b> arahkan null belakang ke sumber noise yang tidak diinginkan; sadari proximity effect (bass boost saat dekat)</li>
+          <li><b>Omnidirectional:</b> gunakan dalam ruangan akustik baik; buruk dalam ruangan noisy/echo</li>
+          <li><b>Figure-8:</b> posisikan sisi menghadap noise yang tidak diinginkan; perhatikan fase depan/belakang berlawanan polaritas</li>
+          <li><b>Shotgun:</b> arahkan presisi pada sumber; indoor bisa terdengar tidak natural (comb filtering), outdoor sangat efektif</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Switchable Pattern Microphones <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Beberapa condenser microphone menawarkan multiple pattern dalam satu unit: AKG C414 (9 pattern), Audio-Technica AT4050 (3 pattern), Rode NT2-A (3 pattern). Memberi fleksibilitas adaptasi situasi recording berbeda — investasi yang baik untuk studio meski harganya lebih mahal dibanding fixed-pattern mic.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="interface-preamp">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Audio Interface dan Preamp</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Signal Flow: Microphone ke Komputer</div>
+      <p><b>Microphone → Preamp → ADC (Analog-Digital Converter) → Komputer → DAW</b>. Microphone mengubah energi akustik menjadi sinyal listrik level rendah (~0.002-0.01V) yang harus diamplifikasi oleh preamp menjadi line-level, lalu dikonversi ADC menjadi data digital sebelum diterima DAW seperti Audacity.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Spesifikasi Kunci Audio Interface</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Jumlah Input</div><div class="gc-body">Solo recording: 1-2 input cukup. Band recording: 4-8+ input. Interface 2-channel paling populer untuk home studio.</div></div>
+        <div class="grid-card"><div class="gc-title">Kualitas Preamp</div><div class="gc-body">Menentukan noise floor, headroom, kejernihan suara. Preamp lebih baik = suara lebih bersih, gain lebih besar.</div></div>
+        <div class="grid-card"><div class="gc-title">Sample Rate &amp; Bit Depth</div><div class="gc-body">Standar modern: 24-bit/48 kHz minimum. Untuk pembelajaran, 24-bit/48 kHz sudah sempurna.</div></div>
+        <div class="grid-card"><div class="gc-title">Konektivitas &amp; Monitoring</div><div class="gc-body">USB paling umum (USB-C terbaik), Thunderbolt lebih cepat. Direct monitoring dan headphone output esensial.</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Rekomendasi Interface Budget</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Model</th><th>Harga</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>Behringer U-Phoria UM2/UMC22</td><td>~$50</td><td>Ultra-budget, 1-2 input</td></tr>
+          <tr><td>Focusrite Scarlett Solo/2i2</td><td>~$120-180</td><td>Standar industri pemula, preamp sangat baik</td></tr>
+          <tr><td>PreSonus AudioBox USB</td><td>~$100</td><td>Alternatif solid, preamp decent</td></tr>
+          <tr><td>Focusrite Scarlett 4i4/8i6</td><td>~$250-350</td><td>Lebih banyak input, monitoring lebih baik</td></tr>
+          <tr><td>MOTU M2/M4</td><td>~$200-300</td><td>Metering excellent, converter berkualitas tinggi</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Phantom Power (+48V) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>DC power 48V yang dikirim melalui kabel microphone (XLR) untuk menyalakan circuitry aktif condenser mic. Dikirim melalui kabel yang sama dengan sinyal audio (pin 2 &amp; 3: +48V, pin 1: ground).</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>AMAN</b> untuk dynamic mic (diabaikan)</li>
+          <li><b>WAJIB</b> untuk condenser mic (tidak berfungsi tanpanya)</li>
+          <li><b>BERBAHAYA</b> untuk ribbon mic tradisional (bisa merusak) — ribbon aktif modern biasanya phantom-safe, cek manual</li>
+          <li>Nyalakan SEBELUM memasang mic, matikan SEBELUM melepas mic (hindari pop)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="gain-staging">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Gain Staging dan Level Setting</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Gain Staging?</div>
+      <p>Proses mengelola level sinyal di sepanjang audio chain untuk mengoptimalkan signal-to-noise ratio sambil menghindari clipping/distorsi. Tujuannya: <b>"Hot signal, not clipping"</b> — sinyal kuat di atas noise floor, dengan headroom di bawah 0 dBFS.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Prosedur Setting Input Gain</h3>
+      <ol class="styled">
+        <li><b>Start low:</b> putar gain knob full counter-clockwise untuk menghindari kejutan/clipping</li>
+        <li><b>Performance level:</b> talent berbicara/bernyanyi/bermain pada level performa sesungguhnya, bukan lebih pelan</li>
+        <li><b>Naikkan gain bertahap</b> sambil memonitor meter dalam DAW (Audacity)</li>
+        <li><b>Target level:</b> normal di -12 hingga -6 dBFS; konservatif -18 hingga -12 dBFS; jangan pernah mencapai 0 dBFS (clipping!)</li>
+        <li>Minta talent melakukan bagian paling keras untuk memastikan tidak ada clipping di momen tersebut</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Membaca Meter di Audacity</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Warna Meter</th><th>Arti</th></tr></thead>
+        <tbody>
+          <tr><td><span class="score-badge" style="background:#3a9c5c;">Hijau</span></td><td>Good signal (-18 hingga -6 dBFS)</td></tr>
+          <tr><td><span class="score-badge" style="background:#d4ac6e;">Kuning</span></td><td>Getting hot, hati-hati (-6 hingga -3 dBFS)</td></tr>
+          <tr><td><span class="score-badge" style="background:#c0392b;">Merah</span></td><td>TOO HOT, akan clip (0 dBFS+) — hindari sepenuhnya</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;color:#555;">Aktifkan via View &gt; Toolbars &gt; Meter Toolbar. Setelah recording, periksa waveform: peak seharusnya tidak flat-topped (indikasi clipping).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="placement">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Teknik Microphone Placement</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Prinsip Umum: Proximity Effect &amp; Distance</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Jarak</th><th>Karakter</th></tr></thead>
+        <tbody>
+          <tr><td>Close mic (2-6 inci)</td><td>Intimate, detail, dry, lebih banyak bass (proximity effect), isolasi sumber baik</td></tr>
+          <tr><td>Medium (6-12 inci)</td><td>Natural, balanced, jarak general-purpose, sedikit room character</td></tr>
+          <tr><td>Far (1-3 feet)</td><td>Room ambience, natural, kurang isolasi, cocok untuk ruang yang bagus</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-voice')">Voice/Podcast</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-vocal')">Vokal/Singing</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-guitar')">Gitar Akustik</button>
+      </div>
+      <div id="tab-voice" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Dynamic mic (style SM58):</b> jarak 4-8 inci dari mulut, posisi sedikit di bawah mulut angled up</li>
+          <li><b>Large diaphragm condenser:</b> jarak 6-12 inci, pop filter esensial, pattern cardioid</li>
+          <li><b>Mencegah plosive (P, B, T):</b> pop filter, mic sedikit off-axis, posisi di atas/bawah mulut (bukan langsung depan)</li>
+          <li><b>Mencegah sibilance (S, SH):</b> de-esser di post, mic sedikit off-axis, jarak yang tepat (tidak terlalu dekat)</li>
+        </ul>
+      </div>
+      <div id="tab-vocal" class="tab-panel">
+        <ul class="styled">
+          <li>Jarak tipikal 6-12 inci, bisa lebih dekat/jauh untuk efek artistik</li>
+          <li>Set level untuk passage paling keras (hindari clipping) karena range dinamika nyanyian lebih luas dari bicara</li>
+          <li><b>Ballad intim:</b> close mic (4-6 inci), tone hangat · <b>Belting kuat:</b> lebih jauh (8-12 inci) · <b>Rap/Hip-hop:</b> close untuk presence, pop filter kritis</li>
+        </ul>
+      </div>
+      <div id="tab-guitar" class="tab-panel">
+        <ul class="styled">
+          <li><b>Single mic 12th fret:</b> 6-12 inci, tone balanced — titik awal umum</li>
+          <li><b>Sound hole:</b> 6-8 inci, lebih bass &amp; full-bodied, risiko boomy</li>
+          <li><b>Bridge:</b> 6-8 inci, lebih bright &amp; string attack jelas</li>
+          <li><b>Neck/upper frets:</b> lebih mellow, warmer, kurang brightness</li>
+          <li><b>Stereo (two mics):</b> satu di 12th fret, satu di bridge, terapkan 3-to-1 rule untuk hindari phase issues</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Recording di Lingkungan Non-Ideal <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Sebagian besar mahasiswa tidak memiliki studio yang ditreatment akustik. Tips memaksimalkan kualitas:</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>Pilih ruangan terbaik:</b> ruangan kecil sering lebih baik (lebih sedikit refleksi); berkarpet lebih baik dari lantai keras; closet penuh baju adalah makeshift booth yang excellent!</li>
+          <li><b>Matikan refleksi:</b> gantung selimut di dinding/stand di belakang mic, kelilingi mic dengan bantal</li>
+          <li><b>Eliminasi noise:</b> matikan kipas/AC, tutup jendela, matikan notifikasi, rekam di waktu sunyi</li>
+          <li><b>Pilihan mic untuk ruangan buruk:</b> dynamic (rejection lebih baik), pattern cardioid, close mic (rasio direct sound vs room sound lebih tinggi)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Three-to-One Rule (Multiple Microphone) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Aturan: untuk setiap 1 unit jarak dari sumber, mic harus berjarak 3 unit dari mic lainnya. Contoh: Mic A 1 kaki dari gitar, Mic B harus 3+ kaki dari Mic A. Mencegah phase cancellation dan comb filtering pada setup multi-mic atau stereo recording.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="monitoring">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Monitoring dan Bekerja dengan Talent</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Monitoring Headphone</div><div class="gc-body">Essential untuk memantau hasil rekaman. Closed-back lebih disukai (mencegah leakage ke mic). Cek: level proper, distorsi, noise tidak diinginkan, room sound.</div></div>
+      <div class="grid-card"><div class="gc-title">Direct Monitoring</div><div class="gc-body">Fitur pada audio interface untuk mendengar input dengan zero latency, memberi kenyamanan saat performa.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bekerja dengan Talent (Performer/Interviewee)</div>
+      <ul class="styled">
+        <li>Jelaskan apa yang dilakukan untuk mengurangi kecemasan, beri instruksi jelas (jarak, volume)</li>
+        <li>Sound check: minta talent bicara/bernyanyi pada level performa aktual, bukan pelan</li>
+        <li>Multiple take diperbolehkan; hentikan segera jika ada masalah teknis</li>
+        <li>Penyesuaian: "bisa lebih keras?" (terlalu pelan), atau adjust gain dan "ease back" (terlalu keras)</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Microphone Type Exploration</div>
+      <ol class="styled">
+        <li>Identifikasi equipment yang dimiliki: built-in laptop mic, USB mic, XLR mic dengan interface, atau headset mic. Dokumentasikan model, tipe, dan koneksi.</li>
+        <li>Cari spesifikasi mic via Google: tipe, polar pattern, frequency response.</li>
+        <li>Rekam suara normal, nada rendah (hum), dan nada tinggi (whistle), lalu Analyze &gt; Plot Spectrum — amati frekuensi mana yang ditangkap baik/buruk.</li>
+        <li>Rekam test phrase dari berbagai sudut (depan/0°, samping/90°, belakang/180°) untuk menentukan polar pattern.</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> dokumentasi equipment, screenshot spectrum, rekaman test posisi, report 300 kata.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 2: Gain Staging Practice</div>
+      <ol class="styled">
+        <li>Setup mic, buka Audacity, aktifkan Meter Toolbar dan mulai Monitoring.</li>
+        <li>Set gain terlalu rendah, rekam 15 detik — amati waveform kecil dan level meter rendah.</li>
+        <li>Set gain terlalu tinggi, sengaja clipping (meter merah) — amati waveform flat-topped, distorsi.</li>
+        <li>Reset gain, naikkan bertahap sambil bicara pada level performa — target peak -12 hingga -6 dBFS, rekam 30 detik.</li>
+        <li>Rekam frasa yang sama pada jarak berbeda (2-3 inci, 6-8 inci, 18-24 inci) dengan gain tetap sama.</li>
+        <li>Dengan setting optimal, rekam 1 menit audio bersih tanpa clipping.</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> 3 rekaman (terlalu pelan, clipped, optimal), rekaman distance test, rekaman final 1 menit, screenshot meter, report 300 kata.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 3: Microphone Placement Exploration</div>
+      <p style="font-size:.88rem;line-height:1.7;">Pilih satu skenario: <b>(A) Voice recording</b> — bandingkan 4/8/12 inci on-axis dan 8 inci 45° off-axis; <b>(B) Acoustic guitar</b> — bandingkan sound hole, 12th fret, bridge, neck; <b>(C) Room exploration</b> — bandingkan center ruangan, pojok, dekat dinding, closet.</p>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> seluruh rekaman test placement berlabel jelas, screenshot perbandingan waveform berdampingan, report 400 kata mengenai preferensi placement dan pembelajaran yang diperoleh.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tips">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Troubleshooting Masalah Level</h2>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Sinyal Terlalu Pelan / Noise Saat Diamplifikasi <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Naikkan input gain pada interface</li>
+          <li>Mendekat ke microphone, gunakan performa lebih keras</li>
+          <li>Cek: apakah phantom power sudah ON (untuk condenser)?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Clipping, Audio Terdistorsi <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Kurangi input gain pada interface</li>
+          <li>Menjauh dari microphone, kurangi volume sumber jika memungkinkan</li>
+          <li>Cek: tidak menyentuh 0 dBFS?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Level Tidak Konsisten / Channel Stereo Tidak Seimbang <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Gunakan compression di post-production, jaga jarak konsisten dari mic</li>
+          <li>Cek setting gain harus sama untuk kedua channel stereo</li>
+          <li>Cek posisi mic (equidistant?) dan fase (kedua mic mengarah arah sama?)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Tugas: Recording Project (10% — Due Next Week)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Professional Voice Recording</div>
+      <p style="font-size:.88rem;line-height:1.75;">Demonstrasikan penguasaan teknik recording yang telah dipelajari. Pilih SATU konten: <b>(A) Podcast intro</b> (60-90 detik), <b>(B) Voice over/narasi</b> (60-90 detik), atau <b>(C) Music performance</b> — nyanyian/instrumen akustik (60-90 detik).</p>
+      <ul class="styled" style="margin-top:10px;">
+        <li>Recording bersih (tanpa distorsi/clipping), level proper: peak -12 hingga -6 dBFS</li>
+        <li>Background noise minimal, teknik microphone yang sesuai, placement &amp; level konsisten</li>
+        <li>Format: WAV, 48kHz, 24-bit</li>
+        <li>Dokumentasi: equipment, lokasi recording, kendala &amp; solusi, screenshot waveform &amp; spectrum, refleksi 500-800 kata</li>
+      </ul>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Audio Quality</b></td><td><span class="score-badge">60 pts</span></td><td>Level proper (15), clarity (15), consistency (15), teknik mic (15)</td></tr>
+        <tr><td><b>Content</b></td><td><span class="score-badge">20 pts</span></td><td>Delivery (10), kualitas konten (10)</td></tr>
+        <tr><td><b>Documentation</b></td><td><span class="score-badge">20 pts</span></td><td>Kelengkapan (10), kualitas refleksi (10)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.85rem;color:#555;">File submission: <b>NIM_Nama_P3_Recording.wav</b> dan <b>NIM_Nama_P3_Recording_Report.pdf</b> via LMS sebelum deadline. Late penalty: -10% per hari.</p>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p4.html" class="next-btn">Pertemuan 4 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -77,7 +77,7 @@ footer { background: #1a2942; color: #e5e7eb; padding: 24px 48px; font-size: 0.8
 footer a { color: #d4ac6e; }
 @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
 
-/* === DKV-style Overrides === */
+/* === DKV-style Overrides Enhanced === */
 .sidebar{width:260px!important;min-width:260px;background:#1a2942!important;color:#fff;border-right:none!important;padding:0!important;}
 .sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
 .sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#d4ac6e;margin-bottom:4px;}
@@ -98,9 +98,63 @@ footer a { color: #d4ac6e; }
 .header-meta{display:flex;gap:10px;flex-wrap:wrap;}
 .meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:#fff;}
 .meta-badge span{color:#d4ac6e;font-weight:600;}
+/* Section title — match DKV visual style */
+.section-title{border-bottom:none!important;font-family:'Playfair Display',serif!important;font-size:1.35rem!important;color:#1a2942!important;margin-bottom:20px!important;}
+.section-num{border-radius:8px!important;width:32px!important;height:32px!important;font-size:.85rem!important;}
+.learning-objectives{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08))!important;border:1px solid rgba(184,137,59,.25)!important;border-left:4px solid #b8893b!important;border-radius:10px!important;}
+
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
 </style>
 </head>
 <body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
 
 
@@ -218,13 +272,13 @@ footer a { color: #d4ac6e; }
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> IP Address WAN di R-PUSAT</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Sesuaikan dengan IP dari ISP (bisa DHCP atau static)
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Sesuaikan dengan IP dari ISP (bisa DHCP atau static)
 /ip address add address=10.0.1.2/30 interface=ether1  # ISP1
 /ip address add address=10.0.2.2/30 interface=ether2  # ISP2</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Default route dengan failover (distance berbeda + check-gateway)</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button># Jalur UTAMA via ISP1 (distance=1)
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Jalur UTAMA via ISP1 (distance=1)
 /ip route add dst-address=0.0.0.0/0 gateway=10.0.1.1 \
     distance=1 check-gateway=ping
 
@@ -234,12 +288,12 @@ footer a { color: #d4ac6e; }
         </div></div>
         <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> NAT Masquerade untuk kedua WAN</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip firewall nat add chain=srcnat action=masquerade out-interface=ether1
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall nat add chain=srcnat action=masquerade out-interface=ether1
 /ip firewall nat add chain=srcnat action=masquerade out-interface=ether2</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Verifikasi failover aktif</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button>/ip route print
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip route print
 # Route via ISP1 harus "A S" dengan distance=1
 # Route via ISP2 harus "S" (tidak active) dengan distance=2</div>
         </div></div>
@@ -260,7 +314,7 @@ footer a { color: #d4ac6e; }
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Buat bridge dan VLAN interfaces</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface bridge add name=br-pusat vlan-filtering=no
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/interface bridge add name=br-pusat vlan-filtering=no
 /interface bridge port add bridge=br-pusat interface=ether3
 /interface bridge vlan add bridge=br-pusat vlan-ids=10 \
     tagged=br-pusat untagged=ether3
@@ -281,7 +335,7 @@ footer a { color: #d4ac6e; }
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> DHCP untuk VLAN 10 (Staf)</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip pool add name=pool-staf ranges=192.168.10.100-192.168.10.200
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip pool add name=pool-staf ranges=192.168.10.100-192.168.10.200
 /ip dhcp-server network add \
     address=192.168.10.0/24 \
     gateway=192.168.10.1 \
@@ -291,7 +345,7 @@ footer a { color: #d4ac6e; }
             </div></div>
             <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> DHCP untuk VLAN 20 (Lab)</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip pool add name=pool-lab ranges=192.168.20.100-192.168.20.200
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip pool add name=pool-lab ranges=192.168.20.100-192.168.20.200
 /ip dhcp-server network add \
     address=192.168.20.0/24 \
     gateway=192.168.20.1 \
@@ -305,13 +359,13 @@ footer a { color: #d4ac6e; }
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Test ping inter-VLAN (staf ke lab)</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Dari PC Staf (192.168.10.x):
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Dari PC Staf (192.168.10.x):
 ping 192.168.20.1    # Gateway VLAN 20 harus reply
 ping 192.168.20.101  # PC Lab harus reply (jika ada)</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Tambah NAT untuk VLAN ke internet</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># NAT sudah dikonfigurasi di Bagian A
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># NAT sudah dikonfigurasi di Bagian A
 # Verifikasi VLAN bisa akses internet
 ping 8.8.8.8 src-address=192.168.10.1
 ping 8.8.8.8 src-address=192.168.20.1</div>
@@ -333,22 +387,22 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Konfigurasi OSPF Instance di R-PUSAT</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf instance add name=default router-id=10.10.10.1</div>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing ospf instance add name=default router-id=10.10.10.1</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Tambah semua network internal ke OSPF Area 0</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf network add network=192.168.10.0/24 area=backbone
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing ospf network add network=192.168.10.0/24 area=backbone
 /routing ospf network add network=192.168.20.0/24 area=backbone
 /routing ospf network add network=10.10.45.0/30 area=backbone</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Set passive interface untuk interface ke client (VLAN)</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf interface add interface=vlan10-staf passive=yes
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing ospf interface add interface=vlan10-staf passive=yes
 /routing ospf interface add interface=vlan20-lab passive=yes</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="4">4</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Verifikasi OSPF neighbor (jika ada router OSPF lain di internal)</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing ospf neighbor print
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing ospf neighbor print
 /ip route print where routing-protocol="ospf"</div>
         </div></div>
       </div>
@@ -373,11 +427,11 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> IP Address link ke cabang di R-PUSAT</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip address add address=10.10.45.1/30 interface=ether4</div>
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip address add address=10.10.45.1/30 interface=ether4</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Konfigurasi BGP Template dan Connection</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing bgp template add name=to-cabang as=65010 \
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing bgp template add name=to-cabang as=65010 \
     router-id=10.10.45.1
 
 /routing bgp connection add name=ke-cabang \
@@ -388,7 +442,7 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Iklankan network internal pusat ke cabang</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing bgp network add network=192.168.10.0/24
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing bgp network add network=192.168.10.0/24
 /routing bgp network add network=192.168.20.0/24</div>
             </div></div>
           </div>
@@ -397,12 +451,12 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> IP Address R-CABANG</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip address add address=10.10.45.2/30 interface=ether1
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip address add address=10.10.45.2/30 interface=ether1
 /ip address add address=192.168.30.1/24 interface=ether2</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Konfigurasi BGP R-CABANG</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing bgp template add name=to-pusat as=65020 \
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing bgp template add name=to-pusat as=65020 \
     router-id=10.10.45.2
 
 /routing bgp connection add name=ke-pusat \
@@ -415,7 +469,7 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Default route di cabang (via pusat)</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/ip route add dst-address=0.0.0.0/0 gateway=10.10.45.1
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=10.10.45.1
 /ip firewall nat add chain=srcnat action=masquerade out-interface=ether1</div>
             </div></div>
           </div>
@@ -424,13 +478,13 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
           <div class="steps">
             <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Verifikasi BGP Established di kedua router</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Di R-PUSAT dan R-CABANG:
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di R-PUSAT dan R-CABANG:
 /routing bgp session print
 # State harus: established</div>
             </div></div>
             <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
               <label><input type="checkbox" class="step-check"> Cek route BGP di routing table</label>
-              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Di R-PUSAT:
+              <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di R-PUSAT:
 /ip route print where routing-protocol="bgp"
 # Harus muncul: A b  192.168.30.0/24  10.10.45.2  20
 
@@ -456,12 +510,12 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> PC Staf (VLAN 10) bisa ping ke internet</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 8.8.8.8  # dari PC Staf
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>ping 8.8.8.8  # dari PC Staf
 # Expected: Reply from 8.8.8.8</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> PC Lab (VLAN 20) bisa ping ke internet</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 8.8.8.8  # dari PC Lab
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>ping 8.8.8.8  # dari PC Lab
 # Expected: Reply from 8.8.8.8</div>
         </div></div>
       </div>
@@ -470,7 +524,7 @@ ping 8.8.8.8 src-address=192.168.20.1</div>
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> VLAN 10 (Staf) bisa ping ke VLAN 20 (Lab)</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.20.1  # dari PC Staf
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>ping 192.168.20.1  # dari PC Staf
 tracert 192.168.20.1  # harus lewat 192.168.10.1</div>
         </div></div>
       </div>
@@ -479,17 +533,17 @@ tracert 192.168.20.1  # harus lewat 192.168.10.1</div>
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> BGP Session Established di kedua site</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/routing bgp session print
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/routing bgp session print
 # Harus: established</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> PC Staf (pusat) bisa ping ke PC Cabang</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.30.1  # dari PC Staf ke gateway cabang
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>ping 192.168.30.1  # dari PC Staf ke gateway cabang
 tracert 192.168.30.1  # harus lewat 10.10.45.1 → 10.10.45.2</div>
         </div></div>
         <div class="step"><div class="step-num" data-n="3">3</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> PC Cabang bisa ping ke PC Staf</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">ping 192.168.10.1  # dari PC Cabang ke gateway VLAN Staf</div>
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>ping 192.168.10.1  # dari PC Cabang ke gateway VLAN Staf</div>
         </div></div>
       </div>
 
@@ -497,7 +551,7 @@ tracert 192.168.30.1  # harus lewat 10.10.45.1 → 10.10.45.2</div>
       <div class="steps">
         <div class="step"><div class="step-num" data-n="1">1</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Simulasi ISP1 down - traffic beralih ke ISP2</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button"># Matikan ether1 (ISP1) di R-PUSAT
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Matikan ether1 (ISP1) di R-PUSAT
 /interface disable ether1
 
 # Tunggu ~10 detik
@@ -511,7 +565,7 @@ ping 8.8.8.8
         </div></div>
         <div class="step"><div class="step-num" data-n="2">2</div><div class="step-content">
           <label><input type="checkbox" class="step-check"> Pulihkan ISP1 - traffic kembali ke ISP1</label>
-          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">&#x1F4CB; Salin</button">/interface enable ether1
+          <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/interface enable ether1
 # Tunggu check-gateway berhasil
 /ip route print
 # Route via ISP1 kembali Active (distance=1 diprioritaskan)</div>
@@ -598,14 +652,6 @@ ping 8.8.8.8
       document.querySelectorAll('.accordion-header').forEach(btn => {
   btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
 });
-function copyCode(btn) {
-  const block = btn.closest('.code-block');
-  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
-  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
-    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
-  });
-}
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.closest('.tab-group');
@@ -644,6 +690,136 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
 </body>
 </html>
 

@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 5 – Mixing dan Mastering Audio | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Mixing dan Mastering Audio</div>
+    <div class="pertemuan-badge">Pertemuan 5</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#mixing-workflow" class="toc-link">Mixing Workflow &amp; Gain Staging</a>
+    <a href="#eq" class="toc-link">Equalization (EQ) Mendalam</a>
+    <a href="#dynamics" class="toc-link">Dynamics Processing</a>
+    <a href="#time-based" class="toc-link">Time-Based Effects</a>
+    <a href="#panning" class="toc-link">Panning &amp; Stereo Field</a>
+    <a href="#mastering" class="toc-link">Mastering Basics &amp; LUFS</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 5 · Rekayasa Video dan Audio</div>
+    <h1>Mixing dan Mastering Audio</h1>
+    <p class="subtitle">Memahami dan mempraktikkan proses mixing dan mastering untuk menghasilkan audio berkualitas profesional — dari gain staging, EQ, compression, hingga loudness standar industri.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami dan mempraktikkan proses mixing dan mastering untuk menghasilkan audio berkualitas profesional, meliputi balancing level multi-track, aplikasi EQ dan compression, proses mastering dasar, penggunaan reverb/time-based effects, serta pemahaman loudness standards untuk berbagai platform.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">"Mixing is where individual tracks become a cohesive whole. Mastering is the final polish."</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah recording dan editing, mixing dan mastering adalah langkah final yang mentransformasi audio yang baik menjadi profesional. Skill ini memisahkan produksi amatir dari karya profesional.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>MIXING</b> adalah proses balancing dan blending multiple audio track: volume balancing, panning untuk stereo placement, EQ untuk frequency clarity, compression untuk dynamic control, effects untuk depth/width/character, hingga menciptakan mix yang kohesif.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>MASTERING</b> adalah langkah final sebelum distribusi: optimasi tonal balance, memastikan loudness konsisten, memaksimalkan impact tanpa distorsi, serta menyiapkan file untuk format distribusi.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Pertemuan ini akan menggunakan tools gratis: <b>Audacity</b> dan <b>Ardour</b> (opsional) — skill yang langsung aplikatif untuk podcast mixing, music production, video audio post-production, radio/broadcast, dan audiobook.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami perbedaan antara mixing dan mastering</li>
+        <li>Melakukan gain staging yang benar dalam workflow mixing</li>
+        <li>Membuat balanced mix dengan panning dan level adjustment</li>
+        <li>Mengaplikasikan EQ untuk frequency management dan clarity</li>
+        <li>Menerapkan dynamics processing: compression, limiting, gate</li>
+        <li>Menerapkan time-based effects (reverb, delay) untuk depth dan space</li>
+        <li>Memahami loudness standards (LUFS) untuk podcast, YouTube, streaming</li>
+        <li>Melakukan basic mastering: final EQ, compression, limiting</li>
+        <li>Menggunakan reference tracks untuk quality comparison</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="mixing-workflow">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Mixing Workflow dan Gain Staging</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Mixing vs Mastering</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Aspek</th><th>Mixing</th><th>Mastering</th></tr></thead>
+        <tbody>
+          <tr><td>Fokus</td><td>Individual track dan relasinya</td><td>Overall stereo mix</td></tr>
+          <tr><td>Objek</td><td>Multiple separate track</td><td>Final stereo mixdown (2-track)</td></tr>
+          <tr><td>Tools</td><td>Volume, pan, EQ per track, effects, automation</td><td>Subtle EQ, compression, limiting, widening</td></tr>
+          <tr><td>Tujuan</td><td>Mix balanced &amp; kohesif, semua elemen audible</td><td>Optimasi playback, konsistensi, loudness</td></tr>
+          <tr><td>Output</td><td>Stereo mixdown (2-track)</td><td>File master siap distribusi</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box">
+        <div class="hb-title">Analogi</div>
+        <p>Mixing = memasak bahan-bahan individual menjadi hidangan lengkap. Mastering = seasoning akhir, plating, presentasi.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Gain Staging dalam Mixing</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Gain staging yang benar memastikan signal-to-noise ratio baik, headroom untuk processing, tidak ada clipping dalam signal chain, dan mix yang bersih bebas distorsi.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Tahap</th><th>Target Peak Level</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>Individual tracks</td><td>-12 sampai -6 dBFS</td><td>Banyak headroom untuk processing gain</td></tr>
+          <tr><td>Rough mix (semua track main)</td><td>-10 sampai -6 dBFS</td><td>Jangan melebihi -6 dBFS secara rutin; sisakan untuk mastering</td></tr>
+          <tr><td>Post-mixing, pre-mastering</td><td>-6 sampai -3 dBFS</td><td>Headroom untuk processing mastering</td></tr>
+          <tr><td>Final master</td><td>-1 sampai -0.3 dBFS</td><td>Memaksimalkan loudness tanpa clipping</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box">
+        <div class="hb-title">Kesalahan Umum</div>
+        <p>"Mix saya kurang kencang, saya naikkan semua volume!" → Hasil: clipping, distorsi, tanpa headroom. <b>Solusi:</b> gunakan compression dan mastering untuk meningkatkan loudness secara terkontrol.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Urutan Workflow Mixing Tipikal</h3>
+      <ol class="styled">
+        <li><b>Organize:</b> Import semua track, beri nama jelas, route ke bus yang sesuai</li>
+        <li><b>Rough balance:</b> Set level awal dengan fader, dapatkan balance kasar tanpa overthinking</li>
+        <li><b>Panning:</b> Posisikan track dalam stereo field — center untuk elemen utama, sides untuk pendukung</li>
+        <li><b>Subtractive EQ:</b> Hilangkan frekuensi masalah dan muddiness, gunakan high-pass filter dan cut surgical</li>
+        <li><b>Dynamics control:</b> Kontrol dinamika track individual, ratakan level performa, tambahkan punch</li>
+        <li><b>Refine levels:</b> Sesuaikan level halus sambil mendengarkan dalam konteks penuh</li>
+        <li><b>Additive EQ:</b> Tambahkan presence, air, warmth — perkuat karakter yang sudah baik</li>
+        <li><b>Time-based effects:</b> Reverb untuk depth, delay untuk interest, ciptakan ruang 3D</li>
+        <li><b>Automation:</b> Volume rides untuk bagian tertentu, perubahan parameter efek</li>
+        <li><b>Final check:</b> Dengarkan di sistem berbeda, cek kompatibilitas mono, bandingkan dengan reference track</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="eq">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Equalization (EQ) Mendalam</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Spektrum Frekuensi</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Range</th><th>Nama</th><th>Karakteristik</th></tr></thead>
+        <tbody>
+          <tr><td>20-60 Hz</td><td>Sub-Bass</td><td>Dirasakan lebih dari didengar; fundamental kick drum, bass synth. Terlalu banyak: muddy, boomy</td></tr>
+          <tr><td>60-200 Hz</td><td>Bass</td><td>Warmth, power, body; bass guitar, fundamental suara pria. Terlalu sedikit: thin/weak</td></tr>
+          <tr><td>200-500 Hz</td><td>Low Mids</td><td>Body, fullness; sering jadi sumber muddiness/boxy/honky</td></tr>
+          <tr><td>500 Hz - 2 kHz</td><td>Midrange</td><td>Presence, kejelasan vokal, attack gitar; core kebanyakan instrumen</td></tr>
+          <tr><td>2-5 kHz</td><td>Upper Mids / Presence</td><td>Clarity, definition, konsonan vokal, crack snare; kritis untuk intelligibility</td></tr>
+          <tr><td>5-10 kHz</td><td>Brilliance / Sibilance</td><td>Brightness, air; cymbal, sibilance (S, SH). Berlebih: harsh/painful</td></tr>
+          <tr><td>10-20 kHz</td><td>Air / Sparkle</td><td>Air, sparkle; cymbal shimmer; range subtle, sebagian orang tak dengar &gt;16kHz</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <h3>Jenis Filter EQ</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Low-Pass Filter (LPF)</div><div class="gc-body">Meloloskan frekuensi di bawah cutoff, menghilangkan high. Untuk menggelapkan suara, mengurangi harshness.</div></div>
+        <div class="grid-card"><div class="gc-title">High-Pass Filter (HPF)</div><div class="gc-body">Meloloskan frekuensi di atas cutoff, menghilangkan low. Move EQ paling umum — hilangkan rumble, bersihkan muddiness.</div></div>
+        <div class="grid-card"><div class="gc-title">Band-Pass Filter</div><div class="gc-body">Meloloskan frekuensi dalam range tertentu saja. Untuk isolasi frekuensi, efek telephone.</div></div>
+        <div class="grid-card"><div class="gc-title">Notch/Band-Reject</div><div class="gc-body">Menghilangkan range frekuensi sempit. Untuk hilangkan hum atau resonansi spesifik.</div></div>
+        <div class="grid-card"><div class="gc-title">Peaking/Bell</div><div class="gc-body">Boost atau cut di sekitar frekuensi tengah dengan Q yang dapat diatur. Paling versatile.</div></div>
+        <div class="grid-card"><div class="gc-title">Shelving Filter</div><div class="gc-body">Boost/cut semua frekuensi di atas (high shelf) atau bawah (low shelf) cutoff. Untuk shaping tonal luas.</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Strategi EQ</h3>
+      <div class="highlight-box">
+        <div class="hb-title">"Adding gain adds noise; cutting creates clarity."</div>
+        <p><b>Subtractive first:</b> potong frekuensi bermasalah sebelum boost — menghapus yang buruk lebih baik daripada menambah yang bagus, hasilnya suara lebih bersih.</p>
+      </div>
+      <ul class="styled">
+        <li><b>Surgical vs Musical EQ:</b> surgical pakai Q narrow untuk hilangkan masalah spesifik; musical pakai Q broad untuk shaping tonal keseluruhan</li>
+        <li><b>Context matters:</b> EQ dalam solo terdengar berbeda dengan dalam mix penuh — selalu cek dalam konteks mix</li>
+        <li><b>Frequency masking:</b> instrumen dengan konten frekuensi serupa akan bersaing — solusi: cut frekuensi yang bersaing pada satu track, boost pada track lain (contoh: cut 200-400 Hz dari gitar, sisakan untuk vokal)</li>
+      </ul>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-voice')">Voice/Podcast</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-gitar')">Acoustic Guitar</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-bass')">Bass</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-musik')">Background Music</button>
+      </div>
+      <div id="tab-voice" class="tab-panel active">
+        <ul class="styled">
+          <li>HPF: 80-100 Hz (hilangkan rumble)</li>
+          <li>Cut: 200-300 Hz jika muddy</li>
+          <li>Boost: 2-5 kHz untuk presence/clarity</li>
+          <li>De-ess: cut 6-8 kHz jika sibilant</li>
+        </ul>
+      </div>
+      <div id="tab-gitar" class="tab-panel">
+        <ul class="styled">
+          <li>HPF: 80-100 Hz</li>
+          <li>Cut: 200-300 Hz jika boxy</li>
+          <li>Boost: 3-5 kHz untuk clarity</li>
+          <li>Boost: 10-12 kHz untuk air</li>
+        </ul>
+      </div>
+      <div id="tab-bass" class="tab-panel">
+        <ul class="styled">
+          <li>HPF: 30-40 Hz (hilangkan sub-rumble)</li>
+          <li>Boost: 60-100 Hz untuk body</li>
+          <li>Boost: 2-3 kHz untuk attack pick/finger</li>
+        </ul>
+      </div>
+      <div id="tab-musik" class="tab-panel">
+        <ul class="styled">
+          <li>HPF: 200-300 Hz (sisakan ruang untuk vokal)</li>
+          <li>Cut: 2-5 kHz (range presence vokal)</li>
+          <li>Biarkan musik duduk DI BAWAH vokal, jangan bersaing</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="dynamics">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Dynamics Processing</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Compression: Parameter Mendalam</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Threshold</div><div class="gc-body">Level di mana compression mulai bekerja. Threshold lebih rendah = lebih banyak compression. Typical: -20 sampai -10 dB.</div></div>
+        <div class="grid-card"><div class="gc-title">Ratio</div><div class="gc-body">2:1 gentle, 4:1 moderate, 8:1 aggressive, 10:1+ sudah masuk limiting (sangat keras).</div></div>
+        <div class="grid-card"><div class="gc-title">Attack</div><div class="gc-body">Cepat (1-10ms): menangkap transient, bisa kurangi punch. Lambat (20-100ms): melewatkan transient, jaga punch. Voice: 3-10ms; drum: lambat.</div></div>
+        <div class="grid-card"><div class="gc-title">Release</div><div class="gc-body">Cepat: ikuti dinamika ketat tapi bisa "pumpy". Lambat: smooth tapi bisa over-compress. Typical 100-300ms; auto-release sering pilihan terbaik.</div></div>
+        <div class="grid-card"><div class="gc-title">Knee</div><div class="gc-body">Titik transisi di threshold. Hard knee: onset abrupt. Soft knee: onset gradual, lebih musical.</div></div>
+        <div class="grid-card"><div class="gc-title">Makeup Gain</div><div class="gc-body">Gain pasca-compression untuk mengompensasi peak yang berkurang. Banyak compressor punya auto makeup gain.</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Strategi Compression</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Parallel Compression (New York Compression) <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Blend signal terkompresi dengan signal dry. Meningkatkan perceived loudness tanpa over-compression, menjaga dinamika sambil menambah density.</p>
+          <p style="margin-top:8px;"><b>Implementasi di Audacity/Ardour:</b> duplikat track, kompresi salah satu secara agresif, blend (mix) dengan track dry asli.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Serial Compression <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Beberapa compressor disusun seri, masing-masing melakukan compression ringan (2-3 dB reduction). Hasilnya lebih transparan dibanding satu compressor berat — disebut "stages" of compression.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Tipe Compressor Berdasarkan Karakter <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ul class="styled">
+            <li><b>VCA:</b> transparan, akurat, modern, versatile</li>
+            <li><b>FET:</b> cepat, agresif, colored — bagus untuk drum, vokal agresif</li>
+            <li><b>Optical (Opto):</b> smooth, musical, attack lambat — cocok vokal, bass</li>
+            <li><b>Variable-Mu (Tube):</b> warm, vintage, smooth — cocok vokal, mix bus</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Limiting</div>
+        <div class="gc-body">Compressor ekstrem (ratio 10:1 hingga infinity:1). Berfungsi sebagai ceiling keras — tidak ada signal yang lolos di atas threshold. Digunakan sebagai garda akhir sebelum export, melindungi dari peak tak terduga, dan memaksimalkan loudness (mastering). Setting: ceiling -1 sampai -0.3 dB, release 50-200ms, gunakan lookahead jika tersedia. Hati-hati: over-limiting = distorsi, pumping, suara lifeless.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Expander &amp; Noise Gate</div>
+        <div class="gc-body"><b>Expander</b> kebalikan compressor — memperbesar dynamic range, suara pelan jadi lebih pelan. <b>Noise Gate</b> otomatis mute signal di bawah threshold (parameter: threshold, attack, hold, release) — untuk menghilangkan bleed atau noise saat pause. Hati-hati: jika agresif bisa terdengar tidak natural dan memotong decay alami.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="time-based">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Time-Based Effects</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-reverb')">Reverb</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-delay')">Delay</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-mod')">Modulation</button>
+      </div>
+      <div id="tab-reverb" class="tab-panel active">
+        <p style="font-size:.88rem;margin-bottom:10px;">Reverb adalah kumpulan padat refleksi yang menciptakan kesan ruang.</p>
+        <div class="grid-3">
+          <div class="grid-card"><div class="gc-title">Room</div><div class="gc-body">Simulasi ruang kecil, &lt;1 detik, intim. Untuk vokal/instrumen yang butuh space subtle.</div></div>
+          <div class="grid-card"><div class="gc-title">Hall</div><div class="gc-body">Concert hall besar, 1-3 detik, spacious/grand. Untuk orkestra, sinematik, produksi lush.</div></div>
+          <div class="grid-card"><div class="gc-title">Plate</div><div class="gc-body">Simulasi reverb mekanis vintage, bright/dense — sound klasik 60-80an. Vokal, snare.</div></div>
+          <div class="grid-card"><div class="gc-title">Spring</div><div class="gc-body">Reverb spring mekanis vintage, bright/bouncy/metallic. Gitar amp, surf music.</div></div>
+          <div class="grid-card"><div class="gc-title">Chamber</div><div class="gc-body">Echo chamber ukuran medium, natural/balanced. General purpose, vokal.</div></div>
+        </div>
+        <table class="rubric-table" style="margin-top:14px;">
+          <thead><tr><th>Parameter</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td>Pre-Delay</td><td>Waktu sebelum reverb mulai (10-50ms), menjaga separasi &amp; clarity dengan dry signal</td></tr>
+            <tr><td>Decay/Reverb Time</td><td>Durasi reverb: short (0.5-1s) tight, medium (1-2s) natural, long (3-5s+) huge/ethereal</td></tr>
+            <tr><td>Damping</td><td>Penyerapan frekuensi tinggi — makin banyak damping makin gelap/natural</td></tr>
+            <tr><td>Diffusion</td><td>Densitas early reflections — tinggi = smooth/dense, rendah = echo diskret</td></tr>
+            <tr><td>Size</td><td>Ukuran ruang yang disimulasikan — lebih besar = lebih panjang &amp; spacious</td></tr>
+            <tr><td>Mix/Wet-Dry</td><td>Balance efek vs dry; biasanya subtle 10-30%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="tab-delay" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Mono Delay</div><div class="gc-body">Satu copy delay, simple, untuk efek ritmik/doubling.</div></div>
+          <div class="grid-card"><div class="gc-title">Stereo Delay</div><div class="gc-body">Delay terpisah L &amp; R, menciptakan width, stereo field lebih menarik.</div></div>
+          <div class="grid-card"><div class="gc-title">Ping-Pong Delay</div><div class="gc-body">Signal memantul L-R-L-R, efek wide &amp; spacious, bisa mengganggu jika berlebihan.</div></div>
+          <div class="grid-card"><div class="gc-title">Tape Delay</div><div class="gc-body">Emulasi tape echo vintage, repeat warm/degraded, karakter musikal "lofi".</div></div>
+        </div>
+        <p style="font-size:.85rem;margin:10px 0;"><b>Delay time:</b> sync ke tempo (1/4, 1/8 note); range 100-500ms. Kalkulasi: 60000 / BPM = quarter note delay (ms). <b>Feedback:</b> rendah (10-30%) subtle, tinggi (50-80%) ritmik. <b>Mix:</b> subtle 10-20%, efek 30-50%.</p>
+        <p style="font-size:.85rem;">Kombinasi: <b>Delay → Reverb</b> umum &amp; musical; <b>Reverb → Delay</b> bisa berantakan; keduanya independen pada source = kontrol terbanyak.</p>
+      </div>
+      <div id="tab-mod" class="tab-panel">
+        <ul class="styled">
+          <li><b>Chorus:</b> modulasi pitch/time subtle, ciptakan efek "ensemble", menebalkan suara — gitar, synth, vokal</li>
+          <li><b>Flanger:</b> mirip chorus tapi lebih ekstrem, sound "jet plane" swoosh, metallic/spacey</li>
+          <li><b>Phaser:</b> phase-shifting ciptakan notch dalam spektrum, "whoosh" bergerak, kurang ekstrem dari flanger</li>
+          <li><b>Tremolo:</b> modulasi volume ritmik — rate (kecepatan), depth (jumlah perubahan)</li>
+          <li><b>Vibrato:</b> modulasi pitch, mirip chorus tapi variasi pitch lebih besar</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="panning">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Panning dan Stereo Field</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Center (hard center, mono)</div><div class="gc-body">Lead vocal, bass guitar/synth bass, kick drum, snare drum, lead instrument — elemen paling penting, impact maksimal, konsisten di semua sistem playback termasuk mono.</div></div>
+      <div class="grid-card"><div class="gc-title">Sides (panned L/R)</div><div class="gc-body">Instrumen pendukung, gitar (satu kiri satu kanan), keyboard/pads, backing vocal, perkusi, effects return.</div></div>
+    </div>
+    <ul class="styled">
+      <li><b>Balance:</b> berat "weight" yang sama L dan R</li>
+      <li><b>Width:</b> jangan pan semua hard L/R, sisakan beberapa di center</li>
+      <li><b>Natural:</b> pertimbangkan posisi panggung</li>
+      <li><b>Contrast:</b> ciptakan interest dengan placement yang beragam</li>
+    </ul>
+    <div class="highlight-box">
+      <div class="hb-title">Pan Law &amp; Width Techniques</div>
+      <p><b>-3dB Pan Law:</b> sound di-pan center terdengar 3dB lebih kencang dari hard pan — kompensasi karena kedua speaker memutar sound yang sama (umumnya ditangani otomatis oleh DAW). <b>Stereo widening:</b> gunakan sparingly, terapkan pada elemen spesifik bukan seluruh mix. <b>Mid-Side (M/S) processing:</b> proses center (Mid) dan sides (Side) secara terpisah. <b>Haas Effect:</b> delay satu channel 10-30ms untuk perceived width — hati-hati kompatibilitas mono. <b>Cek mono compatibility</b> karena banyak pendengar mendengarkan dalam mono (speaker HP, PA system, radio).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="mastering">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Mastering Basics &amp; LUFS</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Tujuan Mastering</div>
+      <ul class="styled">
+        <li>Optimasi tonal balance untuk berbagai sistem playback</li>
+        <li>Mencapai loudness kompetitif tanpa distorsi</li>
+        <li>Memastikan konsistensi sepanjang album/seri podcast</li>
+        <li>Menyiapkan untuk distribusi (codec, format, metadata)</li>
+      </ul>
+      <p style="font-size:.85rem;margin-top:10px;color:#666;">Mastering bersifat subtle: penyesuaian kecil, impact besar. Less is more. Telinga yang fresh sangat krusial.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Mastering Chain Tipikal</h3>
+      <ol class="styled">
+        <li><b>Preparation:</b> import mixed stereo file, pastikan headroom (-6 sampai -3 dBFS peak), load reference track</li>
+        <li><b>Broad EQ:</b> penyesuaian halus broad, perbaiki imbalance, biasanya &lt;3 dB, linear phase EQ disukai</li>
+        <li><b>Glue compression:</b> gentle (1-2 dB max reduction), ratio 1.5:1-2:1, attack/release lambat, menyatukan mix &amp; menambah perceived loudness</li>
+        <li><b>Final character:</b> tambahkan high shelf untuk air, low boost untuk weight (hati-hati)</li>
+        <li><b>Limiting:</b> maksimalkan loudness, set ceiling berdasarkan target, ukur dengan loudness meter</li>
+        <li><b>Dithering:</b> noise sangat rendah saat konversi 24-bit → 16-bit, langkah terakhir selalu</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Loudness Standards (LUFS)</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;">LUFS (Loudness Units Full Scale) mengukur perceived loudness, memperhitungkan pendengaran manusia (bukan sekadar peak) — standar modern untuk broadcast dan streaming.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Platform</th><th>Target LUFS</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>Spotify</td><td><span class="score-badge">-14 LUFS</span></td><td>Integrated; track keras diturunkan, track pelan dibiarkan</td></tr>
+          <tr><td>YouTube</td><td><span class="score-badge">-14 LUFS</span></td><td>Mirip Spotify</td></tr>
+          <tr><td>Apple Music / iTunes</td><td><span class="score-badge">-16 LUFS</span></td><td>Sedikit lebih pelan</td></tr>
+          <tr><td>Podcast (spoken word)</td><td><span class="score-badge">-16 s/d -19 LUFS</span></td><td>Bervariasi sesuai distributor</td></tr>
+          <tr><td>Podcast musik</td><td><span class="score-badge">-14 s/d -16 LUFS</span></td><td>—</td></tr>
+          <tr><td>CD (tanpa normalisasi)</td><td><span class="score-badge">-8 s/d -10 LUFS</span></td><td>Era "loudness war" — mengorbankan dinamika</td></tr>
+          <tr><td>Film/Broadcast (dialog)</td><td><span class="score-badge">-23 s/d -24 LUFS</span></td><td>Standar siaran</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box">
+        <div class="hb-title">Implikasi Penting</div>
+        <p>Master yang lebih keras dari target platform akan dinormalisasi turun (usaha terbuang). Lebih baik: master sesuai target dan pertahankan dinamika. Ukur dengan loudness meter plugin — di Audacity: Analyze &gt; Loudness Normalization.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Menggunakan Reference Track</h3>
+      <p style="font-size:.88rem;margin-bottom:8px;">Gunakan track yang sudah dimaster profesional untuk pembanding. Pilih genre/style serupa, kualitas produksi baik, dan familiar (sudah sering didengar).</p>
+      <ul class="styled">
+        <li>Import reference track ke track terpisah (di-mute)</li>
+        <li>Bandingkan tonal balance, loudness, clarity, width</li>
+        <li>Dengarkan: low end (seberapa banyak bass?), high end (air/sparkle?), dynamics (seberapa compressed?), width (seberapa lebar stereo field?), clarity (semua elemen terdengar?)</li>
+        <li>Goal: bukan meniru sempurna, tapi memastikan berada dalam ballpark sound profesional &amp; membangun listening skill</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Praktikum</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Multi-Track Mixing Praktik — Podcast dengan Musik Latar</div>
+      <p style="font-size:.85rem;margin-bottom:8px;"><b>Tujuan:</b> membuat balanced mix dari beberapa track audio. <b>Asset:</b> rekaman suara (milik sendiri/tugas sebelumnya) + track musik latar (royalty-free dari YouTube Audio Library atau Free Music Archive).</p>
+      <ol class="styled">
+        <li>Setup: buka Audacity, import voice track dan music track, pastikan kedua track terlihat</li>
+        <li>Rough balance: mainkan bersama, sesuaikan gain slider — voice harus jelas terdengar di atas musik</li>
+        <li>EQ voice track: Effect &gt; Filter Curve EQ — HPF 80-100 Hz, boost 2-4 kHz untuk clarity</li>
+        <li>EQ music track: Effect &gt; Filter Curve EQ — HPF 200-300 Hz, cut 2-5 kHz (sisakan ruang untuk voice)</li>
+        <li>Compression voice: Effect &gt; Compressor — threshold -20 dB, ratio 3:1, attack 5ms, release 200ms</li>
+        <li>Automation: gunakan Envelope Tool (E) untuk volume automation pada music track — fade down saat voice bicara, fade up saat pause</li>
+        <li>Fade in/out musik di intro dan outro untuk transisi smooth</li>
+        <li>Limiting: Select All (Ctrl+A) &gt; Effect &gt; Limiter, limit ke -1 dB</li>
+        <li>Export: File &gt; Export Audio, format MP3 192 kbps</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> mixed audio file, screenshot waveform kedua track bersama, report 400 kata (keputusan mixing, kendala, hasil).</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 2: Mastering Simulation</div>
+      <p style="font-size:.85rem;margin-bottom:8px;"><b>Tujuan:</b> menerapkan mastering chain pada mix yang sudah selesai (gunakan hasil Praktikum 1 atau tugas sebelumnya).</p>
+      <ol class="styled">
+        <li>Buka project Audacity baru, import mixed audio, Analyze &gt; Plot Spectrum (sebelum mastering), screenshot</li>
+        <li>Cek peak level (harus di bawah -3 dBFS) — jika terlalu keras gunakan Effect &gt; Amplify (nilai negatif)</li>
+        <li>Broad EQ: Effect &gt; Filter Curve EQ — jika dark: high shelf boost 10kHz+ (1-2 dB); jika muddy: cut 200-400 Hz (1-2 dB); jika thin: low shelf boost 100 Hz (1-2 dB)</li>
+        <li>Glue compression: Effect &gt; Compressor — threshold -15 dB, ratio 2:1, attack 10ms, release 300ms; target 1-2 dB gain reduction</li>
+        <li>Loudness: Effect &gt; Loudness Normalization, target -16 LUFS (standar podcast)</li>
+        <li>Limiting: Effect &gt; Limiter, limit ke -1.0 dB</li>
+        <li>Analyze &gt; Plot Spectrum (setelah mastering), screenshot, bandingkan dengan sebelum</li>
+        <li>Export: WAV 48kHz 24-bit (master archive) + MP3 192kbps (delivery)</li>
+        <li>Dengarkan di sistem berbeda (headphone, speaker HP, speaker komputer) — cek konsistensi loudness, tanpa distorsi/clipping</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> mix original (pre-mastering), audio mastered (WAV master + MP3 delivery), screenshot spectrum before/after, report 500 kata (keputusan mastering, perbandingan, pengukuran loudness).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Mixing</div>
+        <div class="gc-body">Gain staging: sisakan headroom (-6 dBFS rough mix peak). Balance: fader &amp; panning untuk blend track. EQ: subtractive dulu (hilangkan masalah), additive belakangan (perkuat). Compression: kontrol dinamika, satukan mix. Effects: reverb &amp; delay untuk space dan depth.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Dynamics &amp; Effects</div>
+        <div class="gc-body">Compression mengurangi dynamic range &amp; meratakan level; limiting jadi ceiling keras/safety final; parallel compression blend compressed/dry untuk power+dinamika; gate hilangkan bleed/noise. Reverb ciptakan depth/ambience; delay beri interest ritmik; modulation untuk thickness/movement; stereo placement: center untuk penting, sides untuk pendukung.</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mastering</div>
+      <p>Processing subtle untuk polish akhir. Chain: EQ → Compression → Loudness Normalization → Limiting. Target loudness: -16 LUFS (podcast), -14 LUFS (streaming musik). Gunakan reference track untuk quality comparison.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Persiapan Pertemuan Selanjutnya</div>
+      <p style="font-size:.85rem;">Materi Pertemuan 6: "Dasar-Dasar Video Digital" — frame rate, resolusi, aspect ratio, codec &amp; container format, bitrate/compression/quality, color space &amp; profiles.</p>
+      <ul class="styled" style="margin-top:8px;">
+        <li>Selesaikan Quiz 1 (online, mencakup topik audio)</li>
+        <li>Opsional: tonton tutorial intro untuk video editor pilihan</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p6.html" class="next-btn">Pertemuan 6 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 6 – Dasar-Dasar Video Digital | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Dasar-Dasar Video Digital</div>
+    <div class="pertemuan-badge">Pertemuan 6</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar &amp; Tujuan</a>
+    <a href="#frame-rate" class="toc-link">Frame Rate</a>
+    <a href="#resolution" class="toc-link">Resolution</a>
+    <a href="#aspect-ratio" class="toc-link">Aspect Ratio</a>
+    <a href="#codec" class="toc-link">Video Codecs</a>
+    <a href="#container" class="toc-link">Container Format</a>
+    <a href="#bitrate-color" class="toc-link">Bitrate &amp; Color Space</a>
+    <a href="#ringkasan" class="toc-link">Ringkasan</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 6 · Rekayasa Video dan Audio</div>
+    <h1>Dasar-Dasar Video Digital</h1>
+    <p class="subtitle">Memahami konsep fundamental video digital — frame rate, resolution, aspect ratio, codec, container format, bitrate, dan color space — agar mampu memilih setting recording dan export yang tepat untuk berbagai kebutuhan delivery.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar &amp; Tujuan</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami konsep fundamental video digital meliputi frame rate, resolution, aspect ratio, codec, dan container format.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Memahami Format Video Itu Penting?</div>
+      <p style="font-size:.88rem;line-height:1.75;">"Understanding video formats is crucial — it's the difference between beautiful quality and wasted storage atau compatibility nightmares." Setelah menguasai audio, sekarang kita masuk ke dunia <b>video digital</b>. Video adalah medium yang kompleks — mengombinasikan informasi visual, dimensi temporal (waktu), dan sering juga audio. Memahami aspek teknis video digital esensial untuk tiga hal: <b>Recording</b> (memilih setting capture yang tepat), <b>Editing</b> (bekerja dengan footage tanpa kehilangan kualitas), dan <b>Delivery</b> (mengekspor untuk platform dan audiens spesifik).</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Bayangkan skenario: Anda merekam video untuk YouTube dalam 4K 60fps, mengedit, lalu mengekspor sebagai 480p 15fps — hasilnya adalah usaha, storage, dan waktu proses yang terbuang. Atau mengunggah file 10GB ke Instagram yang hanya menerima maksimum 100MB — ditolak. Pada pertemuan ini kita akan mendemistifikasi video digital: tidak ada lagi kebingungan antara 1080p vs 1080i, H.264 vs H.265, MP4 vs MOV.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Menjelaskan konsep frame rate (24fps, 30fps, 60fps) dan aplikasinya</li>
+        <li>Memahami perbedaan antara interlaced dan progressive scan</li>
+        <li>Mengidentifikasi berbagai resolution standards (SD, 720p, 1080p, 4K, 8K)</li>
+        <li>Memilih aspect ratio yang tepat: 16:9, 4:3, 21:9, 9:16, 1:1</li>
+        <li>Memahami video codecs: H.264, H.265/HEVC, VP9, AV1, ProRes</li>
+        <li>Membedakan container formats: MP4, MOV, AVI, MKV, WebM</li>
+        <li>Memahami hubungan bitrate, compression, dan quality</li>
+        <li>Mengetahui dasar color space: Rec.709, Rec.2020, log profiles</li>
+        <li>Memilih settings optimal untuk recording dan export berbagai use case</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="frame-rate">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Frame Rate</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa Itu Frame Rate?</div>
+      <p>Frame rate (frames per second, fps) adalah jumlah gambar individual (frame) yang ditampilkan per detik dalam video. Video pada dasarnya adalah sequence of still images yang diputar dengan cepat — setiap gambar adalah 1 frame, 24 fps berarti 24 frame diputar per detik, dan semakin tinggi fps semakin halus gerakannya. Persepsi manusia (persistence of vision) membuat ~15-20 fps sudah terlihat seperti motion: di bawah 15 fps tampak patah-patah seperti slideshow, sedangkan 24+ fps sudah terasa smooth.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Common Frame Rates &amp; Penggunaannya</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Frame Rate</th><th>Standar / Kategori</th><th>Penggunaan</th></tr></thead>
+        <tbody>
+          <tr><td><b>23.976 / 24 fps</b></td><td>Cinematic Standard</td><td>Film, TV cinematic, YouTube cinematic — "film look" dengan motion blur halus dan kesan dreamlike</td></tr>
+          <tr><td><b>25 fps</b></td><td>PAL Standard</td><td>Broadcasting Eropa, Asia, Afrika, Australia; dokumenter PAL</td></tr>
+          <tr><td><b>29.97 fps (~30)</b></td><td>NTSC Standard</td><td>TV broadcast Amerika, live TV, news</td></tr>
+          <tr><td><b>30 fps</b></td><td>Online Standard</td><td>YouTube/Vimeo default, webcam, smartphone — balance smooth &amp; file size</td></tr>
+          <tr><td><b>50 fps</b></td><td>HFR (PAL derivative)</td><td>Olahraga &amp; aksi cepat di region PAL</td></tr>
+          <tr><td><b>59.94 / 60 fps</b></td><td>HFR (NTSC derivative)</td><td>Sports, gaming footage, action sequence, sumber slow motion</td></tr>
+          <tr><td><b>120 / 240 / 480+ fps</b></td><td>Slow Motion Capture</td><td>Bukan untuk playback real-time — direkam cepat, diperlambat saat editing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Mengapa 23.976 / 29.97?</div><div class="gc-body">Angka "aneh" ini berasal dari alasan historis kompatibilitas televisi warna NTSC, bukan kesalahan.</div></div>
+      <div class="grid-card"><div class="gc-title">Konversi Slow Motion</div><div class="gc-body">60fps → timeline 24fps = 2.5x slow motion. 120fps → 24fps = 5x. 240fps → 24fps = 10x slow motion.</div></div>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-pilih-fps')">Memilih Frame Rate</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-scan')">Interlaced vs Progressive</button>
+      </div>
+      <div id="tab-pilih-fps" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Cinematic feel:</b> 24 fps (23.976) — sedikit dreamy, motion blur terlihat, aesthetic film tradisional</li>
+          <li><b>Broadcast/standard:</b> 25 fps (region PAL) atau 30 fps (region NTSC, online)</li>
+          <li><b>Smooth action/sports:</b> 60 fps — sangat halus, cocok untuk gerakan cepat</li>
+          <li><b>Slow motion (perlu capture):</b> 120 fps atau lebih — lebih banyak frame = slow motion lebih lambat</li>
+          <li><b>General online content:</b> 30 fps (aman, universal) atau 60 fps (jika banyak gerakan/gaming)</li>
+          <li><b>Compatibility:</b> Beberapa platform membatasi fps (Instagram feed maksimum 30fps) — cek requirement sebelum recording</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Implikasi fps lebih tinggi:</b> (+) gerakan lebih halus, potensi slow motion lebih baik. (–) ukuran file lebih besar, butuh processing power lebih besar, bisa kehilangan kesan "cinematic" karena terlalu smooth.</p>
+      </div>
+      <div id="tab-scan" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Progressive (p)</div><div class="gc-body">Setiap frame adalah gambar lengkap, semua baris di-scan bersamaan. Standar modern (1080p, 720p, 4K), bersih tanpa artifact, lebih baik untuk editing dan efek.</div></div>
+          <div class="grid-card"><div class="gc-title">Interlaced (i)</div><div class="gc-body">Setiap frame terdiri dari dua field (baris ganjil, lalu genap) yang ditampilkan bergantian. Standar broadcast lama (1080i, 480i), dapat menimbulkan artifact "combing", format legacy.</div></div>
+        </div>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Rekomendasi:</b> selalu pilih progressive untuk produksi baru — interlaced hanya untuk kompatibilitas dengan sistem broadcast legacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="resolution">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Resolution (Pixel Dimensions)</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa Itu Resolution?</div>
+      <p>Resolution adalah jumlah pixel dalam frame, dengan format Width × Height (dalam pixel). Lebih banyak pixel berarti lebih banyak detail, kejernihan, dan ketajaman; memungkinkan tampilan lebih besar tanpa kehilangan kualitas; serta lebih baik untuk cropping, stabilization, dan efek. Namun konsekuensinya adalah ukuran file lebih besar dan kebutuhan processing power lebih tinggi.</p>
+    </div>
+
+    <table class="rubric-table">
+      <thead><tr><th>Kategori</th><th>Dimensi</th><th>Keterangan &amp; Penggunaan</th></tr></thead>
+      <tbody>
+        <tr><td><b>SD</b> (480p)</td><td>720×480 (NTSC) / 720×576 (PAL)</td><td>Standar lama 1990–2000an, kualitas DVD, legacy/retro aesthetic</td></tr>
+        <tr><td><b>HD Ready</b> (720p)</td><td>1280×720</td><td>Standar "HD" pertama, cocok untuk web streaming dan webcam, ukuran file moderat</td></tr>
+        <tr><td><b>Full HD</b> (1080p)</td><td>1920×1080</td><td>Standar saat ini — TV, monitor, kamera, smartphone; balance kualitas vs ukuran file</td></tr>
+        <tr><td><b>2K</b></td><td>2048×1080</td><td>Standar sinema, proyeksi cinema digital, filmmaking profesional</td></tr>
+        <tr><td><b>QHD / 1440p</b></td><td>2560×1440</td><td>Monitor gaming, smartphone high-end, di antara Full HD dan 4K</td></tr>
+        <tr><td><b>4K / UHD</b></td><td>3840×2160 (UHD) / 4096×2160 (DCI)</td><td>4× pixel 1080p; YouTube, Netflix, produksi high-end; menantang untuk storage &amp; PC</td></tr>
+        <tr><td><b>5K</b></td><td>5120×2880</td><td>Kamera dan monitor high-end (mis. iMac 5K), kurang umum</td></tr>
+        <tr><td><b>8K</b></td><td>7680×4320</td><td>16× pixel 1080p; cutting-edge, mostly profesional/cinema/future-proofing</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-title">Notasi p vs i</div>
+      <p style="font-size:.88rem;line-height:1.7;">Suffix "p" = progressive scan (umum, mis. 1080p = 1920×1080 progressive); suffix "i" = interlaced (legacy, mis. 1080i = 1920×1080 interlaced). Selalu pilih notasi "p".</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Memilih Resolution Berdasarkan Kebutuhan <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>YouTube/online:</b> 1080p (aman, standar, universal) atau 4K (jika perangkat mendukung, future-proof)</li>
+          <li><b>Social media:</b> 1080p (Instagram, Facebook, TikTok); resolusi lebih rendah masih okay untuk Stories (sudah dikompresi berat)</li>
+          <li><b>Professional work:</b> 4K (fleksibilitas cropping, stabilization, future-proofing); 6K/8K untuk cinema high-end &amp; VFX plates</li>
+          <li><b>Streaming/edukasi:</b> 1080p (jernih, bandwidth manageable) atau 720p (opsi hemat bandwidth)</li>
+          <li><b>Archiving/master files:</b> resolusi tertinggi yang kamera bisa rekam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Pertimbangan Praktis: Storage &amp; Processing <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Merekam dalam 4K, lalu mengekspor dalam 1080p memberi fleksibilitas: digital zoom (crop di post, tetap detail 1080p), stabilization (crop edge, tetap maintain resolusi), dan future-proofing (bisa re-export dalam 4K nanti).</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li>1080p: 10–50 MB per menit (tergantung codec &amp; bitrate)</li>
+          <li>4K: 40–200+ MB per menit</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="aspect-ratio">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Aspect Ratio</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa Itu Aspect Ratio?</div>
+      <p>Aspect Ratio adalah rasio lebar terhadap tinggi (Width:Height, contoh 16:9). Aspect ratio mempengaruhi proporsi dimensi frame, bagaimana video ditampilkan di berbagai screen, dan kompatibilitas platform.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">16:9 (1.78:1)</div><div class="gc-body">Standar widescreen modern — TV, monitor, YouTube, hampir semua platform. Resolusi: 1920×1080, 1280×720, 3840×2160. Default untuk hampir segalanya.</div></div>
+      <div class="grid-card"><div class="gc-title">4:3 (1.33:1)</div><div class="gc-body">Standar lama — TV klasik, monitor pre-widescreen. Masih dipakai untuk pilihan artistik/retro aesthetic, Academy ratio film. Obsolete untuk konten modern.</div></div>
+      <div class="grid-card"><div class="gc-title">21:9 (2.35:1 / 2.39:1)</div><div class="gc-body">Ultrawide/cinematic — rilis teatrikal, sangat lebar, dramatic, immersive. Black bars di screen standar; dukungan platform terbatas.</div></div>
+      <div class="grid-card"><div class="gc-title">1:1 (Square)</div><div class="gc-body">Instagram feed (tradisional), foto profil. 1080×1080 umum digunakan.</div></div>
+      <div class="grid-card"><div class="gc-title">9:16 (Vertical)</div><div class="gc-body">Video vertikal untuk smartphone — Instagram Stories, Reels, TikTok, YouTube Shorts. 1080×1920 umum; format yang terus berkembang (mobile-first).</div></div>
+      <div class="grid-card"><div class="gc-title">4:5 (Portrait)</div><div class="gc-body">Instagram feed (preferensi saat ini), memberikan lebih banyak ruang layar di mobile feed dibanding 1:1. 1080×1350.</div></div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Aspect Ratio per Platform</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Platform</th><th>Rekomendasi Aspect Ratio</th></tr></thead>
+        <tbody>
+          <tr><td><b>YouTube</b></td><td>16:9 direkomendasikan; mendukung berbagai rasio (black bars jika mismatch)</td></tr>
+          <tr><td><b>Instagram</b></td><td>Feed: 1:1 atau 4:5; Stories/Reels: 9:16 (full screen); IGTV: 9:16 atau 16:9</td></tr>
+          <tr><td><b>TikTok</b></td><td>9:16 (full vertical); 1:1 didukung tapi kurang immersive</td></tr>
+          <tr><td><b>Facebook</b></td><td>Berbagai rasio didukung; 1:1 performa baik di feed, 16:9 untuk watch tab</td></tr>
+          <tr><td><b>Twitter</b></td><td>16:9 lebih disukai; 1:1 didukung</td></tr>
+          <tr><td><b>Profesional/Broadcast</b></td><td>TV: 16:9; Cinema: 21:9 (2.39:1 umum)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Menangani Aspect Ratio yang Tidak Cocok</div>
+      <ul class="styled">
+        <li><b>Pillarboxing:</b> black bar vertikal di sisi kiri/kanan — terjadi saat konten 4:3 ditampilkan di screen 16:9</li>
+        <li><b>Letterboxing:</b> black bar horizontal atas/bawah — terjadi saat konten 21:9 ditampilkan di screen 16:9</li>
+        <li><b>Cropping:</b> memotong tepi untuk fit rasio berbeda — ada kehilangan konten di pinggir</li>
+        <li><b>Stretching (hindari!):</b> mendistorsi gambar, terlihat tidak profesional</li>
+      </ul>
+      <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Best practice:</b> rekam langsung untuk aspect ratio yang dituju, atau rekam lebih lebar (16:9) lalu crop untuk rasio berbeda (9:16, 1:1). Rekaman 4K memberi fleksibilitas crop ke rasio berbeda sambil tetap menjaga kualitas.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="codec">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Video Codecs</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa Itu Codec?</div>
+      <p>CODEC = Coder-Decoder, software/hardware yang melakukan encoding (kompresi) dan decoding (dekompresi) video. Dibutuhkan karena raw uncompressed video berukuran sangat besar (1080p 30fps raw ≈ 2 GB per menit!). Codec mengompresi secara dramatis sambil menjaga kualitas — kompresi tipikal bisa 100:1 atau lebih.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-lossless')">Lossless vs Lossy</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-frame')">Intraframe vs Interframe</button>
+      </div>
+      <div id="tab-lossless" class="tab-panel active">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Lossless</div><div class="gc-body">Tanpa kehilangan kualitas, rekonstruksi sempurna, file besar (tetap lebih kecil dari raw). Untuk archiving, intermediate files. Contoh: FFV1, Ut Video.</div></div>
+          <div class="grid-card"><div class="gc-title">Lossy</div><div class="gc-body">Terjadi kehilangan kualitas, file jauh lebih kecil, acceptable jika dilakukan dengan baik. Untuk delivery, streaming, file final. Contoh: H.264, H.265, VP9.</div></div>
+        </div>
+      </div>
+      <div id="tab-frame" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Intraframe (I-frame)</div><div class="gc-body">Setiap frame dikompresi independen, lebih mudah diedit (random access), file lebih besar. Contoh: ProRes, DNxHD, MJPEG.</div></div>
+          <div class="grid-card"><div class="gc-title">Interframe (Temporal)</div><div class="gc-body">Menyimpan perbedaan antar frame, file jauh lebih kecil, lebih sulit diedit (perlu decode banyak frame). Contoh: H.264, H.265, VP9.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Perbandingan Codec Umum</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Codec</th><th>Karakteristik</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td><b>H.264 / AVC</b></td><td>Paling umum, standar industri, kompatibilitas universal, kompresi moderat, berlisensi (paten)</td><td>YouTube, Vimeo, streaming, Blu-ray, default kamera — direkomendasikan untuk delivery umum</td></tr>
+          <tr><td><b>H.265 / HEVC</b></td><td>2× lebih efisien dari H.264 (kualitas sama, ukuran setengah), kompatibilitas kurang universal, butuh processing lebih besar, berlisensi</td><td>Streaming 4K (Netflix, dll), kamera 4K (iPhone, dll), archiving 4K</td></tr>
+          <tr><td><b>VP9</b></td><td>Codec Google, royalty-free/open, efisiensi mirip H.265, dukungan browser baik</td><td>YouTube (bersama H.264), container WebM, proyek open-source</td></tr>
+          <tr><td><b>AV1</b></td><td>Codec open terbaru, royalty-free, kompresi lebih baik dari H.265, dukungan masih terbatas, encoding berat</td><td>YouTube (deployment awal), standar streaming masa depan, masih eksperimental</td></tr>
+          <tr><td><b>ProRes (Apple)</b></td><td>Codec intermediate, kualitas tinggi, file besar, intraframe (mudah edit), Mac-optimized</td><td>Editing codec, workflow profesional — bukan untuk delivery</td></tr>
+          <tr><td><b>DNxHD / DNxHR (Avid)</b></td><td>Mirip ProRes (kompetitor), kualitas tinggi, intraframe, cross-platform</td><td>Editing codec, alternatif ProRes</td></tr>
+          <tr><td><b>MPEG-2</b></td><td>Standar lama, kurang efisien</td><td>DVD, broadcast HD awal — obsolete untuk produksi baru</td></tr>
+          <tr><td><b>MJPEG</b></td><td>Sangat lama, setiap frame = JPEG, kompresi buruk</td><td>Obsolete</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Memilih Codec Berdasarkan Kebutuhan <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Untuk editing (intermediate):</b> ProRes (Mac) atau DNxHD (Windows/cross-platform) — playback smooth, kualitas tinggi, mudah diedit</li>
+          <li><b>Untuk delivery/YouTube/streaming:</b> H.264 — kompatibilitas universal, efisiensi baik</li>
+          <li><b>Untuk delivery 4K (concern ukuran file):</b> H.265 — kompresi sangat baik, file lebih kecil, cek kompatibilitas</li>
+          <li><b>Untuk proyek open-source:</b> VP9 — tanpa lisensi, kualitas baik</li>
+          <li><b>Untuk archiving:</b> H.265 (balanced) atau Lossless (jika storage tidak menjadi masalah)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="container">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Container Format</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Container vs Codec</div>
+      <p><b>Container</b> adalah format file ("kotak") yang menampung video, audio, subtitle, dan metadata (ekstensi: .mp4, .mov, .mkv, dll). <b>Codec</b> adalah algoritma kompresi — cara video/audio di-encode (contoh: H.264, AAC). Penting: container yang sama bisa menampung codec berbeda — MP4 dapat berisi H.264, H.265, MPEG-4, dll. Harus selalu menentukan kedua hal: container DAN codec.</p>
+    </div>
+
+    <table class="rubric-table">
+      <thead><tr><th>Container</th><th>Karakteristik</th><th>Use Case</th></tr></thead>
+      <tbody>
+        <tr><td><b>MP4 (.mp4)</b></td><td>Paling universal, kompatibilitas sangat baik di semua device/browser/platform; codec: H.264, H.265, AAC</td><td>YouTube, Vimeo, web delivery, mobile — direkomendasikan untuk delivery</td></tr>
+        <tr><td><b>MOV (.mov)</b></td><td>Container Apple/QuickTime, mirip MP4, native ekosistem Mac; codec: H.264, ProRes, dll</td><td>Workflow berbasis Mac, editing profesional (ProRes), rekaman iPhone</td></tr>
+        <tr><td><b>AVI (.avi)</b></td><td>Format Windows lama, kurang efisien, kompatibilitas variatif</td><td>Konten legacy — tidak direkomendasikan untuk produksi baru</td></tr>
+        <tr><td><b>MKV (.mkv)</b></td><td>Container open &amp; fleksibel, mendukung hampir semua codec, multiple audio track/subtitle, playback kurang universal</td><td>Archiving dengan multi audio/subtitle, fansub, rilis kualitas tinggi — kurang ideal untuk web delivery</td></tr>
+        <tr><td><b>WebM (.webm)</b></td><td>Format web terbuka untuk HTML5 video; codec: VP8, VP9, AV1, Vorbis/Opus; dukungan browser baik</td><td>Web embedding, proyek open-source</td></tr>
+        <tr><td><b>FLV (.flv)</b></td><td>Obsolete, format streaming web lama, membutuhkan Flash Player (sudah dihentikan)</td><td>Tidak digunakan lagi</td></tr>
+        <tr><td><b>WMV (.wmv)</b></td><td>Format Microsoft, obsolete untuk konten baru, kompatibilitas spesifik Windows</td><td>Legacy Windows</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-title">Memilih Container</div>
+      <ul class="styled">
+        <li><b>Delivery umum/YouTube:</b> MP4 (video H.264, audio AAC)</li>
+        <li><b>Editing profesional:</b> MOV (ProRes) atau MKV (DNxHD)</li>
+        <li><b>Web embedding:</b> MP4 atau WebM</li>
+        <li><b>Archiving dengan multiple track:</b> MKV</li>
+        <li><b>Prioritas kompatibilitas:</b> MP4 (paling universal)</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="bitrate-color">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Bitrate, Compression &amp; Color Space</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Bitrate</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Bitrate adalah jumlah data per detik dalam video, diukur dalam Megabits per second (Mbps) atau Kilobits per second (Kbps). Bitrate lebih tinggi berarti kualitas lebih baik dan detail lebih terjaga, namun ukuran file lebih besar; bitrate lebih rendah berarti file lebih kecil dan streaming lebih mudah, tapi kehilangan kualitas dan munculnya compression artifact.</p>
+      <div class="highlight-box">
+        <div class="hb-title">Formula Estimasi Ukuran File</div>
+        <p>Approximate File Size = (Bitrate × Duration) / 8. Contoh: bitrate 10 Mbps, durasi 60 detik = (10 × 60) / 8 = 75 MB.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Rekomendasi Bitrate</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Resolusi &amp; FPS</th><th>Standard</th><th>High Quality</th></tr></thead>
+        <tbody>
+          <tr><td>720p 30fps</td><td>5–8 Mbps</td><td>—</td></tr>
+          <tr><td>1080p 30fps</td><td>8–12 Mbps</td><td>15–40 Mbps</td></tr>
+          <tr><td>1080p 60fps</td><td>12–16 Mbps</td><td>20–25 Mbps</td></tr>
+          <tr><td>4K 30fps</td><td>35–45 Mbps</td><td>60–85 Mbps</td></tr>
+          <tr><td>4K 60fps</td><td>53–68 Mbps</td><td>80–120 Mbps</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">Perbandingan ukuran file (1 menit, 1080p 30fps): 5 Mbps ≈ 37 MB · 10 Mbps ≈ 75 MB · 20 Mbps ≈ 150 MB. Untuk streaming (bandwidth lebih rendah): 720p 2–4 Mbps, 1080p 4–6 Mbps.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">CBR (Constant Bitrate)</div><div class="gc-body">Bitrate sama sepanjang video, ukuran file mudah diprediksi, namun memboroskan bit pada scene sederhana dan kurang pada scene kompleks. Digunakan untuk live streaming.</div></div>
+      <div class="grid-card"><div class="gc-title">VBR (Variable Bitrate)</div><div class="gc-body">Bitrate berubah sesuai kompleksitas — tinggi untuk scene kompleks, rendah untuk yang sederhana. Lebih efisien (kualitas lebih baik pada bitrate rata-rata lebih rendah). Direkomendasikan untuk file delivery &amp; YouTube.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Compression Artifacts &amp; Pencegahannya <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Blockiness/Macroblocking:</b> blok pixel persegi terlihat — disebabkan bitrate terlalu rendah</li>
+          <li><b>Banding:</b> gradient halus jadi pita bertingkat — disebabkan bit depth rendah, kompresi berat</li>
+          <li><b>Mosquito noise:</b> noise berbulu di sekitar tepi — disebabkan kompresi berat pada tepi tajam</li>
+          <li><b>Motion blur:</b> smearing pada gerakan cepat/kompleks — disebabkan bitrate tidak cukup untuk motion</li>
+          <li><b>Pencegahan:</b> gunakan bitrate yang adekuat sesuai resolusi dan motion, lalu uji hasil export dan sesuaikan bitrate jika kualitas buruk</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Color Space</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Color Space</th><th>Karakteristik</th></tr></thead>
+        <tbody>
+          <tr><td><b>Rec.709 (BT.709)</b></td><td>Standard Dynamic Range (SDR), standar TV HD (1080p, 720p), paling umum — YouTube, broadcast, video umum</td></tr>
+          <tr><td><b>Rec.2020 (BT.2020)</b></td><td>Wide Color Gamut, standar Ultra HD (4K, 8K), lebih banyak warna dari Rec.709, konten HDR, standar masa depan</td></tr>
+          <tr><td><b>sRGB</b></td><td>Monitor komputer, web; mirip Rec.709; untuk grafis dan konten web</td></tr>
+        </tbody>
+      </table>
+      <div class="card">
+        <div class="card-title">Log Profiles (Advanced)</div>
+        <p style="font-size:.88rem;line-height:1.7;">Log encoding menjaga highlight dan shadow ekstrem untuk color grading. Contoh: S-Log (Sony), C-Log (Canon), V-Log (Panasonic). Karakteristik: tampilan flat/washed-out (perlu grading), preservasi dynamic range maksimal, untuk workflow color grading profesional — bukan untuk delivery langsung, harus di-grade dulu.</p>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">HDR (High Dynamic Range)</div>
+        <p>Rentang brightness lebih besar, lebih banyak warna. Standar: HDR10, Dolby Vision, HLG. Membutuhkan capture, editing, dan display yang kompatibel — adopsi terus tumbuh (YouTube, Netflix mendukung). <b>Untuk pemula:</b> tetap gunakan Rec.709 SDR untuk saat ini (standar universal).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="ringkasan">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Ringkasan</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Frame Rate</div><div class="gc-body">24fps: cinematic. 30fps: standar online/broadcast. 60fps: aksi/sports/gaming yang smooth.</div></div>
+      <div class="grid-card"><div class="gc-title">Resolution</div><div class="gc-body">1080p: standar saat ini. 4K: high-end, future-proof. Pilih berdasarkan platform, storage, dan kapabilitas processing.</div></div>
+      <div class="grid-card"><div class="gc-title">Aspect Ratio</div><div class="gc-body">16:9: standar horizontal. 9:16: vertikal mobile (Stories, Reels, TikTok). 1:1/4:5: square/portrait untuk feed Instagram.</div></div>
+      <div class="grid-card"><div class="gc-title">Codec</div><div class="gc-body">H.264: universal, standar delivery. H.265: kompresi lebih baik, konten 4K. ProRes/DNxHD: intermediate untuk editing.</div></div>
+      <div class="grid-card"><div class="gc-title">Container</div><div class="gc-body">MP4: delivery universal. MOV: workflow Mac, ProRes. MKV: archiving fleksibel.</div></div>
+      <div class="grid-card"><div class="gc-title">Bitrate</div><div class="gc-body">1080p 30fps: 8–12 Mbps standar. 4K 30fps: 35–45 Mbps. Bitrate lebih tinggi = kualitas lebih baik, file lebih besar.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Praktikum Pertemuan 6</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum: Analyzing Video Properties</div>
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:10px;"><b>Tujuan:</b> memahami properti teknis video melalui tools analisis.</p>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Tools yang dibutuhkan:</b> MediaInfo (gratis), VLC Media Player (gratis), dan sample video files.</p>
+      <ul class="styled">
+        <li>Kumpulkan 3-5 sample video dari berbagai sumber (kamera/smartphone, hasil download YouTube dengan berbagai opsi kualitas, platform lain)</li>
+        <li>Install MediaInfo, buka setiap file video, lihat tree view atau text view</li>
+        <li>Catat untuk setiap video: container format, video codec, resolution, frame rate, aspect ratio, bitrate, file size, audio codec, dan audio bitrate</li>
+        <li>Buat spreadsheet dengan temuan, bandingkan bagaimana bitrate mempengaruhi ukuran file dan efisiensi codec (H.264 vs H.265 untuk kualitas yang sama)</li>
+        <li>Catat rekomendasi setting untuk YouTube, Instagram (Feed, Stories, Reels), TikTok, dan Facebook — riset spesifikasi masing-masing platform</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Deliverable</div>
+      <p>Tabel perbandingan (Excel/Google Sheets) dengan properti video, dan laporan (800 kata) yang mencakup: temuan dari analisis, observasi codec dan bitrate, ringkasan requirement platform, serta rekomendasi untuk berbagai use case.</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Persiapan Pertemuan Selanjutnya <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Materi Pertemuan 7:</b> Cinematography dan Komposisi Visual — akan membahas rule of thirds dan teknik komposisi, camera angles dan movement, shot types, lighting fundamentals, serta depth of field.</p>
+        <ul class="styled">
+          <li>Tonton video analisis cinematography (rekomendasi tersedia di daftar video Pertemuan 7)</li>
+          <li>Siapkan kamera/smartphone untuk praktik shooting</li>
+          <li>Opsional: tonton film/video favorit dan catat komposisi, angle, dan lighting yang digunakan</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p7.html" class="next-btn">Pertemuan 7 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

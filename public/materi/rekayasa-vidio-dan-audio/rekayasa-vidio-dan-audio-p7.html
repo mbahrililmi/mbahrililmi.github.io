@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 7 – Cinematography dan Komposisi Visual | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Cinematography dan Komposisi Visual</div>
+    <div class="pertemuan-badge">Pertemuan 7</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#komposisi" class="toc-link">Composition Fundamentals</a>
+    <a href="#camera-angles" class="toc-link">Camera Angles</a>
+    <a href="#camera-movement" class="toc-link">Camera Movement</a>
+    <a href="#shot-types" class="toc-link">Shot Types (Framing)</a>
+    <a href="#depth-of-field" class="toc-link">Depth of Field</a>
+    <a href="#lighting" class="toc-link">Three-Point Lighting</a>
+    <a href="#natural-light" class="toc-link">Natural Light</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#tugas" class="toc-link">Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 7 · Rekayasa Video dan Audio</div>
+    <h1>Cinematography dan Komposisi Visual</h1>
+    <p class="subtitle">Mempelajari prinsip cinematography — komposisi visual, camera angles, camera movement, shot types, depth of field, serta three-point lighting dan natural light — untuk menghasilkan video dengan kualitas aesthetic profesional.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami prinsip cinematography dan komposisi visual untuk menghasilkan video dengan kualitas aesthetic yang baik.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Indikator Pencapaian</div>
+      <ul class="styled">
+        <li>Mahasiswa dapat mengaplikasikan rule of thirds dan komposisi visual</li>
+        <li>Mahasiswa memahami berbagai camera angles dan penggunaannya</li>
+        <li>Mahasiswa dapat melakukan berbagai camera movement</li>
+        <li>Mahasiswa memahami shot types dan aplikasinya</li>
+        <li>Mahasiswa dapat melakukan three-point lighting setup dasar</li>
+        <li>Mahasiswa memahami perbedaan natural dan artificial lighting</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Menerapkan rule of thirds, golden ratio, dan leading lines dalam framing</li>
+        <li>Memahami dan menggunakan negative space dan symmetry dalam composition</li>
+        <li>Mengidentifikasi dan menggunakan berbagai camera angles: eye level, high angle, low angle, bird's eye, dutch angle</li>
+        <li>Melakukan camera movements: pan, tilt, zoom, dolly, truck, pedestal</li>
+        <li>Memilih dan melakukan shot types: wide, medium, close-up, extreme close-up</li>
+        <li>Memahami konsep depth of field dan penggunaannya</li>
+        <li>Melakukan three-point lighting setup: key light, fill light, back light</li>
+        <li>Memilih dan menerapkan practical lighting techniques</li>
+        <li>Mengombinasikan composition, camera work, dan lighting untuk visual storytelling</li>
+      </ol>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Cinematography: Art of Visual Storytelling</div>
+      <p>"Cinematography is the art of visual storytelling — choosing what to show, how to show it, and making it beautiful." Setelah memahami aspek teknis video digital, kita memasuki creative territory: CINEMATOGRAPHY, di mana technical knowledge bertemu artistic vision.</p>
+      <p style="margin-top:8px;">Perbedaan antara video amatir dan profesional sering bukan terletak pada kamera yang digunakan, tetapi pada pemahaman composition, lighting, dan camera work. Anda dapat merekam dengan smartphone dan menghasilkan hasil sinematik jika memahami prinsip-prinsip ini.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Composition</div><div class="gc-body">Bagaimana elemen diatur dalam frame, ke mana mata viewer tertarik, menciptakan balance dan menuntun atensi.</div></div>
+      <div class="grid-card"><div class="gc-title">Camera Work</div><div class="gc-body">Angles membentuk persepsi viewer, movement memberi energi atau stabilitas, shot selection menentukan apa yang ditampilkan.</div></div>
+      <div class="grid-card"><div class="gc-title">Lighting</div><div class="gc-body">Membentuk mood, atmosphere, emosi, visibilitas, depth, dimensi, dan mengarahkan perhatian.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="komposisi">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Composition Fundamentals</h2>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Rule of Thirds <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Konsep:</b> Bagi frame dengan dua garis horizontal dan dua garis vertikal (membentuk 9 bagian). Tempatkan elemen penting pada titik perpotongan atau sepanjang garis.</p>
+        <p style="margin-top:8px;"><b>Mengapa efektif:</b></p>
+        <ul class="styled">
+          <li>Lebih menarik secara visual dibanding subjek di tengah</li>
+          <li>Menciptakan balance natural</li>
+          <li>Meniru cara manusia secara alami memandang scene</li>
+          <li>Hasil terasa profesional dan compositionally pleasing</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Implementasi:</b> mata subjek pada garis sepertiga atas; horizon pada sepertiga atas atau bawah (bukan tengah); subjek offset dari center, pada titik perpotongan. Sebagian besar kamera/smartphone punya grid overlay — aktifkan untuk membantu align shot.</p>
+        <p style="margin-top:8px;"><b>Kapan melanggar aturan:</b> symmetry untuk balance/formalitas, extreme close-up dengan wajah di tengah, atau artistic intent — aturan adalah guideline, bukan hukum mutlak.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Golden Ratio (Phi Grid) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Lebih kompleks dari rule of thirds — rasio 1:1.618 (phi) yang menciptakan spiral Fibonacci, ditemukan dalam alam, seni, dan arsitektur.</p>
+        <p style="margin-top:8px;"><b>Penggunaan praktis:</b> serupa rule of thirds namun lebih refined; tempatkan subjek pada titik fokus spiral. Untuk pemula, rule of thirds umumnya sudah cukup.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Leading Lines <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Gunakan garis natural dalam scene untuk menuntun mata viewer: jalan, jalur, sungai, garis arsitektur (bangunan, pagar), formasi natural (pohon, gunung).</p>
+        <div class="grid-2" style="margin-top:10px;">
+          <div class="grid-card"><div class="gc-title">Diagonal</div><div class="gc-body">Dinamis, memberi kesan movement.</div></div>
+          <div class="grid-card"><div class="gc-title">Horizontal</div><div class="gc-body">Tenang, memberi kesan stabilitas.</div></div>
+          <div class="grid-card"><div class="gc-title">Vertikal</div><div class="gc-body">Power, memberi kesan ketinggian.</div></div>
+          <div class="grid-card"><div class="gc-title">Converging</div><div class="gc-body">Depth, kesan jarak (perspektif).</div></div>
+        </div>
+        <p style="margin-top:8px;"><b>Efek:</b> menarik perhatian ke subjek, menciptakan depth dalam frame, menambah visual interest.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Patterns, Symmetry, Framing &amp; Negative Space <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Patterns &amp; Repetition:</b> elemen berulang (deretan pohon, jendela, orang, tekstur bata/ubin) menciptakan visual interest. Teknik: penuhi frame dengan pattern, lalu break pattern dengan subjek untuk menciptakan focal point.</p>
+        <p style="margin-top:8px;"><b>Symmetry &amp; Balance:</b> komposisi simetris (balanced, centered, formal — refleksi air/kaca, arsitektur) menciptakan calm, harmony, formality. Komposisi asimetris (unbalanced, dynamic) menciptakan tension, interest, movement — lebih umum dalam dokumenter dan scene natural.</p>
+        <p style="margin-top:8px;"><b>Framing within a Frame:</b> gunakan elemen lingkungan (pintu, jendela, lengkungan, ranting/daun) untuk "membingkai" subjek — menarik perhatian, menambah depth (elemen foreground), serta konteks storytelling.</p>
+        <p style="margin-top:8px;"><b>Negative Space:</b> ruang kosong di sekitar subjek memberi "ruang bernafas", menciptakan estetika minimalis, dan menekankan isolasi, kesendirian, atau magnitude. Teknik: subjek kecil dalam lanskap luas (skala), banyak langit atau ruang kosong.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="camera-angles">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Camera Angles</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-eyelevel')">Eye Level</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-high')">High Angle</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-low')">Low Angle</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-dutch')">Dutch Angle</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-ots-pov')">OTS &amp; POV</button>
+      </div>
+      <div id="tab-eyelevel" class="tab-panel active">
+        <p><b>Deskripsi:</b> kamera berada pada (atau mendekati) ketinggian mata subjek.</p>
+        <p style="margin-top:8px;"><b>Efek:</b> perspektif netral dan natural; viewer sebagai partisipan setara; kesan dokumenter.</p>
+        <p style="margin-top:8px;"><b>Use cases:</b> scene dialog (standar), dokumentasi, presentasi netral, wawancara.</p>
+      </div>
+      <div id="tab-high" class="tab-panel">
+        <p><b>Deskripsi:</b> kamera di atas subjek, ditilt ke bawah.</p>
+        <p style="margin-top:8px;"><b>Efek:</b> subjek terlihat lebih kecil, lemah, vulnerable, tersubordinasi; viewer berada pada posisi power/dominasi; dapat menunjukkan skala lingkungan.</p>
+        <p style="margin-top:8px;"><b>Use cases:</b> menunjukkan kelemahan/vulnerability, establishing environment (wide high angle menunjukkan layout), POV anak-anak (melihat ke bawah).</p>
+        <p style="margin-top:8px;"><b>Extreme High Angle (Bird's Eye View):</b> langsung dari atas, flat, graphic, abstract; menunjukkan pattern dan movement dari atas — umum pada drone shot dan establishing shot.</p>
+      </div>
+      <div id="tab-low" class="tab-panel">
+        <p><b>Deskripsi:</b> kamera di bawah subjek, ditilt ke atas.</p>
+        <p style="margin-top:8px;"><b>Efek:</b> subjek terlihat powerful, dominan, heroik, intimidating; viewer pada posisi submisif; dramatis, imposing.</p>
+        <p style="margin-top:8px;"><b>Use cases:</b> menunjukkan power/otoritas (CEO, politisi, villain), pengenalan karakter heroik, arsitektur (menekankan tinggi/grandeur), menciptakan drama dan tension.</p>
+        <p style="margin-top:8px;"><b>Extreme Low Angle (Worm's Eye View):</b> sangat rendah, hampir setara permukaan tanah — sangat dramatis dengan perspektif terdistorsi.</p>
+      </div>
+      <div id="tab-dutch" class="tab-panel">
+        <p><b>Deskripsi:</b> kamera ditilt ke samping (horizon tidak level).</p>
+        <p style="margin-top:8px;"><b>Efek:</b> unease, disorientasi, tension; instability, chaos; psychological disturbance.</p>
+        <p style="margin-top:8px;"><b>Use cases:</b> horror/thriller (menciptakan unease), action scene (chaos, intensity), intoxication/confusion, ekspresi artistik.</p>
+        <div class="highlight-box" style="margin-top:10px;">
+          <div class="hb-title">Caution</div>
+          <p>Gunakan secara sparingly (distracting jika overused). Harus memiliki tujuan naratif/emosional yang jelas.</p>
+        </div>
+      </div>
+      <div id="tab-ots-pov" class="tab-panel">
+        <p><b>Over-the-Shoulder (OTS):</b> kamera di belakang bahu satu subjek, melihat ke subjek lain. Efek: menetapkan relasi spasial, menunjukkan interaksi/percakapan, melibatkan viewer dalam scene. Use cases: scene dialog klasik, wawancara, reaction shot, interaksi dua orang.</p>
+        <p style="margin-top:8px;"><b>Point of View (POV):</b> kamera menunjukkan apa yang dilihat karakter. Efek: perspektif first-person, immersi langsung, viewer menjadi karakter. Use cases: menunjukkan perspektif karakter, menciptakan empati/koneksi, action sequence (racing, combat dalam game).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="camera-movement">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Camera Movement</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Static</div><div class="gc-body">Kamera tidak bergerak (terkunci pada tripod). Stable, controlled, formal; fokus pada aksi dalam frame. Digunakan untuk dialog, wawancara, presentasi formal.</div></div>
+      <div class="grid-card"><div class="gc-title">Pan (Rotasi Horizontal)</div><div class="gc-body">Kamera berotasi kiri/kanan pada sumbu horizontal. Tipe: reveal pan, following pan, whip pan (sangat cepat). Untuk establish lokasi, follow aksi, transisi antar subjek.</div></div>
+      <div class="grid-card"><div class="gc-title">Tilt (Rotasi Vertikal)</div><div class="gc-body">Kamera berotasi atas/bawah pada sumbu vertikal. Mengungkap ketinggian/depth, mengikuti gerakan vertikal — misal tilt up dari kaki ke wajah untuk menunjukkan skala.</div></div>
+      <div class="grid-card"><div class="gc-title">Zoom (Perubahan Focal Length)</div><div class="gc-body">Zoom in (intensifikasi, fokus detail) atau zoom out (konteks, skala). Dapat terasa artifisial ("video" look). Cinematic preference: dolly lebih disukai daripada zoom.</div></div>
+      <div class="grid-card"><div class="gc-title">Dolly (Maju/Mundur)</div><div class="gc-body">Seluruh kamera bergerak mendekat (dolly in) atau menjauh (dolly out/pull back). Lebih immersive dari zoom karena perspektif berubah; mengungkap depth dan layer dalam scene.</div></div>
+      <div class="grid-card"><div class="gc-title">Truck (Kiri/Kanan)</div><div class="gc-body">Kamera bergerak menyamping, parallel dengan subjek. Mengikuti subjek bergerak (tracking shot), mengungkap ruang secara lateral.</div></div>
+      <div class="grid-card"><div class="gc-title">Pedestal (Atas/Bawah)</div><div class="gc-body">Kamera bergerak vertikal (naik/turun, bukan tilt). Mengikuti aksi vertikal, menyesuaikan framing, mengungkap/menyembunyikan elemen.</div></div>
+      <div class="grid-card"><div class="gc-title">Handheld</div><div class="gc-body">Kamera dipegang tangan/bahu tanpa stabilisasi. Kesan dokumenter, energi, immediacy — namun bisa shaky/chaotic. Cocok untuk run-and-gun, action, POV.</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">DIY Equipment untuk Camera Movement</div>
+      <ul class="styled">
+        <li><b>Dolly DIY:</b> kursi roda, kursi kantor beroda, skateboard, mobil (untuk vehicle shot), slider untuk gerakan pendek</li>
+        <li><b>Truck:</b> slider, dolly on tracks, gimbal sambil berjalan</li>
+        <li><b>Pedestal:</b> tripod dengan center column, crane/jib untuk gerakan dramatis, drone untuk skala besar</li>
+        <li><b>Stabilisasi handheld:</b> gimbal, steadicam profesional, in-body stabilization (IBIS), optical stabilization (lensa), digital stabilization (post-production)</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="shot-types">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Shot Types (Framing)</h2>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Shot Type</th><th>Deskripsi</th><th>Use Case</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Extreme Wide Shot (EWS)</b></td><td>View sangat luas, seluruh environment terlihat; subjek kecil/absen</td><td>Establishing shot, pembuka, perkenalan lokasi baru</td></tr>
+        <tr><td><b>Wide Shot (WS) / Long Shot (LS)</b></td><td>Subjek full body dengan environment sekitar</td><td>Pengenalan karakter, action scene, posisi multiple subjek</td></tr>
+        <tr><td><b>Medium Wide Shot (MWS) / Cowboy Shot</b></td><td>Subjek dari lutut/mid-thigh ke atas</td><td>Percakapan berdiri, jalan, aksi moderat</td></tr>
+        <tr><td><b>Medium Shot (MS)</b></td><td>Subjek dari pinggang ke atas</td><td>Framing wawancara standar, dialog, news reporting</td></tr>
+        <tr><td><b>Medium Close-Up (MCU)</b></td><td>Subjek dari mid-chest ke atas kepala</td><td>Wawancara, dialog (emosi penting), vlog/YouTube</td></tr>
+        <tr><td><b>Close-Up (CU)</b></td><td>Wajah subjek memenuhi frame (dagu ke atas kepala)</td><td>Momen emosional, dialog penting, reaction shot</td></tr>
+        <tr><td><b>Extreme Close-Up (ECU)</b></td><td>Framing sangat ketat pada detail spesifik (mata, bibir, tangan, objek)</td><td>Mengungkap detail penting, intensitas emosional, product shot</td></tr>
+        <tr><td><b>Two-Shot</b></td><td>Dua subjek dalam frame</td><td>Percakapan, wawancara dua orang, menunjukkan relasi</td></tr>
+        <tr><td><b>Insert Shot</b></td><td>Close-up pada objek/detail spesifik</td><td>Jam menunjukkan waktu, layar ponsel, tangan melakukan aksi</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="depth-of-field">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Depth of Field</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Depth of Field (DOF)?</div>
+      <p>Rentang jarak dalam shot yang tampak dalam fokus. <b>Shallow DOF:</b> subjek dalam fokus, background/foreground blur (bokeh) — memisahkan subjek dari environment. <b>Deep DOF:</b> semua tampak fokus dari foreground hingga background.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Faktor yang Mengontrol DOF</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Aperture (f-stop)</div><div class="gc-body">Aperture lebar (f/1.4, f/2.8): shallow DOF. Aperture sempit (f/8, f/16): deep DOF.</div></div>
+        <div class="grid-card"><div class="gc-title">Focal Length</div><div class="gc-body">Lensa panjang (85mm, 200mm): DOF lebih shallow. Lensa lebar (24mm, 35mm): DOF lebih deep.</div></div>
+        <div class="grid-card"><div class="gc-title">Jarak ke Subjek</div><div class="gc-body">Lebih dekat ke subjek: DOF lebih shallow. Lebih jauh: DOF lebih deep.</div></div>
+        <div class="grid-card"><div class="gc-title">Ukuran Sensor</div><div class="gc-body">Sensor besar (full-frame): DOF lebih shallow. Sensor kecil (smartphone): DOF lebih deep.</div></div>
+      </div>
+      <div class="card" style="margin-top:6px;">
+        <div class="card-title">Keterbatasan Smartphone</div>
+        <p style="font-size:.88rem;line-height:1.7;">Sensor kecil secara natural menghasilkan deep DOF. Portrait mode menggunakan computational blur untuk mensimulasikan shallow DOF — bukan true optical DOF, namun cukup efektif.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Penggunaan Kreatif DOF</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Shallow DOF</div><div class="gc-body">Isolasi subjek dari background ramai, cinematic look, portrait (background blur), mengarahkan atensi.</div></div>
+        <div class="grid-card"><div class="gc-title">Deep DOF</div><div class="gc-body">Fotografi landscape, group shot (semua dalam fokus), establishing shot, dokumenter (capture semua detail).</div></div>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">Rack Focus</div>
+        <p>Teknik menggeser fokus dari satu subjek ke subjek lain dalam satu shot. Teknik dramatis untuk mengalihkan perhatian; membutuhkan shallow DOF dan manual focus control.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="lighting">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Three-Point Lighting</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Konsep</div>
+      <p>Setup lighting standar menggunakan tiga sumber cahaya: key light, fill light, dan back light. Tujuan: pencahayaan dimensional (tidak flat), mengontrol shadow, memisahkan subjek dari background, dan menghasilkan look yang profesional dan polished.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-key')">Key Light</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-fill')">Fill Light</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-back')">Back Light</button>
+      </div>
+      <div id="tab-key" class="tab-panel active">
+        <p><b>Posisi:</b> 45° dari subjek (kiri atau kanan), sedikit di atas eye level (30–45° vertikal), merupakan cahaya paling terang/kuat.</p>
+        <p style="margin-top:8px;"><b>Tujuan:</b> pencahayaan utama, mendefinisikan bentuk/tekstur, menciptakan shadow (modeling).</p>
+        <p style="margin-top:8px;"><b>Karakteristik:</b> front 45° = posisi klasik/aman; sudut lebih tinggi = shadow lebih dramatis; side 90° (split lighting) = sangat dramatis, separuh wajah tersinari.</p>
+      </div>
+      <div id="tab-fill" class="tab-panel">
+        <p><b>Posisi:</b> sisi berlawanan dari key light, intensitas lebih rendah (30–50% power dari key), pada atau di bawah eye level subjek.</p>
+        <p style="margin-top:8px;"><b>Tujuan:</b> melembutkan shadow yang dibuat key light, mengurangi kontras, mengisi sisi gelap.</p>
+        <p style="margin-top:8px;"><b>Rasio key:fill:</b> rasio tinggi (2:1, 3:1) = sebagian shadow tetap ada (dramatic); rasio rendah (1:1) = shadow minimal (flat, upbeat, commercial).</p>
+        <p style="margin-top:8px;"><b>Alternatif DIY:</b> reflector (memantulkan key light), white foam board, natural light dari jendela.</p>
+      </div>
+      <div id="tab-back" class="tab-panel">
+        <p><b>Posisi:</b> di belakang subjek, ditinggikan, mengarah ke bawah ke arah belakang kepala/bahu; bisa sedikit offset (tidak persis di belakang).</p>
+        <p style="margin-top:8px;"><b>Tujuan:</b> memisahkan subjek dari background, menciptakan rim of light di tepi (efek halo), menambah depth dan dimensi, look profesional.</p>
+        <p style="margin-top:8px;"><b>Pertimbangan:</b> hindari lens flare (gunakan flag/barn door), buat subtle (jangan overpowering), bisa diberi warna untuk efek kreatif.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Setup Praktis &amp; Equipment</div>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Profesional</div><div class="gc-body">LED panel, softbox/diffuser, light stand, barn door, flag.</div></div>
+        <div class="grid-card"><div class="gc-title">Budget / DIY</div><div class="gc-body">Desk lamp dengan daylight bulb, natural light dari jendela (key light gratis!), white sheet untuk diffusion, reflector (foam board/car sunshade), aplikasi lampu smartphone untuk fill darurat.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="natural-light">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Natural Light</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Window Light (Indoor)</h3>
+      <ul class="styled">
+        <li><b>Keuntungan:</b> gratis, soft, indah; sumber besar = shadow lembut; directional</li>
+        <li><b>Subjek hadap jendela:</b> pencahayaan even dan flattering</li>
+        <li><b>Subjek menyamping ke jendela:</b> modeling, dimensi (gunakan reflector untuk fill)</li>
+        <li><b>Backlit (jendela di belakang):</b> menghasilkan silhouette atau perlu kompensasi exposure</li>
+        <li><b>Pengontrolan:</b> kurtain untuk diffusion, reflector untuk fill sisi berlawanan, negative fill (kain hitam) untuk menambah kontras</li>
+      </ul>
+    </div>
+
+    <div class="sub-section">
+      <h3>Outdoor Natural Light</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Golden Hour</div><div class="gc-body">Satu jam setelah sunrise/sebelum sunset. Cahaya hangat, soft, flattering, shadow panjang — waktu terbaik untuk shooting outdoor.</div></div>
+        <div class="grid-card"><div class="gc-title">Blue Hour</div><div class="gc-body">Dawn sebelum sunrise / dusk setelah sunset. Cahaya ambient biru sejuk, moody dan dreamy — perlu ISO tinggi atau bantuan artificial light.</div></div>
+        <div class="grid-card"><div class="gc-title">Midday Sun (Harsh)</div><div class="gc-body">Cahaya overhead, shadow keras, kurang flattering. Hindari jika memungkinkan, atau cari bayangan/gunakan diffusion (scrim/umbrella).</div></div>
+        <div class="grid-card"><div class="gc-title">Overcast</div><div class="gc-body">Awan = giant softbox alami; cahaya soft dan even tanpa shadow keras — bagus untuk wawancara/portrait, namun bisa kurang dimensi (flat).</div></div>
+      </div>
+      <div class="highlight-box" style="margin-top:10px;">
+        <div class="hb-title">Backlight (Matahari di Belakang Subjek)</div>
+        <p>Menghasilkan rim light dan halo effect yang indah; subjek bisa underexposed (silhouette). Solusi: expose untuk subjek (sky blown out), gunakan fill flash/reflector, atau embrace silhouette sebagai pilihan kreatif.</p>
+      </div>
+      <div class="card" style="margin-top:6px;">
+        <div class="card-title">Reflectors</div>
+        <p style="font-size:.88rem;line-height:1.7;">Memantulkan sinar matahari untuk mengisi shadow. <b>Gold:</b> fill hangat. <b>Silver:</b> fill terang dan netral. <b>White:</b> fill soft dan subtle. DIY: white foam board, car sunshade.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Practical Lighting Techniques (Indoor)</h3>
+      <ul class="styled">
+        <li><b>Motivated Lighting:</b> pencahayaan yang terlihat berasal dari practical source (lampu meja, jendela, TV, perapian) — menciptakan realisme</li>
+        <li><b>Practical Lights:</b> lampu yang terlihat dalam frame (lampu, lilin, LED) menambah atmosphere/realisme; sering kurang kuat sehingga butuh hidden light tambahan yang matching arah/warna</li>
+        <li><b>Color Temperature:</b> daylight ~5600K (kebiruan), tungsten ~3200K (hangat/oranye), fluorescent ~4000K (tint hijau). Match color temperature dalam scene (atau kontraskan secara intentional), dan white balance kamera ke sumber dominan</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Praktikum: Cinematography Techniques Practice</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Tujuan</div>
+      <p>Menerapkan teknik composition, camera angles, shot types, dan lighting yang telah dipelajari, menggunakan smartphone/kamera, tripod (atau permukaan stabil), subjek (orang/objek/diri sendiri), dan opsional lampu/reflector/natural light.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-partA')">Part A: Composition</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-partB')">Part B: Angles</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-partC')">Part C: Shot Types</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-partD')">Part D: Lighting</button>
+      </div>
+      <div id="tab-partA" class="tab-panel active">
+        <p>Foto subjek yang SAMA dengan teknik komposisi berbeda: rule of thirds (subjek pada intersection), leading lines, framing within a frame, negative space, dan symmetry/pattern.</p>
+        <p style="margin-top:8px;"><b>Deliverable:</b> 5 foto/frame yang mendemonstrasikan masing-masing teknik.</p>
+      </div>
+      <div id="tab-partB" class="tab-panel">
+        <p>Foto scene yang SAMA dengan angle berbeda: eye level, high angle, low angle, dutch angle, dan bird's eye/extreme angle.</p>
+        <p style="margin-top:8px;"><b>Deliverable:</b> 5 video clip atau foto.</p>
+      </div>
+      <div id="tab-partC" class="tab-panel">
+        <p>Foto subjek yang SAMA dengan ukuran shot berbeda: wide shot (full body + environment), medium shot, close-up, extreme close-up, dan insert shot.</p>
+        <p style="margin-top:8px;"><b>Deliverable:</b> 5 video clip atau foto, jelas mendemonstrasikan setiap shot type.</p>
+      </div>
+      <div id="tab-partD" class="tab-panel">
+        <p><b>Pilih SATU setup:</b></p>
+        <p style="margin-top:8px;"><b>Opsi 1 — Three-Point Lighting</b> (jika equipment tersedia): setup key, fill, back; lepas satu per satu light dan dokumentasikan perubahan; foto/video dengan key only, key+fill, dan ketiga light.</p>
+        <p style="margin-top:8px;"><b>Opsi 2 — Natural Light:</b> posisikan subjek dekat jendela — hadap jendela, menyamping ke jendela (gunakan reflector jika tersedia), dan backlit (jendela di belakang).</p>
+        <p style="margin-top:8px;"><b>Deliverable:</b> foto/video dari setup lighting, behind-the-scenes menunjukkan posisi lampu, dan hasil akhir subjek tersinari.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Dokumentasi</div>
+      <p style="font-size:.88rem;line-height:1.7;">Buat laporan PDF berisi: semua gambar/frame yang diambil, label identifikasi teknik yang digunakan, dan analisis singkat (Apa yang berhasil? Apa yang tidak? Apa yang dipelajari?) — total 500–800 kata.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Tugas: Video Project Sederhana</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Assignment (10% — Due Next Week)</div>
+      <p>Buat video berdurasi 30–60 detik yang mendemonstrasikan teknik cinematography. Pilih SATU konten: (A) Short narrative/story, (B) Product showcase, (C) Location/travel showcase, atau (D) Person profile/interview.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Technical Requirements</div>
+      <ul class="styled">
+        <li>Minimum 5 shot types berbeda (wide, medium, close-up, dll.)</li>
+        <li>Minimum 3 camera angles</li>
+        <li>Komposisi yang baik (rule of thirds, dll.)</li>
+        <li>Lighting yang proper (natural atau artificial)</li>
+        <li>Shot stabil (tripod atau stabilisasi)</li>
+        <li>Format: minimum 1080p, 24/30 fps</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Submission</div>
+      <ul class="styled">
+        <li>File video: [NamaAnda]_VideoProject.mp4</li>
+        <li>Foto behind-the-scenes (3–5 foto)</li>
+        <li>Shot list (dokumentasikan setiap shot: type, angle, tujuan)</li>
+        <li>Report (600–1000 kata): keputusan kreatif, teknik yang digunakan, kendala</li>
+      </ul>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Technical Quality</b></td><td><span class="score-badge">30 pts</span></td><td>Sharp, stable, exposure tepat</td></tr>
+        <tr><td><b>Composition</b></td><td><span class="score-badge">25 pts</span></td><td>Mendemonstrasikan teknik yang dipelajari</td></tr>
+        <tr><td><b>Lighting</b></td><td><span class="score-badge">20 pts</span></td><td>Pencahayaan proper dan intentional</td></tr>
+        <tr><td><b>Creativity</b></td><td><span class="score-badge">15 pts</span></td><td>Konsep menarik dan well-executed</td></tr>
+        <tr><td><b>Documentation</b></td><td><span class="score-badge">10 pts</span></td><td>Report yang thorough</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <div class="hb-title">Ringkasan Materi</div>
+      <p><b>Composition:</b> rule of thirds (offset subjek untuk interest), leading lines (menuntun atensi), negative space (menekankan subjek), framing (depth, konteks).</p>
+      <p style="margin-top:6px;"><b>Camera Angles:</b> eye level (netral), high angle (lemah/vulnerable), low angle (powerful/dominan), dutch angle (unease/tension).</p>
+      <p style="margin-top:6px;"><b>Camera Movement:</b> pan/tilt (mengungkap ruang), dolly (mendekat/menjauh, immersive), truck (mengikuti aksi), static (stabil, formal).</p>
+      <p style="margin-top:6px;"><b>Shot Types:</b> wide (establish environment), medium (framing standar), close-up (emosi, detail), extreme close-up (penekanan intens).</p>
+      <p style="margin-top:6px;"><b>Lighting:</b> three-point — key (utama), fill (melembutkan), back (separasi); natural light — golden hour (terbaik), window light (soft); motivated lighting (tampak dari practicals).</p>
+      <p style="margin-top:6px;">Mengombinasikan elemen-elemen ini menciptakan video yang profesional dan sinematik!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p9.html" class="next-btn">Pertemuan 9 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

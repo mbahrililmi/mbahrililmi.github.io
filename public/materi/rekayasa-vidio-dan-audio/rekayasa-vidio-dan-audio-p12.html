@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 12 – Visual Effects (VFX) Basics | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Visual Effects (VFX) Basics</div>
+    <div class="pertemuan-badge">Pertemuan 12</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#compositing" class="toc-link">Compositing Fundamentals</a>
+    <a href="#masking" class="toc-link">Masking &amp; Rotoscoping</a>
+    <a href="#tracking" class="toc-link">Motion Tracking</a>
+    <a href="#stabilization" class="toc-link">Video Stabilization</a>
+    <a href="#particles" class="toc-link">Particle Effects</a>
+    <a href="#text-effects" class="toc-link">Text Effects &amp; Kinetic Typography</a>
+    <a href="#green-screen" class="toc-link">Advanced Green Screen</a>
+    <a href="#fusion" class="toc-link">Fusion — Node Workflow</a>
+    <a href="#stock-footage" class="toc-link">Stock Footage Integration</a>
+    <a href="#tugas" class="toc-link">Tugas Praktik VFX</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 12 · Rekayasa Video dan Audio</div>
+    <h1>Visual Effects (VFX) Basics</h1>
+    <p class="subtitle">Memahami dan menerapkan fundamental visual effects: compositing, masking, rotoscoping, motion tracking, stabilization, particle effects, text effects, dan dasar-dasar DaVinci Resolve Fusion.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami dan menerapkan fundamental visual effects (VFX) termasuk compositing, masking, rotoscoping, motion tracking, stabilization, particle effects, text effects, dan dasar-dasar DaVinci Resolve Fusion untuk meningkatkan production value video.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Selamat Datang di Visual Effects — Imajinasi Menjadi Nyata!</div>
+      <p style="font-size:.88rem;line-height:1.75;">VFX adalah proses menciptakan, memanipulasi, atau meningkatkan imagery yang tidak bisa difilmkan secara langsung. Film Marvel dengan superhero terbang dan laser, film sci-fi dengan pesawat luar angkasa, video YouTube dengan teks melayang dan grafik animasi, iklan dengan transformasi magis — semua itu VFX! Dan Anda bisa menciptakan efek serupa.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Production Value</div><div class="gc-body">Mengangkat video dari "homemade" menjadi "profesional" — menambah visual interest, menciptakan skenario impossible, memperbaiki kesalahan (hapus objek, stabilisasi shot goyang).</div></div>
+      <div class="grid-card"><div class="gc-title">Creative Freedom</div><div class="gc-body">Tidak terbatas realitas fisik — tidak mampu sewa helikopter? Stabilisasi footage drone! Perlu explosion? Komposit stock footage!</div></div>
+      <div class="grid-card"><div class="gc-title">Karir</div><div class="gc-body">VFX Artist (film, TV, iklan), Motion Graphics Designer, Content Creator (efek = views!), Post-Production Specialist.</div></div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">DaVinci Resolve Fusion — Tools Hollywood</div>
+      <p>Fusion Page DaVinci Resolve adalah node-based VFX compositor, mirip Nuke (industry standard). Film yang menggunakan Fusion: The Mandalorian (Industrial Light &amp; Magic), Deadpool, Guardians of the Galaxy. Anda memiliki tools level profesional — gratis!</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami fundamental compositing (layering multiple elements)</li>
+        <li>Membuat dan menggunakan masks (bezier, feathered)</li>
+        <li>Melakukan rotoscoping untuk animate mask frame-by-frame</li>
+        <li>Menggunakan motion tracking untuk attach graphic ke objek bergerak</li>
+        <li>Melakukan planar tracking untuk surface kompleks</li>
+        <li>Menstabilkan footage goyang menggunakan stabilization tools</li>
+        <li>Membuat particle effect sederhana (snow, rain, sparks)</li>
+        <li>Membuat kinetic typography dan animated text effects</li>
+        <li>Melakukan advanced green screen compositing dengan refinement</li>
+        <li>Memahami dasar node-based workflow dalam Fusion</li>
+        <li>Mengintegrasikan stock footage dan asset (explosion, light leak)</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="compositing">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Compositing Fundamentals</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Compositing?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Compositing adalah menggabungkan beberapa elemen visual dari sumber terpisah ke dalam satu gambar yang tampil sebagai kesatuan. Contoh: layer background (skyline kota), layer aktor green screen, layer CG spaceship, layer light effects (lens flare, atmosphere) = hasil: aktor berdiri di rooftop dengan pesawat luar angkasa di atasnya! Semua layer difilmkan/dibuat terpisah, lalu disatukan.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Edit Page Compositing</div><div class="gc-body">Layering sederhana di timeline (multiple video track): V1 background, V2 subjek keyed green screen, V3 grafik/teks, V4 effects overlay. Cocok untuk composite straightforward.</div></div>
+      <div class="grid-card"><div class="gc-title">Fusion Page Compositing</div><div class="gc-body">Compositing kompleks node-based: multiple elemen, blending kompleks, masking advanced, particle systems, 3D compositing. Untuk VFX level profesional.</div></div>
+    </div>
+    <div class="sub-section">
+      <h3>Blend Modes untuk VFX</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Mode</th><th>Efek</th><th>Use Case</th></tr></thead>
+        <tbody>
+          <tr><td>Screen</td><td>Mencerahkan gambar, hitam jadi transparan</td><td>Light leak, lens flare, fire, magic glow</td></tr>
+          <tr><td>Multiply</td><td>Menggelapkan gambar, putih jadi transparan</td><td>Shadow, smoke, dust</td></tr>
+          <tr><td>Add</td><td>Menambah nilai pixel, mencerahkan secara intens</td><td>Efek terang (laser, lightning, particle terang)</td></tr>
+          <tr><td>Overlay</td><td>Kombinasi Multiply (gelap) &amp; Screen (terang)</td><td>Tekstur, grunge overlay</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Alpha Channel (Transparansi) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Alpha channel = informasi transparansi. Alpha 1 (100%) = fully opaque, alpha 0 (0%) = fully transparent, alpha 0.5 (50%) = semi-transparent.</p>
+        <p style="margin-bottom:8px;">Footage dengan alpha: file MOV dengan alpha channel (background transparan), PNG sequence, EXR sequence (standard industri VFX). DaVinci otomatis mengenali dan mempertahankan transparansi alpha saat import.</p>
+        <p>Use case: import title animasi dengan background transparan, letakkan di atas footage, title komposit secara seamless!</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Sumber Asset VFX Gratis <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><a href="https://www.actionvfx.com/collections/free" target="_blank">Action VFX</a> — explosion, fire, smoke, water, sparks gratis berkualitas tinggi</li>
+          <li><a href="https://footagecrate.com/" target="_blank">FootageCrate</a> — elemen VFX gratis: muzzle flash, blood, explosion</li>
+          <li><a href="https://productioncrate.com/" target="_blank">Production Crate</a> — library masif gratis: VFX, sound effects, music</li>
+          <li><a href="https://www.rocketstock.com/free-after-effects-templates/" target="_blank">RocketStock</a> — overlay, transisi, effects gratis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="masking">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Masking &amp; Rotoscoping</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Masking?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Mask adalah shape yang mendefinisikan area yang akan terpengaruh (atau tidak terpengaruh) oleh efek. Di dalam mask = terpengaruh. Di luar mask = tidak terpengaruh (masked out). Use case: isolasi langit untuk color grading terpisah, menghapus objek yang tidak diinginkan (mask lalu isi dengan background), menerapkan efek hanya pada area spesifik (blur wajah, spotlight).</p>
+    </div>
+    <div class="sub-section">
+      <h3>Power Windows (Shapes)</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Circle / Ellipse</div><div class="gc-body">Sempurna untuk vignette, efek spotlight. Drag untuk resize, feather edge.</div></div>
+        <div class="grid-card"><div class="gc-title">Rectangle / Linear</div><div class="gc-body">Gradient mask (transisi langit ke tanah), efek split-screen.</div></div>
+        <div class="grid-card"><div class="gc-title">Polygon / Bezier Curve</div><div class="gc-body">Custom shape — klik untuk tambah point, drag point untuk adjust shape, rotate/scale handle.</div></div>
+        <div class="grid-card"><div class="gc-title">Power Curve (Bezier)</div><div class="gc-body">Shape melengkung halus, paling versatile untuk bentuk organic.</div></div>
+      </div>
+      <p style="font-size:.85rem;margin-top:8px;"><b>Feathering:</b> slider softness mengontrol kelembutan edge — hard edge (0) = transisi tajam, soft edge (tinggi) = falloff gradual. <b>Tracking:</b> power window bisa di-track untuk mengikuti movement.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-roto')">Rotoscoping</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-magic-mask')">Magic Mask</button>
+      </div>
+      <div id="tab-roto" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.7;margin-bottom:8px;">Rotoscoping adalah animasi mask frame-by-frame untuk mengikuti objek yang bergerak. Contoh: subjek berjalan melintasi frame, mask di sekeliling subjek harus bergerak setiap frame untuk tetap menempel — inilah rotoscoping!</p>
+        <p style="font-size:.85rem;"><b>Manual rotoscoping:</b> buat mask di sekitar subjek (frame 1), lanjut ke frame berikutnya, adjust titik mask untuk mengikuti posisi baru subjek. Ini time-consuming — itulah sebabnya artist VFX Hollywood bisa menghabiskan minggu untuk satu shot!</p>
+      </div>
+      <div id="tab-magic-mask" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.7;">DaVinci Resolve Studio (berbayar) menyediakan Magic Mask: AI mengenali orang/objek, otomatis membuat mask animasi, dan tracking di seluruh shot — penghemat waktu besar! Pengguna Resolve gratis: rotoscoping manual atau point tracking.</p>
+        <p style="font-size:.85rem;margin-top:8px;">Alternatif software: Adobe After Effects memiliki Rotobrush tool (AI serupa). Untuk opsi gratis, rotoscoping manual tetap doable dengan kesabaran.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tutorial: <a href="https://www.youtube.com/watch?v=0Z5rNHHbxjc" target="_blank">Masking dalam DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tracking">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Motion Tracking</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Motion Tracking?</div>
+      <p>Motion tracking adalah menganalisis pergerakan dalam footage dan menerapkan pergerakan tersebut ke elemen lain — hasilnya elemen "menempel" pada objek yang bergerak. Contoh: track tangan orang, lampirkan grafik melayang di atas tangan; track mobil bergerak, lampirkan teks plat nomor; track dinding, komposit poster di dinding.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-point-track')">Point Tracking</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-planar-track')">Planar Tracking</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-troubleshoot')">Troubleshooting</button>
+      </div>
+      <div id="tab-point-track" class="tab-panel active">
+        <p style="font-size:.85rem;margin-bottom:8px;">Melacak satu titik (feature) dalam frame. Use case: lampirkan teks ke objek diam dengan pergerakan kamera, track handheld shake untuk diterapkan ke grafik agar terasa natural, simple 2D tracking.</p>
+        <ol class="styled">
+          <li>Color Page &gt; pilih clip</li>
+          <li>Panel Tracker (tab bawah)</li>
+          <li>Posisikan tracking window di atas feature kontras tinggi (sudut, logo, tanda khas)</li>
+          <li>Adjust ukuran window: cukup kecil untuk isolasi feature, cukup besar untuk pergerakan</li>
+          <li>Track Forward (tombol atau playback timeline)</li>
+          <li>Review track: putar ulang, pastikan tracker mengikuti akurat</li>
+          <li>Link data tracking ke elemen (window, teks, grafik)</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Tracking point yang baik:</b> kontras tinggi, konsisten sepanjang clip, stasioner relatif terhadap objek yang ditrack. Hindari: kontras rendah, motion blur, occlusion.</p>
+      </div>
+      <div id="tab-planar-track" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;">Melacak seluruh permukaan (plane), bukan hanya satu titik. Keunggulan dibanding point tracking: melacak rotasi, skala, perspektif (bukan hanya posisi), lebih robust (menangani occlusion lebih baik). Cocok untuk: penggantian layar, poster di dinding, billboard.</p>
+        <p style="font-size:.85rem;"><b>Workflow:</b> versi dasar tersedia di Color Page &gt; Tracker, tapi terutama menggunakan Fusion Page: tambahkan PlanarTracker node (Shift+Space, cari "Planar"), Fusion melacak seluruh permukaan (posisi, rotasi, skala, perspektif), lalu link data tracking ke gambar pengganti (Merge node).</p>
+      </div>
+      <div id="tab-troubleshoot" class="tab-panel">
+        <ul class="styled">
+          <li><b>Track drift/loss object:</b> re-track dari frame berbeda, adjust manual di tengah jalan (keyframe correction), gunakan tracking window lebih kecil, cari feature kontras lebih tinggi</li>
+          <li><b>Object occluded (tertutup sementara):</b> track sampai occlusion lalu stop, track ulang setelah occlusion, gabungkan track secara manual, atau gunakan planar tracking (lebih robust)</li>
+          <li><b>Motion blur menyebabkan track gagal:</b> track frame tanpa blur (Fusion Frame Hold), interpolasi melalui frame blur, kurangi ketergantungan pada satu frame</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tutorial: <a href="https://www.youtube.com/watch?v=dN-kl4J7xmE" target="_blank">Point Tracking</a> · <a href="https://www.youtube.com/watch?v=3cS0BNkpPHI" target="_blank">Planar Tracking Screen Replacement</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="stabilization">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Video Stabilization</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Stabilisasi?</div>
+      <p>Footage goyang: distracting, tidak profesional, menyebabkan motion sickness, sulit untuk dikompositkan dengan VFX, mengalihkan fokus dari konten. Stabilisasi menghapus camera shake yang tidak diinginkan sambil mempertahankan pergerakan yang disengaja.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Camera Lock</div><div class="gc-body">Mengunci kamera sepenuhnya (hapus semua movement). Use case: mengubah shot handheld menjadi shot tripod-still. Mode: Camera Lock, Zoom: Auto (crop/zoom untuk menyembunyikan edge).</div></div>
+      <div class="grid-card"><div class="gc-title">Smooth</div><div class="gc-body">Mengurangi shake sambil mempertahankan gerakan kamera yang disengaja (pan, tilt). Strength: 0-100%, umumnya 50-70%.</div></div>
+      <div class="grid-card"><div class="gc-title">Perspective</div><div class="gc-body">Mengoreksi wobble rotasi dan perspektif (advanced). Use case: wide shot dengan horizon bergoyang. Computationally expensive — processing lebih lama.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Best Practices Stabilisasi <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Shoot stable footage:</b> pencegahan lebih baik daripada koreksi — gunakan tripod, gimbal, shoulder rig, teknik handheld yang benar (siku ke dalam, pernafasan stabil)</li>
+          <li><b>Allow crop:</b> stabilisasi memerlukan zoom in (kehilangan edge) — shoot wide, sisakan crop ~10-20%</li>
+          <li><b>Smooth setting biasanya terbaik:</b> mempertahankan feel organic</li>
+          <li><b>Hindari over-stabilization:</b> bisa terlihat tidak natural (seperti melayang)</li>
+          <li><b>Tidak bisa memperbaiki semua:</b> footage sangat goyang sulit distabilkan</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Alternatif: After Effects Warp Stabilizer (industry standard, sangat powerful). Stabilisasi DaVinci sudah cukup adekuat secara gratis! Tutorial: <a href="https://www.youtube.com/watch?v=RhQzMUPh6nM" target="_blank">Video Stabilization dalam DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="particles">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Particle Effects</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Particle Effects?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Particle adalah sejumlah besar elemen kecil yang dianimasikan bersama untuk menciptakan efek organic kompleks — contoh: snow, rain, fire, smoke, sparks, dust, debris, magic effects (sparkle, fairy dust), explosion. DaVinci Resolve Fusion Page mencakup particle system kuat dengan <b>pEmitter node</b> sebagai particle emitter, dan <b>pRender node</b> untuk render particle ke gambar.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-snow')">Snow Effect</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-sparks')">Sparks / Fire</button>
+      </div>
+      <div id="tab-snow" class="tab-panel active">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Skenario:</b> menambahkan salju jatuh ke scene musim dingin.</p>
+        <ul class="styled">
+          <li>Style: Point, Number: 1000-2000 (salju lebat)</li>
+          <li>Velocity: rendah (jatuh lambat), Velocity Variance: medium (variasi natural)</li>
+          <li>Life Span: durasi clip, Inherit Velocity: Off (salju jatuh lurus)</li>
+          <li>Gravity: -0.1 sampai -0.3 (ke bawah), Turbulence (pTurbulence node) untuk efek angin</li>
+          <li>Size: kecil (1-3 pixel), Color: putih, Blur: sedikit untuk flake yang lembut</li>
+          <li>Merge dengan background memakai blend mode Screen (putih tampil, hitam transparan)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Advanced: gunakan tekstur snowflake (pImageEmitter) sebagai pengganti point.</p>
+      </div>
+      <div id="tab-sparks" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Skenario:</b> menambahkan sparks dari welding atau api unggun.</p>
+        <ul class="styled">
+          <li>Number: 100-500, Velocity: tinggi (sparks terbang), Velocity Variance: tinggi (chaotic)</li>
+          <li>Life Span: pendek (1-2 detik), Size: kecil bervariasi, Size Variance: tinggi</li>
+          <li>Color: oranye/kuning, Color Variance: medium (sebagian merah, sebagian kuning)</li>
+          <li>Gravity: medium naik di awal lalu turun (sparks naik kemudian jatuh)</li>
+          <li>pTurbulence: gerakan chaotic, Merge dengan blend mode Add (sparks terang)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Particle Presets &amp; Template Gratis <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Tidak perlu selalu membuat dari nol — download template particle Fusion gratis, modifikasi preset sesuai kebutuhan, dan pelajari template yang ada.</p>
+        <p><b>Reactor</b> (plugin manager Fusion, built-in di DaVinci Resolve, gratis) menyediakan particle template dan preset. Install via Fusion &gt; Reactor. Tutorial: <a href="https://www.youtube.com/watch?v=WQQ_YQUvGbQ" target="_blank">Particle Effects dalam Fusion</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="text-effects">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Text Effects &amp; Kinetic Typography</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Kinetic Typography</div>
+      <p style="font-size:.88rem;line-height:1.75;">Teks yang bergerak, bertransformasi, dan muncul secara dinamis. Contoh: teks terbang ke screen, word-by-word reveal, animasi character-by-character, teks merespon beat musik, teks morphing. Animasi sederhana (fade, slide, zoom) bisa dilakukan di Edit Page dengan keyframe; animasi advanced dengan kontrol level karakter tersedia di Fusion Page.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-tracking-text')">Text Tracking</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-path')">Text on Path</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-typewriter')">Typewriter</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-glitch')">Glitch Text</button>
+      </div>
+      <div id="tab-tracking-text" class="tab-panel active">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Efek:</b> teks berubah dari spasi sangat rapat ke spasi normal.</p>
+        <ul class="styled">
+          <li>Text+ node, parameter Tracking (character spacing)</li>
+          <li>Frame 1: Tracking = -0.5 (compressed)</li>
+          <li>Frame 30: Tracking = 0 (normal)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Hasil: teks mengembang halus ke posisi!</p>
+      </div>
+      <div id="tab-path" class="tab-panel">
+        <p style="font-size:.85rem;">Teks mengikuti path melengkung (circle, custom shape). Workflow: Fusion Page &gt; Text+ node, tambahkan Path (gambar polyline custom). Use case: teks melingkar (logo), teks mengikuti motion path.</p>
+      </div>
+      <div id="tab-typewriter" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Efek:</b> teks muncul satu huruf per waktu (klasik typewriter).</p>
+        <ul class="styled">
+          <li><b>Metode 1 — Write On:</b> Text+ node, properti Write On slider dari 0 (tidak terlihat) ke 1 (semua terlihat)</li>
+          <li><b>Metode 2 — Manual Keyframing:</b> beberapa Text+ node (satu per karakter), stagger timing (offset kemunculan tiap karakter)</li>
+        </ul>
+      </div>
+      <div id="tab-glitch" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Efek:</b> distorsi glitch digital (RGB separation, jitter).</p>
+        <ul class="styled">
+          <li>Text+ node dengan teks</li>
+          <li>Animasikan jumlah Displace (perubahan cepat = glitch)</li>
+          <li>Offset channel Red dan Blue sedikit (chromatic aberration)</li>
+          <li>Alternatif: gunakan template efek Glitch gratis (Reactor, online)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Hasil: estetika cyberpunk, digital error! Tutorial: <a href="https://www.youtube.com/watch?v=uFLAzsZZvFI" target="_blank">Kinetic Typography dalam Fusion</a> · <a href="https://www.youtube.com/watch?v=2hxvFRMlGio" target="_blank">Text Effects dalam DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="green-screen">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Advanced Green Screen Compositing</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Multi-Stage Keying</div>
+      <p style="font-size:.85rem;margin-bottom:8px;">Problem: satu keyer kadang tidak cukup (green screen tidak rata, edge sulit). Solusi: beberapa keying pass (nodes), setiap node menyempurnakan node sebelumnya.</p>
+      <ol class="styled">
+        <li>Node 1: Primary key (3D Keyer) — hapus mayoritas hijau</li>
+        <li>Node 2: Refine edge — keyer tambahan untuk membersihkan fringing</li>
+        <li>Node 3: Spill suppression — hapus cast hijau</li>
+        <li>Node 4: Edge treatment — soft edge, blur, defringe</li>
+      </ol>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Defringe</div><div class="gc-body">Effects &gt; Defringe menghapus color fringing (refleksi hijau di rambut, kulit).</div></div>
+      <div class="grid-card"><div class="gc-title">Edge Softness &amp; Color</div><div class="gc-body">Sedikit blur pada edge alpha channel untuk blending natural; color correction hanya pada edge (menggunakan mask) agar match dengan lighting background.</div></div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Keying ≠ Composite Selesai</div>
+      <p>Composite profesional memerlukan integrasi: <b>(1) Lighting Match</b> — grade subjek agar match lighting background; <b>(2) Shadow/Light Interaction</b> — tambahkan shadow jika subjek berdiri di atas tanah; <b>(3) Atmosphere Match</b> — sesuaikan haze/fog; <b>(4) Color Harmony</b> — color grade keseluruhan untuk menyatukan scene; <b>(5) Grain/Texture Match</b> — tambahkan grain matching jika background grainy. Langkah-langkah ini membedakan composite Hollywood profesional vs green screen amatir!</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Praktis Green Screen <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Light green screen secara EVEN (tanpa shadow, hot spot)</li>
+          <li>Pisahkan subjek dari green screen (3+ feet) — mengurangi spill</li>
+          <li>Light subjek terpisah dari green screen</li>
+          <li>Gunakan kamera/codec berkualitas tinggi (kompresi rendah = key lebih bersih)</li>
+          <li>Shoot dengan color profile flat (lebih banyak informasi warna untuk keying)</li>
+          <li>Jangan kenakan warna hijau (akan ikut terkey out!)</li>
+          <li>Hindari permukaan reflektif (hijau memantul)</li>
+          <li>Hindari motion blur jika memungkinkan (lebih sulit di-key)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tutorial: <a href="https://www.youtube.com/watch?v=OXEUaVKxT54" target="_blank">Professional Green Screen Compositing</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="fusion">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Fusion Basics — Node-Based Workflow</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Edit Page (Layer-Based)</div><div class="gc-body">Layering sederhana (V1, V2, V3...) — cocok untuk compositing dasar.</div></div>
+      <div class="grid-card"><div class="gc-title">Fusion Page (Node-Based)</div><div class="gc-body">VFX kompleks &amp; fleksibel. Setiap node = operasi (effect, merge, transform, dll), terhubung dalam flow, non-destructive. Analogi: Photoshop layer vs Nuke compositor.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Keunggulan Node</div>
+      <ul class="styled">
+        <li>Visual flowchart — memahami proses sekali lihat</li>
+        <li>Modular — mudah menambah/menghapus/menyusun ulang</li>
+        <li>Non-destructive — footage asli tidak tersentuh</li>
+        <li>Powerful — pendekatan standar industri</li>
+      </ul>
+    </div>
+    <div class="sub-section">
+      <h3>Node Types Dasar</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">MediaIn / MediaOut</div><div class="gc-body">Footage sumber (otomatis ditambahkan) dan output composite.</div></div>
+        <div class="grid-card"><div class="gc-title">Transform / Merge</div><div class="gc-body">Posisi, skala, rotasi / menggabungkan dua input (layer).</div></div>
+        <div class="grid-card"><div class="gc-title">Text+ / Background</div><div class="gc-body">Generator teks / generator warna solid.</div></div>
+        <div class="grid-card"><div class="gc-title">Blur / Color Corrector</div><div class="gc-body">Blur gambar / penyesuaian warna.</div></div>
+        <div class="grid-card"><div class="gc-title">pEmitter / Keyer</div><div class="gc-body">Particle emitter / chroma key — dan ratusan node lainnya!</div></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Contoh Workflow: Title Composite dengan Glow <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Tujuan:</b> menambahkan teks dengan glow di atas footage.</p>
+        <ol class="styled">
+          <li>Fusion Page — clip timeline sudah dimuat (MediaIn node ada)</li>
+          <li>Tambahkan Text+ node (toolbar cari "Text+" atau Shift+Space)</li>
+          <li>Ketik teks di Inspector</li>
+          <li>Tambahkan Glow node (Shift+Space &gt; "Glow")</li>
+          <li>Hubungkan: Text+ output → Glow input</li>
+          <li>Tambahkan Merge node: MediaIn (footage) → Merge Background, Glow (teks) → Merge Foreground</li>
+          <li>Merge output → MediaOut</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Hasil: teks bercahaya di atas footage!</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Inspector, Koneksi Node &amp; Viewer <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Klik node → Inspector menampilkan parameter (untuk Text+: Text field, Font, Size, Color, Transform, Shading). Adjust parameter → update real-time di viewer. Keyframing: klik kanan parameter &gt; Animate, sama seperti Edit Page.</p>
+        <p style="margin-bottom:8px;">Node memiliki INPUT (kiri, data masuk) dan OUTPUT (kanan, data keluar). Beberapa node memiliki banyak input (contoh: Merge — Background input, Foreground input). Drag output ke input node lain untuk menghubungkan; drag koneksi jauh untuk memutus. Klik kanan node &gt; Passthrough untuk bypass node (testing).</p>
+        <p>Viewer 1 menampilkan output node yang dipilih, Viewer 2 menampilkan output final (MediaOut) — klik node untuk cek output di pipeline manapun.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Proyek VFX Sederhana: Screen Replacement <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Tujuan:</b> mengganti layar ponsel dengan grafik custom.</p>
+        <ol class="styled">
+          <li>Import footage (orang memegang ponsel)</li>
+          <li>Fusion Page &gt; load clip</li>
+          <li>Tambahkan PlanarTracker (Shift+Space &gt; "PlanarTracker")</li>
+          <li>Gambar area tracking pada layar ponsel</li>
+          <li>Track Forward = melacak layar sepanjang shot</li>
+          <li>Tambahkan Merge node: Background = MediaIn (footage), Foreground = grafik pengganti (Loader node)</li>
+          <li>Tambahkan Corner Positioner — menghubungkan data tracking ke foreground</li>
+          <li>Layar pengganti otomatis terposisi, terskala, dan perspective-matched!</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tutorial: <a href="https://www.youtube.com/watch?v=JBm5o1bT_P8" target="_blank">Screen Replacement dalam Fusion</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="stock-footage">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Stock Footage Integration</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Menggunakan Stock Footage?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Stock footage adalah elemen siap pakai (explosion, smoke, fire, dll.) untuk dikomposit ke footage Anda. Alasan penggunaan: tidak mungkin difilmkan langsung (explosion, efek supernatural), cost-prohibitive (pyrotechnic mahal!), menghemat waktu (sudah siap pakai). Sumber terpercaya: ActionVFX (bagian gratis), FootageCrate, Production Crate.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-explosion')">Explosion</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-lightleak')">Light Leak &amp; Lens Flare</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-atmosphere')">Atmospheric</button>
+      </div>
+      <div id="tab-explosion" class="tab-panel active">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Skenario:</b> menambahkan explosion di belakang karakter.</p>
+        <ol class="styled">
+          <li>Download stock footage explosion (biasanya MOV dengan alpha channel)</li>
+          <li>Import ke Media Pool</li>
+          <li>Edit Page: letakkan clip explosion di timeline di atas footage (V2)</li>
+          <li>Posisikan dan scale explosion menggunakan Transform</li>
+          <li>Blend mode: Screen atau Add (hitam transparan, api terlihat)</li>
+          <li>Adjust timing: trim clip agar timing explosion tepat</li>
+          <li>Color grade explosion: cocokkan lighting dan warna dengan scene</li>
+          <li>Opsional: tambahkan camera shake (transform keyframing)</li>
+        </ol>
+      </div>
+      <div id="tab-lightleak" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Light leak:</b> efek film burn (kebocoran cahaya oranye/merah).</p>
+        <ol class="styled">
+          <li>Download stock footage light leak</li>
+          <li>Blend mode: Screen (area putih/terang tampil, area gelap transparan)</li>
+          <li>Opacity: 30-50% (efek subtle)</li>
+          <li>Color grade: cocokkan warna scene</li>
+        </ol>
+        <p style="font-size:.85rem;margin-top:8px;"><b>Lens flare:</b> workflow sama — blend mode Screen, posisikan flare sesuai sumber cahaya dalam scene.</p>
+      </div>
+      <div id="tab-atmosphere" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Dust, smoke, fog</b> menambah depth dan atmosphere.</p>
+        <ol class="styled">
+          <li>Download stock footage atmospheric</li>
+          <li>Blend mode: Screen atau Multiply (tergantung lightness)</li>
+          <li>Opacity: rendah (15-30%) — subtle!</li>
+          <li>Layer beberapa elemen (fog foreground, haze background)</li>
+        </ol>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Checklist Mencocokkan Stock Footage dengan Scene</div>
+      <p>Stock footage harus MATCH scene atau terlihat palsu! Checklist: <b>Motion</b> (jika kamera bergerak, stock footage harus bergerak/di-track), <b>Perspective</b> (cocokkan angle), <b>Lighting</b> (color grade stock footage sesuai lighting scene), <b>Atmosphere</b> (cocokkan level haze/fog), <b>Grain/Texture</b> (tambahkan grain jika scene grainy), <b>Color Harmony</b> (grade keseluruhan untuk menyatukan semua). Jangan asal tempel explosion ke scene tanpa integrasi — terlihat cheap!</p>
+    </div>
+    <p style="font-size:.83rem;color:#666;">Tutorial: <a href="https://www.youtube.com/watch?v=K_7yDkmIX5k" target="_blank">Compositing Stock VFX Footage</a></p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Tugas Praktik: VFX Project (10%)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Basic VFX Showcase</div>
+      <p style="font-size:.88rem;line-height:1.75;">Buat video 1-2 menit yang mendemonstrasikan minimal 4 teknik VFX yang dipelajari di Pertemuan 12. Resolusi 1920x1080, format MP4 H.264, kualitas ekspor 8-12 Mbps.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Konten — Pilih Minimal 4 Teknik</h3>
+      <ul class="styled">
+        <li>Masking (isolasi area untuk efek selektif)</li>
+        <li>Motion tracking (point atau planar) untuk attach grafik</li>
+        <li>Video stabilization (smoothing footage goyang)</li>
+        <li>Particle effect (snow, rain, sparks, dll.)</li>
+        <li>Advanced green screen composite dengan integrasi yang baik</li>
+        <li>Kinetic typography (animated text effect)</li>
+        <li>Integrasi stock VFX footage (explosion, light leak, atmospheric)</li>
+        <li>Fusion node-based effect (efek apapun yang dibangun di Fusion)</li>
+      </ul>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Action Short</div><div class="gc-body">Explosion, muzzle flash, screen replacement.</div></div>
+      <div class="grid-card"><div class="gc-title">Magic / Fantasy</div><div class="gc-body">Particle effect, glow, transformasi.</div></div>
+      <div class="grid-card"><div class="gc-title">Tech Demo</div><div class="gc-body">Screen replacement, hologram, UI overlay.</div></div>
+      <div class="grid-card"><div class="gc-title">Music Video</div><div class="gc-body">Kinetic typography, visual effect tersinkron musik.</div></div>
+      <div class="grid-card"><div class="gc-title">Narrative Short</div><div class="gc-body">VFX mendukung cerita (stabilisasi, compositing).</div></div>
+      <div class="grid-card"><div class="gc-title">Free Choice</div><div class="gc-body">Usulkan konsep sendiri.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Deliverables <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Final_Video.mp4</b> — video hasil render</li>
+          <li><b>Project_File.drp</b> — file proyek DaVinci Resolve</li>
+          <li><b>Documentation.pdf</b> — overview proyek (100-150 kata), teknik yang digunakan (300-400 kata: setiap teknik VFX, timecode penggunaan, cara implementasi, challenge dan solusi), serta 5-7 screenshot (timeline/node tree, setup teknik spesifik, perbandingan before/after, export settings)</li>
+        </ul>
+      </div>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>VFX Techniques — Application</b></td><td><span class="score-badge">40 pts</span></td><td>4 teknik terdemonstrasi jelas (20), eksekusi tepat (15), kualitas eksekusi (5)</td></tr>
+        <tr><td><b>Technical Quality</b></td><td><span class="score-badge">25 pts</span></td><td>VFX bersih tanpa artefak (10), integrasi seamless (10), kualitas ekspor (5)</td></tr>
+        <tr><td><b>Creativity &amp; Presentation</b></td><td><span class="score-badge">20 pts</span></td><td>Konsep/cerita (8), visual appeal (7), presentasi profesional (5)</td></tr>
+        <tr><td><b>Documentation</b></td><td><span class="score-badge">15 pts</span></td><td>Deskripsi lengkap (7), screenshot jelas (4), penjelasan workflow (4)</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <div class="hb-title">Bonus (+5)</div>
+      <p>Kreativitas atau skill teknis yang exceptional, menggunakan 6+ teknik, atau hasil yang sangat polished. Deadline akan diumumkan (umumnya 2 minggu). Submission via LMS (ZIP berisi semua file).</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p13.html" class="next-btn">Pertemuan 13 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

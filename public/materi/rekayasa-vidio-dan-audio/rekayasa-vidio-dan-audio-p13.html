@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 13 – Audio untuk Video (Sound Design &amp; Mixing) | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Audio untuk Video (Sound Design &amp; Mixing)</div>
+    <div class="pertemuan-badge">Pertemuan 13</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#workflow" class="toc-link">Audio Post-Production Workflow</a>
+    <a href="#dialogue" class="toc-link">Dialogue Editing</a>
+    <a href="#sfx" class="toc-link">Sound Effects (SFX) Design</a>
+    <a href="#music" class="toc-link">Music untuk Video</a>
+    <a href="#mixing" class="toc-link">Audio Mixing</a>
+    <a href="#fairlight" class="toc-link">Fairlight Page Overview</a>
+    <a href="#loudness" class="toc-link">Loudness Standards (LUFS)</a>
+    <a href="#resources" class="toc-link">Free Audio Resources</a>
+    <a href="#rangkuman" class="toc-link">Rangkuman &amp; Quiz</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 13 · Rekayasa Video dan Audio</div>
+    <h1>Audio untuk Video (Sound Design &amp; Mixing)</h1>
+    <p class="subtitle">Memahami dan menerapkan audio post-production untuk video — dialogue editing, sound effects design, music integration, dan audio mixing menggunakan Fairlight page dalam DaVinci Resolve untuk mencapai standar broadcast profesional.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami dan menerapkan audio post-production untuk video, termasuk dialogue editing, sound effects design, music integration, dan audio mixing menggunakan Fairlight page dalam DaVinci Resolve untuk mencapai professional broadcast standards.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">"Sound is HALF the experience." — George Lucas</div>
+      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan menonton trailer film tanpa suara, lalu dengan suara — perbedaannya luar biasa! Suara menciptakan emosi (musik yang membangun momen dramatis), imersi (suara ambient — angin, lalu lintas, room tone), kejelasan (dialog yang bersih dan dapat dipahami), dampak (ledakan, tembakan, pintu dibanting), dan profesionalisme (audio yang rapi = produksi yang profesional).</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>AUDIO BURUK MERUSAK VIDEO YANG BAGUS!</b> Penonton bisa memaafkan kualitas video yang medioker, tapi TIDAK audio yang buruk — dialog yang tidak terdengar jelas membuat penonton pergi, sound effect yang hilang membuat video terasa kosong dan palsu, mixing yang berantakan terasa amatir dan mengganggu.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami complete audio post-production workflow untuk video</li>
+        <li>Melakukan dialogue editing: removing noise, EQ untuk clarity, compression untuk consistency</li>
+        <li>Membuat sound design: sourcing SFX, timing dengan visual, layering sounds</li>
+        <li>Memilih music yang appropriate untuk video context</li>
+        <li>Melakukan music ducking (lowering music untuk dialogue)</li>
+        <li>Mixing dialogue, SFX, dan music untuk balanced soundscape</li>
+        <li>Menggunakan Fairlight page dalam DaVinci Resolve untuk multi-track audio</li>
+        <li>Memahami dan mencapai broadcast loudness standards (-23 LUFS)</li>
+        <li>Mengakses free audio resources (Freesound, YouTube Audio Library, BBC SFX)</li>
+      </ol>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">DaVinci Resolve Fairlight — Professional DAW, Gratis!</div>
+      <p>Fairlight page adalah digital audio workstation (DAW) lengkap di dalam DaVinci Resolve: multi-track recording &amp; mixing, professional mixing console, comprehensive effects (EQ, compression, reverb, dll), ADR tools, dan loudness metering — digunakan di industri film, TV, dan broadcast. Semua FREE!</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="workflow">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Audio Post-Production Workflow</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Pipeline Audio Post-Production (7 Langkah)</div>
+      <ol class="styled">
+        <li><b>Dialogue Editing:</b> Import dialogue tracks, remove noise/clicks/pops, edit kesalahan ("umm", breaths), EQ untuk clarity, compression untuk consistency</li>
+        <li><b>Sound Design / SFX:</b> Identifikasi momen yang butuh sound effect, source sounds (rekam Foley atau download library), tempatkan di timeline sinkron dengan visual, layer multiple sounds</li>
+        <li><b>Ambience / Room Tone:</b> Tambahkan ambient sound, menciptakan environment realistis, mengisi "gap" yang sunyi</li>
+        <li><b>Music:</b> Pilih musik yang sesuai, tempatkan di timeline, edit agar pas dengan durasi video, buat fade in/out</li>
+        <li><b>Mixing:</b> Seimbangkan semua elemen (dialogue paling keras/jelas, music sebagai background support, SFX impactful tapi tidak overpowering), panning untuk stereo field, EQ/compression final</li>
+        <li><b>Mastering:</b> Final loudness adjustment (-16 LUFS podcast, -23 LUFS broadcast), limiting untuk mencegah clipping, quality control final</li>
+        <li><b>Export:</b> Export video dengan audio yang sudah ter-mix dengan baik</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:10px;">Proses ini bisa sama lamanya dengan proses editing video itu sendiri!</p>
+    </div>
+    <div class="sub-section">
+      <h3>Layout Track Audio Tipikal (Fairlight Timeline)</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Track</th><th>Konten</th></tr></thead>
+        <tbody>
+          <tr><td>Track 1</td><td>Dialogue primer (voice/narasi utama)</td></tr>
+          <tr><td>Track 2</td><td>Dialogue sekunder (suara lain, interview)</td></tr>
+          <tr><td>Track 3–5</td><td>Sound Effects (layered)</td></tr>
+          <tr><td>Track 6–7</td><td>Ambience / Room Tone</td></tr>
+          <tr><td>Track 8–9</td><td>Music (stereo)</td></tr>
+          <tr><td>Track 10</td><td>Extra SFX</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Monitoring Level Sepanjang Proses</div>
+      <p>Selalu pantau audio levels: <b>Peak Meters</b> memastikan tidak ada clipping (tetap di bawah 0 dBFS), <b>Loudness Meters</b> untuk mencapai target LUFS, dan yang terpenting — <b>dengarkan</b>, percayai telinga, bukan hanya meter! Headphone yang baik sangat penting (closed-back lebih disukai untuk editing).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="dialogue">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Dialogue Editing</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Dialogue Editing</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Tujuan utama:</b> intelligibility — penonton memahami setiap kata dengan jelas! Tujuan sekunder: menghilangkan distraksi (noise, klik, napas), volume yang konsisten, tone yang menyenangkan (tidak harsh, tidak muddy), dan suara natural (tidak over-processed).</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-noise')">Noise Reduction</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-eq')">EQ untuk Clarity</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-comp')">Compression &amp; De-Essing</button>
+      </div>
+      <div id="tab-noise" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.7;margin-bottom:10px;"><b>Problem:</b> Background noise (hum, hiss, lalu lintas, AC noise). <b>Solusi:</b> Noise Reduction.</p>
+        <ul class="styled">
+          <li>Buka <b>Fairlight Page</b> &gt; Effects Library &gt; Fairlight FX</li>
+          <li>Terapkan <b>Voice Isolation</b> (AI noise reduction, fitur Studio berbayar) atau gunakan <b>Noise Reduction</b> effect versi gratis</li>
+          <li><b>Alternatif (Audacity, gratis):</b> Export audio dari DaVinci, pilih bagian "silence" (noise saja tanpa suara orang), Effect &gt; Noise Reduction &gt; Get Noise Profile, lalu adjust: noise reduction 12–15 dB (konservatif), sensitivity 6–9, frequency smoothing 3–6</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Best practice:</b> Kurangi noise secara konservatif — terlalu banyak menghasilkan suara robotik/artifisial. Selalu dengarkan hasilnya. Alternatif software profesional: iZotope RX, Adobe Audition Spectral Display.</p>
+      </div>
+      <div id="tab-eq" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.7;margin-bottom:10px;"><b>Tujuan:</b> Membuat suara jelas, mudah dipahami, dan enak didengar.</p>
+        <ul class="styled">
+          <li><b>High-Pass Filter (80–100 Hz):</b> Menghilangkan rumble dan low-end mud — dialog tidak butuh sub-bass</li>
+          <li><b>Reduce Mud (200–400 Hz):</b> Cut 2–4 dB jika suara terdengar "boxy" atau muddy</li>
+          <li><b>Boost Presence (2–5 kHz):</b> Boost 2–3 dB untuk clarity — frekuensi ini berisi konsonan dan kejelasan ucapan</li>
+          <li><b>Reduce Harshness (6–8 kHz):</b> Cut 2–3 dB jika suara terdengar harsh atau sibilant</li>
+          <li><b>Air (10–12 kHz):</b> Boost halus (1–2 dB) untuk openness (opsional)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Caution:</b> Over-EQ membuat suara tidak natural! Adjustments yang halus lebih baik.</p>
+      </div>
+      <div id="tab-comp" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.7;margin-bottom:10px;"><b>Compression untuk Consistency</b> — problem: level dialog bervariasi luas (beberapa kata keras, beberapa pelan). Settings: Ratio 3:1–4:1 (moderate), Threshold di mana dialog peaks mulai, Attack 5–10 ms, Release 50–100 ms, Makeup Gain untuk kompensasi pengurangan volume.</p>
+        <p style="font-size:.88rem;line-height:1.7;"><b>De-Essing</b> — problem: sibilance, suara "s", "sh", "ch" yang harsh. Solusi: De-Esser effect — frequency 5–8 kHz (lokasi sibilance), threshold disesuaikan hingga harsh "s" teredam, reduction 3–6 dB. Dengarkan agar tidak membuat suara jadi cadel.</p>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Editing Kesalahan, Napas, &amp; "Umm" <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Manual editing workflow: Zoom ke waveform di Fairlight timeline, gunakan Blade tool (B) untuk memotong di sekitar bagian yang tidak diinginkan, Delete (Backspace untuk ripple delete), tambahkan Crossfade (Ctrl+T) di titik potong untuk transisi mulus (3–5 frame).</p>
+        <ul class="styled">
+          <li>Hapus napas berlebihan (tetap sisakan beberapa untuk natural!)</li>
+          <li>Hapus "umm", "ah", kata pengisi (filler words)</li>
+          <li>Rapatkan pacing (hapus pause panjang antar kalimat)</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Best practice:</b> Jangan hapus SEMUA napas — terdengar robotik! Pertahankan ritme natural.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Checklist Dialogue Editing <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Tidak ada klik, pop, atau artifact</li>
+          <li>Background noise diminimalkan (noise reduction diterapkan)</li>
+          <li>EQ diterapkan untuk clarity</li>
+          <li>Compression diterapkan untuk level yang konsisten</li>
+          <li>De-essing jika diperlukan</li>
+          <li>Kesalahan dan filler words berlebihan sudah dihapus</li>
+          <li>Crossfade di semua titik edit (mencegah klik)</li>
+          <li>Dialog dapat dipahami dengan jelas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="sfx">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Sound Effects (SFX) Design</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Sound Effects Penting?</div>
+      <p>Bayangkan film tanpa SFX — tidak ada suara langkah kaki, pintu menutup, ambient noise, atau mesin mobil — terasa kosong, palsu, dan tidak bernyawa! SFX menciptakan: <b>realisme</b> (dunia terasa hidup), <b>imersi</b> (penonton tertarik ke dalam scene), <b>emphasis</b> (momen penting dipertegas — pintu dibanting = dramatis!), dan <b>emosi</b> (tegang karena lantai berderak, nyaman karena suara hujan).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Hard SFX (Sync Sound)</div><div class="gc-body">Suara yang disinkronkan dengan aksi visual — langkah kaki, pintu menutup, kaca pecah, klakson mobil. Harus presisi timing-nya!</div></div>
+      <div class="grid-card"><div class="gc-title">Background SFX (Ambience)</div><div class="gc-body">Suara latar berkelanjutan — lalu lintas, burung, angin, gumaman kerumunan, room tone. Menciptakan environment.</div></div>
+      <div class="grid-card"><div class="gc-title">Foley</div><div class="gc-body">Sound effect yang direkam (langkah kaki, gesekan kain, handling props). Dinamai dari Jack Foley, pionir sound effects. Menambah realisme dan detail.</div></div>
+      <div class="grid-card"><div class="gc-title">Design SFX</div><div class="gc-body">Suara stylized dan kreatif (bunyi UI sci-fi, sihir, transisi). Bisa tidak natural, fantastis.</div></div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Sourcing Sound Effects</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Opsi</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><b>Rekam Sendiri (Foley)</b></td><td>Mikrofon apa saja (bahkan smartphone), lingkungan tenang. Contoh: jalan di berbagai permukaan, buka/tutup pintu sungguhan, pukul bantal untuk suara pukulan. Kelebihan: sesuai kebutuhan; kekurangan: memakan waktu</td></tr>
+          <tr><td><b>Free SFX Libraries</b></td><td>Freesound.org (komunitas, Creative Commons), BBC Sound Effects (16.000+ efek profesional, gratis untuk personal/edukasi), YouTube Audio Library (gratis, tanpa atribusi), Zapsplat (gratis kualitas standar, berbayar untuk HD)</td></tr>
+          <tr><td><b>Paid Libraries</b></td><td>Epidemic Sound (subscription), AudioJungle (à la carte), Boom Library (premium)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Workflow Menempatkan SFX di Timeline</div>
+      <ol class="styled">
+        <li>Identifikasi momen yang butuh SFX — tonton video, catat setiap aksi yang butuh suara ("0:15 - pintu menutup", "0:32 - langkah kaki", dst.)</li>
+        <li>Import SFX ke Media Pool</li>
+        <li>Fairlight Page: drag SFX ke timeline di track SFX khusus (Track 3–5), align secara presisi dengan aksi visual (zoom in untuk akurasi frame!)</li>
+        <li>Trim klip ke durasi yang tepat</li>
+        <li>Adjust volume — tidak terlalu keras (overpowering), tidak terlalu pelan (tidak terdengar), level natural sesuai perspektif</li>
+        <li>Tambahkan crossfade di awal/akhir (mencegah klik)</li>
+      </ol>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Layering untuk Kekayaan Suara</div><div class="gc-body">Single sound = thin/datar. Contoh pintu dibanting: main slam + metal latch click + door frame creak + air whoosh = realistis &amp; impactful! Layer 2–4 suara berbeda untuk SFX besar.</div></div>
+      <div class="grid-card"><div class="gc-title">Perspective &amp; Distance</div><div class="gc-body">Objek dekat: keras, jelas, full frequency. Objek jauh: lebih pelan, teredam (kurangi frekuensi tinggi di atas 5kHz), tambahkan reverb halus (jarak = lebih banyak pantulan ruang).</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Sound Design <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Rekam/download lebih banyak dari yang dibutuhkan — beri opsi saat mixing!</li>
+          <li>Sinkronkan secara presisi — frame-accurate timing krusial</li>
+          <li>Variasikan suara — langkah kaki butuh 4–5 suara berbeda (bukan diulang sama)</li>
+          <li>Less can be more — terlalu banyak SFX = noise. Pilih momen yang impactful</li>
+          <li>Isi keheningan dengan room tone atau ambience halus, hindari silence "mati"</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="music">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Music untuk Video</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Peran Musik dalam Video</div>
+      <p style="font-size:.88rem;line-height:1.75;">Musik memberikan: <b>emosi</b> (senang, sedih, tegang, semangat), <b>pacing</b> (mengarahkan ritme edit), <b>kontinuitas</b> (menyatukan scene yang berbeda), <b>energi</b> (mempertahankan engagement), dan <b>branding</b> (signature sound untuk channel/series).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Memilih Musik yang Tepat</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Match Mood</div><div class="gc-body">Video upbeat? Musik upbeat! Video somber? Musik lambat, minor key. Video action? Musik intens dan mendorong.</div></div>
+        <div class="grid-card"><div class="gc-title">Match Pacing</div><div class="gc-body">Cut cepat? Tempo musik cepat. Lambat dan kontemplatif? Musik lambat.</div></div>
+        <div class="grid-card"><div class="gc-title">Genre Considerations</div><div class="gc-body">Corporate: musik bersih profesional (biasanya tanpa lirik). Vlog: genre trendy populer. Dokumenter: understated, emosional. Tutorial: netral, tidak mengganggu.</div></div>
+      </div>
+      <p style="font-size:.83rem;color:#666;margin-top:6px;"><b>Lirik atau tanpa lirik?</b> Lirik bersaing dengan dialog! Biasanya instrumental untuk video dengan dialog. Lirik OK untuk montage, intro, outro.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-musicfree')">Sumber Musik Gratis</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-musicedit')">Edit Musik Sesuai Durasi</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-ducking')">Ducking &amp; Volume</button>
+      </div>
+      <div id="tab-musicfree" class="tab-panel active">
+        <ul class="styled">
+          <li><b>YouTube Audio Library:</b> Musik royalty-free terkurasi, filter mood/genre/instrument/durasi, gratis tanpa atribusi, kualitas tinggi</li>
+          <li><b>Free Music Archive:</b> Beragam genre, lisensi Creative Commons (cek tiap track), sebagian butuh atribusi</li>
+          <li><b>Incompetech (Kevin MacLeod):</b> Library masif, gratis dengan atribusi: "Music: [Track Name] by Kevin MacLeod (incompetech.com)"</li>
+          <li><b>Bensound:</b> Library lebih kecil, kualitas tinggi, gratis dengan atribusi</li>
+          <li><b>Paid:</b> Epidemic Sound (~$15/bulan), Artlist (cinematic), AudioJungle (à la carte)</li>
+        </ul>
+      </div>
+      <div id="tab-musicedit" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Problem:</b> Track musik 3 menit, video hanya 1:30.</p>
+        <ul class="styled">
+          <li><b>Fade out early:</b> Gunakan 1:30 pertama track, fade out 3–5 detik di akhir</li>
+          <li><b>Cut ke bagian lain:</b> Gunakan intro (0:00–0:45), lompat ke outro (2:30–3:00), crossfade di boundary frasa musik (seamless)</li>
+          <li><b>Loop bagian:</b> Temukan bagian berulang (chorus/verse), copy-paste untuk memperpanjang durasi, cocokkan tempo dengan teliti!</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Best practice:</b> Edit cut musik di musical phrase (downbeat, batas bar) agar terasa natural — cutting mid-phrase = jarring! Untuk music video, sinkronkan cut/aksi video dengan beat musik (beat sync).</p>
+      </div>
+      <div id="tab-ducking" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Music Ducking</b> — problem: dialog bersaing dengan musik, kata tidak bisa dipahami. Solusi: "duck" musik di bawah dialog (turunkan volume saat orang berbicara).</p>
+        <ul class="styled">
+          <li><b>Manual ducking:</b> Keyframe volume musik — sebelum dialog: -6 dB (audible), saat dialog: -18 hingga -25 dB (background), setelah dialog: -6 dB (kembali)</li>
+          <li><b>Sidechain compression (automatic ducking):</b> Teknik lanjutan — musik otomatis turun saat dialog ada, terapkan Compressor pada music track</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Guideline volume:</b> Dialogue (-6 sampai -3 dB peaks), Music dengan dialog (-18 hingga -25 dB), Music tanpa dialog (-12 hingga -6 dB).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="mixing">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Audio Mixing</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Proses Mixing (8 Langkah)</div>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Tujuan:</b> menyeimbangkan semua elemen audio (dialogue, SFX, music) menjadi mix yang kohesif, enak didengar, dan profesional.</p>
+      <ol class="styled">
+        <li>Rough Mix: set volume awal (dialog paling keras)</li>
+        <li>Balance: sesuaikan level relatif antar elemen</li>
+        <li>Panning: posisikan suara di stereo field</li>
+        <li>EQ: bentuk tonal balance</li>
+        <li>Compression: kontrol dinamika</li>
+        <li>Effects: reverb, delay (halus saja!)</li>
+        <li>Automation: perubahan volume seiring waktu</li>
+        <li>Final pass: dengarkan dari awal sampai akhir, lakukan tweak terakhir</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Level Balancing (Priority Hierarchy)</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Elemen</th><th>Level Awal</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td><b>Dialogue</b></td><td>-6 dBFS (peaks)</td><td>Selalu paling keras &amp; jelas — primer!</td></tr>
+          <tr><td><b>SFX</b></td><td>-12 hingga -6 dBFS</td><td>Impactful, terlihat, namun mendukung dialog</td></tr>
+          <tr><td><b>Music</b></td><td>-18 hingga -12 dBFS</td><td>Background support, mengisi ruang, tetap di belakang</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">Mixing tip: mulai dengan semua fader turun. Naikkan dialog dulu (paling keras). Lalu tambahkan SFX satu-satu. Terakhir tambahkan musik (halus). Membangun mix secara progresif!</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Panning (Stereo Field)</div><div class="gc-body">Dialogue: center (mono) untuk clarity. Music: stereo (kiri &amp; kanan) untuk mengisi ruang. SFX: posisi berdasarkan visual — mobil lewat kiri ke kanan? Pan dari kiri ke kanan! Hindari semua di center = muddy, tanpa separasi.</div></div>
+      <div class="grid-card"><div class="gc-title">Group Busses / Submixes</div><div class="gc-body">Problem: 10 track SFX, repot diatur satu-satu. Solusi: buat BUS track (semua SFX → SFX Bus, semua music → Music Bus). Bus tipikal: Dialogue Bus, SFX Bus, Music Bus, Master Bus.</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Final Mix Checklist <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Dialog jelas, dapat dipahami, elemen paling keras</li>
+          <li>Musik mendukung tapi tidak mengalahkan</li>
+          <li>SFX hadir, impactful, dengan perspektif natural</li>
+          <li>Tidak ada clipping (peaks di bawah 0 dBFS)</li>
+          <li>Stereo field dimanfaatkan (tidak semua di center)</li>
+          <li>Fade in/out yang mulus (tidak ada start/stop abrupt)</li>
+          <li>Loudness konsisten sepanjang video (tidak ada lonjakan tiba-tiba)</li>
+          <li>Terdengar baik di berbagai sistem playback (headphone, speaker, telepon)</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Listening environments untuk testing:</b> studio headphones, computer speakers, phone speaker (mono playback!), car stereo. Mix harus translate dengan baik di semuanya!</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="fairlight">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Fairlight Page Overview</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Menggunakan Fairlight?</div>
+      <p>Edit Page memiliki kontrol audio dasar — cukup untuk proyek sederhana. Fairlight Page adalah DAW profesional — mixing lanjutan, efek, dan automation. Untuk audio post-production profesional, Fairlight ESSENTIAL!</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Layout Fairlight Page</h3>
+      <p style="font-size:.88rem;margin-bottom:8px;">Klik tab "FAIRLIGHT" di bagian bawah aplikasi. Interface terdiri dari: <b>Mixer</b> (kiri — fader, pan, mute, solo per track), <b>Meters</b> (kanan — peak + loudness meters untuk monitoring), <b>Timeline</b> (tengah/bawah — multi-track audio editing waveform), dan <b>Inspector</b> (bawah — parameter efek seperti EQ dan dynamics).</p>
+      <table class="rubric-table">
+        <thead><tr><th>Shortcut</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>Ctrl + Scroll</td><td>Zoom (vertikal: tinggi track, horizontal: waktu)</td></tr>
+          <tr><td>B</td><td>Blade tool (memotong klip)</td></tr>
+          <tr><td>A</td><td>Selection tool (pilih/pindah klip)</td></tr>
+          <tr><td>Drag edge klip</td><td>Membuat fade</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Mixer / Channel Strips</div><div class="gc-body">Fader (kontrol volume, drag atas/bawah), Pan (posisi stereo), Mute (M), Solo (S), Record Arm (R). Metering: hijau = aman, kuning = mendekati keras, merah = clipping!</div></div>
+      <div class="grid-card"><div class="gc-title">Fairlight FX (Inspector &gt; Effects)</div><div class="gc-body">EQ (frequency shaping), Compressor/Limiter (dynamic control), De-Esser (sibilance), Reverb (space/ambience), Delay (echo), Noise Reduction (Studio only). Effects chain — urutan penting!</div></div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Crossfade &amp; ADR/Voiceover Recording <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Crossfade:</b> overlap dua klip sedikit, Fairlight otomatis membuat crossfade, klik kanan crossfade untuk adjust curve-nya.</p>
+        <p style="margin-bottom:8px;"><b>ADR (Automated Dialogue Replacement):</b> rekam ulang dialog di post (kualitas lebih baik), sinkronkan rekaman baru dengan video, ganti audio produksi yang buruk. Setup: hubungkan mikrofon ke audio interface, tekan tombol Record (merah) untuk mulai merekam.</p>
+        <p>Sangat berguna jika audio on-set tidak dapat dipakai!</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="loudness">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Loudness Standards (-23 LUFS)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Loudness Standards Diperlukan?</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Problem sebelum ada standar:</b> iklan TV terdengar absurd keras dibanding program, konten streaming berbeda-beda sangat tidak konsisten volumenya! <b>Solusi:</b> standar loudness broadcast yang diregulasi — EBU R128 (Eropa) / ATSC A/85 (USA) menetapkan -23 LUFS untuk broadcast. Hasilnya: volume konsisten di seluruh konten TV/streaming.</p>
+    </div>
+
+    <table class="rubric-table">
+      <thead><tr><th>Platform</th><th>Target LUFS</th></tr></thead>
+      <tbody>
+        <tr><td><b>Broadcast TV</b></td><td><span class="score-badge">-23 LUFS</span> (strict)</td></tr>
+        <tr><td><b>Streaming (Netflix, Amazon)</b></td><td><span class="score-badge">-24 LUFS</span> (cinema-like)</td></tr>
+        <tr><td><b>Podcast</b></td><td><span class="score-badge">-16 LUFS</span> (lebih keras — pendengar di jalan dengan noise)</td></tr>
+        <tr><td><b>YouTube</b></td><td><span class="score-badge">-13 s/d -15 LUFS</span> (YouTube otomatis normalisasi ke -14 LUFS)</td></tr>
+        <tr><td><b>Music</b></td><td><span class="score-badge">-8 s/d -14 LUFS</span> (bervariasi per genre)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sub-section">
+      <h3>Cara Mencapai Target Loudness</h3>
+      <ol class="styled">
+        <li>Selesaikan mix (dialogue, SFX, music sudah balanced)</li>
+        <li>Cek loudness meter di Fairlight (panel kanan)</li>
+        <li>Adjust master fader untuk mencapai target — contoh: current -20 LUFS, target -16 LUFS → naikkan +4 dB</li>
+        <li>Terapkan Master Limiter — mencegah clipping jika ada peak melebihi 0 dBFS, ceiling -1 dBFS</li>
+        <li>Re-check loudness — seharusnya mencapai target!</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;">Cek <b>loudnesspenalty.com</b> — masukkan URL YouTube untuk melihat apakah YouTube akan menurunkan volume video Anda (jika terlalu keras).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">True Peak vs Sample Peak</div><div class="gc-body">Sample Peak: peak digital di sample (yang ditunjukkan meter normal). True Peak: peak aktual setelah konversi D/A (lebih tinggi dari sample peak!). Standar broadcast: True Peak harus tetap di bawah -1 dBTP. Gunakan True Peak Limiter untuk submission broadcast.</div></div>
+      <div class="grid-card"><div class="gc-title">Dynamic Range</div><div class="gc-body">Perbedaan antara momen paling pelan &amp; paling keras. Film: dynamic range tinggi (bisikan hingga ledakan). Podcast: dynamic range rendah (level konsisten). Talking head/tutorial: kompres untuk konsistensi; video sinematik: pertahankan range untuk mixing yang impactful.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="resources">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Free Audio Resources</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Free Music</div><div class="gc-body">YouTube Audio Library, Free Music Archive, Incompetech (Kevin MacLeod), Bensound — semua bisa dipakai gratis (cek lisensi/atribusi masing-masing).</div></div>
+      <div class="grid-card"><div class="gc-title">Free Sound Effects</div><div class="gc-body">Freesound.org, BBC Sound Effects, Zapsplat, Epidemic Sound (free trial) — library SFX berkualitas untuk berbagai kebutuhan.</div></div>
+      <div class="grid-card"><div class="gc-title">Free Audio Software</div><div class="gc-body">Audacity (audio editor), Ardour (DAW), Reaper (free trial, lisensi murah) — alternatif jika butuh tools tambahan di luar DaVinci Resolve.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="rangkuman">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Rangkuman &amp; Quiz</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Quiz 3: Audio untuk Video (5%)</div>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Topik yang diujikan:</b> audio post-production workflow, dialogue editing (noise, EQ, compression, de-essing).</p>
+      <ul class="styled">
+        <li>Contoh soal: Target LUFS tipikal untuk video YouTube? (A. -24 LUFS, B. -16 LUFS, C. -8 LUFS, D. 0 LUFS)</li>
+        <li>Contoh soal: Untuk meningkatkan presence/clarity dialog, boost di frekuensi berapa? (A. Boost 80 Hz, B. Boost 3-5 kHz, C. Cut 10 kHz, D. Cut 1 kHz)</li>
+      </ul>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;">Study tips: Review semua bagian modul ini sebelum quiz!</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Key Takeaways</div>
+      <p>Audio post-production workflow (dialogue, SFX, music, mixing) · Dialogue editing: noise removal, EQ, compression · Sound design: layering, perspective, timing · Music integration: memilih, mengedit, ducking · Audio mixing: menyeimbangkan semua elemen · Fairlight page: tools DAW profesional · Loudness standards: -16/-23 LUFS · Free audio resources.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Selanjutnya: Pertemuan 14 — Motion Graphics dengan Fusion/Kdenlive</div>
+      <p style="font-size:.88rem;">Text animation, shape animation, lower thirds, logo reveals, infographic animation! Keep creating!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p14.html" class="next-btn">Pertemuan 14 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 9 – Video Editing dengan DaVinci Resolve/Kdenlive (Part 1) | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Video Editing dengan DaVinci Resolve/Kdenlive (Part 1)</div>
+    <div class="pertemuan-badge">Pertemuan 9</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar &amp; Sub-CPMK</a>
+    <a href="#interface" class="toc-link">Interface DaVinci Resolve</a>
+    <a href="#project-setup" class="toc-link">Project Settings &amp; Timeline</a>
+    <a href="#media-management" class="toc-link">Media Management</a>
+    <a href="#timeline-editing" class="toc-link">Timeline Editing Fundamentals</a>
+    <a href="#transitions" class="toc-link">Transitions</a>
+    <a href="#effects" class="toc-link">Basic Video Effects &amp; Keyframing</a>
+    <a href="#export" class="toc-link">Export &amp; Delivery</a>
+    <a href="#praktikum" class="toc-link">Praktikum: First Editing Project</a>
+    <a href="#tugas" class="toc-link">Tugas Praktik</a>
+    <a href="#resources" class="toc-link">Resources &amp; FAQ</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 9 · Rekayasa Video dan Audio</div>
+    <h1>Video Editing dengan DaVinci Resolve/Kdenlive – Part 1</h1>
+    <p class="subtitle">Memahami interface, project setup, media management, timeline editing dasar (cut, trim, ripple, roll, slip, slide), transitions, basic effects/keyframing, hingga export video untuk YouTube dan Instagram.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar &amp; Sub-CPMK</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami dan menerapkan teknik video editing dasar menggunakan DaVinci Resolve atau Kdenlive, termasuk interface navigation, timeline editing, transitions, effects, dan export settings.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Indikator Pencapaian</div>
+      <ul class="styled">
+        <li>Mahasiswa dapat mengoperasikan interface DaVinci Resolve/Kdenlive</li>
+        <li>Mahasiswa mampu melakukan import, organize, dan manage media files</li>
+        <li>Mahasiswa dapat melakukan basic timeline editing: cutting, trimming, ripple edit</li>
+        <li>Mahasiswa mampu menerapkan transitions dan basic effects</li>
+        <li>Mahasiswa dapat melakukan export video untuk berbagai platform (YouTube, social media)</li>
+        <li>Mahasiswa mampu membuat video editing sederhana yang cohesive</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami interface dan workspace DaVinci Resolve dan/atau Kdenlive</li>
+        <li>Membuat project baru dengan settings yang appropriate (resolution, frame rate)</li>
+        <li>Melakukan import media dan organize dalam bins/folders</li>
+        <li>Navigasi timeline dengan efisien menggunakan keyboard shortcuts</li>
+        <li>Melakukan basic editing operations: cut, trim, slip, slide, ripple, roll</li>
+        <li>Menerapkan various types of transitions (cut, fade, dissolve, wipe)</li>
+        <li>Menggunakan basic video effects dan filters (brightness, contrast, blur, dll.)</li>
+        <li>Mengatur export settings untuk YouTube (1080p H.264) dan Instagram (1080x1920)</li>
+        <li>Complete simple video editing project dari raw footage hingga final export</li>
+      </ol>
+    </div>
+    <div class="card">
+      <div class="card-title">Welcome to Video Editing</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah beberapa pertemuan mempelajari audio production, kini kita masuk ke domain <b>video editing</b> — titik dimana semua elemen production (footage, audio, graphics, effects) disatukan menjadi final product. Video editing adalah <b>technical craft</b> (memahami tools, shortcuts, workflows), <b>storytelling art</b> (pacing, rhythm, emotional arc), <b>problem solving</b> (memperbaiki mistakes, covering gaps), dan <b>creative expression</b> (style, transitions, effects yang mendukung message).</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Kenapa Skill Ini Penting</div><div class="gc-body">YouTube creators (100+ video/tahun), social media managers (konten harian Instagram/TikTok), corporate communications (training videos), filmmakers (shorts, dokumenter), hingga freelancer (wedding, event, commercial).</div></div>
+      <div class="grid-card"><div class="gc-title">Pendekatan Modul</div><div class="gc-body">Modul ini fokus pada DaVinci Resolve sebagai tool utama (paling powerful, banyak dipakai industri), namun konsep-konsepnya applicable ke Kdenlive dan NLE lain (Premiere Pro, Final Cut). Jika komputer tidak kuat menjalankan Resolve, ikuti dengan Kdenlive — prinsip editing tetap sama.</div></div>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-resolve')">DaVinci Resolve</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-kdenlive')">Kdenlive</button>
+      </div>
+      <div id="tab-resolve" class="tab-panel active">
+        <ul class="styled">
+          <li>Professional-grade NLE (Non-Linear Editor), recommended</li>
+          <li>FREE version sangat powerful (tanpa watermark!)</li>
+          <li>Industry standard untuk color grading</li>
+          <li>Integrated Fairlight audio editor &amp; Fusion untuk VFX/motion graphics</li>
+          <li>Dipakai Hollywood: feature film, serial TV</li>
+          <li>Cross-platform: Windows, Mac, Linux</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Download: blackmagicdesign.com/products/davinciresolve · Requirement: Windows 10/11, RAM 8GB minimum (16GB rekomendasi), GPU 2GB VRAM.</p>
+      </div>
+      <div id="tab-kdenlive" class="tab-panel">
+        <ul class="styled">
+          <li>Open-source, sepenuhnya gratis</li>
+          <li>System requirements lebih ringan</li>
+          <li>Interface intuitif, cocok untuk belajar fundamental</li>
+          <li>Komunitas pengembangan aktif</li>
+          <li>Cross-platform: Windows, Mac, Linux</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Download: kdenlive.org · Requirement: Windows 7+, RAM 4GB minimum, CPU moderate.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="interface">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>DaVinci Resolve – Interface Overview</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Instalasi</h3>
+      <div class="card">
+        <div class="card-title">System Requirements</div>
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Minimum</div><div class="gc-body">Windows 10/11 64-bit · RAM 8GB · GPU terintegrasi 2GB VRAM · 4GB disk space untuk instalasi.</div></div>
+          <div class="grid-card"><div class="gc-title">Rekomendasi</div><div class="gc-body">RAM 16GB · GPU dedicated (NVIDIA/AMD) 4GB+ VRAM · SSD untuk media storage.</div></div>
+        </div>
+        <p style="font-size:.85rem;margin-top:10px;">Download dan install dari <a href="https://www.blackmagicdesign.com/products/davinciresolve" target="_blank">blackmagicdesign.com/products/davinciresolve</a> — pilih versi FREE. Tutorial rekomendasi: "DaVinci Resolve 18 - Complete Beginner Tutorial" oleh Casey Faris (<a href="https://www.youtube.com/watch?v=63Ln33O4p4c" target="_blank">tonton di sini</a>).</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Sistem Pages</h3>
+      <p style="font-size:.88rem;line-height:1.7;margin-bottom:12px;">DaVinci Resolve diorganisir dalam <b>Pages</b> — workspace khusus untuk setiap tahap post-production: <code>Cut · Edit · Fusion · Color · Fairlight · Deliver</code>.</p>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Cut Page</div><div class="gc-body">Fast editing untuk project simple/konten medsos. Dual timeline view, source tape, workflow cepat.</div></div>
+        <div class="grid-card"><div class="gc-title">Edit Page</div><div class="gc-body">NLE tradisional — fokus utama modul ini. Full timeline editing, Inspector untuk efek, tools profesional.</div></div>
+        <div class="grid-card"><div class="gc-title">Fusion Page</div><div class="gc-body">Node-based VFX dan motion graphics. Compositing, animasi teks, efek advanced.</div></div>
+        <div class="grid-card"><div class="gc-title">Color Page</div><div class="gc-body">Color correction dan grading profesional. Color wheels, curves, scopes.</div></div>
+        <div class="grid-card"><div class="gc-title">Fairlight Page</div><div class="gc-body">Audio post-production. Multi-track audio editing, mixing console, audio effects.</div></div>
+        <div class="grid-card"><div class="gc-title">Deliver Page</div><div class="gc-body">Export dan render. Preset untuk berbagai platform, custom render settings.</div></div>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">Fokus Pertemuan Ini</div>
+        <p>Materi ini berfokus pada <b>Edit Page</b> dan <b>Deliver Page</b> — dua page yang paling sering dipakai untuk editing dan export sehari-hari.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Layout Edit Page</h3>
+      <div class="card">
+        <div class="card-title">4 Area Utama</div>
+        <ul class="styled">
+          <li><b>Media Pool</b> (kiri atas): import media (video, audio, gambar), organize dalam bins (folder), drag clip ke timeline</li>
+          <li><b>Viewer</b> (kanan atas): source viewer untuk preview clip sebelum ditambahkan, timeline viewer untuk preview hasil edit, plus playback controls</li>
+          <li><b>Timeline</b> (bawah): video tracks (V1, V2, V3...), audio tracks (A1, A2, A3...), playhead (garis merah), zoom &amp; navigasi</li>
+          <li><b>Inspector</b> (panel kanan): video properties (transform, crop, dynamic zoom), audio properties (volume, pan, EQ), parameter efek</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Tip: Panel dapat di-resize dengan drag. Jika layout berantakan, gunakan View &gt; Workspace &gt; Reset to default.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="project-setup">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Project Settings &amp; Timeline Creation</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Membuka Project Settings</div>
+      <p style="font-size:.88rem;">File &gt; Project Settings (atau shortcut <b>Shift+9</b>)</p>
+    </div>
+
+    <table class="rubric-table">
+      <thead><tr><th>Setting</th><th>Pilihan</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td>Timeline Resolution</td><td>1920x1080 HD</td><td>Paling umum digunakan; gunakan 3840x2160 jika edit 4K</td></tr>
+        <tr><td>Frame Rate 24fps</td><td>Cinematic</td><td>Film look</td></tr>
+        <tr><td>Frame Rate 25fps</td><td>PAL Standard</td><td>Eropa, Asia kecuali Jepang</td></tr>
+        <tr><td>Frame Rate 30fps</td><td>NTSC Standard</td><td>Amerika, Jepang, default YouTube</td></tr>
+        <tr><td>Frame Rate 60fps</td><td>Smooth motion</td><td>Sports/gaming, biasanya direkam 60fps lalu diedit di 30fps</td></tr>
+        <tr><td>Optimized Media/Cache</td><td>DNxHR SQ</td><td>Format proxy untuk playback smooth, rekomendasi untuk HD</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <div class="hb-title">Rekomendasi untuk Pemula</div>
+      <p>Gunakan <b>1920x1080, 30fps</b> — kombinasi paling forgiving dan versatile untuk belajar. Playback Frame Rate dan Video Monitoring harus match dengan timeline frame rate (HD 1080p).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Membuat Timeline</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Metode 1 — Otomatis</div><div class="gc-body">Drag video clip dari Media Pool langsung ke area timeline. Timeline akan auto-create dengan settings yang match dengan clip tersebut. Cara paling mudah untuk pemula!</div></div>
+        <div class="grid-card"><div class="gc-title">Metode 2 — Manual</div><div class="gc-body">File &gt; New Timeline (Ctrl+N) &gt; beri nama misal "Sequence 01" &gt; settings diwariskan dari project settings &gt; klik "Create".</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="media-management">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Media Management</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Mengimpor Media</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">File Menu</div><div class="gc-body">File &gt; Import Media (Ctrl+I) &gt; browse folder footage &gt; pilih file (Ctrl+Click untuk multiple) &gt; Open.</div></div>
+        <div class="grid-card"><div class="gc-title">Drag &amp; Drop</div><div class="gc-body">Drag file dari Windows Explorer langsung ke Media Pool. Cepat dan intuitif.</div></div>
+        <div class="grid-card"><div class="gc-title">Media Storage Browser</div><div class="gc-body">Window &gt; Media Storage (Ctrl+Shift+1) &gt; browse drive/folder dalam interface DaVinci &gt; klik kanan folder &gt; Add Folder to Media Pool.</div></div>
+      </div>
+      <div class="card" style="margin-top:14px;">
+        <div class="card-title">Format yang Didukung</div>
+        <ul class="styled">
+          <li><b>Video:</b> MP4, MOV, MKV, AVI, MTS</li>
+          <li><b>Audio:</b> WAV, MP3, AAC, M4A</li>
+          <li><b>Images:</b> JPG, PNG, TIFF, PSD</li>
+          <li><b>RAW footage:</b> BRAW (Blackmagic), R3D (RED)</li>
+        </ul>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">Tip: Organisasi Folder Sebelum Import</div>
+        <p><code>Project_Folder/ &gt; Footage/A-Roll, Footage/B-Roll, Audio/, Graphics/, Exports/</code> — rapikan struktur folder sumber sebelum mengimpor agar pencarian file lebih mudah.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Mengorganisir di Media Pool</h3>
+      <div class="card">
+        <div class="card-title">Membuat Bins (Folder)</div>
+        <p style="font-size:.88rem;">Klik kanan di Media Pool &gt; New Bin. Beri nama logis: "A-Roll", "B-Roll", "Music", "SFX", "Graphics".</p>
+      </div>
+      <div class="tab-group">
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-content')">By Content Type</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-scene')">By Scene/Sequence</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-date')">By Shoot Date</button>
+        </div>
+        <div id="tab-content" class="tab-panel active">
+          <ul class="styled"><li>Interviews</li><li>B-Roll</li><li>Music</li><li>Sound Effects</li><li>Graphics</li><li>Titles</li></ul>
+        </div>
+        <div id="tab-scene" class="tab-panel">
+          <ul class="styled"><li>Scene 1 - Opening</li><li>Scene 2 - Main Content</li><li>Scene 3 - Closing</li></ul>
+        </div>
+        <div id="tab-date" class="tab-panel">
+          <ul class="styled"><li>2026-03-20 Shoot</li><li>2026-03-21 Shoot</li></ul>
+        </div>
+      </div>
+      <p style="font-size:.83rem;color:#666;">Smart Bins: klik kanan bin &gt; Smart Bin — membuat bin dinamis berbasis metadata (resolusi, frame rate, tanggal, dll).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Melihat Clip &amp; Proxy Workflow</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Thumbnail View</div><div class="gc-body">Default view; hover clip untuk scrub preview; klik untuk load di Source Viewer.</div></div>
+        <div class="grid-card"><div class="gc-title">List View</div><div class="gc-body">View &gt; Show List View — info detail: duration, resolusi, codec, frame rate, audio; kolom bisa di-sort.</div></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Proxy Workflow untuk Playback Smooth <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Jika edit footage 4K atau komputer kesulitan playback, gunakan PROXY FILES:</p>
+          <ol class="styled">
+            <li>Pilih clip dalam Media Pool</li>
+            <li>Klik kanan &gt; Generate Optimized Media/Proxy</li>
+            <li>Pilih format proxy: "Quarter Resolution" atau "Half Resolution"</li>
+            <li>DaVinci akan generate file proxy resolusi rendah</li>
+            <li>Edit dengan proxy (smooth), export tetap menggunakan file original (kualitas terjaga)</li>
+          </ol>
+          <p style="margin-top:8px;">Toggle proxy mode: Playback &gt; Proxy Mode &gt; Quarter Resolution (otomatis kembali ke resolusi penuh saat export).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="timeline-editing">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Timeline Editing Fundamentals</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Menambahkan Clip ke Timeline</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Drag dari Media Pool</div><div class="gc-body">Drag clip dari Media Pool ke timeline, letakkan di awal atau setelah clip lain.</div></div>
+        <div class="grid-card"><div class="gc-title">Three-Point Editing</div><div class="gc-body">Load clip di Source Viewer (double-click di Media Pool), mark IN point di timeline (tombol I). Insert: menggeser clip berikutnya. Overwrite: menimpa clip di timeline.</div></div>
+        <div class="grid-card"><div class="gc-title">Append at End (F12)</div><div class="gc-body">Pilih clip di Media Pool, tekan F12 — clip otomatis ditambahkan ke akhir timeline.</div></div>
+      </div>
+      <p style="font-size:.83rem;color:#666;">Best practice: mulai dengan drag sederhana, lalu pelajari three-point editing seiring makin terbiasa (jauh lebih cepat untuk editing profesional).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Playback &amp; Navigasi</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Shortcut</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>Spacebar</td><td>Play/Pause</td></tr>
+          <tr><td>J / K / L</td><td>Reverse / Pause / Forward playback (tekan berulang J atau L untuk speed 2x, 4x, 8x)</td></tr>
+          <tr><td>Home / End</td><td>Lompat ke awal/akhir timeline</td></tr>
+          <tr><td>Up / Down Arrow</td><td>Lompat ke edit point sebelumnya/berikutnya</td></tr>
+          <tr><td>Left/Right Arrow</td><td>Geser playhead 1 frame; Shift+Left/Right = 5 frame</td></tr>
+          <tr><td>Ctrl + Plus/Minus</td><td>Zoom in/out timeline; Shift+Z = fit seluruh timeline</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">Tip JKL Trick: hold K + tap J atau L untuk frame-by-frame playback. Tonton "DaVinci Resolve Essential Keyboard Shortcuts" untuk memperdalam.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Basic Editing Operations</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Blade Tool (B) — Memotong Clip <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Fungsi: memotong clip menjadi beberapa bagian.</p>
+          <p>Cara pakai: tekan B (Blade tool), klik di posisi yang ingin dipotong.</p>
+          <p>Shortcut: Ctrl+B (blade di playhead), Ctrl+F (blade semua track di playhead).</p>
+          <p>Use case: menghapus bagian tak diinginkan, split clip untuk rearrange, isolasi bagian untuk efek.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Trim Tool — Normal, Ripple, Roll <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Fungsi: menyesuaikan edit point (awal/akhir clip). Hover dekat tepi clip — cursor berubah jadi ikon trim.</p>
+          <ul class="styled">
+            <li><b>Normal Trim:</b> drag tepi clip — extend/shorten, meninggalkan gap atau overlap dengan clip sebelahnya</li>
+            <li><b>Ripple Edit (Alt+drag):</b> menyesuaikan panjang clip, otomatis menggeser clip berikutnya (tanpa gap) — paling sering dipakai, gunakan 90% waktu!</li>
+            <li><b>Roll Edit (Ctrl+drag pada boundary dua clip):</b> menyesuaikan batas antar dua clip, total durasi tidak berubah — satu clip diperpanjang sementara clip sebelah dipersingkat</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Slip &amp; Slide Tool <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p><b>Slip Tool (Y):</b> mengubah konten di dalam clip sambil mempertahankan posisi dan durasi di timeline. Contoh: clip interview 10 detik di timeline berasal dari sumber 30 detik — slip tool memilih bagian 10 detik mana yang ditampilkan tanpa memindahkan clip di timeline.</p>
+          <p style="margin-top:8px;"><b>Slide Tool (Shift+Alt):</b> memindahkan clip kiri/kanan sambil otomatis menyesuaikan clip sebelahnya agar tidak ada gap. Use case: mengatur ulang timing tanpa membuat gap.</p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Selection Tool &amp; Delete Options <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p><b>Selection Tool (A):</b> klik clip = select; drag clip = move (meninggalkan gap); Alt+drag = move dengan ripple (tanpa gap); Ctrl+Click = multi-select; klik track header = select semua clip di track.</p>
+          <ul class="styled" style="margin-top:8px;">
+            <li><b>Delete:</b> hapus clip, meninggalkan gap</li>
+            <li><b>Backspace:</b> hapus clip, menutup gap otomatis (ripple delete)</li>
+            <li><b>Ctrl+H:</b> disable clip terpilih (membuatnya invisible tanpa menghapus)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Practice Exercise</div>
+        <ol class="styled">
+          <li>Import 5-10 clip video</li>
+          <li>Susun di timeline secara berurutan</li>
+          <li>Latih blade tool untuk memotong beberapa bagian</li>
+          <li>Latih ripple edit (Alt+drag) untuk trim</li>
+          <li>Latih rearrange clip dengan Alt+drag</li>
+          <li>Hapus section dengan Backspace (ripple delete)</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Goal: terbiasa dengan operasi timeline sampai jadi muscle memory.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Advanced Timeline Techniques</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Snapping (N)</div><div class="gc-body">Saat enabled, clip akan snap ke playhead, edit point, dan marker. Sebaiknya dibiarkan ON untuk editing presisi.</div></div>
+        <div class="grid-card"><div class="gc-title">Linked Selection (Ctrl+Shift+L)</div><div class="gc-body">Saat enabled, video dan audio dari clip yang sama terpilih bersama. Disable untuk split edit (audio berbeda dari video berbeda).</div></div>
+        <div class="grid-card"><div class="gc-title">Track Locking</div><div class="gc-body">Klik kanan track header &gt; Lock Track. Mencegah editing tak disengaja, misal mengunci track musik saat menyusun ulang video.</div></div>
+        <div class="grid-card"><div class="gc-title">Track Targeting</div><div class="gc-body">Indikator merah di track header menentukan track mana yang terpengaruh operasi. Shift+Click untuk target satu track secara eksklusif.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="transitions">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Transitions</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Transition?</div>
+      <p>Transition adalah efek visual antara dua clip — bagaimana satu clip berubah menjadi clip lain.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Cut (Tanpa Transisi)</div><div class="gc-body">Perubahan instan dari clip 1 ke clip 2. Transisi paling umum (90% edit). Pacing tercepat. Default untuk kebanyakan scene.</div></div>
+      <div class="grid-card"><div class="gc-title">Fade / Dissolve</div><div class="gc-body">Blend gradual dari clip 1 ke clip 2. Transisi halus dan lembut. Cocok untuk passage of time, perubahan mood, transisi chapter.</div></div>
+      <div class="grid-card"><div class="gc-title">Dips (Black/White)</div><div class="gc-body">Dip to Black: fade ke hitam lalu fade dari hitam. Dip to White: serupa dengan putih. Cocok untuk perubahan scene besar, akhir sequence.</div></div>
+      <div class="grid-card"><div class="gc-title">Wipes</div><div class="gc-body">Satu gambar "menyapu" layar menggantikan yang lain. Banyak variasi (linear, circular, barn doors). Sering terkesan cheesy — gunakan secukupnya untuk look retro/playful.</div></div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Golden Rule</div>
+      <p>Gunakan cut 90% dari waktu. Transisi harus <b>MOTIVATED</b> — punya alasan story, emosi, atau gaya. Jangan gunakan transisi untuk "membuat footage membosankan jadi menarik" — transisi tidak memperbaiki konten yang membosankan!</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Menerapkan Transition di DaVinci Resolve</h3>
+      <div class="card">
+        <div class="card-title">Lokasi: Effects Library &gt; Video Transitions</div>
+        <p style="font-size:.88rem;">Kategori: Dissolves, Iris, Motion, Shape, Warp, dan lainnya.</p>
+      </div>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Metode 1: Drag &amp; Drop</div><div class="gc-body">Cari transisi di Effects Library, drag ke edit point antara dua clip di timeline. Transisi muncul berwarna ungu di timeline.</div></div>
+        <div class="grid-card"><div class="gc-title">Metode 2: Default Transition</div><div class="gc-body">Posisikan playhead di edit point, tekan shortcut default transition (Ctrl+T) — transisi default (biasanya Cross Dissolve) langsung diterapkan. Ubah default: klik kanan transisi di Effects Library &gt; Set as Default Transition.</div></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Mengatur Durasi &amp; Curve Transition <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p><b>Mengubah durasi:</b> drag tepi transisi di timeline (default biasanya 1 detik), atau set angka langsung di Inspector &gt; Transition Duration (misal 0.5s, 2s).</p>
+          <ul class="styled" style="margin-top:8px;">
+            <li>Pace cepat: 0.25–0.5 detik</li>
+            <li>Standard: 1 detik</li>
+            <li>Dramatis: 2–3 detik</li>
+          </ul>
+          <p style="margin-top:8px;"><b>Transition Curve</b> (Inspector &gt; Transition Curve) menentukan progresi transisi: Linear (rate konstan), Ease In (mulai lambat, akselerasi), Ease Out (mulai cepat, deselerasi), Ease In &amp; Out (paling natural — rekomendasi untuk kebanyakan transisi).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Audio Transitions (Crossfade)</h3>
+      <div class="card">
+        <div class="card-title">Membuat Audio Crossfade</div>
+        <p style="font-size:.88rem;">Pilih kedua audio clip di edit point, terapkan crossfade otomatis. Untuk kontrol lebih, gunakan manual keyframing pada parameter volume.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tip: selalu gunakan crossfade audio singkat (5-10 frame) bahkan untuk video cut biasa, untuk menghindari klik/pop pada audio.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Best Practices Transisi</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Jenis Transisi</th><th>Gunakan Untuk</th></tr></thead>
+        <tbody>
+          <tr><td>Cross Dissolve</td><td>Passage waktu (jam/hari/minggu), perubahan lokasi, dream sequence/flashback/memori, akhir scene/chapter</td></tr>
+          <tr><td>Dip to Black</td><td>Perubahan scene besar, akhir act, momen emosional yang butuh pause, sebelum credits</td></tr>
+          <tr><td>Dip to White</td><td>Dream sequence, imagery surgawi, flashback ethereal, transisi cahaya menyilaukan</td></tr>
+          <tr><td>Hindari</td><td>Wipe acak, spin, page curl — kecuali memang sengaja ingin kesan cheesy/retro</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="effects">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Basic Video Effects &amp; Keyframing</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Inspector Panel — Video Properties</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;">Pilih clip di timeline lalu buka Inspector (panel kanan).</p>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Transform</div><div class="gc-body">Position X/Y (geser horizontal/vertikal — reframing, picture-in-picture), Rotation Angle (Dutch angle, creative framing), Scale X/Y (zoom in/out — kunci link icon agar aspect ratio terjaga), Anchor Point (pivot rotasi/scaling).</div></div>
+        <div class="grid-card"><div class="gc-title">Crop</div><div class="gc-body">Left/Right/Top/Bottom — crop dari tepi untuk hilangkan area tak diinginkan/reframe. Soft — feather pada tepi crop, untuk vignette/gradual crop.</div></div>
+        <div class="grid-card"><div class="gc-title">Dynamic Zoom</div><div class="gc-body">Zoom yang keyframe-able — Ken Burns effect pada still images.</div></div>
+        <div class="grid-card"><div class="gc-title">Composite</div><div class="gc-body">Opacity (transparansi 0-100 untuk overlay/fade), Blend Mode (Normal, Screen, Multiply, Overlay, dll — bereksperimen dengan mode berbeda).</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Effects Library &amp; Efek Umum</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;">Window &gt; Effects Library (Shift+5). Kategori: OpenFX (plugin pihak ketiga), Resolve FX (built-in), Light, Blur, Sharpen, Stylize, Color, dan lainnya. Cara terapkan: drag efek dari Effects Library ke clip di timeline.</p>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Gaussian Blur</div><div class="gc-body">Effects Library &gt; OpenFX &gt; Blur &gt; Gaussian Blur. Parameter: Blur Strength (0-100). Use case: blur background untuk fokus subjek, soften skin, sensor wajah.</div></div>
+        <div class="grid-card"><div class="gc-title">Sharpen</div><div class="gc-body">Effects Library &gt; OpenFX &gt; Sharpen &gt; Sharpen. Parameter: Intensity. Use case: tajamkan footage agak soft. Warning: over-sharpening menimbulkan artifact jelek!</div></div>
+        <div class="grid-card"><div class="gc-title">Glow</div><div class="gc-body">Effects Library &gt; OpenFX &gt; Light &gt; Glow. Parameter: Intensity, Threshold, Size. Use case: look dreamy/ethereal, highlight pada lampu/logam/air, scene romantis lembut.</div></div>
+        <div class="grid-card"><div class="gc-title">Vignette</div><div class="gc-body">Effects Library &gt; OpenFX &gt; Color &gt; Vignette. Parameter: Size, Strength. Use case: menarik fokus ke tengah, look sinematik, menutupi masalah di tepi footage.</div></div>
+      </div>
+      <p style="font-size:.83rem;color:#666;">Transform (OpenFX) serupa dengan Inspector transform, namun bisa di-stack (diterapkan berulang) — berguna untuk animasi multi-layer kompleks.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Keyframing — Animation Basics</h3>
+      <div class="highlight-box">
+        <div class="hb-title">Apa itu Keyframe?</div>
+        <p>Keyframe adalah marker yang memberi tahu DaVinci Resolve: "Pada titik INI di timeline, parameter harus bernilai INI." Di antara dua keyframe, DaVinci akan interpolasi (animasi otomatis secara smooth).</p>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Cara Membuat &amp; Mengelola Keyframe <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ol class="styled">
+            <li>Pilih clip di timeline</li>
+            <li>Pindahkan playhead ke titik animasi mulai</li>
+            <li>Di Inspector, klik ikon diamond di sebelah parameter (misal "Position X") — diamond berubah merah (keyframe dibuat)</li>
+            <li>Pindahkan playhead ke titik animasi berakhir, ubah nilai parameter — keyframe baru otomatis terbuat</li>
+          </ol>
+          <p style="margin-top:8px;"><b>Melihat keyframe:</b> Inspector &gt; klik nama parameter — membuka animation curve editor secara grafis.</p>
+          <p style="margin-top:8px;"><b>Menghapus keyframe:</b> pindahkan playhead ke posisi keyframe, klik kanan diamond &gt; Delete Keyframe.</p>
+          <p style="margin-top:8px;"><b>Curve types:</b> Linear (speed konstan), Bezier (smooth ease in/out), Hold (nilai tertahan sampai keyframe berikutnya tanpa interpolasi). Klik kanan keyframe di curve editor untuk mengubah tipe.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Zoom In</div><div class="gc-body">Awal clip: Scale 100 (keyframe). Akhir clip: Scale lebih besar (keyframe). Hasil: efek zoom in halus.</div></div>
+        <div class="grid-card"><div class="gc-title">Slide In dari Kiri</div><div class="gc-body">Awal: Position X = -1920 (off-screen, keyframe). 1 detik kemudian: Position X = 0 (keyframe). Hasil: clip masuk dari kiri.</div></div>
+        <div class="grid-card"><div class="gc-title">Fade In</div><div class="gc-body">Awal: Opacity 0 (keyframe). 1 detik kemudian: Opacity 100 (keyframe). Hasil: clip fade in.</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Speed Effects (Simple)</h3>
+      <div class="card">
+        <div class="card-title">Mengubah Speed Clip</div>
+        <p style="font-size:.88rem;">Klik kanan clip di timeline &gt; Change Clip Speed.</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>Speed:</b> 50% = setengah speed (slow motion); 200% = double speed (fast forward); -100% = reverse playback</li>
+          <li><b>Ripple Timeline:</b> enabled = durasi timeline ikut berubah; disabled = durasi clip tetap, ujung terpotong</li>
+          <li><b>Frame Blending:</b> enabled = slow motion smooth (blend antar frame); disabled = bisa terlihat patah jika footage shot di 30fps</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tip: untuk slow motion terbaik, shoot di frame rate tinggi (60fps, 120fps), lalu conform ke timeline 24/30fps — hasil smooth tanpa artifact.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="export">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Export – Delivering Your Video</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Deliver Page</div>
+      <p style="font-size:.88rem;">Klik tab "DELIVER" di bawah. Interface: kiri (render settings), tengah (preview), kanan (render queue).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Export Preset YouTube 1080p</h3>
+      <ol class="styled">
+        <li>Pilih preset: YouTube 1080p — Format MP4, Codec H.264, Resolusi 1920x1080, Bit rate tinggi (8-12 Mbps), Audio AAC 320kbps stereo</li>
+        <li>Pilih lokasi output</li>
+        <li>Ubah nama dari "Timeline 1" ke nama deskriptif misal "MyVideo_Final_1080p"</li>
+        <li>Klik Add to Render Queue, lalu klik Render All</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;">Render time bervariasi sesuai panjang video, efek yang dipakai, dan spek komputer (1-5 menit untuk video 5 menit pada komputer rata-rata).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Custom Export Settings (Detail)</h3>
+      <div class="tab-group">
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-format')">Format &amp; Codec</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-resolusi')">Resolusi &amp; Frame Rate</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-quality')">Quality &amp; Audio</button>
+        </div>
+        <div id="tab-format" class="tab-panel active">
+          <ul class="styled">
+            <li><b>MP4:</b> paling universal, bekerja di mana saja — rekomendasi untuk 99% use case</li>
+            <li><b>QuickTime:</b> kualitas tinggi, file lebih besar, ramah Mac</li>
+            <li><b>MKV:</b> format open, fleksibel</li>
+            <li><b>AVI:</b> format lama, biasanya lebih besar</li>
+            <li><b>H.264:</b> paling kompatibel, standar untuk YouTube/Instagram/web — rekomendasi untuk kompatibilitas maksimal</li>
+            <li><b>H.265 (HEVC):</b> kompresi lebih baik, file lebih kecil, namun kompatibilitas tidak universal (device lama mungkin tidak bisa play)</li>
+          </ul>
+        </div>
+        <div id="tab-resolusi" class="tab-panel">
+          <ul class="styled">
+            <li>1920x1080 (1080p): HD, standar YouTube/kebanyakan platform</li>
+            <li>3840x2160 (4K): Ultra HD, didukung YouTube, file lebih besar</li>
+            <li>1280x720 (720p): kualitas cukup, file lebih kecil</li>
+            <li>640x480 (SD): kualitas rendah, hindari kecuali perlu</li>
+            <li>Instagram Feed: 1080x1080 (square) · Story/Reel: 1080x1920 (vertikal) · IGTV: 1080x1920 atau 1920x1080</li>
+            <li>Frame rate: match timeline — biasanya 30fps atau 24fps (cinematic), 60fps untuk smooth motion</li>
+          </ul>
+        </div>
+        <div id="tab-quality" class="tab-panel">
+          <ul class="styled">
+            <li>1080p 30fps: 8-12 Mbps (kualitas tinggi) atau 5-8 Mbps (kualitas baik, file lebih kecil)</li>
+            <li>4K 30fps: 35-50 Mbps</li>
+            <li>Auto: DaVinci memilih bit rate yang sesuai (biasanya cukup baik)</li>
+            <li>Audio Codec: AAC (kompatibilitas terbaik), bit rate 192-320 kbps, sample rate 48kHz, channel stereo (2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Spesifikasi per Platform</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Platform</th><th>Resolusi</th><th>Catatan</th></tr></thead>
+        <tbody>
+          <tr><td>YouTube 1080p30</td><td>1920x1080</td><td>Bit rate 8 Mbps, MP4 H.264, AAC-LC 192+ kbps 48kHz stereo, aspect ratio 16:9</td></tr>
+          <tr><td>YouTube 4K30</td><td>3840x2160</td><td>Bit rate 35-45 Mbps</td></tr>
+          <tr><td>Instagram Feed</td><td>1080x1080 (1:1)</td><td>30fps, max 60 detik, bit rate 5-8 Mbps</td></tr>
+          <tr><td>Instagram Story/Reel</td><td>1080x1920 (9:16)</td><td>Story max 15 detik/segmen, Reel max 90 detik</td></tr>
+          <tr><td>IGTV</td><td>1080x1920 atau 1920x1080</td><td>Max 15 menit (reguler), 60 menit (verified account)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">File size limit YouTube: 256 GB atau 12 jam (mana yang lebih kecil). Naming convention: sertakan versi, misal <code>VideoTitle_Final_1080p_v1.mp4</code>.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Export Troubleshooting</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Export Lama / Lambat <span class="icon">▼</span></div>
+        <div class="accordion-body"><ul class="styled"><li>Reduce timeline resolution (proxy mode)</li><li>Reduce export quality/bit rate</li><li>Tutup program lain (bebaskan RAM)</li><li>Aktifkan Hardware Acceleration (Settings)</li></ul></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Video Pecah/Pixelated <span class="icon">▼</span></div>
+        <div class="accordion-body"><ul class="styled"><li>Naikkan bit rate (8-12 Mbps untuk 1080p)</li><li>Cek kualitas footage sumber (tidak bisa export lebih tinggi dari sumber)</li><li>Pastikan resolusi sesuai timeline</li></ul></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Audio Tidak Sinkron <span class="icon">▼</span></div>
+        <div class="accordion-body"><ul class="styled"><li>Cek frame rate sesuai footage sumber</li><li>Hapus render cache lalu re-export</li></ul></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">File Size Terlalu Besar <span class="icon">▼</span></div>
+        <div class="accordion-body"><ul class="styled"><li>Turunkan bit rate</li><li>Gunakan Variable Bit Rate (VBR) bukan Constant (CBR)</li><li>Gunakan H.265 jika kompatibilitas bukan masalah</li></ul></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Upload YouTube Terlihat Lebih Jelek <span class="icon">▼</span></div>
+        <div class="accordion-body"><ul class="styled"><li>YouTube re-encode — kehilangan kualitas itu normal</li><li>Tunggu 15-30 menit setelah upload untuk pemrosesan HD</li><li>Export dengan bit rate lebih tinggi (YouTube punya overhead)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Praktikum: First Video Editing Project</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Project &amp; Objective</div>
+      <p>Buat video 1-2 menit dari 5-10 raw clip. Tujuan: praktik workflow lengkap dari import hingga export.</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Step 1-3: Gather, Create Project, Import (20 menit) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Step 1 — Gather Footage (10 menit):</b> Opsi A: rekam sendiri (smartphone OK), 5-10 klip pendek (10-30 detik), tema bebas (day-in-life, tutorial, storytelling, montage). Opsi B: stock footage gratis dari Pexels Videos, Pixabay Videos, atau Videvo — unduh 5-10 klip dengan tema serupa agar kohesif.</p>
+        <p style="margin-top:8px;"><b>Step 2 — Create Project (5 menit):</b> Buka DaVinci Resolve, set Timeline Resolution 1920x1080, Frame Rate 30fps.</p>
+        <p style="margin-top:8px;"><b>Step 3 — Import &amp; Organize (5 menit):</b> Import klip (Ctrl+I atau drag &amp; drop), organisir ke dalam bins.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Step 4-5: Rough Cut &amp; Refine Edit (60 menit) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Step 4 — Rough Cut (30 menit):</b> Tonton semua klip di Source Viewer, susun ke timeline secara berurutan. Goal: konten tersusun, jangan khawatir soal kesempurnaan.</p>
+        <p style="margin-top:8px;"><b>Step 5 — Refine Edit (30 menit):</b> Tonton timeline dari awal sampai akhir (Spacebar), perketat pacing dengan ripple delete pada dead space, susun ulang klip untuk flow lebih baik (Alt+drag), tambahkan B-roll cutaway untuk visual interest bila perlu. Goal: pacing yang smooth dan engaging.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Step 6-7: Transitions &amp; Effects (25 menit) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Step 6 — Add Transitions (10 menit):</b> Identifikasi titik yang butuh transisi (biasanya 1-3 titik). Ingat: gunakan secukupnya! Mayoritas edit harus straight cut.</p>
+        <p style="margin-top:8px;"><b>Step 7 — Add Basic Effects (15 menit):</b> Pilih 1-2 efek untuk dipraktikkan. Contoh zoom: keyframe Scale 100 di awal clip, Scale 120 di akhir clip (zoom in lembut). Contoh fade in: keyframe Opacity 0 di awal clip pertama, Opacity 100 satu detik kemudian.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Step 8-10: Audio, Music &amp; Export (40 menit) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Step 8 — Audio (15 menit):</b> Dengarkan playback, sesuaikan level audio (pilih clip, Inspector &gt; Audio &gt; Volume), target -6 hingga -12 dB, tambahkan crossfade singkat (3-5 frame) di edit point audio.</p>
+        <p style="margin-top:8px;"><b>Step 9 — Add Music, opsional (15 menit):</b> Sumber musik gratis: YouTube Audio Library, Free Music Archive, Incompetech. Import track musik, atur volume di bawah dialog jika ada (-18 hingga -24 dB), fade in di awal dan fade out di akhir.</p>
+        <p style="margin-top:8px;"><b>Step 10 — Export (10 menit):</b> Buka Deliver page, pilih preset YouTube 1080p, render.</p>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Total Waktu</div>
+      <p>~2-3 jam (untuk percobaan pertama; akan lebih cepat dengan latihan!)</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Submission Checklist</div>
+      <ul class="styled">
+        <li>Video berdurasi 1-2 menit</li>
+        <li>Minimal 5 klip berbeda yang diedit bersama</li>
+        <li>Pacing smooth (tidak ada dead space panjang)</li>
+        <li>Minimal 1 transisi digunakan secara tepat</li>
+        <li>Minimal 1 efek atau animasi keyframe</li>
+        <li>Level audio sesuai (tidak terlalu pelan atau clipping)</li>
+        <li>Diekspor sebagai MP4 1080p H.264</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Tugas Praktik: Video Editing Sederhana (10%)</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Basic Video Edit Project</div>
+      <p style="font-size:.88rem;">Buat video edited 1-2 menit yang mendemonstrasikan skill editing fundamental yang dipelajari pada Pertemuan 9.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Requirements</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Technical</div><div class="gc-body">Durasi 1-2 menit (60-120 detik) · Resolusi 1920x1080 (1080p) · Frame rate 24/25/30fps · Format MP4 H.264 · Export quality 8-12 Mbps</div></div>
+        <div class="grid-card"><div class="gc-title">Content</div><div class="gc-body">Minimal 5 klip video berbeda · Minimal 3 operasi editing dasar (cutting/blade, trimming/ripple, rearranging) · Minimal 1 transisi tepat guna · Minimal 1 animasi keyframe (zoom, pan, fade) · Audio bersih (level tepat, tanpa clipping, crossfade di edit point) · Musik background opsional dengan volume sesuai</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Tema (Pilih Satu)</h3>
+      <ol class="styled">
+        <li>Tutorial/How-To: demonstrasi proses/skill (proses 5 langkah, resep, dll)</li>
+        <li>Montage: rangkaian shot terkait (day-in-life, eksplorasi lokasi)</li>
+        <li>Story: narasi sederhana dengan beginning-middle-end</li>
+        <li>Product/Review: showcase item/aktivitas dari berbagai angle</li>
+      </ol>
+    </div>
+
+    <div class="sub-section">
+      <h3>Deliverables</h3>
+      <ul class="styled">
+        <li><b>Final_Video.mp4</b> — video final hasil render</li>
+        <li><b>Project_File.drp</b> (atau .kdenlive) — project file lengkap dengan folder /media/ (zip jika besar)</li>
+        <li><b>Documentation.pdf</b> — screenshot dan deskripsi, meliputi: project overview (50-100 kata), software &amp; sumber footage, workflow editing, operasi spesifik yang dilakukan, efek/animasi yang diterapkan (dengan parameter), kendala dan solusi, timeline overview, closeup transisi, screenshot Inspector parameter efek, export settings</li>
+      </ul>
+    </div>
+
+    <table class="rubric-table">
+      <thead><tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Technical Execution</b></td><td><span class="score-badge">40 pts</span></td><td>Cut/transisi bersih (10), penggunaan tool tepat (10), kualitas efek/animasi (10), kualitas &amp; level audio (10)</td></tr>
+        <tr><td><b>Content &amp; Creativity</b></td><td><span class="score-badge">30 pts</span></td><td>Konsep/tema jelas (10), pacing engaging (10), visual interest (10)</td></tr>
+        <tr><td><b>Export Quality</b></td><td><span class="score-badge">15 pts</span></td><td>Resolusi/format benar (5), quality settings tepat (5), tanpa error teknis (5)</td></tr>
+        <tr><td><b>Documentation</b></td><td><span class="score-badge">15 pts</span></td><td>Deskripsi menyeluruh (5), screenshot jelas (5), penjelasan workflow (5)</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <div class="hb-title">Bonus +5 Poin</div>
+      <p>Kreativitas atau skill teknis luar biasa, melebihi requirement minimum, pacing dan storytelling yang excellent.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Submission &amp; Tips</div>
+      <p style="font-size:.88rem;"><b>Deadline:</b> diumumkan kemudian. <b>Submission:</b> upload ke LMS dalam file ZIP berisi semua deliverables.</p>
+      <ul class="styled" style="margin-top:8px;">
+        <li>Mulai lebih awal! Sisakan waktu untuk troubleshooting</li>
+        <li>Tonton seluruh video sebelum submit (tangkap kesalahan)</li>
+        <li>Export test render di tengah proses untuk verifikasi settings</li>
+        <li>Tanyakan di forum jika terkendala teknis</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="resources">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Resources, Keyboard Shortcuts &amp; FAQ</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Software &amp; Learning Resources</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">DaVinci Resolve (Free)</div><div class="gc-body">blackmagicdesign.com/products/davinciresolve — full editing, color, audio, VFX. Tanpa watermark, tanpa batas waktu. Windows/Mac/Linux.</div></div>
+        <div class="grid-card"><div class="gc-title">Kdenlive (Free, Open-Source)</div><div class="gc-body">kdenlive.org — NLE open-source, requirement lebih ringan, komunitas aktif.</div></div>
+      </div>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Casey Faris (YouTube)</div><div class="gc-body">Tutorial ramah pemula, penjelasan jelas, tips mingguan.</div></div>
+        <div class="grid-card"><div class="gc-title">Film Simplified</div><div class="gc-body">Kursus lengkap DaVinci Resolve, teknik profesional.</div></div>
+        <div class="grid-card"><div class="gc-title">Learn Color Grading</div><div class="gc-body">Color grading (modul selanjutnya), deep dive teknis.</div></div>
+      </div>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Stock Footage Gratis</div><div class="gc-body">Pexels Videos, Pixabay Videos, Videvo — beberapa butuh atribusi.</div></div>
+        <div class="grid-card"><div class="gc-title">Musik Gratis</div><div class="gc-body">YouTube Audio Library, Incompetech (Kevin MacLeod), Free Music Archive.</div></div>
+        <div class="grid-card"><div class="gc-title">Key Tutorials</div><div class="gc-body">"DaVinci Resolve 18 Complete Beginner Tutorial", "Essential Keyboard Shortcuts", "Timeline Editing Techniques"</div></div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Keyboard Shortcut Reference</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Kategori</th><th>Shortcut</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>Playback</td><td>Space / J K L</td><td>Play-Pause / Reverse-Pause-Forward</td></tr>
+          <tr><td>Playback</td><td>Home / End / Up / Down</td><td>Start-End timeline / Previous-Next edit point</td></tr>
+          <tr><td>Editing</td><td>A / B / T</td><td>Selection tool / Blade tool / Trim tool</td></tr>
+          <tr><td>Editing</td><td>Ctrl+B / Delete / Backspace</td><td>Blade di playhead / Delete (gap) / Ripple delete (tutup gap)</td></tr>
+          <tr><td>Timeline</td><td>Ctrl+N / Ctrl+Z / Ctrl+Shift+Z</td><td>New timeline / Undo / Redo</td></tr>
+          <tr><td>Timeline</td><td>N / Shift+Z</td><td>Toggle snapping / Fit timeline di window</td></tr>
+          <tr><td>Effects</td><td>Ctrl+T / Ctrl+D / Alt+Drag</td><td>Default transition / Duplicate clip / Ripple edit-move</td></tr>
+          <tr><td>Export</td><td>Ctrl+Shift+E</td><td>Quick Export</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <h3>FAQ</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">DaVinci Resolve tidak bisa dibuka/crash <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Update driver GPU (NVIDIA/AMD/Intel) via Preferences &gt; Memory and GPU &gt; GPU Configuration &gt; Auto. Jika masih bermasalah, coba Kdenlive sebagai alternatif yang lebih ringan.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Playback choppy/lag <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Turunkan timeline quality (Playback &gt; Timeline Proxy Mode &gt; Half Resolution), generate optimized media (klik kanan clip &gt; Generate Optimized Media), atau render cache segmen bermasalah (mark in/out, Playback &gt; Render Cache &gt; Smart).</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Bisa pakai Kdenlive sebagai pengganti? <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Ya! Semua konsep (timeline editing, transisi, efek, export) sama. Interface sedikit berbeda tapi fundamentalnya identik. Kdenlive lebih ringan dan berjalan lebih baik di komputer lama.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Berapa disk space yang dibutuhkan? <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Software ~4GB. Footage 1080p 1 jam (rekaman) ~10-20GB (tergantung codec). Project files ~1-5GB (render cache, optimized media). Export 1 menit 1080p ~100-200MB. Rekomendasi: 50GB+ ruang kosong untuk editing yang nyaman.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Transisi menampilkan black flash/glitch <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Transisi membutuhkan "handles" — footage ekstra pada kedua clip di luar edit point. Solusi: pastikan clip punya frame ekstra tersedia (tidak ditrim sampai batas mutlak), drag tepi clip keluar sedikit jika footage sumber masih punya frame ekstra.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Audio crackling/stuttering saat playback <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Ini umum terjadi saat editing (tidak mempengaruhi hasil export): render audio cache (Playback &gt; Render Cache &gt; Smart), atau naikkan Audio Buffer Size di Preferences &gt; Audio.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Cara menambah teks/judul, dan edit video vertikal? <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>Cara cepat: Effects Library &gt; Titles &gt; Basic Title, drag ke timeline, lalu Inspector &gt; Edit text (modul mendatang akan membahas titles secara detail). Untuk video vertikal 9:16: Project Settings &gt; Timeline Resolution &gt; Custom: 1080x1920, atau edit di 16:9 lalu crop saat delivery.</p></div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Watermark &amp; DaVinci Resolve vs Resolve Studio <span class="icon">▼</span></div>
+        <div class="accordion-body"><p>DaVinci Resolve FREE tidak memiliki watermark! Pastikan diunduh dari blackmagicdesign.com resmi dan menggunakan "DaVinci Resolve" (bukan trial "Resolve Studio"). Resolve Studio (berbayar $295 sekali bayar) menambahkan lebih banyak efek/transisi, noise reduction, kolaborasi multi-user, HDR grading, dan tools stereoscopic 3D — namun versi FREE sudah lebih dari cukup untuk pembelajaran dan 99% project, termasuk untuk mata kuliah ini.</p></div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Rangkuman &amp; Next Steps</div>
+      <p>Anda kini memiliki fundamental video editing skills: memahami interface NLE (Pages, Media Pool, Timeline, Inspector), project setup, media management, basic editing operations (cut, trim, ripple, roll, slip, slide), transisi yang tepat guna, basic effects dan keyframe animation, serta export untuk YouTube dan Instagram. Practice makes perfect — semakin sering mengedit, semakin cepat dan intuitif. <b>Pertemuan 10</b> akan membahas Video Editing Part 2: multi-track editing, advanced cutting (J-cut, L-cut, match cut, jump cut), speed ramping, green screen/chroma key, audio sync, advanced titles, dan nesting timeline.</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p10.html" class="next-btn">Pertemuan 10 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

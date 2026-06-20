@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 15 – Video Production Workflow &amp; Post-Production Advanced | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:center;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Video Production Workflow &amp; Post-Production Advanced</div>
+    <div class="pertemuan-badge">Pertemuan 15</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#pipeline" class="toc-link">Production Pipeline Overview</a>
+    <a href="#pre-production" class="toc-link">Pre-Production</a>
+    <a href="#editing-proxy" class="toc-link">Efficient Editing &amp; Proxy Workflow</a>
+    <a href="#media-management" class="toc-link">Media Management</a>
+    <a href="#kolaborasi" class="toc-link">Collaboration Tools</a>
+    <a href="#delivery" class="toc-link">Delivery Specifications</a>
+    <a href="#backup" class="toc-link">Archiving &amp; Backup</a>
+    <a href="#final-project" class="toc-link">Final Project Guidelines (UAS Prep)</a>
+    <a href="#rangkuman" class="toc-link">Rangkuman</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 15 · Rekayasa Video dan Audio</div>
+    <h1>Video Production Workflow &amp; Post-Production Advanced</h1>
+    <p class="subtitle">Memahami complete video production pipeline dari pre-production hingga delivery, menerapkan advanced post-production workflows termasuk proxy editing, media management, collaboration, dan delivery specifications untuk berbagai platform.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami complete video production pipeline dari pre-production hingga delivery, menerapkan advanced post-production workflows termasuk proxy editing, media management, collaboration, dan delivery specifications untuk berbagai platforms.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Ide hingga Delivery: Perjalanan Lengkap</div>
+      <p style="font-size:.88rem;line-height:1.75;">Produksi video profesional jauh lebih dari sekadar editing! Ada 5 fase: <b>pre-production</b> (planning — script, storyboard, perencanaan shot), <b>production</b> (shooting footage), <b>post-production</b> (editing, color, sound, VFX), <b>delivery</b> (export untuk target platform), dan <b>archiving</b> (menyimpan project untuk masa depan).</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>Kesalahan amatir:</b> langsung lompat ke editing tanpa planning! Hasilnya: tidak terorganisir, shot yang hilang, workflow tidak efisien, video akhir tidak mencapai tujuannya. <b>Pendekatan profesional:</b> rencanakan dengan teliti!</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami complete production pipeline (pre, production, post, delivery)</li>
+        <li>Membuat dokumen produksi (script, storyboard, shot list)</li>
+        <li>Generate dan menggunakan proxy files untuk editing 4K (DaVinci Resolve)</li>
+        <li>Mengorganisir media secara sistematis (folder, bin, naming conventions)</li>
+        <li>Berkolaborasi menggunakan project sharing (shared database atau XML export)</li>
+        <li>Deliver video untuk YouTube (setting H.264, metadata)</li>
+        <li>Deliver video untuk Instagram (format square, vertikal)</li>
+        <li>Memahami spesifikasi delivery broadcast (ProRes, DNxHD, loudness standards)</li>
+        <li>Mengarsipkan proyek dengan benar (backup, redundansi, storage)</li>
+      </ol>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Skenario 1: Freelance Video Editor</div><div class="gc-body">Klien menyewa Anda untuk corporate video. Klien mengharapkan deliverables profesional, project file terorganisir, revisi memungkinkan. Anda butuh workflow yang tepat, media management, pengetahuan delivery specs.</div></div>
+      <div class="grid-card"><div class="gc-title">Skenario 2: Content Creator (YouTuber)</div><div class="gc-body">Jadwal upload konsisten (mingguan). Workflow efisien esensial (tidak bisa habiskan 40 jam edit video 10 menit!). Anda butuh template, preset, teknik editing efisien.</div></div>
+      <div class="grid-card"><div class="gc-title">Skenario 3: Film/TV Production</div><div class="gc-body">Kolaborasi dengan editor, colorist, sound designer. Footage masif (terabyte!). Anda butuh workflow lanjutan (proxy editing, shared database, archiving yang benar).</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="pipeline">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Production Pipeline Overview</h2>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Fase</th><th>Aktivitas</th><th>Alokasi Waktu</th></tr></thead>
+      <tbody>
+        <tr><td><b>1. Pre-Production</b></td><td>Konsep, scriptwriting, storyboarding, shot list, lokasi, equipment checklist, scheduling</td><td>20–40% total waktu — menentukan sukses/gagal!</td></tr>
+        <tr><td><b>2. Production</b></td><td>Setup equipment (kamera, lighting, audio), rekam footage, logging shot</td><td>10–30% total waktu — shoot lebih banyak dari kebutuhan!</td></tr>
+        <tr><td><b>3. Post-Production</b></td><td>Import &amp; organisasi media, assembly edit, fine edit, color grading, audio post, VFX/motion graphics, review &amp; revisi</td><td>40–60% total waktu — fase paling memakan waktu!</td></tr>
+        <tr><td><b>4. Delivery</b></td><td>Export untuk target format, quality control, upload, membuat thumbnail/deskripsi/metadata</td><td>5–10% total waktu</td></tr>
+        <tr><td><b>5. Archiving</b></td><td>Backup project files, simpan raw footage, dokumentasi project</td><td>5% total waktu — sering dilewati, kesalahan besar!</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <div class="hb-title">Contoh Alokasi Waktu — Video YouTube 10 Menit (Kualitas Profesional)</div>
+      <p>Pre-Production: 5–10 jam (scriptwriting, planning, storyboard). Production: 3–6 jam (shooting). Post-Production: 20–40 jam (editing, color, audio, graphics). Delivery: 1–2 jam (export, upload, metadata). Archiving: 1 jam (backup). <b>Total: 30–60 jam untuk video 10 menit!</b> Content creator berpengalaman bisa lebih cepat dengan template (10–15 jam).</p>
+    </div>
+    <p style="font-size:.83rem;color:#666;">Workflow bersifat iteratif: PRE-PRODUCTION → PRODUCTION → POST-PRODUCTION → DELIVERY → ARCHIVING — bisa kembali ke fase sebelumnya (misal perlu re-shoot jika ada footage yang hilang).</p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="pre-production">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Pre-Production: Planning &amp; Documentation</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Pre-Production Kritis?</div>
+      <p style="font-size:.88rem;margin-bottom:8px;">"Failing to plan = planning to fail!" Manfaat: clarity (semua tahu apa yang harus direkam), efficiency (shoot hanya footage yang diperlukan), consistency (mempertahankan visi), problem anticipation (atasi masalah SEBELUM shooting).</p>
+      <p style="font-size:.88rem;">Skip pre-production = problem: shot yang hilang (baru sadar saat editing — sudah terlambat!), tim bingung, waktu terbuang (shoot footage yang tidak terpakai), hasil akhir tidak konsisten.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-script')">Script / Outline</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-storyboard')">Storyboard</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-shotlist')">Shot List &amp; Equipment</button>
+      </div>
+      <div id="tab-script" class="tab-panel active">
+        <p style="margin-bottom:8px;"><b>Untuk video naratif</b> (film pendek, iklan, explainer): script berisi dialog tertulis + deskripsi aksi, format standar screenplay (SCENE — INT/EXT — DAY, nama karakter, dialog, aksi).</p>
+        <p style="margin-bottom:8px;"><b>Untuk non-naratif</b> (tutorial, vlog, dokumenter): outline cukup — contoh struktur: INTRO (hook, perkenalan, overview), SECTION 1 (penjelasan konsep), SECTION 2 (tutorial step-by-step), OUTRO (summary, call-to-action).</p>
+        <p style="font-size:.83rem;color:#666;"><b>Software scriptwriting gratis:</b> Celtx (free tier), Trelby (open-source), Google Docs (template sederhana).</p>
+      </div>
+      <div id="tab-storyboard" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Definisi:</b> representasi visual dari script (frame yang digambar). <b>Tujuan:</b> memvisualisasikan shot SEBELUM filming — tiap frame menunjukkan jenis shot (wide, close-up, over-the-shoulder) dan komposisi.</p>
+        <p style="margin-bottom:8px;"><b>Tools storyboard:</b> hand-drawn (pena &amp; kertas — paling cepat!), digital — Storyboarder (gratis, wonderunit.com), template Canva, Procreate/Photoshop.</p>
+        <p style="font-size:.83rem;color:#666;"><b>Bukan seniman?</b> Stick figure OK! Tujuannya komposisi &amp; perencanaan shot. Gunakan foto referensi atau screenshot.</p>
+      </div>
+      <div id="tab-shotlist" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Shot List:</b> daftar detail setiap shot yang dibutuhkan (No, Type, Description, Notes). Jenis shot: wide/establishing (tampilkan seluruh scene), medium (waist-up), close-up (wajah/objek), extreme close-up (mata, tangan), over-the-shoulder/OTS (shot percakapan). Saat produksi, centang shot yang sudah selesai!</p>
+        <p style="margin-bottom:8px;"><b>Equipment Checklist:</b></p>
+        <ul class="styled">
+          <li><b>Camera gear:</b> body, lensa, memory card (multiple + format dulu), batteries (charged + cadangan), tripod/stabilizer</li>
+          <li><b>Lighting:</b> lampu (LED panel, softbox), light stand, diffusion material</li>
+          <li><b>Audio:</b> mikrofon, audio recorder/interface, windscreen/deadcat (outdoor), kabel, headphone (monitoring!)</li>
+          <li><b>Misc:</b> laptop (backup), hard drive (backup on-set), gaffer tape, clamp, extension cord</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:6px;">Lakukan location scouting: cek kondisi cahaya, identifikasi tantangan (noise, ruang sempit), rencanakan posisi kamera.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="editing-proxy">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Efficient Editing Workflows &amp; Proxy untuk 4K</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Assembly Edit → Fine Edit</div>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Assembly Edit (Rough Cut):</b> tujuan — susun SEMUA footage secara kronologis (versi kasar). Tonton semua footage (logging), drag klip bagus ke timeline sesuai urutan. Jangan pedulikan timing presisi/color/audio mixing/graphics dulu. Durasi: 20–30% waktu editing.</p>
+      <p style="font-size:.88rem;"><b>Fine Edit:</b> tujuan — polish! Trim klip presisi, sesuaikan timing/pacing, tambahkan transisi, sinkronkan audio, placeholder graphics. Durasi: 30–40% waktu editing. Tip: istirahat sehari, tonton ulang dengan mata segar — akan terlihat isu yang sebelumnya terlewat!</p>
+    </div>
+    <div class="sub-section">
+      <h3>Keyboard Shortcuts Penting (DaVinci Resolve)</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Shortcut</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>A / T / B</td><td>Selection tool / Trim tool / Blade (potong klip)</td></tr>
+          <tr><td>Delete</td><td>Ripple delete (hapus klip + tutup gap)</td></tr>
+          <tr><td>Ctrl+D / Ctrl+Z / Ctrl+C/V</td><td>Duplicate klip / Undo / Copy-Paste</td></tr>
+          <tr><td>Space, J/K/L</td><td>Play/Pause; reverse/pause/forward (tap berulang = fast forward)</td></tr>
+          <tr><td>I / O</td><td>Mark In / Mark Out</td></tr>
+          <tr><td>Ctrl+Scroll, Shift+Z</td><td>Zoom timeline; Fit timeline ke window</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">Hafalkan &amp; gunakan — shortcut membuat editing 2–3x lebih cepat!</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Templates &amp; Presets Reusable</div><div class="gc-body">Title templates (desain lower third sekali, simpan jadi preset/macro, reuse di semua video). Color grade presets (simpan look favorit sebagai LUT atau Power Grade). Project templates (bin structure, timeline settings, efek favorit pre-loaded) — hemat berjam-jam di banyak proyek!</div></div>
+      <div class="grid-card"><div class="gc-title">Multicam Editing</div><div class="gc-body">Skenario: beberapa angle kamera dari event yang sama (interview, konser). Pilih semua klip yang sudah ter-sync (audio/timecode), klik kanan &gt; Create New Multicam Clip, di Edit Page tambahkan ke timeline, mode multicam — klik untuk switch angle secara real-time!</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Proxy Workflow untuk Editing 4K</div>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Problem 4K:</b> file size sangat besar (1 menit ≈ 3–5 GB!), processing berat (komputer struggle saat playback/edit), rendering lambat. <b>Solusi:</b> proxy workflow!</p>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Proxies</b> = copy resolusi rendah dari footage asli. Original: 4K ProRes HQ (besar, kualitas tinggi). Proxy: 1080p (atau 720p) H.264 (kecil, kualitas lebih rendah). Edit menggunakan proxy (playback mulus!), color/export menggunakan original (kualitas penuh!).</p>
+      <ol class="styled">
+        <li>Import footage 4K ke Media Pool</li>
+        <li>Pilih klip, klik kanan &gt; Generate Optimized Media (Resolve generate proxy otomatis, format DNxHR LB 1080p/720p, disimpan di cache folder)</li>
+        <li>Playback menu (atas) &gt; switch ke Proxy Mode (edit) atau Original Mode (cek kualitas penuh)</li>
+        <li>Edit menggunakan Proxy Mode — playback mulus bahkan di komputer lama!</li>
+        <li>Deliver (export): DaVinci otomatis menggunakan file ORIGINAL (kualitas penuh!) — tidak perlu switch manual</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;"><b>Kdenlive:</b> Settings &gt; Configure Kdenlive &gt; Project Defaults &gt; enable "Generate proxy clips" (otomatis) atau klik kanan klip &gt; Proxy Clip (manual).</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Storage Requirements — Contoh Dokumenter 30 Menit</div>
+      <p>Original 4K footage: 200 GB. Proxies (1080p): 50 GB. Project files: 5 GB. Renders &amp; cache: 30 GB. <b>Total: ~285 GB!</b> Rekomendasi: SSD (NVMe/SATA) untuk project files, proxy, cache (cepat!); HDD untuk long-term storage footage asli (lebih murah).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="media-management">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Media Management Best Practices</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Struktur Folder Project yang Terorganisir</div>
+      <p style="font-size:.85rem;line-height:1.7;font-family:monospace;background:#fdfbf7;padding:12px;border-radius:8px;border:1px solid rgba(184,137,59,.15);">ProjectName/<br>├── 01_PreProduction/ (Script, Storyboard, Shot List)<br>├── 02_RawFootage/ (Camera_A, Camera_B, Audio_Recorder)<br>├── 03_ProjectFiles/ (ProjectName.drp)<br>├── 04_Assets/ (Music, SFX, Graphics, B-Roll)<br>├── 05_Exports/ (YouTube_1080p.mp4, Instagram_Square.mp4)<br>└── 06_Backups/ (Project_Backup_2024-12-15.zip)</p>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;">Manfaat: semua terorganisir, mudah ditemukan, mudah dibagikan/diarsipkan, profesional!</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Naming Conventions</div><div class="gc-body"><b>Buruk:</b> IMG_1234.mov (tidak bermakna!). <b>Baik:</b> 2024-01-15_Interview_John_Take01.mov. Pola: [Tanggal]_[Deskripsi]_[TakeNumber].ext. Bin di Media Pool: RAW FOOTAGE (Interview, B-Roll, Drone), AUDIO (Dialogue, SFX, Music), GRAPHICS (Logos, Lower Thirds, Titles), EXPORTS. Hindari semua dump di "Master" bin (chaos!).</div></div>
+      <div class="grid-card"><div class="gc-title">Metadata &amp; Tagging</div><div class="gc-body">Klik kanan klip &gt; Clip Attributes — tambahkan Comments (catatan: "Best take", "Audio issue"), Star Ratings (sistem 5 bintang). Saat logging: tonton footage, rate klip, tambah catatan. Saat editing: filter bin "tampilkan hanya klip 4-5 bintang" — hemat waktu, tidak perlu mengarungi take buruk berulang!</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Relinking Media &amp; Cache Management <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Relinking:</b> jika folder project dipindah/file di-rename, DaVinci tidak bisa menemukan media! Solusi: File &gt; Project Manager, cek lokasi Media Storage, klik kanan klip offline &gt; Relink Clips. Hindari masalah ini dengan relative paths (simpan semua media di dalam folder project).</p>
+        <p><b>Cache management:</b> cache folder menyimpan file temporary (proxy, render cache, thumbnail) — bisa membesar cepat (ratusan GB!). Atur lokasi cache di Preferences &gt; System &gt; Media Storage (idealnya SSD dedicated). Bersihkan via Playback &gt; Delete Render Cache &gt; All (regenerate jika perlu).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="kolaborasi">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Collaboration Tools</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Berkolaborasi?</div>
+      <p style="font-size:.88rem;">Proyek besar tidak bisa dikerjakan satu orang! Role tipikal: Editor (assembly, fine edit), Colorist (color grading), Sound Designer (audio post), VFX Artist (visual effects), Motion Designer (graphics). Anda perlu cara untuk meneruskan project antar collaborator!</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-xml')">XML/AAF Export</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-cloud')">Cloud Collaboration</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-version')">Version Control</button>
+      </div>
+      <div id="tab-xml" class="tab-panel active">
+        <p style="margin-bottom:8px;">Metode sederhana: export project file, kirim ke collaborator.</p>
+        <ol class="styled">
+          <li>DaVinci Resolve (Editor): selesaikan edit, File &gt; Export &gt; Timeline &gt; AAF for ProTools (audio) atau FCP XML (umum)</li>
+          <li>Kirim ke collaborator: file XML/AAF + media files (atau akses shared storage)</li>
+          <li>Collaborator (Colorist): import XML/AAF ke software mereka, lakukan Color/Sound/VFX, export</li>
+          <li>Editor: terima file hasil (klip ter-grade, audio ter-mix), relink/replace di timeline original</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;">Format kompatibel: AAF (ProTools — audio), XML (Final Cut Pro, Premiere, DaVinci). DaVinci juga punya opsi PostgreSQL Database (advanced) untuk real-time collaboration multi-user — cocok studio/tim besar, namun setup kompleks.</p>
+      </div>
+      <div id="tab-cloud" class="tab-panel">
+        <ul class="styled">
+          <li><b>Frame.io:</b> upload preview video, collaborator/klien beri komentar dengan timecode! Free tier: 2 GB storage</li>
+          <li><b>Google Drive / Dropbox:</b> share project files, jaga media tetap terorganisir</li>
+          <li><b>GitHub/Git (advanced):</b> version control untuk project files, track perubahan</li>
+        </ul>
+      </div>
+      <div id="tab-version" class="tab-panel">
+        <p style="margin-bottom:8px;">Problem: sudah membuat perubahan, ingin revert! Solusi: simpan versi. Di DaVinci Resolve: Timeline &gt; klik kanan &gt; Duplicate Timeline &gt; rename "Version 2".</p>
+        <p>Simpan beberapa versi: Version 1_RoughCut, Version 2_Client_Notes, Version 3_Final. Tip: nama versi &amp; tanggal yang jelas!</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="delivery">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Delivery Specifications</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Memahami Export Settings</div>
+      <p style="font-size:.88rem;">Key settings: <b>Resolution</b> (1920x1080, 3840x2160 dll), <b>Frame rate</b> (24/30/60 fps), <b>Codec</b> (H.264, H.265, ProRes, DNxHD), <b>Bitrate</b> (lebih tinggi = kualitas lebih baik tapi file lebih besar), <b>Audio</b> (AAC stereo, 48kHz, 320 kbps tipikal). Platform berbeda = spec berbeda!</p>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Platform</th><th>Spesifikasi</th></tr></thead>
+      <tbody>
+        <tr><td><b>YouTube</b></td><td>1920x1080/4K, codec H.264, bitrate 1080p 8–12 Mbps (4K 35–45 Mbps), audio AAC stereo 48kHz 320kbps, format MP4. YouTube re-encode otomatis (sedikit lebih rendah OK)</td></tr>
+        <tr><td><b>Instagram Square (1:1)</b></td><td>1080x1080, durasi maks 60 detik (post)/15 menit (IGTV), codec H.264, bitrate 3–5 Mbps, audio AAC 128kbps</td></tr>
+        <tr><td><b>Instagram Vertical (9:16)</b></td><td>1080x1920, ideal untuk Stories/Reels, kompresi Instagram cukup keras — hindari detail halus</td></tr>
+        <tr><td><b>Broadcast/TV</b></td><td>1920x1080, 25fps (PAL)/29.97fps (NTSC), codec ProRes 422/DNxHD, Rec.709, loudness -23 LUFS (EBU R128), True Peak &lt;-1 dBTP, format MOV/MXF</td></tr>
+        <tr><td><b>Archive/Master</b></td><td>Resolusi tertinggi (4K jika difilmkan 4K), codec ProRes 422 HQ/DNxHR HQX, tanpa kompresi, audio PCM uncompressed 48kHz 24-bit</td></tr>
+      </tbody>
+    </table>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Workflow Export DaVinci Resolve — YouTube vs Broadcast <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>YouTube:</b> Deliver Page &gt; Format QuickTime/MP4 &gt; Codec H.264 &gt; Resolution 1920x1080 &gt; Frame Rate 30fps (atau match timeline) &gt; Quality restrict 10,000 kb/s &gt; Audio Codec AAC 320kbps &gt; Render! Filename deskriptif (VideoTitle_1080p_YouTube.mp4).</p>
+        <p><b>Broadcast:</b> Deliver Page &gt; Format QuickTime &gt; Codec DNxHR HQX/ProRes 422 &gt; Resolution 1920x1080 &gt; Frame Rate 25fps (PAL Eropa) &gt; Audio PCM uncompressed 48kHz 16/24-bit &gt; Loudness -23 LUFS (cek Fairlight meter!) &gt; Render! Selalu minta spec resmi dari broadcaster/klien — bisa berbeda sedikit.</p>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Delivery Checklist Sebelum Mengirim Final</div>
+      <p>Tonton SELURUH video hasil export (QC — cek glitch, frame hilang, isu audio sync) · cek loudness metering (target LUFS tercapai?) · verifikasi resolusi sesuai spec · test playback di berbagai device (komputer, telepon, TV) · file naming jelas &amp; deskriptif · sertakan metadata (nama creator, copyright, dll).</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="backup">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Archiving &amp; Backup Strategies</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Backup Kritis?</div>
+      <p style="font-size:.88rem;margin-bottom:8px;">Skenario bencana: hard drive rusak (terjadi!), penghapusan tidak sengaja, komputer dicuri/rusak, korupsi file project. Tanpa backup: kehilangan SEMUANYA! Berjam-jam kerja HILANG! Dengan backup: restore, lanjutkan bekerja.</p>
+      <p style="font-size:.88rem;"><b>Rule:</b> "Jika data tidak ada di 3 tempat, anggap tidak ada (3-2-1 rule)."</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">3-2-1 Backup Rule</div>
+      <p><b>3 copies</b> data: 1x working copy (drive editing) + 2x backup. <b>2 media berbeda:</b> contoh SSD + External HDD (bukan dua SSD — failure mode sama!). <b>1 off-site:</b> cloud storage atau drive fisik di tempat lain (proteksi kebakaran/banjir). Contoh implementasi: Copy 1 = SSD (working drive), Copy 2 = External HDD #1 (backup lokal), Copy 3 = Cloud Storage (Google Drive, Backblaze) atau External HDD #2 di rumah teman.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Yang Harus Di-backup</div><div class="gc-body"><b>Esensial:</b> raw footage (PALING PENTING — tidak bisa diganti!), project files (.drp, .kdenlive), assets (musik, SFX, graphics terpakai), exports (video final + master file). <b>Opsional (hemat space):</b> cache files, render files, proxy (semua regeneratable).</div></div>
+      <div class="grid-card"><div class="gc-title">Metode Backup</div><div class="gc-body">External HDD (cepat, lokal, full control, namun risiko fisik). Cloud storage — Google Drive (15GB gratis), Backblaze ($7/bulan unlimited), Dropbox/OneDrive (off-site, sync otomatis, tapi upload lambat). NAS — Synology/QNAP (terpusat, RAID redundancy, biaya awal $300–1000+). Rekomendasi: External HDD + Cloud (terjangkau &amp; efektif!).</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Mengarsipkan Project Lama &amp; Umur Hard Drive <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Setelah project selesai:</b> hapus file tidak perlu (cache, proxy, footage tidak terpakai), konsolidasikan project (semua media di subfolder + project file + final export), compress (ZIP/RAR — hemat space), beri label jelas ("ProjectName_2024-12-15_ARCHIVE.zip"), simpan di External HDD (sejuk, kering) atau cloud. Sertakan README.txt dengan catatan project (versi software, plugin khusus dipakai) — membantu Anda di masa depan!</p>
+        <p><b>Umur HDD:</b> 3–5 tahun. <b>Umur SSD:</b> 5–7 tahun (bervariasi sesuai penggunaan). Best practice: refresh backup tiap beberapa tahun (copy ke drive baru) untuk menghindari kehilangan data akibat drive yang menua!</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="final-project">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Final Project Guidelines (UAS Preparation)</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">UAS (Pertemuan 16) — Preview</div>
+      <p>UAS terdiri dari: Final Video Project (60%), Portfolio Presentation (20%), Written Test (20%). Total bobot UAS: 40% dari nilai akhir!</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Final Video Project Requirements (Preview)</div>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Objective:</b> buat video polished &amp; profesional yang mendemonstrasikan SEMUA skill yang dipelajari sepanjang semester.</p>
+      <p style="font-size:.88rem;margin-bottom:8px;"><b>Spesifikasi:</b> durasi 3–5 menit, resolusi 1920x1080 (minimum), tema bebas (narrative short, dokumenter, komersial, music video, explainer, tutorial, dll).</p>
+      <ul class="styled">
+        <li>Professional editing (pacing, storytelling, transisi)</li>
+        <li>Color grading (sinematik/kreatif — tidak flat!)</li>
+        <li>Audio post-production (dialog bersih, SFX, musik, mixing tepat)</li>
+        <li>VFX/compositing (minimum 2 teknik: tracking, masking, green screen, dll)</li>
+        <li>Motion graphics (animated titles, lower thirds, atau graphics)</li>
+        <li>Proper export (settings benar, standar loudness)</li>
+      </ul>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Submission</div><div class="gc-body">Video file: FinalProject_NamaAnda.mp4 (H.264, 10 Mbps). Project files: zipped DaVinci/Kdenlive project + media. Dokumentasi PDF: concept statement, technical breakdown, challenges &amp; solutions, references/inspirasi.</div></div>
+      <div class="grid-card"><div class="gc-title">Timeline Persiapan</div><div class="gc-body"><b>Minggu 15 (sekarang!):</b> brainstorm konsep, script/outline, storyboard scene kunci, shot list, siapkan equipment. <b>Minggu 16 (sebelum UAS):</b> shoot footage (sediakan satu hari penuh!), import &amp; organisasi media, assembly edit. <b>Minggu UAS:</b> fine edit, color, audio mixing, VFX, graphics, export &amp; QC check, submit!</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Memilih Konsep — Tips &amp; Hal yang Dihindari <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Tips:</b> mainkan kekuatan Anda (bagus interview? buat mini-dokumenter!), passion project (pilih topik yang Anda pedulikan — motivasi!), scope yang manageable (3-5 menit ≠ feature film! tetap sederhana tapi polished), technical showcase (pilih konsep yang memungkinkan VFX/graphics secara natural).</p>
+        <p><b>Hindari:</b> terlalu ambisius (tidak bisa selesai tepat waktu!), membosankan (tunjukkan kreativitas!), terlalu sederhana (editing minimal — tidak mendemonstrasikan skill!).</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Portfolio Presentation (20%)</div><div class="gc-body">Presentasi ke kelas (5-7 menit) mencakup: konsep &amp; inspirasi, proses pre-production, teknik teknis dipakai, challenges &amp; solusi, lessons learned. Dinilai dari: kejelasan komunikasi, pemahaman teknis, profesionalisme.</div></div>
+      <div class="grid-card"><div class="gc-title">Written Test (20%)</div><div class="gc-body">Format: pilihan ganda + jawaban singkat. Topik: video editing techniques (P1-10), color grading (P11), VFX basics (P12), audio post (P13), motion graphics (P14), production workflow (P15). Waktu: 60 menit. Study tips: review semua rangkuman modul, re-watch video tutorial kunci.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="rangkuman">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Rangkuman</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Key Takeaways</div>
+      <p>Complete production pipeline (pre, production, post, delivery, archiving) · Pre-production planning (script, storyboard, shot list) KRITIS · Workflow editing efisien (assembly → fine edit, shortcut, template) · Proxy workflow (editing 4K di sistem low-end) · Media management (struktur folder, naming, metadata, cache) · Collaboration tools (XML/AAF export, Frame.io, versions) · Delivery specs berbeda per platform (YouTube H.264, Instagram square/vertical, Broadcast ProRes) · 3-2-1 backup rule (3 copies, 2 media, 1 off-site) · Final project planning (mulai awal, scope manageable, tunjukkan skill).</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Anda sekarang memiliki pengetahuan workflow profesional yang lengkap!</div>
+      <p style="font-size:.88rem;">Selanjutnya (Pertemuan 16): UAS — Ujian Akhir Semester. Final video project (60%), Portfolio presentation (20%), Written test (20%)! Waktunya bersinar — tunjukkan semua yang telah Anda pelajari. Keep creating!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

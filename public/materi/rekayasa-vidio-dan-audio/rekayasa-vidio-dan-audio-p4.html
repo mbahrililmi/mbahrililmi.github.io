@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 3 – Visual Literacy &amp; Visual Rhetoric | Desain Komunikasi Visual</title>
+<title>Pertemuan 4 – Audio Editing dengan Audacity | Rekayasa Video dan Audio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -67,6 +67,7 @@ ul.styled li::marker{color:var(--gold);}
 .rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
 .rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
 .rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
 .section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
 .footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
 .footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
@@ -130,32 +131,33 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Desain Komunikasi Visual</div>
-    <div class="course-title">Visual Literacy &amp; Visual Rhetoric</div>
-    <div class="pertemuan-badge">Pertemuan 3</div>
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Audio Editing dengan Audacity</div>
+    <div class="pertemuan-badge">Pertemuan 4</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#visual-literacy" class="toc-link">Visual Literacy</a>
-    <a href="#levels-meaning" class="toc-link">Levels of Meaning</a>
-    <a href="#visual-rhetoric" class="toc-link">Visual Rhetoric</a>
-    <a href="#ethos-pathos-logos" class="toc-link">Ethos, Pathos, Logos</a>
-    <a href="#strategi" class="toc-link">Strategi Rhetorical</a>
-    <a href="#semiotics" class="toc-link">Intro Semiotics</a>
-    <a href="#praktikum" class="toc-link">Praktikum &amp; Tugas</a>
+    <a href="#pengantar" class="toc-link">Pengantar &amp; Tujuan</a>
+    <a href="#interface" class="toc-link">Interface Audacity</a>
+    <a href="#import-export" class="toc-link">Import &amp; Manajemen File</a>
+    <a href="#editing-dasar" class="toc-link">Selection &amp; Basic Editing</a>
+    <a href="#effects" class="toc-link">Effects Esensial</a>
+    <a href="#multitrack" class="toc-link">Multi-Track &amp; Mixing</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#tips" class="toc-link">Tips &amp; Workflow</a>
+    <a href="#tugas" class="toc-link">Tugas</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 3 · Desain Komunikasi Visual</div>
-    <h1>Visual Literacy &amp; Visual Rhetoric</h1>
-    <p class="subtitle">Kemampuan "membaca" dan "menulis" secara visual, serta bagaimana visual membujuk melalui ethos, pathos, logos — plus pengenalan semiotics.</p>
+    <div class="pre-title">Pertemuan 4 · Rekayasa Video dan Audio</div>
+    <h1>Audio Editing dengan Audacity</h1>
+    <p class="subtitle">Menguasai interface Audacity, teknik editing (cutting, trimming, splitting), effect esensial (noise reduction, normalization, EQ, compression, limiter), multi-track mixing, dan export untuk berbagai keperluan delivery.</p>
     <div class="header-meta">
-      <div class="meta-badge">Topik: <span>Persuasi Visual</span></div>
-      <div class="meta-badge">Teori: <span>Aristotle's Appeals</span></div>
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
       <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
     </div>
   </div>
@@ -163,58 +165,77 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="pengantar">
     <div class="section-header">
       <div class="section-num">1</div>
-      <h2>Pengantar</h2>
+      <h2>Pengantar &amp; Tujuan Pembelajaran</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Visual Memiliki Rhetorical Power</div>
-      <p>Sejak zaman Yunani kuno, rhetoric dipelajari sebagai seni persuasi melalui bahasa. Di era modern, visual memiliki kekuatan persuasif yang sama — bahkan mungkin lebih kuat. Sebuah foto dapat memicu emosi instant, sebuah logo dapat membangun trust, sebuah infografis dapat mengubah opini. Dalam pertemuan ini Anda belajar bagaimana visual "berargumen" dan bagaimana meng-craft pesan visual yang tidak hanya inform, tetapi juga persuade dan inspire action.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu melakukan editing audio menggunakan Audacity untuk keperluan podcast, voice over, dan audio cleanup.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">"Editing adalah Tempat Recording yang Baik Menjadi Audio yang Hebat"</div>
+      <p style="font-size:.88rem;line-height:1.75;">Recording adalah foundation, tetapi <b>editing</b> adalah tempat keajaiban sesungguhnya terjadi. Audacity adalah audio editor gratis dan open-source yang mampu menghasilkan hasil profesional — digunakan oleh ribuan podcaster, YouTuber, voice over artist, dan musisi independen di seluruh dunia.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Pertemuan ini akan mentransformasi kemampuan dari "saya bisa merekam" menjadi <b>"saya bisa memproduksi audio profesional dan polished"</b> — applicable untuk podcast production, voice over, audio cleanup, music editing, dan sound design.</p>
     </div>
     <div class="card">
       <div class="card-title">Tujuan Pembelajaran</div>
       <ol class="styled">
-        <li>Menjelaskan konsep visual literacy dan pentingnya di era digital</li>
-        <li>Mengidentifikasi elemen "bahasa" visual</li>
-        <li>Memahami konsep visual rhetoric dan persuasi visual</li>
-        <li>Menerapkan ethos, pathos, logos dalam konteks visual</li>
-        <li>Menganalisis pesan visual secara kritis</li>
-        <li>Memahami dasar-dasar semiotics</li>
-        <li>Merancang komunikasi visual yang persuasif</li>
+        <li>Navigasi interface Audacity dengan percaya diri dan efisien</li>
+        <li>Import dan kelola file audio dalam berbagai format</li>
+        <li>Menggunakan selection tools untuk editing yang presisi</li>
+        <li>Melakukan cutting, copying, pasting, dan trimming audio secara akurat</li>
+        <li>Mengaplikasikan effect: Noise Reduction, Normalization, Equalization, Compression, dan Limiting</li>
+        <li>Bekerja dengan multi-track project untuk podcast atau music production</li>
+        <li>Membuat transisi smooth menggunakan fade in/out dan crossfade</li>
+        <li>Generate tone, silence, dan elemen audio lainnya</li>
+        <li>Export audio dalam format yang sesuai untuk delivery</li>
+        <li>Troubleshoot masalah audio umum dan menerapkan teknik korektif</li>
       </ol>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <section class="content-section" id="visual-literacy">
+  <section class="content-section" id="interface">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Visual Literacy</h2>
+      <h2>Audacity Interface Deep Dive</h2>
     </div>
 
     <div class="grid-3">
-      <div class="grid-card"><div class="gc-title">Visual Reading</div><div class="gc-body">Decode pesan visual, identifikasi elemen dan prinsip desain, kenali konvensi dan simbol.</div></div>
-      <div class="grid-card"><div class="gc-title">Visual Writing</div><div class="gc-body">Encode ide ke dalam visual, pilih strategi visual yang tepat, compose pesan efektif.</div></div>
-      <div class="grid-card"><div class="gc-title">Critical Visual Thinking</div><div class="gc-body">Analyze visual arguments, evaluate evidence, deteksi bias dan manipulasi.</div></div>
+      <div class="grid-card"><div class="gc-title">Menu Bar</div><div class="gc-body">File (project, import, export), Edit, Select, View, Transport, Tracks, Generate, Effect, Analyze, Tools, Help.</div></div>
+      <div class="grid-card"><div class="gc-title">Transport Toolbar</div><div class="gc-body">Pause, Play (Space), Stop, Skip to Start/End, Record (R).</div></div>
+      <div class="grid-card"><div class="gc-title">Tools Toolbar</div><div class="gc-body">Selection Tool (I), Envelope Tool (E), Draw Tool (D), Zoom Tool (Z), Time Shift Tool (T), Multi-Tool (F6).</div></div>
+      <div class="grid-card"><div class="gc-title">Meter Toolbars</div><div class="gc-body">Recording meter (input level) dan Playback meter (output level). Klik dropdown untuk monitoring option.</div></div>
+      <div class="grid-card"><div class="gc-title">Track Panel</div><div class="gc-body">Mute, Solo, Track Dropdown (nama/format), Gain Slider, Pan Slider per track.</div></div>
+      <div class="grid-card"><div class="gc-title">Waveform Display</div><div class="gc-body">Representasi visual audio (biru). Stereo: atas = left, bawah = right. Selection ditandai warna lebih terang.</div></div>
     </div>
 
     <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">Mengapa Visual Literacy Penting? <span class="icon">▼</span></div>
+      <div class="accordion-header" onclick="toggleAccordion(this)">Keyboard Shortcuts Esensial <span class="icon">▼</span></div>
       <div class="accordion-body">
-        <ul class="styled">
-          <li><b>Information overload:</b> Kita terekspos 5000+ pesan visual per hari</li>
-          <li><b>Digital age:</b> Social media didominasi visual — Instagram, TikTok, Pinterest. Emoji dan memes sebagai bahasa visual baru</li>
-          <li><b>Era misinformasi:</b> Fake news, deep fakes, photo manipulation — visual literacy melindungi dari deception</li>
-          <li><b>Professional necessity:</b> Hampir semua profesi melibatkan komunikasi visual — presentations, reports, social media</li>
-        </ul>
+        <table class="rubric-table">
+          <thead><tr><th>Kategori</th><th>Shortcut</th></tr></thead>
+          <tbody>
+            <tr><td>Play/Stop</td><td>Space · Shift+Space (loop selection)</td></tr>
+            <tr><td>Select All / Deselect</td><td>Ctrl+A / Ctrl+Shift+A</td></tr>
+            <tr><td>Cut / Copy / Paste</td><td>Ctrl+X / Ctrl+C / Ctrl+V</td></tr>
+            <tr><td>Delete / Silence</td><td>Del atau Ctrl+K / Ctrl+L</td></tr>
+            <tr><td>Trim ke Selection</td><td>Ctrl+T</td></tr>
+            <tr><td>Split clip</td><td>Ctrl+I</td></tr>
+            <tr><td>Zoom Normal / Fit Project</td><td>Ctrl+1 / Ctrl+2</td></tr>
+            <tr><td>Undo / Redo</td><td>Ctrl+Z (unlimited!) / Ctrl+Y</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">"Grammar" of Visual Language <span class="icon">▼</span></div>
+      <div class="accordion-header" onclick="toggleAccordion(this)">Preferences Penting (Edit &gt; Preferences) <span class="icon">▼</span></div>
       <div class="accordion-body">
         <ul class="styled">
-          <li><b>Visual Vocabulary (elemen):</b> dot, line, shape, form, space, texture, color, typography</li>
-          <li><b>Visual Syntax (prinsip):</b> balance, contrast, emphasis, unity, movement, rhythm, proportion</li>
-          <li><b>Visual Context:</b> cultural (makna simbol per budaya), historical, social, medium (print vs digital)</li>
+          <li><b>Quality:</b> Default Sample Rate 48000 Hz, Default Sample Format 32-bit float (terbaik)</li>
+          <li><b>Import/Export:</b> "Copy data into project" UNCHECK (hemat ruang)</li>
+          <li><b>Interface:</b> "Show clipping" CHECK — penting untuk identifikasi clipping</li>
+          <li><b>Tracks:</b> Display default Waveform, Solo Button mode Simple (direkomendasikan)</li>
         </ul>
       </div>
     </div>
@@ -222,170 +243,162 @@ ul.styled li::marker{color:var(--gold);}
 
   <hr class="section-divider">
 
-  <section class="content-section" id="levels-meaning">
+  <section class="content-section" id="import-export">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Levels of Meaning</h2>
+      <h2>Import, Export, dan Manajemen Project</h2>
     </div>
 
-    <div class="grid-3">
-      <div class="grid-card">
-        <div class="gc-title">1. Denotative</div>
-        <div class="gc-body"><b>What you see.</b> Makna literal, deskriptif, objektif. Contoh: "apel" = buah bulat merah.</div>
-      </div>
-      <div class="grid-card">
-        <div class="gc-title">2. Connotative</div>
-        <div class="gc-body"><b>What it suggests.</b> Makna asosiatif, simbolik, emosional. Contoh: apel → kesehatan, godaan, teknologi (Apple Inc.).</div>
-      </div>
-      <div class="grid-card">
-        <div class="gc-title">3. Ideological</div>
-        <div class="gc-body"><b>What beliefs it promotes.</b> Nilai, asumsi, worldview di balik visual. Memerlukan analisis kritis.</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">Framework Visual Analysis</div>
-      <ul class="styled">
-        <li><b>Content:</b> Apa yang literally ditampilkan? Subjek, objek, setting, warna, teks?</li>
-        <li><b>Context:</b> Di mana muncul? Kapan? Siapa creator? Siapa audiens?</li>
-        <li><b>Composition:</b> Bagaimana elemen diatur? Focal point? Visual hierarchy?</li>
-        <li><b>Codes &amp; Conventions:</b> Simbol/ikon? Genre conventions? Kode kultural?</li>
-        <li><b>Connotations:</b> Makna asosiatif? Emosi yang ditimbulkan?</li>
-        <li><b>Rhetoric:</b> Apa argumennya? Bagaimana membujuk?</li>
-        <li><b>Ideology:</b> Worldview apa yang dipresentasikan? Kepentingan siapa?</li>
-      </ul>
-    </div>
-  </section>
-
-  <hr class="section-divider">
-
-  <section class="content-section" id="visual-rhetoric">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Visual Rhetoric</h2>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Import Audio</div><div class="gc-body">File &gt; Import &gt; Audio (Ctrl+Shift+I), drag-and-drop dari Explorer, atau Open (Ctrl+O) untuk window project baru.</div></div>
+      <div class="grid-card"><div class="gc-title">Format yang Didukung</div><div class="gc-body">Import: WAV, AIFF, FLAC, MP3, OGG, M4A/AAC, WMA. Export: WAV, AIFF, MP3 (perlu LAME encoder), OGG, FLAC, M4A (perlu FFmpeg).</div></div>
     </div>
 
     <div class="highlight-box">
-      <div class="hb-title">Key Premises</div>
-      <p>Visual <b>tidak pernah netral</b> atau objektif. Visual membuat argumen dan memajukan posisi tertentu. Setiap pilihan visual adalah pilihan rhetorical. Memahami visual rhetoric membantu Anda baik dalam <b>menganalisis</b> maupun <b>menciptakan</b> desain.</p>
-    </div>
-
-    <div class="sub-section">
-      <h3>Types of Visual Arguments</h3>
-      <div class="grid-2">
-        <div class="grid-card"><div class="gc-title">Categorical Claims</div><div class="gc-body">"X adalah anggota kategori Y". Contoh: iklan menampilkan produk di antara barang mewah → "ini produk luxury".</div></div>
-        <div class="grid-card"><div class="gc-title">Causal Claims</div><div class="gc-body">"X menyebabkan Y". Contoh: iklan anti-rokok menampilkan rokok → paru-paru rusak.</div></div>
-        <div class="grid-card"><div class="gc-title">Evaluative Claims</div><div class="gc-body">"X itu baik/buruk". Contoh: poster lingkungan — alam asri vs polusi.</div></div>
-        <div class="grid-card"><div class="gc-title">Proposal Claims</div><div class="gc-body">"Kita seharusnya melakukan X". Contoh: poster kesehatan publik mengajak vaksinasi.</div></div>
-      </div>
+      <div class="hb-title">Project (.aup3) vs Export Audio</div>
+      <p><b>Save Project (Ctrl+S):</b> menyimpan seluruh edit, track, effect dalam format .aup3 — non-destructive, hanya bisa dibuka di Audacity, BUKAN format deliverable.</p>
+      <p style="margin-top:8px;"><b>Export Audio (Ctrl+Shift+E):</b> membuat file deliverable (WAV, MP3, dll) yang bisa dibagikan/diupload — pilih format berdasarkan use case.</p>
+      <p style="margin-top:8px;"><b>Workflow rekomendasi:</b> Import/Record raw audio → Edit → Save Project secara berkala → Export Audio sebagai langkah terakhir.</p>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <section class="content-section" id="ethos-pathos-logos">
+  <section class="content-section" id="editing-dasar">
     <div class="section-header">
-      <div class="section-num">5</div>
-      <h2>Ethos, Pathos, Logos</h2>
+      <div class="section-num">4</div>
+      <h2>Selection Tools dan Basic Editing</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Membuat Selection</h3>
+      <ul class="styled">
+        <li>Selection Tool (I) / klik: place cursor. Klik &amp; drag: select region. Drag tepi: expand/shrink selection.</li>
+        <li>Selection Toolbar: ketik nilai start/end yang presisi. Snap-To (View &gt; Snap To): align ke detik/beat.</li>
+        <li>Shortcut: Ctrl+A (select all dalam track), double-click track (select entire), Shift+Click (extend selection)</li>
+      </ul>
     </div>
 
     <div class="tab-group">
       <div class="tab-buttons">
-        <button class="tab-btn active" onclick="switchTab(this,'tab-ethos')">ETHOS</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-pathos')">PATHOS</button>
-        <button class="tab-btn" onclick="switchTab(this,'tab-logos')">LOGOS</button>
+        <button class="tab-btn active" onclick="switchTab(this,'tab-cutcopy')">Cut/Copy/Paste/Delete</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-trim')">Trim &amp; Split</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-silence')">Silence (Ctrl+L)</button>
       </div>
-      <div id="tab-ethos" class="tab-panel active">
-        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Credibility — Appeal berbasis kredibilitas dan trustworthiness</p>
-        <ul class="styled">
-          <li><b>Professional design quality:</b> layout bersih, branding konsisten, imagery berkualitas tinggi</li>
-          <li><b>Authoritative imagery:</b> jas lab, diploma, expert testimonials dengan foto</li>
-          <li><b>Brand symbols:</b> logo established, award badges, "as seen in" media logos</li>
-          <li><b>Contoh:</b> iklan medis menampilkan dokter di rumah sakit, financial services dengan corporate blue</li>
-          <li><b>Red flags (weak ethos):</b> desain buruk, typo, stock photo generik, branding inkonsisten</li>
-        </ul>
+      <div id="tab-cutcopy" class="tab-panel active">
+        <table class="rubric-table">
+          <thead><tr><th>Aksi</th><th>Shortcut</th><th>Efek</th></tr></thead>
+          <tbody>
+            <tr><td>Cut</td><td>Ctrl+X</td><td>Hapus selection, simpan ke clipboard, gap menutup (ripple delete)</td></tr>
+            <tr><td>Copy</td><td>Ctrl+C</td><td>Copy ke clipboard, audio asli tidak berubah</td></tr>
+            <tr><td>Paste</td><td>Ctrl+V</td><td>Sisipkan clipboard pada posisi cursor, audio setelahnya bergeser kanan</td></tr>
+            <tr><td>Delete</td><td>Del / Ctrl+K</td><td>Hapus selection, TIDAK disimpan ke clipboard, gap menutup</td></tr>
+          </tbody>
+        </table>
       </div>
-      <div id="tab-pathos" class="tab-panel">
-        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Emotion — Appeal ke emosi, nilai, dan kepercayaan audiens</p>
-        <ul class="styled">
-          <li><b>Emotional imagery:</b> wajah berekspresi, human interest, before/after, bayi &amp; hewan lucu</li>
-          <li><b>Color psychology:</b> merah=urgency, biru=trust, kuning=optimisme, hitam=luxury</li>
-          <li><b>Visual metaphors:</b> journey, growth, light vs darkness</li>
-          <li><b>Composition:</b> low angle=power, high angle=vulnerability, close-up=intimacy</li>
-          <li><b>Etika:</b> bedakan emotional appeal yang sah vs manipulasi dan fear-mongering</li>
-        </ul>
+      <div id="tab-trim" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Trim ke selection (Ctrl+T):</b> pilih bagian yang ingin DISIMPAN, semua di luar selection akan dihapus. Cocok untuk menghapus silence di awal/akhir atau mengekstrak bagian dari rekaman panjang.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:8px;"><b>Splitting (Ctrl+I):</b> Edit &gt; Clip Boundaries &gt; Split — membagi track pada cursor/selection boundary menjadi clip terpisah, memudahkan pemindahan independen dengan Time Shift Tool (T).</p>
       </div>
-      <div id="tab-logos" class="tab-panel">
-        <p style="font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:10px;">Logic — Appeal ke nalar, fakta, dan bukti</p>
-        <ul class="styled">
-          <li><b>Data visualization:</b> charts, graphs, infographics, comparison tables, timelines</li>
-          <li><b>Demonstrative images:</b> before/after, step-by-step, diagram cara kerja</li>
-          <li><b>Textual evidence:</b> quotes ahli, research findings, testimonial spesifik</li>
-          <li><b>Clean design:</b> visual hierarchy logis, fokus pada fakta</li>
-          <li><b>Balance:</b> pure logos bisa kering — kombinasikan dengan ethos dan pathos</li>
-        </ul>
+      <div id="tab-silence" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;">Menggantikan selection dengan silence (zeros) — TIDAK menghapus durasi waktu, hanya membuat senyap.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:8px;"><b>Silence vs Delete:</b> Delete menghapus waktu dan menutup gap; Silence mempertahankan waktu, hanya membuat senyap. Use case: menghapus batuk/napas/noise burst tanpa mempengaruhi sinkronisasi, atau membuat pause tanpa rekam ulang.</p>
       </div>
     </div>
   </section>
 
   <hr class="section-divider">
 
-  <section class="content-section" id="strategi">
+  <section class="content-section" id="effects">
     <div class="section-header">
-      <div class="section-num">6</div>
-      <h2>Strategi Visual Rhetorical</h2>
-    </div>
-    <div class="grid-2">
-      <div class="grid-card"><div class="gc-title">Juxtaposition</div><div class="gc-body">Menempatkan elemen kontras berdampingan: before/after, problem vs solution.</div></div>
-      <div class="grid-card"><div class="gc-title">Framing</div><div class="gc-body">Apa yang dimasukkan vs dikecualikan. Camera angle, distance, konteks.</div></div>
-      <div class="grid-card"><div class="gc-title">Metaphor &amp; Symbolism</div><div class="gc-body">Representasi visual dari konsep abstrak — journey, war, growth.</div></div>
-      <div class="grid-card"><div class="gc-title">Identification</div><div class="gc-body">Koneksi viewer dengan subjek — "people like you", aspirational imagery.</div></div>
-      <div class="grid-card"><div class="gc-title">Narrative</div><div class="gc-body">Bercerita melalui visual sequence atau single image yang suggest cerita besar.</div></div>
-      <div class="grid-card"><div class="gc-title">Scale &amp; Absence</div><div class="gc-body">Ukuran menunjukkan kepentingan. Yang TIDAK ditampilkan juga berbicara.</div></div>
-    </div>
-  </section>
-
-  <hr class="section-divider">
-
-  <section class="content-section" id="semiotics">
-    <div class="section-header">
-      <div class="section-num">7</div>
-      <h2>Introduction to Semiotics</h2>
-    </div>
-
-    <div class="highlight-box">
-      <div class="hb-title">Semiotics = Ilmu tentang Tanda</div>
-      <p>Semiotics mempelajari signs dan bagaimana mereka menciptakan makna. Founder: Ferdinand de Saussure dan Charles Sanders Peirce. Sebuah <b>sign</b> terdiri dari <b>SIGNIFIER</b> (bentuk: gambar, kata, suara) dan <b>SIGNIFIED</b> (konsep/makna). Contoh: tanda oktagonal merah (signifier) → STOP (signified).</p>
+      <div class="section-num">5</div>
+      <h2>Effects Audio Esensial</h2>
     </div>
 
     <div class="sub-section">
-      <h3>Peirce's Trichotomy of Signs</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">ICON</div>
-          <div class="gc-body"><b>Menyerupai</b> yang direpresentasikan. Foto, ilustrasi realistis, peta. Dalam desain: trash can icon, packaging menampilkan isi produk.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">INDEX</div>
-          <div class="gc-body"><b>Koneksi langsung/kausal.</b> Asap → api, jejak kaki → seseorang lewat. Dalam desain: progress bar, loading spinner, pointer cursor.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">SYMBOL</div>
-          <div class="gc-body"><b>Arbitrary, konvensional.</b> Makna dipelajari secara kultural. Bendera, simbol agama, traffic light. Dalam desain: Nike swoosh, color coding.</div>
-        </div>
-      </div>
+      <h3>Noise Reduction (Two-Step Process)</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Menghilangkan background noise konstan (hum, hiss, fan, AC).</p>
+      <ol class="styled">
+        <li><b>Get Noise Profile:</b> pilih region yang HANYA berisi noise (tanpa speech/music), biasanya 1-2 detik di awal/akhir rekaman</li>
+        <li><b>Apply Noise Reduction:</b> select region untuk diproses (atau Ctrl+A untuk seluruh track). Setting: Noise Reduction 12-18 dB (lebih tinggi = lebih agresif), Sensitivity 6.00, Frequency Smoothing 3-6 bands</li>
+      </ol>
+      <p style="font-size:.85rem;color:#555;margin-top:6px;"><b>Tips:</b> less is more — terlalu agresif menyebabkan artifact "underwater". Mulai konservatif (12 dB). Hanya efektif untuk noise konstan, bukan suara variatif (suara latar, traffic).</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Normalization, EQ, Compression, Limiter</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Effect</th><th>Tujuan</th><th>Setting Khas</th></tr></thead>
+        <tbody>
+          <tr><td><b>Peak Normalization</b></td><td>Maksimalkan loudness tanpa mengubah dynamic range</td><td>Normalize peak ke -1.0 dB, Remove DC offset CHECK</td></tr>
+          <tr><td><b>Loudness Normalization</b></td><td>Adjust perceived loudness (LUFS)</td><td>Target -16 LUFS (streaming)</td></tr>
+          <tr><td><b>EQ — High-pass</b></td><td>Hapus rumble frekuensi rendah</td><td>Drag bawah 20-80 Hz down</td></tr>
+          <tr><td><b>EQ — Presence boost</b></td><td>Clarity, kejelasan suara</td><td>Boost 2-5 kHz</td></tr>
+          <tr><td><b>EQ — De-essing</b></td><td>Reduksi sibilance (S harsh)</td><td>Cut 6-8 kHz</td></tr>
+          <tr><td><b>Compressor</b></td><td>Ratakan dynamic range</td><td>Threshold -20dB, Ratio 3:1, Attack 5ms, Release 200ms</td></tr>
+          <tr><td><b>Limiter</b></td><td>Cegah peak melebihi level (hard ceiling)</td><td>Limit to -1.0 dB, Hold 10ms</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;color:#555;"><b>Limiter vs Compression:</b> compression adalah reduksi gradual (ratio); limiter adalah hard ceiling (ratio ekstrem 20:1+) — "brick wall" yang tidak meloloskan apapun di atasnya.</p>
     </div>
 
     <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">Codes dan Conventions <span class="icon">▼</span></div>
+      <div class="accordion-header" onclick="toggleAccordion(this)">Effect Tambahan Berguna <span class="icon">▼</span></div>
       <div class="accordion-body">
         <ul class="styled">
-          <li><b>Technical codes:</b> camera angle, lighting (high-key=positif, low-key=dramatis), editing</li>
-          <li><b>Symbolic codes:</b> objek, setting, body language, pakaian, warna, tipografi</li>
-          <li><b>Written codes:</b> bahasa, headline, caption, slogan</li>
-          <li>Memahami codes membantu decode pesan existing dan encode pesan baru secara efektif</li>
+          <li><b>Fade In/Out:</b> transisi volume gradual, smooth dan profesional</li>
+          <li><b>Crossfade Tracks:</b> transisi antar track dengan overlap (Generate &gt; Crossfade Clips)</li>
+          <li><b>Amplify:</b> ubah volume dengan jumlah dB spesifik (berbeda dari Normalize yang otomatis)</li>
+          <li><b>Change Pitch:</b> ubah pitch tanpa mengubah speed (voice: 1-2 semitone)</li>
+          <li><b>Change Tempo:</b> ubah speed tanpa mengubah pitch (tanpa efek "chipmunk")</li>
+          <li><b>Click Removal:</b> hilangkan klik/pop dari vinyl rip atau rekaman buruk</li>
+          <li><b>Repair:</b> perbaiki section sangat singkat (&lt;128 sample) dengan interpolasi</li>
         </ul>
       </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Typical Processing Chain</div>
+      <p><b>Noise Reduction → EQ → Compression → Normalization → Limiter</b>. Urutan ini memastikan audio bersih dari noise terlebih dahulu, lalu frekuensi diseimbangkan, dinamika diratakan, level dimaksimalkan, dan terakhir diberi safety ceiling sebelum export.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="multitrack">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Multi-Track Editing dan Mixing</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Track Controls</div><div class="gc-body"><b>Mute:</b> bisukan track saat playback. <b>Solo:</b> putar HANYA track ini. <b>Gain Slider:</b> -36 dB hingga +36 dB. <b>Pan Slider:</b> posisi stereo L/R.</div></div>
+      <div class="grid-card"><div class="gc-title">Generate Menu</div><div class="gc-body">Tone (sine/square/sawtooth), Silence, White/Pink Noise, Chirp (frequency sweep), DTMF, Pluck, Risset Drum — untuk sound design dan test signal.</div></div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Proses Mixing dan Balancing</h3>
+      <ol class="styled">
+        <li><b>Rough balance:</b> putar semua track, adjust gain slider — konten utama (voice) harus paling jelas dan keras, background (musik) mendukung tanpa mengalahkan</li>
+        <li><b>Panning:</b> jaga konten penting di tengah, pan elemen pendukung untuk width</li>
+        <li><b>EQ per track:</b> hilangkan konflik frekuensi (voice vs musik), potong low-end musik agar voice lebih jelas</li>
+        <li><b>Automation (Envelope Tool, tombol E):</b> fade musik turun saat ada voice, fade in/out di transisi, buat automation point untuk volume ride yang halus</li>
+        <li><b>Verifikasi:</b> putar berulang pada volume berbeda, cek mono compatibility</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Podcast Production Workflow</div>
+      <ol class="styled">
+        <li><b>Import assets:</b> voice recording, intro music, outro music, jingle</li>
+        <li><b>Arrange:</b> intro music (fade out saat voice mulai) → konten utama → mid-roll → outro music</li>
+        <li><b>Edit:</b> hapus kesalahan, pause panjang, ums/ahs; silence napas berlebih; normalize level</li>
+        <li><b>Effects:</b> noise reduction (track voice) → EQ (high-pass) → compression → limiter (safety)</li>
+        <li><b>Mix:</b> balance voice &amp; musik, automation fade, transisi antar segmen</li>
+        <li><b>Master:</b> loudness normalization (-16 LUFS podcast), final limiter (-1 dB)</li>
+        <li><b>Export:</b> MP3 192kbps stereo (atau 128kbps mono speech-only), metadata, file naming yang konsisten</li>
+        <li><b>QC:</b> full playback di sistem berbeda, verifikasi kualitas export</li>
+      </ol>
     </div>
   </section>
 
@@ -393,47 +406,114 @@ ul.styled li::marker{color:var(--gold);}
 
   <section class="content-section" id="praktikum">
     <div class="section-header">
-      <div class="section-num">8</div>
-      <h2>Praktikum &amp; Tugas</h2>
+      <div class="section-num">7</div>
+      <h2>Praktikum</h2>
     </div>
 
     <div class="card">
-      <div class="card-title">Praktikum 1: Visual Rhetorical Analysis</div>
-      <ul class="styled">
-        <li>Pilih 2 visual: 1 product advertising + 1 social cause campaign</li>
-        <li>Analisis lengkap: Description, Context, Ethos/Pathos/Logos (rating 1-10), Strategies, Semiotic analysis, Evaluation</li>
-        <li>Format: PDF 1500-2000 kata dengan gambar berkualitas</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title">Praktikum 2: Design a Persuasive Poster</div>
-      <ul class="styled">
-        <li>Pilih cause: environmental, public health, education, atau social justice</li>
-        <li>Tentukan strategi: primary appeal (ethos/pathos/logos), tone, key message (max 10 kata)</li>
-        <li>3 concept sketches → pilih terkuat → eksekusi digital A3, 300 DPI</li>
-        <li>Submit: research &amp; strategy + sketches + final poster + design rationale</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title">Praktikum 3: Semiotic Deconstruction</div>
-      <ul class="styled">
-        <li>Sign inventory: minimal 15-20 signs (tabel Signifier | Signified | Type)</li>
-        <li>Analisis denotation vs connotation dua kolom</li>
-        <li>Ideological analysis: worldview apa yang dipromosikan? Apa yang TIDAK ditampilkan?</li>
-      </ul>
+      <div class="card-title">Praktikum 1: Interface Mastery dan Basic Editing</div>
+      <ol class="styled">
+        <li>Import sample audio (rekaman Pertemuan 3 atau sample file)</li>
+        <li><b>Navigation:</b> putar audio (Space), eksplorasi zoom</li>
+        <li><b>Selection:</b> klik-drag select region 5 detik, extend selection dengan Shift+Click</li>
+        <li><b>Cutting:</b> select bagian tidak diinginkan (silence, noise, kesalahan), Cut</li>
+        <li><b>Splitting clips:</b> klik dalam waveform (place cursor), Split (Ctrl+I)</li>
+        <li><b>Silence:</b> select region, Ctrl+L</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> file praktik dengan trim awal/akhir, bagian dihapus, clip terpisah, bagian disilence; screenshot edit; catatan operasi yang paling berguna.</p>
     </div>
 
-    <div class="highlight-box">
-      <div class="hb-title">TUGAS BESAR: Analisis Visual Rhetoric (Bobot 14%)</div>
-      <p>Analisis komprehensif sebuah kampanye (iklan produk / kampanye sosial / political campaign, minimal 3 creative pieces, max 5 tahun terakhir). <b>Written analysis</b> 8-12 halaman (70%) + <b>presentasi</b> 10-12 menit (30%). Due: Pertemuan 5, sebelum kuis.</p>
+    <div class="card">
+      <div class="card-title">Praktikum 2: Noise Reduction dan Cleanup</div>
+      <ol class="styled">
+        <li>Gunakan rekaman dengan background noise (Pertemuan 3 atau rekam baru, idealnya noise konstan: fan, hum, room tone)</li>
+        <li><b>Step 1 — Analyze original:</b> dengarkan keseluruhan, screenshot frequency content, catat frekuensi noise</li>
+        <li><b>Step 2 — Noise reduction:</b> cari section noise-only (1-2 detik), apply dengan setting 12 dB, sensitivity 6.00, frequency smoothing 3</li>
+        <li><b>Step 3 — Compare:</b> dengarkan full audio, bandingkan dengan original (Ctrl+Z/Ctrl+Y)</li>
+        <li><b>Step 4 — Cleanup tambahan:</b> silence napas/pause panjang (Ctrl+L), perbaiki pop tunggal dengan Effect &gt; Repair</li>
+        <li><b>Step 5 — High-pass filter:</b> select all (Ctrl+A), apply EQ high-pass</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> audio original &amp; cleaned, screenshot spectrum before/after, report 400 kata.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 3: Effects Processing Chain</div>
+      <p style="font-size:.88rem;line-height:1.7;">Menggunakan rekaman bersih hasil Praktikum 2 (pasca noise reduction), terapkan processing chain lengkap:</p>
+      <ol class="styled">
+        <li><b>Normalization:</b> select all, Remove DC offset CHECK, normalize peak ke -1.0 dB</li>
+        <li><b>EQ:</b> Filter Curve EQ — high-pass 80 Hz down, presence boost 2-4 kHz up, de-ess 6-8 kHz down</li>
+        <li><b>Compression:</b> Threshold -20 dB, Ratio 3:1, Attack 5ms, Release 200ms, make-up gain CHECK</li>
+        <li><b>Limiter:</b> limit to -1.0 dB, hold 10ms, make-up gain CHECK</li>
+        <li>Simpan versi processed dan bandingkan dengan original</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> audio original &amp; processed, report 500 kata (rasional setiap tahap, perbedaan audible, screenshot waveform before/after, setting yang digunakan).</p>
     </div>
   </section>
 
+  <hr class="section-divider">
+
+  <section class="content-section" id="tips">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Tips &amp; Workflow Terbaik</h2>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Workflow Recommendation <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Import/Record raw audio → Edit non-destructive → Save Project secara berkala (Ctrl+S) → Export Audio sebagai langkah terakhir</li>
+          <li>Selalu simpan file original/raw sebelum mulai proses editing destruktif</li>
+          <li>Gunakan Undo (Ctrl+Z) tanpa ragu — Audacity mendukung unlimited undo levels</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Kesalahan Umum dalam Editing <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Noise reduction terlalu agresif → menyebabkan artifact "underwater sound"</li>
+          <li>Over-compression → suara terdengar "squashed" dan tidak hidup</li>
+          <li>Lupa install LAME encoder sebelum export MP3 pertama kali</li>
+          <li>Tidak preview effect secara ekstensif sebelum apply permanen</li>
+          <li>Export final tanpa quality control playback di sistem berbeda</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Tugas: Audio Editing Project (10% — Due Next Week)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Edit dan Produce Podcast Episode atau Voice Over</div>
+      <p style="font-size:.88rem;line-height:1.75;">Demonstrasikan penguasaan editing dan effect processing Audacity. Pilih SATU opsi: <b>(A) Podcast-style audio</b> (60-90 detik, dengan intro/outro musik dan transisi crossfade), <b>(B) Voice over/narasi</b> (60-90 detik, processing profesional), atau <b>(C) Music edit</b> (60-90 detik, clean cuts dan fade).</p>
+      <ul class="styled" style="margin-top:10px;">
+        <li>Editing bersih: tanpa klik/pop, silence di awal/akhir ter-trim, kesalahan/pause panjang dihapus, transisi smooth</li>
+        <li>Processing: noise reduction (jika perlu), EQ (minimal high-pass), compression, limiter, level dinormalisasi</li>
+        <li>Tidak ada clipping/distorsi, loudness konsisten, kualitas profesional</li>
+        <li>Format: WAV 48kHz 24-bit (master) dan MP3 192kbps (delivery)</li>
+      </ul>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Technical Quality</b></td><td><span class="score-badge">50 pts</span></td><td>Clean edits (15), effects processing (15), level proper (10), output profesional (10)</td></tr>
+        <tr><td><b>Content Quality</b></td><td><span class="score-badge">30 pts</span></td><td>Konten engaging (15), audio jelas (10), eksekusi kreatif (5)</td></tr>
+        <tr><td><b>Documentation</b></td><td><span class="score-badge">20 pts</span></td><td>Dokumentasi proses lengkap (10), refleksi mendalam (10)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.85rem;color:#555;">File submission: <b>NIM_Nama_P4_AudioEdit_Master.wav</b>, <b>NIM_Nama_P4_AudioEdit_Final.mp3</b>, <b>NIM_Nama_P4_AudioEdit_Original.wav</b> (rekaman mentah), dan <b>NIM_Nama_P4_AudioEdit_Report.pdf</b> (800-1200 kata) via LMS. Late penalty: -10% per hari.</p>
+  </section>
+
   <nav class="footer-nav">
-    <a href="desain-komunikasi-visual-p2.html">← Pertemuan 2</a>
-    <a href="desain-komunikasi-visual-p4.html" class="next-btn">Pertemuan 4 →</a>
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p5.html" class="next-btn">Pertemuan 5 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Desain Komunikasi Visual</div>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
 
 </main>
 

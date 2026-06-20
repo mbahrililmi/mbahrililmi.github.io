@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 2 – Dasar-Dasar Audio Digital | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Dasar-Dasar Audio Digital</div>
+    <div class="pertemuan-badge">Pertemuan 2</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar &amp; Tujuan</a>
+    <a href="#fisika-suara" class="toc-link">Fisika Gelombang Suara</a>
+    <a href="#akustik" class="toc-link">Akustik Dasar</a>
+    <a href="#konversi" class="toc-link">Analog ke Digital</a>
+    <a href="#format-audio" class="toc-link">Format Audio Digital</a>
+    <a href="#dinamika" class="toc-link">Dynamic Range &amp; SNR</a>
+    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#tips" class="toc-link">Tips &amp; Troubleshooting</a>
+    <a href="#tugas" class="toc-link">Tugas</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 2 · Rekayasa Video dan Audio</div>
+    <h1>Dasar-Dasar Audio Digital</h1>
+    <p class="subtitle">Memahami prinsip fundamental audio digital: fisika gelombang suara, akustik dasar, proses sampling dan bit depth, format audio digital, serta dynamic range dan signal-to-noise ratio.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar &amp; Tujuan Pembelajaran</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa memahami prinsip fundamental audio digital meliputi gelombang suara, akustik dasar, sampling, bit depth, dan format audio digital.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Audio Digital Penting?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setiap kali kita mendengar musik di Spotify, podcast, atau suara dalam video YouTube, kita sedang mendengar representasi <b>digital</b> dari gelombang suara analog. Proses konversi dari gelombang suara fisik di udara menjadi data digital yang bisa disimpan, diedit, dan direproduksi adalah salah satu pencapaian engineering paling signifikan di teknologi modern.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Pemahaman ini langsung applicable ketika kita set recording level untuk podcast, choose export setting untuk video YouTube, decide antara quality dan file size, atau troubleshoot masalah audio.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Menjelaskan sifat fisika gelombang suara: frequency, amplitude, phase, dan wavelength</li>
+        <li>Memahami fenomena akustik: resonansi, reflection, absorption, diffusion, reverb, dan echo</li>
+        <li>Menjelaskan proses konversi analog audio ke digital: sampling dan quantization</li>
+        <li>Memahami parameter digital audio: sampling rate (44.1kHz, 48kHz, 96kHz) dan bit depth (16-bit, 24-bit, 32-bit float)</li>
+        <li>Menerapkan Nyquist theorem dalam konteks digital audio recording</li>
+        <li>Membedakan format audio (WAV, MP3, AAC, FLAC, OGG) dan memilih format yang tepat untuk berbagai use case</li>
+        <li>Menganalisis waveform audio menggunakan Audacity</li>
+        <li>Memahami konsep dynamic range, headroom, dan signal-to-noise ratio</li>
+      </ol>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="fisika-suara">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Fisika Gelombang Suara</h2>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Suara?</div>
+      <p>Suara adalah <b>getaran (vibration)</b> yang merambat melalui medium (udara, air, solid materials) sebagai gelombang longitudinal. Suara <b>tidak bisa</b> merambat di ruang hampa (vacuum) karena membutuhkan medium. Kecepatan suara di udara (20°C, sea level) adalah <b>343 meter/detik</b>, di air 1.480 m/detik, dan di baja 5.960 m/detik.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-freq')">Frequency</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-amp')">Amplitude</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-phase')">Phase</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-wave')">Wavelength</button>
+      </div>
+      <div id="tab-freq" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Frequency (Pitch)</b>: jumlah cycle (complete oscillation) per detik, diukur dalam Hertz (Hz).</p>
+        <div class="grid-3" style="margin-top:12px;">
+          <div class="grid-card"><div class="gc-title">Infrasound</div><div class="gc-body">&lt; 20 Hz, tidak terdengar manusia, dirasakan sebagai vibrasi (gempa, guntur).</div></div>
+          <div class="grid-card"><div class="gc-title">Audible Range</div><div class="gc-body">20 Hz – 20.000 Hz (20 kHz). Lansia: 20 Hz – 12-15 kHz (high frequency hearing loss).</div></div>
+          <div class="grid-card"><div class="gc-title">Ultrasound</div><div class="gc-body">&gt; 20 kHz, tidak terdengar manusia (dog whistle 23-54 kHz, USG medis 1-20 MHz).</div></div>
+        </div>
+        <ul class="styled" style="margin-top:12px;">
+          <li><b>Middle C (C4):</b> 261.63 Hz · <b>A4 (Concert pitch):</b> 440 Hz</li>
+          <li><b>Low E (Bass guitar):</b> 41.2 Hz · <b>High C (Soprano):</b> 1.046,5 Hz</li>
+          <li><b>Psikoakustik:</b> low freq = bass/warmth/power, mid (1-4 kHz) = speech clarity/presence, high freq = clarity/air/brightness</li>
+        </ul>
+      </div>
+      <div id="tab-amp" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Amplitude (Loudness)</b>: magnitude displacement dari resting position, diukur dalam dB SPL (Sound Pressure Level), Volt, atau dB FS (digital).</p>
+        <table class="rubric-table" style="margin-top:12px;">
+          <thead><tr><th>Level</th><th>Sumber Suara</th></tr></thead>
+          <tbody>
+            <tr><td>0 dB SPL</td><td>Threshold of hearing (suara paling sunyi)</td></tr>
+            <tr><td>20-30 dB</td><td>Whisper, ruang perpustakaan</td></tr>
+            <tr><td>50-60 dB</td><td>Percakapan normal</td></tr>
+            <tr><td>80-100 dB</td><td>Hair dryer, motor, power tools</td></tr>
+            <tr><td>110-120 dB</td><td>Konser rock, jet takeoff (threshold of pain)</td></tr>
+            <tr><td>130-194 dB</td><td>Permanent hearing damage hingga loudest possible sound</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.85rem;color:#555;margin-top:8px;">Skala desibel bersifat <b>logaritmik</b>: +6 dB = 2x voltage/pressure, +20 dB = 10x voltage/pressure.</p>
+      </div>
+      <div id="tab-phase" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Phase (Timing)</b>: posisi dalam cycle dari waveform pada titik waktu tertentu, diukur dalam derajat (0°-360°).</p>
+        <ul class="styled" style="margin-top:10px;">
+          <li><b>In Phase (0°):</b> waveform aligned, amplitude saling menambah (constructive interference)</li>
+          <li><b>Out of Phase (180°):</b> waveform terbalik, amplitude saling membatalkan (destructive interference) — bisa menyebabkan silence total</li>
+          <li><b>Phase cancellation</b> adalah masalah umum saat menggunakan multiple microphone pada satu sumber suara, menghasilkan suara "thin" atau "hollow"</li>
+        </ul>
+      </div>
+      <div id="tab-wave" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;"><b>Wavelength (λ)</b>: jarak fisik antara dua peak berurutan dalam gelombang. Formula: λ = Speed of Sound ÷ Frequency.</p>
+        <table class="rubric-table" style="margin-top:12px;">
+          <thead><tr><th>Frekuensi</th><th>Panjang Gelombang</th></tr></thead>
+          <tbody>
+            <tr><td>20 Hz</td><td>17,15 meter (sangat panjang)</td></tr>
+            <tr><td>440 Hz (A4)</td><td>0,78 meter</td></tr>
+            <tr><td>1 kHz</td><td>0,343 meter</td></tr>
+            <tr><td>20 kHz</td><td>1,72 cm (sangat pendek)</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.85rem;color:#555;margin-top:8px;">Frekuensi rendah sulit diserap (perlu material tebal), frekuensi tinggi lebih mudah diabsorpsi/refleksi/difusi.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Complex Waveforms &amp; Harmonics</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Simple Waveforms (Synthetic)</div><div class="gc-body">Sine wave (single frequency, smooth), square wave (odd harmonics, hollow), saw wave (semua harmonics, bright/buzzy), triangle wave (odd harmonics lebih lemah).</div></div>
+        <div class="grid-card"><div class="gc-title">Complex Waveforms (Real-world)</div><div class="gc-body">Alat musik: kombinasi kompleks fundamental + harmonics. Suara manusia: sangat kompleks dengan formants. Timbre ditentukan oleh harmonic content.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="akustik">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Akustik Dasar</h2>
+    </div>
+
+    <div class="sub-section">
+      <h3>Interaksi Suara dengan Environment</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Reflection (Pantulan)</div><div class="gc-body">Gelombang memantul dari hard surface. Angle of incidence = angle of reflection. Masalah: flutter echo, slap back, standing waves.</div></div>
+        <div class="grid-card"><div class="gc-title">Absorption</div><div class="gc-body">Energi suara diubah menjadi heat. Koefisien α: 0 (refleksi total) - 1 (absorpsi total). Concrete α≈0.02, acoustic foam α≈0.5-0.8.</div></div>
+        <div class="grid-card"><div class="gc-title">Diffusion</div><div class="gc-body">Sebaran energi suara ke banyak arah, mengurangi flutter echo tanpa over-damping. Contoh alami: buku di rak.</div></div>
+        <div class="grid-card"><div class="gc-title">Transmission</div><div class="gc-body">Suara menembus material/barrier. Sound Transmission Class (STC) mengukur isolasi noise; mass law — material lebih berat = isolasi lebih baik.</div></div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Resonansi &amp; Room Modes <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Resonansi adalah amplifikasi suara pada frekuensi spesifik — setiap objek punya natural resonant frequency. Contoh: badan gitar akustik, room modes, gelas wine yang beresonansi.</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>Axial modes:</b> antara dua permukaan paralel</li>
+          <li><b>Tangential modes:</b> melibatkan empat permukaan</li>
+          <li><b>Oblique modes:</b> melibatkan keenam permukaan</li>
+        </ul>
+        <p style="margin-top:8px;">Formula axial mode: f = (n × speed of sound) / (2 × distance). Contoh: ruang 5m → 343/(2×5) = 34,3 Hz (mode pertama).</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Reverb vs Echo <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p><b>Echo:</b> repetisi suara yang diskrit dan jelas, delay &gt;50-100ms, disebabkan satu refleksi kuat (contoh: berteriak di canyon).</p>
+        <p style="margin-top:8px;"><b>Reverb:</b> kumpulan refleksi yang padat, dirasakan sebagai decay kontinu (bukan repeat diskrit). Komponen: direct sound, early reflections (10-80ms), late reflections (reverb tail).</p>
+        <table class="rubric-table" style="margin-top:10px;">
+          <thead><tr><th>RT60</th><th>Karakter Ruang</th></tr></thead>
+          <tbody>
+            <tr><td>0.3-0.5s</td><td>Recording studio, kamar (dry, tight)</td></tr>
+            <tr><td>1-2s</td><td>Ruang tamu, ruang konferensi</td></tr>
+            <tr><td>1.5-2.5s</td><td>Concert hall (musikal, enveloping)</td></tr>
+            <tr><td>3-10s+</td><td>Cathedral, gua (sangat reverberant)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="konversi">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Digital Audio: Analog ke Digital Conversion</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Analog Audio</div><div class="gc-body">Sinyal kontinu dalam waktu dan amplitude (vinyl, tape, output mikrofon). Resolusi teoretis tak terbatas, namun rentan noise dan degradasi, sulit diedit.</div></div>
+      <div class="grid-card"><div class="gc-title">Digital Audio</div><div class="gc-body">Sample diskrit dalam waktu, nilai diskrit dalam amplitude (CD, MP3, WAV). Tidak ada degradasi (perfect copy), mudah diedit, namun dibatasi sampling rate dan bit depth.</div></div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Sampling Rate</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Sampling adalah proses mengukur amplitude sinyal analog pada interval waktu reguler oleh Analog-to-Digital Converter (ADC). Sampling rate menentukan jumlah sample yang diambil per detik.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Sample Rate</th><th>Kegunaan</th></tr></thead>
+        <tbody>
+          <tr><td>8 kHz</td><td>Telephone quality (sangat lo-fi)</td></tr>
+          <tr><td>44.1 kHz</td><td><b>CD quality</b> — standar musik</td></tr>
+          <tr><td>48 kHz</td><td><b>Professional video</b> — DVD, broadcast, film</td></tr>
+          <tr><td>96 kHz</td><td>High-resolution audio (Blu-ray, mastering)</td></tr>
+          <tr><td>192 kHz</td><td>Ultra high-res, aplikasi khusus</td></tr>
+        </tbody>
+      </table>
+      <div class="highlight-box">
+        <div class="hb-title">Mengapa 44.1 kHz untuk CD?</div>
+        <p>Pendengaran manusia: 20 Hz - 20 kHz. Nyquist theorem mensyaratkan sampling rate &gt; 2x frekuensi tertinggi = 40 kHz minimum. 44.1 kHz dipilih untuk memberi margin di atas 40 kHz.</p>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Nyquist Theorem</h3>
+      <div class="card">
+        <div class="card-title">Nyquist-Shannon Sampling Theorem</div>
+        <p style="font-size:.88rem;line-height:1.75;">"Untuk secara akurat sampling sinyal analog, sampling rate harus minimal <b>DUA KALI</b> frekuensi tertinggi yang terkandung dalam sinyal." Formula: <b>Sample Rate ≥ 2 × Highest Frequency</b></p>
+        <ul class="styled" style="margin-top:10px;">
+          <li>44.1 kHz sampling rate → maksimum frekuensi 22.05 kHz (Nyquist frequency)</li>
+          <li>48 kHz sampling rate → maksimum frekuensi 24 kHz</li>
+          <li>96 kHz sampling rate → maksimum frekuensi 48 kHz</li>
+        </ul>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Aliasing — Ketika Nyquist Dilanggar <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <p>Jika sinyal mengandung frekuensi DI ATAS Nyquist frequency, terjadi <b>aliasing</b>: frekuensi tinggi muncul sebagai frekuensi rendah palsu, menciptakan distorsi dan artifact yang tidak bisa dihilangkan setelah recording.</p>
+          <p style="margin-top:8px;"><b>Contoh praktis:</b> Recording dengan 44.1 kHz (Nyquist = 22.05 kHz). Jika sumber audio mengandung tone 25 kHz, akan alias menjadi |44.1 − 25| = 19.1 kHz (tone palsu) → distorsi.</p>
+          <p style="margin-top:8px;"><b>Pencegahan:</b> anti-aliasing filter (low-pass filter sebelum ADC) yang built-in pada audio interface modern.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Bit Depth &amp; Quantization</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Bit Depth</th><th>Levels</th><th>Dynamic Range</th><th>Kegunaan</th></tr></thead>
+        <tbody>
+          <tr><td>8-bit</td><td>256 (2⁸)</td><td>48 dB</td><td>Retro/lo-fi sound</td></tr>
+          <tr><td>16-bit</td><td>65.536 (2¹⁶)</td><td>96 dB</td><td>CD quality, final delivery</td></tr>
+          <tr><td>24-bit</td><td>16.777.216 (2²⁴)</td><td>144 dB</td><td>Professional recording &amp; editing</td></tr>
+          <tr><td>32-bit float</td><td>Floating-point</td><td>~1.680 dB</td><td>Processing/mixing internal, tidak bisa clip</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;color:#555;">Formula: <b>Dynamic Range (dB) ≈ Bit Depth × 6</b>. Bit depth rendah = noise floor tinggi karena quantization error. <b>Dithering</b>: menambahkan sedikit noise untuk menutupi quantization artifact, best practice saat convert 24-bit ke 16-bit.</p>
+      <div class="highlight-box" style="margin-top:12px;">
+        <div class="hb-title">Mengapa Rekam pada 24-bit?</div>
+        <p>Memberi 48 dB headroom lebih dari 16-bit, memungkinkan recording dengan level lebih rendah (menghindari clipping), ruang untuk processing (EQ, compression) tanpa quality loss, dan dapat di-dither down ke 16-bit untuk delivery final.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="format-audio">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Format Audio Digital</h2>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-uncompressed')">Uncompressed</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-lossless')">Lossless Compressed</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-lossy')">Lossy Compressed</button>
+      </div>
+      <div id="tab-uncompressed" class="tab-panel active">
+        <ul class="styled">
+          <li><b>WAV</b> (Microsoft &amp; IBM): Linear PCM, kualitas maksimum, ~10 MB/menit stereo 16/44.1. Universal compatibility, ideal untuk editing dan archiving.</li>
+          <li><b>AIFF</b> (Apple): Setara WAV di ekosistem Apple, metadata support lebih baik.</li>
+        </ul>
+      </div>
+      <div id="tab-lossless" class="tab-panel">
+        <ul class="styled">
+          <li><b>FLAC</b> (Xiph.Org): Lossless compression 50-70% ukuran asli, kualitas identik dengan WAV, open-source, gratis. Cocok untuk archiving musik berkualitas tinggi.</li>
+          <li><b>ALAC</b> (Apple): Codec lossless Apple, kompresi serupa FLAC, native support di perangkat Apple.</li>
+        </ul>
+      </div>
+      <div id="tab-lossy" class="tab-panel">
+        <ul class="styled">
+          <li><b>MP3</b> (Fraunhofer): Lossy perceptual coding, 128-320 kbps, universal compatibility, kompatibilitas terluas namun quality loss permanen.</li>
+          <li><b>AAC</b> (ISO/IEC): Lebih efisien dari MP3 pada bitrate sama, digunakan YouTube, Apple Music, Spotify.</li>
+          <li><b>OGG Vorbis</b> (Xiph.Org): Open-source, patent-free, kualitas kompetitif vs MP3, digunakan Spotify dan gaming.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Perbandingan Ukuran File (1 menit stereo)</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Format</th><th>Ukuran File</th><th>Lossy/Lossless</th></tr></thead>
+        <tbody>
+          <tr><td>WAV 16/44.1</td><td>~10 MB</td><td><span class="score-badge">Lossless</span></td></tr>
+          <tr><td>FLAC</td><td>~5 MB</td><td><span class="score-badge">Lossless</span></td></tr>
+          <tr><td>MP3 320 kbps</td><td>~2.5 MB</td><td>Lossy</td></tr>
+          <tr><td>AAC 256 kbps</td><td>~2 MB</td><td>Lossy</td></tr>
+          <tr><td>MP3 192 kbps</td><td>~1.5 MB</td><td>Lossy</td></tr>
+          <tr><td>MP3 128 kbps</td><td>~1 MB</td><td>Lossy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Format Selection Guide <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Recording &amp; editing:</b> WAV/AIFF (24-bit, 48 kHz)</li>
+          <li><b>Archiving:</b> FLAC atau WAV (lossless)</li>
+          <li><b>Music distribution:</b> FLAC (high-quality) atau MP3 320kbps (compatibility)</li>
+          <li><b>Podcast:</b> MP3 192kbps stereo atau 128kbps mono (speech)</li>
+          <li><b>YouTube / web video:</b> AAC 256kbps atau lebih tinggi</li>
+          <li><b>Streaming:</b> bergantung platform (AAC, OGG)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="dinamika">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Dynamic Range, Headroom &amp; SNR</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Dynamic Range</div><div class="gc-body">Rasio antara sinyal paling keras dan paling sunyi. Digital: max 0 dBFS, minimum ditentukan bit depth (16-bit = 96 dB, 24-bit = 144 dB).</div></div>
+      <div class="grid-card"><div class="gc-title">Headroom</div><div class="gc-body">Ruang antara peak level dan 0 dBFS. Mencegah clipping dan memberi ruang untuk transient serta processing.</div></div>
+      <div class="grid-card"><div class="gc-title">Signal-to-Noise Ratio</div><div class="gc-body">Rasio sinyal terhadap noise floor. Formula: SNR = Signal Level (dB) − Noise Level (dB). 80+ dB = baik untuk musik.</div></div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Headroom yang Direkomendasikan</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Tahap</th><th>Target Peak</th></tr></thead>
+        <tbody>
+          <tr><td>Recording</td><td>-12 dB hingga -6 dB</td></tr>
+          <tr><td>Mixing</td><td>-6 dB hingga -3 dB</td></tr>
+          <tr><td>Mastering</td><td>-1 dB hingga -0.1 dB</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Loudness Normalization (LUFS)</div>
+      <p>Platform modern menormalkan loudness untuk pengalaman dengar yang konsisten. <b>Spotify &amp; YouTube:</b> -14 LUFS. <b>Apple Music:</b> -16 LUFS. <b>Film:</b> -24 LUFS. Implikasi: membuat audio lebih keras dari target hanya membuat platform menurunkannya — lebih baik mempertahankan dinamika dan membiarkan platform menormalkan.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum</h2>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 1: Waveform Analysis in Audacity</div>
+      <ol class="styled">
+        <li>Generate berbagai waveform: sine 440 Hz (5 detik), ulangi untuk square dan sawtooth jika tersedia. Observasi perbedaan tampilan waveform.</li>
+        <li>Generate tone dengan frekuensi berbeda (100 Hz, 440 Hz, 1000 Hz, 5000 Hz, 10000 Hz), gunakan Analyze &gt; Plot Spectrum untuk masing-masing dan screenshot peak-nya.</li>
+        <li>Generate 440 Hz tone 5 detik, Effect &gt; Amplify +6 dB, bandingkan amplitude dengan original; ulangi dengan -6 dB.</li>
+        <li>Generate 440 Hz sine mono, duplicate track, Effect &gt; Invert pada track 2 (180° phase flip), mainkan bersamaan — observasi fenomena phase cancellation (silence).</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> screenshot waveform &amp; spectrum analysis, screenshot phase cancellation, report 300 kata.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 2: Sampling Rate and Bit Depth Comparison</div>
+      <ol class="styled">
+        <li>Siapkan sample audio (musik/rekaman suara 15-30 detik), import ke Audacity (48 kHz jika memungkinkan).</li>
+        <li>Export pada berbagai sample rate: 11025 Hz, 22050 Hz, 44100 Hz, 48000 Hz (WAV 16-bit) — bandingkan kejelasan dan brightness.</li>
+        <li>Export pada berbagai bit depth: 8-bit, 16-bit, 24-bit (WAV) — putar pelan dan amplify bagian sunyi +20 dB untuk dengarkan noise floor.</li>
+        <li>Bandingkan ukuran file untuk setiap export dan hitung rasio perbedaan ukuran.</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> file audio hasil export, tabel ukuran file, screenshot spectrum, report 400 kata.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Praktikum 3: Audio Format Comparison and Conversion</div>
+      <ol class="styled">
+        <li>Siapkan source audio 30-60 detik (musik lebih baik untuk testing).</li>
+        <li>Export ke WAV, FLAC (level 5), MP3 (128/192/320 kbps via LAME encoder), dan OGG Vorbis (quality 5-6).</li>
+        <li>Buat tabel: Format | Bitrate | File Size | Size vs WAV | Lossy/Lossless.</li>
+        <li>Import semua file kembali, lakukan ABX test pendengaran (bisa bedakan WAV vs MP3 320?), bandingkan spectrum masing-masing format.</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;"><b>Deliverable:</b> minimal 6 file format/setting berbeda, tabel perbandingan, screenshot spectrum, report 500 kata mencakup rekomendasi format untuk podcast, music archiving, YouTube, portable device, dan professional editing.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tips">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Tips &amp; Hal Penting</h2>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Praktik Terbaik Recording &amp; Export <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Rekam pada 48 kHz, 24-bit untuk pekerjaan profesional</li>
+          <li>Sisakan headroom saat recording (-12 hingga -6 dB peak)</li>
+          <li>Gunakan WAV untuk recording/editing, MP3 untuk delivery</li>
+          <li>Pahami trade-off format untuk platform yang berbeda</li>
+          <li>Terapkan Nyquist theorem untuk mencegah aliasing</li>
+        </ul>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Kesalahan Umum Pemula <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Merekam dengan level terlalu rendah (signal mendekati noise floor)</li>
+          <li>Mengabaikan headroom sehingga terjadi clipping (tidak bisa diperbaiki setelah rekam)</li>
+          <li>Memilih format lossy untuk arsip jangka panjang</li>
+          <li>Tidak memahami bahwa platform streaming menormalkan loudness — memaksimalkan loudness tidak menambah keunggulan kompetitif</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Tugas</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Aktivitas Pembelajaran Pertemuan 2</div>
+      <p style="font-size:.88rem;line-height:1.75;">Tidak ada tugas terpisah untuk pertemuan ini — <b>praktikum adalah learning activity</b> utama. Pastikan ketiga praktikum (Waveform Analysis, Sampling Rate/Bit Depth Comparison, dan Audio Format Comparison) diselesaikan dengan deliverable lengkap sebagai bukti pemahaman materi sebelum pertemuan berikutnya.</p>
+      <ul class="styled" style="margin-top:10px;">
+        <li>Kumpulkan seluruh screenshot dan file audio hasil ketiga praktikum dalam satu folder</li>
+        <li>File naming: NIM_Nama_P2_NamaPraktikum</li>
+        <li>Siapkan microphone yang dimiliki (identifikasi jenis dynamic/condenser) untuk Pertemuan 3</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p3.html" class="next-btn">Pertemuan 3 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

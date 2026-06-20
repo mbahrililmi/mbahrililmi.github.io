@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 14 – Motion Graphics dengan Fusion / Kdenlive | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Motion Graphics dengan Fusion / Kdenlive</div>
+    <div class="pertemuan-badge">Pertemuan 14</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#prinsip" class="toc-link">Motion Graphics Principles</a>
+    <a href="#text-titles" class="toc-link">Animated Text Titles</a>
+    <a href="#lower-thirds" class="toc-link">Lower Thirds</a>
+    <a href="#shape-logo" class="toc-link">Shape &amp; Logo Animation</a>
+    <a href="#callout-infografik" class="toc-link">Call-Outs &amp; Infographic</a>
+    <a href="#fusion" class="toc-link">Fusion Node Workflow</a>
+    <a href="#kdenlive-template" class="toc-link">Kdenlive &amp; Templates</a>
+    <a href="#tugas" class="toc-link">Tugas: Motion Graphics Project</a>
+    <a href="#rangkuman" class="toc-link">Rangkuman</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 14 · Rekayasa Video dan Audio</div>
+    <h1>Motion Graphics dengan Fusion / Kdenlive</h1>
+    <p class="subtitle">Memahami prinsip motion graphics dan membuat animated titles, lower thirds, logo animations, call-outs, dan infographic animations menggunakan Fusion (DaVinci Resolve) atau Kdenlive dengan teknik profesional.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami prinsip motion graphics dan mampu membuat animated titles, lower thirds, logo animations, call-outs, dan infographic animations menggunakan Fusion (DaVinci Resolve) atau Kdenlive dengan teknik profesional.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Motion Graphics?</div>
+      <p style="font-size:.88rem;line-height:1.75;">"Motion graphics = graphic design + animation." Desain grafis statis (poster, logo) ditambah movement = motion graphics! Anda menemukannya di mana-mana: lower third berita di TV (CNN, BBC), judul acara (Game of Thrones), intro animasi YouTube, infografik animasi di video korporat, animasi produk dan logo reveal di iklan, title sequence film (Marvel Studios intro, Bond gun barrel), hingga animasi UI/UX aplikasi.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Motion graphics membuat konten video terlihat lebih <b>profesional</b> (polished vs amatir), <b>engaging</b> (movement menarik perhatian), <b>jelas</b> (anotasi visual memperjelas konsep), dan <b>branded</b> (grafis konsisten = identitas brand).</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami core principles motion design (timing, spacing, easing, anticipation)</li>
+        <li>Membuat animated titles: fade in, slide in, typewriter effect, glitch effect</li>
+        <li>Mendesain lower thirds profesional (grafis nama/jabatan untuk interview)</li>
+        <li>Menganimasikan shapes (rectangle, circle, line) untuk visual interest</li>
+        <li>Mendesain call-outs (arrow, circle yang menyorot elemen di video)</li>
+        <li>Membuat infographic animations sederhana (chart, icon yang muncul beranimasi)</li>
+        <li>Menavigasi interface node-based Fusion (nodes, connections, inspector)</li>
+        <li>Menggunakan Fusion text tools (Text+, styling, animation)</li>
+        <li>Export grafis dengan alpha channel (background transparan untuk reuse)</li>
+      </ol>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Tools Industri (Berbayar)</div><div class="gc-body">After Effects (Adobe) ~$22.99/bulan, Motion (Apple, macOS only) $49.99, Cinema 4D (3D motion design) $999+.</div></div>
+      <div class="grid-card"><div class="gc-title">Tools Gratis (yang kita pakai!)</div><div class="gc-body">DaVinci Resolve — Fusion Page: node-based compositing, professional-grade (dipakai di Hollywood!), gratis. Kdenlive: transform effects &amp; text animations, lebih sederhana namun cukup untuk basic motion graphics, open-source &amp; gratis.</div></div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Konsep Kunci: Keyframing</div>
+      <p>Animasi = perubahan seiring waktu. Caranya? Keyframe! Contoh: gerakkan text dari kiri ke kanan — Frame 0: Position X = 0 (keyframe), Frame 60: Position X = 1000 (keyframe), software meng-interpolasi pergerakan di antaranya. Keyframing adalah pondasi dari SEMUA animasi!</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="prinsip">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Motion Graphics Principles</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">12 Principles of Animation (Disney — Disederhanakan)</div>
+      <p style="font-size:.88rem;margin-bottom:10px;">Animator Disney mengembangkan 12 prinsip (buku "The Illusion of Life", 1981). Prinsip yang relevan untuk motion graphics:</p>
+      <ol class="styled">
+        <li><b>Timing:</b> seberapa cepat/lambat animasi berjalan. Timing cepat = energik, urgent; timing lambat = dramatis, elegan</li>
+        <li><b>Spacing:</b> jarak antar keyframe. Spacing rata = motion linear (robotik); spacing tidak rata = motion natural (akselerasi/deselerasi)</li>
+        <li><b>Easing (Ease In/Out):</b> objek tidak langsung mencapai kecepatan penuh — mereka berakselerasi (ease in) dan tidak berhenti tiba-tiba — mereka melambat (ease out). Linear = konstan (tidak natural); Ease In/Out = paling natural!</li>
+        <li><b>Anticipation:</b> gerakan persiapan sebelum aksi utama. Contoh: karakter merunduk sebelum melompat. Di motion graphics: gerakan kecil ke arah berlawanan sebelum gerakan utama</li>
+        <li><b>Follow-Through &amp; Overlapping Action:</b> tidak semua bagian berhenti bersamaan — elemen menyelesaikan animasi di waktu yang berbeda (staggered)</li>
+        <li><b>Exaggeration:</b> memperkuat gerakan untuk dampak. Di motion graphics: objek overshoot melebihi target, lalu menetap</li>
+      </ol>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Menerapkan ke Motion Graphics</div><div class="gc-body">Gunakan easing selalu (jangan pernah linear!). Timing: cepat (0.3–0.5s) untuk UI snappy, lambat (1–2s) untuk sinematik. Stagger: animasikan beberapa elemen dengan delay sedikit. Overshoot: objek melewati target, lalu memantul kembali.</div></div>
+      <div class="grid-card"><div class="gc-title">Best Practices Motion Design</div><div class="gc-body">Konsisten gaya (jika title pertama slide dari kiri, lainnya juga harus!). Jangan berlebihan — terlalu banyak motion = mengganggu. Animasi harus punya tujuan. Konsistensi timing. Readability — judul harus tampil cukup lama untuk dibaca (3–5 detik minimum). Selalu pakai easing.</div></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="text-titles">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Animated Text Titles</h2>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-fade')">Fade In &amp; Slide In</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-scale')">Scale In &amp; Typewriter</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-glitch')">Glitch &amp; Combining</button>
+      </div>
+      <div id="tab-fade" class="tab-panel active">
+        <p style="margin-bottom:8px;"><b>Fade In</b> — animasi paling sederhana: opacity 0% → 100%, durasi 0.5–1 detik.</p>
+        <ul class="styled">
+          <li><b>DaVinci Resolve:</b> Edit Page &gt; tambah text clip (Titles &gt; Text), Inspector &gt; Video tab, enable Keyframes (ikon diamond) di frame awal</li>
+          <li><b>Kdenlive:</b> tambah title clip (Project &gt; Add Title Clip), terapkan Effects &gt; Fade In</li>
+        </ul>
+        <p style="margin:10px 0 8px;"><b>Slide In</b> — text bergerak dari luar frame:</p>
+        <ul class="styled">
+          <li><b>Dari kiri:</b> start Position X = -500 (off-screen), end Position X = 0 (center)</li>
+          <li><b>Dari kanan:</b> start Position X = 1500, end Position X = 0</li>
+          <li><b>Dari atas/bawah:</b> prinsip sama, sesuaikan Position Y</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;">Keyframe Transform &gt; Position (X atau Y), tambahkan easing (Ease In/Out) untuk gerakan yang halus!</p>
+      </div>
+      <div id="tab-scale" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Scale In (Zoom)</b> — text mulai kecil, tumbuh ke ukuran penuh: start Zoom = 0% (invisible), end Zoom = 100% (full size). Tambahkan Ease Out untuk efek bouncy!</p>
+        <p style="margin-bottom:8px;"><b>Typewriter Effect</b> — text muncul huruf demi huruf (seperti mengetik):</p>
+        <ul class="styled">
+          <li><b>Fusion (DaVinci):</b> Fusion Page &gt; Text+ node &gt; Inspector &gt; Character-Level Styling — start Write On = 0 (tidak ada karakter), end Write On = 1 (semua karakter terlihat)</li>
+          <li><b>Kdenlive:</b> kurang straightforward — membutuhkan split text manual atau rotoscoping</li>
+        </ul>
+      </div>
+      <div id="tab-glitch" class="tab-panel">
+        <p style="margin-bottom:8px;"><b>Glitch Effect</b> — estetika cyberpunk trendy, distorsi text &amp; color shift. Di Fusion: Text+ node, tambahkan Transform node (keyframe posisi acak), tambahkan Channel Booleans (memisahkan channel RGB). Kompleks — banyak tutorial tersedia!</p>
+        <p style="margin-bottom:8px;"><b>Combining Animations</b> — teknik profesional: gabungkan beberapa animasi sekaligus. Contoh: Position X beranimasi (slide) + Opacity beranimasi (fade) secara simultan.</p>
+        <p><b>Staggered Animations</b> — beberapa kata muncul berurutan: Word 1 animasi 0–0.5s, Word 2 animasi 0.2–0.7s (delay sedikit), Word 3 animasi 0.4–0.9s. Menciptakan tampilan dinamis &amp; profesional!</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Text Styling Tips — Readability is King! <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>High contrast: text putih di background gelap (atau sebaliknya)</li>
+          <li>Background shapes: tambahkan rectangle halus di belakang text (legibility lebih baik)</li>
+          <li>Drop shadow: memisahkan text dari background</li>
+          <li>Outline/stroke: visibilitas lebih tebal</li>
+          <li>Font choice: sans-serif (Arial, Helvetica) untuk clarity</li>
+        </ul>
+        <p style="margin-top:8px;"><b>Hindari:</b> low contrast (text abu-abu di background abu-abu), font terlalu dekoratif (sulit dibaca), terlalu banyak font (maksimal 2!).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="lower-thirds">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Lower Thirds</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Lower Thirds?</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Definisi:</b> grafis overlay (biasanya di sepertiga bawah layar) yang menampilkan nama, jabatan, lokasi, atau informasi identifikasi lain. Penggunaan umum: interview (nama &amp; jabatan), berita (nama reporter &amp; lokasi), dokumenter (identifikasi pakar), tutorial (nama channel/sosial media). Disebut "lower third" karena terletak di sepertiga bawah frame (tidak menutupi wajah subjek).</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Elemen Esensial</div><div class="gc-body">Background shape (rectangle, rounded rectangle, shape stylized), primary text (nama — besar, bold), secondary text (jabatan/role — lebih kecil), opsional: logo, line accent, color accent.</div></div>
+      <div class="grid-card"><div class="gc-title">Guideline Desain</div><div class="gc-body">Contrast dengan video di belakang, gunakan brand colors, simplicity (tidak terlalu sibuk!), consistency di seluruh video, safe zone (margin 5% dari tepi — beberapa TV crop border).</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Workflow Membuat Lower Third — Fusion (DaVinci)</div>
+      <ol class="styled">
+        <li>Fusion Page &gt; New Fusion Composition (klik kanan Timeline &gt; New Fusion Clip)</li>
+        <li>Tambahkan Background node (Shift+Space &gt; Background), Inspector &gt; Type: Solid/Gradient, pilih warna, hubungkan ke MediaOut</li>
+        <li>Tambahkan Rectangle Mask: atur Width &amp; Height, atur Corner Radius untuk sudut membulat, posisikan di lower third (Y sekitar -0.3), hubungkan ke input mask Background</li>
+        <li>Tambahkan Text+ node untuk nama primer (font bold sans-serif, size ~0.05, posisikan di dalam shape), Merge ke background</li>
+        <li>Tambahkan Text+ node lagi untuk jabatan (font lebih kecil, posisi di bawah text primer), merge ke komposisi</li>
+        <li>Animate: slide in (keyframe Transform Position X — start X=-0.5 off-screen, end frame 15: X=-0.35 on-screen), fade in (keyframe Merge Blend 0 ke 1)</li>
+        <li>Durasi tampil tipikal 3–5 detik, lalu fade out</li>
+      </ol>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Style 1: Simple Bar</div><div class="gc-body">Solid rectangle + text (minimalis).</div></div>
+      <div class="grid-card"><div class="gc-title">Style 2: Line Accent</div><div class="gc-body">Garis tipis di atas/bawah text (elegan).</div></div>
+      <div class="grid-card"><div class="gc-title">Style 3: Split Design</div><div class="gc-body">Nama di satu section, jabatan di section lain (dipisah garis/warna).</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Lower Third — Kdenlive <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ol class="styled">
+          <li>Project &gt; Add Title Clip</li>
+          <li>Title Editor: tambahkan Rectangle shape (background), style fill color &amp; rounded corners, posisikan di lower third</li>
+          <li>OK — title clip ditambahkan ke timeline</li>
+          <li>Animate: terapkan Transform effect, keyframe Position untuk slide-in, terapkan Fade In effect</li>
+        </ol>
+        <p style="margin-top:8px;"><b>Alternatif:</b> gunakan template lower third (sumber online seperti Motion Array, dll).</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="shape-logo">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Shape Animation &amp; Logo Animation</h2>
+    </div>
+    <div class="sub-section">
+      <h3>Mengapa Animasikan Shapes?</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;">Shapes (rectangle, circle, line) dapat: menekankan (circle menyorot produk), mengarahkan perhatian (arrow menunjuk), elemen desain (animated background pattern), dan transisi (shape wipe).</p>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Animasi Dasar</div><div class="gc-body">Scale (grow/shrink): lingkaran tumbuh dari center, 0%→100%. Position (move): garis meluncur, X=0→1920. Rotation: kotak berputar, 0°→360°. Opacity (fade): shape fade in/out 0%→100%.</div></div>
+        <div class="grid-card"><div class="gc-title">Fusion — Shape Tools</div><div class="gc-body">Ellipse node (circle/oval, width=height untuk lingkaran sempurna), Rectangle node (mask rectangle + corner radius), Polygon node (custom shape — triangle, star), Background + Mask (background untuk color/gradient, mask mendefinisikan bentuk).</div></div>
+      </div>
+      <p style="font-size:.83rem;color:#666;">Animated background patterns: buat Ellipse + Background (circle), duplicate (Ctrl+C/V) beberapa kali untuk dynamic animated background — bisa subtle loop untuk intro/outro.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Logo Animation</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;">Logo statis = membosankan. Logo beranimasi = profesional, branded, mudah diingat! Use cases: channel intro YouTube, video outro (brand reminder), product video (company logo reveal), transisi antar section.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Teknik Reveal</th><th>Cara Kerja</th></tr></thead>
+        <tbody>
+          <tr><td><b>Fade + Scale</b></td><td>Logo fade in sambil tumbuh: opacity 0%→100%, scale 80%→100%, durasi 1–2 detik. Sederhana namun efektif!</td></tr>
+          <tr><td><b>Slide + Fade</b></td><td>Logo slide dari sisi sambil fade in — position &amp; opacity beranimasi bersamaan</td></tr>
+          <tr><td><b>Wipe Reveal</b></td><td>Mask mengungkap logo kiri-ke-kanan: import logo PNG transparan, animate Mask Position X dari -1 (tertutup) ke 0 (terungkap)</td></tr>
+          <tr><td><b>Build-Up Animation</b></td><td>Elemen logo beranimasi terpisah, lalu bergabung (tiap huruf slide in dengan timing staggered). Kompleks — perlu split logo!</td></tr>
+          <tr><td><b>Glitch/Distortion</b></td><td>Logo glitch masuk ke frame: random position offset, color channel separation, muncul/hilang cepat</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;">Pre-made templates sering lebih mudah! (Motion Array, Envato)</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Export Logo dengan Transparency (Alpha Channel)</div>
+      <p>Untuk reuse, export animated logo dengan background transparan. Di DaVinci Resolve: Deliver Page &gt; Codec DNxHR atau ProRes (keduanya mendukung alpha) &gt; aktifkan checkbox Export Alpha! Hasilnya: file .mov dengan transparansi — bisa di-overlay di video apa saja!</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="callout-infografik">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Call-Outs &amp; Infographic Animation</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Call-Outs?</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Definisi:</b> elemen grafis yang menyorot atau menjelaskan bagian tertentu dari video (arrow, circle, text label). Penggunaan umum: tutorial ("klik di sini" — arrow menunjuk tombol), product demo (menyorot fitur), explainer (anotasi diagram), review (menunjukkan detail).</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Jenis Call-Out</div><div class="gc-body"><b>Arrow:</b> menunjuk elemen, bisa diberi animasi draw-on. <b>Circle/Rectangle highlight:</b> mengelilingi elemen, sering animated (pulsing scale). <b>Text label + line:</b> text penjelasan terhubung garis ke elemen. <b>Zoom/magnify:</b> tampilan picture-in-picture diperbesar.</div></div>
+      <div class="grid-card"><div class="gc-title">Membuat Call-Out di Fusion</div><div class="gc-body"><b>Arrow:</b> Polygon node (bentuk custom) + Background node, animasi draw-on (keyframe titik polygon) atau pulse (scale 100%→110%→100% berulang). <b>Circle highlight:</b> Ellipse node (mask) + Background (stroke only/hollow), animate scale pulse.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Animasi Call-Out <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Muncul dengan tujuan — call-out tampil saat dibutuhkan, hilang sesudahnya</li>
+          <li>Animasi halus — pulsing, wobbling sedikit (menarik mata)</li>
+          <li>Kontras — warna cerah (merah, kuning) menonjol</li>
+          <li>Timing — beri penonton 2–3 detik untuk menyadari &amp; membaca</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Infographic Animation Basics</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;"><b>Definisi:</b> representasi visual informasi/data (chart, icon, statistik). Motion infographics = infografik beranimasi (lebih engaging, lebih mudah dipahami). Contoh: bar chart yang tumbuh (menunjukkan kenaikan penjualan), pie chart slice yang muncul, icon yang slide in dengan statistik, timeline beranimasi.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Teknik</th><th>Cara Membuat</th></tr></thead>
+        <tbody>
+          <tr><td><b>Counter (Animated Numbers)</b></td><td>Text+ node &gt; klik kanan Text &gt; Expression &gt; Enable; expression: <code>math.floor(time * 1250 / 2)</code> menghitung 0 ke 1250 dalam 2 detik. Sesuaikan formula untuk target number &amp; durasi Anda</td></tr>
+          <tr><td><b>Progress Bar</b></td><td>Rectangle mask (bentuk bar) + Background node (warna bar); animate Rectangle Width dari 0 (kosong) ke 1 (penuh)</td></tr>
+          <tr><td><b>Pie Chart Growth</b></td><td>Kompleks — disarankan pakai After Effects atau template jadi. Versi dasar mungkin di Fusion dengan masking</td></tr>
+          <tr><td><b>Icon + Text Combo</b></td><td>Import icon (PNG), slide/fade in, diikuti text statistik</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.83rem;color:#666;"><b>Tips desain:</b> data jelas (jangan overwhelm — satu poin dalam satu waktu), color coding per kategori, pacing animasi tidak terlalu cepat, konsistensi semua elemen infografik.</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="fusion">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Fusion Node Workflow</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengapa Node-Based Workflow?</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Traditional (layer-based — After Effects):</b> layer disusun vertikal, efek diterapkan ke layer. <b>Node-based (Fusion, Nuke):</b> tools direpresentasikan sebagai node (kotak), node terhubung dengan garis (data flow). Kelebihan: visual flow (lihat persis bagaimana elemen terhubung), non-destructive (mudah dimodifikasi), powerful (compositing kompleks dimungkinkan). Learning curve lebih steep awalnya, tapi logis &amp; powerful!</p>
+    </div>
+    <div class="sub-section">
+      <h3>Interface Fusion Page</h3>
+      <p style="font-size:.88rem;margin-bottom:8px;">Klik tab "FUSION" di bawah. Layout: <b>Toolbar</b> (atas — tools, nodes), <b>Nodes area</b> (kiri — node graph tempat Anda membangun), <b>Viewers</b> (kanan — preview output, kiri=before, kanan=after), <b>Inspector</b> (bawah — parameter node yang dipilih).</p>
+      <table class="rubric-table">
+        <thead><tr><th>Node</th><th>Fungsi</th></tr></thead>
+        <tbody>
+          <tr><td>MediaIn (biru)</td><td>Input media (klip video dari timeline), otomatis dibuat saat masuk Fusion dari klip Edit Page</td></tr>
+          <tr><td>MediaOut (hijau)</td><td>Output kembali ke timeline, selalu ada</td></tr>
+          <tr><td>Transform</td><td>Penyesuaian Position, Scale, Rotation</td></tr>
+          <tr><td>Background</td><td>Membuat solid color atau gradient</td></tr>
+          <tr><td>Text+</td><td>Generasi text</td></tr>
+          <tr><td>Merge</td><td>Menggabungkan dua input (foreground + background)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Membuat Komposit Sederhana — Menambahkan Animated Text ke Video</div>
+      <ol class="styled">
+        <li>Edit Page &gt; pilih klip</li>
+        <li>Fusion Page (klip terbuka di Fusion)</li>
+        <li>Tambah Text: Shift+Space &gt; cari "Text" &gt; Text+ node muncul di node graph, ketik text di Inspector</li>
+        <li>Posisikan text: tambah Transform node, hubungkan Text+ output → Transform input, atur posisi di Inspector</li>
+        <li>Merge text ke video: tambah Merge node — MediaIn1 → Merge Background (input hijau), Transform → Merge Foreground (input oranye), hubungkan Merge output → MediaOut1</li>
+        <li>Animate: pilih Transform node, keyframe Center (position) atau Zoom</li>
+      </ol>
+      <p style="font-size:.83rem;color:#666;margin-top:8px;">Drag output (segitiga kanan) ke input (segitiga/box kiri). Data flow umumnya dari kiri ke kanan. Warna segitiga: oranye = image (RGB), biru = mask/alpha, hijau = 3D data.</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Inspector, Keyframing, &amp; Tips Fusion <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Inspector controls:</b> sliders (drag untuk adjust), number fields (ketik value), color pickers, checkboxes. <b>Keyframing:</b> ikon diamond di samping parameter — klik untuk membuat keyframe, diamond merah = keyframe terset, gerakkan playhead &amp; adjust value → keyframe otomatis dibuat.</p>
+        <p style="margin-bottom:8px;"><b>Copy/delete node:</b> Ctrl+C/Ctrl+V untuk duplicate, Delete untuk hapus. <b>Bypass node</b> (disable sementara): klik kanan node &gt; Pass Through.</p>
+        <ul class="styled">
+          <li>Tetap terorganisir — beri nama node (klik kanan &gt; Tile &gt; ketik nama)</li>
+          <li>Gunakan viewers — left viewer = before, right viewer = after</li>
+          <li>Save sering — komposisi Fusion bisa kompleks, jangan kehilangan kerja!</li>
+          <li>Eksperimen — Fusion powerful, coba berbagai kombinasi!</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="kdenlive-template">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Kdenlive Alternatives &amp; Templates</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Kdenlive Capabilities</div><div class="gc-body">Lebih sederhana dari Fusion, namun bisa basic motion graphics! Tools: title clips (text dengan styling), Transform effect (keyframing position/scale/rotation), composite transition (layering), rotoscoping (masking — advanced).</div></div>
+      <div class="grid-card"><div class="gc-title">Fusion vs Kdenlive</div><div class="gc-body">Fusion: node-based (non-destructive, fleksibel), advanced compositing, particle systems, 3D. Kdenlive: layer-based (lebih simpel), basic compositing, tanpa particle, 3D terbatas. Kompleks → Fusion; titles/lower thirds simple → Kdenlive cukup!</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Animated Titles &amp; Shapes — Kdenlive</div>
+      <ol class="styled">
+        <li>Project &gt; Add Title Clip; Title Editor: ketik text, atur font/size/color, klik OK</li>
+        <li>Animate: tambah clip ke timeline, Effects &gt; Transform, enable keyframes (klik ikon stopwatch), keyframe Position, Zoom, Rotation</li>
+        <li>Preset animations: Kdenlive menyertakan title template dengan animasi! Project &gt; Online Resources &gt; download title templates</li>
+        <li>Shape creation: Title Editor punya tools shape (rectangle, ellipse, image import untuk icon/logo) — animasikan sama seperti text (Transform effect)</li>
+      </ol>
+    </div>
+    <div class="sub-section">
+      <h3>Templates &amp; Presets</h3>
+      <p style="font-size:.88rem;margin-bottom:10px;"><b>Kelebihan:</b> menghemat waktu (pre-designed, cukup customize), profesional (dibuat designer), learning tool (reverse-engineer untuk belajar teknik). <b>Kekurangan:</b> kurang unik, mungkin tidak pas sempurna dengan brand. <b>Verdict:</b> template bagus untuk mulai! Customize untuk keunikan.</p>
+      <table class="rubric-table">
+        <thead><tr><th>Sumber</th><th>Detail</th></tr></thead>
+        <tbody>
+          <tr><td><b>Motion Array (Free Section)</b></td><td>Macro DaVinci Resolve (template Fusion), lower thirds, titles, transitions — gratis</td></tr>
+          <tr><td><b>Reactor (Fusion Plugin Manager)</b></td><td>Tools &amp; template komunitas Fusion — gratis</td></tr>
+          <tr><td><b>Envato Elements</b></td><td>Subscription ~$16.50/bulan — unlimited download (template, musik, SFX)</td></tr>
+          <tr><td><b>Motion Array (Subscription) / VideoHive</b></td><td>Template DaVinci native (subscription) / pembelian individual à la carte</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Instalasi &amp; Membuat Template Fusion (.setting) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Install template:</b> download file .setting, Fusion Page &gt; Toolbar &gt; Effects (panel kiri), klik kanan folder Templates &gt; Show Folder, copy file .setting ke dalamnya, restart DaVinci Resolve — template muncul di Effects list, drag ke node graph!</p>
+        <p style="margin-bottom:8px;"><b>Customize:</b> Inspector untuk adjust text content, colors, timing (keyframe), fonts; modifikasi node graph jika perlu.</p>
+        <p><b>Membuat preset sendiri:</b> buat motion graphic di Fusion, klik kanan &gt; Macro &gt; Create Macro, File &gt; Save Macro — reuse di project mendatang!</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="tugas">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Tugas: Motion Graphics Project (10%)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Objective</div>
+      <p style="font-size:.88rem;line-height:1.75;">Buat video 2–3 menit yang menggabungkan minimum 5 elemen motion graphics yang dipelajari.</p>
+      <ul class="styled">
+        <li>Animated title intro (slide/fade/scale)</li>
+        <li>Lower third (identifikasi nama/jabatan — minimal muncul sekali)</li>
+        <li>Shape animation</li>
+        <li>Logo animation atau call-out</li>
+        <li>Infographic element (statistik atau chart beranimasi)</li>
+      </ul>
+      <p style="font-size:.88rem;margin-top:10px;"><b>Konten video:</b> bebas (tutorial, product demo, explainer, vlog, dll).</p>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Creativity &amp; Design</b></td><td><span class="score-badge">3%</span></td><td>Excellent: desain unik &amp; profesional, branding konsisten. Good: desain layak, sedikit inkonsisten. Needs Improvement: desain basic, inkonsisten</td></tr>
+        <tr><td><b>Technical Execution</b></td><td><span class="score-badge">4%</span></td><td>Excellent: 5+ elemen terimplementasi benar, animasi mulus, easing tepat, tanpa error teknis. Good: 5 elemen ada, sedikit isu timing/easing. Adequate: 3-4 elemen, isu teknis terlihat. Needs Improvement: &lt;3 elemen atau masalah teknis besar</td></tr>
+        <tr><td><b>Professionalism &amp; Polish</b></td><td><span class="score-badge">3%</span></td><td>Excellent: polished, broadcast-ready, timing &amp; pacing sangat baik. Good: profesional, sedikit rough edges. Needs Improvement: tampilan amatir, animasi mengganggu</td></tr>
+      </tbody>
+    </table>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Requirements</div><div class="gc-body">Durasi 2–3 menit, minimum 5 elemen motion graphics berbeda, gaya konsisten (warna/font/kecepatan animasi cocok), tampilan profesional (tidak over-animated), proper easing (tanpa animasi linear), export 1920x1080 H.264.</div></div>
+      <div class="grid-card"><div class="gc-title">Submission</div><div class="gc-body">Video file: MotionGraphics_NamaAnda.mp4. Deskripsi singkat (200 kata) menjelaskan tiap elemen motion graphics yang dipakai &amp; pilihan desain. Deadline ditentukan dosen.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Tips Sukses <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Rencanakan desain sebelum mulai (sketsa grafis)</li>
+          <li>Referensikan contoh profesional (channel YouTube, grafis TV)</li>
+          <li>Tes animasi (pastikan readable &amp; timing tepat)</li>
+          <li>Dapatkan feedback sebelum submit!</li>
+          <li>Jangan over-animate — subtle &amp; purposeful lebih baik daripada chaotic!</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="rangkuman">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Rangkuman</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Key Takeaways</div>
+      <p>Motion graphics principles (timing, easing, anticipation) · Teknik animated text (fade, slide, typewriter, scale) · Lower thirds untuk identifikasi profesional · Shape animation (circle, rectangle, line) · Logo animation (teknik reveal) · Call-outs &amp; annotations (menyorot elemen) · Infographic animation dasar (counter, progress bar) · Fusion node-based workflow (compositing powerful) · Alternatif Kdenlive (tools lebih simpel) · Templates &amp; presets (efisiensi).</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Motion graphics = polish profesional untuk video Anda!</div>
+      <p style="font-size:.88rem;">Selanjutnya (Pertemuan 15): Video Production Workflow &amp; Post-Production Advanced — complete pipeline, collaboration, proxy workflow, delivery specs, archiving! Keep creating!</p>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p15.html" class="next-btn">Pertemuan 15 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

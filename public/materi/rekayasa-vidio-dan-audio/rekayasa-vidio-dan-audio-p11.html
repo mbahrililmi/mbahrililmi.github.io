@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 11 – Color Grading dan Color Correction | Rekayasa Video dan Audio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Rekayasa Video dan Audio</div>
+    <div class="course-title">Color Grading dan Color Correction</div>
+    <div class="pertemuan-badge">Pertemuan 11</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#pengantar" class="toc-link">Pengantar</a>
+    <a href="#correction-vs-grading" class="toc-link">Correction vs Grading</a>
+    <a href="#interface" class="toc-link">Interface Color Page</a>
+    <a href="#primary-correction" class="toc-link">Primary Color Correction</a>
+    <a href="#color-wheels" class="toc-link">Color Wheels</a>
+    <a href="#curves" class="toc-link">Curves</a>
+    <a href="#hsl" class="toc-link">Hue, Saturation, Luminance</a>
+    <a href="#luts" class="toc-link">LUTs</a>
+    <a href="#grading-styles" class="toc-link">Grading Styles</a>
+    <a href="#shot-matching" class="toc-link">Shot Matching</a>
+    <a href="#scopes" class="toc-link">Scopes</a>
+    <a href="#color-theory" class="toc-link">Color Theory</a>
+    <a href="#praktikum" class="toc-link">Quiz &amp; Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 11 · Rekayasa Video dan Audio</div>
+    <h1>Color Grading dan Color Correction</h1>
+    <p class="subtitle">Menerapkan color correction dan color grading menggunakan color wheels, curves, scopes, dan LUTs untuk menciptakan mood dan aesthetic visual yang konsisten dan profesional.</p>
+    <div class="header-meta">
+      <div class="meta-badge">SKS: <span>3 SKS</span></div>
+      <div class="meta-badge">Durasi: <span>150 menit</span></div>
+      <div class="meta-badge">Dosen: <span>M. Bahril Ilmi, S.Kom., M.Kom.</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="pengantar">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memahami dan menerapkan color correction dan color grading untuk meningkatkan kualitas visual video, termasuk menggunakan color wheels, curves, scopes, LUTs, dan berbagai grading styles untuk menciptakan mood dan aesthetic yang konsisten.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Color is Emotion. Color is Mood. Color is Story.</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan dua versi dari scene yang sama: Versi 1 dengan warna oranye hangat, sinar matahari emas, dan coklat kaya akan terasa nyaman dan nostalgia. Versi 2 dengan biru dingin, abu-abu desaturated, dan tone dingin akan terasa terisolasi dan sedih. Footage yang sama, color grade berbeda, dampak emosional yang sama sekali berbeda!</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Produksi profesional menghabiskan waktu signifikan pada color: film Hollywood memiliki colorist khusus, Netflix series menjaga konsistensi warna antar episode, YouTube creator membangun signature look yang recognizable. Color grading bukan sekadar "mempercantik" — ini adalah <b>alat visual storytelling</b>.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">The Matrix</div><div class="gc-body">Tint hijau dalam Matrix = dunia digital, artifisial. Tint biru di dunia nyata = dingin, distopia. Warna membedakan dua realitas!</div></div>
+      <div class="grid-card"><div class="gc-title">Mad Max: Fury Road</div><div class="gc-body">Gurun oranye, langit teal — warna komplementer menciptakan dampak visual yang iconic dan high-energy.</div></div>
+      <div class="grid-card"><div class="gc-title">La La Land</div><div class="gc-body">Primary colors vibrant dan saturated mencerminkan fantasi musikal dan dreamlike genre.</div></div>
+      <div class="grid-card"><div class="gc-title">The Grand Budapest Hotel</div><div class="gc-body">Pastel pink, ungu, kuning — estetika whimsical storybook khas Wes Anderson.</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami perbedaan fundamental color correction vs color grading</li>
+        <li>Menggunakan DaVinci Resolve Color Page dengan percaya diri</li>
+        <li>Melakukan primary color correction (exposure, contrast, white balance)</li>
+        <li>Menggunakan Lift-Gamma-Gain color wheels untuk precise color adjustments</li>
+        <li>Menerapkan curves untuk fine-tune tonal adjustments</li>
+        <li>Memanipulasi Hue, Saturation, dan Luminance secara selektif</li>
+        <li>Membuat custom LUTs untuk grading yang konsisten</li>
+        <li>Mengimplementasikan grading styles: teal &amp; orange, vintage, B&amp;W, pastel</li>
+        <li>Mencocokkan warna antar shot untuk continuity</li>
+        <li>Membaca scopes (Waveform, Vectorscope, Histogram, Parade)</li>
+      </ol>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">DaVinci Resolve — Industry Standard</div>
+      <p>DaVinci Resolve awalnya dibuat sebagai software color grading khusus, kemudian berevolusi menjadi sistem editing penuh. Color grading adalah core strength-nya. Colorist Hollywood menggunakan DaVinci Resolve untuk Blade Runner 2049, Joker, The Mandalorian, dan Stranger Things. Anda memiliki tools yang sama dengan profesional — gratis!</p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="correction-vs-grading">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Color Correction vs Color Grading</h2>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Aspek</th><th>Color Correction</th><th>Color Grading</th></tr></thead>
+      <tbody>
+        <tr><td>Tujuan</td><td>Memperbaiki masalah teknis untuk titik awal yang neutral &amp; akurat</td><td>Proses kreatif menerapkan look stylistic</td></tr>
+        <tr><td>Goals</td><td>Eksposur tepat, white balance benar, kontras seimbang</td><td>Membangun mood, visual style, storytelling</td></tr>
+        <tr><td>Analogi</td><td>Membersihkan foto sebelum dibingkai</td><td>Menambahkan filter artistik atau gaya lukisan</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      <div class="hb-title">Workflow Sequence</div>
+      <p>Selalu lakukan COLOR CORRECTION (teknis) terlebih dahulu, baru COLOR GRADING (kreatif). Memulai dengan gambar yang netral dan seimbang memberikan kanvas bersih untuk grading kreatif — grading footage yang buruk akan menghasilkan hasil yang buruk!</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-kapan-correct')">Kapan Correction?</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-kapan-grade')">Kapan Grading?</button>
+      </div>
+      <div id="tab-kapan-correct" class="tab-panel active">
+        <ul class="styled">
+          <li>Shot terlalu gelap atau overexposed</li>
+          <li>Color cast (terlalu oranye, biru, atau hijau)</li>
+          <li>Kontras flat (washed out)</li>
+          <li>Shot tidak konsisten dalam satu sequence</li>
+        </ul>
+      </div>
+      <div id="tab-kapan-grade" class="tab-panel">
+        <ul class="styled">
+          <li>Footage sudah benar secara teknis tapi visual membosankan</li>
+          <li>Ingin mood spesifik (horror = desaturated, romance = warm)</li>
+          <li>Mencocokkan referensi estetika (film, fotografi)</li>
+          <li>Membangun signature look untuk channel/brand</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="interface">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Interface DaVinci Resolve Color Page</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Layout Color Page</div>
+      <p style="font-size:.88rem;line-height:1.75;">Klik tab "COLOR" di bagian bawah. Interface berbeda drastis dari Edit Page: node-based workflow (vs layer-based), tools warna komprehensif, scopes real-time, dan gallery untuk grade tersimpan.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card"><div class="gc-title">Clips Timeline (Atas)</div><div class="gc-body">Thumbnail strip semua clip di timeline. Klik clip untuk load ke Color Page. Navigasi dengan arrow keys.</div></div>
+      <div class="grid-card"><div class="gc-title">Node Editor (Kiri Bawah)</div><div class="gc-body">Operasi warna individual yang disusun dalam chain. Default: satu node (Node 01). Grade kompleks: multiple nodes.</div></div>
+      <div class="grid-card"><div class="gc-title">Color Wheels &amp; Tools</div><div class="gc-body">Tab Primaries, Curves, Qualifier, Window, Tracker, Magic Mask, HDR Wheels, Motion Effects. Fokus hari ini: Primaries &amp; Curves.</div></div>
+      <div class="grid-card"><div class="gc-title">Viewer &amp; Scopes</div><div class="gc-body">Preview besar di tengah dengan split view untuk before/after. Scopes (kanan): Waveform, Parade, Vectorscope, Histogram.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Gallery — Menyimpan Grade <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Window &gt; Gallery. Simpan grade favorit sebagai Still Frame, terapkan ke clip lain, dan bangun grade library untuk efisiensi workflow di proyek-proyek berikutnya.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="primary-correction">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Primary Color Correction</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Tujuan Correction</div>
+      <p>Sebelum grading kreatif, capai: eksposur tepat (memanfaatkan full dynamic range), white balance netral (warna akurat), kontras seimbang (hitam benar hitam, putih benar putih), dan midtone yang bersih.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-under')">Underexposed</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-over')">Overexposed</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-wb')">White Balance</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-bw-point')">Black/White Point</button>
+      </div>
+      <div id="tab-under" class="tab-panel active">
+        <p class="card-title">Symptom: Gambar terlalu gelap, detail hilang di shadow</p>
+        <ol class="styled">
+          <li>Drag GAMMA wheel UP untuk mencerahkan midtones</li>
+          <li>Jika highlight perlu lebih terang: drag GAIN wheel UP sedikit</li>
+          <li>Cek waveform scope: harus mencapai mendekati atas (90-100 IRE)</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;"><b>Caution:</b> Jangan berlebihan — clipping highlight (kehilangan detail) lebih buruk daripada gambar sedikit gelap!</p>
+      </div>
+      <div id="tab-over" class="tab-panel">
+        <p class="card-title">Symptom: Gambar terlalu terang, highlight blown (area putih tanpa detail)</p>
+        <ol class="styled">
+          <li>Drag GAMMA wheel DOWN untuk menggelapkan midtones</li>
+          <li>Cek waveform: highlight harus tetap di bawah 100 IRE</li>
+          <li>Jika highlight sudah blown (clipped), tidak bisa direcover — pencegahan lebih baik!</li>
+        </ol>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Underexposed lebih mudah diperbaiki dibanding overexposed. Shoot sedikit lebih gelap daripada risiko clipping!</p>
+      </div>
+      <div id="tab-wb" class="tab-panel">
+        <p class="card-title">Symptom: Color cast — terlalu warm (oranye/kuning) atau cool (biru)</p>
+        <p style="font-size:.85rem;margin-bottom:8px;"><b>Cause:</b> Setting white balance kamera tidak sesuai kondisi cahaya — tungsten light dengan WB daylight menghasilkan cast oranye, sebaliknya menghasilkan cast biru.</p>
+        <ul class="styled">
+          <li><b>Offset Wheel:</b> Drag ke biru untuk cooling (hapus cast oranye/kuning), drag ke oranye untuk warming (hapus cast biru)</li>
+          <li><b>Temperature Slider:</b> Drag kiri = lebih dingin, drag kanan = lebih hangat</li>
+          <li><b>Tint Slider:</b> Mengatur balance hijau/magenta, untuk footage dengan cast hijau/magenta</li>
+          <li><b>Auto White Balance:</b> Klik magic wand icon, lalu klik objek grey netral dalam footage</li>
+        </ul>
+      </div>
+      <div id="tab-bw-point" class="tab-panel">
+        <p class="card-title">Teknik Profesional: Maksimal Tonal Range</p>
+        <ul class="styled">
+          <li><b>Black Point:</b> Hold Alt + drag LIFT wheel DOWN sampai muncul sedikit area hitam murni (0 IRE)</li>
+          <li><b>White Point:</b> Hold Alt + drag GAIN wheel UP sampai whites termanfaatkan penuh tanpa blown out</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:10px;">Teknik ini memaksimalkan dynamic range — footage jadi "pop"! Lihat tutorial: <a href="https://www.youtube.com/watch?v=63Ln33O4p4c" target="_blank">Color Correction Basics – DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="color-wheels">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Color Wheels — Lift, Gamma, Gain</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Lift (Shadows)</div><div class="gc-body">Mengontrol shadow/black. Drag atas = cerahkan shadow, drag bawah = gelapkan shadow. Mengubah black level.</div></div>
+      <div class="grid-card"><div class="gc-title">Gamma (Midtones)</div><div class="gc-body">Mengontrol midtone. Drag atas = cerahkan midtone, drag bawah = gelapkan midtone tanpa crush blacks.</div></div>
+      <div class="grid-card"><div class="gc-title">Gain (Highlights)</div><div class="gc-body">Mengontrol highlight/white. Drag atas = cerahkan highlight, drag bawah = gelapkan highlight. Mengubah white level.</div></div>
+    </div>
+    <div class="sub-section">
+      <h3>Menambahkan Color Tint</h3>
+      <div class="grid-3">
+        <div class="grid-card"><div class="gc-title">Warm Sunset</div><div class="gc-body">GAIN wheel drag ke oranye → highlight hangat, shadow dingin = cinematic depth!</div></div>
+        <div class="grid-card"><div class="gc-title">Moonlight / Night</div><div class="gc-body">GAIN wheel drag ke biru → estetika cool, nighttime.</div></div>
+        <div class="grid-card"><div class="gc-title">Teal &amp; Orange</div><div class="gc-body">GAIN ke oranye, LIFT ke teal/cyan (sisi berlawanan) → look cinematic Hollywood blockbuster!</div></div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Offset Wheel (Wheel Keempat) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Offset memengaruhi keseluruhan tonal range secara setara. Gunakan untuk overall color tint (sepia, blue tone), koreksi white balance, atau creative color shift. <b>Tip:</b> gunakan dengan hemat — karena memengaruhi semuanya, bisa overpower!</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Reset Adjustment <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Reset satu wheel: klik titik tengah wheel</li>
+          <li>Reset semua: klik kanan node &gt; Reset Node Grades</li>
+          <li>Reset parameter spesifik: klik kanan parameter &gt; Reset</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="curves">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Curves</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu Curves?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Curves adalah graphing tool yang memetakan nilai input (footage asli) ke nilai output (footage hasil grade). Sumbu horizontal (X) = input brightness, sumbu vertikal (Y) = output brightness. Garis diagonal = default "no change". Geser titik untuk remap nilai.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-luma-curve')">Luma Curve</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-rgb-curve')">RGB Curves</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-curve-vs-wheel')">Curves vs Wheels</button>
+      </div>
+      <div id="tab-luma-curve" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Menaikkan kontras:</b> tambahkan point di shadow (kiri bawah) dan highlight (kanan atas) → S-curve, contrast klasik</li>
+          <li><b>Menurunkan kontras (flat look):</b> drag point shadow UP → inverted S-curve, low-contrast aesthetic</li>
+          <li><b>Mencerahkan midtone:</b> klik tengah curve dan drag atas — blacks &amp; whites tetap terjaga</li>
+          <li><b>"Film" look — raised blacks:</b> drag titik bottom-left ke atas → blacks jadi dark grey (milky blacks)</li>
+        </ul>
+      </div>
+      <div id="tab-rgb-curve" class="tab-panel">
+        <p style="font-size:.85rem;margin-bottom:8px;">Tiga curve terpisah: Red, Green, Blue. Digunakan untuk presisi color tint.</p>
+        <ul class="styled">
+          <li><b>Teal &amp; Orange:</b> highlight — Red naik, Green naik sedikit, Blue turun sedikit. Shadow — Red turun (jadi teal), Blue naik</li>
+          <li><b>Cooler look:</b> Red turun, Blue naik → gambar dingin bertone biru</li>
+          <li><b>Vintage warm:</b> Red naik, Green naik sedikit, Blue turun → estetika hangat kuning/oranye vintage</li>
+        </ul>
+      </div>
+      <div id="tab-curve-vs-wheel" class="tab-panel">
+        <div class="grid-2">
+          <div class="grid-card"><div class="gc-title">Color Wheels</div><div class="gc-body">Lebih cepat, intuitif. Bagus untuk adjustment broad dengan realtime feedback.</div></div>
+          <div class="grid-card"><div class="gc-title">Curves</div><div class="gc-body">Kontrol presisi, targeting tonal spesifik, manipulasi kontras kompleks.</div></div>
+        </div>
+        <p style="font-size:.83rem;color:#666;">Workflow profesional: kombinasi keduanya — color wheels untuk primary correction, curves untuk fine-tuning. Tutorial: <a href="https://www.youtube.com/watch?v=4xpFwfNZYyU" target="_blank">Color Grading with Curves</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="hsl">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Hue vs Saturation vs Luminance</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Tiga Dimensi Warna</div>
+      <p><b>Hue:</b> warna apa itu (merah, biru, hijau). <b>Saturation:</b> seberapa vivid/intens. <b>Luminance:</b> seberapa terang. Contoh — sky blue: hue biru, saturation moderat, luminance terang.</p>
+    </div>
+    <table class="rubric-table">
+      <thead><tr><th>Curve Tool</th><th>Fungsi</th><th>Contoh Use Case</th></tr></thead>
+      <tbody>
+        <tr><td>Hue vs Hue</td><td>Mengalihkan hue tertentu ke hue lain</td><td>Geser langit biru ke cyan, atau skin tone oranye ke merah</td></tr>
+        <tr><td>Hue vs Sat</td><td>Mengubah saturation pada hue range tertentu</td><td>Boost saturasi langit biru tanpa memengaruhi skin tone</td></tr>
+        <tr><td>Hue vs Lum</td><td>Mencerahkan/menggelapkan hue tertentu</td><td>Gelapkan baju merah yang terlalu terang tanpa pengaruh ke elemen lain</td></tr>
+        <tr><td>Luma vs Sat</td><td>Mengontrol saturasi berdasarkan brightness</td><td>Desaturate shadow (umum di cinematic grading), highlight tetap saturated</td></tr>
+        <tr><td>Sat vs Sat</td><td>Remap saturasi global</td><td>Turunkan saturasi keseluruhan tanpa kehilangan info warna (rare tool)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:.83rem;color:#666;">Tutorial: <a href="https://www.youtube.com/watch?v=7vHKZJrH5P8" target="_blank">Hue vs Sat vs Lum Curves Explained</a></p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="luts">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>LUTs (Look-Up Tables)</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Apa itu LUT?</div>
+      <p style="font-size:.88rem;line-height:1.75;">LUT (Look-Up Table) adalah transformasi warna yang sudah ditentukan sebelumnya — anggap saja seperti filter Instagram untuk video! Input color → LUT → output color. Contoh: footage flat &amp; desaturated + LUT "Cinematic Teal &amp; Orange" = output langsung graded dengan shadow teal, highlight oranye.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Camera LUT</div><div class="gc-body">Mengonversi footage log/RAW ke Rec.709 (standard viewing). Contoh: Sony S-Log ke Rec.709.</div></div>
+      <div class="grid-card"><div class="gc-title">Creative LUT</div><div class="gc-body">Menerapkan look artistik — film emulation, vintage, cinematic.</div></div>
+      <div class="grid-card"><div class="gc-title">Calibration LUT</div><div class="gc-body">Konversi color space teknis — advanced, biasanya otomatis.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Menggunakan LUT dengan Benar <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;"><b>Penting:</b> LUT seharusnya menjadi starting point, bukan grade final! Workflow yang tepat: (1) primary correction (exposure, WB) di Node 1, (2) apply LUT di node berikutnya, (3) refine/adjust LUT (tweak wheels, kurangi intensitas) di node yang sama atau node tambahan.</p>
+        <p>LUT sering terlalu kuat — kurangi opacity menggunakan slider <b>Key Mix</b> di sisi kanan node (100% = full strength, 50% = blend setengah graded setengah original).</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Sumber LUT Gratis <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><a href="https://lutify.me/free-luts/" target="_blank">Lutify.me</a> — koleksi kecil LUT cinematic gratis</li>
+          <li><a href="https://www.smallhd.com/learn/free-luts" target="_blank">SmallHD Free LUTs</a> — LUT grade profesional</li>
+          <li><a href="https://www.rocketstock.com/free-after-effects-templates/35-free-luts-color-grading/" target="_blank">RocketStock</a> — 35 LUT kreatif gratis</li>
+          <li>Reddit r/colorists — thread LUT gratis</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Tutorial: <a href="https://www.youtube.com/watch?v=zDmJrqEovhA" target="_blank">How to Use LUTs dalam DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="grading-styles">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Color Grading Styles</h2>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-teal')">Teal &amp; Orange</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-vintage')">Vintage Film</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-bw')">High-Contrast B&amp;W</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-pastel')">Dreamy Pastel</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-moonlight')">Cool Blue / Moonlight</button>
+      </div>
+      <div id="tab-teal" class="tab-panel active">
+        <p class="card-title">Karakteristik</p>
+        <p style="font-size:.85rem;margin-bottom:8px;">Skin tone &amp; highlight oranye/hangat, shadow &amp; background teal/cyan, kontras tinggi. Warna komplementer = visually striking! Populer karena skin tone natural oranye (terlihat sehat) dan teal melengkapi oranye (berlawanan di color wheel), memisahkan subjek dari background.</p>
+        <p style="font-size:.85rem;"><b>Cara membuat:</b> primary correction dulu (exposure, WB seimbang), GAIN drag ke oranye, LIFT drag ke teal/cyan, opsional sedikit S-curve untuk extra punch.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Contoh film: Transformers series, Mad Max Fury Road, Blade Runner 2049</p>
+      </div>
+      <div id="tab-vintage" class="tab-panel">
+        <p class="card-title">Karakteristik</p>
+        <p style="font-size:.85rem;margin-bottom:8px;">Tone hangat keemasan, raised blacks (milky, bukan hitam pure), highlight lembut, sedikit desaturasi, tekstur film grain.</p>
+        <p style="font-size:.85rem;"><b>Cara membuat:</b> Luma curve — drag titik shadow UP (raise blacks), sedikit S-curve untuk soft contrast. OFFSET ke kuning/oranye hangat. LIFT drag up &amp; ke hangat (milky shadow). OpenFX &gt; Film Grain, sesuaikan ukuran grain untuk look 16mm/35mm.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Contoh film: O Brother Where Art Thou, The Grand Budapest Hotel, Carol</p>
+      </div>
+      <div id="tab-bw" class="tab-panel">
+        <p class="card-title">Karakteristik</p>
+        <p style="font-size:.85rem;margin-bottom:8px;">Desaturated (monokrom), kontras tinggi (hitam dalam, putih cerah), dramatic dan moody.</p>
+        <p style="font-size:.85rem;"><b>Cara membuat:</b> saturation set ke 0 (full desaturasi), shadow drag DOWN (crush blacks), highlight drag UP (bright whites). Variasi raised-black: gunakan curves drag titik shadow UP untuk vintage film print look.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Contoh film: Sin City, Schindler's List, Logan</p>
+      </div>
+      <div id="tab-pastel" class="tab-panel">
+        <p class="card-title">Karakteristik</p>
+        <p style="font-size:.85rem;margin-bottom:8px;">Raised blacks (hazy), highlight lembut, desaturated (warna pastel), glowy dan dreamlike.</p>
+        <p style="font-size:.85rem;"><b>Cara membuat:</b> Luma curve — naikkan titik shadow signifikan (hazy blacks), flatten highlight sedikit (soft rolloff). LIFT drag UP, sedikit warm tint keseluruhan, OpenFX &gt; Glow untuk sentuhan akhir.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Contoh: film-film Sofia Coppola, romance films, fashion photography aesthetic</p>
+      </div>
+      <div id="tab-moonlight" class="tab-panel">
+        <p class="card-title">Karakteristik</p>
+        <p style="font-size:.85rem;margin-bottom:8px;">Tone biru/dingin di seluruh frame, saturasi lebih rendah, keseluruhan lebih gelap (feel malam).</p>
+        <p style="font-size:.85rem;"><b>Cara membuat:</b> OFFSET drag ke biru, GAMMA drag DOWN dan ke biru, curves untuk menurunkan midtone agar terasa lebih gelap.</p>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Contoh film: The Revenant, Prisoners, horror films</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Replicating Reference Images <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Teknik profesional: cocokkan grade dengan foto referensi atau frame film tertentu. Import reference image ke Media Pool, bandingkan clip Anda (kiri) dengan referensi (kanan): cocokkan brightness, temperature warna, kontras, dan level saturasi. Gunakan scopes (waveform, vectorscope) untuk perbandingan teknis.</p>
+        <p>Reverse-engineering grade profesional melatih mata Anda! Sumber referensi: <a href="https://film-grab.com/" target="_blank">Film Grab</a> dan <a href="https://shotdeck.com/" target="_blank">Shot Deck</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="shot-matching">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Shot Matching untuk Continuity</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Shot Matching Penting?</div>
+      <p>Saat mengedit scene dengan banyak shot (angle kamera, take berbeda), shot harus matching secara warna untuk continuity. Problem: shot berbeda memiliki eksposur, temperatur warna, dan setting kamera berbeda — hasilnya cut yang jarring, merusak immersion. Solusinya: color grade shot agar saling matching.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Workflow Matching</div>
+      <ol class="styled">
+        <li><b>Pilih Hero Shot:</b> shot dengan pencahayaan, eksposur, dan warna terbaik — jadi baseline</li>
+        <li><b>Grade hero shot dengan sempurna:</b> primary correction + creative grading</li>
+        <li><b>Match shot lain ke hero shot:</b> manual matching (pelajari brightness, highlight, shadow depth, color temperature hero shot lalu terapkan ke shot lain) atau gunakan Shot Match Tool (fitur DaVinci Resolve Studio berbayar)</li>
+      </ol>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Waveform</div><div class="gc-body">Match distribusi brightness keseluruhan — waveform hero shot harus align dengan shot yang dicocokkan.</div></div>
+      <div class="grid-card"><div class="gc-title">Parade</div><div class="gc-body">Match level channel RGB — peak Red, Green, Blue harus sejajar.</div></div>
+      <div class="grid-card"><div class="gc-title">Vectorscope</div><div class="gc-body">Match saturasi &amp; hue warna — distribusi warna harus overlap.</div></div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Gallery Stills — Efisiensi Workflow <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p>Grade hero shot dengan sempurna, simpan sebagai Still Frame (klik kanan viewer &gt; Gallery &gt; Grab Still), terapkan ke shot lain, dan tweak jika diperlukan untuk variasi individual shot. Penghemat waktu besar untuk banyak shot yang memerlukan look serupa! Tutorial: <a href="https://www.youtube.com/watch?v=tZ4ql_KsvnA" target="_blank">Shot Matching dalam DaVinci Resolve</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="scopes">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>Scopes — Technical Monitoring</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa Menggunakan Scopes?</div>
+      <p>Mata manusia tidak reliable — beradaptasi dengan brightness monitor, color cast, terdeceive oleh warna sekitar, dan terpengaruh lighting lingkungan viewing. Scopes objektif: representasi matematis dari gambar. Colorist profesional sangat mengandalkan scopes, bukan hanya persepsi visual!</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Waveform Scope <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Representasi brightness sepanjang gambar. Horizontal = posisi gambar, vertikal = level brightness (0 IRE = hitam, 100 IRE = putih). Peak di atas = area terang, valley di bawah = area gelap.</p>
+        <p style="margin-bottom:8px;"><b>Distribusi ideal:</b> hitam mendekati 0 IRE (biasanya 5-10 IRE untuk legal limit video), putih mendekati 90-100 IRE (tidak clipped), spread merata = full dynamic range.</p>
+        <p><b>Underexposed:</b> waveform menumpuk di bawah. <b>Overexposed:</b> waveform menumpuk di atas. Fix: GAMMA untuk center midtone ~50 IRE, LIFT untuk shadow 0-10 IRE, GAIN untuk highlight 90-100 IRE.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Parade (RGB) <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Tiga waveform berdampingan (channel Red, Green, Blue terpisah). Digunakan untuk mengidentifikasi color cast dan balancing channel warna. Gambar netral: ketiga channel RGB harus roughly overlap/align.</p>
+        <ul class="styled">
+          <li>Channel Red lebih tinggi: cast merah/hangat — turunkan curve red</li>
+          <li>Channel Blue lebih tinggi: cast biru/dingin — turunkan blue atau tambah warmth</li>
+          <li>Channel Green lebih tinggi: cast hijau (umum dengan fluorescent) — turunkan green atau tambah magenta (TINT)</li>
+        </ul>
+        <p style="font-size:.83rem;color:#666;margin-top:8px;">Skin tone: channel Red biasanya sedikit lebih tinggi dari Green, Green lebih tinggi dari Blue (balance skin tone natural).</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Vectorscope <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Scope melingkar menunjukkan hue dan saturation. Angle di sekeliling circle = hue (merah, kuning, hijau, cyan, biru, magenta). Jarak dari center = saturation (center = desaturated, edge = sangat saturated).</p>
+        <p>Cluster di center = gambar desaturated. Spread ke edge = gambar saturated/colorful. Skin tone harus jatuh di sepanjang skin tone line (garis diagonal). Digunakan untuk cek color balance, monitor saturasi, dan memastikan skin tone natural.</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Histogram <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <p style="margin-bottom:8px;">Bar graph distribusi nilai pixel. Horizontal = brightness (kiri gelap, kanan terang), vertikal = jumlah pixel pada brightness tersebut.</p>
+        <p style="margin-bottom:8px;">Bunched kiri = gambar gelap (underexposed). Bunched kanan = gambar terang (overexposed). Distribusi merata = tonal range bagus. Gap di histogram ("comb effect") = gambar yang severely graded.</p>
+        <p><b>Clipping:</b> histogram menyentuh tepi kiri = clipped blacks, menyentuh tepi kanan = blown highlights. Ideal: histogram mengisi range tanpa menyentuh tepi.</p>
+      </div>
+    </div>
+    <p style="font-size:.83rem;color:#666;">Tutorial: <a href="https://www.youtube.com/watch?v=xUCHVCeaGUE" target="_blank">DaVinci Resolve Scopes Explained</a></p>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="color-theory">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <h2>Color Theory untuk Video Grading</h2>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card"><div class="gc-title">Primary</div><div class="gc-body">Merah, biru, kuning.</div></div>
+      <div class="grid-card"><div class="gc-title">Secondary</div><div class="gc-body">Hijau (biru+kuning), oranye (merah+kuning), ungu (merah+biru).</div></div>
+      <div class="grid-card"><div class="gc-title">Tertiary</div><div class="gc-body">Kombinasi primary dan secondary.</div></div>
+    </div>
+    <div class="sub-section">
+      <h3>Complementary &amp; Analogous Colors</h3>
+      <table class="rubric-table">
+        <thead><tr><th>Tipe</th><th>Definisi</th><th>Dampak Visual</th></tr></thead>
+        <tbody>
+          <tr><td>Complementary</td><td>Berlawanan di color wheel (Red↔Cyan, Orange↔Teal, Yellow↔Purple, Green↔Magenta)</td><td>Kontras maksimal, visually striking — contoh: teal &amp; orange</td></tr>
+          <tr><td>Analogous</td><td>Berdekatan di color wheel (merah, oranye, kuning)</td><td>Harmonious, cohesive — contoh: scene sunset, forest, ocean</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Color Psychology</h3>
+      <div class="grid-2">
+        <div class="grid-card"><div class="gc-title">Warm Colors (Merah, Oranye, Kuning)</div><div class="gc-body">Energi, passion, kehangatan, excitement, bahaya. Digunakan untuk romance, action, sunset, fire.</div></div>
+        <div class="grid-card"><div class="gc-title">Cool Colors (Biru, Cyan, Ungu)</div><div class="gc-body">Calm, sadness, isolasi, profesionalisme, mystery. Digunakan untuk corporate, malam, air, teknologi.</div></div>
+        <div class="grid-card"><div class="gc-title">Hijau</div><div class="gc-body">Alam, growth, sickness, envy. Digunakan untuk forest, Matrix (digital world), horror (sickly green).</div></div>
+        <div class="grid-card"><div class="gc-title">Desaturated/Grey</div><div class="gc-body">Depresi, bleakness, realism, kekerasan. Digunakan untuk war films, distopia, dokumenter serius.</div></div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Menerapkan Color Theory dalam Grading</div>
+      <p>Workflow: (1) identifikasi mood scene/video — happy: warna hangat saturated, sad: tone dingin desaturated, intense: kontras tinggi bold; (2) pilih 2-3 warna dominan berdasarkan relasi complementary/analogous; (3) push skin tone ke warm pilihan, push background ke cool komplementer, desaturate warna off-palette. Tutorial: <a href="https://www.youtube.com/watch?v=gnUKFsxwP-I" target="_blank">Color Theory untuk Filmmakers</a></p>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <section class="content-section" id="praktikum">
+    <div class="section-header">
+      <div class="section-num">13</div>
+      <h2>Quiz 2 &amp; Praktikum</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Quiz 2: Color Grading &amp; Color Correction (5%)</div>
+      <p>Format: online quiz atau tertulis di kelas. Topik: correction vs grading, interface DaVinci Resolve Color Page, primary correction (eksposur, white balance, black/white point), color wheels, curves (luma, RGB, hue vs sat/lum), LUTs, grading styles, scopes, dan color theory dasar.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Contoh Soal</div>
+      <ol class="styled">
+        <li>Color wheel mana yang mengontrol shadow? (Lift / Gamma / Gain / Offset)</li>
+        <li>Jelaskan perbedaan color correction dan color grading.</li>
+        <li>Jelaskan cara membuat look "Teal &amp; Orange" menggunakan color wheels.</li>
+        <li>Apa arti "raised blacks" dan estetika apa yang dihasilkannya?</li>
+      </ol>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Study Tips <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li>Review semua bagian modul</li>
+          <li>Praktik grading langsung di DaVinci Resolve (hands-on memperkuat teori)</li>
+          <li>Tonton tutorial referensi yang ditautkan di seluruh modul</li>
+          <li>Pelajari cara membaca scope (latih identifikasi masalah)</li>
+          <li>Hafalkan istilah kunci (Lift, Gamma, Gain, LUT, dll.)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Praktikum: Grading Footage Sendiri</div>
+      <ul class="styled">
+        <li>Pilih 2-3 clip footage (boleh dari tugas sebelumnya)</li>
+        <li>Lakukan primary correction: exposure, contrast, white balance</li>
+        <li>Terapkan minimal satu grading style: Teal &amp; Orange, Vintage, B&amp;W, atau Pastel</li>
+        <li>Gunakan scopes untuk verifikasi teknis (waveform, vectorscope)</li>
+        <li>Ekspor before/after comparison sebagai dokumentasi</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="../index.html">← Kembali ke Index</a>
+    <a href="rekayasa-vidio-dan-audio-p12.html" class="next-btn">Pertemuan 12 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Tanah Laut · M. Bahril Ilmi, S.Kom., M.Kom. · Rekayasa Video dan Audio</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+</body>
+</html>

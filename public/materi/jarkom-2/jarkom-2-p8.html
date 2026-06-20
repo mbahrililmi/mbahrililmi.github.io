@@ -76,7 +76,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
 .score-low { background: #fef2f2; color: #dc2626; font-weight: 700; }
 @media (max-width: 768px) { .sidebar { display: none; } .main-content { padding: 20px; } .page-header { padding: 20px; } }
 
-/* === DKV-style Overrides === */
+/* === DKV-style Overrides Enhanced === */
 .sidebar{width:260px!important;min-width:260px;background:#1a2942!important;color:#fff;border-right:none!important;padding:0!important;}
 .sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
 .sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#d4ac6e;margin-bottom:4px;}
@@ -97,9 +97,63 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
 .header-meta{display:flex;gap:10px;flex-wrap:wrap;}
 .meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:#fff;}
 .meta-badge span{color:#d4ac6e;font-weight:600;}
+/* Section title — match DKV visual style */
+.section-title{border-bottom:none!important;font-family:'Playfair Display',serif!important;font-size:1.35rem!important;color:#1a2942!important;margin-bottom:20px!important;}
+.section-num{border-radius:8px!important;width:32px!important;height:32px!important;font-size:.85rem!important;}
+.learning-objectives{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08))!important;border:1px solid rgba(184,137,59,.25)!important;border-left:4px solid #b8893b!important;border-radius:10px!important;}
+
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
 </style>
 </head>
 <body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 
 
 
@@ -270,7 +324,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Konfigurasi semua IP address Router Utama</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip address add address=203.0.113.1/30 interface=ether1 comment="WAN-ISP"
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip address add address=203.0.113.1/30 interface=ether1 comment="WAN-ISP"
 /ip address add address=192.168.10.1/24 interface=ether2 comment="LAN-Admin"
 /ip address add address=192.168.20.1/24 interface=ether3 comment="LAN-Lab"
 /ip address add address=192.168.30.1/24 interface=wlan1 comment="WiFi-Mahasiswa"
@@ -281,7 +335,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Tambah default route &amp; konfigurasi DNS</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.2
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip route add dst-address=0.0.0.0/0 gateway=203.0.113.2
 /ip dns set servers=8.8.8.8,8.8.4.4 allow-remote-requests=yes
 /ip dns print</div>
           </div>
@@ -290,7 +344,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="3">3</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Konfigurasi Router Cabang</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di Router Cabang
 /ip address add address=203.0.114.1/30 interface=ether1 comment="WAN-ISP-Cabang"
 /ip address add address=192.168.40.1/24 interface=ether2 comment="LAN-Cabang"
 /ip route add dst-address=0.0.0.0/0 gateway=203.0.114.2
@@ -317,14 +371,14 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="1">1</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Buat IP Pool untuk Admin</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="Pool-Admin" ranges=192.168.10.100-192.168.10.200</div>
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip pool add name="Pool-Admin" ranges=192.168.10.100-192.168.10.200</div>
                 </div>
               </div>
               <div class="step">
                 <div class="step-num" data-n="2">2</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Buat DHCP Server Admin</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip dhcp-server add \
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip dhcp-server add \
   name="DHCP-Admin" \
   interface=ether2 \
   address-pool=Pool-Admin \
@@ -341,7 +395,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
             </div>
           </div>
           <div id="dhcp-wifi" class="tab-panel">
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="Pool-WiFi" ranges=192.168.30.10-192.168.30.250
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip pool add name="Pool-WiFi" ranges=192.168.30.10-192.168.30.250
 
 /ip dhcp-server add \
   name="DHCP-WiFi" \
@@ -357,7 +411,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
   comment="Network WiFi Mahasiswa"</div>
           </div>
           <div id="dhcp-cabang" class="tab-panel">
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di Router Cabang
 /ip pool add name="Pool-Cabang" ranges=192.168.40.100-192.168.40.200
 
 /ip dhcp-server add \
@@ -385,7 +439,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>NAT Masquerade Router Utama</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall nat add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall nat add \
   chain=srcnat \
   out-interface=ether1 \
   action=masquerade \
@@ -396,7 +450,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>NAT Masquerade Router Cabang</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di Router Cabang
 /ip firewall nat add \
   chain=srcnat \
   out-interface=ether1 \
@@ -421,7 +475,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Aturan dasar (established, related, invalid)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add chain=input connection-state=established,related action=accept
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall filter add chain=input connection-state=established,related action=accept
 /ip firewall filter add chain=forward connection-state=established,related action=accept
 /ip firewall filter add chain=input connection-state=invalid action=drop
 /ip firewall filter add chain=forward connection-state=invalid action=drop</div>
@@ -431,7 +485,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Blokir akses sosial media dari WiFi Mahasiswa (jam kerja)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Buat address list untuk IP sosmed (contoh)
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Buat address list untuk IP sosmed (contoh)
 /ip firewall address-list add list=sosmed address=31.13.64.0/18 comment="Facebook"
 /ip firewall address-list add list=sosmed address=157.240.0.0/17 comment="Instagram"
 /ip firewall address-list add list=sosmed address=104.244.42.0/24 comment="Twitter/X"
@@ -449,7 +503,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="3">3</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Proteksi akses router dari internet</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall filter add \
   chain=input \
   in-interface=ether1 \
   dst-port=8291,22,23,80 \
@@ -462,7 +516,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="4">4</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Izinkan ICMP (ping) dari semua LAN</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall filter add chain=input protocol=icmp action=accept comment="Allow ICMP"
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall filter add chain=input protocol=icmp action=accept comment="Allow ICMP"
 /ip firewall filter add chain=forward protocol=icmp action=accept comment="Allow ICMP forward"</div>
           </div>
         </div>
@@ -478,7 +532,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Buat Security Profile WPA2</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface wireless security-profiles add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/interface wireless security-profiles add \
   name="Politala-WPA2" \
   mode=dynamic-keys \
   authentication-types=wpa2-psk \
@@ -491,7 +545,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Konfigurasi wlan1 sebagai AP</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface wireless set wlan1 \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/interface wireless set wlan1 \
   mode=ap-bridge \
   ssid="Politala-Student" \
   frequency=2437 \
@@ -514,7 +568,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Simple Queue untuk LAN Admin (prioritas tinggi)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/queue simple add \
   name="QoS-Admin" \
   target=192.168.10.0/24 \
   max-limit=5M/5M \
@@ -527,7 +581,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Simple Queue untuk LAN Lab</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/queue simple add \
   name="QoS-Lab" \
   target=192.168.20.0/24 \
   max-limit=2M/2M \
@@ -540,7 +594,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="3">3</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>PCQ untuk WiFi Mahasiswa (1Mbps per user)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue type add \
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/queue type add \
   name="PCQ-Student-DL" kind=pcq pcq-classifier=dst-address pcq-rate=1M
 /queue type add \
   name="PCQ-Student-UL" kind=pcq pcq-classifier=src-address pcq-rate=512k
@@ -574,7 +628,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="1">1</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Setup IP Pool dan PPP Profile</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip pool add name="VPN-Pool" ranges=10.10.10.10-10.10.10.50
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip pool add name="VPN-Pool" ranges=10.10.10.10-10.10.10.50
 /ppp profile add \
   name="VPN-Profile" \
   local-address=10.10.10.1 \
@@ -587,7 +641,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="2">2</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Tambah PPP Secrets (akun VPN)</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ppp secret add name="cabang" password="CabangPass123" service=pptp profile=VPN-Profile comment="Site-to-Site Cabang"
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ppp secret add name="cabang" password="CabangPass123" service=pptp profile=VPN-Profile comment="Site-to-Site Cabang"
 /ppp secret add name="dosen1" password="Dosen1Pass" service=pptp profile=VPN-Profile comment="Remote Access Dosen"
 /ppp secret add name="staff1" password="Staff1Pass" service=pptp profile=VPN-Profile comment="Remote Access Staf"</div>
                 </div>
@@ -596,7 +650,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="3">3</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Aktifkan PPTP Server dan buka port</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/interface pptp-server server set enabled=yes default-profile=VPN-Profile authentication=mschap2
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/interface pptp-server server set enabled=yes default-profile=VPN-Profile authentication=mschap2
 /ip firewall filter add chain=input protocol=tcp dst-port=1723 action=accept comment="Allow PPTP"
 /ip firewall filter add chain=input protocol=gre action=accept comment="Allow GRE"</div>
                 </div>
@@ -609,7 +663,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="1">1</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Buat PPTP Client di Router Cabang</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Di Router Cabang
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Di Router Cabang
 /interface pptp-client add \
   name="VPN-HQ" \
   connect-to=203.0.113.1 \
@@ -623,7 +677,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="2">2</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Tambah route ke jaringan Gedung Utama</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip route add dst-address=192.168.10.0/24 gateway=VPN-HQ comment="Route ke LAN Admin HQ"
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip route add dst-address=192.168.10.0/24 gateway=VPN-HQ comment="Route ke LAN Admin HQ"
 /ip route add dst-address=192.168.20.0/24 gateway=VPN-HQ comment="Route ke LAN Lab HQ"</div>
                 </div>
               </div>
@@ -631,7 +685,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
                 <div class="step-num" data-n="3">3</div>
                 <div class="step-content">
                   <label><input type="checkbox" class="step-check"> <strong>Tambah route di Router Utama ke LAN Cabang</strong></label>
-                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Kembali di Router Utama
+                  <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Kembali di Router Utama
 /ip route add dst-address=192.168.40.0/24 gateway=10.10.10.1 comment="Route ke LAN Cabang via VPN"</div>
                 </div>
               </div>
@@ -642,7 +696,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
               <span class="callout-icon">💡</span>
               <span class="callout-text">Untuk Remote Access, dosen/staf cukup mengkonfigurasi VPN client di Windows/macOS menggunakan username dan password yang telah dibuat di PPP Secrets.</span>
             </div>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">Konfigurasi VPN Windows:
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>Konfigurasi VPN Windows:
 - Server: 203.0.113.1
 - Tipe: PPTP
 - Username: dosen1 / staff1
@@ -663,14 +717,14 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="1">1</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Verifikasi IP Address semua interface</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip address print</div>
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip address print</div>
           </div>
         </div>
         <div class="step">
           <div class="step-num" data-n="2">2</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Verifikasi DHCP berjalan &amp; ada lease aktif</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip dhcp-server print
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip dhcp-server print
 /ip dhcp-server lease print</div>
           </div>
         </div>
@@ -678,7 +732,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="3">3</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Test konektivitas internet dari setiap subnet</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ping 8.8.8.8 count=4 src-address=192.168.10.1
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ping 8.8.8.8 count=4 src-address=192.168.10.1
 /ping 8.8.8.8 count=4 src-address=192.168.20.1
 /ping 8.8.8.8 count=4 src-address=192.168.30.1</div>
           </div>
@@ -687,7 +741,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="4">4</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Verifikasi NAT bekerja (cek IP publik)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/ip firewall nat print stats
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/ip firewall nat print stats
 /tool fetch url=http://ifconfig.me as-value output=user</div>
           </div>
         </div>
@@ -695,7 +749,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="5">5</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Verifikasi VPN site-to-site (ping antar gedung)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button"># Dari Router Cabang - ping ke LAN Admin HQ
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button># Dari Router Cabang - ping ke LAN Admin HQ
 /ping 192.168.10.1 count=4
 # Dari Router Utama - ping ke LAN Cabang
 /ping 192.168.40.1 count=4</div>
@@ -705,7 +759,7 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
           <div class="step-num" data-n="6">6</div>
           <div class="step-content">
             <label><input type="checkbox" class="step-check"> <strong>Verifikasi QoS (bandwidth test per subnet)</strong></label>
-            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">📋 Salin</button">/queue simple print stats
+            <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button>/queue simple print stats
 # Dari PC di setiap subnet - jalankan speedtest.net
 # Bandingkan dengan max-limit yang dikonfigurasi</div>
           </div>
@@ -816,14 +870,6 @@ footer { background: #1a2942; color: #fff; padding: 24px 48px; margin-top: 40px;
       document.querySelectorAll('.accordion-header').forEach(btn => {
   btn.addEventListener('click', () => { btn.classList.toggle('open'); btn.nextElementSibling.classList.toggle('open'); });
 });
-function copyCode(btn) {
-  const block = btn.closest('.code-block');
-  const lines = block.innerText.split('\n').filter(l => !l.includes('📋') && !l.includes('✓'));
-  navigator.clipboard.writeText(lines.join('\n').trim()).then(() => {
-    btn.textContent = '✓ Disalin!'; btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = '📋 Salin'; btn.classList.remove('copied'); }, 2000);
-  });
-}
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const group = btn.closest('.tab-group');
@@ -859,6 +905,136 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
 </body>
 </html>
 
