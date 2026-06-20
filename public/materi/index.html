@@ -690,11 +690,28 @@
         .hero {
           padding: 56px 24px 52px;
         }
+        .hero-stats {
+          gap: 20px;
+        }
         .page-body {
           padding: 40px 20px 60px;
         }
+        .top-row {
+          flex-direction: column;
+          align-items: stretch;
+          margin-bottom: 36px;
+        }
+        .filter-bar {
+          max-width: 100%;
+          width: 100%;
+        }
         .course-header {
           flex-wrap: wrap;
+          padding: 22px;
+          gap: 14px;
+        }
+        .course-toggle {
+          margin-left: 0;
         }
         .praktikum-grid {
           grid-template-columns: 1fr;
@@ -703,6 +720,94 @@
           flex-direction: column;
           align-items: flex-start;
           gap: 6px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .topbar {
+          padding: 12px 0;
+        }
+        .topbar-inner {
+          padding: 0 18px;
+        }
+        .topbar-brand {
+          font-size: 0.95rem;
+        }
+        .topbar-breadcrumb {
+          font-size: 0.74rem;
+        }
+        .hero {
+          padding: 48px 18px 40px;
+        }
+        .hero-sub {
+          font-size: 0.92rem;
+        }
+        .hero-stats {
+          gap: 18px 24px;
+        }
+        .hero-stat-num {
+          font-size: 1.5rem;
+        }
+        .page-body {
+          padding: 32px 16px 56px;
+        }
+        .section-label {
+          margin-bottom: 24px;
+        }
+        .section-label-line {
+          max-width: 40px;
+        }
+        .top-row-left h2 {
+          font-size: 1.3rem;
+        }
+        .course-block {
+          margin-bottom: 44px;
+        }
+        .course-header {
+          padding: 18px;
+          gap: 12px;
+        }
+        .course-icon-wrap {
+          width: 44px;
+          height: 44px;
+          font-size: 1.2rem;
+          border-radius: 12px;
+        }
+        .course-title {
+          font-size: 1.1rem;
+        }
+        .course-code {
+          font-size: 0.65rem;
+        }
+        .course-desc {
+          font-size: 0.78rem;
+        }
+        .course-badge-count {
+          width: 48px;
+          height: 48px;
+        }
+        .course-badge-count .num {
+          font-size: 1.25rem;
+        }
+        .course-toggle .toggle-label {
+          display: none;
+        }
+        .praktikum-grid {
+          padding: 16px;
+          gap: 12px;
+        }
+        .prak-card {
+          padding: 16px;
+        }
+        .prak-title {
+          font-size: 0.92rem;
+        }
+        .ornamental-divider {
+          margin: 40px 0 32px;
+        }
+        .page-footer {
+          padding: 24px 18px;
+          font-size: 0.78rem;
         }
       }
     </style>
