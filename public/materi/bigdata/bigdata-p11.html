@@ -662,7 +662,7 @@ with DAG(
 
   <nav class="footer-nav">
     <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
@@ -805,5 +805,14 @@ function fallback(code,cb){
 })();
 </script>
 
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
 </body>
 </html>

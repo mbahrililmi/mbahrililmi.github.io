@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Mengalihkan...</title>
+  <script>
+    /**
+     * GitHub Pages Clean URL trick.
+     * When a clean URL (no .html) is accessed, GitHub Pages serves this 404.html.
+     * This script tries appending .html and redirecting to that page.
+     *
+     * e.g. /materi/bigdata/bigdata-p2 → /materi/bigdata/bigdata-p2.html
+     */
+    (function() {
+      var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+
+      // Don't redirect index paths (/) or paths ending in /
+      if (path === '/' || path.endsWith('/')) return;
+
+      // Don't redirect paths that already have an extension
+      var lastSegment = path.split('/').pop();
+      if (lastSegment.indexOf('.') !== -1) return;
+
+      // Try appending .html
+      var targetUrl = path + '.html' + search + hash;
+      window.location.replace(targetUrl);
+    })();
+  </script>
+</head>
+<body style="font-family:sans-serif;text-align:center;padding:80px 20px;color:#555;">
+  <p>Mengalihkan halaman...</p>
+  <p style="font-size:.85rem">Jika tidak dialihkan otomatis, <a href="public/materi/index.html" style="color:#b8893b">klik di sini</a>.</p>
+</body>
+</html>

@@ -2536,19 +2536,31 @@
           el.style.display = 'none';
         });
 
-        // Add a header saying "Materi [courseName]" and a back button
+        // Add a header saying "Materi [courseName]" — NO back link (share mode)
         const pageBody = document.querySelector('.page-body');
         const topRow = document.querySelector('.top-row');
         if (topRow) {
           const courseName = courseNames[matkul] || matkul;
           topRow.querySelector('.top-row-left h2').textContent = 'Materi ' + courseName;
-          topRow.querySelector('.top-row-left p').innerHTML =
-            '<a href="index.html" style="color:var(--gold)"><i class="bi bi-arrow-left"></i> Lihat semua mata kuliah</a>';
+          // Remove subtitle entirely — no link back to full index in share mode
+          topRow.querySelector('.top-row-left p').textContent = 'Pilih pertemuan untuk membuka materi.';
+          // Hide search bar — irrelevant in single-course mode
+          const filterBar = topRow.querySelector('.filter-bar');
+          if (filterBar) filterBar.style.display = 'none';
         }
 
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })();
+    </script>
+    <script>
+    /* Remove .html from URL bar for clean URLs */
+    (function(){
+      var p=window.location.pathname;
+      if(p.endsWith('.html')){
+        window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+      }
+    })();
     </script>
   </body>
 </html>
