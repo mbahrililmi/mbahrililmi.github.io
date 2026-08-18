@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Cluster Analysis</div>
+    <div class="pertemuan-badge">Pertemuan 5</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">K-Means Clustering</a>
+    <a href="#section-3" class="toc-link">Hierarchical Clustering</a>
+    <a href="#section-4" class="toc-link">DBSCAN</a>
+    <a href="#section-5" class="toc-link">Evaluasi Clustering</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -257,9 +259,63 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 5</div>
+      <p>Mahasiswa mampu <b>memahami dan menerapkan metode Cluster Analysis</b> sebagai unsupervised learning untuk mengelompokkan data berdasarkan kemiripan, serta mengevaluasi kualitas clustering yang dihasilkan.</p>
+    </div>
     <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu menjelaskan konsep cluster analysis dan aplikasinya.</p>
+      <div class="card-title">Apa itu Clustering?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Clustering adalah teknik <b>unsupervised learning</b> yang mengelompokkan data points yang mirip ke dalam cluster yang sama, tanpa menggunakan label yang sudah diketahui. Berbeda dengan classification yang membutuhkan labeled training data, clustering menemukan struktur tersembunyi dalam data secara otomatis.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tujuan Pembelajaran</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Konsep Clustering</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami perbedaan clustering (unsupervised) vs classification (supervised), dan kapan clustering tepat digunakan untuk eksplorasi data tanpa label.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">K-Means Algorithm</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami cara kerja K-Means Clustering, metode penentuan optimal K (Elbow Method), dan implementasi dengan Python scikit-learn.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Hierarchical & DBSCAN</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan perbedaan Hierarchical Clustering (Agglomerative/Divisive) dan DBSCAN (Density-Based), kelebihan, dan kekurangan masing-masing.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Evaluasi Clustering</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mampu mengevaluasi kualitas clustering menggunakan Silhouette Score, Davies-Bouldin Index, dan WCSS sebagai panduan pemilihan algorithm/parameter.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Use Cases Clustering di Industri</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Customer Segmentation</div>
+          <div class="gc-body">Membagi pelanggan menjadi segmen berdasarkan perilaku belanja, demografi, dan nilai. Digunakan untuk personalisasi marketing.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Document Clustering</div>
+          <div class="gc-body">Mengelompokkan artikel, berita, atau dokumen berdasarkan topik. Berguna untuk rekomendasi konten dan information retrieval.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Anomaly Detection</div>
+          <div class="gc-body">Identifikasi data points yang tidak masuk ke cluster mana pun (noise/outlier) sebagai kandidat anomali atau fraud.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Image Compression</div>
+          <div class="gc-body">Mengurangi jumlah warna dalam gambar dengan mengelompokkan pixel yang mirip. K-Means digunakan untuk color quantization.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Gene Expression</div>
+          <div class="gc-body">Bioinformatika menggunakan clustering untuk mengelompokkan gen yang memiliki ekspresi serupa, membantu penelitian penyakit genetik.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Supply Chain Optimization</div>
+          <div class="gc-body">Mengelompokkan wilayah distribusi untuk mengoptimalkan rute pengiriman dan penempatan warehouse/gudang.</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -269,9 +325,100 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">2</div>
       <h2>K-Means Clustering</h2>
     </div>
-    <div class="card">
-      <div class="card-title">K-Means Clustering</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>K-Means</b> adalah algoritma clustering yang membagi data menjadi K clusters berdasarkan kedekatan ke centroid. Setiap data point assigned ke cluster dengan centroid terdekat.<br><br><b>Cara Kerja:</b><br>1. Initialize K centroids secara random<br>2. Assign setiap point ke nearest centroid<br>3. Recalculate centroids (mean dari points dalam cluster)<br>4. Repeat step 2-3 hingga convergence<br><br><b>Elbow Method:</b> Plot sum of squared distances vs K untuk menentukan optimal K (looking for "elbow" point).</p>
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p><b>K-Means</b> adalah algoritma partitioning clustering yang membagi data menjadi <b>K cluster non-overlapping</b>. Setiap data point diasignasikan ke cluster terdekat berdasarkan jarak Euclidean ke centroid cluster.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Langkah-Langkah K-Means</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Step 1: Initialize Centroids</div>
+          <p style="font-size:.88rem;line-height:1.75;">Pilih K titik awal sebagai centroid. Metode: <b>Random initialization</b> (pilih K points random dari data), <b>K-Means++</b> (spread centroids secara cerdas untuk konvergensi lebih cepat dan hasil lebih baik).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 2: Assign Points to Clusters</div>
+          <p style="font-size:.88rem;line-height:1.75;">Untuk setiap data point, hitung <b>Euclidean distance</b> ke semua K centroids. Assign point ke cluster dengan centroid terdekat: argmin ||xᵢ - μₖ||²</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 3: Update Centroids</div>
+          <p style="font-size:.88rem;line-height:1.75;">Hitung ulang posisi centroid sebagai <b>mean (rata-rata)</b> dari semua points dalam cluster tersebut: μₖ = (1/|Sₖ|) Σ xᵢ untuk setiap cluster k.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 4: Repeat until Convergence</div>
+          <p style="font-size:.88rem;line-height:1.75;">Ulangi step 2-3 hingga <b>tidak ada perubahan assignment</b> (konvergensi) atau mencapai max iterations. K-Means dijamin konvergen ke local optimum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Menentukan Optimal K: Elbow Method</h3>
+      <div class="card">
+        <div class="card-title">Elbow Method</div>
+        <p style="font-size:.88rem;line-height:1.75;">Plot <b>Within-Cluster Sum of Squares (WCSS/Inertia)</b> terhadap nilai K. WCSS akan terus turun seiring K meningkat, tapi ada titik di mana penambahan K tidak lagi memberikan penurunan signifikan — titik ini disebut "elbow" dan merupakan nilai K optimal.<br><br>Selain Elbow Method, dapat juga menggunakan <b>Silhouette Analysis</b> untuk memvalidasi jumlah cluster optimal.</p>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi K-Means Python</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Feature scaling penting untuk K-Means!
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Elbow Method - mencari optimal K
+wcss = []
+K_range = range(2, 11)
+for k in K_range:
+    kmeans = KMeans(n_clusters=k, init='k-means++', random_state=42)
+    kmeans.fit(X_scaled)
+    wcss.append(kmeans.inertia_)
+
+plt.figure(figsize=(8, 4))
+plt.plot(K_range, wcss, 'bx-')
+plt.xlabel('Jumlah Clusters (K)')
+plt.ylabel('WCSS (Inertia)')
+plt.title('Elbow Method untuk Optimal K')
+plt.grid(True, alpha=0.3)
+plt.show()
+
+# Fit K-Means dengan K optimal (misal K=3)
+kmeans = KMeans(n_clusters=3, init='k-means++', random_state=42)
+labels = kmeans.fit_predict(X_scaled)
+
+print(f"Silhouette Score: {silhouette_score(X_scaled, labels):.3f}")
+print(f"Cluster sizes: {np.bincount(labels)}")</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Kelebihan & Kekurangan K-Means</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">✓ Kelebihan</div>
+          <div class="gc-body">
+            • Simple dan mudah dipahami<br>
+            • Scalable untuk dataset besar<br>
+            • Konvergen cepat dalam praktik<br>
+            • Hasil mudah diinterpretasikan<br>
+            • Banyak tersedia di semua library ML
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">✗ Kekurangan</div>
+          <div class="gc-body">
+            • Perlu tentukan K terlebih dahulu<br>
+            • Sensitif terhadap initial centroids<br>
+            • Hanya bisa cluster spherical shape<br>
+            • Sensitif terhadap outliers<br>
+            • Perlu feature scaling
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -281,9 +428,70 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">3</div>
       <h2>Hierarchical Clustering</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Hierarchical Clustering</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Hierarchical Clustering</b> membangun hierarchy of clusters tanpa perlu specify K upfront.<br><br><b>Agglomerative (Bottom-up):</b><br>• Start: Setiap point adalah cluster sendiri<br>• Iteratively merge closest pairs of clusters<br>• Result: Dendrogram tree structure<br><br><b>Linkage Methods:</b><br>• <b>Single:</b> Minimum distance between points<br>• <b>Complete:</b> Maximum distance<br>• <b>Average:</b> Average distance<br>• <b>Ward:</b> Minimize within-cluster variance</p>
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p><b>Hierarchical Clustering</b> membangun hierarki cluster dalam bentuk <b>dendrogram (pohon)</b> tanpa perlu menentukan K di awal. Kita bisa memilih jumlah cluster setelah melihat dendrogram dengan memotong di level tertentu.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Pendekatan Hierarchical Clustering</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Agglomerative (Bottom-Up)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mulai dari setiap data point sebagai cluster sendiri, kemudian <b>merge dua cluster terdekat</b> secara iteratif hingga semua data menjadi satu cluster besar. Inilah pendekatan yang paling umum digunakan.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Divisive (Top-Down)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mulai dari semua data dalam satu cluster besar, kemudian <b>split cluster</b> secara rekursif hingga setiap data point menjadi cluster sendiri. Lebih mahal secara komputasi.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Linkage Methods</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Single Linkage</div>
+          <div class="gc-body">Distance antara dua cluster = <b>minimum distance</b> antara points dari kedua cluster. Tendang ke long, chain-like clusters. Sensitif terhadap outliers.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Complete Linkage</div>
+          <div class="gc-body">Distance = <b>maximum distance</b> antara points. Menghasilkan compact, spherical clusters. Lebih robust terhadap outliers.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Average Linkage</div>
+          <div class="gc-body">Distance = <b>average distance</b> semua pasangan points antar cluster. Compromise antara single dan complete. Umumnya memberikan hasil yang baik.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Ward Linkage (Direkomendasikan)</div>
+          <div class="gc-body">Minimize <b>within-cluster variance</b> saat merge. Menghasilkan cluster yang sama-ukuran dan compact. Sering memberikan hasil terbaik.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi Hierarchical Clustering</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+import matplotlib.pyplot as plt
+
+# Plot dendrogram untuk visualisasi
+Z = linkage(X_scaled, method='ward')
+
+plt.figure(figsize=(12, 5))
+dendrogram(Z, truncate_mode='level', p=4)
+plt.title('Dendrogram - Ward Linkage')
+plt.xlabel('Data Points')
+plt.ylabel('Distance')
+plt.show()
+
+# Fit model dengan jumlah cluster yang dipilih dari dendrogram
+hc = AgglomerativeClustering(
+    n_clusters=3,        # Dipilih dari dendrogram
+    linkage='ward'       # Ward: minimize within-cluster variance
+)
+labels = hc.fit_predict(X_scaled)
+print(f"Cluster distribution: {np.bincount(labels)}")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -293,9 +501,77 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">4</div>
       <h2>DBSCAN & Density-Based</h2>
     </div>
-    <div class="card">
-      <div class="card-title">DBSCAN & Density-Based</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>DBSCAN (Density-Based Spatial Clustering)</b> adalah density-based algorithm yang dapat menemukan clusters dengan arbitrary shapes dan identify outliers.<br><br><b>Konsep Kunci:</b><br>• <b>Eps (ε):</b> Radius neighborhood<br>• <b>MinPts:</b> Minimum points untuk form dense region<br>• <b>Core Point:</b> Point dengan ≥ MinPts dalam ε radius<br>• <b>Border Point:</b> In ε radius of core point<br>• <b>Noise:</b> Points yang bukan core/border<br><br><b>Advantages:</b> Tidak perlu specify K, handle outliers, find non-spherical clusters.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Definisi</div>
+      <p><b>DBSCAN (Density-Based Spatial Clustering of Applications with Noise)</b> adalah algoritma clustering berbasis densitas yang dapat menemukan cluster dengan <b>bentuk arbitrary</b> dan secara otomatis mengidentifikasi <b>outliers/noise</b>.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Konsep Kunci DBSCAN</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Parameter: Eps (ε)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Radius neighborhood</b> — jarak maksimum dua points dianggap "tetangga". Pilih dengan k-distance graph: plot jarak ke k-nearest neighbor untuk semua points, cari "elbow".</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Parameter: MinPts</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Minimum jumlah points</b> dalam radius ε untuk suatu point dianggap "core point". Rule of thumb: MinPts = dimensi × 2, atau minimal 3-4 untuk 2D data.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Klasifikasi Points</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Core Point:</b> ≥ MinPts dalam radius ε<br><b>Border Point:</b> Dalam ε dari core, tapi sendiri &lt; MinPts<br><b>Noise Point:</b> Tidak masuk cluster mana pun (outlier)</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi DBSCAN</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from sklearn.cluster import DBSCAN
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
+
+# Step 1: Cari optimal eps dengan k-distance graph
+k = 4  # MinPts
+nbrs = NearestNeighbors(n_neighbors=k).fit(X_scaled)
+distances, indices = nbrs.kneighbors(X_scaled)
+distances = np.sort(distances[:, k-1], axis=0)
+
+# Plot k-distance graph untuk tentukan eps
+plt.figure(figsize=(8, 4))
+plt.plot(distances)
+plt.title(f'{k}-distance Graph (cari elbow untuk eps)')
+plt.xlabel('Points sorted by distance')
+plt.ylabel(f'{k}-NN distance')
+plt.show()
+
+# Step 2: Fit DBSCAN
+dbscan = DBSCAN(
+    eps=0.5,        # Dari k-distance graph
+    min_samples=4   # MinPts
+)
+labels = dbscan.fit_predict(X_scaled)
+
+# Analisis hasil
+n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
+n_noise = list(labels).count(-1)
+print(f"Clusters found: {n_clusters}")
+print(f"Noise points: {n_noise} ({n_noise/len(labels)*100:.1f}%)")</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Perbandingan Algoritma Clustering</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Aspek</th><th>K-Means</th><th>Hierarchical</th><th>DBSCAN</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Perlu tentukan K?</b></td><td>Ya</td><td>Tidak</td><td>Tidak</td></tr>
+          <tr><td><b>Shape cluster</b></td><td>Spherical saja</td><td>Arbitrary</td><td>Arbitrary</td></tr>
+          <tr><td><b>Outlier handling</b></td><td>Tidak baik</td><td>Tidak baik</td><td>Auto-detect noise</td></tr>
+          <tr><td><b>Scalability</b></td><td>Baik (O(nkT))</td><td>Buruk (O(n²))</td><td>Sedang (O(n log n))</td></tr>
+          <tr><td><b>Cocok untuk</b></td><td>Compact, equally-sized clusters</td><td>Hierarchical data</td><td>Data dengan noise, arbitrary shape</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
@@ -306,8 +582,66 @@ ul.styled li::marker{color:var(--gold);}
       <h2>Evaluasi Clustering</h2>
     </div>
     <div class="card">
-      <div class="card-title">Evaluasi Clustering</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Metrics untuk Evaluate Clustering Quality:</b><br><br><b>1. Silhouette Score:</b> Measure how similar object is to own cluster vs other clusters. Range [-1, 1]. Higher is better.<br>Formula: s(i) = (b(i) - a(i)) / max(a(i), b(i))<br><br><b>2. Davies-Bouldin Index:</b> Average similarity ratio of each cluster with most similar one. Lower is better.<br><br><b>3. Within-Cluster Sum of Squares (WCSS):</b> Sum of squared distances of points to centroids. Used in elbow method.<br><br><b>4. Calinski-Harabasz Index:</b> Ratio of between-cluster to within-cluster dispersion. Higher is better.</p>
+      <div class="card-title">Mengapa Evaluasi Clustering Sulit?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Berbeda dengan supervised learning yang punya ground truth labels, clustering bersifat unsupervised sehingga tidak ada "jawaban benar". Evaluasi dilakukan dengan <b>internal metrics</b> (berdasarkan struktur cluster itu sendiri) atau <b>external metrics</b> (jika ada ground truth).</p>
+    </div>
+    <div class="sub-section">
+      <h3>Internal Evaluation Metrics</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Silhouette Score</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Range: [-1, 1] — Higher is better (≥ 0.5 good)</b><br><br>Mengukur seberapa mirip suatu point dengan clusternya sendiri (cohesion) dibandingkan cluster lain (separation).<br><br>s(i) = (b(i) - a(i)) / max(a(i), b(i))<br><br>a(i) = rata-rata jarak ke points dalam cluster sendiri<br>b(i) = rata-rata jarak ke points di cluster terdekat</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Davies-Bouldin Index</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Range: [0, ∞) — Lower is better (≤ 1 good)</b><br><br>Mengukur rata-rata "kemiripan" antara setiap cluster dengan cluster yang paling mirip. Mempertimbangkan scatter within-cluster dan distance between-cluster.<br><br>Score = 0 berarti clustering sempurna (clusters sangat terpisah dan compact).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">WCSS / Inertia</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Range: [0, ∞) — Lower is better</b><br><br>Within-Cluster Sum of Squares: jumlah kuadrat jarak setiap point ke centroidnya. Digunakan dalam <b>Elbow Method</b> untuk menentukan K optimal. Hanya berlaku untuk K-Means.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Calinski-Harabasz Index</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Range: [0, ∞) — Higher is better</b><br><br>Ratio antara between-cluster dispersion dan within-cluster dispersion. Cluster yang baik memiliki high between-cluster variance dan low within-cluster variance.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi Evaluasi</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from sklearn.metrics import silhouette_score, davies_bouldin_score, calinski_harabasz_score
+
+# Evaluate clustering quality
+def evaluate_clustering(X, labels, method_name):
+    # Filter out noise points (label=-1 dari DBSCAN)
+    mask = labels != -1
+    X_filtered = X[mask]
+    labels_filtered = labels[mask]
+    
+    if len(set(labels_filtered)) < 2:
+        print(f"{method_name}: Only 1 cluster, cannot evaluate")
+        return
+    
+    sil = silhouette_score(X_filtered, labels_filtered)
+    db = davies_bouldin_score(X_filtered, labels_filtered)
+    ch = calinski_harabasz_score(X_filtered, labels_filtered)
+    
+    print(f"=== {method_name} ===")
+    print(f"Silhouette Score: {sil:.3f} (higher=better, >0.5 good)")
+    print(f"Davies-Bouldin:   {db:.3f} (lower=better, <1 good)")
+    print(f"Calinski-Harabasz:{ch:.1f} (higher=better)")
+    print()
+
+# Compare algorithms
+kmeans_labels = KMeans(n_clusters=3, random_state=42).fit_predict(X_scaled)
+hc_labels = AgglomerativeClustering(n_clusters=3).fit_predict(X_scaled)
+db_labels = DBSCAN(eps=0.5, min_samples=4).fit_predict(X_scaled)
+
+evaluate_clustering(X_scaled, kmeans_labels, "K-Means")
+evaluate_clustering(X_scaled, hc_labels, "Hierarchical")
+evaluate_clustering(X_scaled, db_labels, "DBSCAN")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -317,10 +651,6 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">6</div>
       <h2>Praktikum</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Implementasi Clustering Algorithms:</b></p>
-      </div>
     <div class="sub-section">
       <h3>Implementasi Python</h3>
 
@@ -377,6 +707,7 @@ print(f"DBSCAN Silhouette: {silhouette_score(X, labels_dbscan):.3f}")</code></pr
 
   <nav class="footer-nav">
     <a href="bigdata-p4.html">← Pertemuan 4</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p6.html" class="next-btn">Pertemuan 6 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,18 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Prediction &amp; Regression</div>
+    <div class="pertemuan-badge">Pertemuan 4</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Apa itu Prediction?</a>
+    <a href="#section-3" class="toc-link">Linear Regression</a>
+    <a href="#section-4" class="toc-link">Polynomial &amp; Logistic</a>
+    <a href="#section-5" class="toc-link">Time Series Forecasting</a>
+    <a href="#section-6" class="toc-link">Evaluasi Model</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -261,12 +264,24 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Tujuan Pembelajaran</h3>
-      <ul class="styled">
-        <li>Memahami konsep regression analysis untuk prediction</li>
-        <li>Menjelaskan linear regression, polynomial regression, dan logistic regression</li>
-        <li>Memahami time series forecasting techniques</li>
-        <li>Mampu mengevaluasi model prediction dengan metrics RMSE, MAE, R²</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Regression Analysis</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep regression analysis sebagai supervised learning untuk memprediksi nilai numerik kontinu (continuous value), seperti harga rumah, temperatur, atau penjualan.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Jenis-Jenis Regression</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan dan membedakan <b>Linear Regression</b> (hubungan linear), <b>Polynomial Regression</b> (non-linear), dan <b>Logistic Regression</b> (binary classification dengan output probabilitas).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Time Series Forecasting</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami teknik time series forecasting untuk memprediksi nilai future berdasarkan historical data temporal: ARIMA, Moving Average, dan Exponential Smoothing.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Evaluasi Model Prediction</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mampu menghitung dan menginterpretasikan metrics evaluasi regression: <b>MAE</b> (Mean Absolute Error), <b>RMSE</b> (Root Mean Squared Error), dan <b>R²</b> (Coefficient of Determination).</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -279,6 +294,16 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Classification vs Prediction</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Classification — Output Diskrit</div>
+          <p style="font-size:.88rem;line-height:1.75;">Output berupa <b>kategori/class</b>: Spam/Not Spam, Approve/Reject, Sehat/Sakit. Algoritma: Decision Tree, Random Forest, SVM, Naive Bayes. Evaluasi: Accuracy, Precision, Recall, F1.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Prediction (Regression) — Output Kontinu</div>
+          <p style="font-size:.88rem;line-height:1.75;">Output berupa <b>nilai numerik kontinu</b>: harga rumah (Rp 500 juta), temperatur (27.5°C), penjualan (1.250 unit). Algoritma: Linear Regression, Neural Network. Evaluasi: RMSE, MAE, R².</p>
+        </div>
+      </div>
       <table class="rubric-table">
         <thead><tr><th>Aspek</th><th>Classification</th><th>Prediction (Regression)</th></tr></thead>
         <tbody>
@@ -353,7 +378,15 @@ print(f"Intercept: {lr_model.intercept_:.2f}")</code></pre>
     <div class="section-header"><div class="section-num">4</div><h2>Polynomial & Logistic Regression</h2></div>
     <div class="sub-section">
       <h3>Polynomial Regression</h3>
-      <p>Untuk relationship yang non-linear, gunakan polynomial regression dengan transform features ke polynomial degree.</p>
+      <div class="card">
+        <div class="card-title">Polynomial Regression — Non-Linear Relationships</div>
+        <p style="font-size:.88rem;line-height:1.75;">Polynomial Regression digunakan ketika hubungan antara X dan Y bersifat <b>non-linear (kurva)</b>. Cara kerjanya adalah dengan mentransformasi fitur X menjadi X, X², X³, ..., Xⁿ, kemudian menerapkan linear regression pada fitur polynomial tersebut.</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>Degree 2 (Quadratic):</b> y = β₀ + β₁x + β₂x² — cocok untuk data berbentuk parabola</li>
+          <li><b>Degree 3 (Cubic):</b> y = β₀ + β₁x + β₂x² + β₃x³ — lebih fleksibel</li>
+          <li><b>Overfitting Risk:</b> Degree terlalu tinggi → model menghafalkan noise, perlu regularisasi</li>
+        </ul>
+      </div>
       <div class="code-block">
         <button class="copy-btn" onclick="copyCode(this)">Salin</button>
         <pre><code>from sklearn.preprocessing import PolynomialFeatures
@@ -369,7 +402,16 @@ model.fit(X_poly, y)</code></pre>
     </div>
     <div class="sub-section">
       <h3>Logistic Regression</h3>
-      <p>Meskipun namanya "regression", logistic regression adalah classification algorithm untuk binary outcome. Output adalah probability (0-1) yang di-threshold menjadi class label.</p>
+      <div class="card">
+        <div class="card-title">Logistic Regression — Binary Classification</div>
+        <p style="font-size:.88rem;line-height:1.75;">Meskipun bernama "regression", Logistic Regression adalah <b>classification algorithm</b> untuk binary outcome. Menggunakan fungsi sigmoid untuk mengubah output linear menjadi <b>probabilitas (0-1)</b>, yang kemudian di-threshold (biasanya 0.5) menjadi class label 0 atau 1.</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>Sigmoid Function:</b> σ(z) = 1 / (1 + e⁻ᶻ) → menghasilkan nilai antara 0 dan 1</li>
+          <li><b>Decision Boundary:</b> P ≥ 0.5 → class 1 (positif), P &lt; 0.5 → class 0 (negatif)</li>
+          <li><b>Use Cases:</b> Churn prediction, fraud detection, medical diagnosis</li>
+          <li><b>Multi-class:</b> Extend ke softmax regression untuk lebih dari 2 kelas</li>
+        </ul>
+      </div>
       <div class="code-block">
         <button class="copy-btn" onclick="copyCode(this)">Salin</button>
         <pre><code>from sklearn.linear_model import LogisticRegression
@@ -496,6 +538,7 @@ print(forecast)</code></pre>
 
   <nav class="footer-nav">
     <a href="bigdata-p3.html">← Pertemuan 3</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p5.html" class="next-btn">Pertemuan 5 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

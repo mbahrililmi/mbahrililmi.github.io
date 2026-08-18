@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,19 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Final Project &amp; Review</div>
+    <div class="pertemuan-badge">Pertemuan 15</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Final Project</a>
+    <a href="#section-3" class="toc-link">Presentation</a>
+    <a href="#section-4" class="toc-link">Review Materi</a>
+    <a href="#section-5" class="toc-link">Best Practices</a>
+    <a href="#section-6" class="toc-link">Career Path</a>
+    <a href="#section-7" class="toc-link">Persiapan UAS</a>
+    <a href="#section-8" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,26 +256,58 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 15</div>
+      <p>Mahasiswa mampu <b>menyelesaikan dan mempresentasikan final project</b> big data analytics secara komprehensif, mereview materi semester, dan mempersiapkan diri untuk Ujian Akhir Semester (UAS).</p>
+    </div>
     <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu mengintegrasikan semua pembelajaran dalam final project.</p>
+      <div class="card-title">Pertemuan Penutup Semester</div>
+      <p style="font-size:.88rem;line-height:1.75;">Pertemuan 15 adalah milestone penting: presentasi final project, review semua materi yang telah dipelajari selama satu semester, dan persiapan UAS. Ini adalah kesempatan untuk mengintegrasikan semua pemahaman Anda tentang big data analytics.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-2">
+    <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Final Project Presentation</h2>
+      <h2>Final Project</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Final Project Presentation</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Project Requirements:</b><br><br><b>Format:</b> Group project (3-4 mahasiswa)<br><br><b>Components:</b><br>1. <b>Problem Statement:</b> Business problem & objectives<br>2. <b>Data:</b> Sources, volume, preparation steps<br>3. <b>Methodology:</b> Algorithms used, why chosen<br>4. <b>Results:</b> Model performance, visualizations<br>5. <b>Insights:</b> Business recommendations<br>6. <b>Code:</b> Reproducible Jupyter notebook<br><br><b>Presentation:</b> 15 minutes + 5 minutes Q&A<br><br><b>Grading:</b> Technical depth (40%), business impact (30%), presentation (30%)</p>
+    <div class="highlight-box">
+      <div class="hb-title">Overview Final Project</div>
+      <p>Final project adalah <b>end-to-end big data analytics project</b> yang mengintegrasikan semua konsep semester ini: data lifecycle, metode analitik, tools big data, dan studi kasus industri. Dilakukan secara kelompok (2-3 orang).</p>
+    </div>
+    <div class="sub-section">
+      <h3>Persyaratan Final Project</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Dataset Requirements</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Minimal:</b> 50.000 rows, 5+ features<br><b>Sources:</b> Kaggle, UCI ML Repository, BPS, data.go.id<br><b>Format:</b> CSV, JSON, atau database dump<br><b>Domain:</b> Bebas (retail, healthcare, finance, social, IoT)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Metode yang Harus Digunakan</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Minimal 2 dari:</b> Classification, Regression, Clustering, Association Rules<br><b>EDA:</b> Lengkap dengan visualisasi<br><b>Evaluation:</b> Metrics yang tepat per metode<br><b>Business Insights:</b> Interpretasi untuk stakeholders</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Kriteria Penilaian</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Komponen</th><th>Bobot</th><th>Kriteria</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Data & EDA</b></td><td><span class="score-badge">20%</span></td><td>Kelengkapan analisis, visualisasi, insight dari EDA</td></tr>
+          <tr><td><b>Metodologi</b></td><td><span class="score-badge">25%</span></td><td>Ketepatan pemilihan metode, justifikasi, pipeline yang benar</td></tr>
+          <tr><td><b>Implementasi</b></td><td><span class="score-badge">25%</span></td><td>Kualitas kode, modularitas, comments, reproducibility</td></tr>
+          <tr><td><b>Evaluasi</b></td><td><span class="score-badge">15%</span></td><td>Metrics yang tepat, analisis hasil, model comparison</td></tr>
+          <tr><td><b>Presentasi & Business Insights</b></td><td><span class="score-badge">15%</span></td><td>Kejelasan penyampaian, actionable recommendations</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
@@ -288,56 +324,182 @@ ul.styled li::marker{color:var(--gold);}
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Best Practices</h2>
+      <h2>Review Materi Semester</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Best Practices</div>
-      <p style="font-size:.88rem;line-height:1.75;">Code quality, documentation, reproducibility, version control, collaboration.</p>
+    <div class="sub-section">
+      <h3>Ringkasan Materi Per Pertemuan</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Pertemuan</th><th>Topik</th><th>Key Takeaways</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>P1</b></td><td>Kontrak Kuliah & Wawasan Big Data</td><td>Karakteristik 5V's, ecosystem, career opportunities</td></tr>
+          <tr><td><b>P2</b></td><td>Data Analytics Lifecycle</td><td>6 fase: Discovery → Operationalize, iterative process</td></tr>
+          <tr><td><b>P3</b></td><td>Classification</td><td>Decision Tree (Gini/IG), Naive Bayes (probabilistic), k-NN (distance-based), Confusion Matrix metrics</td></tr>
+          <tr><td><b>P4</b></td><td>Prediction & Regression</td><td>Linear/Polynomial/Logistic Regression, ARIMA time series, MAE/RMSE/R²</td></tr>
+          <tr><td><b>P5</b></td><td>Cluster Analysis</td><td>K-Means (Elbow), Hierarchical (dendrogram), DBSCAN (density), Silhouette Score</td></tr>
+          <tr><td><b>P6</b></td><td>Association Rules</td><td>Apriori/FP-Growth, Support/Confidence/Lift, market basket analysis</td></tr>
+          <tr><td><b>P7</b></td><td>Penerapan Metode</td><td>Churn prediction, sales forecasting, customer segmentation, product bundling</td></tr>
+          <tr><td><b>P8</b></td><td>UTS</td><td>Evaluasi P1-P7</td></tr>
+          <tr><td><b>P9</b></td><td>Big Data Tools</td><td>REST API (Flask), Docker containers, Hadoop ecosystem, Cloud platforms</td></tr>
+          <tr><td><b>P10</b></td><td>Setup Tools</td><td>Docker install, Hadoop dengan Docker, Python/Anaconda, PySpark</td></tr>
+          <tr><td><b>P11</b></td><td>Data Ingestion</td><td>Batch ETL (Airflow), Stream (Kafka), Python ETL scripts</td></tr>
+          <tr><td><b>P12</b></td><td>Data Store</td><td>HDFS architecture, NoSQL types, Data Warehouse (OLAP), Data Lake vs DW, Lakehouse</td></tr>
+          <tr><td><b>P13</b></td><td>Studi Kasus Retail</td><td>RFM analysis, multi-method analytics, recommendation systems</td></tr>
+          <tr><td><b>P14</b></td><td>Studi Kasus Healthcare/Finance</td><td>Disease prediction, fraud detection, credit scoring, data privacy & ethics</td></tr>
+          <tr><td><b>P15</b></td><td>Final Project & Review</td><td>Project presentasi, UAS preparation</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-5">
+    <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
+      <h2>Best Practices</h2>
+    </div>
+    <div class="sub-section">
+      <h3>Best Practices Big Data Analytics</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Data Quality First</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>"Garbage in, garbage out"</b> — investasi waktu dan resources dalam data quality akan memberikan return yang jauh lebih besar dari optimasi model. Selalu dokumentasikan data lineage, validation rules, dan anomali yang ditemukan.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Start Simple, Scale Up</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mulai dengan baseline model sederhana (Logistic Regression, KMeans dengan K=3). Buktikan value dulu, baru kompleksitas. Complexity tanpa justifikasi nilai bisnis = over-engineering.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Reproducibility</div>
+          <p style="font-size:.88rem;line-height:1.75;">Set random_state yang konsisten. Version control everything (data, code, model parameters). Gunakan requirements.txt atau conda environment.yml. Dokumentasi environment setup secara detail.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Business Focus</div>
+          <p style="font-size:.88rem;line-height:1.75;">Setiap model harus punya business case yang jelas. Accuracy 95% tidak berguna jika tidak bisa di-deploy atau tidak ada action yang diambil. Translate technical metrics ke business impact (revenue, cost savings, efficiency).</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Checklist Quality Assurance</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Area</th><th>Checklist</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Data</b></td><td>Missing values handled, outliers addressed, no data leakage, train/test properly split</td></tr>
+          <tr><td><b>Modeling</b></td><td>Cross-validation used, hyperparameter tuning documented, model versioned</td></tr>
+          <tr><td><b>Evaluation</b></td><td>Appropriate metrics for problem type, business impact quantified, edge cases tested</td></tr>
+          <tr><td><b>Deployment</b></td><td>Monitoring setup, rollback plan exists, documentation complete, security reviewed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+    <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
       <h2>Career Path</h2>
     </div>
     <div class="card">
-      <div class="card-title">Career Path</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Careers in Big Data:</b><br><br>1. <b>Data Scientist:</b><br>   • ML model development<br>   • Statistical analysis<br>   • Skills: Python, R, SQL, ML algorithms<br><br>2. <b>Data Engineer:</b><br>   • Build data pipelines<br>   • Manage infrastructure<br>   • Skills: Spark, Hadoop, Kafka, AWS/GCP<br><br>3. <b>ML Engineer:</b><br>   • Deploy ML models to production<br>   • Skills: MLOps, Docker, Kubernetes<br><br>4. <b>Big Data Architect:</b><br>   • Design data architecture<br>   • Technology selection<br><br>5. <b>BI Developer:</b><br>   • Dashboards & reporting<br>   • Skills: Tableau, Power BI, SQL</p>
+      <div class="card-title">Karir di Bidang Big Data & Data Science</div>
+      <p style="font-size:.88rem;line-height:1.75;">Lulusan D4 Bisnis Digital dengan keahlian Big Data memiliki prospek karir yang sangat luas. Industri di Indonesia sedang mengalami kekurangan tenaga ahli data.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Role & Skill Requirements</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Data Analyst</div>
+          <div class="gc-body"><b>Skills:</b> SQL, Excel, Tableau/Power BI, Basic Python<br><b>Tugas:</b> Reporting, dashboard, ad-hoc analysis<br><b>Salary (Banjarmasin):</b> Rp 4-8 juta/bulan</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Data Scientist</div>
+          <div class="gc-body"><b>Skills:</b> Python, ML, Statistics, Domain knowledge<br><b>Tugas:</b> Model building, insight generation<br><b>Salary:</b> Rp 8-20 juta/bulan</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Data Engineer</div>
+          <div class="gc-body"><b>Skills:</b> Python, SQL, Spark, Airflow, Cloud<br><b>Tugas:</b> Pipeline & infrastructure<br><b>Salary:</b> Rp 10-25 juta/bulan</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">ML Engineer</div>
+          <div class="gc-body"><b>Skills:</b> Python, TensorFlow, Docker, MLOps<br><b>Tugas:</b> Deploy & maintain ML systems<br><b>Salary:</b> Rp 12-30 juta/bulan</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Business Intelligence Developer</div>
+          <div class="gc-body"><b>Skills:</b> SQL, ETL, Power BI/Tableau, DW design<br><b>Tugas:</b> Dashboards & reporting systems<br><b>Salary:</b> Rp 6-15 juta/bulan</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Analytics Manager</div>
+          <div class="gc-body"><b>Skills:</b> All of above + leadership, business acumen<br><b>Tugas:</b> Lead analytics team, strategy<br><b>Salary:</b> Rp 20-50 juta/bulan</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Langkah Membangun Karir</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Portfolio di GitHub</div>
+          <p style="font-size:.88rem;line-height:1.75;">Upload semua Jupyter notebooks dari mata kuliah ini. Tambahkan README yang menjelaskan project. Rekruter tech company aktif mencari di GitHub.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Kaggle Competitions</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mulai dari beginner competitions (Titanic, House Prices). Pelajari notebooks dari Top 10. Competitions adalah bukti nyata kemampuan ke rekruter.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Sertifikasi</div>
+          <p style="font-size:.88rem;line-height:1.75;">Google Data Analytics Certificate, IBM Data Science, AWS Machine Learning Specialty. Sertifikasi cloud (AWS/GCP) sangat dihargai perusahaan.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-6">
+    <section class="content-section" id="section-7">
     <div class="section-header">
-      <div class="section-num">6</div>
+      <div class="section-num">7</div>
       <h2>Persiapan UAS</h2>
     </div>
     <div class="card">
-      <div class="card-title">Persiapan UAS</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Final Exam Preparation:</b><br><br><b>Scope:</b> Comprehensive exam covering ALL materials (P1-P15)<br><br><b>Format:</b><br>• Teori (30%): Concepts, algorithms, architecture<br>• Praktikum (40%): End-to-end project implementation<br>• Studi Kasus (30%): Analysis & recommendations<br><br><b>Study Strategy:</b><br>1. Review all lecture slides & notebooks<br>2. Redo praktikum assignments<br>3. Practice on Kaggle datasets<br>4. Understand big picture connections<br>5. Prepare comprehensive cheat sheet<br>6. Group study sessions<br><br><b>Good luck!</b> 🚀</p>
+      <div class="card-title">Informasi Ujian Akhir Semester</div>
+      <p style="font-size:.88rem;line-height:1.75;">UAS mencakup materi <b>Pertemuan 9-15</b> (setelah UTS). Format ujian campuran: pilihan ganda, essay, dan implementasi/coding. Lihat detail di <a href="bigdata-p16.html">Pertemuan 16 (UAS)</a>.</p>
     </div>
-  </section>
-  <hr class="section-divider">
-
-  <section class="content-section" id="section-7">
-    <div class="section-header">
-      <div class="section-num">7</div>
-      <h2>Praktikum</h2>
-    </div>
-    <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Finalisasi project report & presentation, peer review, reflection essay.</p>
+    <div class="sub-section">
+      <h3>Checklist Persiapan UAS</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Materi Teori</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Big Data Tools: REST API, Docker, Hadoop<br>
+            ☐ Setup & Konfigurasi environment<br>
+            ☐ Batch vs Stream Ingestion<br>
+            ☐ HDFS, NoSQL, Data Warehouse, Data Lake<br>
+            ☐ Studi kasus retail, healthcare, finance<br>
+            ☐ Data privacy & ethics (UU PDP, GDPR)
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Kemampuan Praktis</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Membuat REST API dengan Flask<br>
+            ☐ Dockerfile dan Docker commands<br>
+            ☐ PySpark basic operations<br>
+            ☐ MongoDB queries<br>
+            ☐ ETL pipeline Python<br>
+            ☐ Kafka producer/consumer
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
     <a href="bigdata-p14.html">← Pertemuan 14</a>
-    
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="bigdata-p16.html" class="next-btn">Pertemuan 16 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
 

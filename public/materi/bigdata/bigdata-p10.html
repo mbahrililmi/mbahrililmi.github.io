@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Setup Big Data Tools</div>
+    <div class="pertemuan-badge">Pertemuan 10</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Install Docker</a>
+    <a href="#section-3" class="toc-link">Hadoop Installation</a>
+    <a href="#section-4" class="toc-link">Python Environment</a>
+    <a href="#section-5" class="toc-link">Development Tools</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,26 +254,102 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu melakukan setup big data tools di environment lokal.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 10</div>
+      <p>Mahasiswa mampu <b>melakukan instalasi, konfigurasi, dan verifikasi</b> tools big data yang digunakan dalam praktikum: Docker, Hadoop (via Docker), Python/Anaconda, Jupyter, dan development tools pendukung.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Checklist Instalasi</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. Docker Desktop</div>
+          <p style="font-size:.88rem;line-height:1.75;">Platform containerization. Download dari docker.com. Diperlukan untuk menjalankan Hadoop, Kafka, dan services lain tanpa instalasi native yang rumit.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Anaconda / Miniconda</div>
+          <p style="font-size:.88rem;line-height:1.75;">Python distribution dengan conda package manager. Memudahkan manajemen environment dan instalasi library data science seperti PySpark, Pandas, Scikit-learn.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Development Tools</div>
+          <p style="font-size:.88rem;line-height:1.75;">VS Code (editor) + extensions Python, Jupyter, Docker. Git untuk version control. Postman/Insomnia untuk testing REST API. DBeaver untuk database exploration.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-2">
+    <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
       <h2>Install Docker</h2>
     </div>
     <div class="card">
-      <div class="card-title">Install Docker</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Docker Installation:</b><br><br><b>Mac:</b> Download Docker Desktop from docker.com<br><b>Windows:</b> Docker Desktop (requires WSL2)<br><b>Linux:</b> <code>sudo apt install docker.io</code><br><br><b>Verify:</b><br><code>docker --version</code><br><code>docker run hello-world</code><br><br><b>Common Commands:</b><br><code>docker ps</code> - List running containers<br><code>docker images</code> - List images<br><code>docker pull image:tag</code> - Download image<br><code>docker run -it image bash</code> - Run interactive</p>
+      <div class="card-title">Persyaratan Sistem</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Windows 10/11 Pro/Enterprise:</b> WSL2 enabled, 4GB RAM min, 64-bit<br><b>macOS 10.15+:</b> Apple M1/M2/Intel, 4GB RAM<br><b>Linux:</b> Ubuntu 20.04+, Debian 11+, atau distro kompatibel</p>
+    </div>
+    <div class="sub-section">
+      <h3>Instalasi Docker</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># === WINDOWS / MAC ===
+# 1. Download Docker Desktop dari https://www.docker.com/get-started/
+# 2. Jalankan installer, ikuti wizard
+# 3. Restart komputer jika diminta
+# 4. Verifikasi di Terminal/PowerShell:
+docker --version
+docker run hello-world
+
+# === LINUX (Ubuntu) ===
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER  # Agar bisa run tanpa sudo
+newgrp docker  # Apply group tanpa logout
+
+# Verifikasi
+docker --version  # Docker version XX.X
+docker run hello-world  # Pull dan run test container</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Hadoop Cluster dengan Docker Compose</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># Buat file: docker-compose-hadoop.yml
+# version: "3"
+# services:
+#   namenode:
+#     image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+#     container_name: namenode
+#     ports:
+#       - "9870:9870"  # HDFS Web UI
+#       - "9000:9000"  # HDFS
+#     environment:
+#       - CLUSTER_NAME=bigdata-cluster
+#     volumes:
+#       - hadoop_namenode:/hadoop/dfs/name
+#
+#   datanode:
+#     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+#     container_name: datanode
+#     depends_on: [namenode]
+#     volumes:
+#       - hadoop_datanode:/hadoop/dfs/data
+#
+# volumes:
+#   hadoop_namenode:
+#   hadoop_datanode:
+
+# Jalankan:
+docker-compose -f docker-compose-hadoop.yml up -d
+# Akses HDFS Web UI di: http://localhost:9870</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -288,14 +366,53 @@ ul.styled li::marker{color:var(--gold);}
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Python Environment</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Python Environment</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Setup Python untuk Big Data:</b><br><br>1. <b>Install Anaconda:</b><br>   Download from anaconda.com<br><br>2. <b>Create Environment:</b><br>   <code>conda create -n bigdata python=3.9</code><br>   <code>conda activate bigdata</code><br><br>3. <b>Install Packages:</b><br>   <code>pip install pandas numpy matplotlib</code><br>   <code>pip install scikit-learn scipy</code><br>   <code>pip install pyspark jupyterlab</code><br><br>4. <b>Launch Jupyter:</b><br>   <code>jupyter lab</code></p>
+    <div class="sub-section">
+      <h3>Setup Anaconda & Virtual Environment</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># 1. Download Anaconda dari https://anaconda.com/download
+# 2. Setelah install, buka Anaconda Prompt / Terminal
+
+# Buat environment khusus untuk mata kuliah ini
+conda create -n bigdata python=3.10 -y
+conda activate bigdata
+
+# Install semua library yang dibutuhkan
+pip install pandas numpy matplotlib seaborn  # Core data science
+pip install scikit-learn xgboost             # Machine learning
+pip install statsmodels prophet              # Time series
+pip install mlxtend                          # Association rules
+pip install pyspark                          # Apache Spark
+pip install flask fastapi uvicorn            # REST API
+pip install requests pymongo sqlalchemy      # Databases & HTTP
+pip install jupyter jupyterlab               # Notebooks
+
+# Verifikasi
+python -c "
+import pandas as pd
+import sklearn
+import pyspark
+print('pandas:', pd.__version__)
+print('sklearn:', sklearn.__version__)
+print('pyspark:', pyspark.__version__)
+print('All OK!')
+"
+
+# Launch Jupyter Lab
+jupyter lab  # Buka di browser: http://localhost:8888</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>VS Code Setup</h3>
+      <div class="card">
+        <div class="card-title">Extensions yang Direkomendasikan</div>
+        <p style="font-size:.88rem;line-height:1.75;"><b>Python</b> (Microsoft) — syntax highlighting, IntelliSense, debugger<br><b>Jupyter</b> (Microsoft) — run .ipynb notebooks di VS Code<br><b>Docker</b> (Microsoft) — manage containers dari VS Code<br><b>GitLens</b> — enhanced Git history dan blame<br><b>Thunder Client</b> — REST API testing langsung di VS Code (alternatif Postman)<br><b>Rainbow CSV</b> — visualisasi CSV files dengan warna per kolom</p>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -309,22 +426,85 @@ ul.styled li::marker{color:var(--gold);}
       <div class="card-title">Development Tools</div>
       <p style="font-size:.88rem;line-height:1.75;">Jupyter Notebook, VS Code with extensions, Git for version control.</p>
     </div>
+
+    <div class="sub-section">
+      <h3>Essential Development Tools</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">VS Code + Extensions</div>
+          <div class="gc-body">Editor utama. Install: Python, Jupyter, Docker, GitLens, Rainbow CSV, Thunder Client</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Postman / Thunder Client</div>
+          <div class="gc-body">Testing REST API. Send HTTP requests (GET/POST/PUT/DELETE), inspect response headers & body</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">DBeaver</div>
+          <div class="gc-body">GUI database client universal. Connect ke PostgreSQL, MySQL, MongoDB, SQLite untuk explore dan query data</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Git & GitHub</div>
+          <div class="gc-body">Version control untuk project notebook. Push ke GitHub untuk backup dan submission. git init, add, commit, push</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Jupyter Lab</div>
+          <div class="gc-body">Enhanced Jupyter interface. Fitur: multi-tab, file browser, terminal, extensions. Lebih powerful dari Jupyter Notebook</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Docker Desktop</div>
+          <div class="gc-body">GUI untuk manage containers. View running containers, logs, inspect, pull images tanpa command line</div>
+        </div>
+      </div>
+    </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-6">
+    <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
       <h2>Praktikum</h2>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Step-by-step installation guide, test Hadoop commands, run sample MapReduce job.</p>
+      <div class="card-title">Verifikasi Instalasi</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah menginstal semua tools, verifikasi bahwa semua berjalan dengan benar sebelum ke praktikum selanjutnya.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tugas Praktikum</h3>
+      <div class="task-card">
+        <div class="task-num">1</div>
+        <div class="task-content">
+          <div class="task-title">Setup & Verifikasi Environment</div>
+          <ul>
+            <li>Install Docker Desktop dan verifikasi dengan <code>docker run hello-world</code></li>
+            <li>Install Anaconda, buat environment <code>bigdata</code> dengan Python 3.10</li>
+            <li>Install semua library (pandas, sklearn, pyspark, mlxtend, kafka-python, flask)</li>
+            <li>Verifikasi PySpark: buat SparkSession dan jalankan WordCount sederhana</li>
+            <li>Run Hadoop cluster dengan Docker Compose, akses Web UI di http://localhost:9870</li>
+            <li>Deliverable: Screenshot setiap tahap verifikasi (docker, spark, hadoop)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">2</div>
+        <div class="task-content">
+          <div class="task-title">First PySpark Notebook</div>
+          <ul>
+            <li>Download dataset: <a href="https://www.kaggle.com/datasets/shivamb/netflix-shows" style="color:var(--gold)">Netflix Shows Dataset (Kaggle)</a></li>
+            <li>Load CSV dengan PySpark (spark.read.csv)</li>
+            <li>Eksplorasi: show(), printSchema(), count(), describe()</li>
+            <li>Filtering: filter data yang added_date > 2020</li>
+            <li>Agregasi: groupBy("type").count() — berapa Movie vs TV Show?</li>
+            <li>Export hasil ke CSV/Parquet dengan df.write</li>
+            <li>Deliverable: Jupyter notebook (.ipynb)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
     <a href="bigdata-p9.html">← Pertemuan 9</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p11.html" class="next-btn">Pertemuan 11 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

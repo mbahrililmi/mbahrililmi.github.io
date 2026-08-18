@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,19 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
+    <div class="course-title">Kontrak Kuliah &amp; Wawasan Big Data</div>
     <div class="pertemuan-badge">Pertemuan 1</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Kontrak Perkuliahan</a>
+    <a href="#section-3" class="toc-link">Apa itu Big Data?</a>
+    <a href="#section-4" class="toc-link">Fenomena Big Data</a>
+    <a href="#section-5" class="toc-link">Ecosystem Big Data</a>
+    <a href="#section-6" class="toc-link">Contoh Penggunaan</a>
+    <a href="#section-7" class="toc-link">Karir Big Data</a>
+    <a href="#section-8" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -311,13 +315,28 @@ ul.styled li::marker{color:var(--gold);}
 
     <div class="sub-section">
       <h3>Capaian Pembelajaran (CPMK)</h3>
-      <ul class="styled">
-        <li><b>CPMK1:</b> Mahasiswa memahami konsep dasar big data</li>
-        <li><b>CPMK2:</b> Mahasiswa dapat memahami konsep dasar big data life cycle</li>
-        <li><b>CPMK3:</b> Mahasiswa dapat mengetahui dan mengenal teknologi big data dan tren perkembangannya</li>
-        <li><b>CPMK4:</b> Mahasiswa dapat memahami metode analitik untuk mengolah big data</li>
-        <li><b>CPMK5:</b> Mahasiswa dapat memahami dan mampu menerapkan teknologi big data</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">CPMK 1 — Konsep Dasar Big Data</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mahasiswa memahami konsep dasar big data, karakteristik 5V's, serta perbedaannya dengan data tradisional dalam skala, kecepatan, dan format data.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">CPMK 2 — Big Data Life Cycle</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mahasiswa dapat memahami konsep dasar big data life cycle: Discovery, Data Preparation, Model Planning, Model Building, Communicate Results, dan Operationalize.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">CPMK 3 — Teknologi Big Data</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mahasiswa dapat mengetahui dan mengenal teknologi big data seperti Hadoop, Spark, Kafka, Docker, serta tren perkembangannya di industri global maupun lokal.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">CPMK 4 — Metode Analitik</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mahasiswa dapat memahami dan menerapkan metode analitik untuk mengolah big data: classification, prediction/regression, clustering, dan association rules.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">CPMK 5 — Penerapan Teknologi</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mahasiswa dapat memahami dan mampu menerapkan teknologi big data untuk studi kasus nyata di industri: retail, healthcare, finance, dan e-commerce.</p>
+        </div>
+      </div>
     </div>
 
     <table class="rubric-table">
@@ -626,7 +645,8 @@ ul.styled li::marker{color:var(--gold);}
   </section>
 
   <nav class="footer-nav">
-    <a href="../index.html">← Kembali ke Index</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p2.html" class="next-btn">Pertemuan 2 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

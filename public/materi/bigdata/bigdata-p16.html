@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 14 – Studi Kasus 2 | Big Data</title>
+<title>Pertemuan 16 – Ujian Akhir Semester (UAS) | Big Data</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -223,30 +223,29 @@ ul.styled li::marker{color:var(--gold);}
 <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Studi Kasus: Healthcare &amp; Finance</div>
-    <div class="pertemuan-badge">Pertemuan 14</div>
+    <div class="course-title">Ujian Akhir Semester (UAS)</div>
+    <div class="pertemuan-badge">Pertemuan 16</div>
   </div>
   <nav class="toc-nav" id="toc">
-    <div class="toc-section-label">Materi</div>
-    <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Healthcare Analytics</a>
-    <a href="#section-3" class="toc-link">Finance Analytics</a>
-    <a href="#section-4" class="toc-link">Data Privacy &amp; Ethics</a>
-    <a href="#section-5" class="toc-link">Implementation</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <div class="toc-section-label">Informasi UAS</div>
+    <a href="#section-1" class="toc-link">Informasi UAS</a>
+    <a href="#section-2" class="toc-link">Format Ujian</a>
+    <a href="#section-3" class="toc-link">Materi yang Diujikan</a>
+    <a href="#section-4" class="toc-link">Contoh Soal</a>
+    <a href="#section-5" class="toc-link">Persiapan</a>
+    <a href="#section-6" class="toc-link">Ketentuan</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 14 · Big Data</div>
-    <h1>Studi Kasus Big Data 2</h1>
-    <p class="subtitle">Implementasi big data analytics pada kasus healthcare dan finance: patient analytics, disease prediction, fraud detection, risk management.</p>
+    <div class="pre-title">Pertemuan 16 · Big Data</div>
+    <h1>Ujian Akhir Semester (UAS)</h1>
+    <p class="subtitle">Evaluasi pemahaman materi pertemuan 9-15: Big Data Tools (REST API, Docker, Hadoop), Data Ingestion, Data Store, dan Studi Kasus Healthcare, Finance, Retail.</p>
     <div class="header-meta">
       <div class="meta-badge">Kode: <span>E02303</span></div>
       <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
@@ -254,273 +253,215 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
-      <h2>Pengantar</h2>
+      <h2>Informasi UAS</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 14</div>
-      <p>Mahasiswa mampu <b>menerapkan big data analytics dalam studi kasus healthcare dan finance</b>, serta memahami aspek penting data privacy dan ethics dalam pengelolaan data sensitif.</p>
+      <div class="hb-title">Ujian Akhir Semester Big Data</div>
+      <p><b>Ujian Akhir Semester (UAS)</b> mengevaluasi pemahaman materi Pertemuan 9-15. Bobot UAS = <b>20% dari total nilai akhir</b>. Kombinasi teori dan praktikum.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Detail Ujian</div>
+        <div class="gc-body">
+          <b>Durasi:</b> 150 menit<br>
+          <b>Sifat:</b> Teori: Close book | Praktik: Open notes<br>
+          <b>Format:</b> Campuran (Pilihan Ganda + Essay + Coding)<br>
+          <b>Platform:</b> Jupyter Notebook (untuk coding)<br>
+          <b>Bobot UAS:</b> 20% dari nilai akhir
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Cakupan Materi</div>
+        <div class="gc-body">
+          <b>P9:</b> REST API, Docker, Hadoop, Cloud<br>
+          <b>P10:</b> Setup tools, PySpark, environment<br>
+          <b>P11:</b> Batch & Stream ingestion, Kafka<br>
+          <b>P12:</b> HDFS, NoSQL, DW, Data Lake<br>
+          <b>P13:</b> Retail analytics, RFM, multi-method<br>
+          <b>P14:</b> Healthcare, Finance, Data Privacy<br>
+          <b>P15:</b> Best practices, architecture
+        </div>
+      </div>
     </div>
     <div class="sub-section">
-      <h3>Sektor dengan Data Paling Sensitif</h3>
-      <div class="grid-2">
+      <h3>Distribusi Nilai</h3>
+      <div class="grid-3">
         <div class="card">
-          <div class="card-title">Healthcare Data</div>
-          <p style="font-size:.88rem;line-height:1.75;">Rekam medis pasien, hasil lab, imaging (X-ray, MRI), genomic data, wearable sensor data. Sangat sensitif — dilindungi regulasi HIPAA (US), GDPR (EU), PP 71/2019 (Indonesia). Breach bisa mengakibatkan diskriminasi dan kerugian pasien.</p>
+          <div class="card-title">Teori (40 Poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Pilihan Ganda:</b> 20 soal × 1 poin = 20 poin<br><b>Essay:</b> 4 soal × 5 poin = 20 poin<br><br>Mencakup konsep, definisi, perbandingan teknologi, dan interpretasi kasus.</p>
         </div>
         <div class="card">
-          <div class="card-title">Financial Data</div>
-          <p style="font-size:.88rem;line-height:1.75;">Transaksi bank, kredit, investasi, asuransi, perpajakan. Dilindungi regulasi OJK, Bank Indonesia, dan UU Perbankan. Fraud dan pencurian identitas adalah ancaman utama.</p>
+          <div class="card-title">Coding/Praktikum (60 Poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Problem 1:</b> REST API dengan Flask (20 poin)<br><b>Problem 2:</b> Data pipeline / ETL (20 poin)<br><b>Problem 3:</b> Analytics (clustering/classification) + interpretasi (20 poin)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Format Jawaban</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Teori:</b> Lembar jawaban / Google Form<br><b>Coding:</b> Jupyter Notebook (.ipynb)<br><b>Submit via:</b> LMS / Google Classroom<br><b>Deadline:</b> Saat ujian berakhir</p>
         </div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Healthcare Analytics</h2>
+      <h2>Format Ujian</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Big Data Mengubah Healthcare</div>
-      <p>Big data analytics memungkinkan <b>personalized medicine, early disease detection, dan operational efficiency</b> di fasilitas kesehatan. Machine learning digunakan untuk diagnosis berbantuan, drug discovery, dan prediksi epidemi.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Use Cases Healthcare Analytics</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Prediksi Penyakit (Disease Prediction)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Model ML untuk prediksi risiko: diabetes (berdasarkan glucose, BMI, age), penyakit jantung (tekanan darah, kolesterol, ECG), kanker (medical imaging + genomic markers). Early detection meningkatkan survival rate secara signifikan.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Hospital Resource Management</div>
-          <p style="font-size:.88rem;line-height:1.75;">Prediksi jumlah pasien (patient flow forecasting) untuk optimasi staffing, bed allocation, dan ICU capacity. Mengurangi waiting time dan meningkatkan kualitas layanan.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Drug Discovery & Clinical Trials</div>
-          <p style="font-size:.88rem;line-height:1.75;">Analisis molekul kandidat obat menggunakan ML. Identifikasi biomarkers untuk patient selection dalam clinical trials. COVID-19 vaccine development menggunakan AI/ML secara ekstensif.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Epidemi & Public Health</div>
-          <p style="font-size:.88rem;line-height:1.75;">Tracking dan prediksi penyebaran penyakit menggunakan data mobilitas, media sosial, dan kunjungan dokter. WHO dan CDC menggunakan big data untuk surveillance epidemiologi.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Struktur Waktu Ujian</div>
+      <p style="font-size:.88rem;line-height:1.75;">Manajemen waktu yang baik sangat penting. Alokasi waktu yang disarankan:</p>
     </div>
     <div class="sub-section">
-      <h3>Diabetes Prediction Model</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code">import pandas as pd
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.metrics import classification_report, roc_auc_score
-from sklearn.preprocessing import StandardScaler
-import numpy as np
-
-# Load Pima Indians Diabetes Dataset
-df = pd.read_csv('diabetes.csv')
-print(df.describe())
-
-# Handle missing values (0 bukan valid untuk medical data)
-cols_with_zero = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
-for col in cols_with_zero:
-    df[col] = df[col].replace(0, np.nan)
-    df[col] = df[col].fillna(df[col].median())
-
-X = df.drop('Outcome', axis=1)
-y = df['Outcome']
-
-# Stratified split (preserve class ratio)
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, stratify=y, random_state=42
-)
-
-# Model dengan class_weight untuk imbalanced data
-gb = GradientBoostingClassifier(n_estimators=200, max_depth=4, random_state=42)
-gb.fit(X_train, y_train)
-
-y_pred = gb.predict(X_test)
-print(classification_report(y_test, y_pred, target_names=['No Diabetes', 'Diabetes']))
-print(f"ROC-AUC: {roc_auc_score(y_test, gb.predict_proba(X_test)[:,1]):.3f}")</code></pre>
-      </div>
+      <h3>Alokasi Waktu</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Bagian</th><th>Durasi</th><th>Isi</th><th>Tips</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Pilihan Ganda</b></td><td>20 menit</td><td>20 soal konsep dan teori</td><td>Jawab yang mudah dulu, skip yang ragu</td></tr>
+          <tr><td><b>Essay</b></td><td>30 menit</td><td>4 soal uraian/analisis</td><td>Buat outline jawaban sebelum menulis</td></tr>
+          <tr><td><b>Coding Problem 1</b></td><td>25 menit</td><td>REST API Flask</td><td>Buat struktur dulu, test dengan curl/Postman</td></tr>
+          <tr><td><b>Coding Problem 2</b></td><td>25 menit</td><td>ETL Pipeline</td><td>Buat step-by-step, gunakan print() untuk debug</td></tr>
+          <tr><td><b>Coding Problem 3</b></td><td>30 menit</td><td>Analytics + interpretasi</td><td>Fokus pada interpretasi bisnis, bukan hanya kode</td></tr>
+          <tr><td><b>Review</b></td><td>20 menit</td><td>Cek jawaban, submit</td><td>Prioritaskan soal bernilai tinggi</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-3">
+  <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Finance Analytics</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Big Data di Industri Keuangan</div>
-      <p>Perbankan dan fintech menggunakan big data untuk <b>fraud detection, credit scoring, algorithmic trading, dan risk management</b>. Real-time processing sangat kritis — fraud detection harus beroperasi dalam milliseconds.</p>
+      <h2>Materi yang Diujikan</h2>
     </div>
     <div class="sub-section">
-      <h3>Use Cases Finance Analytics</h3>
+      <h3>Big Data Tools (P9)</h3>
       <div class="grid-2">
         <div class="card">
-          <div class="card-title">Credit Scoring</div>
-          <p style="font-size:.88rem;line-height:1.75;">Model ML menggantikan credit scoring tradisional dengan menganalisis lebih banyak variabel: payment history, social media behavior, mobile usage patterns. Memungkinkan akses kredit bagi yang unbanked/underbanked.</p>
+          <div class="card-title">REST API Concepts</div>
+          <p style="font-size:.88rem;line-height:1.75;">HTTP methods (GET/POST/PUT/DELETE), status codes (200, 201, 400, 404, 500), JSON request/response format, Flask routing dan endpoint design, RESTful API design principles.</p>
         </div>
         <div class="card">
-          <div class="card-title">Fraud Detection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Real-time detection transaksi mencurigakan menggunakan anomaly detection dan ML classifier. Setiap transaksi dianalisis dalam &lt;100ms. Features: amount, location, time, merchant, device fingerprint.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Algorithmic Trading</div>
-          <p style="font-size:.88rem;line-height:1.75;">High-frequency trading (HFT) menggunakan ML untuk prediksi harga dan eksekusi order dalam microseconds. Analisis market sentiment dari news dan social media (NLP).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Risk Management</div>
-          <p style="font-size:.88rem;line-height:1.75;">Value at Risk (VaR), stress testing, credit risk assessment. Analisis portfolio dengan market data historis. Basel III compliance memerlukan sophisticated risk modeling.</p>
+          <div class="card-title">Docker & Hadoop</div>
+          <p style="font-size:.88rem;line-height:1.75;">Docker vs VM, konsep image/container/Dockerfile, perintah docker dasar, Hadoop ecosystem (HDFS, YARN, MapReduce, Hive, Spark), perbedaan Hadoop vs Spark, Cloud big data services.</p>
         </div>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Credit Fraud Detection</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code">from sklearn.ensemble import IsolationForest
-from sklearn.preprocessing import StandardScaler
-import pandas as pd
-
-# Load credit card transactions
-df = pd.read_csv('creditcard.csv')
-print(f"Dataset: {df.shape}, Fraud ratio: {df['Class'].mean():.4f}")  # Very imbalanced!
-
-# Preprocessing
-scaler = StandardScaler()
-df[['Amount']] = scaler.fit_transform(df[['Amount']])
-X = df.drop(['Class', 'Time'], axis=1)
-y = df['Class']
-
-# Method 1: Isolation Forest (Anomaly Detection - Unsupervised)
-iso_forest = IsolationForest(
-    contamination=0.001,  # Expected fraud ratio
-    random_state=42
-)
-iso_pred = iso_forest.fit_predict(X)
-iso_pred = (iso_pred == -1).astype(int)  # -1 = anomaly = fraud
-
-# Method 2: Gradient Boosting (Supervised - jika ada labels)
-from imblearn.over_sampling import SMOTE
-from sklearn.ensemble import GradientBoostingClassifier
-
-# Handle extreme imbalance dengan SMOTE
-sm = SMOTE(random_state=42)
-X_res, y_res = sm.fit_resample(X_train, y_train)
-
-gb_fraud = GradientBoostingClassifier(random_state=42)
-gb_fraud.fit(X_res, y_res)
-print(classification_report(y_test, gb_fraud.predict(X_test)))</code></pre>
+      <h3>Data Ingestion & Store (P11-P12)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Data Ingestion</div>
+          <p style="font-size:.88rem;line-height:1.75;">Batch vs Stream ingestion (perbedaan, use cases, latency), Apache Kafka architecture (producer/broker/consumer/topic), Python ETL batch ingestion, tools: Sqoop, Airflow, Kafka.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Data Store</div>
+          <p style="font-size:.88rem;line-height:1.75;">HDFS architecture (NameNode/DataNode, replication, blocks), NoSQL types (key-value, document, column, graph) dan use cases, OLAP vs OLTP, Data Lake vs Data Warehouse, Lakehouse (Delta Lake).</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Studi Kasus (P13-P14)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Retail & E-commerce</div>
+          <p style="font-size:.88rem;line-height:1.75;">RFM analysis (Recency, Frequency, Monetary), customer segmentation pipeline, association rules untuk product recommendation, churn prediction untuk retention, demand forecasting basics.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Healthcare, Finance & Ethics</div>
+          <p style="font-size:.88rem;line-height:1.75;">Disease prediction (classification), fraud detection (anomaly detection + supervised), credit scoring, data privacy regulasi (UU PDP, GDPR, HIPAA), anonymization vs pseudonymization, ethical AI.</p>
+        </div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-4">
+  <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Data Privacy & Ethics</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Tanggung Jawab Data Professional</div>
-      <p>Bekerja dengan data sensitif (kesehatan, keuangan) membawa tanggung jawab besar. <b>Data privacy, ethics, dan compliance</b> bukan pilihan — ini adalah kewajiban legal dan moral.</p>
+      <h2>Contoh Soal</h2>
     </div>
     <div class="sub-section">
-      <h3>Regulasi Data Privacy</h3>
-      <table class="rubric-table">
-        <thead>
-          <tr><th>Regulasi</th><th>Cakupan</th><th>Kewajiban Utama</th><th>Sanksi</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>GDPR (EU)</b></td><td>Data warga negara EU</td><td>Consent, right to erasure, data minimization</td><td>Hingga €20M atau 4% revenue global</td></tr>
-          <tr><td><b>HIPAA (US)</b></td><td>Protected Health Information</td><td>Encryption, access control, audit trails</td><td>Hingga $1.9M per violation category</td></tr>
-          <tr><td><b>UU PDP Indonesia</b></td><td>Data pribadi WNI</td><td>Persetujuan, transparansi, keamanan data</td><td>Pidana + denda administratif</td></tr>
-          <tr><td><b>OJK Regulation</b></td><td>Data nasabah perbankan</td><td>Kerahasiaan data nasabah</td><td>Pencabutan izin usaha</td></tr>
-        </tbody>
-      </table>
+      <h3>Contoh Soal Pilihan Ganda</h3>
+      <div class="card">
+        <div class="card-title">Contoh Soal</div>
+        <ol class="styled">
+          <li>Docker container berbeda dengan Virtual Machine karena...<br><b>A.</b> Container tidak bisa menjalankan aplikasi Python<br><b>B.</b> Container berbagi kernel host OS sehingga lebih ringan<br><b>C.</b> Container membutuhkan hypervisor untuk berjalan<br><b>D.</b> Container hanya bisa digunakan di Linux<br><i>Jawaban: B</i></li>
+          <li>Dalam HDFS, komponen yang menyimpan metadata (lokasi blocks, permissions) adalah...<br><b>A.</b> DataNode &nbsp;&nbsp;<b>B.</b> ResourceManager &nbsp;&nbsp;<b>C.</b> NameNode &nbsp;&nbsp;<b>D.</b> NodeManager<br><i>Jawaban: C</i></li>
+          <li>Apache Kafka digunakan untuk...<br><b>A.</b> SQL querying pada big data<br><b>B.</b> Real-time streaming data ingestion dan messaging<br><b>C.</b> Machine learning model training<br><b>D.</b> Visualisasi data interaktif<br><i>Jawaban: B</i></li>
+          <li>Perbedaan utama Data Lake vs Data Warehouse adalah...<br><b>A.</b> Data Lake lebih mahal dan hanya untuk data structured<br><b>B.</b> Data Warehouse menerima semua jenis data, Data Lake hanya structured<br><b>C.</b> Data Lake menyimpan semua jenis data (schema-on-read), DW hanya structured (schema-on-write)<br><b>D.</b> Tidak ada perbedaan, keduanya sama<br><i>Jawaban: C</i></li>
+        </ol>
+      </div>
     </div>
     <div class="sub-section">
-      <h3>Best Practices Data Privacy</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Anonymization & Pseudonymization</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Anonymization:</b> Hapus semua identifier (nama, NIK, nomor telepon) sehingga individu tidak bisa diidentifikasi kembali.<br><b>Pseudonymization:</b> Ganti identifier dengan pseudonym (kode). Data bisa di-re-identify jika kunci ada. Lebih sering digunakan dalam praktek.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Data Minimization</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kumpulkan <b>hanya data yang benar-benar dibutuhkan</b> untuk tujuan yang jelas. Hapus data yang tidak lagi diperlukan. Prinsip: "if in doubt, don't collect".</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Access Control & Encryption</div>
-          <p style="font-size:.88rem;line-height:1.75;">Role-Based Access Control (RBAC): berikan akses minimum yang diperlukan. Enkripsi data at-rest dan in-transit. Audit log semua akses ke data sensitif.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Ethical AI Considerations</div>
-          <p style="font-size:.88rem;line-height:1.75;">Hindari <b>algorithmic bias</b> (model diskriminasi berdasarkan ras, gender). Pastikan <b>fairness</b> dan <b>explainability</b> model. Lakukan impact assessment sebelum deploy ke production.</p>
-        </div>
+      <h3>Contoh Soal Essay</h3>
+      <div class="card">
+        <div class="card-title">Contoh Pertanyaan Essay</div>
+        <ol class="styled">
+          <li><b>Jelaskan arsitektur Apache Kafka dan peran Producer, Broker (Topic/Partition), dan Consumer</b> dalam pipeline data streaming real-time. Berikan satu contoh use case konkret. (5 poin)</li>
+          <li><b>Bandingkan batch ingestion vs stream ingestion</b>: perbedaan, kelebihan/kekurangan masing-masing, dan kapan menggunakan yang mana. Berikan contoh tools untuk setiap pendekatan. (5 poin)</li>
+          <li><b>Sebuah perusahaan fintech ingin membangun sistem fraud detection real-time</b>. Jelaskan: (a) arsitektur data pipeline yang dibutuhkan, (b) metode analitik yang tepat, (c) aspek data privacy yang harus diperhatikan. (5 poin)</li>
+          <li><b>Jelaskan konsep Data Lakehouse</b> dan bagaimana ia menggabungkan keunggulan Data Lake dan Data Warehouse. Sebutkan minimal 2 teknologi open-source yang mendukung Lakehouse architecture. (5 poin)</li>
+        </ol>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Implementation</h2>
+      <h2>Persiapan</h2>
     </div>
     <div class="sub-section">
-      <h3>Perbandingan Teknik Healthcare vs Finance Analytics</h3>
-      <table class="rubric-table">
-        <thead>
-          <tr><th>Aspek</th><th>Healthcare Analytics</th><th>Finance Analytics</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>Data Sensitivity</b></td><td>Sangat tinggi (PHI)</td><td>Sangat tinggi (PII + financial)</td></tr>
-          <tr><td><b>Regulasi</b></td><td>HIPAA, UU Kesehatan</td><td>OJK, BI, Basel III</td></tr>
-          <tr><td><b>Latency Requirement</b></td><td>Real-time untuk ICU, batch untuk research</td><td>Milliseconds untuk fraud detection</td></tr>
-          <tr><td><b>Imbalanced Data</b></td><td>Disease rare (1-5% positive)</td><td>Fraud rare (0.1-2% fraud)</td></tr>
-          <tr><td><b>False Negative Cost</b></td><td>Sangat tinggi (missed diagnosis)</td><td>Tinggi (missed fraud)</td></tr>
-          <tr><td><b>Explainability</b></td><td>Wajib (clinical decisions)</td><td>Wajib (credit decisions, regulatory)</td></tr>
-          <tr><td><b>Primary Metrics</b></td><td>Recall (sensitivity), AUC-ROC</td><td>Precision, F1, AUC-ROC</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">Healthcare: Heart Disease Prediction</div>
-          <ul>
-            <li>Dataset: <b>UCI Heart Disease Dataset</b> (Cleveland) — 303 patients, 13 features</li>
-            <li><b>EDA:</b> Distribusi umur, gender, chest pain type. Korelasi fitur dengan target</li>
-            <li><b>Preprocessing:</b> Handle missing (ca, thal), encode categorical, standardize</li>
-            <li><b>Model Comparison:</b> Logistic Regression, Random Forest, Gradient Boosting — compare AUC-ROC</li>
-            <li><b>Feature Importance:</b> Identifikasi 5 faktor risiko penyakit jantung terpenting</li>
-            <li><b>Explainability:</b> LIME atau SHAP untuk explain individual predictions (optional)</li>
-            <li><b>Ethical Review:</b> Tulis 1 paragraf potensi bias dalam model ini</li>
-          </ul>
+      <h3>Strategi Belajar</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Kuasai Konsep Kunci</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ HTTP methods dan REST API design<br>
+            ☐ Docker: image vs container, Dockerfile syntax<br>
+            ☐ HDFS: NameNode, DataNode, replication<br>
+            ☐ NoSQL types dan use cases masing-masing<br>
+            ☐ Batch vs Stream: tools, latency, use cases<br>
+            ☐ Data Lake vs DW vs Lakehouse<br>
+            ☐ Kafka: producer, topic, consumer<br>
+            ☐ Data privacy: UU PDP, GDPR, anonymization
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Latihan Coding</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Flask REST API: endpoint CRUD, error handling<br>
+            ☐ Docker: build image, run container, port mapping<br>
+            ☐ PySpark: createDataFrame, groupBy, agg<br>
+            ☐ MongoDB CRUD: insert, find, update, aggregate<br>
+            ☐ Kafka: KafkaProducer + KafkaConsumer<br>
+            ☐ ETL Python: extract, transform, load to parquet<br>
+            ☐ ML classification + evaluation (P9-P14 context)
+          </p>
         </div>
       </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Finance: Credit Card Fraud Detection</div>
-          <ul>
-            <li>Dataset: <b>Credit Card Fraud Detection</b> (Kaggle) — 284.807 transaksi, 0.17% fraud</li>
-            <li><b>EDA:</b> Analisis distribusi Amount, waktu kejadian fraud vs normal</li>
-            <li><b>Imbalance Handling:</b> Bandingkan 3 strategi: class_weight='balanced', SMOTE, ADASYN</li>
-            <li><b>Model:</b> Isolation Forest (unsupervised) + Gradient Boosting (supervised)</li>
-            <li><b>Evaluation:</b> Precision, Recall, F1, AUC-PR (Precision-Recall curve lebih informatif untuk imbalanced)</li>
-            <li><b>Business Cost Analysis:</b> Hitung estimated loss dari FN (missed fraud) vs FP (blocked legit transaction)</li>
-            <li><b>Privacy:</b> Tulis analysis: data apa yang perlu di-anonymize sebelum sharing?</li>
-          </ul>
+    </div>
+    <div class="sub-section">
+      <h3>Tips Ujian</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Teori: Pahami Konsep</div>
+          <div class="gc-body">Jangan hafal, pahami <em>mengapa</em> suatu teknologi ada dan kapan digunakan. Gunakan analogi untuk ingat lebih mudah.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Coding: Struktur Dulu</div>
+          <div class="gc-body">Tulis comment/pseudocode dulu sebelum coding. Pastikan imports benar. Gunakan print() untuk debug. Partial credit lebih baik dari tidak ada jawaban.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Manajemen Waktu</div>
+          <div class="gc-body">Jangan terlalu lama di satu soal. Skip yang sulit, kembali setelah selesai yang lain. Alokasikan lebih banyak waktu untuk coding (60 poin).</div>
         </div>
       </div>
     </div>
@@ -530,18 +471,57 @@ print(classification_report(y_test, gb_fraud.predict(X_test)))</code></pre>
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Ketentuan</h2>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Group project: healthcare atau finance case study dengan ethical considerations.</p>
+      <div class="card-title">Ketentuan Ujian</div>
+      <p style="font-size:.88rem;line-height:1.75;">
+        <b>📖 Teori (Pilihan Ganda + Essay):</b> Closed book, closed notes, tidak boleh menggunakan perangkat elektronik<br><br>
+        <b>💻 Praktikum/Coding:</b> Open notes, boleh akses materi pertemuan di laptop. <b>DILARANG</b>: internet browsing, komunikasi dengan pihak lain (chat, email, dll)<br><br>
+        <b>📁 Submit:</b> Semua file Jupyter Notebook (.ipynb) di-submit via LMS sebelum waktu ujian habis<br><br>
+        <b>⚠️ Integritas:</b> Plagiarisme atau kecurangan → nilai 0 dan sanksi akademis<br><br>
+        <b>🕐 Keterlambatan:</b> Tidak ada perpanjangan waktu. Datang 15 menit sebelum ujian dimulai
+      </p>
+    </div>
+    <div class="sub-section">
+      <h3>Penilaian Akhir Semester</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Kehadiran & Partisipasi</b></td><td><span class="score-badge">10%</span></td><td>Minimal 75% kehadiran</td></tr>
+          <tr><td><b>Tugas & Praktikum</b></td><td><span class="score-badge">20%</span></td><td>Weekly assignments + laporan</td></tr>
+          <tr><td><b>Quiz</b></td><td><span class="score-badge">10%</span></td><td>2-3 kali quiz</td></tr>
+          <tr><td><b>UTS (Pertemuan 8)</b></td><td><span class="score-badge">20%</span></td><td>Materi P1-P7</td></tr>
+          <tr><td><b>Studi Kasus & Project</b></td><td><span class="score-badge">20%</span></td><td>Final Project (P15)</td></tr>
+          <tr><td><b>UAS (Pertemuan 16)</b></td><td><span class="score-badge">20%</span></td><td>Materi P9-P15</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Konversi Nilai</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Nilai A (≥ 85)</div>
+          <div class="gc-body">Sangat Memuaskan — penguasaan materi excellent, kode berkualitas tinggi, interpretasi bisnis tepat.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Nilai B (70-84)</div>
+          <div class="gc-body">Memuaskan — memahami konsep kunci, implementasi berfungsi, analisis cukup baik.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Nilai C (60-69)</div>
+          <div class="gc-body">Cukup — pemahaman dasar ada, implementasi partial, perlu pendalaman lebih lanjut.</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p13.html">← Pertemuan 13</a>
+    <a href="bigdata-p15.html">← Pertemuan 15</a>
     <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p15.html" class="next-btn">Pertemuan 15 →</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
 

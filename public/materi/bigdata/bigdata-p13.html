@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Studi Kasus: Retail &amp; E-commerce</div>
+    <div class="pertemuan-badge">Pertemuan 13</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Problem Statement</a>
+    <a href="#section-3" class="toc-link">Data Collection</a>
+    <a href="#section-4" class="toc-link">Analytics Approach</a>
+    <a href="#section-5" class="toc-link">Implementation</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,14 +254,47 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 13</div>
+      <p>Mahasiswa mampu <b>menerapkan analitik big data dalam studi kasus retail dan e-commerce</b>: customer segmentation, product recommendation, inventory optimization, dan churn prediction.</p>
+    </div>
     <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu menerapkan big data analytics pada kasus retail/e-commerce.</p>
+      <div class="card-title">Big Data di Retail & E-commerce</div>
+      <p style="font-size:.88rem;line-height:1.75;">Industri retail dan e-commerce adalah salah satu pengguna terbesar big data. Setiap klik, transaksi, dan interaksi pelanggan menghasilkan data berharga. Perusahaan seperti Amazon, Tokopedia, Shopee menggunakan big data untuk semua aspek operasional mereka.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Use Cases Big Data di Retail</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Customer Segmentation</div>
+          <div class="gc-body">Segmentasi pelanggan berdasarkan behavior (RFM, purchase patterns) untuk personalized marketing dan targeted promotions.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Product Recommendation</div>
+          <div class="gc-body">"You may also like" dan "Frequently bought together" menggunakan collaborative filtering dan association rules.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Dynamic Pricing</div>
+          <div class="gc-body">Penyesuaian harga real-time berdasarkan demand, competitor prices, dan inventory level. Digunakan Gojek, Grab untuk surge pricing.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Demand Forecasting</div>
+          <div class="gc-body">Prediksi kebutuhan stok minggu/bulan ke depan untuk mengoptimalkan inventory dan mengurangi stockout/overstock.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Fraud Detection</div>
+          <div class="gc-body">Deteksi transaksi mencurigakan secara real-time: fake reviews, payment fraud, account takeover.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Search Optimization</div>
+          <div class="gc-body">Improve search relevance dan ranking produk berdasarkan query patterns, click-through rate, dan purchase conversion.</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -276,45 +311,130 @@ ul.styled li::marker{color:var(--gold);}
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-3">
+    <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
       <h2>Data Collection & Preparation</h2>
     </div>
     <div class="card">
-      <div class="card-title">Data Collection & Preparation</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Data Pipeline:</b><br><br>1. <b>Sources:</b><br>   • MySQL: Customer & product tables<br>   • Log files: Clickstream data<br>   • APIs: Payment gateway, shipping<br><br>2. <b>Ingestion:</b> Sqoop untuk batch extract dari MySQL ke HDFS<br><br>3. <b>Cleaning:</b><br>   • Handle missing values<br>   • Remove duplicates<br>   • Fix data type inconsistencies<br><br>4. <b>Feature Engineering:</b><br>   • RFM scores<br>   • Customer lifetime value<br>   • Average order value<br>   • Days since last purchase</p>
+      <div class="card-title">Data Sources Retail</div>
+      <p style="font-size:.88rem;line-height:1.75;">E-commerce mengumpulkan data dari berbagai touchpoints pelanggan di seluruh customer journey.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Pipeline Data Retail</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code">import pandas as pd
+import numpy as np
+from datetime import datetime
+
+# Load & merge data dari berbagai sumber
+transactions = pd.read_csv('transactions.csv', parse_dates=['order_date'])
+customers = pd.read_csv('customers.csv')
+products = pd.read_csv('products.csv')
+
+# Merge datasets
+df = transactions.merge(customers, on='customer_id')                  .merge(products, on='product_id')
+
+# Feature Engineering untuk Customer Analytics
+today = pd.Timestamp.now()
+
+# RFM Calculation
+rfm = df.groupby('customer_id').agg(
+    recency=('order_date', lambda x: (today - x.max()).days),
+    frequency=('order_id', 'count'),
+    monetary=('total_amount', 'sum')
+).reset_index()
+
+# Segmentasi based on percentile
+rfm['R_score'] = pd.qcut(rfm['recency'], 4, labels=[4,3,2,1])  # Low = recent
+rfm['F_score'] = pd.qcut(rfm['frequency'].rank(method='first'), 4, labels=[1,2,3,4])
+rfm['M_score'] = pd.qcut(rfm['monetary'], 4, labels=[1,2,3,4])
+rfm['RFM_score'] = rfm['R_score'].astype(str) + rfm['F_score'].astype(str) + rfm['M_score'].astype(str)
+
+print(rfm.head())
+print(f"Total customers: {len(rfm)}")
+print(f"RFM Score distribution:
+{rfm['RFM_score'].value_counts().head(10)}")</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Data Quality Checks</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Completeness</div>
+          <div class="gc-body">Check missing values per kolom. Target: &lt;5% missing untuk kolom kritis (customer_id, amount, date). Impute atau drop berdasarkan threshold.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Consistency</div>
+          <div class="gc-body">Pastikan format konsisten: tanggal (ISO 8601), harga (Rupiah, bukan mix), category names (standardized, no typos).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Validity</div>
+          <div class="gc-body">Amount &gt; 0, tanggal dalam range valid, customer_id ada di customer table. Identifikasi test transactions atau internal orders.</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Analytics Approach</h2>
     </div>
     <div class="card">
-      <div class="card-title">Analytics Approach</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Multi-faceted Analytics:</b> Menggunakan multiple metode untuk comprehensive insights.</p>
+      <div class="card-title">Multi-Method Analytics</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Pendekatan komprehensif</b> mengkombinasikan beberapa metode untuk mendapatkan insights yang lebih dalam dan actionable.</p>
     </div>
     <div class="sub-section">
-      <h3>Implementasi Multi-Method Analytics</h3>
-      <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button><pre><code># 1. Customer Segmentation with K-Means
-from sklearn.cluster import KMeans
-features = df[['recency','frequency','monetary']]
-kmeans = KMeans(n_clusters=4, random_state=42)
-df['segment'] = kmeans.fit_predict(features)
-
-# 2. Churn Prediction with Random Forest
+      <h3>Metode Analitik per Use Case</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Use Case</th><th>Metode</th><th>Output</th><th>Business Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Customer Segmentation</td><td>K-Means (RFM)</td><td>4-6 customer segments</td><td>Targeted marketing per segment</td></tr>
+          <tr><td>Churn Prediction</td><td>Random Forest</td><td>Churn probability per customer</td><td>Proactive retention campaign</td></tr>
+          <tr><td>Product Bundling</td><td>Apriori / FP-Growth</td><td>Association rules</td><td>Bundle deals, cross-sell strategy</td></tr>
+          <tr><td>Demand Forecasting</td><td>SARIMA / Prophet</td><td>Weekly sales forecast per SKU</td><td>Inventory planning, procurement</td></tr>
+          <tr><td>Price Optimization</td><td>Regression</td><td>Price elasticity</td><td>Dynamic pricing strategy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi: Multi-Method Analytics</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code">from sklearn.cluster import KMeans
 from sklearn.ensemble import RandomForestClassifier
-rf = RandomForestClassifier(n_estimators=100)
-rf.fit(X_train, y_train)
-churn_prob = rf.predict_proba(X_test)[:, 1]
+from sklearn.preprocessing import StandardScaler
+from mlxtend.frequent_patterns import fpgrowth, association_rules
 
-# 3. Product Recommendation with Association Rules
-from mlxtend.frequent_patterns import apriori, association_rules
-frequent = apriori(basket_data, min_support=0.05)
-rules = association_rules(frequent, metric="lift", min_threshold=1.2)</code></pre>
+# 1. Customer Segmentation dengan K-Means (RFM)
+scaler = StandardScaler()
+rfm_scaled = scaler.fit_transform(rfm[['recency', 'frequency', 'monetary']])
+kmeans = KMeans(n_clusters=4, random_state=42)
+rfm['segment'] = kmeans.fit_predict(rfm_scaled)
+
+# Profile segments
+segment_profile = rfm.groupby('segment')[['recency','frequency','monetary']].mean()
+print("Customer Segments:
+", segment_profile)
+
+# 2. Churn Prediction dengan Random Forest
+features = ['recency', 'frequency', 'monetary', 'days_since_first_order',
+            'avg_order_value', 'num_categories', 'last_complaint_days']
+X = df_churn[features]
+y = df_churn['churn']
+
+rf_churn = RandomForestClassifier(class_weight='balanced', random_state=42)
+rf_churn.fit(X_train, y_train)
+
+# Identifikasi high-risk customers
+df_churn['churn_prob'] = rf_churn.predict_proba(X)[:, 1]
+high_risk = df_churn[df_churn['churn_prob'] > 0.7]
+print(f"High risk customers: {len(high_risk)}")</code></pre>
       </div>
     </div>
   </section>
@@ -332,19 +452,53 @@ rules = association_rules(frequent, metric="lift", min_threshold=1.2)</code></pr
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-6">
+    <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
       <h2>Praktikum</h2>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Group project: implement retail analytics use case dengan real/synthetic dataset.</p>
+      <div class="card-title">End-to-End Retail Analytics</div>
+      <p style="font-size:.88rem;line-height:1.75;">Implementasikan full analytics pipeline untuk studi kasus retail menggunakan dataset nyata dari Kaggle.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tugas Praktikum</h3>
+      <div class="task-card">
+        <div class="task-num">1</div>
+        <div class="task-content">
+          <div class="task-title">Customer Segmentation: Toko Online Indonesia</div>
+          <ul>
+            <li>Dataset: <b>Brazilian E-Commerce Dataset (Olist)</b> dari Kaggle — 100K+ orders</li>
+            <li><b>Step 1 Data Prep:</b> Merge orders + customers + payments, handle missing, parse dates</li>
+            <li><b>Step 2 RFM:</b> Hitung Recency, Frequency, Monetary untuk setiap customer</li>
+            <li><b>Step 3 Segmentasi:</b> K-Means (K=4) pada RFM normalized, identifikasi optimal K dengan Elbow</li>
+            <li><b>Step 4 Profiling:</b> Hitung rata-rata RFM per segment, beri label bisnis (Champions, Loyal, At-Risk, Dormant)</li>
+            <li><b>Step 5 Visualisasi:</b> Scatter plot 3D RFM, bar chart distribusi segment</li>
+            <li><b>Business Insight:</b> Berikan rekomendasi marketing strategy untuk setiap segment</li>
+            <li>Deliverable: Jupyter notebook + executive summary 1 halaman</li>
+          </ul>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">2</div>
+        <div class="task-content">
+          <div class="task-title">Churn Prediction + Association Rules</div>
+          <ul>
+            <li>Lanjutkan dari dataset Olist: identifikasi customer yang tidak beli dalam 180 hari = churn</li>
+            <li>Build <b>churn prediction model</b> (Random Forest) dengan features: recency, frequency, monetary, avg_review_score, num_product_categories</li>
+            <li>Evaluate: classification report, ROC-AUC, feature importance</li>
+            <li>Parallel: jalankan <b>association rules</b> pada product_category data</li>
+            <li>Temukan product bundles: rule dengan confidence ≥ 0.5 dan lift ≥ 1.5</li>
+            <li>Gabungkan insights: untuk high-risk churn customers, rekomendasikan product bundle yang relevan</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
     <a href="bigdata-p12.html">← Pertemuan 12</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p14.html" class="next-btn">Pertemuan 14 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

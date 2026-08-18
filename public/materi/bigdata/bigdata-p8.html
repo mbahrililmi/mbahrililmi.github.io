@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,16 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Ujian Tengah Semester (UTS)</div>
+    <div class="pertemuan-badge">Pertemuan 8</div>
   </div>
   <nav class="toc-nav" id="toc">
-    <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <div class="toc-section-label">Informasi</div>
+    <a href="#section-1" class="toc-link">Informasi UTS</a>
+    <a href="#section-2" class="toc-link">Format Ujian</a>
+    <a href="#section-3" class="toc-link">Materi yang Diujikan</a>
+    <a href="#section-4" class="toc-link">Persiapan</a>
+    <a href="#section-5" class="toc-link">Ketentuan</a>
   </nav>
 </aside>
 
@@ -252,67 +253,259 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Informasi UTS</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Informasi UTS</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Ujian Tengah Semester</b> evaluasi pemahaman materi Pertemuan 1-7.<br><br><b>Scope Materi:</b><br>• P1: Konsep Big Data, 5V\'s, ecosystem<br>• P2: Data Analytics Lifecycle<br>• P3: Classification (DT, NB, k-NN)<br>• P4: Prediction & Regression<br>• P5: Cluster Analysis<br>• P6: Association Rules<br>• P7: Penerapan metode analitik</p>
+    <div class="highlight-box">
+      <div class="hb-title">Ujian Tengah Semester Big Data</div>
+      <p>UTS mengevaluasi pemahaman materi <b>Pertemuan 1-7</b>. Bobot UTS = <b>20% dari total nilai akhir</b>. Kombinasi teori dan praktikum untuk mengukur pemahaman konsep dan kemampuan implementasi.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Detail Ujian</div>
+        <div class="gc-body">
+          <b>Durasi:</b> 150 menit<br>
+          <b>Teori:</b> Closed book, 50 menit<br>
+          <b>Praktikum:</b> Open notes, 100 menit<br>
+          <b>Platform:</b> Jupyter Notebook<br>
+          <b>Bobot:</b> 20% dari nilai akhir
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Cakupan Materi</div>
+        <div class="gc-body">
+          <b>P1:</b> Big Data 5V's, ecosystem, career<br>
+          <b>P2:</b> Analytics Lifecycle (6 fase)<br>
+          <b>P3:</b> Classification: DT, NB, k-NN<br>
+          <b>P4:</b> Prediction & Regression<br>
+          <b>P5:</b> Cluster Analysis (K-Means, DBSCAN)<br>
+          <b>P6:</b> Association Rules (Apriori, FP-Growth)<br>
+          <b>P7:</b> Penerapan Metode Analitik
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Distribusi Nilai UTS</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Pilihan Ganda (20 poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;">20 soal × 1 poin. Mencakup konsep dasar, definisi, dan perbandingan algoritma. Durasi: ~20 menit.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Essay (20 poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;">4 soal × 5 poin. Pertanyaan analitis yang memerlukan penjelasan mendalam, perbandingan, dan contoh aplikasi nyata.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Coding/Praktikum (60 poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Implementasi classification + clustering + evaluation metrics menggunakan Python. Dataset disediakan. Submit Jupyter notebook.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-2">
+    <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
       <h2>Format Ujian</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Format Ujian</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Komponen Ujian:</b><br><br><b>1. Teori (40 poin):</b><br>• Multiple choice: 20 soal @ 1 poin<br>• Essay: 4 soal @ 5 poin<br><br><b>2. Praktikum (60 poin):</b><br>• Coding problem: Implement classification/clustering<br>• Dataset provided: CSV file<br>• Submit: Jupyter notebook (.ipynb) + brief report<br><br><b>Durasi:</b> 150 menit<br><b>Tools:</b> Python, Jupyter, sklearn, pandas</p>
+    <div class="sub-section">
+      <h3>Alokasi Waktu</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Bagian</th><th>Durasi</th><th>Isi</th><th>Tips</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Pilihan Ganda</b></td><td>20 menit</td><td>20 soal konsep</td><td>Jawab yang mudah dulu</td></tr>
+          <tr><td><b>Essay</b></td><td>30 menit</td><td>4 soal uraian</td><td>Outline dulu sebelum menulis</td></tr>
+          <tr><td><b>Coding Problem 1</b></td><td>35 menit</td><td>Classification model</td><td>Mulai dari data loading</td></tr>
+          <tr><td><b>Coding Problem 2</b></td><td>35 menit</td><td>Clustering + eval</td><td>Fokus pada silhouette score</td></tr>
+          <tr><td><b>Review & Submit</b></td><td>30 menit</td><td>Cek jawaban</td><td>Prioritas soal bernilai tinggi</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Ketentuan Teknis</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Teori (PG + Essay)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Closed book</b> — tidak boleh membuka catatan, buku, atau perangkat elektronik. Jawab di lembar jawaban yang disediakan atau Google Form.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Praktikum (Coding)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Open notes</b> — boleh akses materi di laptop. <b>Dilarang:</b> browsing internet, komunikasi antar peserta. Submit file .ipynb via LMS sebelum waktu habis.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-3">
+    <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
       <h2>Materi Yang Diujikan</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Materi Yang Diujikan</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Key Topics:</b><br><br>1. <b>Big Data Fundamentals:</b> 5V\'s, traditional vs big data, use cases<br>2. <b>Lifecycle Phases:</b> Discovery, data prep, modeling, operationalize<br>3. <b>Classification:</b> Algorithm comparison, evaluation metrics, confusion matrix<br>4. <b>Regression:</b> Linear vs polynomial, time series basics, RMSE/R²<br>5. <b>Clustering:</b> K-means, hierarchical, DBSCAN, silhouette score<br>6. <b>Association:</b> Apriori, support/confidence/lift interpretation<br>7. <b>Implementation:</b> Python sklearn code untuk train dan evaluate models</p>
+    <div class="sub-section">
+      <h3>Ringkasan Materi P1-P7</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Pertemuan</th><th>Topik</th><th>Key Concepts</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>P1</b></td><td>Big Data Fundamentals</td><td>5V's (Volume, Velocity, Variety, Veracity, Value), Traditional vs Big Data, Ecosystem, Career paths</td></tr>
+          <tr><td><b>P2</b></td><td>Analytics Lifecycle</td><td>6 fase: Discovery, Data Prep, Model Planning, Model Building, Communicate, Operationalize</td></tr>
+          <tr><td><b>P3</b></td><td>Classification</td><td>Decision Tree (Gini/IG), Naive Bayes (probabilistic), k-NN (distance), Confusion Matrix, Precision/Recall/F1</td></tr>
+          <tr><td><b>P4</b></td><td>Prediction & Regression</td><td>Linear/Polynomial/Logistic Regression, ARIMA time series, MAE/RMSE/R²</td></tr>
+          <tr><td><b>P5</b></td><td>Cluster Analysis</td><td>K-Means (Elbow), Hierarchical (Ward), DBSCAN (eps/MinPts), Silhouette Score</td></tr>
+          <tr><td><b>P6</b></td><td>Association Rules</td><td>Apriori property, FP-Growth, Support/Confidence/Lift, Market Basket Analysis</td></tr>
+          <tr><td><b>P7</b></td><td>Penerapan Metode</td><td>Churn prediction, Sales forecasting, Customer segmentation (RFM), Product bundling</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Kemampuan Coding yang Diuji</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Data Preprocessing</div>
+          <div class="gc-body">Handle missing values, encoding categorical, scaling (StandardScaler), train/test split, cross-validation setup</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Model Building</div>
+          <div class="gc-body">DecisionTreeClassifier, KMeans, DBSCAN, association_rules dari mlxtend. fit(), predict(), fit_predict()</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Model Evaluation</div>
+          <div class="gc-body">classification_report, confusion_matrix, roc_auc_score, silhouette_score, RMSE, R² — interpretasi hasil</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Persiapan</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Persiapan</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Tips Persiapan UTS:</b><br><br>1. <b>Review Slides & Notebooks:</b> Reread all lecture materials<br>2. <b>Practice Coding:</b> Redo all praktikum assignments<br>3. <b>Understand Concepts:</b> Don\'t just memorize, understand why<br>4. <b>Sample Problems:</b> Work through practice questions<br>5. <b>Study Group:</b> Discuss concepts dengan teman<br>6. <b>Cheat Sheet:</b> Prepare 1-page formula/code reference<br>7. <b>Time Management:</b> Alokasi waktu: Teori 50min, Praktik 100min</p>
+    <div class="sub-section">
+      <h3>Tips Persiapan UTS</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Materi Teori</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Review semua highlight-box definisi per pertemuan<br>
+            ☐ Pahami perbedaan Classification vs Regression vs Clustering<br>
+            ☐ Hafal formula: Gini, Entropy, Silhouette Score, Support/Confidence/Lift<br>
+            ☐ Pahami 5V's Big Data dengan contoh nyata<br>
+            ☐ Kuasai 6 fase Analytics Lifecycle beserta deliverables<br>
+            ☐ Buat mind map hubungan antar algoritma
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Kemampuan Coding</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Latihan load dataset dengan pandas, cek .info() dan .describe()<br>
+            ☐ Praktik classification pipeline lengkap (split → train → predict → evaluate)<br>
+            ☐ Implementasi K-Means + Elbow Method<br>
+            ☐ Implementasi DBSCAN dengan k-distance graph<br>
+            ☐ Apriori/FP-Growth dengan mlxtend<br>
+            ☐ Buat visualization (confusion matrix, scatter plot, dendrogram)
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Contoh Soal Praktikum</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># SOAL PRAKTIKUM UTS - CONTOH
+# Dataset: Iris dataset (akan diganti dengan dataset ujian yang sebenarnya)
+
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.cluster import KMeans
+from sklearn.metrics import classification_report, silhouette_score
+
+# === BAGIAN A: CLASSIFICATION (30 poin) ===
+from sklearn.datasets import load_iris
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+y = iris.target
+
+# 1. Split data (80:20, stratified)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+# 2. Train Decision Tree
+dt = DecisionTreeClassifier(max_depth=4, random_state=42)
+dt.fit(X_train, y_train)
+y_pred = dt.predict(X_test)
+
+# 3. Evaluate - WAJIB interpretasikan setiap metrics!
+print("=== Classification Report ===")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# === BAGIAN B: CLUSTERING (30 poin) ===
+# 4. Standardize features
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# 5. K-Means dengan K optimal (tentukan dari Elbow Method)
+kmeans = KMeans(n_clusters=3, init='k-means++', random_state=42)
+labels = kmeans.fit_predict(X_scaled)
+
+# 6. Evaluate clustering
+score = silhouette_score(X_scaled, labels)
+print(f"
+Silhouette Score: {score:.3f}")
+print("Interpretasi: ...[tulis interpretasi bisnis di sini]")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-5">
+    <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
       <h2>Ketentuan</h2>
     </div>
     <div class="card">
-      <div class="card-title">Ketentuan</div>
-      <p style="font-size:.88rem;line-height:1.75;">Closed book untuk teori. Open notes/laptop untuk praktik. Durasi: 150 menit.</p>
+      <div class="card-title">Tata Tertib Ujian</div>
+      <p style="font-size:.88rem;line-height:1.75;">
+        <b>Kehadiran:</b> Wajib hadir tepat waktu. Keterlambatan &gt; 15 menit tidak diizinkan masuk.<br>
+        <b>Identitas:</b> Bawa KTM dan tunjukkan saat absen.<br>
+        <b>Perangkat:</b> Laptop boleh untuk coding (matikan WiFi/hotspot). HP harus dalam tas.<br>
+        <b>Komunikasi:</b> Dilarang keras berkomunikasi dengan sesama peserta dalam bentuk apapun.<br>
+        <b>Submit:</b> Semua file (.ipynb) di-submit via LMS sebelum waktu habis. Tidak ada toleransi keterlambatan.<br>
+        <b>Integritas:</b> Kecurangan atau plagiarisme akan mengakibatkan nilai 0 dan sanksi akademis.
+      </p>
+    </div>
+    <div class="sub-section">
+      <h3>Bobot Nilai Akhir Semester</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Kehadiran & Partisipasi</b></td><td><span class="score-badge">10%</span></td><td>Minimal 75% kehadiran</td></tr>
+          <tr><td><b>Tugas & Praktikum</b></td><td><span class="score-badge">20%</span></td><td>Weekly assignments</td></tr>
+          <tr><td><b>Quiz</b></td><td><span class="score-badge">10%</span></td><td>2-3 quiz selama semester</td></tr>
+          <tr><td><b>UTS (Pertemuan 8)</b></td><td><span class="score-badge">20%</span></td><td>Materi P1-P7</td></tr>
+          <tr><td><b>Studi Kasus & Project</b></td><td><span class="score-badge">20%</span></td><td>Final project (P15)</td></tr>
+          <tr><td><b>UAS (Pertemuan 16)</b></td><td><span class="score-badge">20%</span></td><td>Materi P9-P15</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <nav class="footer-nav">
     <a href="bigdata-p7.html">← Pertemuan 7</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p9.html" class="next-btn">Pertemuan 9 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

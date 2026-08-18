@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,18 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Data Analytics Lifecycle</div>
+    <div class="pertemuan-badge">Pertemuan 2</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Analytics Lifecycle</a>
+    <a href="#section-3" class="toc-link">Phase 1: Discovery</a>
+    <a href="#section-4" class="toc-link">Phase 2: Data Preparation</a>
+    <a href="#section-5" class="toc-link">Phase 3&amp;4: Model</a>
+    <a href="#section-6" class="toc-link">Phase 5&amp;6: Communicate</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -264,12 +267,24 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Tujuan Pembelajaran</h3>
-      <ul class="styled">
-        <li>Memahami pentingnya structured approach dalam big data analytics</li>
-        <li>Menjelaskan setiap fase dalam Data Analytics Lifecycle</li>
-        <li>Mengidentifikasi deliverables dan aktivitas di setiap fase</li>
-        <li>Memahami iterative nature dari data analytics process</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Structured Approach</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami pentingnya pendekatan terstruktur (structured approach) dalam big data analytics agar proses analisis terarah, reproducible, dan scalable.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">6 Fase Analytics Lifecycle</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan setiap fase dalam Data Analytics Lifecycle: Discovery, Data Preparation, Model Planning, Model Building, Communicate Results, dan Operationalize.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Deliverables & Aktivitas</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mengidentifikasi deliverables yang dihasilkan dan aktivitas yang dilakukan di setiap fase lifecycle, dari problem statement hingga production deployment.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Iterative Nature</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami sifat iteratif dari data analytics process — fase dapat diulang saat ditemukan insight baru, data baru, atau model perlu diperbaiki.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -326,12 +341,24 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Key Activities</h3>
-      <ul class="styled">
-        <li><b>Business Understanding:</b> Interview stakeholders, understand pain points, define success criteria</li>
-        <li><b>Resource Assessment:</b> Inventory data sources, tools, infrastructure, team capabilities</li>
-        <li><b>Hypothesis Formation:</b> Develop initial hypotheses tentang patterns atau relationships dalam data</li>
-        <li><b>Project Planning:</b> Define scope, timeline, deliverables, dan risk assessment</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Business Understanding</div>
+          <p style="font-size:.88rem;line-height:1.75;">Interview stakeholders untuk memahami pain points bisnis, define success criteria yang measurable, dan identifikasi business impact yang diharapkan dari proyek analytics.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Resource Assessment</div>
+          <p style="font-size:.88rem;line-height:1.75;">Inventarisasi data sources yang tersedia, tools dan infrastructure yang dimiliki, capabilities tim, serta budget dan constraints yang perlu diperhatikan.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Hypothesis Formation</div>
+          <p style="font-size:.88rem;line-height:1.75;">Kembangkan initial hypotheses tentang patterns, relationships, atau anomalies yang mungkin ditemukan dalam data. Hipotesis ini akan diuji dan divalidasi dalam fase model building.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Project Planning</div>
+          <p style="font-size:.88rem;line-height:1.75;">Definisikan scope, timeline, deliverables, dan risk assessment. Buat project charter yang menjadi panduan seluruh tim selama pelaksanaan proyek analytics.</p>
+        </div>
+      </div>
     </div>
     <div class="sub-section">
       <h3>Deliverables</h3>
@@ -360,6 +387,32 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Tahapan Data Preparation</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">1. Data Collection</div>
+          <p style="font-size:.88rem;line-height:1.75;">Extract data dari berbagai sumber: databases relasional, NoSQL, REST APIs, flat files (CSV, JSON), cloud storage, dan streaming sources.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Data Exploration (EDA)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Pahami struktur data, distribusi statistik, korelasi antar variabel, dan identifikasi anomali atau pola menarik menggunakan visualisasi dan descriptive statistics.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Data Cleaning</div>
+          <p style="font-size:.88rem;line-height:1.75;">Handle missing values (imputation/removal), hapus duplikat, perbaiki inconsistencies, dan tangani outliers agar kualitas data terjaga untuk modeling.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">4. Data Transformation</div>
+          <p style="font-size:.88rem;line-height:1.75;">Normalisasi/standardisasi nilai numerik, encoding categorical variables, log transformation untuk skewed data, dan aggregasi data sesuai kebutuhan model.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">5. Feature Engineering</div>
+          <p style="font-size:.88rem;line-height:1.75;">Buat fitur baru dari data yang ada (date parts, interaction terms, ratios, lag features) untuk meningkatkan kemampuan prediksi model machine learning.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">📊 70-80% Waktu</div>
+          <p style="font-size:.88rem;line-height:1.75;">Data preparation menghabiskan 70–80% waktu proyek analytics. Investasi di sini sangat krusial karena kualitas data langsung berdampak pada kualitas model.</p>
+        </div>
+      </div>
       <table class="rubric-table">
         <thead>
           <tr><th>Tahap</th><th>Aktivitas</th><th>Tools</th></tr>
@@ -404,12 +457,24 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="sub-section">
       <h3>Model Planning Activities</h3>
-      <ul class="styled">
-        <li><b>Algorithm Selection:</b> Pilih algoritma based on problem type (classification, regression, clustering)</li>
-        <li><b>Tool Selection:</b> Python (scikit-learn), R, SAS, or big data tools (Spark MLlib)</li>
-        <li><b>Workflow Design:</b> Define training, validation, testing pipeline</li>
-        <li><b>Success Metrics:</b> Define KPIs (accuracy, precision, recall, RMSE, etc.)</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Algorithm Selection</div>
+          <p style="font-size:.88rem;line-height:1.75;">Pilih algoritma berdasarkan tipe problem: <b>classification</b> (Decision Tree, Random Forest, SVM), <b>regression</b> (Linear, Polynomial), atau <b>clustering</b> (K-Means, DBSCAN). Pertimbangkan ukuran data, interpretability, dan performance.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Tool Selection</div>
+          <p style="font-size:.88rem;line-height:1.75;">Pilih tools yang sesuai: <b>Python</b> dengan scikit-learn untuk ML, <b>R</b> untuk statistical analysis, <b>Spark MLlib</b> untuk big data, atau <b>TensorFlow/PyTorch</b> untuk deep learning.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Workflow Design</div>
+          <p style="font-size:.88rem;line-height:1.75;">Rancang pipeline yang jelas: data splitting (train/validation/test), cross-validation strategy, hyperparameter tuning approach, dan ensemble methods jika diperlukan.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Success Metrics</div>
+          <p style="font-size:.88rem;line-height:1.75;">Definisikan KPI yang akan digunakan: <b>Accuracy/Precision/Recall/F1</b> untuk classification, <b>RMSE/MAE/R²</b> untuk regression, <b>Silhouette Score</b> untuk clustering.</p>
+        </div>
+      </div>
     </div>
     <div class="sub-section">
       <h3>Model Building Process</h3>
@@ -467,12 +532,24 @@ print(classification_report(y_test, y_pred))</code></pre>
     </div>
     <div class="sub-section">
       <h3>Operationalize Model</h3>
-      <ul class="styled">
-        <li><b>Deployment:</b> Deploy model ke production environment (API, batch scoring, real-time)</li>
-        <li><b>Monitoring:</b> Track model performance, data drift, concept drift over time</li>
-        <li><b>Maintenance:</b> Retrain model periodically dengan new data</li>
-        <li><b>Documentation:</b> Comprehensive docs untuk reproducibility dan knowledge transfer</li>
-      </ul>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Deployment Strategi</div>
+          <p style="font-size:.88rem;line-height:1.75;">Deploy model ke production: <b>REST API</b> (Flask/FastAPI) untuk real-time scoring, <b>batch processing</b> untuk large-scale offline prediction, atau <b>embedded model</b> dalam aplikasi mobile/web.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Monitoring & Alerting</div>
+          <p style="font-size:.88rem;line-height:1.75;">Track model performance secara berkala: deteksi <b>data drift</b> (distribusi input berubah) dan <b>concept drift</b> (hubungan input-output berubah). Setup alerting jika performa turun di bawah threshold.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Model Maintenance</div>
+          <p style="font-size:.88rem;line-height:1.75;">Lakukan retraining model secara periodik dengan data terbaru. Terapkan <b>MLOps practices</b>: versioning model, A/B testing, dan automated retraining pipeline.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Documentation</div>
+          <p style="font-size:.88rem;line-height:1.75;">Buat dokumentasi lengkap: model card (deskripsi, limitations, intended use), data lineage, training procedure, dan runbook untuk troubleshooting. Penting untuk reproducibility dan knowledge transfer.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -519,6 +596,7 @@ print(classification_report(y_test, y_pred))</code></pre>
 
   <nav class="footer-nav">
     <a href="bigdata-p1.html">← Pertemuan 1</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p3.html" class="next-btn">Pertemuan 3 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

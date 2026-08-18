@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Data Ingestion</div>
+    <div class="pertemuan-badge">Pertemuan 11</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Batch Ingestion</a>
+    <a href="#section-3" class="toc-link">Stream Ingestion</a>
+    <a href="#section-4" class="toc-link">Data Sources</a>
+    <a href="#section-5" class="toc-link">Data Pipeline</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,83 +254,396 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
+      <p>Mahasiswa mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline — proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system untuk diproses lebih lanjut.</p>
+    </div>
     <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu memahami dan melakukan data ingestion untuk big data.</p>
+      <div class="card-title">Apa itu Data Ingestion?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber (databases, APIs, files, streaming) ke dalam sistem storage big data (HDFS, Data Lake, database). Ini adalah langkah pertama dan kritis dalam data pipeline.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Batch vs Stream Ingestion</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Batch Ingestion</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Mengumpulkan data dalam periode tertentu</b> (setiap jam, hari, minggu) kemudian memproses sebagai satu batch. Cocok untuk reporting harian, ETL warehouse, dan workload yang toleran dengan latency tinggi.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Stream Ingestion</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Memproses data secara real-time</b> saat data tiba. Latency sangat rendah (milliseconds). Cocok untuk fraud detection, live dashboards, IoT monitoring, dan applications yang butuh immediate action.</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-2">
+    <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
       <h2>Batch Ingestion</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Batch Ingestion</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Batch Data Ingestion:</b> Scheduled periodic loads (hourly, daily, weekly).<br><br><b>Tools:</b><br>• <b>Apache Sqoop:</b> Transfer data between Hadoop and RDBMS<br>• <b>Talend:</b> ETL tool with GUI<br>• <b>Apache Nifi:</b> Dataflow automation<br><br><b>Use Cases:</b><br>• Daily sales data from POS systems<br>• Monthly customer data sync<br>• Historical data migration<br><br><b>Pros:</b> Simple, predictable, less resource intensive<br><b>Cons:</b> Not real-time, data latency</p>
+    <div class="highlight-box">
+      <div class="hb-title">Cara Kerja Batch Ingestion</div>
+      <p>Data dikumpulkan dalam <b>time window tertentu</b> (jam/hari), kemudian diproses sekaligus sebagai satu batch. Tools: Apache Sqoop, Apache Airflow, Python ETL scripts, AWS Glue.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tools Batch Ingestion</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Apache Sqoop</div>
+          <div class="gc-body">Transfer data antara RDBMS (MySQL, PostgreSQL) dan Hadoop/HDFS. Efficient parallel transfer menggunakan MapReduce.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Apache Airflow</div>
+          <div class="gc-body">Workflow orchestration platform. Define ETL workflows sebagai DAGs (Directed Acyclic Graphs). Scheduling, monitoring, dan alerting terintegrasi.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Python ETL Scripts</div>
+          <div class="gc-body">Custom scripts menggunakan Pandas, SQLAlchemy, requests. Flexible tapi perlu maintenance lebih banyak. Cocok untuk simple ETL workflows.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Batch Ingestion dengan Python</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>import pandas as pd
+import sqlalchemy
+from pathlib import Path
+import logging
+from datetime import datetime, timedelta
+
+logging.basicConfig(level=logging.INFO)
+
+def batch_ingest_daily():
+    """Ingest data harian dari database ke data lake"""
+    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    
+    # Extract: baca dari source database
+    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
+    query = f"""
+        SELECT * FROM transactions 
+        WHERE DATE(created_at) = '{yesterday}'
+    """
+    df = pd.read_sql(query, engine)
+    logging.info(f"Extracted {len(df)} rows for {yesterday}")
+    
+    # Transform: basic cleaning dan transformation
+    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
+    df = df.dropna(subset=['customer_id', 'amount'])
+    df['ingestion_date'] = datetime.now()
+    
+    # Load: simpan ke data lake (partitioned by date)
+    output_path = f"data_lake/transactions/date={yesterday}/"
+    Path(output_path).mkdir(parents=True, exist_ok=True)
+    df.to_parquet(f"{output_path}data.parquet", index=False)
+    logging.info(f"Loaded {len(df)} rows to {output_path}")
+    
+    return len(df)
+
+if __name__ == "__main__":
+    rows = batch_ingest_daily()
+    print(f"Batch ingestion complete: {rows} rows")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-3">
+    <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
       <h2>Stream Ingestion</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Stream Ingestion</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Stream Data Ingestion:</b> Real-time continuous data flow.<br><br><b>Tools:</b><br>• <b>Apache Kafka:</b> Distributed streaming platform<br>• <b>Apache Flume:</b> Log aggregation<br>• <b>AWS Kinesis:</b> Managed streaming service<br><br><b>Use Cases:</b><br>• IoT sensor data<br>• Click stream analytics<br>• Real-time fraud detection<br>• Social media feeds<br><br><b>Pros:</b> Low latency, real-time insights<br><b>Cons:</b> Complex, resource intensive, requires streaming architecture</p>
+    <div class="highlight-box">
+      <div class="hb-title">Real-Time Data Streaming</div>
+      <p>Stream ingestion memproses data <b>secara real-time</b> saat data tiba. Platform utama: <b>Apache Kafka</b> (message broker), <b>Apache Flink/Spark Streaming</b> (stream processing), <b>AWS Kinesis</b> (managed streaming).</p>
+    </div>
+    <div class="sub-section">
+      <h3>Apache Kafka Architecture</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Producer</div>
+          <div class="gc-body">Aplikasi yang mengirimkan (publish) messages ke Kafka topic. Contoh: website event tracker, IoT sensors, payment processor.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Broker (Kafka Cluster)</div>
+          <div class="gc-body">Server Kafka yang menerima, menyimpan, dan mendistribusikan messages. Messages disimpan dalam topics dengan partitioning dan replication.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Consumer</div>
+          <div class="gc-body">Aplikasi yang membaca (subscribe) messages dari topic. Contoh: fraud detection engine, real-time dashboard, notification service.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Kafka Producer & Consumer Python</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from kafka import KafkaProducer, KafkaConsumer
+import json
+from datetime import datetime
+
+# === PRODUCER: Kirim event transaksi ===
+producer = KafkaProducer(
+    bootstrap_servers=['localhost:9092'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+# Simulasi event transaksi
+transaction = {
+    "transaction_id": "TXN-001",
+    "customer_id": "C-123",
+    "amount": 150000,
+    "merchant": "Alfamart",
+    "timestamp": datetime.now().isoformat()
+}
+producer.send('transactions', value=transaction)
+producer.flush()
+print("Transaction sent to Kafka!")
+
+# === CONSUMER: Real-time fraud detection ===
+consumer = KafkaConsumer(
+    'transactions',
+    bootstrap_servers=['localhost:9092'],
+    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
+    auto_offset_reset='earliest'
+)
+
+for message in consumer:
+    txn = message.value
+    # Simple fraud check: amount > 5 juta
+    if txn['amount'] > 5000000:
+        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Data Sources</h2>
     </div>
     <div class="card">
-      <div class="card-title">Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Databases (RDBMS, NoSQL), APIs, log files, IoT sensors, social media streams.</p>
+      <div class="card-title">Berbagai Jenis Data Sources</div>
+      <p style="font-size:.88rem;line-height:1.75;">Data Ingestion pipeline harus dapat mengumpulkan data dari berbagai sumber yang heterogen — setiap sumber memiliki protokol, format, dan tantangan yang berbeda.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Kategori Data Sources</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Relational Databases</div>
+          <div class="gc-body">MySQL, PostgreSQL, Oracle, SQL Server. Gunakan SQL queries dengan connection string. Tools: SQLAlchemy, JDBC/ODBC, Apache Sqoop untuk bulk transfer ke Hadoop.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">REST APIs</div>
+          <div class="gc-body">JSON/XML via HTTP. Gunakan requests library atau httpx. Handle pagination, rate limiting, authentication (API key, OAuth). Contoh: Twitter API, weather API, financial data API.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">File Systems</div>
+          <div class="gc-body">CSV, JSON, Parquet, ORC, Avro. Dari local disk, SFTP/FTP, S3/GCS/Azure Blob. Pandas + glob untuk batch file loading. PySpark untuk file besar.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Message Queues</div>
+          <div class="gc-body">Apache Kafka, RabbitMQ, AWS SQS. Real-time event streaming. Consumer groups untuk parallel processing. Durability dan at-least-once delivery guarantee.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">IoT & Sensors</div>
+          <div class="gc-body">MQTT protocol untuk sensor data. AWS IoT, Azure IoT Hub. Frequency bisa sangat tinggi (1000+ events/detik). Butuh stream processing (Flink/Spark Streaming).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Web Scraping</div>
+          <div class="gc-body">BeautifulSoup + requests atau Scrapy framework. E-commerce price monitoring, news aggregation. Perhatikan robots.txt dan terms of service.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Python: Multi-Source Data Ingestion</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>import pandas as pd
+import requests
+import sqlalchemy
+from pathlib import Path
+import json
+
+# === Source 1: REST API ===
+def ingest_from_api(url, params=None, headers=None):
+    """Ingest data dari REST API dengan pagination"""
+    all_data = []
+    page = 1
+    while True:
+        p = (params or {})
+        p['page'] = page
+        r = requests.get(url, params=p, headers=headers, timeout=30)
+        r.raise_for_status()
+        data = r.json()
+        
+        if not data.get('results'):
+            break
+        all_data.extend(data['results'])
+        
+        if not data.get('next'):  # No more pages
+            break
+        page += 1
+    
+    return pd.DataFrame(all_data)
+
+# === Source 2: Database ===
+def ingest_from_db(connection_str, query):
+    """Ingest data dari relational database"""
+    engine = sqlalchemy.create_engine(connection_str)
+    with engine.connect() as conn:
+        df = pd.read_sql(query, conn)
+    return df
+
+# === Source 3: Files (CSV/JSON/Parquet) ===
+def ingest_from_files(pattern, format='csv'):
+    """Ingest multiple files menggunakan glob"""
+    files = list(Path('.').glob(pattern))
+    dfs = []
+    for f in files:
+        if format == 'csv':
+            dfs.append(pd.read_csv(f))
+        elif format == 'json':
+            dfs.append(pd.read_json(f))
+        elif format == 'parquet':
+            dfs.append(pd.read_parquet(f))
+    return pd.concat(dfs, ignore_index=True)
+
+# === Pipeline: Combine all sources ===
+api_df = ingest_from_api('https://api.example.com/data')
+db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
+files_df = ingest_from_files('data/*.csv')
+
+combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
+print(f"Total records ingested: {len(combined)}")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-5">
+    <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
       <h2>Data Pipeline</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Data Pipeline</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Apache Airflow</b> untuk orchestrate ETL workflows.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
+      <p><b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>. Workflows didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Setiap task dalam DAG dapat dimonitor, di-retry, dan di-alert jika gagal.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Konsep Airflow</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">DAG</div>
+          <div class="gc-body">Directed Acyclic Graph mendefinisikan urutan dan dependencies antar tasks. Setiap DAG punya schedule (cron expression atau @daily, @hourly).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Operators</div>
+          <div class="gc-body">PythonOperator (run Python), BashOperator (run bash), SQLOperator (query DB), HTTPOperator (call API). Setiap operator = satu task.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Sensors</div>
+          <div class="gc-body">Operator khusus yang menunggu kondisi tertentu terpenuhi sebelum melanjutkan. FileSensor, S3KeySensor, ExternalTaskSensor.</div>
+        </div>
+      </div>
     </div>
     <div class="sub-section">
       <h3>Contoh Airflow DAG</h3>
-      <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button><pre><code>from airflow import DAG
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from airflow import DAG
 from airflow.operators.python import PythonOperator
-from datetime import datetime
+from airflow.operators.bash import BashOperator
+from datetime import datetime, timedelta
+import pandas as pd
 
-def extract():
-    print("Extracting data...")
+# Define default args
+default_args = {
+    'owner': 'bahril',
+    'depends_on_past': False,
+    'email_on_failure': True,
+    'email': ['bahril@example.com'],
+    'retries': 2,
+    'retry_delay': timedelta(minutes=5),
+}
 
-def transform():
-    print("Transforming data...")
+# Define DAG
+with DAG(
+    'daily_sales_etl',
+    default_args=default_args,
+    description='Daily sales data ETL pipeline',
+    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
+    start_date=datetime(2024, 1, 1),
+    catchup=False,
+    tags=['sales', 'etl', 'bigdata'],
+) as dag:
 
-def load():
-    print("Loading to warehouse...")
+    # Task 1: Extract dari database
+    def extract_sales(**context):
+        date = context['ds']  # execution date (YYYY-MM-DD)
+        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
+        df.to_parquet(f'/tmp/sales_{date}.parquet')
+        print(f"Extracted {len(df)} rows for {date}")
 
-with DAG('etl_pipeline', start_date=datetime(2024,1,1), schedule_interval='@daily') as dag:
-    t1 = PythonOperator(task_id='extract', python_callable=extract)
-    t2 = PythonOperator(task_id='transform', python_callable=transform)
-    t3 = PythonOperator(task_id='load', python_callable=load)
-    t1 >> t2 >> t3</code></pre>
+    # Task 2: Transform data
+    def transform_sales(**context):
+        date = context['ds']
+        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
+        df['revenue'] = df['quantity'] * df['price']
+        df['date'] = pd.to_datetime(df['date'])
+        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
+
+    # Task 3: Load ke data warehouse
+    def load_sales(**context):
+        date = context['ds']
+        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
+        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
+        print(f"Loaded {len(df)} rows to data warehouse")
+
+    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
+    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
+    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
+    
+    # Define dependencies
+    extract >> transform >> load  # Sequential pipeline</code></pre>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Tugas Praktikum</h3>
+      <div class="task-card">
+        <div class="task-num">1</div>
+        <div class="task-content">
+          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
+          <ul>
+            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
+            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
+            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
+            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
+            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
+            <li>Deliverable: Jupyter notebook lengkap</li>
+          </ul>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">2</div>
+        <div class="task-content">
+          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
+          <ul>
+            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
+            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
+            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
+            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
+            <li>Print summary: total transactions, total revenue, fraud count</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -347,6 +662,7 @@ with DAG('etl_pipeline', start_date=datetime(2024,1,1), schedule_interval='@dail
 
   <nav class="footer-nav">
     <a href="bigdata-p10.html">← Pertemuan 10</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

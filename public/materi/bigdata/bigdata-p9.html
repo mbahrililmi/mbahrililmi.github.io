@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Big Data Tools</div>
+    <div class="pertemuan-badge">Pertemuan 9</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">REST API</a>
+    <a href="#section-3" class="toc-link">Docker</a>
+    <a href="#section-4" class="toc-link">Hadoop Ecosystem</a>
+    <a href="#section-5" class="toc-link">Cloud Platforms</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,16 +254,37 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu memahami berbagai tools dalam big data ecosystem.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 9</div>
+      <p>Mahasiswa mampu <b>mengenal dan memahami tools utama Big Data</b>: REST API, Docker, Hadoop Ecosystem, dan Cloud Platforms, serta memahami peran masing-masing dalam arsitektur big data modern.</p>
     </div>
-  </section>
+    <div class="sub-section">
+      <h3>Tujuan Pembelajaran</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">REST API untuk Data Access</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep REST API sebagai interface untuk mengakses dan berbagi data antara aplikasi, termasuk HTTP methods (GET/POST/PUT/DELETE), status codes, dan implementasi dengan Python Flask/FastAPI.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Docker Containerization</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami Docker sebagai platform containerization untuk menjalankan aplikasi big data secara isolated, portable, dan reproducible di berbagai environment (dev, staging, production).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Hadoop Ecosystem</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mengenal komponen Hadoop ecosystem: HDFS (distributed storage), MapReduce/YARN (processing), Hive (SQL interface), Spark (fast in-memory processing), dan HBase (NoSQL).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Cloud Big Data Platforms</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami managed big data services di cloud: AWS EMR/S3/Redshift, Google BigQuery/Dataflow, Azure Synapse, dan kapan cloud vs on-premise lebih tepat digunakan.</p>
+        </div>
+      </div>
+    </div>
+
   <hr class="section-divider">
 
   <section class="content-section" id="section-2">
@@ -296,40 +319,178 @@ if __name__ == '__main__':
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-3">
+    <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
       <h2>Docker</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Docker</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Docker</b> adalah platform untuk develop, ship, run applications dalam containers.<br><br><b>Key Concepts:</b><br>• <b>Image:</b> Blueprint for container (read-only)<br>• <b>Container:</b> Running instance of image<br>• <b>Dockerfile:</b> Script to build image<br>• <b>Docker Hub:</b> Registry for sharing images<br><br><b>Benefits:</b><br>• Consistent environments (dev/prod)<br>• Fast deployment<br>• Resource efficient vs VMs<br>• Isolation & security</p>
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Docker?</div>
+      <p><b>Docker</b> adalah platform containerization yang memungkinkan aplikasi dijalankan dalam <b>container</b> — environment yang isolated, lightweight, dan portable. Container berisi semua dependencies yang dibutuhkan aplikasi, sehingga "works on my machine" tidak lagi menjadi masalah.</p>
     </div>
-  </section>
+    <div class="sub-section">
+      <h3>Docker vs Virtual Machine</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Virtual Machine (VM)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Full OS virtualization</b> — setiap VM menjalankan OS lengkap di atas hypervisor. Berat (beberapa GB), boot lambat (menit), sangat isolated. Cocok untuk workload yang butuh full OS isolation atau OS berbeda.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Docker Container</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>OS-level virtualization</b> — containers berbagi kernel host OS. Ringan (MB), boot sangat cepat (detik), portable. Cocok untuk microservices, big data apps, CI/CD pipeline, dan development environments.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Konsep Kunci Docker</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Image</div>
+          <div class="gc-body">Blueprint read-only untuk container. Berisi OS base, dependencies, config, dan kode. Dibuat dari Dockerfile. Versi dapat di-tag (v1.0, latest).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Container</div>
+          <div class="gc-body">Running instance dari image. Isolated, memiliki filesystem sendiri, network, dan process space. Bisa di-start, stop, pause, delete.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Dockerfile</div>
+          <div class="gc-body">Script teks berisi instruksi untuk build image. Mendefinisikan base image, copy files, install dependencies, expose ports, dan run command.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Docker Hub</div>
+          <div class="gc-body">Registry publik untuk menyimpan dan berbagi Docker images. Mirip GitHub tapi untuk container images. Tersedia images resmi (Python, Hadoop, Kafka).</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Docker Compose</div>
+          <div class="gc-body">Tool untuk mendefinisikan dan menjalankan multi-container applications menggunakan file docker-compose.yml. Cocok untuk stack development lokal.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Volume & Network</div>
+          <div class="gc-body">Volume untuk persistent storage (data tidak hilang saat restart). Network untuk komunikasi antar container dalam satu host.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Docker Commands & Dockerfile</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># === Docker Basic Commands ===
+docker pull python:3.10              # Pull image dari Docker Hub
+docker images                        # List images
+docker run -it python:3.10 bash      # Run container interactively
+docker run -d -p 5000:5000 myapp     # Run detached, port mapping
+docker ps                            # List running containers
+docker ps -a                         # List all containers
+docker stop container_id             # Stop container
+docker rm container_id               # Remove container
+docker logs container_id             # View container logs
+
+# === Dockerfile untuk Flask Big Data App ===
+# FROM python:3.10-slim
+# WORKDIR /app
+# COPY requirements.txt .
+# RUN pip install -r requirements.txt
+# COPY . .
+# EXPOSE 5000
+# CMD ["python", "app.py"]
+
+# Build dan run image:
+docker build -t bigdata-app:1.0 .
+docker run -d -p 5000:5000 bigdata-app:1.0</code></pre>
+      </div>
+    </div>
+
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Hadoop Ecosystem</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Hadoop Ecosystem</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Hadoop:</b> Open-source framework untuk distributed storage dan processing.<br><br><b>Core Components:</b><br>• <b>HDFS:</b> Distributed file system (storage)<br>• <b>MapReduce:</b> Programming model (processing)<br>• <b>YARN:</b> Resource management<br><br><b>Ecosystem Tools:</b><br>• <b>Hive:</b> SQL on Hadoop<br>• <b>Pig:</b> Dataflow scripting<br>• <b>HBase:</b> NoSQL database<br>• <b>Spark:</b> Fast in-memory processing<br>• <b>Kafka:</b> Stream processing</p>
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Apache Hadoop?</div>
+      <p><b>Apache Hadoop</b> adalah open-source framework untuk <b>distributed storage dan processing</b> data dalam jumlah sangat besar menggunakan cluster of commodity computers. Hadoop memungkinkan memproses petabytes data yang tidak mungkin ditangani satu server.</p>
     </div>
-  </section>
+    <div class="sub-section">
+      <h3>Core Components Hadoop</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Komponen</th><th>Fungsi</th><th>Kapan Digunakan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>HDFS</b></td><td>Hadoop Distributed File System — menyimpan data besar di multiple nodes dengan replikasi</td><td>Menyimpan raw data, log files, click streams dalam skala besar</td></tr>
+          <tr><td><b>MapReduce</b></td><td>Distributed processing model: Map (filter/transform) + Reduce (aggregate)</td><td>Batch processing data besar, word count, log analysis</td></tr>
+          <tr><td><b>YARN</b></td><td>Yet Another Resource Negotiator — resource management dan job scheduling</td><td>Mengalokasikan CPU/RAM untuk jobs di cluster</td></tr>
+          <tr><td><b>Apache Hive</b></td><td>SQL interface untuk query data di HDFS (HiveQL)</td><td>Data analyst yang familiar SQL bisa query big data</td></tr>
+          <tr><td><b>Apache Spark</b></td><td>Fast in-memory processing, 100x lebih cepat dari MapReduce</td><td>Real-time analytics, ML, iterative algorithms</td></tr>
+          <tr><td><b>Apache Kafka</b></td><td>Distributed streaming platform untuk real-time data pipelines</td><td>IoT data ingestion, event streaming, log aggregation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>PySpark Quick Start</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, count, avg
+
+# Buat Spark session
+spark = SparkSession.builder     .appName("BigDataAnalysis")     .master("local[*]")      .getOrCreate()
+
+# Load data dari HDFS atau lokal
+df = spark.read.csv("hdfs:///data/sales.csv", header=True, inferSchema=True)
+
+# Analisis penjualan per kategori
+result = df.groupBy("category")     .agg(
+        count("order_id").alias("total_orders"),
+        avg("amount").alias("avg_amount"),
+        col("amount").cast("double").alias("total")
+    )     .orderBy("total_orders", ascending=False)
+
+result.show(10)
+result.write.parquet("hdfs:///output/sales_summary/")  # Save ke HDFS
+spark.stop()</code></pre>
+      </div>
+    </div>
+
   <hr class="section-divider">
 
-  <section class="content-section" id="section-5">
+    <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
       <h2>Cloud Platforms</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Cloud Platforms</div>
-      <p style="font-size:.88rem;line-height:1.75;">AWS (EMR, S3, Redshift), Google Cloud (BigQuery, Dataproc), Azure (HDInsight, Synapse).</p>
+    <div class="sub-section">
+      <h3>Cloud vs On-Premise</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Cloud Big Data</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Kelebihan:</b> Scalable (bayar sesuai pakai), managed (tidak maintain hardware), cepat setup, global availability, built-in HA<br><b>Kekurangan:</b> Biaya tinggi untuk sustained workloads, latency ke cloud, data sovereignty, vendor lock-in</p>
+        </div>
+        <div class="card">
+          <div class="card-title">On-Premise Hadoop</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Kelebihan:</b> Full control data, predictable cost untuk large sustained workloads, data privacy, no internet dependency, customize hardware<br><b>Kekurangan:</b> CAPEX tinggi, perlu tim ops, scaling lambat, tidak flexible</p>
+        </div>
+      </div>
     </div>
-  </section>
+    <div class="sub-section">
+      <h3>Major Cloud Big Data Services</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">AWS Big Data Stack</div>
+          <div class="gc-body"><b>S3:</b> Object storage<br><b>EMR:</b> Managed Hadoop/Spark<br><b>Redshift:</b> Data warehouse<br><b>Kinesis:</b> Real-time streaming<br><b>Athena:</b> SQL on S3<br><b>Glue:</b> ETL service</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Google Cloud Platform</div>
+          <div class="gc-body"><b>GCS:</b> Cloud Storage<br><b>BigQuery:</b> Serverless DW, SQL<br><b>Dataflow:</b> Batch/stream ETL<br><b>Pub/Sub:</b> Messaging<br><b>Dataproc:</b> Spark/Hadoop<br><b>Vertex AI:</b> ML platform</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Microsoft Azure</div>
+          <div class="gc-body"><b>ADLS:</b> Data Lake Storage<br><b>Synapse:</b> Analytics + DW<br><b>HDInsight:</b> Managed Hadoop<br><b>Stream Analytics:</b> Real-time<br><b>Databricks:</b> Spark analytics<br><b>Cosmos DB:</b> NoSQL global</div>
+        </div>
+      </div>
+    </div>
+
   <hr class="section-divider">
 
   <section class="content-section" id="section-6">
@@ -345,6 +506,7 @@ if __name__ == '__main__':
 
   <nav class="footer-nav">
     <a href="bigdata-p8.html">← Pertemuan 8</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p10.html" class="next-btn">Pertemuan 10 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

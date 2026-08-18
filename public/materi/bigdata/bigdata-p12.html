@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,17 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Data Store</div>
+    <div class="pertemuan-badge">Pertemuan 12</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">HDFS</a>
+    <a href="#section-3" class="toc-link">NoSQL Databases</a>
+    <a href="#section-4" class="toc-link">Data Warehouse</a>
+    <a href="#section-5" class="toc-link">Data Lake</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,62 +254,241 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu memahami arsitektur dan pilihan storage untuk big data.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 12</div>
+      <p>Mahasiswa mampu <b>memahami berbagai teknologi penyimpanan data</b> dalam big data ecosystem: HDFS, NoSQL databases, Data Warehouse, dan Data Lake, serta kapan menggunakan masing-masing teknologi secara tepat.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Landscape Data Storage</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Structured vs Unstructured</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Structured:</b> Data dalam tabel relasional (SQL). Schema ketat, mudah di-query, tapi tidak fleksibel untuk perubahan.<br><br><b>Semi-structured:</b> JSON, XML, CSV — memiliki beberapa struktur tapi tidak rigid.<br><br><b>Unstructured:</b> Video, image, audio, text bebas — membutuhkan teknologi khusus.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Pilihan Teknologi</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>RDBMS:</b> PostgreSQL, MySQL — untuk structured transactional data<br><b>HDFS:</b> Raw data lake, batch processing<br><b>NoSQL:</b> Key-value, document, column, graph<br><b>Data Warehouse:</b> Analytical queries, OLAP<br><b>Data Lake:</b> Semua jenis data, schema-on-read<br><b>Lakehouse:</b> Hybrid DL + DW (Delta Lake, Apache Iceberg)</p>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-2">
+    <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
       <h2>HDFS - Hadoop Distributed File System</h2>
     </div>
-    <div class="card">
-      <div class="card-title">HDFS - Hadoop Distributed File System</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>HDFS Architecture:</b><br><br><b>NameNode:</b> Master yang manages metadata dan namespace<br><b>DataNode:</b> Workers yang store actual data blocks<br><br><b>Key Features:</b><br>• Block-based storage (default 128MB)<br>• Replication factor (default 3) untuk fault tolerance<br>• Write-once-read-many model<br>• Optimized untuk large files & sequential reads<br><br><b>Commands:</b><br><code>hdfs dfs -put localfile /hadoop/path</code><br><code>hdfs dfs -ls /path</code><br><code>hdfs dfs -cat /path/file</code></p>
+    <div class="highlight-box">
+      <div class="hb-title">Arsitektur HDFS</div>
+      <p>HDFS memecah file besar menjadi <b>blocks (128MB default)</b> dan mendistribusikannya ke DataNodes, dengan <b>replikasi 3x</b> untuk fault tolerance. NameNode menyimpan metadata. Dirancang untuk write-once, read-many workloads.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Komponen & Cara Kerja HDFS</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">NameNode (Master)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menyimpan <b>metadata filesystem</b>: nama file, permissions, struktur direktori, lokasi blocks di DataNode mana. Single point of failure → implementasi Active-Standby HA NameNode untuk production.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">DataNode (Worker)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menyimpan <b>actual data blocks</b>. Default replication factor = 3 (setiap block ada di 3 DataNode berbeda). Mengirim heartbeat ke NameNode setiap 3 detik untuk membuktikan masih hidup.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>HDFS Operations</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code># HDFS Shell Commands
+hdfs dfs -ls /                              # List root directory
+hdfs dfs -mkdir -p /user/bigdata/input      # Buat direktori (recursive)
+hdfs dfs -put local_file.csv /user/bigdata/ # Upload dari lokal ke HDFS
+hdfs dfs -get /user/bigdata/file.csv ./     # Download dari HDFS ke lokal
+hdfs dfs -cat /user/bigdata/file.csv | head # Preview isi file
+hdfs dfs -du -h /user/bigdata/              # Disk usage (human readable)
+hdfs dfs -rm -r /user/bigdata/old_data      # Hapus directory
+hdfs fsck /user/bigdata/ -files -blocks     # Check file health
+
+# Python: Interaksi dengan HDFS
+from hdfs import InsecureClient
+
+# Connect ke NameNode
+client = InsecureClient('http://namenode:9870', user='hadoop')
+
+# Upload file
+client.upload('/hdfs/data/', 'local_data.csv', overwrite=True)
+
+# List files
+files = client.list('/hdfs/data/')
+print("Files in HDFS:", files)
+
+# Read file
+with client.read('/hdfs/data/local_data.csv') as reader:
+    df = pd.read_csv(reader)</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-3">
+    <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
       <h2>NoSQL Databases</h2>
     </div>
-    <div class="card">
-      <div class="card-title">NoSQL Databases</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>NoSQL Types:</b><br><br>1. <b>Document:</b> MongoDB (JSON docs)<br>2. <b>Key-Value:</b> Redis, DynamoDB<br>3. <b>Column-Family:</b> Cassandra, HBase<br>4. <b>Graph:</b> Neo4j (relationships)<br><br><b>When to Use NoSQL:</b><br>• Flexible schema<br>• Horizontal scalability<br>• High write throughput<br>• Unstructured/semi-structured data<br><br><b>MongoDB Example:</b><br><code>db.users.find({age: {$gt: 25}})</code><br><code>db.products.insertOne({name:"Laptop",price:1000})</code></p>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa NoSQL?</div>
+      <p>NoSQL muncul untuk mengatasi keterbatasan RDBMS: <b>horizontal scalability</b> (scale-out bukan scale-up), <b>flexible schema</b> (tidak perlu ALTER TABLE), <b>high availability</b>, dan dukungan untuk <b>unstructured/semi-structured data</b>.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tipe-Tipe NoSQL Database</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Key-Value Store</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Redis, DynamoDB, Memcached</b><br>Data sebagai key-value pairs. Sangat cepat (in-memory untuk Redis). Use case: session management, caching, real-time leaderboards, shopping cart, pub/sub messaging.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Document Store</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>MongoDB, CouchDB, Firestore</b><br>Data sebagai JSON/BSON documents. Flexible schema, support nested objects. Use case: content management, product catalog, user profiles, mobile backends.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Column-Family</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Apache Cassandra, HBase, Bigtable</b><br>Data dalam column families. Sangat scalable, write-optimized. Use case: IoT time-series, clickstream, social media feeds, financial transactions.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Graph Database</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Neo4j, Amazon Neptune, JanusGraph</b><br>Data sebagai nodes + edges. Optimal untuk highly-connected data. Use case: social networks, recommendation engines, knowledge graphs, fraud ring detection.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>MongoDB Example</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from pymongo import MongoClient
+
+# Connect
+client = MongoClient('mongodb://localhost:27017/')
+db = client['ecommerce']
+col = db['products']
+
+# Insert document (flexible schema)
+col.insert_one({
+    "sku": "LPT-001",
+    "name": "Laptop Gaming Asus",
+    "price": 12500000,
+    "specs": {"ram": "16GB", "storage": "512GB SSD", "gpu": "RTX 3060"},
+    "tags": ["laptop", "gaming"],
+    "in_stock": True
+})
+
+# Query: cari produk gaming < 15 juta
+results = col.find({
+    "tags": "gaming",
+    "price": {"$lt": 15000000}
+}).sort("price", 1)
+
+for p in results:
+    print(f"{p['name']}: Rp{p['price']:,}")
+
+# Aggregation: hitung rata-rata harga per kategori
+pipeline = [
+    {"$unwind": "$tags"},
+    {"$group": {"_id": "$tags", "avg_price": {"$avg": "$price"}}},
+    {"$sort": {"avg_price": -1}}
+]
+for r in col.aggregate(pipeline):
+    print(r)</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-4">
+    <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
       <h2>Data Warehouse</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Data Warehouse</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Data Warehouse:</b> Centralized repository untuk structured, processed data.<br><br><b>Characteristics:</b><br>• Subject-oriented (organized by business area)<br>• Integrated (from multiple sources)<br>• Time-variant (historical data)<br>• Non-volatile (read-only, no updates)<br><br><b>Schema:</b><br>• <b>Star Schema:</b> Central fact table + dimension tables<br>• <b>Snowflake Schema:</b> Normalized dimensions<br><br><b>Tools:</b> Amazon Redshift, Google BigQuery, Snowflake<br><br><b>Use Case:</b> Business intelligence, reporting, OLAP queries</p>
+    <div class="highlight-box">
+      <div class="hb-title">Apa itu Data Warehouse?</div>
+      <p>Data Warehouse adalah <b>centralized repository</b> untuk data terstruktur yang dioptimalkan untuk <b>analytical queries (OLAP)</b>. Data di-load melalui proses ETL, di-clean, dan disimpan dalam format yang mendukung fast querying untuk business intelligence.</p>
+    </div>
+    <div class="sub-section">
+      <h3>OLAP vs OLTP</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">OLTP (Online Transaction Processing)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Database operasional untuk transaksi sehari-hari. Banyak read/write kecil, ACID compliance, normalized schema. Contoh: MySQL, PostgreSQL untuk aplikasi e-commerce, banking.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">OLAP (Online Analytical Processing)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Data warehouse untuk analitik. Query besar yang baca banyak rows, aggregations (SUM, AVG, GROUP BY), denormalized schema (Star/Snowflake). Contoh: Redshift, BigQuery, Snowflake.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Star Schema Design</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Tabel</th><th>Tipe</th><th>Isi</th><th>Contoh Kolom</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>fact_sales</b></td><td>Fact Table</td><td>Transaksi/event (banyak rows)</td><td>sale_id, amount, quantity, date_id, product_id, customer_id</td></tr>
+          <tr><td><b>dim_product</b></td><td>Dimension</td><td>Atribut produk</td><td>product_id, name, category, brand, price</td></tr>
+          <tr><td><b>dim_customer</b></td><td>Dimension</td><td>Atribut pelanggan</td><td>customer_id, name, city, segment, join_date</td></tr>
+          <tr><td><b>dim_date</b></td><td>Dimension</td><td>Kalender waktu</td><td>date_id, date, year, quarter, month, week, day_name</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
 
-  <section class="content-section" id="section-5">
+    <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
       <h2>Data Lake</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Data Lake</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Data Lake:</b> Storage repository untuk raw data dalam native format.<br><br><b>Data Lake vs Data Warehouse:</b><br><br><b>Data Lake:</b><br>• Schema-on-read<br>• Structured + unstructured data<br>• Raw, granular data<br>• Lower cost (S3, HDFS)<br>• Data scientists, ML engineers<br><br><b>Data Warehouse:</b><br>• Schema-on-write<br>• Only structured data<br>• Processed, aggregated<br>• Higher cost<br>• Business analysts, BI tools<br><br><b>Best Practice:</b> Use both! Lake for raw data, warehouse for curated analytics.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Data Lake vs Data Warehouse</div>
+      <p>Data Lake menyimpan <b>semua jenis data (structured, semi-structured, unstructured)</b> dalam format native dengan <b>schema-on-read</b>. Lebih fleksibel dari DW, tapi membutuhkan lebih banyak governance agar tidak menjadi "Data Swamp".</p>
+    </div>
+    <div class="sub-section">
+      <h3>Perbandingan Data Lake vs Data Warehouse</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Aspek</th><th>Data Lake</th><th>Data Warehouse</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Data Types</b></td><td>Semua: structured, semi, unstructured</td><td>Structured only</td></tr>
+          <tr><td><b>Schema</b></td><td>Schema-on-read (flexible)</td><td>Schema-on-write (rigid)</td></tr>
+          <tr><td><b>Storage Cost</b></td><td>Murah (object storage: S3, GCS)</td><td>Mahal (columnar storage)</td></tr>
+          <tr><td><b>Query Performance</b></td><td>Lambat (butuh processing)</td><td>Cepat (pre-aggregated)</td></tr>
+          <tr><td><b>Users</b></td><td>Data Engineers, Data Scientists</td><td>Business Analysts, BI teams</td></tr>
+          <tr><td><b>Use Case</b></td><td>ML training data, raw archival, exploration</td><td>BI dashboards, regular reports</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Modern Lakehouse Architecture</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Delta Lake</div>
+          <div class="gc-body">Open-source storage layer di atas data lake. Menambahkan ACID transactions, schema enforcement, dan time travel ke object storage.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Apache Iceberg</div>
+          <div class="gc-body">Open table format untuk big data. Support schema evolution, partition pruning, dan row-level operations. Digunakan oleh Netflix, Airbnb.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Apache Hudi</div>
+          <div class="gc-body">Data lake platform dengan upsert dan incremental processing. Populer di Uber untuk meng-handle streaming data ke data lake.</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -325,6 +506,7 @@ ul.styled li::marker{color:var(--gold);}
 
   <nav class="footer-nav">
     <a href="bigdata-p11.html">← Pertemuan 11</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p13.html" class="next-btn">Pertemuan 13 →</a>
   </nav>
   <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>

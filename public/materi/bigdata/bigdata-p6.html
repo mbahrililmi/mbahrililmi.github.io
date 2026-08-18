@@ -74,6 +74,11 @@ ul.styled li::marker{color:var(--gold);}
 .footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
 .footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
 .footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
 .footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
 @media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
 
@@ -222,20 +227,18 @@ ul.styled li::marker{color:var(--gold);}
 <aside class="sidebar">
   <div class="sidebar-header">
     <div class="course-label">Big Data</div>
-    <div class="course-title">Kontrak Kuliah &amp; Orientasi DKV</div>
-    <div class="pertemuan-badge">Pertemuan 1</div>
+    <div class="course-title">Association Rules Mining</div>
+    <div class="pertemuan-badge">Pertemuan 6</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
-    <a href="#pengantar" class="toc-link">Pengantar</a>
-    <a href="#kontrak" class="toc-link">Kontrak Perkuliahan</a>
-    <a href="#penilaian" class="toc-link">Sistem Penilaian</a>
-    <a href="#apa-itu-dkv" class="toc-link">Apa itu DKV?</a>
-    <a href="#elemen-prinsip" class="toc-link">Elemen &amp; Prinsip Desain</a>
-    <a href="#proses-desain" class="toc-link">Proses Desain</a>
-    <a href="#karir-tren" class="toc-link">Karir &amp; Tren DKV</a>
-    <a href="#tools" class="toc-link">Tools &amp; Resources</a>
-    <a href="#praktikum" class="toc-link">Praktikum</a>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Market Basket Analysis</a>
+    <a href="#section-3" class="toc-link">Apriori Algorithm</a>
+    <a href="#section-4" class="toc-link">FP-Growth Algorithm</a>
+    <a href="#section-5" class="toc-link">Metrics: Support, Confidence, Lift</a>
+    <a href="#section-6" class="toc-link">Aplikasi Lanjutan</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
@@ -252,14 +255,57 @@ ul.styled li::marker{color:var(--gold);}
     </div>
   </div>
 
-  <section class="content-section" id="section-1">
+    <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK Pertemuan 6</div>
+      <p>Mahasiswa mampu <b>memahami konsep Association Rule Mining</b>, menerapkan algoritma Apriori dan FP-Growth untuk menemukan pola pembelian tersembunyi, serta menginterpretasikan metrics Support, Confidence, dan Lift untuk pengambilan keputusan bisnis.</p>
+    </div>
     <div class="card">
-      <div class="card-title">Pengantar</div>
-      <p style="font-size:.88rem;line-height:1.75;">Mahasiswa mampu menjelaskan associations rules dan aplikasinya dalam retail.</p>
+      <div class="card-title">Apa itu Association Rule Mining?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Association Rule Mining adalah teknik <b>unsupervised learning</b> yang menemukan <b>interesting relationships (rules) antara variabel</b> dalam dataset transaksional yang besar. Teknik ini sangat populer di industri retail untuk mengetahui produk mana yang sering dibeli bersamaan.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:8px;"><b>Contoh rule:</b> {Popok Bayi} → {Bir} — Ditemukan Walmart pada analisis transaksi Jumat malam. Ternyata ayah muda yang membeli popok cenderung juga membeli bir. Walmart memanfaatkan ini dengan menempatkan bir dekat rak popok, meningkatkan penjualan keduanya secara signifikan.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tujuan Pembelajaran</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Konsep Association Rules</div>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep frequent itemsets, association rules, dan perbedaannya dengan classification dan clustering. Rules berbentuk: {Antecedent} → {Consequent}.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Algoritma Apriori & FP-Growth</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan cara kerja Apriori (candidate generation) dan FP-Growth (tree-based, lebih efisien). Memahami kelebihan dan kapan menggunakan masing-masing.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Metrics: Support, Confidence, Lift</div>
+          <p style="font-size:.88rem;line-height:1.75;">Menghitung dan menginterpretasikan tiga metrics utama: Support (frekuensi), Confidence (keandalan), dan Lift (kekuatan asosiasi). Menambahkan Leverage dan Conviction.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Implementasi & Aplikasi Bisnis</div>
+          <p style="font-size:.88rem;line-height:1.75;">Mampu mengimplementasikan association rule mining dengan Python (mlxtend library) dan menerapkannya ke studi kasus retail, e-commerce, dan healthcare.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Sejarah & Konteks</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Agrawal et al. (1993)</div>
+          <div class="gc-body">Pertama kali memperkenalkan konsep association rules dan algoritma Apriori dalam paper "Mining Association Rules between Sets of Items in Large Databases".</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Walmart "Beer-Diaper" Rule</div>
+          <div class="gc-body">Contoh klasik association rules. Walmart menemukan pattern ini dari jutaan transaksi POS, menggunakannya untuk store layout dan cross-promotional strategy.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Amazon Recommender System</div>
+          <div class="gc-body">Amazon mengklaim 35% revenue-nya berasal dari recommendation engine yang menggunakan collaborative filtering dan association rules untuk "Customers Also Bought".</div>
+        </div>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -269,9 +315,79 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">2</div>
       <h2>Market Basket Analysis</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Market Basket Analysis</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Market Basket Analysis</b> menemukan pola pembelian produk yang sering dibeli bersamaan. Contoh: "Customers who buy bread often buy butter".<br><br><b>Aplikasi:</b><br>• Product recommendation<br>• Store layout optimization<br>• Cross-selling strategies<br>• Promotional bundling<br><br><b>Frequent Itemsets:</b> Set of items yang appear together dengan frequency ≥ minimum support threshold.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Definisi Market Basket Analysis</div>
+      <p><b>Market Basket Analysis (MBA)</b> adalah penerapan association rule mining pada data transaksi retail untuk menemukan pola produk yang sering dibeli bersamaan dalam satu "keranjang belanja" (market basket).</p>
+    </div>
+    <div class="sub-section">
+      <h3>Format Data untuk MBA</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Transaction Data (Raw)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Format asli:</b> Setiap baris = satu transaksi dengan list item yang dibeli.</p>
+          <div style="background:#f8f4ee;border-radius:8px;padding:12px;margin-top:8px;font-family:monospace;font-size:.8rem;line-height:1.7;">
+            T001: {bread, milk, butter}<br>
+            T002: {bread, diaper, beer}<br>
+            T003: {milk, diaper, beer, cola}<br>
+            T004: {bread, milk, diaper, beer}<br>
+            T005: {bread, milk, diaper, cola}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Binary Matrix (Encoded)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Setelah encoding:</b> Setiap kolom = satu item. 1 = dibeli, 0 = tidak dibeli. Diperlukan untuk algoritma.</p>
+          <table style="width:100%;font-size:.75rem;margin-top:8px;border-collapse:collapse;">
+            <tr style="background:#1a2942;color:#fff;"><th style="padding:4px;">TID</th><th>bread</th><th>milk</th><th>beer</th><th>diaper</th><th>cola</th></tr>
+            <tr style="background:#faf7f2;"><td style="padding:4px;">T001</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>T002</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+            <tr style="background:#faf7f2;"><td>T003</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+            <tr><td>T004</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            <tr style="background:#faf7f2;"><td>T005</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Aplikasi MBA di Berbagai Industri</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Retail / Supermarket</div>
+          <div class="gc-body">Product placement: taruh produk yang sering dibeli bersamaan di lokasi berdekatan. Bundle discount: beli A + B, diskon C. Planogram optimization.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">E-commerce</div>
+          <div class="gc-body">"Frequently Bought Together", "You May Also Like", cross-sell di cart page, email recommendations berdasarkan purchase history.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Healthcare</div>
+          <div class="gc-body">Identifikasi kombinasi obat yang sering diresepkan bersamaan (potential drug interactions), pola gejala pada diagnosis tertentu.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Telekomunikasi</div>
+          <div class="gc-body">Bundle paket: data + telepon + streaming. Identifikasi layanan yang sering ditambahkan bersamaan untuk paket bundling yang menarik.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Banking / Finance</div>
+          <div class="gc-body">Cross-selling produk finansial: nasabah yang punya tabungan + KPR sering juga mengambil asuransi jiwa. Pattern untuk personalized financial advice.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Cybersecurity</div>
+          <div class="gc-body">Identifikasi pola serangan siber: event log yang sering muncul bersamaan sebelum breach terjadi. Proactive threat detection.</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Frequent Itemsets</h3>
+      <div class="card">
+        <div class="card-title">Apa itu Frequent Itemsets?</div>
+        <p style="font-size:.88rem;line-height:1.75;"><b>Frequent Itemset</b> adalah sekumpulan item yang muncul bersama dalam transaksi dengan frekuensi ≥ <b>minimum support threshold</b> yang ditentukan. Menemukan frequent itemsets adalah langkah pertama sebelum generate association rules.</p>
+        <ul class="styled" style="margin-top:8px;">
+          <li><b>1-itemset:</b> {bread} (Support=4/5=0.8), {milk} (0.8), {diaper} (0.8), {beer} (0.6), {cola} (0.4)</li>
+          <li><b>2-itemset:</b> {bread, milk} (0.6), {bread, diaper} (0.6), {milk, diaper} (0.6), {diaper, beer} (0.6)</li>
+          <li><b>3-itemset:</b> {bread, milk, diaper} (0.4) — frequency lebih rendah karena lebih spesifik</li>
+          <li><b>Apriori property:</b> Jika itemset tidak frequent, semua superset-nya juga tidak frequent (prune)</li>
+        </ul>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -281,42 +397,115 @@ ul.styled li::marker{color:var(--gold);}
       <div class="section-num">3</div>
       <h2>Apriori Algorithm</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Apriori Algorithm</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Apriori</b> adalah algoritma untuk mining frequent itemsets dan generating association rules.</p>
+    <div class="highlight-box">
+      <div class="hb-title">Prinsip Apriori</div>
+      <p><b>Apriori Property (Anti-monotone):</b> Jika sebuah itemset tidak frequent (support &lt; min_support), maka <b>semua superset-nya juga tidak frequent</b>. Ini memungkinkan pruning yang efisien dalam candidate generation.</p>
     </div>
     <div class="sub-section">
-      <h3>Implementasi Apriori</h3>
-      <div class="code-block"><button class="copy-btn" onclick="copyCode(this)">Salin</button><pre><code>from mlxtend.frequent_patterns import apriori, association_rules
-from mlxtend.preprocessing import TransactionEncoder
-import pandas as pd
-
-# Data transaksi
-transactions = [
-    ['bread', 'milk'],
-    ['bread', 'diaper', 'beer', 'egg'],
-    ['milk', 'diaper', 'beer', 'cola'],
-    ['bread', 'milk', 'diaper', 'beer'],
-    ['bread', 'milk', 'diaper', 'cola']
-]
-
-# Encode ke binary matrix
-te = TransactionEncoder()
-te_ary = te.fit(transactions).transform(transactions)
-df = pd.DataFrame(te_ary, columns=te.columns_)
-
-# Find frequent itemsets
-frequent_itemsets = apriori(df, min_support=0.6, use_colnames=True)
-print(frequent_itemsets)
-
-# Generate rules
-rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
-print(rules[['antecedents','consequents','support','confidence','lift']])</code></pre>
+      <h3>Langkah-Langkah Algoritma Apriori</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Step 1: Scan & Count 1-itemsets</div>
+          <p style="font-size:.88rem;line-height:1.75;">Scan seluruh database transaksi dan hitung frekuensi setiap individual item. Hapus item dengan support &lt; min_support. Hasilnya adalah <b>L₁ (frequent 1-itemsets)</b>.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 2: Generate Candidates (Cₖ)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Gabungkan frequent (k-1)-itemsets dari langkah sebelumnya untuk menghasilkan <b>candidate k-itemsets (Cₖ)</b>. Prune kandidat yang mengandung subset tidak frequent.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 3: Scan & Prune</div>
+          <p style="font-size:.88rem;line-height:1.75;">Scan database lagi untuk menghitung support setiap kandidat di Cₖ. Hapus kandidat dengan support &lt; min_support. Hasilnya adalah <b>Lₖ (frequent k-itemsets)</b>.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Step 4: Repeat Until Empty</div>
+          <p style="font-size:.88rem;line-height:1.75;">Ulangi Step 2-3 untuk k = k+1 hingga tidak ada lagi frequent itemsets yang bisa dibentuk. Kemudian generate association rules dari semua frequent itemsets yang ditemukan.</p>
+        </div>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Contoh Penggunaan</h3>
-      <p style="font-size:.88rem;line-height:1.75;">Setelah generate rules, filter berdasarkan metrics untuk actionable insights.</p>
+      <h3>Kelebihan & Kekurangan Apriori</h3>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">✓ Kelebihan</div>
+          <div class="gc-body">
+            • Mudah dipahami dan diimplementasikan<br>
+            • Menggunakan Apriori property untuk pruning efisien<br>
+            • Menghasilkan complete set of rules<br>
+            • Banyak library tersedia (mlxtend, R arules)
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">✗ Kekurangan</div>
+          <div class="gc-body">
+            • Multiple database scans (O(n) scan per level)<br>
+            • Lambat untuk dataset besar dan banyak items<br>
+            • Memory intensif untuk menyimpan candidates<br>
+            • Solusi: Gunakan FP-Growth untuk dataset besar
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi Apriori dengan Python</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from mlxtend.frequent_patterns import apriori, association_rules
+from mlxtend.preprocessing import TransactionEncoder
+import pandas as pd
+
+# === DATA TRANSAKSI SUPERMARKET ===
+transactions = [
+    ['roti', 'susu', 'mentega'],
+    ['roti', 'popok', 'bir', 'telur'],
+    ['susu', 'popok', 'bir', 'cola'],
+    ['roti', 'susu', 'popok', 'bir'],
+    ['roti', 'susu', 'popok', 'cola'],
+    ['susu', 'bir'],
+    ['roti', 'susu', 'popok'],
+    ['roti', 'bir', 'cola'],
+]
+
+# Step 1: Encode ke binary matrix
+te = TransactionEncoder()
+te_array = te.fit(transactions).transform(transactions)
+df_basket = pd.DataFrame(te_array, columns=te.columns_)
+print("Binary Matrix:")
+print(df_basket.head())
+
+# Step 2: Find Frequent Itemsets
+freq_items = apriori(
+    df_basket,
+    min_support=0.4,       # Minimal 40% dari transaksi
+    use_colnames=True,
+    max_len=None           # Tidak ada batasan panjang itemset
+)
+print(f"
+Frequent Itemsets ({len(freq_items)} total):")
+print(freq_items.sort_values('support', ascending=False))
+
+# Step 3: Generate Association Rules
+rules = association_rules(
+    freq_items,
+    metric="confidence",
+    min_threshold=0.6      # Minimal confidence 60%
+)
+# Filter rules yang meaningful
+rules = rules[rules['lift'] > 1.0]
+rules_sorted = rules.sort_values('lift', ascending=False)
+
+print(f"
+Association Rules ({len(rules)} total):")
+print(rules_sorted[['antecedents', 'consequents', 'support', 'confidence', 'lift']].to_string())
+
+# Step 4: Analisis Rules Terbaik
+print("
+=== TOP 3 RULES BY LIFT ===")
+for _, row in rules_sorted.head(3).iterrows():
+    ant = ', '.join(list(row['antecedents']))
+    con = ', '.join(list(row['consequents']))
+    print(f"{{'{ant}'}} → {{'{con}'}}")
+    print(f"  Support: {row['support']:.2f} | Confidence: {row['confidence']:.2f} | Lift: {row['lift']:.2f}")</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -324,11 +513,84 @@ print(rules[['antecedents','consequents','support','confidence','lift']])</code>
   <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Metrics: Support, Confidence, Lift</h2>
+      <h2>FP-Growth Algorithm</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Metrics: Support, Confidence, Lift</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>1. Support:</b> Frequency of itemset in transactions<br>Support(A) = Count(A) / Total Transactions<br><br><b>2. Confidence:</b> Likelihood of B given A<br>Confidence(A→B) = Support(A∪B) / Support(A)<br><br><b>3. Lift:</b> Strength of association<br>Lift(A→B) = Confidence(A→B) / Support(B)<br>• Lift > 1: Positive correlation<br>• Lift = 1: Independent<br>• Lift < 1: Negative correlation</p>
+    <div class="highlight-box">
+      <div class="hb-title">Mengapa FP-Growth?</div>
+      <p>FP-Growth (Frequent Pattern Growth) mengatasi kelemahan Apriori dengan <b>hanya 2x scan database</b> dan menggunakan struktur tree (FP-Tree) yang compact. Lebih efisien untuk dataset besar tanpa candidate generation.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Perbedaan Apriori vs FP-Growth</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Aspek</th><th>Apriori</th><th>FP-Growth</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Database Scans</b></td><td>Multiple (k+1 scans)</td><td>Hanya 2 scans</td></tr>
+          <tr><td><b>Candidate Generation</b></td><td>Ya (dapat sangat banyak)</td><td>Tidak perlu</td></tr>
+          <tr><td><b>Memory Usage</b></td><td>Tinggi (menyimpan candidates)</td><td>Compact (FP-Tree)</td></tr>
+          <tr><td><b>Speed</b></td><td>Lambat untuk data besar</td><td>Lebih cepat (2-10x)</td></tr>
+          <tr><td><b>Implementasi</b></td><td>Sederhana</td><td>Lebih kompleks</td></tr>
+          <tr><td><b>Cocok untuk</b></td><td>Dataset kecil/medium, pembelajaran</td><td>Dataset besar, production</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>FP-Tree: Struktur Data FP-Growth</h3>
+      <div class="card">
+        <div class="card-title">Cara Kerja FP-Growth</div>
+        <p style="font-size:.88rem;line-height:1.75;"><b>Langkah 1: Build FP-Tree</b><br>Scan database sekali untuk hitung item frequency. Scan kedua untuk build kompressed prefix-tree dari transaksi (hanya item frequent yang dimasukkan, diurutkan dari frekuensi tertinggi).<br><br><b>Langkah 2: Mine FP-Tree</b><br>Untuk setiap item frequent, bangun "conditional pattern base" (prefix paths berakhir di item tersebut), kemudian mine frequent itemsets dari conditional FP-tree secara rekursif.</p>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Implementasi FP-Growth Python</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code>from mlxtend.frequent_patterns import fpgrowth, association_rules
+import pandas as pd
+
+# FP-Growth lebih efisien dari Apriori untuk dataset besar
+# Menggunakan df_basket yang sudah dibuat sebelumnya
+
+# Mine dengan FP-Growth
+freq_items_fp = fpgrowth(
+    df_basket,
+    min_support=0.4,
+    use_colnames=True
+)
+
+print(f"FP-Growth found {len(freq_items_fp)} frequent itemsets")
+
+# Generate rules (sama seperti Apriori)
+rules_fp = association_rules(
+    freq_items_fp,
+    metric="lift",
+    min_threshold=1.2      # Gunakan lift sebagai primary metric
+)
+
+print(f"
+Rules with Lift > 1.2: {len(rules_fp)}")
+print(rules_fp[['antecedents','consequents','support','confidence','lift']].head(10))
+
+# Visualisasi scatter plot rules
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.scatter(
+    rules_fp['support'],
+    rules_fp['confidence'],
+    alpha=0.6,
+    c=rules_fp['lift'],
+    cmap='YlOrRd',
+    s=100
+)
+plt.colorbar(label='Lift')
+plt.xlabel('Support')
+plt.ylabel('Confidence')
+plt.title('Association Rules: Support vs Confidence (colored by Lift)')
+plt.grid(True, alpha=0.3)
+plt.show()</code></pre>
+      </div>
     </div>
   </section>
   <hr class="section-divider">
@@ -336,19 +598,206 @@ print(rules[['antecedents','consequents','support','confidence','lift']])</code>
   <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
+      <h2>Metrics: Support, Confidence, Lift</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Mengukur Kualitas Association Rules</div>
+      <p style="font-size:.88rem;line-height:1.75;">Tidak semua association rules yang ditemukan bermanfaat secara bisnis. Kita perlu metrics untuk mengukur kualitas dan kekuatan setiap rule. Tiga metrics utama adalah <b>Support, Confidence, dan Lift</b>.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tiga Metrics Utama</h3>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-title">Support</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Formula:</b><br>Support(A→B) = Freq(A∪B) / N<br><br><b>Interpretasi:</b> Seberapa <em>sering</em> rule ini muncul dalam dataset. Rule dengan support rendah mungkin kurang reliable karena didasarkan pada sedikit transaksi.<br><br><b>Range:</b> [0, 1]<br><b>Rekomendasi:</b> min_support ≥ 0.01 (1%)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Confidence</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Formula:</b><br>Conf(A→B) = Support(A∪B) / Support(A)<br><br><b>Interpretasi:</b> Seberapa <em>sering</em> B muncul ketika A muncul. Confidence = 0.8 berarti 80% transaksi yang mengandung A juga mengandung B.<br><br><b>Range:</b> [0, 1]<br><b>Rekomendasi:</b> min_confidence ≥ 0.5 (50%)</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Lift</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Formula:</b><br>Lift(A→B) = Conf(A→B) / Support(B)<br><br><b>Interpretasi:</b> Seberapa <em>kuat</em> asosiasi dibanding random.<br>• <b>Lift > 1:</b> A meningkatkan kemungkinan B<br>• <b>Lift = 1:</b> A dan B independen<br>• <b>Lift &lt; 1:</b> A menurunkan kemungkinan B<br><b>Rekomendasi:</b> Lift ≥ 1.2</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Metrics Tambahan</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Leverage</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Formula:</b> Leverage(A→B) = Support(A∪B) − Support(A) × Support(B)<br><br><b>Interpretasi:</b> Perbedaan antara observed frequency dan expected frequency jika A dan B independent. Leverage = 0 → independent. Leverage > 0 → positive association.<br><br><b>Keunggulan:</b> Tidak bias terhadap itemsets dengan high support seperti Lift.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Conviction</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Formula:</b> Conv(A→B) = (1 − Support(B)) / (1 − Confidence(A→B))<br><br><b>Interpretasi:</b> Mengukur derajat implication. Conviction → ∞ berarti rule sangat reliable. Conviction = 1 → A dan B independent.<br><br><b>Keunggulan:</b> Direksional (berbeda dengan Lift yang simetris). Lebih baik untuk causal analysis.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Contoh Kalkulasi Manual</h3>
+      <div class="card">
+        <div class="card-title">Hitung Metrics untuk Rule: {roti} → {susu}</div>
+        <p style="font-size:.88rem;line-height:1.75;">Dari 8 transaksi dataset kita:<br>• Freq({roti}) = 5 → Support(roti) = 5/8 = <b>0.625</b><br>• Freq({susu}) = 5 → Support(susu) = 5/8 = <b>0.625</b><br>• Freq({roti, susu}) = 3 → Support(roti∪susu) = 3/8 = <b>0.375</b><br><br><b>Support</b>(roti→susu) = 0.375<br><b>Confidence</b>(roti→susu) = 0.375 / 0.625 = <b>0.6 (60%)</b><br><b>Lift</b>(roti→susu) = 0.6 / 0.625 = <b>0.96</b> (sedikit negatif!)<br><b>Leverage</b> = 0.375 - (0.625 × 0.625) = 0.375 - 0.390 = <b>-0.015</b><br><br>→ Rule ini memiliki confidence OK tapi lift &lt; 1, artinya membeli roti justru sedikit mengurangi kemungkinan membeli susu.</p>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Panduan Memilih Threshold</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Context</th><th>min Support</th><th>min Confidence</th><th>min Lift</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Supermarket besar (&gt;100K transaksi)</td><td>0.001 - 0.01</td><td>0.5 - 0.7</td><td>1.5 - 2.0</td></tr>
+          <tr><td>E-commerce (&gt;10K transaksi)</td><td>0.01 - 0.05</td><td>0.4 - 0.6</td><td>1.2 - 1.5</td></tr>
+          <tr><td>Dataset kecil (&lt;1K transaksi)</td><td>0.1 - 0.3</td><td>0.5 - 0.8</td><td>1.0 - 1.2</td></tr>
+          <tr><td>Medical (presisi penting)</td><td>0.05 - 0.1</td><td>0.7 - 0.9</td><td>2.0 - 3.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Aplikasi Lanjutan</h2>
+    </div>
+    <div class="sub-section">
+      <h3>Sequential Pattern Mining</h3>
+      <div class="card">
+        <div class="card-title">Association Rules vs Sequential Patterns</div>
+        <p style="font-size:.88rem;line-height:1.75;">Association rules menemukan items yang <b>co-occur</b> dalam satu transaksi. <b>Sequential Pattern Mining</b> menemukan pola yang muncul dalam <b>urutan waktu tertentu</b>.<br><br>Contoh: Pelanggan yang membeli <em>kamera digital → (30 hari kemudian) → membeli kartu memori → (60 hari kemudian) → membeli album foto</em>.<br><br>Aplikasi: prediksi next purchase, targeted email campaigns, product lifecycle analysis.</p>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Strategi Bisnis dari Association Rules</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Cross-Selling</div>
+          <div class="gc-body">Sarankan produk yang sering dibeli bersamaan saat pelanggan melihat produk tertentu. "You might also need..." di product page.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Up-Selling</div>
+          <div class="gc-body">Gunakan rules untuk merekomendasikan versi premium atau ukuran lebih besar. "Customers who bought this also preferred the premium version..."</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Bundle Pricing</div>
+          <div class="gc-body">Buat bundle discount untuk items dengan high association. Strategi ini meningkatkan AOV (Average Order Value) secara signifikan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Store Layout</div>
+          <div class="gc-body">Optimasi penempatan produk di rak (supermarket) atau halaman web (e-commerce). Products dengan high lift ditempatkan berdekatan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Inventory Management</div>
+          <div class="gc-body">Produk yang sering dibeli bersamaan harus selalu tersedia bersamaan. Stockout satu item dari bundle akan mengurangi penjualan item lainnya.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Email Personalization</div>
+          <div class="gc-body">Kirim email rekomendasi berdasarkan purchase history. "Anda beli X, pelanggan serupa juga sering membeli Y dan Z. Cek sekarang!"</div>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>End-to-End Pipeline MBA</h3>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
+        <pre><code">import pandas as pd
+from mlxtend.frequent_patterns import fpgrowth, association_rules
+from mlxtend.preprocessing import TransactionEncoder
+
+# === LOAD DATA DARI DATABASE / CSV ===
+# Asumsikan data POS (Point of Sale) dari toko retail
+pos_df = pd.read_csv('transactions.csv')
+# Format: transaction_id, product_name, quantity, price, date
+
+# === PREPARE TRANSACTIONS ===
+# Group items per transaction
+basket = pos_df.groupby('transaction_id')['product_name'].apply(list).reset_index()
+transactions = basket['product_name'].tolist()
+
+# === ENCODE TO BINARY MATRIX ===
+te = TransactionEncoder()
+te_array = te.fit(transactions).transform(transactions)
+df_encoded = pd.DataFrame(te_array, columns=te.columns_)
+
+print(f"Transactions: {len(df_encoded)}")
+print(f"Unique products: {len(df_encoded.columns)}")
+
+# === MINE FREQUENT ITEMSETS ===
+# Gunakan FP-Growth untuk dataset besar
+freq_items = fpgrowth(df_encoded, min_support=0.02, use_colnames=True)
+print(f"Frequent itemsets: {len(freq_items)}")
+
+# === GENERATE RULES ===
+rules = association_rules(freq_items, metric='lift', min_threshold=1.5)
+rules = rules[rules['confidence'] >= 0.5]
+rules = rules.sort_values('lift', ascending=False)
+
+# === BUSINESS INTERPRETATION ===
+print("
+=== TOP 10 PRODUCT BUNDLES ===")
+for i, row in rules.head(10).iterrows():
+    ant = list(row['antecedents'])
+    con = list(row['consequents'])
+    print(f"Jika beli: {ant}")
+    print(f"   → Rekomendasikan: {con}")
+    print(f"   Support: {row['support']:.3f} | Confidence: {row['confidence']:.3f} | Lift: {row['lift']:.2f}")
+    print()</code></pre>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
       <h2>Praktikum</h2>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Analisis transaksi retail untuk product recommendation menggunakan mlxtend.</p>
+      <div class="card-title">Praktikum Association Rules Mining</div>
+      <p style="font-size:.88rem;line-height:1.75;">Implementasi market basket analysis pada dataset transaksi nyata untuk menemukan pola pembelian dan menghasilkan rekomendasi produk yang actionable.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Tugas Praktikum</h3>
+      <div class="task-card">
+        <div class="task-num">1</div>
+        <div class="task-content">
+          <div class="task-title">Market Basket Analysis: Online Retail Dataset</div>
+          <ul>
+            <li>Dataset: <b>Online Retail Dataset</b> dari UCI ML Repository (541.909 transaksi)</li>
+            <li><b>Step 1 - Data Preparation:</b> Load CSV, filter transaksi valid (quantity > 0, invoice tidak dimulai 'C' / return), handle missing customer_id</li>
+            <li><b>Step 2 - Basket Encoding:</b> Pivot table InvoiceNo × StockCode, convert ke binary (1 jika quantity > 0)</li>
+            <li><b>Step 3 - Mine dengan FP-Growth:</b> min_support=0.02, kemudian coba beberapa nilai untuk analisis sensitivitas</li>
+            <li><b>Step 4 - Filter Rules:</b> Confidence ≥ 0.5, Lift ≥ 1.5. Visualisasi scatter plot support vs confidence colored by lift</li>
+            <li><b>Step 5 - Business Recommendations:</b> Identifikasi top 5 bundle opportunities dan buat tabel rekomendasi</li>
+            <li>Deliverable: Jupyter notebook + ringkasan rekomendasi bisnis (1 halaman)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">2</div>
+        <div class="task-content">
+          <div class="task-title">Perbandingan Apriori vs FP-Growth</div>
+          <ul>
+            <li>Gunakan dataset yang sama dari Tugas 1 (subset 10.000 transaksi)</li>
+            <li>Implementasikan <b>Apriori</b> dari mlxtend dengan min_support=0.05</li>
+            <li>Implementasikan <b>FP-Growth</b> dengan parameter yang sama</li>
+            <li>Ukur dan bandingkan: <b>execution time</b> (gunakan %%timeit), <b>memory usage</b> (tracemalloc), jumlah rules yang dihasilkan</li>
+            <li>Analisis: Kapan Apriori lebih baik? Kapan FP-Growth lebih baik? Berikan justifikasi</li>
+            <li>Buat tabel perbandingan dan chart bar untuk visualisasi perbedaan performa</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
-
   <nav class="footer-nav">
     <a href="bigdata-p5.html">← Pertemuan 5</a>
+    <a href="../index.html" class="index-btn"><i>⌂</i> Semua Materi</a>
     <a href="bigdata-p7.html" class="next-btn">Pertemuan 7 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+<div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
 
 </main>
 
