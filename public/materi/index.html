@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Materi Kuliah — M. Bahril Ilmi</title>
 
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Materi Kuliah — M. Bahril Ilmi, S.Kom., M.Kom">
+    <meta name="description" content="Kumpulan modul praktikum dan materi perkuliahan: Jaringan Komputer, Desain Grafis, DKV, Rekayasa Video & Audio, Big Data, dan Deployment Vercel — Politeknik Negeri Banjarmasin.">
+    <meta name="author" content="M. Bahril Ilmi, S.Kom., M.Kom">
+    <meta name="keywords" content="materi kuliah, praktikum, big data, vercel, jaringan komputer, desain grafis, poliban">
+
+    <!-- Open Graph / WhatsApp / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mbahrililmi.github.io/public/materi/">
+    <meta property="og:title" content="Materi Kuliah — M. Bahril Ilmi, S.Kom., M.Kom">
+    <meta property="og:description" content="Kumpulan modul praktikum dan materi perkuliahan: Jaringan Komputer, Big Data, Vercel Deployment, Desain Grafis, DKV, dan Rekayasa Video & Audio. 7 mata kuliah · 83 modul.">
+    <meta property="og:image" content="https://mbahrililmi.github.io/public/materi/og/cover.svg">
+    <meta property="og:image:secure_url" content="https://mbahrililmi.github.io/public/materi/og/cover.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Materi Kuliah M. Bahril Ilmi — 7 Mata Kuliah, 83 Modul">
+    <meta property="og:site_name" content="Materi Kuliah Poliban">
+    <meta property="og:locale" content="id_ID">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Materi Kuliah — M. Bahril Ilmi">
+    <meta name="twitter:description" content="7 mata kuliah · 83 modul praktikum: Jaringan Komputer, Big Data, Vercel, Desain Grafis, DKV, dan RVA.">
+    <meta name="twitter:image" content="https://mbahrililmi.github.io/public/materi/og/cover.svg">
+
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -2626,6 +2651,12 @@
         'vercel': 'Deployment dengan Vercel',
       };
 
+      // Share URL: gunakan /share/[id].html agar WhatsApp bisa baca OG tags
+      function getCourseShareUrl(courseId) {
+        var base = window.location.origin + window.location.pathname.replace(/\/?[^\/]*$/, '/');
+        return base + 'share/' + courseId;
+      }
+
       function filterCards(query) {
         const q = query.toLowerCase().trim();
         document.querySelectorAll(".prak-card").forEach((card) => {
@@ -2661,7 +2692,9 @@
         shareBtn.innerHTML = '<i class="bi bi-share"></i>';
         shareBtn.addEventListener('click', function(e) {
           e.stopPropagation(); // jangan toggle accordion
-          const url = window.location.origin + window.location.pathname + '?matkul=' + courseId;
+          const courseId = block.id.replace('course-', '');
+          // Gunakan share page agar WhatsApp bisa membaca OG meta tags
+          const url = getCourseShareUrl(courseId);
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(url).then(() => {
               shareBtn.classList.add('copied');
@@ -2675,7 +2708,7 @@
           } else {
             // Fallback
             const ta = document.createElement('textarea');
-            ta.value = url;
+            ta.value = getCourseShareUrl(block.id.replace('course-', ''));
             ta.style.cssText = 'position:fixed;opacity:0;';
             document.body.appendChild(ta);
             ta.select();

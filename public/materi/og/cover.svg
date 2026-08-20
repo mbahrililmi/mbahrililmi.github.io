@@ -1,0 +1,20 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2942"/>
+      <stop offset="100%" stop-color="#2c3e6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="120" r="300" fill="#b8893b" fill-opacity="0.07"/>
+  <rect x="0" y="0" width="1200" height="5" fill="#b8893b"/>
+  <rect x="0" y="625" width="1200" height="5" fill="#b8893b"/>
+  <rect x="0" y="0" width="8" height="630" fill="#b8893b"/>
+  <text x="80" y="160" font-size="52" font-family="Arial">🎓</text>
+  <text x="80" y="270" font-size="76" font-family="Georgia,serif" fill="#b8893b" font-weight="bold">Materi Kuliah</text>
+  <text x="80" y="360" font-size="52" font-family="Georgia,serif" fill="rgba(255,255,255,0.85)">M. Bahril Ilmi, S.Kom., M.Kom</text>
+  <text x="80" y="430" font-size="34" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.55)">7 Mata Kuliah · 83 Modul Pembelajaran</text>
+  <rect x="80" y="458" width="640" height="2" fill="#b8893b" fill-opacity="0.4"/>
+  <text x="80" y="510" font-size="28" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.4)">Jaringan Komputer · Big Data · Vercel · Desain Grafis · DKV · RVA</text>
+  <text x="80" y="600" font-size="22" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.3)">Politeknik Negeri Banjarmasin</text>
+</svg>

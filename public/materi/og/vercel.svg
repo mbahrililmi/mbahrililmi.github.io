@@ -1,0 +1,37 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2942"/>
+      <stop offset="100%" stop-color="#2c3e6b"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#b8893b"/>
+      <stop offset="100%" stop-color="#b8893b" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <!-- Decorative circle -->
+  <circle cx="1050" cy="100" r="280" fill="#b8893b" fill-opacity="0.07"/>
+  <circle cx="1000" cy="150" r="180" fill="#b8893b" fill-opacity="0.06"/>
+  <!-- Top gold line -->
+  <rect x="0" y="0" width="1200" height="5" fill="#b8893b"/>
+  <!-- Bottom gold line -->
+  <rect x="0" y="625" width="1200" height="5" fill="#b8893b"/>
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="#b8893b"/>
+  <!-- Emoji/Icon -->
+  <text x="80" y="200" font-size="90" font-family="Segoe UI Emoji,Arial">▲</text>
+  <!-- Course title -->
+  <text x="80" y="260" font-size="68" font-family="Georgia,serif" fill="#b8893b" font-weight="bold">Deployment dengan</text>
+  <text x="80" y="342" font-size="68" font-family="Georgia,serif" fill="#b8893b" font-weight="bold">Vercel</text>
+
+  <!-- Subtitle -->
+  <text x="80" y="454" font-size="32" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.65)">Materi Kuliah · M. Bahril Ilmi</text>
+  <!-- Module count badge -->
+  <rect x="80" y="484" width="200" height="46" rx="23" fill="#b8893b" fill-opacity="0.2"/>
+  <rect x="80" y="484" width="200" height="46" rx="23" fill="none" stroke="#b8893b" stroke-width="1.5"/>
+  <text x="180" y="514" font-size="24" font-family="Arial,sans-serif" fill="#b8893b" text-anchor="middle" font-weight="600">10 Modul</text>
+  <!-- Author -->
+  <text x="80" y="600" font-size="24" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.45)">M. Bahril Ilmi, S.Kom., M.Kom · Politeknik Negeri Banjarmasin</text>
+</svg>
