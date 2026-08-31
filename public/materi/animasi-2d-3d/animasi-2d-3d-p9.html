@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 9 – 3D Modeling Dasar | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,446 +226,252 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">3D Modeling Dasar</div>
+    <div class="pertemuan-badge">Pertemuan 9</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <a href="#section-2" class="toc-link">Apa Itu Modeling 3D?</a>
+    <a href="#section-3" class="toc-link">Teknik Modeling Dasar</a>
+    <a href="#section-4" class="toc-link">Modifier Dasar</a>
+    <a href="#section-5" class="toc-link">Topology yang Baik</a>
+    <a href="#section-6" class="toc-link">Langkah Modeling Objek Sederhana</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 9 · Animasi 2D dan 3D</div>
+    <h1>3D Modeling Dasar</h1>
+    <p class="subtitle">Mulai membentuk objek nyata di ruang 3D — dari bentuk primitive sederhana menjadi model utuh menggunakan teknik extrude, inset, loop cut, dan modifier dasar di Blender.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu membuat model 3D sederhana menggunakan teknik modeling dasar di Blender.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+      <div class="card-title">Selamat Datang di Tahap Produksi 3D!</div>
+      <p style="font-size:.88rem;line-height:1.75;">Di Pertemuan 6 lalu, kita sudah berkenalan dengan Blender: mengenal viewport, cara berputar-putar melihat scene dari berbagai sudut, dan menambahkan objek-objek primitive dasar seperti cube, cylinder, dan sphere. Saat itu objek-objeknya masih polos, belum dibentuk jadi apa-apa — istilahnya kita baru belajar "memegang alatnya". Nah, mulai pertemuan ini kita masuk ke tahap yang jauh lebih seru: benar-benar membentuk objek itu menjadi sesuatu yang kita inginkan. Inilah yang disebut 3D modeling — jantung dari seluruh proses produksi animasi 3D.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Bayangkan modeling ini seperti belajar memahat. Sebelumnya kita cuma tahu bentuk-bentuk balok tanah liat mentah yang tersedia. Sekarang, kita akan belajar memakai "alat pahat" digital di Blender — menarik, mendorong, memotong, dan menghaluskan permukaan objek — sampai balok tanah liat polos itu berubah menjadi cangkir, kursi, atau bahkan karakter sederhana. Semua teknik yang dipelajari hari ini akan jadi fondasi untuk pertemuan-pertemuan berikutnya, karena sebelum objek bisa diberi warna (Pertemuan 10) atau digerakkan (Pertemuan 11), ia harus punya bentuk yang jelas dan rapi dulu.</p>
     </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami konsep dasar modeling 3D dan elemen pembentuk mesh (vertex, edge, face)</li>
+        <li>Menguasai teknik modeling dasar: extrude, inset, dan loop cut</li>
+        <li>Memahami dan menerapkan modifier dasar: Subdivision Surface dan Mirror</li>
+        <li>Memahami pentingnya topology yang baik untuk keperluan rigging dan animasi</li>
+        <li>Mempraktikkan langkah-langkah modeling objek sederhana dari awal sampai selesai</li>
+        <li>Menghasilkan satu model 3D prop sederhana secara mandiri</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-3">
-    <div class="section-header">
-      <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-4">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>Apa Itu Modeling 3D?</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Analogi: Memahat Tanah Liat Digital</div>
+      <p style="font-size:.88rem;line-height:1.75;">Cara paling mudah memahami modeling 3D adalah dengan membayangkan seorang pematung yang bekerja dengan tanah liat. Ia tidak memulai dari kekosongan total — biasanya ia mulai dari gumpalan dasar berbentuk bola atau balok, lalu menekan, menarik, memotong, dan menghaluskan permukaannya sedikit demi sedikit sampai terbentuk wujud yang diinginkan. Pendekatan modeling seperti inilah yang paling umum dipakai pemula di Blender, sering disebut <b>box modeling</b>: kita mulai dari bentuk primitive dasar (cube, cylinder, sphere), lalu membentuknya jadi objek yang lebih kompleks lewat serangkaian operasi kecil yang berulang.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Kabar baiknya, pendekatan ini jauh lebih ramah untuk pemula dibanding teknik sculpting digital tingkat lanjut (yang biasanya dipakai untuk model organik super detail seperti wajah karakter film). Box modeling mengandalkan langkah-langkah yang bisa dipelajari satu per satu, terukur, dan mudah dikontrol — cocok sekali untuk kita yang baru pertama kali menyentuh Blender.</p>
     </div>
     <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
-        </div>
+      <h3>Bahan Dasar Sebuah Model: Mesh, Vertex, Edge, Face</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Setiap objek 3D di Blender, sesederhana apapun bentuknya, sebenarnya tersusun dari tiga elemen dasar yang saling berkaitan. Bayangkan seperti origami: kita punya titik-titik lipatan (vertex), garis-garis lipatan yang menghubungkan titik-titik itu (edge), dan bidang kertas yang terbentuk di antara garis-garis tersebut (face). Kumpulan lengkap dari ketiga elemen ini pada satu objek disebut <b>mesh</b> — istilahnya, mesh adalah "kulit" utuh yang membungkus bentuk objek 3D kita.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Semua teknik modeling yang akan kita pelajari hari ini pada dasarnya adalah cara-cara untuk memanipulasi ketiga elemen ini: menambah vertex baru, menggeser posisi edge, atau menciptakan face tambahan. Begitu kita paham bahwa modeling itu sebenarnya "hanya" permainan vertex-edge-face, teknik apapun yang dipelajari setelah ini akan terasa jauh lebih masuk akal.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Cube (Kubus)</div>
+        <div class="gc-body">Primitive paling serbaguna, jadi titik awal favorit untuk objek berbentuk kotak, bangunan, furnitur, atau apapun yang punya sisi-sisi datar dan sudut tegas.</div>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
+      <div class="grid-card">
+        <div class="gc-title">Cylinder (Tabung)</div>
+        <div class="gc-body">Dasar yang pas untuk objek bundar memanjang: gelas, botol, kaki meja, pilar, sampai roda — nanti kita pakai cylinder sebagai titik awal studi kasus modeling cangkir.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">UV Sphere / Ico Sphere</div>
+        <div class="gc-body">Titik awal untuk objek yang membulat: bola, kepala karakter, planet. UV Sphere punya pola garis lintang-bujur, Ico Sphere punya pola segitiga yang lebih merata.</div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Teknik Modeling Dasar</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Dari sekian banyak tools yang tersedia di Blender, ada tiga teknik yang akan paling sering kita pakai sehari-hari saat modeling — bisa dibilang inilah "jurus dasar" yang wajib dikuasai sebelum melangkah ke teknik lain yang lebih rumit. Coba klik tab di bawah untuk mempelajari masing-masing.</p>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-extrude')">Extrude</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-inset')">Inset</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-loopcut')">Loop Cut</button>
+      </div>
+      <div id="tab-extrude" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;">Extrude adalah teknik paling dasar sekaligus paling sering dipakai dalam modeling: menarik keluar sebuah permukaan (face), garis (edge), atau titik (vertex) yang sudah dipilih untuk menciptakan geometri baru yang menyambung dari titik itu. Bayangkan seperti menarik adonan tanah liat ke atas untuk membuat menara, atau menarik permukaan silinder ke samping untuk membentuk cerat teko. Setiap kali kita extrude, Blender otomatis menambahkan face baru yang menghubungkan bentuk lama dengan bentuk barunya, sehingga objek tetap tertutup rapi (tidak bolong).</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Caranya sederhana: pilih face/edge/vertex yang ingin ditarik, lalu tekan tombol pintas <b>E</b> di keyboard, gerakkan mouse ke arah yang diinginkan, dan klik untuk mengunci posisinya. Extrude inilah yang nanti kita pakai untuk menarik badan cangkir menjadi lebih tinggi, atau menarik keluar bagian pegangan (handle) dari sisi badan gelas.</p>
+      </div>
+      <div id="tab-inset" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;">Inset adalah teknik untuk membuat sebuah face baru yang lebih kecil di dalam face yang sudah ada, seolah kita "menggambar bingkai" tepat di dalam sebuah bidang. Hasilnya, face asli akan terbagi menjadi bidang tengah baru dan bingkai tipis di sekelilingnya. Teknik ini sangat berguna sebagai langkah persiapan sebelum extrude — misalnya, sebelum menarik keluar tombol pada remote atau panel pada pintu, kita inset dulu supaya ada bidang kecil khusus yang bisa ditarik tanpa mengganggu bidang di sekitarnya.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Cara pakainya: pilih face yang ingin diberi inset, tekan tombol pintas <b>I</b>, lalu gerakkan mouse untuk mengatur seberapa besar bingkai yang terbentuk, dan klik untuk mengunci. Kombinasi Inset lalu Extrude ini sangat umum dipakai — dua-duanya sering berjalan berdampingan dalam alur kerja modeling sehari-hari.</p>
+      </div>
+      <div id="tab-loopcut" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;">Loop Cut adalah teknik untuk menambahkan sebuah garis potongan baru yang melingkari seluruh objek, menambah jumlah edge dan face tanpa mengubah bentuk keseluruhan objek — hasilnya objek jadi punya lebih banyak "kerangka" pengontrol untuk detail yang lebih halus. Bayangkan seperti menambah garis lipatan baru pada selembar kertas origami: bentuk global belum berubah, tapi sekarang kita punya lebih banyak titik kontrol untuk membentuk lekukan yang lebih presisi.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Caranya, tekan tombol pintas <b>Ctrl+R</b>, arahkan mouse ke bagian objek yang ingin dipotong sampai muncul garis kuning pratinjau, klik sekali untuk mengunci posisinya, lalu klik kanan (atau tekan Esc) supaya potongan itu tetap di tengah tanpa digeser. Loop cut ini nanti sangat penting sebagai persiapan sebelum menerapkan modifier Subdivision Surface, karena tanpa cukup loop cut, bentuk objek bisa jadi terlalu "meleleh" dan kehilangan detail tajam yang kita inginkan.</p>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Modifier Dasar</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Selain memanipulasi mesh secara manual, Blender juga menyediakan <b>modifier</b> — semacam "efek otomatis" yang bisa diterapkan ke sebuah objek tanpa benar-benar mengubah mesh aslinya secara permanen (disebut non-destructive, artinya bisa dimatikan atau diubah kapan saja). Ada dua modifier yang paling sering dipakai pemula dan sangat menghemat waktu kerja.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Subdivision Surface</div>
+        <div class="gc-body">Modifier ini otomatis "menghaluskan" objek yang tadinya bersudut tajam menjadi lebih organik dan bulat, dengan menambah banyak subdivisi kecil pada mesh secara matematis. Cukup satu klik, sebuah kubus kasar bisa terlihat seperti bola yang lembut. Tapi ingat, modifier ini butuh loop cut secukupnya di area yang ingin tetap tajam — tanpa itu, semua sudut objek akan ikut membulat, termasuk yang sebenarnya ingin kita pertahankan tegas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Mirror</div>
+        <div class="gc-body">Modifier ini mencerminkan objek secara otomatis pada sumbu tertentu (X, Y, atau Z), sangat menghemat waktu untuk objek-objek yang simetris seperti wajah karakter, badan pesawat, atau vas berbentuk dua sisi sama. Kita cukup memodelkan setengah bagian saja, dan Mirror akan otomatis melengkapi sisi satunya secara real-time. Syaratnya, titik pusat (origin) objek harus berada tepat di garis tengah supaya pencerminannya presisi.</div>
+      </div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Apakah Modifier mengubah mesh asli saya? <span class="icon">▼</span></div>
+      <div class="accordion-body">Tidak. Selama belum di-Apply, modifier hanya menampilkan efek secara visual di viewport — mesh aslinya tetap utuh seperti semula, dan kita bisa mematikan, mengubah urutan, atau menghapus modifier itu kapan saja tanpa kehilangan pekerjaan.</div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Kapan sebaiknya modifier di-Apply? <span class="icon">▼</span></div>
+      <div class="accordion-body">Apply sebaiknya dilakukan ketika model sudah dianggap final dan siap dipakai untuk tahap berikutnya — misalnya sebelum digabung dengan mesh lain, sebelum export, atau sebelum proses rigging di Pertemuan 11 nanti (karena rigging butuh mesh yang sudah pasti bentuknya, bukan yang masih bisa berubah-ubah karena modifier).</div>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Apa bedanya Subdivision Surface dengan menambah loop cut manual sebanyak-banyaknya? <span class="icon">▼</span></div>
+      <div class="accordion-body">Subdivision Surface menghaluskan permukaan secara otomatis dan matematis, hasilnya cepat dan ringan untuk diedit. Menambah loop cut manual memang memberi kontrol lebih detail di area tertentu, tapi kalau dilakukan berlebihan justru membuat mesh jadi berat dan sulit diedit. Kombinasi keduanya adalah yang paling ideal: gunakan loop cut secukupnya untuk mengontrol area penting, lalu biarkan Subdivision Surface menghaluskan keseluruhan bentuk.</div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>Topology yang Baik</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+    <div class="card">
+      <div class="card-title">Kenapa Topology Itu Penting?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Topology adalah susunan pola vertex, edge, dan face pada sebuah mesh — dan meskipun terdengar teknis, analoginya sederhana: bayangkan topology seperti pola anyaman kain. Kain yang dianyam rapi dengan pola kotak-kotak (quad) yang mengikuti arah lekukan tubuh akan melar dengan mulus saat ditarik atau digerakkan. Sebaliknya, kain yang dianyam asal-asalan dengan pola segitiga acak akan mudah kusut, menggelembung aneh, atau bahkan sobek di titik-titik tertentu saat ditarik.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Hal yang sama berlaku pada mesh 3D. Sekarang, di tahap modeling, topology yang berantakan mungkin masih terlihat baik-baik saja karena objeknya diam tidak bergerak. Tapi begitu objek ini nanti diberi kerangka (rigging) dan digerakkan di Pertemuan 11, area dengan topology buruk — terutama di sekitar sendi seperti siku atau lutut — akan menunjukkan lipatan aneh, sudut tajam yang tidak semestinya, atau permukaan yang pecah. Jadi, merapikan topology sekarang adalah investasi supaya proses animasi nanti berjalan mulus.</p>
     </div>
-    <div class="sub-section">
-      <h3>Konsep Airflow</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Aspek</th><th>Topology Baik</th><th>Topology Bermasalah</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Bentuk Bidang</td><td>Didominasi segi empat (quad)</td><td>Banyak segitiga dan n-gon (segi 5 ke atas)</td></tr>
+        <tr><td>Alur Edge</td><td>Mengikuti kontur & arah gerak objek</td><td>Acak, tidak mengikuti bentuk alami objek</td></tr>
+        <tr><td>Efek saat Animasi</td><td>Permukaan melengkung halus di sendi</td><td>Permukaan retak, menyudut, atau menggelembung aneh</td></tr>
+        <tr><td>Kepadatan Polygon</td><td>Secukupnya, lebih rapat di area detail penting</td><td>Terlalu padat merata atau terlalu jarang di area penting</td></tr>
+      </tbody>
+    </table>
   </section>
   <hr class="section-divider">
 
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Langkah-langkah Modeling Objek Sederhana</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Supaya semua teknik di atas terasa lebih nyata, mari kita coba praktikkan bersama lewat satu studi kasus sederhana: memodelkan sebuah cangkir/mug. Objek ini dipilih karena cukup sederhana untuk pemula, tapi tetap melibatkan hampir semua teknik yang baru saja kita pelajari.</p>
+    <div class="card">
+      <div class="card-title">Langkah 1: Mulai dari Cylinder</div>
+      <p style="font-size:.88rem;line-height:1.75;">Tambahkan objek Cylinder lewat menu Add &gt; Mesh &gt; Cylinder sebagai badan dasar cangkir. Atur jumlah vertices di panel Operator (pojok kiri bawah) secukupnya saja — tidak perlu terlalu banyak, cukup untuk membentuk lingkaran yang halus tanpa membuat mesh jadi terlalu padat dan berat diedit nanti.</p>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+      <div class="card-title">Langkah 2: Beri Ketebalan pada Dinding</div>
+      <p style="font-size:.88rem;line-height:1.75;">Cylinder awalnya masih pejal (solid) seperti balok utuh, padahal cangkir sungguhan punya rongga di dalamnya. Pilih face atas, gunakan Inset untuk membuat bidang baru di dalamnya, lalu Extrude bidang itu ke bawah untuk membentuk rongga bagian dalam cangkir — sehingga terbentuk kesan dinding yang punya ketebalan antara sisi luar dan sisi dalam.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Langkah 3: Bentuk Pegangan (Handle)</div>
+      <p style="font-size:.88rem;line-height:1.75;">Pilih beberapa face kecil di sisi badan cangkir, lalu Extrude keluar secara bertahap membentuk lengkungan pegangan — tarik sedikit ke samping, lalu ke atas, lalu kembali menempel ke badan cangkir di bagian atas. Lakukan beberapa kali extrude kecil-kecil daripada satu extrude besar, supaya lengkungannya terlihat lebih halus dan alami.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Langkah 4: Tambahkan Loop Cut untuk Menjaga Detail</div>
+      <p style="font-size:.88rem;line-height:1.75;">Tambahkan loop cut di dekat bibir atas cangkir dan di dasar badan cangkir. Loop cut tambahan ini akan menjadi "penahan bentuk" supaya tepian tersebut tetap terlihat tegas dan tidak ikut membulat berlebihan nanti saat kita menerapkan modifier penghalus.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Langkah 5: Terapkan Subdivision Surface</div>
+      <p style="font-size:.88rem;line-height:1.75;">Tambahkan modifier Subdivision Surface untuk menghaluskan seluruh permukaan cangkir, terutama pada bagian pegangan yang mungkin masih terlihat bersudut. Perhatikan siluet cangkir dari beberapa sudut pandang untuk memastikan hasilnya sudah proporsional dan enak dilihat.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Langkah 6: Evaluasi Topology</div>
+      <p style="font-size:.88rem;line-height:1.75;">Terakhir, aktifkan tampilan wireframe atau statistics overlay untuk memeriksa apakah masih ada n-gon atau segitiga yang tidak diinginkan, terutama di titik pertemuan antara pegangan dan badan cangkir — area ini biasanya paling rawan bermasalah. Rapikan secara manual jika ditemukan topology yang berantakan.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 9</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Modeling Objek Prop Sederhana</div>
+        <ul>
+          <li>Pilih satu objek prop sederhana pilihan sendiri (misalnya: kursi mini, kotak hadiah, atau pohon sederhana)</li>
+          <li>Modelkan objek tersebut mulai dari primitive dasar, gunakan teknik extrude, inset, dan loop cut</li>
+          <li>Pastikan topology tetap rapi (dominan quad, mengikuti bentuk objek)</li>
+          <li>Rapikan hasil akhir dan periksa dari beberapa sudut pandang di viewport</li>
+          <li>Deliverable: file .blend</li>
+          <li>Format nama file: NIM_Nama_P9_NamaObjek.blend</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Eksperimen dengan Modifier</div>
+        <ul>
+          <li>Buat objek baru yang simetris (misalnya vas bunga sederhana atau wajah dasar) dengan memodelkan setengah bagian saja</li>
+          <li>Terapkan modifier Mirror untuk melengkapi sisi satunya secara otomatis</li>
+          <li>Tambahkan modifier Subdivision Surface untuk menghaluskan hasil akhirnya</li>
+          <li>Ambil screenshot tampilan sebelum dan sesudah modifier diterapkan sebagai perbandingan</li>
+          <li>Deliverable: file .blend + screenshot before-after</li>
+          <li>Format nama file: NIM_Nama_P9_Modifier.blend</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="animasi-2d-3d-p8.html">← Pertemuan 8</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="animasi-2d-3d-p10.html" class="next-btn">Pertemuan 10 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -698,7 +504,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +572,25 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
+    'topology':'Susunan/pola vertex, edge, dan face pada sebuah mesh 3D — topologi yang rapi (banyak bidang segi empat, mengalir mengikuti bentuk) memudahkan proses rigging dan animasi',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

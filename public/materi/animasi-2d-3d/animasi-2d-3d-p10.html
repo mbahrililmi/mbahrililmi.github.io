@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 10 – Texturing & Material 3D | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,17 +226,17 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">Texturing & Material 3D</div>
+    <div class="pertemuan-badge">Pertemuan 10</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
+    <a href="#section-2" class="toc-link">Material vs Texture</a>
+    <a href="#section-3" class="toc-link">UV Mapping Dasar</a>
+    <a href="#section-4" class="toc-link">Shader Dasar: Principled BSDF</a>
+    <a href="#section-5" class="toc-link">Import Texture Gambar</a>
     <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
@@ -244,407 +244,162 @@ ul.styled li::marker{color:var(--gold);}
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 10 · Animasi 2D dan 3D</div>
+    <h1>Texturing & Material 3D</h1>
+    <p class="subtitle">Objek 3D yang sudah terbentuk di Pertemuan 9 kini diberi "kulit" — warna, kilap, dan tekstur permukaan — supaya terasa nyata dan hidup, bukan sekadar bentuk abu-abu polos.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu memberikan material dan texture sederhana pada model 3D menggunakan Blender.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+      <div class="card-title">Dari Bentuk Menuju Tampilan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Di Pertemuan 9, kita sudah membentuk objek 3D lewat teknik modeling — hasilnya sudah punya wujud yang jelas, tapi kalau dilihat di viewport, semua objek itu masih berwarna abu-abu polos, persis seperti patung gips yang baru selesai dicetak dari cetakan. Bentuknya sudah benar, tapi belum terasa "hidup" karena belum punya identitas visual sama sekali. Nah, itulah pekerjaan kita hari ini: memberi objek itu material dan texture, supaya cangkir yang kita buat terlihat seperti keramik mengkilap, kayu bertekstur urat, atau logam yang memantulkan cahaya.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Proses ini sering disebut texturing, dan bisa dibilang inilah tahap yang paling banyak "menyulap" kesan sebuah model 3D. Model yang secara bentuk sederhana pun bisa terlihat sangat meyakinkan kalau material dan texture-nya dikerjakan dengan tepat — sebaliknya, model yang detail tapi asal diberi warna polos akan tetap terlihat seperti mainan plastik murah. Yuk kita pelajari dasar-dasarnya.</p>
     </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami perbedaan antara material dan texture dalam produksi 3D</li>
+        <li>Memahami konsep dasar UV mapping dan fungsinya</li>
+        <li>Mengenal parameter utama shader Principled BSDF: Base Color, Roughness, Metallic</li>
+        <li>Mempraktikkan cara mengimpor gambar sebagai texture ke sebuah material</li>
+        <li>Memberikan material dan/atau texture pada model 3D yang sudah dibuat sebelumnya</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-3">
-    <div class="section-header">
-      <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-4">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>Material vs Texture: Apa Bedanya?</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Dua Istilah yang Sering Tertukar</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Material</b> adalah keseluruhan sifat permukaan sebuah objek secara umum: warna dasarnya apa, seberapa mengkilap, dan apakah terasa seperti logam atau bukan. Bisa dibilang, material itu semacam "resep" yang menentukan bagaimana permukaan objek bereaksi terhadap cahaya yang mengenainya. Sedangkan <b>texture</b> adalah gambar 2D yang "ditempelkan" ke atas permukaan objek untuk memberi detail visual yang lebih spesifik — misalnya motif urat kayu, corak anyaman kain, atau goresan karat pada logam.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Analoginya begini: material itu seperti jenis cat dan bahan yang kita pilih — apakah cat itu doff atau glossy, apakah bahannya terasa seperti logam atau plastik. Texture itu seperti motif atau corak yang dicetak di atas cat tersebut, semacam wallpaper atau print. Sebuah objek bisa saja hanya punya material tanpa texture image sama sekali — cukup diatur warnanya dan tingkat kilapnya — tapi texture image sendiri tidak bisa berdiri sendiri, ia selalu butuh material sebagai "wadah" tempat ia ditempelkan.</p>
     </div>
-    <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
-        </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Material Tanpa Texture Image</div>
+        <div class="gc-body">Cukup mengatur warna dasar, tingkat kilap, dan sifat logam lewat parameter angka saja. Cocok untuk objek dengan permukaan polos dan seragam, misalnya bola plastik warna solid, dinding bercat rata, atau prop sederhana yang tidak butuh motif detail.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Material + Texture Image</div>
+        <div class="gc-body">Menambahkan gambar 2D di atas material dasar untuk menghadirkan detail visual yang kompleks dan tidak seragam — misalnya motif urat kayu pada meja, corak kain pada baju karakter, atau tekstur retak pada tembok tua.</div>
       </div>
     </div>
-    <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
-      </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Apakah satu objek bisa punya lebih dari satu material? <span class="icon">▼</span></div>
+      <div class="accordion-body">Bisa. Blender menyediakan Material Slots di panel Properties, tempat kita bisa menambahkan beberapa material sekaligus pada satu objek yang sama — misalnya cangkir dengan material keramik glossy untuk badan dan material logam untuk pegangannya. Setelah slot material ditambahkan, kita tinggal memilih face mana saja yang ingin diberi material tertentu lewat Edit Mode, lalu klik Assign.</div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>UV Mapping Dasar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Analogi: Membuka Kardus Jadi Lembaran Datar</div>
+      <p style="font-size:.88rem;line-height:1.75;">Permukaan sebuah mesh 3D itu melengkung dan punya banyak sisi, sedangkan gambar texture yang akan kita tempelkan itu selalu datar (2D), seperti selembar foto biasa. Supaya gambar datar itu bisa "menempel" pas di permukaan yang melengkung tanpa melar, terdistorsi, atau terpotong aneh, Blender perlu tahu persis bagaimana cara "membuka" permukaan 3D itu menjadi bidang datar terlebih dahulu. Proses inilah yang disebut UV mapping atau UV unwrapping.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Cara paling mudah membayangkannya adalah seperti membuka kotak kardus di sepanjang sisi-sisi lipatannya sampai menjadi selembar karton datar bermotif potongan tertentu — lalu nanti, kalau dilipat kembali sesuai garis lipatannya, kardus itu akan kembali membentuk kotak seperti semula. Bedanya, kita bisa menggambar atau menempelkan motif pada karton yang sudah dibuka datar itu, dan begitu dilipat kembali menjadi kotak, motifnya akan pas menempel di posisi yang seharusnya. Contoh lain yang mungkin lebih familiar: peta dunia yang biasa kita lihat sebenarnya adalah hasil "membuka" permukaan bola globe menjadi bidang datar — itulah kenapa bentuk benua di dekat kutub sering terlihat melebar tidak proporsional di peta datar.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Mengenal Seam: Garis Potongan pada UV</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Garis yang menentukan di mana "kardus" itu dipotong dan dibuka disebut seam. Penempatan seam yang baik akan menghasilkan UV yang rapi dan minim distorsi — biasanya seam ditempatkan di sisi objek yang tersembunyi atau di sudut-sudut alami, misalnya di bagian bawah cangkir atau di bagian dalam lengan baju karakter, supaya sambungan pola texture tidak terlalu terlihat mencolok dari sudut pandang normal. Blender sebenarnya juga punya fitur Smart UV Project yang bisa membuka UV secara otomatis untuk objek-objek sederhana, cukup membantu untuk pemula sebelum nanti belajar menempatkan seam secara manual dengan lebih presisi.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Melihat Hasil UV: UV Editor</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah UV unwrap dilakukan, Blender menyediakan workspace khusus bernama UV Editing, yang menampilkan dua panel berdampingan: viewport 3D di sisi kanan, dan UV Editor di sisi kiri yang menunjukkan hasil "kardus yang sudah dibuka datar" tadi. Di panel UV Editor inilah kita bisa memeriksa apakah hasil unwrap sudah rapi (tidak ada bagian yang saling tumpang tindih) sekaligus menyesuaikan posisi dan skala tiap pulau UV secara manual sebelum texture ditempelkan.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Shader Dasar: Principled BSDF</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Blender menyediakan satu shader serbaguna bernama <b>Principled BSDF</b> yang bisa meniru hampir semua jenis material di dunia nyata hanya dengan mengatur beberapa parameter angka sederhana — tidak perlu menyusun rangkaian node yang rumit untuk pemula. Ada tiga parameter utama yang paling sering kita sentuh.</p>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Base Color</div>
+        <div class="gc-body">Warna dasar objek, ibarat cat dasar sebelum ditambah efek lain. Ini adalah parameter paling mudah dipahami: cukup pilih warna lewat color picker, dan seluruh permukaan objek akan mengikuti warna tersebut.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Roughness</div>
+        <div class="gc-body">Mengatur seberapa kasar atau mengkilap sebuah permukaan. Nilai mendekati 0 membuat permukaan sangat mengkilap seperti cermin atau logam yang dipoles halus, sedangkan nilai mendekati 1 membuat permukaan terlihat doff/kasar seperti kain, kayu tanpa finishing, atau kertas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Metallic</div>
+        <div class="gc-body">Menentukan seberapa "logam" kesan material tersebut. Nilai 0 cocok untuk bahan non-logam seperti plastik, kayu, atau kain; nilai mendekati 1 membuatnya berperilaku seperti logam murni — misalnya besi, emas, atau perak — yang memantulkan warna cahaya di sekitarnya alih-alih menyerapnya.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Bermain-main dengan Kombinasi Parameter</div>
+      <p style="font-size:.88rem;line-height:1.75;">Ketiga parameter ini bisa dikombinasikan untuk mensimulasikan berbagai bahan: Roughness rendah + Metallic tinggi menghasilkan kesan logam mengkilap seperti sendok stainless; Roughness tinggi + Metallic rendah menghasilkan kesan kain atau kayu doff; Roughness rendah + Metallic rendah lebih cocok untuk plastik mengkilap atau keramik glossy. Cara terbaik memahaminya adalah dengan mencoba langsung: ubah nilainya sedikit demi sedikit sambil memperhatikan perubahan hasil render di viewport secara real-time (mode Material Preview atau Rendered).</p>
+    </div>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Jenis Bahan</th><th>Roughness (perkiraan)</th><th>Metallic (perkiraan)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Logam mengkilap (stainless, krom)</td><td>0.05 – 0.2</td><td>0.8 – 1.0</td></tr>
+        <tr><td>Logam kusam/berkarat</td><td>0.5 – 0.7</td><td>0.6 – 0.9</td></tr>
+        <tr><td>Kayu (tanpa finishing)</td><td>0.6 – 0.85</td><td>0</td></tr>
+        <tr><td>Kain/kertas</td><td>0.8 – 1.0</td><td>0</td></tr>
+        <tr><td>Plastik/keramik glossy</td><td>0.1 – 0.3</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-title">Melihat Hasil secara Real-time: Viewport Shading</div>
+      <p style="font-size:.88rem;line-height:1.75;">Supaya tidak perlu render penuh setiap kali mengecek hasil material, Blender menyediakan beberapa mode tampilan viewport yang bisa dipilih lewat empat bulatan kecil di pojok kanan atas viewport. Mode <b>Solid</b> menampilkan objek dengan warna abu-abu netral tanpa memperhitungkan material sama sekali — cocok untuk fokus modeling seperti di Pertemuan 9. Mode <b>Material Preview</b> menampilkan perkiraan material dan pencahayaan sederhana secara cepat, sedangkan mode <b>Rendered</b> menampilkan hasil paling mendekati render final, lengkap dengan pencahayaan scene sesungguhnya — inilah mode yang paling sering kita pakai saat sedang mengatur material dan texture seperti hari ini.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>Import Texture Gambar</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+    <div class="card">
+      <div class="card-title">Alur Kerja Memasukkan Texture Image</div>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Selain mengandalkan parameter angka seperti Base Color, kita juga bisa menempelkan gambar sungguhan sebagai texture. Berikut alur kerja dasarnya di Blender:</p>
+      <ol class="styled">
+        <li>Siapkan file gambar texture terlebih dahulu — bisa berupa foto kayu, kain, logam, atau motif lain yang diunduh dari situs texture gratis, atau hasil jepretan sendiri</li>
+        <li>Buka Shader Editor (biasanya ada di panel bawah workspace Shading di Blender)</li>
+        <li>Tambahkan node baru lewat menu Add &gt; Texture &gt; Image Texture</li>
+        <li>Klik tombol Open pada node tersebut, lalu pilih file gambar yang sudah disiapkan</li>
+        <li>Hubungkan output "Color" dari node Image Texture ke input "Base Color" pada node Principled BSDF dengan menarik garis penghubung di antara keduanya</li>
+        <li>Pastikan objek sudah melalui proses UV unwrap terlebih dahulu, supaya gambar texture terpasang pas sesuai bentuk permukaan objek, bukan melar atau terpotong aneh</li>
+      </ol>
     </div>
-    <div class="sub-section">
-      <h3>Konsep Airflow</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tips Memilih File Texture</div>
+      <p style="font-size:.88rem;line-height:1.75;">Format gambar yang umum dipakai adalah JPG (ukuran file lebih kecil, cocok untuk warna dasar seperti kayu atau kain) dan PNG (mendukung transparansi, berguna kalau texture punya bagian tembus pandang). Untuk resolusi, ukuran 1024×1024 piksel biasanya sudah cukup memadai untuk objek prop sederhana di level pengantar seperti sekarang — resolusi yang terlalu besar (misal 4096×4096) hanya akan memperlambat kinerja Blender tanpa banyak menambah kualitas visual yang terlihat, apalagi untuk objek kecil yang tidak di-zoom sangat dekat.</p>
     </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Kenapa texture saya terlihat melar atau terdistorsi? <span class="icon">▼</span></div>
+      <div class="accordion-body">Penyebab paling umum adalah objek belum di-UV unwrap sama sekali, sehingga Blender memakai koordinat UV default yang tidak sesuai bentuk objek. Lakukan UV unwrap terlebih dahulu (misalnya lewat Smart UV Project atau menandai seam secara manual) sebelum menempelkan texture image.</div>
     </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
-      </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Apakah semua parameter Principled BSDF harus dipahami sekaligus? <span class="icon">▼</span></div>
+      <div class="accordion-body">Tidak perlu. Ada banyak parameter lain seperti Specular, Transmission, atau Emission yang berguna untuk efek-efek khusus (kaca, cahaya menyala, dsb), tapi untuk level dasar seperti sekarang cukup fokus pada Base Color, Roughness, dan Metallic dulu — tiga parameter ini sudah bisa mensimulasikan sebagian besar material sehari-hari.</div>
     </div>
   </section>
   <hr class="section-divider">
@@ -652,20 +407,44 @@ with DAG(
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Praktikum Pertemuan 10</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Memberi Material Dasar</div>
+        <ul>
+          <li>Gunakan objek prop yang sudah dimodelkan pada Pertemuan 9</li>
+          <li>Buat material baru lalu atur minimal Base Color dan Roughness sesuai bahan yang ingin ditampilkan (misal kayu, keramik, atau plastik)</li>
+          <li>Coba eksperimen juga dengan nilai Metallic untuk melihat efeknya</li>
+          <li>Render/screenshot hasil akhir dari sudut pandang yang menarik</li>
+          <li>Deliverable: file .blend + render/screenshot hasil</li>
+          <li>Format nama file: NIM_Nama_P10_Material.blend</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Menempelkan Texture Gambar</div>
+        <ul>
+          <li>Lakukan UV unwrap sederhana pada objek yang sama (boleh pakai Smart UV Project)</li>
+          <li>Siapkan satu gambar texture (kayu, kain, atau motif lain) dan impor sebagai Image Texture</li>
+          <li>Hubungkan Image Texture ke Base Color pada Principled BSDF</li>
+          <li>Sesuaikan skala/orientasi UV bila motif terlihat terlalu besar, kecil, atau terdistorsi</li>
+          <li>Deliverable: file .blend + screenshot hasil</li>
+          <li>Format nama file: NIM_Nama_P10_Texture.blend</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="animasi-2d-3d-p9.html">← Pertemuan 9</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="animasi-2d-3d-p11.html" class="next-btn">Pertemuan 11 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -698,7 +477,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +545,25 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
+    'topology':'Susunan/pola vertex, edge, dan face pada sebuah mesh 3D — topologi yang rapi (banyak bidang segi empat, mengalir mengikuti bentuk) memudahkan proses rigging dan animasi',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

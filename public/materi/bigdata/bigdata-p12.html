@@ -261,18 +261,18 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="highlight-box">
       <div class="hb-title">Sub-CPMK Pertemuan 12</div>
-      <p>Mahasiswa mampu <b>memahami berbagai teknologi penyimpanan data</b> dalam big data ecosystem: HDFS, NoSQL databases, Data Warehouse, dan Data Lake, serta kapan menggunakan masing-masing teknologi secara tepat.</p>
+      <p>Setelah data berhasil "masuk" lewat proses ingestion, pertanyaan berikutnya adalah: mau disimpan di mana? Nah, di pertemuan ini mahasiswa diharapkan mampu <b>memahami berbagai teknologi penyimpanan data</b> dalam ekosistem big data — HDFS, NoSQL databases, Data Warehouse, dan Data Lake — sekaligus paham kapan sebaiknya memakai masing-masing teknologi tersebut sesuai kebutuhan.</p>
     </div>
     <div class="sub-section">
       <h3>Landscape Data Storage</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Structured vs Unstructured</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Structured:</b> Data dalam tabel relasional (SQL). Schema ketat, mudah di-query, tapi tidak fleksibel untuk perubahan.<br><br><b>Semi-structured:</b> JSON, XML, CSV — memiliki beberapa struktur tapi tidak rigid.<br><br><b>Unstructured:</b> Video, image, audio, text bebas — membutuhkan teknologi khusus.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Sebelum memilih tempat penyimpanan, kita perlu tahu dulu "bentuk" data yang kita punya. Ada tiga kategori besar: <b>Structured</b> — data yang rapi tersusun dalam tabel relasional (SQL), schema-nya ketat dan mudah di-query, tapi kurang fleksibel kalau ada perubahan struktur. <b>Semi-structured</b> — seperti JSON, XML, atau CSV, yang punya struktur tapi tidak sekaku data relasional. Dan <b>Unstructured</b> — video, gambar, audio, atau teks bebas yang tidak punya format baku, sehingga butuh teknologi khusus untuk mengelolanya.</p>
         </div>
         <div class="card">
           <div class="card-title">Pilihan Teknologi</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>RDBMS:</b> PostgreSQL, MySQL — untuk structured transactional data<br><b>HDFS:</b> Raw data lake, batch processing<br><b>NoSQL:</b> Key-value, document, column, graph<br><b>Data Warehouse:</b> Analytical queries, OLAP<br><b>Data Lake:</b> Semua jenis data, schema-on-read<br><b>Lakehouse:</b> Hybrid DL + DW (Delta Lake, Apache Iceberg)</p>
+          <p style="font-size:.88rem;line-height:1.75;">Setiap jenis data punya "rumah" yang paling cocok untuknya. Untuk data transaksional yang terstruktur, ada <b>RDBMS</b> seperti PostgreSQL atau MySQL. Untuk raw data dalam skala besar yang diproses secara batch, ada <b>HDFS</b>. Kalau butuh fleksibilitas dalam bentuk key-value, document, column, atau graph, itulah ranahnya <b>NoSQL</b>. Untuk kebutuhan analytical query dan OLAP, gunakan <b>Data Warehouse</b>. Kalau ingin menyimpan semua jenis data tanpa terikat schema di awal, pakai <b>Data Lake</b> dengan pendekatan schema-on-read. Dan kalau ingin yang terbaik dari keduanya, ada <b>Lakehouse</b> — perpaduan hybrid Data Lake dan Data Warehouse seperti Delta Lake atau Apache Iceberg.</p>
         </div>
       </div>
     </div>
@@ -286,18 +286,18 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="highlight-box">
       <div class="hb-title">Arsitektur HDFS</div>
-      <p>HDFS memecah file besar menjadi <b>blocks (128MB default)</b> dan mendistribusikannya ke DataNodes, dengan <b>replikasi 3x</b> untuk fault tolerance. NameNode menyimpan metadata. Dirancang untuk write-once, read-many workloads.</p>
+      <p>Bayangkan sebuah buku tebal yang dirobek menjadi beberapa bab, lalu masing-masing bab dititipkan ke perpustakaan yang berbeda-beda, dengan tiap bab digandakan tiga kali supaya kalau satu perpustakaan kebakaran, isinya tetap aman. Begitulah kurang lebih cara kerja HDFS: ia memecah file besar menjadi <b>blocks (default-nya 128MB)</b>, lalu menyebarkannya ke berbagai DataNode dengan <b>replikasi 3x</b> untuk menjaga keamanan data (fault tolerance). Sementara itu, NameNode bertugas mencatat "peta"-nya — metadata yang menunjukkan bab mana disimpan di perpustakaan mana. HDFS memang dirancang khusus untuk pola kerja write-once, read-many — sekali ditulis, sering dibaca berulang kali.</p>
     </div>
     <div class="sub-section">
       <h3>Komponen & Cara Kerja HDFS</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">NameNode (Master)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Menyimpan <b>metadata filesystem</b>: nama file, permissions, struktur direktori, lokasi blocks di DataNode mana. Single point of failure → implementasi Active-Standby HA NameNode untuk production.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Ini adalah "pustakawan" dalam sistem HDFS — yang disimpannya bukan data itu sendiri, melainkan <b>metadata filesystem</b>: nama file, permissions, struktur direktori, dan catatan block mana tersimpan di DataNode mana. Karena perannya krusial, NameNode menjadi single point of failure — makanya untuk lingkungan production biasanya diterapkan Active-Standby HA NameNode agar kalau satu bermasalah, ada cadangannya.</p>
         </div>
         <div class="card">
           <div class="card-title">DataNode (Worker)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Menyimpan <b>actual data blocks</b>. Default replication factor = 3 (setiap block ada di 3 DataNode berbeda). Mengirim heartbeat ke NameNode setiap 3 detik untuk membuktikan masih hidup.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Kalau NameNode adalah pustakawan, DataNode adalah "rak buku" yang benar-benar menyimpan <b>data blocks</b>-nya. Dengan replication factor default sebesar 3, setiap block akan disalin ke 3 DataNode berbeda. Supaya NameNode tahu DataNode masih hidup dan sehat, tiap DataNode mengirimkan heartbeat setiap 3 detik.</p>
         </div>
       </div>
     </div>
@@ -343,26 +343,26 @@ with client.read('/hdfs/data/local_data.csv') as reader:
     </div>
     <div class="highlight-box">
       <div class="hb-title">Mengapa NoSQL?</div>
-      <p>NoSQL muncul untuk mengatasi keterbatasan RDBMS: <b>horizontal scalability</b> (scale-out bukan scale-up), <b>flexible schema</b> (tidak perlu ALTER TABLE), <b>high availability</b>, dan dukungan untuk <b>unstructured/semi-structured data</b>.</p>
+      <p>Database relasional (RDBMS) itu hebat, tapi punya batasnya sendiri — dan di situlah NoSQL hadir sebagai solusi. NoSQL memungkinkan <b>horizontal scalability</b> (menambah server baru alih-alih memperbesar satu server / scale-out bukan scale-up), <b>flexible schema</b> (tidak perlu repot ALTER TABLE setiap kali struktur berubah), <b>high availability</b> yang lebih baik, dan dukungan penuh untuk <b>data unstructured/semi-structured</b> yang sulit ditangani RDBMS tradisional.</p>
     </div>
     <div class="sub-section">
       <h3>Tipe-Tipe NoSQL Database</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Key-Value Store</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Redis, DynamoDB, Memcached</b><br>Data sebagai key-value pairs. Sangat cepat (in-memory untuk Redis). Use case: session management, caching, real-time leaderboards, shopping cart, pub/sub messaging.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Contohnya <b>Redis, DynamoDB, Memcached</b>. Ini adalah bentuk NoSQL paling sederhana — data disimpan sebagai pasangan key-value, mirip kamus. Karena strukturnya simpel (dan Redis bekerja in-memory), kecepatannya luar biasa. Cocok dipakai untuk session management, caching, leaderboard real-time, shopping cart, hingga pub/sub messaging.</p>
         </div>
         <div class="card">
           <div class="card-title">Document Store</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>MongoDB, CouchDB, Firestore</b><br>Data sebagai JSON/BSON documents. Flexible schema, support nested objects. Use case: content management, product catalog, user profiles, mobile backends.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Contohnya <b>MongoDB, CouchDB, Firestore</b>. Di sini data disimpan sebagai dokumen JSON/BSON dengan schema yang fleksibel dan mendukung nested objects — jadi cocok untuk data yang strukturnya bisa berbeda-beda antar record. Sering dipakai untuk content management, katalog produk, profil pengguna, hingga backend aplikasi mobile.</p>
         </div>
         <div class="card">
           <div class="card-title">Column-Family</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Apache Cassandra, HBase, Bigtable</b><br>Data dalam column families. Sangat scalable, write-optimized. Use case: IoT time-series, clickstream, social media feeds, financial transactions.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Contohnya <b>Apache Cassandra, HBase, Bigtable</b>. Data di sini disusun dalam column families dan dioptimalkan untuk kecepatan penulisan (write-optimized) sekaligus skalabilitas tinggi. Biasanya dipakai untuk data time-series IoT, clickstream, feed media sosial, atau transaksi finansial dalam volume besar.</p>
         </div>
         <div class="card">
           <div class="card-title">Graph Database</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Neo4j, Amazon Neptune, JanusGraph</b><br>Data sebagai nodes + edges. Optimal untuk highly-connected data. Use case: social networks, recommendation engines, knowledge graphs, fraud ring detection.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Contohnya <b>Neo4j, Amazon Neptune, JanusGraph</b>. Data direpresentasikan sebagai nodes (titik) dan edges (hubungan antar titik), sehingga sangat pas untuk data yang "saling terhubung" secara padat. Ini yang dipakai di balik jejaring sosial, mesin rekomendasi, knowledge graph, hingga deteksi jaringan fraud.</p>
         </div>
       </div>
     </div>
@@ -416,18 +416,18 @@ for r in col.aggregate(pipeline):
     </div>
     <div class="highlight-box">
       <div class="hb-title">Apa itu Data Warehouse?</div>
-      <p>Data Warehouse adalah <b>centralized repository</b> untuk data terstruktur yang dioptimalkan untuk <b>analytical queries (OLAP)</b>. Data di-load melalui proses ETL, di-clean, dan disimpan dalam format yang mendukung fast querying untuk business intelligence.</p>
+      <p>Kalau database operasional adalah "kasir" yang mencatat setiap transaksi satu per satu, Data Warehouse adalah "kantor pusat" tempat semua catatan itu dikumpulkan dan dirangkum untuk dianalisis. Secara teknis, Data Warehouse adalah <b>centralized repository</b> untuk data terstruktur yang dioptimalkan khusus untuk <b>analytical queries (OLAP)</b>. Data masuk ke sana lewat proses ETL, dibersihkan (di-clean), lalu disimpan dalam format yang mendukung query cepat untuk kebutuhan business intelligence.</p>
     </div>
     <div class="sub-section">
       <h3>OLAP vs OLTP</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">OLTP (Online Transaction Processing)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Database operasional untuk transaksi sehari-hari. Banyak read/write kecil, ACID compliance, normalized schema. Contoh: MySQL, PostgreSQL untuk aplikasi e-commerce, banking.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Ini adalah "mesin" di balik operasional sehari-hari — database yang menangani banyak operasi read/write berukuran kecil, menjaga konsistensi data lewat ACID compliance, dan menggunakan schema yang ternormalisasi (normalized). Contohnya MySQL atau PostgreSQL yang dipakai di aplikasi e-commerce atau perbankan.</p>
         </div>
         <div class="card">
           <div class="card-title">OLAP (Online Analytical Processing)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Data warehouse untuk analitik. Query besar yang baca banyak rows, aggregations (SUM, AVG, GROUP BY), denormalized schema (Star/Snowflake). Contoh: Redshift, BigQuery, Snowflake.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Kalau OLTP fokus pada transaksi harian, OLAP fokus pada "gambaran besar" untuk analisis — menjalankan query berat yang membaca banyak baris sekaligus, melakukan agregasi (SUM, AVG, GROUP BY), dengan schema yang sengaja didenormalisasi (Star/Snowflake) supaya query jadi lebih cepat. Contohnya seperti Redshift, BigQuery, atau Snowflake.</p>
         </div>
       </div>
     </div>
@@ -455,7 +455,7 @@ for r in col.aggregate(pipeline):
     </div>
     <div class="highlight-box">
       <div class="hb-title">Data Lake vs Data Warehouse</div>
-      <p>Data Lake menyimpan <b>semua jenis data (structured, semi-structured, unstructured)</b> dalam format native dengan <b>schema-on-read</b>. Lebih fleksibel dari DW, tapi membutuhkan lebih banyak governance agar tidak menjadi "Data Swamp".</p>
+      <p>Kalau Data Warehouse itu seperti lemari yang isinya sudah rapi terlipat sesuai kategori, Data Lake lebih mirip danau besar tempat kalian bisa "membuang" apa saja apa adanya — data apa pun boleh masuk, terlepas bentuknya <b>structured, semi-structured, maupun unstructured</b>, karena disimpan dalam format aslinya (native) dengan pendekatan <b>schema-on-read</b> — struktur data baru ditentukan nanti saat dibaca, bukan saat disimpan. Ini membuatnya jauh lebih fleksibel dibanding Data Warehouse, tapi ada harganya: perlu tata kelola (governance) yang serius, kalau tidak, danau ini bisa berubah jadi "Data Swamp" alias rawa data yang berantakan dan sulit dipakai.</p>
     </div>
     <div class="sub-section">
       <h3>Perbandingan Data Lake vs Data Warehouse</h3>
@@ -478,15 +478,15 @@ for r in col.aggregate(pipeline):
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">Delta Lake</div>
-          <div class="gc-body">Open-source storage layer di atas data lake. Menambahkan ACID transactions, schema enforcement, dan time travel ke object storage.</div>
+          <div class="gc-body">Sebuah storage layer open-source yang "dipasang" di atas data lake untuk menambal kekurangannya — membawa ACID transactions, schema enforcement, dan bahkan fitur time travel (bisa melihat versi data sebelumnya) ke dalam object storage.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Apache Iceberg</div>
-          <div class="gc-body">Open table format untuk big data. Support schema evolution, partition pruning, dan row-level operations. Digunakan oleh Netflix, Airbnb.</div>
+          <div class="gc-body">Sebuah open table format untuk big data yang mendukung schema evolution, partition pruning, dan operasi di level baris (row-level operations). Sudah dipakai secara nyata oleh perusahaan besar seperti Netflix dan Airbnb.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Apache Hudi</div>
-          <div class="gc-body">Data lake platform dengan upsert dan incremental processing. Populer di Uber untuk meng-handle streaming data ke data lake.</div>
+          <div class="gc-body">Sebuah platform data lake yang mendukung upsert dan incremental processing, sehingga data bisa terus diperbarui tanpa menulis ulang semuanya dari nol. Populer digunakan di Uber untuk menangani aliran streaming data masuk ke data lake mereka.</div>
         </div>
       </div>
     </div>
@@ -500,7 +500,7 @@ for r in col.aggregate(pipeline):
     </div>
     <div class="card">
       <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Setup MongoDB, load sample data, query NoSQL vs SQL, compare performance.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Waktunya mencoba langsung: kalian akan setup MongoDB, memuat sample data ke dalamnya, lalu membandingkan sendiri bagaimana rasanya query di NoSQL versus SQL, termasuk melihat perbedaan performanya.</p>
     </div>
   </section>
 

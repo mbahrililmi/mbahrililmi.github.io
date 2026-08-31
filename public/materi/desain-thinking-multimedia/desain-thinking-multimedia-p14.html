@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 14 – Studi Kasus Implementasi Design Thinking 1 | Desain Thinking for Multimedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+
+/* === Code Block Styles === */
+.code-block{
+  position:relative;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:16px 16px 16px 18px;
+  margin:12px 0 16px;
+  overflow-x:auto;
+  border:1px solid rgba(184,137,59,.2);
+}
+.code-block pre{
+  margin:0;
+  color:#d4d4d4;
+  font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  overflow-x:auto;
+}
+.code-block code{
+  color:#d4d4d4;
+  font-family:inherit;
+}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  z-index:10;
+}
+.copy-btn:hover{
+  background:var(--gold-deep);
+  transform:scale(1.05);
+}
+.copy-btn.copied{
+  background:#27ae60;
+}
+
+/* === Task Card Styles === */
+.task-card{
+  background:#fff;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:16px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 3px 10px rgba(184,137,59,.15);
+}
+.task-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.task-content{
+  flex:1;
+}
+.task-title{
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.task-content ul{
+  margin:0;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.7;
+}
+.task-content ul li{
+  margin-bottom:4px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Thinking for Multimedia</div>
+    <div class="course-title">Studi Kasus Implementasi Design Thinking 1</div>
+    <div class="pertemuan-badge">Pertemuan 14</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Studi Kasus: Redesain Aplikasi Edukasi</a>
+    <a href="#section-3" class="toc-link">Analisis Keputusan Desain</a>
+    <a href="#section-4" class="toc-link">Pembelajaran &amp; Tantangan</a>
+    <a href="#section-5" class="toc-link">Diskusi: Refleksi ke Proyek Kalian</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 14 · Desain Thinking for Multimedia</div>
+    <h1>Studi Kasus Implementasi Design Thinking 1</h1>
+    <p class="subtitle">Membedah satu studi kasus nyata secara mendalam — dari riset pengguna sampai iterasi prototipe — untuk melihat bagaimana lima tahap design thinking yang sudah kita pelajari benar-benar dipakai untuk memecahkan masalah produk multimedia sungguhan.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Kode: <span>DTM301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
+      <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="section-1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menganalisis penerapan design thinking pada studi kasus nyata di industri multimedia, serta menjelaskan keterkaitan antara temuan riset, keputusan desain, dan hasil akhir sebuah produk.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Kita Butuh Studi Kasus?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Selama tiga belas pertemuan terakhir, kalian sudah berkenalan dengan setiap tahap design thinking satu per satu — mulai dari empathize, define, ideate, prototype, sampai test. Tapi memahami tiap tahap secara terpisah itu ibarat belajar kosakata bahasa asing kata demi kata tanpa pernah mendengar orang bercakap-cakap memakainya. Nah, pertemuan ini adalah momen "mendengar percakapan utuh" itu. Kita akan mengikuti satu studi kasus dari awal sampai akhir, melihat bagaimana kelima tahap itu saling menyambung, saling mempengaruhi, dan kadang harus diulang ketika hasilnya tidak sesuai dugaan.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Studi kasus yang kita bahas hari ini murni fiktif, tapi dibangun dari pola-pola yang sangat umum terjadi di tim produk sungguhan — termasuk tim yang membangun aplikasi seperti Duolingo, Ruangguru, atau Zenius. Anggap saja kalian sedang mengintip proses kerja tim desain di balik layar sebuah aplikasi yang mungkin pernah kalian pakai sendiri.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kaitan dengan Materi Sebelumnya</div>
+      <p style="font-size:.88rem;line-height:1.75;">Semua istilah yang muncul di studi kasus ini — empathy map, POV, HMW, ideation, prototipe, usability testing — adalah alat-alat yang sudah kalian pelajari dan praktikkan sendiri di pertemuan-pertemuan sebelumnya. Bedanya, kali ini kita tidak membahasnya sebagai konsep berdiri sendiri, melainkan sebagai satu rangkaian keputusan yang saling terhubung. Tujuannya sederhana: supaya kalian bisa melihat "gambar besar" sebelum mengerjakan proyek akhir kalian sendiri di dua pertemuan berikutnya.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Studi Kasus: Redesain Aplikasi Edukasi "BelajarBahasa"</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Latar Belakang Kasus</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan sebuah startup edukasi bernama <b>BelajarBahasa</b> — aplikasi mobile untuk membantu siswa SMA belajar bahasa Inggris di luar jam sekolah, mirip konsep Duolingo tapi dengan materi yang disesuaikan kurikulum lokal. Setelah enam bulan diluncurkan, data menunjukkan masalah serius: dari setiap 100 siswa yang mendaftar, hanya 18 orang yang masih aktif membuka aplikasi di minggu keempat. Tingkat drop-out di atas 80% ini jauh di bawah target tim, dan mereka memutuskan menjalankan proses design thinking penuh untuk mencari akar masalahnya — bukan sekadar menambah fitur baru secara asal tebak.</p>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Empathize — Turun Langsung Menemui Siswa</div>
+        <ul>
+          <li>Tim mewawancarai 15 siswa SMA (pengguna aktif, pengguna yang berhenti, dan yang belum pernah pakai aplikasi belajar bahasa)</li>
+          <li>Melakukan observasi langsung: menonton siswa memakai aplikasi selama 10 menit tanpa diarahkan</li>
+          <li>Menyebar survei singkat ke 120 siswa lain untuk validasi pola dari wawancara</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Tahap empathize ini tidak berhenti di angka drop-out saja — tim ingin tahu <i>cerita di balik angka itu</i>. Dan yang mereka temukan cukup mengejutkan. Ternyata alasan siswa berhenti bukan karena materinya terlalu sulit, melainkan karena terlalu <b>monoton</b>: setiap pelajaran formatnya sama persis — baca teks, jawab pilihan ganda, lanjut ke bab berikutnya — selama berminggu-minggu tanpa variasi. Beberapa siswa bahkan bilang, "rasanya kayak ngerjain LKS digital, bukan belajar yang seru." Ada juga temuan lain: banyak siswa membuka aplikasi di sela-sela waktu sempit (menunggu angkot, sebelum tidur), tapi satu sesi belajar di aplikasi ini butuh waktu minimal 15 menit tanpa bisa dijeda — jadi mereka sering menyerah di tengah jalan karena keburu waktunya habis.</p>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Observasi langsung juga menyingkap masalah kecil yang ternyata berdampak besar: siswa sering bingung harus lanjut dari mana setelah menutup aplikasi beberapa hari, karena tidak ada indikator progres yang jelas. Kombinasi dari monoton, sesi belajar yang kaku, dan progres yang tidak terlihat inilah yang jadi tiga benang merah utama dari puluhan jam wawancara dan observasi.</p>
+
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Define — Merumuskan POV dan HMW</div>
+        <ul>
+          <li>Tim menyusun affinity diagram dari seluruh catatan riset untuk mengelompokkan temuan menjadi tema besar</li>
+          <li>Tema yang muncul: "monoton", "waktu sempit", dan "progres tidak terlihat"</li>
+          <li>Dari tiga tema itu, tim merumuskan satu POV utama dan tiga pertanyaan HMW turunan</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Setelah semua catatan wawancara dikelompokkan lewat affinity diagram, tim merumuskan <b>Point of View (POV)</b> berikut: <i>"Siswa SMA yang ingin belajar bahasa Inggris secara mandiri butuh cara belajar yang terasa ringan dan bisa diselesaikan dalam waktu singkat, karena mereka hanya punya jeda-jeda pendek di sela aktivitas harian, dan mereka kehilangan motivasi ketika tidak bisa melihat kemajuan yang sudah dicapai."</i> Perhatikan bagaimana POV ini menggabungkan tiga elemen wajib: siapa penggunanya, apa kebutuhannya, dan kenapa (insight) — bukan sekadar menyebut masalah secara umum.</p>
+    <p style="font-size:.88rem;line-height:1.75;">Dari POV itu, lahir tiga pertanyaan <b>How Might We (HMW)</b>: <i>"Bagaimana caranya kita membuat sesi belajar terasa ringan meski hanya punya waktu 3-5 menit?"</i>, <i>"Bagaimana caranya kita membuat materi terasa lebih hidup dan tidak monoton tanpa mengorbankan kedalaman isi?"</i>, dan <i>"Bagaimana caranya kita membuat progres belajar terasa nyata dan memuaskan untuk dilihat?"</i> Ketiga pertanyaan inilah yang jadi pintu masuk ke sesi ideasi berikutnya.</p>
+
+    <div class="task-card">
+      <div class="task-num">3</div>
+      <div class="task-content">
+        <div class="task-title">Ideate — Brainstorming Solusi</div>
+        <ul>
+          <li>Sesi brainstorming dengan teknik "crazy 8" menghasilkan lebih dari 40 ide mentah dari lima anggota tim</li>
+          <li>Ide-ide dikelompokkan dan disaring lewat voting dengan kriteria: dampak ke masalah dan kelayakan dikerjakan dalam 2 bulan</li>
+          <li>Tiga ide terpilih untuk dilanjutkan ke tahap prototyping</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Dari puluhan ide liar yang muncul di sesi ideation — termasuk ide-ide yang sengaja dibiarkan "gila" dulu sebelum disaring — tiga ide bertahan sampai tahap akhir. Pertama, <b>microlearning</b>: memecah satu unit pelajaran yang tadinya 15 menit menjadi lima potongan kecil berdurasi 2-3 menit, jadi siswa bisa menyelesaikan satu potongan penuh bahkan saat hanya punya waktu selagi menunggu angkot. Kedua, <b>gamifikasi ringan</b>: menambahkan sistem streak (rentetan hari belajar berturut-turut, mirip yang dipakai Duolingo), lencana pencapaian, dan progress bar visual yang terisi setiap kali menyelesaikan satu potongan pelajaran. Ketiga, <b>variasi format latihan</b>: mengganti-ganti jenis latihan (pilihan ganda, drag-and-drop kosakata, latihan dengar-ucap pendek) alih-alih memakai satu format yang sama terus-menerus.</p>
+    <p style="font-size:.88rem;line-height:1.75;">Menariknya, ide-ide yang tidak lolos seleksi — misalnya menambahkan fitur kelas video call langsung dengan tutor — bukan berarti ide buruk, tapi tidak selaras dengan insight riset (siswa butuh sesuatu yang cepat dan fleksibel, bukan yang butuh penjadwalan). Ini contoh penting: ideasi yang baik bukan soal ide paling kreatif, tapi ide yang paling pas menjawab kebutuhan yang sudah ditemukan di tahap empathize dan define.</p>
+
+    <div class="task-card">
+      <div class="task-num">4</div>
+      <div class="task-content">
+        <div class="task-title">Prototype — Membangun Purwarupa</div>
+        <ul>
+          <li>Dimulai dari sketsa kertas (low-fidelity) untuk alur microlearning dan tampilan progress bar</li>
+          <li>Dilanjutkan ke wireframe digital di Figma untuk struktur navigasi baru</li>
+          <li>Prototipe high-fidelity interaktif dibangun untuk satu modul pelajaran penuh (bukan seluruh aplikasi) sebagai sampel uji</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Tim sengaja tidak langsung membangun prototipe untuk seluruh aplikasi — itu akan memakan waktu berbulan-bulan dan berisiko besar kalau ternyata arahnya salah. Sebaliknya, mereka memilih satu modul pelajaran ("Perkenalan Diri dalam Bahasa Inggris") sebagai sampel, lalu membangunnya penuh: mulai dari sketsa tangan untuk alur lima potongan microlearning, wireframe untuk menguji struktur navigasi antar potongan, sampai prototipe high-fidelity yang bisa diklik dan terasa seperti aplikasi sungguhan — lengkap dengan animasi progress bar dan lencana pencapaian di akhir modul.</p>
+    <p style="font-size:.88rem;line-height:1.75;">Pendekatan "satu modul dulu, bukan semua sekaligus" ini penting dicatat sebagai prinsip: prototipe idealnya dibuat secukupnya untuk bisa diuji dan mendapat umpan balik, bukan langsung sempurna dan lengkap. Semakin cepat purwarupa bisa diuji ke pengguna asli, semakin cepat pula tim tahu apakah arah solusinya benar sebelum menghabiskan banyak sumber daya membangun fitur yang salah sasaran.</p>
+
+    <div class="task-card">
+      <div class="task-num">5</div>
+      <div class="task-content">
+        <div class="task-title">Test — Uji ke Siswa Asli</div>
+        <ul>
+          <li>Usability testing dengan 8 siswa yang mewakili tiga kelompok: pengguna aktif, yang pernah berhenti, dan yang baru pertama coba</li>
+          <li>Setiap siswa diminta menyelesaikan modul microlearning sambil berpikir keras (think-aloud)</li>
+          <li>Hasil dikumpulkan lewat catatan observasi dan kuesioner SUS singkat setelah sesi selesai</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Hasil testing sebagian besar positif — tujuh dari delapan siswa berhasil menyelesaikan seluruh modul microlearning tanpa bantuan, dan hampir semua secara spontan berkomentar bahwa mereka suka melihat progress bar terisi setiap kali menyelesaikan satu potongan. Tapi testing juga menemukan masalah yang tidak terpikirkan sebelumnya: dua siswa sempat kebingungan dengan ikon lencana pencapaian karena tidak tahu artinya apa, dan satu siswa merasa animasi transisi antar potongan pelajaran terlalu lama sehingga terasa mengganggu ketika ingin cepat-cepat lanjut belajar.</p>
+    <p style="font-size:.88rem;line-height:1.75;">Berdasarkan temuan ini, tim melakukan iterasi kecil: menambahkan tooltip singkat penjelasan lencana saat pertama kali muncul, dan mempercepat durasi animasi transisi dari 1.2 detik menjadi 0.4 detik. Ini contoh nyata bahwa tahap test bukan garis akhir — ia melahirkan siklus baru "prototype-test-prototype" sampai purwarupa benar-benar matang sebelum dikembangkan penuh oleh tim engineering.</p>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Analisis Keputusan Desain</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Prinsip Utama: "Karena Riset Menunjukkan..."</div>
+      <p>Hal paling penting yang bisa kita ambil dari studi kasus BelajarBahasa bukan solusi akhirnya, melainkan <b>alasan di balik setiap solusi</b>. Setiap keputusan desain yang baik seharusnya bisa dijawab dengan kalimat "karena riset menunjukkan...", bukan "karena menurut saya lebih bagus" atau "karena aplikasi lain juga begitu". Mari kita bedah satu per satu.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Keputusan: Microlearning 2-3 Menit</div>
+        <div class="gc-body">Kenapa bukan 5 menit atau 10 menit? Karena riset menunjukkan siswa membuka aplikasi di jeda pendek seperti menunggu angkot — durasi ini dipilih berdasarkan estimasi waktu jeda rata-rata yang disebutkan siswa saat wawancara, bukan angka yang dipilih asal terdengar enak.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Keputusan: Progress Bar & Streak</div>
+        <div class="gc-body">Kenapa fitur ini yang diprioritaskan dibanding fitur lain? Karena insight riset secara spesifik menyebut "progres tidak terlihat" sebagai salah satu dari tiga tema utama penyebab drop-out — bukan sekadar ikut tren gamifikasi aplikasi lain.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Keputusan: Variasi Format Latihan</div>
+        <div class="gc-body">Kenapa bukan menambah lebih banyak materi teks? Karena kata "monoton" muncul berulang kali di wawancara — masalahnya bukan kurangnya materi, tapi keseragaman cara penyampaiannya.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Keputusan: Tooltip Lencana (Hasil Iterasi)</div>
+        <div class="gc-body">Kenapa ditambahkan setelah prototipe jadi, bukan dari awal? Karena kebutuhan ini baru terlihat lewat usability testing — bukti bahwa riset di awal tidak pernah bisa menjawab semua hal, dan pengujian purwarupa tetap wajib dilakukan.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Ini Penting Dilatih Sekarang</div>
+      <p style="font-size:.88rem;line-height:1.75;">Kebiasaan menjawab "karena riset menunjukkan..." untuk setiap keputusan desain adalah pembeda utama antara desainer yang bekerja berdasarkan asumsi dan desainer yang bekerja berdasarkan bukti. Kebiasaan ini juga akan sangat berguna saat kalian mempresentasikan proyek akhir semester di pertemuan berikutnya — dosen penguji dan teman sekelas akan lebih mudah percaya pada keputusan desain kalian kalau kalian bisa menunjukkan benang merahnya balik ke temuan riset, bukan sekadar "kelihatannya bagus".</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Pembelajaran &amp; Tantangan dari Studi Kasus</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Proses design thinking di dunia nyata jarang berjalan semulus yang digambarkan di diagram lima tahap yang rapi. Ada banyak gesekan, keterbatasan, dan kompromi yang harus dihadapi tim — dan mengenal tantangan ini lebih awal akan membuat kalian lebih siap saat menjalankan proyek sendiri.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Tantangan: Waktu dan Anggaran Terbatas</div>
+        <div class="gc-body">Tim BelajarBahasa hanya punya waktu tiga minggu untuk seluruh proses empathize sampai test. Solusinya: mempersempit lingkup riset (15 wawancara, bukan 50) dan membangun prototipe untuk satu modul saja, bukan seluruh aplikasi — cukup untuk mendapat sinyal yang meyakinkan tanpa menghabiskan seluruh anggaran waktu.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Tantangan: Stakeholder Ingin Cepat Jadi</div>
+        <div class="gc-body">Investor dan founder sering menekan tim untuk langsung membangun fitur tanpa riset, karena riset dianggap "membuang waktu". Solusinya: menunjukkan data drop-out yang sudah ada sebagai alasan kuat kenapa riset diperlukan, dan membingkai riset sebagai cara menghemat biaya pengembangan yang salah sasaran, bukan sekadar formalitas akademis.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Tantangan: Bias Tim Sendiri</div>
+        <div class="gc-body">Anggota tim yang sudah lama berkecimpung di produk sering merasa "sudah tahu" apa yang diinginkan pengguna tanpa perlu bertanya lagi. Solusinya: tetap menjalankan wawancara langsung meski tim merasa yakin, karena asumsi yang tidak diuji adalah sumber kegagalan produk paling umum.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Tantangan: Sampel Riset Terlalu Kecil</div>
+        <div class="gc-body">15 wawancara dan 8 partisipan usability testing bukan sampel besar secara statistik. Solusinya: fokus pada pola yang berulang (tema yang muncul di banyak partisipan berbeda) sebagai sinyal kuat, sambil tetap terbuka merevisi keputusan kalau data lanjutan menunjukkan arah berbeda.</div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Pertanyaan yang Sering Muncul</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Bagaimana kalau hasil riset saling bertentangan antar partisipan?<span class="icon">▼</span></div>
+        <div class="accordion-body">Ini hal yang sangat wajar terjadi. Bukan berarti riset kalian gagal — justru ini bagian normal dari proses. Yang perlu dilakukan adalah mencari pola mana yang paling sering muncul (bukan mencari satu jawaban yang "benar" secara mutlak), lalu mendokumentasikan juga perbedaan pendapat itu sebagai catatan, karena kadang perbedaan itu menunjukkan bahwa produk perlu melayani lebih dari satu jenis kebutuhan pengguna sekaligus.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Berapa banyak partisipan riset yang cukup untuk proyek kelas seperti ini?<span class="icon">▼</span></div>
+        <div class="accordion-body">Untuk proyek skala tugas kuliah, riset kualitatif dengan 5-8 partisipan sudah cukup untuk menangkap pola-pola utama, asalkan partisipannya relevan dengan target pengguna kalian. Prinsip umum di dunia UX research: setelah wawancara kelima atau keenam, biasanya temuan baru mulai berkurang drastis karena pola-pola besar sudah mulai terlihat berulang — momen ini disebut "titik jenuh" (saturation point).</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Apakah boleh mengubah arah solusi di tengah jalan kalau ternyata ide awal tidak terbukti?<span class="icon">▼</span></div>
+        <div class="accordion-body">Sangat boleh, bahkan dianjurkan. Design thinking pada dasarnya adalah proses berulang (iteratif), bukan alur satu arah yang kaku. Jika hasil testing prototipe menunjukkan arah solusi kalian tidak menjawab kebutuhan pengguna, kembali ke tahap define atau bahkan empathize untuk menggali lebih dalam adalah keputusan yang jauh lebih baik daripada memaksakan solusi yang sudah terbukti kurang tepat.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Diskusi: Menerapkan Pembelajaran ke Proyek Kalian</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Waktunya Menoleh ke Proyek Akhir Kalian Sendiri</div>
+      <p style="font-size:.88rem;line-height:1.75;">Studi kasus BelajarBahasa hanyalah cermin — tujuan sesungguhnya adalah membantu kalian melihat proyek akhir kalian sendiri dengan lebih tajam. Di pertemuan berikutnya kalian akan mempresentasikan hasil kerja satu semester, jadi ini saat yang tepat untuk berhenti sejenak dan mengevaluasi jujur: apakah proses kalian sendiri sudah punya benang merah yang sama kuatnya dengan yang kita bedah hari ini?</p>
+    </div>
+    <div class="sub-section">
+      <h3>Pertanyaan Reflektif untuk Kelompok Kalian</h3>
+      <ul class="styled">
+        <li>Apa temuan paling mengejutkan dari riset pengguna kalian — sesuatu yang tidak kalian duga sebelum bertanya langsung ke pengguna?</li>
+        <li>Bisakah kalian menuliskan POV proyek kalian dalam satu kalimat yang jelas menyebut siapa penggunanya, apa kebutuhannya, dan kenapa (insight)?</li>
+        <li>Untuk setiap fitur atau elemen desain utama di prototipe kalian, bisakah kalian menjawab "karena riset menunjukkan..."? Jika tidak bisa, kenapa fitur itu tetap ada?</li>
+        <li>Ide apa yang sempat muncul di sesi ideasi kalian tapi akhirnya tidak dipakai — dan kenapa ide itu tidak selaras dengan insight riset?</li>
+        <li>Apa yang berubah dari prototipe pertama ke versi terakhir setelah kalian melakukan testing? Perubahan apa yang paling signifikan?</li>
+        <li>Tantangan apa (waktu, anggota tim yang sibuk, sulit mencari partisipan riset, dsb.) yang paling menghambat proses kalian, dan bagaimana kalian menyiasatinya?</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Diskusikan di Kelompok, 15 Menit</div>
+      <p style="font-size:.88rem;line-height:1.75;">Luangkan waktu untuk mendiskusikan keenam pertanyaan di atas bersama kelompok proyek akhir kalian. Catat jawaban singkat untuk masing-masing — catatan ini akan sangat membantu saat menyiapkan naskah presentasi di Pertemuan 15 nanti, karena presentasi yang baik menceritakan proses, bukan cuma menunjukkan hasil akhir.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Praktikum Pertemuan 14</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Analisis Studi Kasus Mandiri</div>
+        <ul>
+          <li>Pilih satu aplikasi atau produk multimedia yang kalian pakai sehari-hari (contoh: Gojek, Tokopedia, Instagram, Spotify, Duolingo, aplikasi kampus, atau game mobile favorit kalian)</li>
+          <li>Telusuri dan tuliskan dugaan proses design thinking di balik satu fitur spesifik dari produk tersebut — boleh spekulatif, tapi setiap dugaan harus punya alasan yang masuk akal berdasarkan pengamatan kalian sendiri</li>
+          <li>Untuk tahap Empathize: menurut kalian, masalah atau kebutuhan pengguna apa yang mendorong fitur ini dibuat? Sebutkan tanda-tanda dari pengalaman kalian sendiri memakai fitur tersebut</li>
+          <li>Untuk tahap Define: coba rumuskan POV yang mungkin dipakai tim di balik fitur ini</li>
+          <li>Untuk tahap Ideate & Prototype: menurut kalian, alternatif solusi apa saja yang mungkin sempat dipertimbangkan tim sebelum memilih desain yang sekarang ada?</li>
+          <li>Untuk tahap Test: sebutkan satu detail kecil di fitur tersebut yang terlihat seperti hasil dari iterasi berdasarkan uji coba (misalnya microcopy, animasi, atau penempatan tombol yang terasa "dipikirkan matang")</li>
+          <li>Deliverable: dokumen tertulis 2-3 halaman, dilengkapi tangkapan layar fitur yang dibahas</li>
+          <li>Format nama file: NIM_Nama_P14_AnalisisStudiKasus.pdf</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Refleksi Singkat Proyek Kelompok</div>
+        <ul>
+          <li>Bersama kelompok proyek akhir kalian, tuliskan jawaban singkat (2-3 kalimat per pertanyaan) dari keenam pertanyaan reflektif di Bagian 5</li>
+          <li>Simpan catatan ini karena akan langsung dipakai sebagai bahan menyusun naskah presentasi di Pertemuan 15</li>
+          <li>Tandai bagian mana dari proyek kalian yang masih terasa "karena menurut kami begitu" alih-alih "karena riset menunjukkan begitu" — ini jadi PR utama sebelum finalisasi</li>
+          <li>Deliverable: satu halaman catatan kelompok, dikumpulkan bersama tugas individu</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-thinking-multimedia-p13.html">← Pertemuan 13</a>
+    <a href="../index.html?matkul=dtm" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="desain-thinking-multimedia-p15.html" class="next-btn">Pertemuan 15 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Desain Thinking for Multimedia</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'design thinking':'Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen untuk berinovasi',
+    'empathy map':'Alat visual untuk memetakan apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan pengguna agar tim lebih memahami kebutuhan mereka',
+    'persona':'Representasi fiktif pengguna ideal berdasarkan riset nyata, dipakai agar tim desain tetap fokus pada kebutuhan pengguna yang sebenarnya',
+    'POV':'Point of View — pernyataan masalah yang memadukan pengguna, kebutuhan, dan insight menjadi satu kalimat fokus dalam design thinking',
+    'HMW':'How Might We — format pertanyaan pembuka sesi ideasi yang mengubah sebuah masalah menjadi peluang untuk dicarikan solusi',
+    'ideation':'Tahap menghasilkan dan mengeksplorasi sebanyak mungkin kemungkinan ide sebelum memilih solusi terbaik untuk dikembangkan',
+    'wireframe':'Sketsa struktural low-fidelity yang menunjukkan tata letak elemen pada layar tanpa detail visual seperti warna atau gambar final',
+    'storyboard':'Rangkaian sketsa atau gambar yang menggambarkan alur cerita/adegan secara berurutan sebelum produksi multimedia dimulai',
+    'prototipe':'Purwarupa atau model awal sebuah produk yang dibuat untuk diuji dan mendapat umpan balik sebelum dikembangkan sepenuhnya',
+    'MVP':'Minimum Viable Product — versi paling sederhana dari sebuah produk yang sudah bisa diuji ke pengguna nyata dengan fitur inti saja',
+    'usability testing':'Metode evaluasi dengan mengamati pengguna asli saat mencoba memakai produk, untuk menemukan masalah kegunaan yang perlu diperbaiki',
+    'iterasi':'Proses mengulang dan menyempurnakan desain secara bertahap berdasarkan umpan balik dan hasil pengujian sebelumnya',
+    'journey map':'Peta visual yang menggambarkan setiap langkah, perasaan, dan titik masalah yang dialami pengguna saat berinteraksi dengan sebuah produk',
+    'affinity diagram':'Teknik mengelompokkan catatan atau insight hasil riset yang mirip ke dalam beberapa kategori untuk menemukan pola dan tema utama',
+    'low-fidelity':'Tingkat purwarupa yang sederhana dan kasar, misalnya sketsa tangan di atas kertas, dibuat cepat untuk menguji ide dasar',
+    'high-fidelity':'Tingkat purwarupa yang sudah mendekati produk akhir — lengkap dengan visual, warna, dan interaksi yang realistis',
+    'user research':'Proses sistematis mengumpulkan data tentang perilaku, kebutuhan, dan motivasi pengguna lewat wawancara, observasi, atau survei',
+    'stakeholder':'Pihak yang punya kepentingan atau terpengaruh oleh sebuah proyek, misalnya klien, pengguna, tim internal, atau investor',
+    'SUS':'System Usability Scale — kuesioner standar 10 pertanyaan untuk mengukur skor kegunaan (usability) sebuah produk secara angka 0-100',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
+</body>
+</html>

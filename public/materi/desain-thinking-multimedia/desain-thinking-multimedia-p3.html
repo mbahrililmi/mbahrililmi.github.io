@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 3 – Fase Define: Merumuskan Masalah | Desain Thinking for Multimedia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,424 +226,199 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Desain Thinking for Multimedia</div>
+    <div class="course-title">Fase Define: Merumuskan Masalah</div>
+    <div class="pertemuan-badge">Pertemuan 3</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <a href="#section-2" class="toc-link">Kenapa Define Krusial</a>
+    <a href="#section-3" class="toc-link">Problem Statement / POV</a>
+    <a href="#section-4" class="toc-link">How Might We (HMW)</a>
+    <a href="#section-5" class="toc-link">User Persona</a>
+    <a href="#section-6" class="toc-link">Journey Map</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 3 · Desain Thinking for Multimedia</div>
+    <h1>Fase Define: Merumuskan Masalah yang Tepat</h1>
+    <p class="subtitle">Mengubah tumpukan data riset dari tahap Empathize menjadi satu pernyataan masalah yang tajam — lewat problem statement, How Might We, persona, dan journey map.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>DTM301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu merumuskan problem statement (POV), menyusun pertanyaan How Might We, serta menyusun persona dan journey map berdasarkan hasil riset pengguna.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+      <div class="card-title">Menyambung dari Pertemuan Sebelumnya</div>
+      <p style="font-size:.88rem;line-height:1.75;">Di Pertemuan 2, Anda sudah turun langsung mewawancarai orang, mengamati kebiasaan mereka, lalu merapikan semua temuan itu ke dalam empathy map dan affinity diagram. Sekarang Anda mungkin punya folder penuh catatan, kutipan, dan tema-tema menarik — tapi semua itu masih berupa "bahan mentah". Tahap <b>Define</b> adalah dapur tempat bahan mentah itu diolah menjadi satu hidangan yang jelas: sebuah pernyataan masalah yang tajam, spesifik, dan siap dijadikan bahan bakar untuk sesi brainstorming ide di Pertemuan 4.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Banyak tim justru melewatkan tahap ini, atau melakukannya terlalu cepat, lalu langsung lompat ke "bikin solusi". Padahal tahap Define inilah yang menentukan apakah seluruh energi tim nanti diarahkan ke masalah yang benar, atau justru menghabiskan waktu berbulan-bulan menyelesaikan masalah yang salah.</p>
     </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami mengapa perumusan masalah yang tepat sangat menentukan kualitas solusi akhir</li>
+        <li>Mampu menyusun problem statement / Point of View (POV) dari hasil riset pengguna</li>
+        <li>Mampu menyusun pertanyaan How Might We (HMW) yang seimbang — tidak terlalu sempit maupun terlalu luas</li>
+        <li>Memahami struktur lengkap user persona dan mampu menyusunnya berdasarkan data riset nyata</li>
+        <li>Mampu memetakan customer/user journey map lengkap dengan tahapan, touchpoint, emosi, dan pain point</li>
+        <li>Mempraktikkan seluruh proses ini berdasarkan hasil riset yang sudah dikumpulkan di Pertemuan 2</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
+      <h2>Kenapa Define itu Krusial</h2>
     </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Ada ungkapan terkenal dalam dunia design thinking: <i>"a problem well-stated is a problem half-solved"</i> — masalah yang dirumuskan dengan baik sudah setengah terselesaikan. Sebaliknya, masalah yang salah dirumuskan hampir pasti akan menghasilkan solusi yang salah sasaran, betapapun cantik dan canggihnya solusi itu dibuat.</p>
     <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
+      <div class="hb-title">Analogi: Dokter yang Salah Diagnosis</div>
+      <p>Bayangkan seorang pasien datang mengeluh sakit kepala terus-menerus. Jika dokter langsung memberi obat pereda nyeri tanpa mencari tahu akar penyebabnya, gejala mungkin reda sesaat, tapi jika ternyata penyebabnya adalah tekanan darah tinggi yang tidak terdiagnosis, masalah sebenarnya justru dibiarkan berkembang jadi lebih parah. Begitu pula dalam produk digital: jika masalah yang dirumuskan hanya di permukaan ("pengguna komplain aplikasi lambat"), padahal akar masalahnya adalah alur registrasi yang membingungkan sehingga orang mencoba berulang kali dan mengira itu karena aplikasi lambat, maka solusi "percepat server" tidak akan menyelesaikan apa-apa.</p>
     </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
-    </div>
+    <p style="font-size:.88rem;line-height:1.75;">Karena itu, tahap Define bukan sekadar merangkum apa yang sudah ditemukan di tahap Empathize, tapi benar-benar mengolahnya menjadi fokus yang jelas dan bisa ditindaklanjuti — cukup sempit agar tim tidak kebingungan mau mulai dari mana, tapi cukup luas agar masih terbuka ruang untuk kreativitas di tahap Ideate nanti.</p>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-3">
+  <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
+      <h2>Menyusun Problem Statement / POV</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Salah satu format paling populer untuk merumuskan masalah dalam design thinking adalah <b>Point of View (POV)</b> atau problem statement. Formatnya sederhana, tapi memaksa kita memasukkan tiga elemen penting sekaligus: siapa penggunanya, apa kebutuhannya, dan kenapa (insight di baliknya).</p>
+    <div class="card">
+      <div class="card-title">Rumus Dasar</div>
+      <p style="font-size:.88rem;line-height:1.75;font-style:italic;">"[User/nama persona] butuh [kebutuhan] karena [insight/alasan mendalam]."</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Contoh Problem Statement yang Buruk</div>
+        <div class="gc-body">"Siswa SMA butuh aplikasi belajar yang lebih bagus karena aplikasi yang ada sekarang jelek." — Terlalu umum, tidak jelas siapa siswanya, apa artinya "lebih bagus", dan "jelek" bukan insight yang bisa ditindaklanjuti.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Contoh Problem Statement yang Baik</div>
+        <div class="gc-body">"Siswa kelas 12 yang belajar mendadak menjelang ujian butuh cara belajar singkat dan interaktif karena mereka kehilangan motivasi menonton video panjang di detik-detik terakhir sebelum ujian." — Spesifik, berbasis insight nyata dari riset, dan mengarahkan ke solusi yang jelas tanpa menyebutkan solusi itu sendiri.</div>
+      </div>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
+      <div class="hb-title">Perhatikan: Jangan Sebutkan Solusi di Problem Statement</div>
+      <p>Kesalahan umum adalah menyelipkan solusi di dalam rumusan masalah, misalnya "siswa butuh aplikasi dengan fitur kuis interaktif karena..." — ini secara diam-diam sudah "mengunci" solusi sebelum sesi ideasi dimulai, padahal mungkin ada solusi lain yang lebih baik dari sekadar "fitur kuis". Problem statement yang baik menjelaskan masalah dan kebutuhan, bukan menentukan bagaimana cara menyelesaikannya.</p>
     </div>
     <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
+      <h3>Latihan Menajamkan Problem Statement yang Kabur</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Sering kali rumusan masalah pertama yang muncul di kepala tim masih kabur dan perlu dipertajam beberapa kali sebelum benar-benar siap dipakai. Berikut contoh proses penajaman satu masalah dari kabur menjadi tajam, tahap demi tahap.</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Versi</th><th>Rumusan</th><th>Masalah pada Versi Ini</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Versi 1 (Kabur)</td><td>"Pengguna butuh aplikasi yang bagus."</td><td>Tidak jelas siapa penggunanya dan apa artinya "bagus"</td></tr>
+          <tr><td>Versi 2 (Lebih Spesifik)</td><td>"Siswa butuh aplikasi belajar yang cepat dipahami."</td><td>Masih belum ada insight, kenapa mereka butuh itu belum terjawab</td></tr>
+          <tr><td>Versi 3 (Tajam & Siap Pakai)</td><td>"Siswa kelas 12 yang belajar mendadak menjelang ujian butuh cara belajar singkat dan interaktif karena mereka kehilangan motivasi menonton video panjang di detik-detik terakhir."</td><td>Sudah spesifik, berbasis insight riset, dan siap diubah menjadi pertanyaan HMW</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-4">
+  <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>How Might We (HMW)</h2>
     </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Setelah problem statement tersusun, langkah berikutnya adalah mengubahnya menjadi pertanyaan yang mengundang ide — bukan pernyataan yang terasa "final" dan menutup diskusi. Di sinilah teknik <b>How Might We (HMW)</b> dipakai: mengubah masalah menjadi peluang dengan format pertanyaan terbuka yang optimis.</p>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Kenapa Formatnya "How Might We" dan Bukan "How Do We"?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Kata "might" (bisa jadi/mungkin) sengaja dipilih karena terasa lebih santai dan membuka ruang eksplorasi, dibanding "how do we" yang terasa seperti menuntut satu jawaban benar langsung. Ini kedengarannya sepele, tapi secara psikologis membuat sesi ideasi nanti terasa lebih bebas dan tidak menghakimi ide-ide "gila" sekalipun.</p>
     </div>
     <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
+      <h3>Contoh HMW: Terlalu Sempit vs Terlalu Luas vs Pas</h3>
       <div class="grid-3">
         <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
+          <div class="gc-title">Terlalu Sempit</div>
+          <div class="gc-body">"Bagaimana kita bisa menambahkan tombol skip di video pembelajaran?" — Sudah menyebutkan solusi spesifik (tombol skip), membatasi eksplorasi ide lain.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
+          <div class="gc-title">Terlalu Luas</div>
+          <div class="gc-body">"Bagaimana kita bisa membuat belajar jadi menyenangkan?" — Terlalu umum, hampir tidak memberi arah sama sekali, bisa mengarah ke ribuan topik berbeda.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
+          <div class="gc-title">Pas / Seimbang</div>
+          <div class="gc-body">"Bagaimana kita bisa membantu siswa menyerap materi penting dalam waktu singkat menjelang ujian tanpa merasa terburu-buru?" — Cukup spesifik untuk mengarahkan, tapi masih terbuka untuk banyak kemungkinan solusi.</div>
         </div>
       </div>
     </div>
+
     <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
+      <h3>Menyusun Beberapa Variasi HMW dari Satu Problem Statement</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Satu problem statement biasanya bisa dipecah menjadi beberapa pertanyaan HMW dari sudut pandang berbeda. Teknik yang umum dipakai adalah membalik kalimat masalah menjadi peluang: fokus ke bagian positifnya, fokus ke bagian negatifnya (apa yang ingin dihindari), atau mengubah asumsi yang ada. Semakin banyak variasi HMW yang dihasilkan sebelum masuk ke tahap Ideate, semakin luas ruang eksplorasi ide yang bisa digali nantinya.</p>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Kesalahan Umum Saat Menyusun HMW <span class="icon">▼</span></div>
+        <div class="accordion-body">
+          <ul class="styled">
+            <li><b>Menyisipkan solusi terselubung:</b> "Bagaimana kita bisa membuat fitur reminder yang lebih baik?" — kata "fitur reminder" sudah membatasi jenis solusinya</li>
+            <li><b>Terlalu banyak syarat sekaligus:</b> menggabungkan tiga masalah berbeda dalam satu HMW membuatnya sulit dijawab dengan fokus</li>
+            <li><b>Tidak berbasis insight nyata:</b> HMW yang dikarang bebas tanpa akar dari hasil riset cenderung menghasilkan ide yang tidak relevan</li>
+            <li><b>Terlalu menghakimi:</b> menyiratkan hanya ada satu jawaban benar, sehingga anggota tim ragu mengusulkan ide yang berbeda</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>User Persona</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Bayangkan tim Anda beranggotakan lima orang, dan masing-masing membayangkan "pengguna" secara berbeda-beda di kepala mereka saat berdiskusi. Ini resep kekacauan. <b>Persona</b> hadir sebagai solusi: sebuah representasi fiktif dari pengguna ideal, disusun berdasarkan pola nyata dari hasil riset (bukan karangan bebas), supaya seluruh tim punya bayangan yang sama persis ketika mengambil keputusan desain.</p>
+    <div class="card">
+      <div class="card-title">Contoh Persona Lengkap</div>
+      <p style="font-size:.88rem;line-height:1.75;"><b>Nama:</b> Dinda, 17 tahun<br>
+      <b>Deskripsi Singkat:</b> Siswi kelas 12 SMA Negeri di Banjarmasin, aktif di ekstrakurikuler paduan suara, sering belajar sambil rebahan dan mendengarkan musik.<br>
+      <b>Demografi:</b> Tinggal bersama orang tua, punya smartphone kelas menengah dengan kuota internet terbatas, mengakses internet mayoritas lewat WiFi rumah malam hari.<br>
+      <b>Goals (Tujuan):</b> Ingin lulus ujian dengan nilai yang cukup untuk masuk jurusan kuliah pilihannya tanpa harus belajar berjam-jam setiap hari.<br>
+      <b>Frustrations (Frustrasi):</b> Merasa video pembelajaran daring terlalu panjang dan membosankan, sering kehilangan fokus di menit ke-5, dan cemas karena baru mulai belajar serius H-3 sebelum ujian.<br>
+      <b>Quote Khas:</b> "Aku tuh maunya belajar yang to the point aja, nggak usah muter-muter dulu baru masuk inti."</p>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+      <div class="hb-title">Persona Bukan Karangan Bebas</div>
+      <p>Detail seperti nama dan foto memang fiksi, tapi goals, frustrations, dan quote-nya harus benar-benar diambil dari pola yang muncul berulang di hasil wawancara Anda. Kalau tiga dari lima narasumber Anda mengeluhkan hal yang sama, itu layak masuk persona. Kalau hanya satu orang menyebutkan sesuatu yang unik, sebaiknya jangan dijadikan bagian utama persona karena tidak mewakili pola umum.</p>
     </div>
+
     <div class="sub-section">
-      <h3>Konsep Airflow</h3>
-      <div class="grid-3">
+      <h3>Persona vs Proto-Persona</h3>
+      <div class="grid-2">
         <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
+          <div class="gc-title">Persona (Berbasis Riset Penuh)</div>
+          <div class="gc-body">Disusun dari data wawancara dan observasi yang sudah dikumpulkan langsung dari calon pengguna nyata, seperti yang kita lakukan di Pertemuan 2. Lebih akurat, tapi butuh waktu riset lebih lama.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
+          <div class="gc-title">Proto-Persona (Asumsi Awal Tim)</div>
+          <div class="gc-body">Disusun cepat berdasarkan asumsi dan pengetahuan tim tentang pengguna, dipakai sebagai titik awal saat riset belum sempat dilakukan, lalu wajib divalidasi ulang begitu data riset tersedia. Berguna untuk proyek dengan waktu sangat terbatas, tapi berisiko jika tidak pernah divalidasi.</div>
         </div>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
+      <div class="highlight-box">
+        <div class="hb-title">Untuk Proyek Anda</div>
+        <p>Karena Anda sudah melakukan riset langsung di Pertemuan 2, persona yang Anda susun sekarang seharusnya sudah berupa persona berbasis riset, bukan sekadar proto-persona. Ini nilai tambah besar dibanding tim yang langsung menebak-nebak pengguna mereka tanpa riset sama sekali.</p>
       </div>
     </div>
   </section>
@@ -652,20 +427,75 @@ with DAG(
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Customer/User Journey Map</h2>
     </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Kalau persona menjawab "siapa" pengguna kita, <b>journey map</b> menjawab "bagaimana" perjalanan mereka berinteraksi dengan produk kita dari awal sampai akhir — lengkap dengan perasaan mereka di setiap langkah. Ini sangat membantu menemukan titik-titik mana yang paling menyakitkan (pain point) dan paling menyenangkan dalam perjalanan tersebut.</p>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Tahapan</th><th>Aktivitas / Touchpoint</th><th>Perasaan Pengguna</th><th>Pain Point</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Awareness</b></td><td>Melihat rekomendasi aplikasi belajar dari teman sekelas</td><td>Penasaran, sedikit skeptis</td><td>Ragu apakah aplikasi ini beda dari yang lain</td></tr>
+        <tr><td><b>Onboarding</b></td><td>Mengunduh dan mendaftar akun pertama kali</td><td>Terburu-buru, malas isi form panjang</td><td>Proses daftar akun terlalu banyak langkah</td></tr>
+        <tr><td><b>Eksplorasi</b></td><td>Mencoba mencari materi ujian yang relevan</td><td>Bingung, mencari-cari menu</td><td>Struktur menu tidak intuitif</td></tr>
+        <tr><td><b>Penggunaan Inti</b></td><td>Menonton video singkat & mengerjakan kuis</td><td>Fokus, mulai menikmati</td><td>Video kadang buffering saat kuota tipis</td></tr>
+        <tr><td><b>Evaluasi</b></td><td>Melihat skor & progres belajar</td><td>Puas jika skor bagus, cemas jika rendah</td><td>Tidak ada saran perbaikan setelah kuis</td></tr>
+        <tr><td><b>Retensi</b></td><td>Membuka aplikasi lagi keesokan harinya</td><td>Termotivasi jika ada pengingat/streak</td><td>Lupa buka lagi tanpa notifikasi pengingat</td></tr>
+      </tbody>
+    </table>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+      <div class="card-title">Kenapa Emosi Penting Dipetakan?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Grafik naik-turun emosi di sepanjang journey map membantu tim melihat sekilas di titik mana pengguna paling rentan berhenti memakai produk (drop-off point). Dari tabel di atas misalnya, tahap Onboarding dan tahap Penggunaan Inti sama-sama punya potensi pain point besar — ini menjadi sinyal kuat bahwa dua area itu perlu diprioritaskan saat masuk ke tahap Ideate di Pertemuan 4.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Tools untuk Membuat Journey Map & Persona</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Anda tidak perlu software mahal untuk menyusun persona dan journey map — bahkan kertas dan spidol pun cukup di tahap awal. Namun beberapa tools digital berikut ini bisa mempercepat proses dan memudahkan kolaborasi tim, terutama jika anggota tim tidak selalu bisa bertemu tatap muka.</p>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Miro / FigJam</div>
+          <div class="gc-body">Papan kolaborasi digital tak terbatas, cocok untuk menempel sticky note virtual, menyusun affinity diagram, dan membuat journey map bersama tim secara real-time.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Canva</div>
+          <div class="gc-body">Menyediakan template persona dan customer journey map siap pakai yang tinggal diisi, cocok untuk hasil yang rapi dan mudah dipresentasikan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Kertas & Sticky Note</div>
+          <div class="gc-body">Cara paling cepat dan murah untuk sesi awal bersama tim — tanpa distraksi teknis, dan seringkali justru mempercepat diskusi dibanding tools digital yang terlalu banyak fitur.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 3</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan: Define dari Hasil Riset Pertemuan 2</div>
+        <ul>
+          <li>Gunakan hasil wawancara, observasi, dan empathy map yang sudah Anda susun di Pertemuan 2 sebagai bahan dasar</li>
+          <li>Susun 1 user persona lengkap (nama, deskripsi singkat, demografi, goals, frustrations, dan quote khas) berdasarkan pola nyata dari riset Anda</li>
+          <li>Rumuskan 1 problem statement / POV menggunakan rumus "[User] butuh [kebutuhan] karena [insight]"</li>
+          <li>Susun minimal 3 pertanyaan How Might We (HMW) yang seimbang — tidak terlalu sempit, tidak terlalu luas — berdasarkan problem statement tersebut</li>
+          <li>Deliverable: PDF berisi persona, problem statement, dan 3 pertanyaan HMW</li>
+          <li>Format nama file: NIM_Nama_P3_DefinePersona.pdf</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="desain-thinking-multimedia-p2.html">← Pertemuan 2</a>
+    <a href="../index.html?matkul=dtm" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="desain-thinking-multimedia-p4.html" class="next-btn">Pertemuan 4 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Desain Thinking for Multimedia</div>
 
 </main>
 
@@ -698,7 +528,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +596,24 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'design thinking':'Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen untuk berinovasi',
+    'empathy map':'Alat visual untuk memetakan apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan pengguna agar tim lebih memahami kebutuhan mereka',
+    'persona':'Representasi fiktif pengguna ideal berdasarkan riset nyata, dipakai agar tim desain tetap fokus pada kebutuhan pengguna yang sebenarnya',
+    'POV':'Point of View — pernyataan masalah yang memadukan pengguna, kebutuhan, dan insight menjadi satu kalimat fokus dalam design thinking',
+    'HMW':'How Might We — format pertanyaan pembuka sesi ideasi yang mengubah sebuah masalah menjadi peluang untuk dicarikan solusi',
+    'ideation':'Tahap menghasilkan dan mengeksplorasi sebanyak mungkin kemungkinan ide sebelum memilih solusi terbaik untuk dikembangkan',
+    'wireframe':'Sketsa struktural low-fidelity yang menunjukkan tata letak elemen pada layar tanpa detail visual seperti warna atau gambar final',
+    'storyboard':'Rangkaian sketsa atau gambar yang menggambarkan alur cerita/adegan secara berurutan sebelum produksi multimedia dimulai',
+    'prototipe':'Purwarupa atau model awal sebuah produk yang dibuat untuk diuji dan mendapat umpan balik sebelum dikembangkan sepenuhnya',
+    'MVP':'Minimum Viable Product — versi paling sederhana dari sebuah produk yang sudah bisa diuji ke pengguna nyata dengan fitur inti saja',
+    'usability testing':'Metode evaluasi dengan mengamati pengguna asli saat mencoba memakai produk, untuk menemukan masalah kegunaan yang perlu diperbaiki',
+    'iterasi':'Proses mengulang dan menyempurnakan desain secara bertahap berdasarkan umpan balik dan hasil pengujian sebelumnya',
+    'journey map':'Peta visual yang menggambarkan setiap langkah, perasaan, dan titik masalah yang dialami pengguna saat berinteraksi dengan sebuah produk',
+    'affinity diagram':'Teknik mengelompokkan catatan atau insight hasil riset yang mirip ke dalam beberapa kategori untuk menemukan pola dan tema utama',
+    'low-fidelity':'Tingkat purwarupa yang sederhana dan kasar, misalnya sketsa tangan di atas kertas, dibuat cepat untuk menguji ide dasar',
+    'high-fidelity':'Tingkat purwarupa yang sudah mendekati produk akhir — lengkap dengan visual, warna, dan interaksi yang realistis',
+    'user research':'Proses sistematis mengumpulkan data tentang perilaku, kebutuhan, dan motivasi pengguna lewat wawancara, observasi, atau survei',
+    'stakeholder':'Pihak yang punya kepentingan atau terpengaruh oleh sebuah proyek, misalnya klien, pengguna, tim internal, atau investor',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

@@ -261,26 +261,26 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="highlight-box">
       <div class="hb-title">Sub-CPMK Pertemuan 9</div>
-      <p>Mahasiswa mampu <b>mengenal dan memahami tools utama Big Data</b>: REST API, Docker, Hadoop Ecosystem, dan Cloud Platforms, serta memahami peran masing-masing dalam arsitektur big data modern.</p>
+      <p>Setelah pertemuan ini, kalian diharapkan sudah <b>kenal dan nyaman dengan tools utama Big Data</b> yang bakal sering muncul di dunia kerja: REST API, Docker, Hadoop Ecosystem, dan Cloud Platforms. Bukan sekadar tahu namanya, tapi paham peran masing-masing tools ini di dalam arsitektur big data modern — kapan dipakai dan kenapa dipakai.</p>
     </div>
     <div class="sub-section">
       <h3>Tujuan Pembelajaran</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">REST API untuk Data Access</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep REST API sebagai interface untuk mengakses dan berbagi data antara aplikasi, termasuk HTTP methods (GET/POST/PUT/DELETE), status codes, dan implementasi dengan Python Flask/FastAPI.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Bayangkan REST API sebagai "pintu resmi" yang membuka data kalian ke aplikasi lain — jadi aplikasi berbeda bisa saling minta dan kirim data tanpa harus tahu isi dapur satu sama lain. Di bagian ini kita akan kupas HTTP methods (GET/POST/PUT/DELETE) sebagai "kata kerja" permintaan, status code sebagai kode balasannya, sampai cara membuatnya sendiri pakai Python Flask/FastAPI.</p>
         </div>
         <div class="card">
           <div class="card-title">Docker Containerization</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami Docker sebagai platform containerization untuk menjalankan aplikasi big data secara isolated, portable, dan reproducible di berbagai environment (dev, staging, production).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Pernah dengar keluhan "kok di laptop saya jalan, tapi di server error"? Nah, Docker hadir untuk menyelesaikan masalah itu. Kita akan pelajari Docker sebagai platform containerization yang membungkus aplikasi big data beserta seluruh kebutuhannya, sehingga bisa berjalan konsisten dan portable di environment mana pun — mulai dari laptop development, staging, sampai production.</p>
         </div>
         <div class="card">
           <div class="card-title">Hadoop Ecosystem</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mengenal komponen Hadoop ecosystem: HDFS (distributed storage), MapReduce/YARN (processing), Hive (SQL interface), Spark (fast in-memory processing), dan HBase (NoSQL).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Hadoop itu bukan satu tools, tapi sebuah "keluarga besar" tools yang saling melengkapi. Kita akan berkenalan dengan anggota-anggota utamanya: HDFS untuk menyimpan data dalam skala raksasa, MapReduce/YARN untuk memprosesnya, Hive supaya bisa query pakai SQL yang familiar, Spark untuk pemrosesan cepat di memori, dan HBase untuk penyimpanan ala NoSQL.</p>
         </div>
         <div class="card">
           <div class="card-title">Cloud Big Data Platforms</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami managed big data services di cloud: AWS EMR/S3/Redshift, Google BigQuery/Dataflow, Azure Synapse, dan kapan cloud vs on-premise lebih tepat digunakan.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Terakhir, kita akan lihat bagaimana penyedia cloud besar sudah menyediakan layanan big data secara "siap pakai" — mulai dari AWS dengan EMR/S3/Redshift-nya, Google Cloud dengan BigQuery/Dataflow, sampai Azure Synapse. Kalian juga akan belajar mempertimbangkan kapan sebaiknya pakai cloud, dan kapan lebih masuk akal membangun infrastruktur sendiri (on-premise).</p>
         </div>
       </div>
     </div>
@@ -294,7 +294,7 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="card">
       <div class="card-title">REST API</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>RESTful Web Services</b> untuk data access via HTTP.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Sederhananya, <b>RESTful Web Services</b> adalah cara standar bagi aplikasi untuk saling "ngobrol" dan bertukar data lewat protokol HTTP — permintaan dikirim, server merespons, dan komunikasi selesai tanpa perlu koneksi yang rumit.</p>
     </div>
     <div class="sub-section">
       <h3>Contoh REST API dengan Flask</h3>
@@ -326,18 +326,18 @@ if __name__ == '__main__':
     </div>
     <div class="highlight-box">
       <div class="hb-title">Apa itu Docker?</div>
-      <p><b>Docker</b> adalah platform containerization yang memungkinkan aplikasi dijalankan dalam <b>container</b> — environment yang isolated, lightweight, dan portable. Container berisi semua dependencies yang dibutuhkan aplikasi, sehingga "works on my machine" tidak lagi menjadi masalah.</p>
+      <p>Coba bayangkan sebuah kontainer pengiriman barang — apa pun isinya, ukurannya standar dan bisa dipindahkan dengan mudah ke kapal, truk, atau kereta mana pun tanpa perlu dibongkar ulang. <b>Docker</b> bekerja dengan filosofi yang sama untuk aplikasi: ia membungkus aplikasi beserta semua dependencies yang dibutuhkannya ke dalam sebuah <b>container</b> — sebuah lingkungan yang ringan, terisolasi, dan portable. Hasilnya, keluhan klasik "kok di laptop saya jalan, tapi di server lain error" (works on my machine) tidak lagi jadi masalah, karena container yang sama persis bisa dijalankan di mana saja.</p>
     </div>
     <div class="sub-section">
       <h3>Docker vs Virtual Machine</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Virtual Machine (VM)</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Full OS virtualization</b> — setiap VM menjalankan OS lengkap di atas hypervisor. Berat (beberapa GB), boot lambat (menit), sangat isolated. Cocok untuk workload yang butuh full OS isolation atau OS berbeda.</p>
+          <p style="font-size:.88rem;line-height:1.75;">VM itu ibarat membangun rumah baru lengkap dengan fondasi sendiri — setiap VM menjalankan <b>sistem operasi (OS) lengkap</b> di atas hypervisor, terlepas dari OS lainnya. Konsekuensinya, ukurannya berat (bisa beberapa GB), waktu boot-nya lambat (hitungan menit), tapi isolasinya sangat kuat. Cocok dipakai kalau workload kalian benar-benar butuh isolasi OS penuh, atau harus menjalankan OS yang berbeda-beda.</p>
         </div>
         <div class="card">
           <div class="card-title">Docker Container</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>OS-level virtualization</b> — containers berbagi kernel host OS. Ringan (MB), boot sangat cepat (detik), portable. Cocok untuk microservices, big data apps, CI/CD pipeline, dan development environments.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Docker container lebih mirip menyewa kamar apartemen — kalian punya ruang sendiri, tapi tetap berbagi fondasi bangunan (kernel) yang sama dengan penghuni lain. Karena hanya beroperasi di <b>level OS</b> dan berbagi kernel host, ukurannya jadi ringan (hitungan MB), boot-nya sangat cepat (hitungan detik), dan mudah dipindah-pindah. Ini yang membuat Docker jadi pilihan populer untuk microservices, aplikasi big data, pipeline CI/CD, dan environment development sehari-hari.</p>
         </div>
       </div>
     </div>
@@ -346,27 +346,27 @@ if __name__ == '__main__':
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">Image</div>
-          <div class="gc-body">Blueprint read-only untuk container. Berisi OS base, dependencies, config, dan kode. Dibuat dari Dockerfile. Versi dapat di-tag (v1.0, latest).</div>
+          <div class="gc-body">Anggap saja ini seperti cetakan kue — sebuah blueprint read-only yang berisi OS dasar, dependencies, konfigurasi, dan kode aplikasi. Image dibuat dari Dockerfile, dan setiap versinya bisa diberi tag supaya mudah dilacak (misalnya v1.0 atau latest).</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Container</div>
-          <div class="gc-body">Running instance dari image. Isolated, memiliki filesystem sendiri, network, dan process space. Bisa di-start, stop, pause, delete.</div>
+          <div class="gc-body">Kalau image adalah cetakannya, container adalah "kue" yang sudah jadi dan sedang berjalan. Ia terisolasi, punya filesystem, network, dan process space sendiri — dan seperti proses biasa, bisa di-start, stop, pause, atau dihapus kapan saja.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Dockerfile</div>
-          <div class="gc-body">Script teks berisi instruksi untuk build image. Mendefinisikan base image, copy files, install dependencies, expose ports, dan run command.</div>
+          <div class="gc-body">Ini adalah "resep" dalam bentuk teks berisi instruksi langkah demi langkah untuk membangun sebuah image: image dasar apa yang dipakai, file apa yang disalin, dependencies apa yang di-install, port mana yang dibuka, sampai perintah apa yang dijalankan.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Docker Hub</div>
-          <div class="gc-body">Registry publik untuk menyimpan dan berbagi Docker images. Mirip GitHub tapi untuk container images. Tersedia images resmi (Python, Hadoop, Kafka).</div>
+          <div class="gc-body">Kalau GitHub tempat berbagi kode, Docker Hub adalah tempat berbagi image — sebuah registry publik untuk menyimpan dan mengunduh Docker image. Di sana sudah tersedia image resmi yang siap pakai, seperti Python, Hadoop, atau Kafka.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Docker Compose</div>
-          <div class="gc-body">Tool untuk mendefinisikan dan menjalankan multi-container applications menggunakan file docker-compose.yml. Cocok untuk stack development lokal.</div>
+          <div class="gc-body">Kalau aplikasi kalian butuh lebih dari satu container yang saling terhubung, Docker Compose adalah tool yang memudahkan — cukup definisikan semuanya dalam satu file docker-compose.yml, lalu jalankan sekaligus. Sangat pas untuk stack development di lokal.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Volume & Network</div>
-          <div class="gc-body">Volume untuk persistent storage (data tidak hilang saat restart). Network untuk komunikasi antar container dalam satu host.</div>
+          <div class="gc-body">Dua konsep pendukung yang penting: Volume menjaga data tetap ada walau container di-restart (persistent storage), sementara Network memungkinkan antar container di satu host saling berkomunikasi.</div>
         </div>
       </div>
     </div>
@@ -409,7 +409,7 @@ docker run -d -p 5000:5000 bigdata-app:1.0</code></pre>
     </div>
     <div class="highlight-box">
       <div class="hb-title">Apa itu Apache Hadoop?</div>
-      <p><b>Apache Hadoop</b> adalah open-source framework untuk <b>distributed storage dan processing</b> data dalam jumlah sangat besar menggunakan cluster of commodity computers. Hadoop memungkinkan memproses petabytes data yang tidak mungkin ditangani satu server.</p>
+      <p>Bayangkan satu server raksasa yang harus menyimpan dan mengolah data sebesar petabyte — jelas tidak sanggup, sekuat apa pun spesifikasinya. Nah, ide dasar <b>Apache Hadoop</b> adalah "kalau satu komputer tidak cukup kuat, kenapa tidak pakai banyak komputer sekaligus?" Hadoop adalah framework open-source untuk <b>distributed storage dan processing</b> yang membagi-bagi data dan pekerjaan ke sekumpulan komputer biasa (commodity computers) yang bekerja sama sebagai satu cluster, sehingga data sebesar apa pun tetap bisa ditangani.</p>
     </div>
     <div class="sub-section">
       <h3>Core Components Hadoop</h3>
@@ -465,11 +465,11 @@ spark.stop()</code></pre>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Cloud Big Data</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Kelebihan:</b> Scalable (bayar sesuai pakai), managed (tidak maintain hardware), cepat setup, global availability, built-in HA<br><b>Kekurangan:</b> Biaya tinggi untuk sustained workloads, latency ke cloud, data sovereignty, vendor lock-in</p>
+          <p style="font-size:.88rem;line-height:1.75;">Pakai cloud itu seperti menyewa apartemen serba-ada — tinggal pakai, tidak perlu pusing urus bangunannya. <b>Kelebihannya:</b> scalable (bayar sesuai pemakaian), managed (tidak perlu maintain hardware sendiri), setup-nya cepat, tersedia secara global, dan sudah dilengkapi high availability bawaan. <b>Tapi ada juga kekurangannya:</b> biaya bisa membengkak untuk pemakaian jangka panjang yang terus-menerus, ada latency saat mengakses cloud, isu kedaulatan data (data sovereignty), dan risiko terkunci pada satu vendor (vendor lock-in).</p>
         </div>
         <div class="card">
           <div class="card-title">On-Premise Hadoop</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Kelebihan:</b> Full control data, predictable cost untuk large sustained workloads, data privacy, no internet dependency, customize hardware<br><b>Kekurangan:</b> CAPEX tinggi, perlu tim ops, scaling lambat, tidak flexible</p>
+          <p style="font-size:.88rem;line-height:1.75;">Sebaliknya, on-premise itu seperti membeli rumah sendiri — modal awal besar, tapi semuanya di bawah kendali kalian penuh. <b>Kelebihannya:</b> kontrol penuh atas data, biaya lebih predictable untuk beban kerja besar yang berkelanjutan, privasi data lebih terjaga, tidak bergantung koneksi internet, dan hardware bisa disesuaikan sendiri. <b>Kekurangannya:</b> butuh belanja modal (CAPEX) yang tinggi di awal, perlu tim operasional khusus untuk merawatnya, proses scaling relatif lambat, dan kurang fleksibel dibanding cloud.</p>
         </div>
       </div>
     </div>
@@ -500,7 +500,7 @@ spark.stop()</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Setup Docker, create simple REST API dengan Flask, explore Hadoop sandbox.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Saatnya praktik langsung: kalian akan mencoba sendiri melakukan setup Docker di komputer masing-masing, membuat REST API sederhana dengan Flask, dan menjelajahi Hadoop sandbox agar teori yang dibahas tadi benar-benar terasa nyata.</p>
     </div>
   </section>
 

@@ -270,19 +270,19 @@ ul.styled li::marker{color:var(--gold);}
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Konsep Classification</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep dasar classification sebagai supervised learning technique yang memprediksi kategori/class dari data berdasarkan features yang telah dilatih dari labeled dataset.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami classification sebagai teknik supervised learning — cara model "belajar" dari data yang sudah diberi label, lalu memakai pengetahuan itu untuk menebak kategori/class dari data baru berdasarkan fitur-fiturnya.</p>
         </div>
         <div class="card">
           <div class="card-title">Algoritma Decision Tree, Naive Bayes, k-NN</div>
-          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan cara kerja tiga algoritma utama classification: Decision Tree (tree-based splits), Naive Bayes (probabilistic), dan k-Nearest Neighbors (distance-based).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mempelajari cara kerja tiga algoritma classification yang paling sering dipakai: Decision Tree yang bekerja lewat percabangan pohon keputusan, Naive Bayes yang mengandalkan peluang (probabilistic), dan k-Nearest Neighbors yang menebak berdasarkan kedekatan jarak (distance-based).</p>
         </div>
         <div class="card">
           <div class="card-title">Implementasi Python</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mampu mengimplementasikan classification model dengan Python menggunakan scikit-learn: dari data preprocessing, model training, hingga prediksi dan evaluasi.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mampu membangun model classification langsung dengan Python memakai scikit-learn — mulai dari menyiapkan data (preprocessing), melatih model (training), sampai membuat prediksi dan mengevaluasi hasilnya.</p>
         </div>
         <div class="card">
           <div class="card-title">Metrics Evaluasi</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami dan menghitung metrics evaluasi model: accuracy (proporsi benar), precision (true positive rate), recall (sensitivity), F1-score, dan ROC-AUC.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami dan bisa menghitung sendiri metrik-metrik untuk menilai model: accuracy (proporsi tebakan yang benar), precision (seberapa presisi tebakan positifnya), recall (seberapa banyak kasus positif yang berhasil ditangkap), F1-score, dan ROC-AUC.</p>
         </div>
       </div>
     </div>
@@ -296,22 +296,22 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="highlight-box">
       <div class="hb-title">Definisi</div>
-      <p>Classification adalah <b>supervised learning technique</b> yang digunakan untuk memprediksi kategori atau class dari data berdasarkan features yang ada. Model dilatih dengan labeled data untuk mempelajari pola dan membuat prediksi.</p>
+      <p>Coba bayangkan cara kerja spam filter di email Anda: ia sudah "belajar" dari ribuan contoh email yang pernah ditandai spam atau bukan, lalu dari situ ia bisa menebak email baru mana yang spam. Nah, itulah inti dari classification — sebuah <b>teknik supervised learning</b> yang dipakai untuk menebak kategori atau class dari sebuah data berdasarkan fitur-fitur yang dimilikinya. Modelnya dilatih memakai data yang sudah diberi label, supaya ia mempelajari polanya lebih dulu sebelum dipakai membuat prediksi.</p>
     </div>
     <div class="sub-section">
       <h3>Karakteristik Classification</h3>
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">Supervised Learning</div>
-          <div class="gc-body">Memerlukan training data dengan labels yang sudah diketahui untuk melatih model.</div>
+          <div class="gc-body">Model tidak bisa belajar sendiri dari nol — ia butuh data latihan yang labelnya sudah diketahui lebih dulu, baru dari situ ia bisa "mengerti" pola yang harus dipelajari.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Discrete Output</div>
-          <div class="gc-body">Output berupa kategori/class (binary atau multi-class), bukan nilai kontinu.</div>
+          <div class="gc-body">Hasil akhirnya berupa kategori/class yang jelas dan terbatas (bisa dua pilihan/binary atau lebih/multi-class), bukan angka yang terus menerus seperti pada regresi.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Decision Boundary</div>
-          <div class="gc-body">Model membuat decision boundary untuk memisahkan different classes dalam feature space.</div>
+          <div class="gc-body">Model pada dasarnya menggambar garis atau batas pemisah (decision boundary) untuk membedakan mana data yang masuk kelas satu dan mana yang masuk kelas lain.</div>
         </div>
       </div>
     </div>
@@ -320,27 +320,27 @@ ul.styled li::marker{color:var(--gold);}
       <div class="grid-3">
         <div class="card">
           <div class="card-title">Finance — Credit Scoring</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memprediksi kelayakan kredit nasabah: <b>Approve / Reject</b>. Fitur: penghasilan, riwayat kredit, utang, aset. Algoritma: Logistic Regression, Random Forest.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Bank perlu memutuskan apakah pengajuan kredit seorang nasabah layak disetujui atau tidak: <b>Approve / Reject</b>. Keputusan ini diambil dari fitur seperti penghasilan, riwayat kredit, utang, dan aset yang dimiliki, biasanya memakai algoritma Logistic Regression atau Random Forest.</p>
         </div>
         <div class="card">
           <div class="card-title">Healthcare — Disease Diagnosis</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mendiagnosis kondisi pasien: <b>Healthy / Diseased</b>. Fitur: gejala, hasil lab, imaging data. Algoritma: Decision Tree, SVM, Neural Network.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Membantu mendiagnosis kondisi pasien: <b>Healthy / Diseased</b>. Modelnya belajar dari gejala, hasil lab, dan data imaging, lalu diklasifikasikan memakai Decision Tree, SVM, atau Neural Network.</p>
         </div>
         <div class="card">
           <div class="card-title">E-commerce — Churn Prediction</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memprediksi pelanggan yang akan berhenti berlangganan: <b>Stay / Leave</b>. Fitur: frekuensi pembelian, last login, customer lifetime value.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Menebak pelanggan mana yang berpotensi berhenti berlangganan: <b>Stay / Leave</b>. Fitur yang dipakai antara lain frekuensi pembelian, kapan terakhir login, dan nilai pelanggan sepanjang masa (customer lifetime value).</p>
         </div>
         <div class="card">
           <div class="card-title">Email — Spam Detection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mengklasifikasikan email sebagai <b>Spam / Not Spam</b>. Fitur: kata-kata tertentu, sender reputation, link dalam email. Algoritma: Naive Bayes.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Memilah email masuk menjadi <b>Spam / Not Spam</b>, dengan melihat kata-kata tertentu, reputasi pengirim, dan link yang ada di dalam email. Algoritma yang populer dipakai di sini: Naive Bayes.</p>
         </div>
         <div class="card">
           <div class="card-title">Retail — Customer Value</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mengkategorikan pelanggan berdasarkan nilai: <b>High / Medium / Low Value</b>. Fitur: RFM (Recency, Frequency, Monetary). Algoritma: Multi-class classifier.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mengelompokkan pelanggan berdasarkan seberapa berharga mereka: <b>High / Medium / Low Value</b>, dengan fitur RFM (Recency, Frequency, Monetary) memakai multi-class classifier.</p>
         </div>
         <div class="card">
           <div class="card-title">Manufacturing — Quality Control</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mendeteksi produk cacat dari lini produksi: <b>Defect / Non-defect</b>. Fitur: sensor readings, visual inspection data. Algoritma: CNN, Random Forest.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mendeteksi produk cacat langsung dari lini produksi: <b>Defect / Non-defect</b>, berdasarkan pembacaan sensor dan data inspeksi visual, biasanya memakai CNN atau Random Forest.</p>
         </div>
       </div>
       <table class="rubric-table">
@@ -366,26 +366,26 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="card">
       <div class="card-title">Decision Tree Classification</div>
-      <p style="font-size:.88rem;line-height:1.75;">Decision Tree adalah algoritma yang membuat model seperti pohon keputusan. Setiap internal node merepresentasikan test pada feature, setiap branch merepresentasikan outcome dari test, dan leaf node merepresentasikan class label.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan permainan tebak-tebakan "20 pertanyaan" — Anda mempersempit jawaban lewat serangkaian pertanyaan ya/tidak. Decision Tree bekerja persis seperti itu: algoritma ini membangun model berbentuk pohon keputusan, di mana setiap node berisi "pertanyaan" (test) terhadap sebuah fitur, setiap cabang (branch) adalah jawaban dari pertanyaan itu, dan di ujung pohon (leaf node) barulah kita sampai pada label kelasnya.</p>
     </div>
     <div class="sub-section">
       <h3>Cara Kerja Decision Tree</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Step 1: Split Selection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Pilih feature dan split point terbaik menggunakan <b>Gini Impurity</b> (CART) atau <b>Information Gain/Entropy</b> (ID3, C4.5). Tujuannya adalah memaksimalkan homogenitas class dalam setiap subset data.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Pertama, algoritma perlu memilih "pertanyaan" terbaik untuk dijadikan pemisah: fitur dan titik split mana yang paling ampuh memisahkan data. Caranya lewat ukuran seperti <b>Gini Impurity</b> (dipakai CART) atau <b>Information Gain/Entropy</b> (dipakai ID3, C4.5) — intinya, cari pemisahan yang membuat tiap kelompok data sesudahnya sehomogen mungkin (isinya kelas yang sama).</p>
         </div>
         <div class="card">
           <div class="card-title">Step 2: Recursive Partitioning</div>
-          <p style="font-size:.88rem;line-height:1.75;">Ulangi proses split pada setiap child node secara rekursif. Berhenti ketika mencapai <b>stopping criteria</b>: max depth, min samples, atau semua data dalam node sudah satu class.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Proses split ini diulang lagi dan lagi di setiap node anak (recursive), sampai memenuhi salah satu <b>syarat berhenti</b>: kedalaman pohon sudah maksimal, jumlah sampel sudah minimum, atau semua data dalam node itu sudah satu kelas yang sama.</p>
         </div>
         <div class="card">
           <div class="card-title">Step 3: Leaf Assignment</div>
-          <p style="font-size:.88rem;line-height:1.75;">Assign <b>majority class</b> pada setiap leaf node (node akhir). Untuk binary classification, leaf node akan berisi label 0 atau 1 berdasarkan kelas terbanyak dalam subset tersebut.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Setiap "ujung pohon" (leaf node) lalu diberi label <b>kelas mayoritas</b> dari data yang ada di dalamnya. Untuk klasifikasi dua kelas (binary), leaf node akan berisi label 0 atau 1 berdasarkan kelas mana yang lebih banyak dalam kelompok tersebut.</p>
         </div>
         <div class="card">
           <div class="card-title">Step 4: Prediction</div>
-          <p style="font-size:.88rem;line-height:1.75;">Untuk data baru, <b>traverse tree dari root ke leaf</b> mengikuti kondisi di setiap node. Class yang ada di leaf node yang dicapai menjadi prediksi untuk data tersebut.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Saat ada data baru yang mau ditebak, tinggal <b>telusuri pohonnya dari akar sampai daun</b> (root ke leaf), mengikuti jawaban dari tiap pertanyaan di sepanjang jalan. Label kelas di leaf node yang dituju itulah yang menjadi hasil prediksi.</p>
         </div>
       </div>
     </div>
@@ -395,19 +395,19 @@ ul.styled li::marker{color:var(--gold);}
         <div class="grid-card">
           <div class="gc-title">✓ Kelebihan</div>
           <div class="gc-body">
-            • Easy to understand & interpret<br>
-            • Handle non-linear relationships<br>
-            • No feature scaling required<br>
-            • Handle missing values
+            • Mudah dipahami dan dijelaskan — bahkan orang non-teknis bisa mengikuti alur "pertanyaan"-nya<br>
+            • Sanggup menangkap hubungan yang tidak linear antar fitur<br>
+            • Tidak perlu repot melakukan feature scaling dulu<br>
+            • Bisa tetap jalan meski ada nilai yang hilang (missing values)
           </div>
         </div>
         <div class="grid-card">
           <div class="gc-title">✗ Kekurangan</div>
           <div class="gc-body">
-            • Prone to overfitting<br>
-            • Unstable (small data changes affect tree)<br>
-            • Biased toward dominant classes<br>
-            • Not optimal for high-dimensional data
+            • Rawan overfitting kalau pohonnya dibiarkan tumbuh terlalu dalam<br>
+            • Tidak stabil — perubahan kecil pada data bisa mengubah bentuk pohon secara drastis<br>
+            • Cenderung condong ke kelas yang jumlahnya dominan<br>
+            • Kurang optimal untuk data dengan jumlah fitur yang sangat banyak (high-dimensional)
           </div>
         </div>
       </div>
@@ -449,13 +449,14 @@ print(classification_report(y_test, y_pred))</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Naive Bayes Classification</div>
-      <p style="font-size:.88rem;line-height:1.75;">Naive Bayes adalah probabilistic classifier berdasarkan Bayes Theorem dengan asumsi "naive" bahwa features adalah independent. Sangat efektif untuk text classification dan high-dimensional data.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Kalau Decision Tree bekerja lewat pertanyaan bercabang, Naive Bayes bekerja dengan cara menghitung peluang. Ia adalah classifier probabilistik yang berlandaskan Bayes Theorem, dengan satu asumsi yang disederhanakan (makanya disebut "naive"/naif): bahwa semua fitur dianggap saling bebas satu sama lain, padahal kenyataannya belum tentu begitu. Meski asumsinya sederhana, algoritma ini terbukti sangat efektif untuk text classification dan data dengan banyak fitur (high-dimensional).</p>
     </div>
     <div class="sub-section">
       <h3>Bayes Theorem</h3>
       <div class="highlight-box">
         <div class="hb-title">Formula</div>
         <p style="font-size:.95rem;line-height:1.8;">
+          Intinya, Bayes Theorem ini menjawab pertanyaan: "kalau saya melihat fitur-fitur X ini, seberapa besar kemungkinan datanya masuk kelas C?" Rumusnya begini:<br>
           <b>P(C|X) = P(X|C) × P(C) / P(X)</b><br><br>
           P(C|X) = Posterior probability (probability of class C given features X)<br>
           P(X|C) = Likelihood (probability of features given class)<br>
@@ -469,15 +470,15 @@ print(classification_report(y_test, y_pred))</code></pre>
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">Gaussian NB</div>
-          <div class="gc-body">Untuk continuous features dengan distribusi normal/Gaussian.</div>
+          <div class="gc-body">Cocok dipakai kalau fitur-fiturnya berupa angka kontinu yang mengikuti distribusi normal/Gaussian, seperti tinggi badan atau suhu.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Multinomial NB</div>
-          <div class="gc-body">Untuk discrete counts (word counts, document classification).</div>
+          <div class="gc-body">Cocok untuk data berupa hitungan diskrit, misalnya jumlah kemunculan kata — sering dipakai untuk klasifikasi dokumen atau teks.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Bernoulli NB</div>
-          <div class="gc-body">Untuk binary/boolean features (presence/absence).</div>
+          <div class="gc-body">Cocok untuk fitur biner/boolean yang hanya menyatakan ada-tidaknya sesuatu (presence/absence).</div>
         </div>
       </div>
     </div>
@@ -515,26 +516,26 @@ disp.plot()</code></pre>
     </div>
     <div class="card">
       <div class="card-title">k-NN Classification</div>
-      <p style="font-size:.88rem;line-height:1.75;">k-NN adalah instance-based learning algorithm yang mengklasifikasikan data point berdasarkan majority class dari k nearest neighbors. Tidak ada explicit training phase, hanya menyimpan training data.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Ada pepatah "kau adalah rata-rata dari lima orang terdekatmu" — nah, itulah cara kerja k-NN. Algoritma ini mengklasifikasikan sebuah data point berdasarkan kelas mayoritas dari k tetangga terdekatnya (nearest neighbors). Uniknya, k-NN tidak punya fase training yang eksplisit — ia cuma menyimpan seluruh data latihan dan baru "berpikir" saat ada data baru yang perlu ditebak.</p>
     </div>
     <div class="sub-section">
       <h3>Cara Kerja k-NN</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Step 1: Choose k</div>
-          <p style="font-size:.88rem;line-height:1.75;">Tentukan jumlah k neighbors. Gunakan <b>odd number</b> (k=3, 5, 7) untuk binary classification agar tidak terjadi tie dalam voting. k kecil = flexible model, k besar = stable model.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Langkah pertama adalah menentukan berapa jumlah tetangga (k) yang akan dilihat. Sebaiknya pakai <b>angka ganjil</b> (k=3, 5, 7) untuk klasifikasi dua kelas, supaya voting-nya tidak seri. k kecil membuat model lebih fleksibel tapi gampang terpengaruh noise, sedangkan k besar membuat model lebih stabil.</p>
         </div>
         <div class="card">
           <div class="card-title">Step 2: Calculate Distance</div>
-          <p style="font-size:.88rem;line-height:1.75;">Hitung jarak antara test point dengan semua training points. Metrik umum: <b>Euclidean</b> (√Σ(xi-yi)²), <b>Manhattan</b> (Σ|xi-yi|), atau <b>Minkowski</b> (generalisasi). <b>Feature scaling wajib dilakukan!</b></p>
+          <p style="font-size:.88rem;line-height:1.75;">Selanjutnya, hitung jarak antara titik data yang mau ditebak dengan semua titik data latihan. Metrik yang umum dipakai: <b>Euclidean</b> (√Σ(xi-yi)²), <b>Manhattan</b> (Σ|xi-yi|), atau <b>Minkowski</b> (bentuk umum dari keduanya). Ingat, <b>feature scaling wajib dilakukan</b> di tahap ini, karena kalau tidak, fitur dengan skala besar akan mendominasi perhitungan jarak.</p>
         </div>
         <div class="card">
           <div class="card-title">Step 3: Find k Nearest Neighbors</div>
-          <p style="font-size:.88rem;line-height:1.75;">Pilih <b>k training points</b> dengan distance terkecil dari test point. Urutkan semua distances dan ambil k teratas. Ini adalah "neighborhood" dari test point tersebut.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Dari semua jarak yang sudah dihitung, urutkan dari yang terkecil, lalu ambil <b>k titik data</b> dengan jarak paling dekat. Kumpulan k titik inilah yang menjadi "tetangga" (neighborhood) dari data yang mau ditebak.</p>
         </div>
         <div class="card">
           <div class="card-title">Step 4: Majority Voting</div>
-          <p style="font-size:.88rem;line-height:1.75;">Gunakan <b>majority voting</b> dari k neighbors untuk menentukan class prediction. Bisa juga menggunakan <b>weighted voting</b> (neighbors lebih dekat = bobot lebih besar).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Terakhir, lihat kelas apa yang paling banyak muncul di antara k tetangga tadi (<b>majority voting</b>) — itulah yang menjadi prediksi kelasnya. Bisa juga memakai <b>weighted voting</b>, di mana tetangga yang lebih dekat diberi bobot suara lebih besar.</p>
         </div>
       </div>
     </div>
@@ -543,15 +544,15 @@ disp.plot()</code></pre>
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">k kecil (k=1,3)</div>
-          <div class="gc-body">Lebih sensitive terhadap noise, decision boundary complex, high variance.</div>
+          <div class="gc-body">Model jadi lebih sensitif terhadap noise, decision boundary-nya rumit dan berkelok-kelok, sehingga variance-nya tinggi (mudah overfit).</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">k sedang (k=5,7)</div>
-          <div class="gc-body">Balance antara bias dan variance, generally good starting point.</div>
+          <div class="gc-body">Biasanya jadi titik tengah yang pas antara bias dan variance — pilihan awal yang cukup aman untuk dicoba.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">k besar (k>10)</div>
-          <div class="gc-body">Smoother decision boundary, less sensitive to noise, tapi high bias.</div>
+          <div class="gc-body">Decision boundary-nya jadi lebih halus dan tidak mudah terpengaruh noise, tapi risikonya bias-nya jadi tinggi (model terlalu general).</div>
         </div>
       </div>
     </div>
@@ -590,26 +591,26 @@ print(f"Accuracy: {accuracy_score(y_test, y_pred):.3f}")</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Metrics Evaluasi</div>
-      <p style="font-size:.88rem;line-height:1.75;">Evaluasi model classification sangat penting untuk memahami performance dan membandingkan different algorithms. Tidak cukup hanya accuracy, perlu metrics lain seperti precision, recall, F1-score.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah model jadi, bagaimana kita tahu ia benar-benar bagus? Di sinilah evaluasi berperan — penting untuk memahami performanya dan membandingkan satu algoritma dengan yang lain. Dan satu hal yang perlu diingat: mengandalkan accuracy saja seringkali tidak cukup, apalagi kalau datanya tidak seimbang. Kita butuh metrik lain juga, seperti precision, recall, dan F1-score.</p>
     </div>
     <div class="sub-section">
       <h3>Confusion Matrix</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">TP — True Positive</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Positif, Aktual Positif.</b> Model berhasil mengidentifikasi kasus positif dengan benar. Contoh: pasien sakit diprediksi sakit. Ini adalah prediksi yang paling diinginkan.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Sebelum masuk ke metrik-metrik di atas, ada baiknya kita kenalan dulu dengan empat kemungkinan hasil prediksi model, yang nantinya jadi bahan dasar semua metrik. Yang pertama, <b>Prediksi Positif, Aktual Positif</b> — model berhasil mengenali kasus positif dengan benar. Contohnya, pasien yang memang sakit, diprediksi sakit. Inilah hasil yang paling kita inginkan.</p>
         </div>
         <div class="card">
           <div class="card-title">TN — True Negative</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Negatif.</b> Model berhasil mengidentifikasi kasus negatif dengan benar. Contoh: pasien sehat diprediksi sehat. Juga merupakan prediksi yang benar.</p>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Negatif.</b> Sama seperti TP tapi kebalikannya — model juga berhasil mengenali kasus negatif dengan benar. Contohnya, pasien yang memang sehat, diprediksi sehat. Ini juga termasuk prediksi yang benar.</p>
         </div>
         <div class="card">
           <div class="card-title">FP — False Positive (Type I Error)</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Positif, Aktual Negatif.</b> Model salah mengklasifikasikan negatif sebagai positif. Contoh: email normal diklasifikasikan sebagai spam. Disebut juga "false alarm".</p>
+          <p style="font-size:.88rem;line-height:1.75;">Nah, ini mulai masuk ke kesalahan. <b>Prediksi Positif, Aktual Negatif</b> — model keliru menganggap sesuatu yang sebenarnya negatif sebagai positif. Contohnya, email normal malah dicap sebagai spam. Makanya ini sering disebut juga "false alarm".</p>
         </div>
         <div class="card">
           <div class="card-title">FN — False Negative (Type II Error)</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Positif.</b> Model gagal mendeteksi kasus positif. Contoh: pasien sakit diprediksi sehat. Dalam medical diagnosis, ini adalah error yang paling berbahaya.</p>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Positif.</b> Model gagal mendeteksi kasus yang sebenarnya positif. Contohnya, pasien yang sebenarnya sakit, malah diprediksi sehat. Dalam diagnosis medis, inilah jenis kesalahan yang paling berbahaya karena bisa membuat orang tidak mendapat penanganan yang seharusnya.</p>
         </div>
       </div>
       <table class="rubric-table">
@@ -627,19 +628,19 @@ print(f"Accuracy: {accuracy_score(y_test, y_pred):.3f}")</code></pre>
       <div class="grid-2">
         <div class="grid-card">
           <div class="gc-title">Accuracy</div>
-          <div class="gc-body"><b>(TP + TN) / Total</b><br>Proporsi prediksi yang benar. Misleading jika imbalanced dataset.</div>
+          <div class="gc-body"><b>(TP + TN) / Total</b><br>Sekadar proporsi tebakan yang benar dari keseluruhan data. Kelihatan sederhana, tapi bisa menipu kalau datasetnya tidak seimbang (misalnya kasus positifnya cuma 1%).</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Precision</div>
-          <div class="gc-body"><b>TP / (TP + FP)</b><br>Dari yang diprediksi positive, berapa yang benar-benar positive.</div>
+          <div class="gc-body"><b>TP / (TP + FP)</b><br>Dari semua yang ditebak positif oleh model, berapa persen yang memang benar-benar positif.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Recall (Sensitivity)</div>
-          <div class="gc-body"><b>TP / (TP + FN)</b><br>Dari yang actual positive, berapa yang berhasil dideteksi.</div>
+          <div class="gc-body"><b>TP / (TP + FN)</b><br>Dari semua kasus yang sebenarnya positif, berapa persen yang berhasil "ditangkap" oleh model.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">F1-Score</div>
-          <div class="gc-body"><b>2 × (Precision × Recall) / (Precision + Recall)</b><br>Harmonic mean dari precision dan recall.</div>
+          <div class="gc-body"><b>2 × (Precision × Recall) / (Precision + Recall)</b><br>Cara menyeimbangkan precision dan recall jadi satu angka (harmonic mean), berguna kalau kita ingin keduanya sama-sama bagus.</div>
         </div>
       </div>
     </div>
@@ -678,7 +679,7 @@ plt.show()</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Hands-on: Classification Model Comparison</div>
-      <p style="font-size:.88rem;line-height:1.75;">Implementasikan dan bandingkan ketiga algoritma classification (Decision Tree, Naive Bayes, k-NN) pada dataset nyata.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran Anda mencoba sendiri: bangun dan bandingkan ketiga algoritma classification yang sudah dipelajari (Decision Tree, Naive Bayes, k-NN) memakai dataset nyata.</p>
     </div>
     <div class="sub-section">
       <h3>Tugas Praktikum</h3>

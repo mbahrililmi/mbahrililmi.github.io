@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 11 – Interaction Design & User Experience (UX) untuk Multimedia | Desain Thinking for Multimedia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,425 +226,189 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
+    <div class="course-label">Desain Thinking for Multimedia</div>
+    <div class="course-title">Interaction Design & UX untuk Multimedia</div>
     <div class="pertemuan-badge">Pertemuan 11</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <a href="#section-2" class="toc-link">Prinsip Interaction Design</a>
+    <a href="#section-3" class="toc-link">Information Architecture</a>
+    <a href="#section-4" class="toc-link">Microinteraction</a>
+    <a href="#section-5" class="toc-link">Aksesibilitas</a>
+    <a href="#section-6" class="toc-link">Interaction Design & Testing</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 11 · Desain Thinking for Multimedia</div>
+    <h1>Interaction Design & User Experience (UX) untuk Multimedia</h1>
+    <p class="subtitle">Visual yang cantik (Pertemuan 9) dan cerita yang mengalir (Pertemuan 10) belum lengkap kalau produk tidak "merespons" dengan benar saat disentuh. Pertemuan ini membahas bagaimana produk berbicara balik ke pengguna lewat feedback, navigasi yang masuk akal, microinteraction, dan aksesibilitas untuk semua orang.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>DTM301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menerapkan prinsip interaction design dan mengevaluasi pengalaman pengguna (UX) pada produk multimedia, termasuk memperhatikan aspek aksesibilitas bagi seluruh kalangan pengguna.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+      <div class="card-title">Dari "Terlihat Bagus" Menjadi "Terasa Benar"</div>
+      <p style="font-size:.88rem;line-height:1.75;">Dua pertemuan terakhir, kita membangun fondasi visual (warna, tipografi, layout) dan naratif (cerita, storyboard, microcopy) sebuah produk. Tapi coba bayangkan aplikasi dengan visual paling indah sedunia, lengkap dengan cerita onboarding yang menyentuh hati — namun setiap kali ditekan, tombolnya tidak memberi tanda apa pun sedang terjadi, menu navigasinya membingungkan, dan animasinya terasa kaku. Semua keindahan visual tadi jadi percuma, karena pengguna akan cepat merasa frustrasi dan pergi.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Interaction design adalah lapisan yang membuat produk terasa "hidup" dan responsif terhadap setiap aksi pengguna — mirip lawan bicara yang selalu memberi reaksi wajar setiap kali kita berkata sesuatu, bukan diam membisu atau bereaksi acak. Pertemuan ini akan membahas prinsip-prinsip dasarnya sekaligus mengingatkan kembali bahwa aksesibilitas bukan fitur tambahan, melainkan bagian inti dari empati desain yang sudah kita pelajari sejak Pertemuan 2.</p>
     </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami dan menerapkan prinsip dasar interaction design: feedback, affordance, konsistensi, dan pencegahan error</li>
+        <li>Menyusun information architecture dan navigasi yang mudah dipahami pengguna</li>
+        <li>Mengidentifikasi dan merancang microinteraction yang memperkuat pengalaman pengguna</li>
+        <li>Menerapkan prinsip aksesibilitas dasar dalam desain multimedia</li>
+        <li>Menghubungkan temuan usability testing dengan perbaikan konkret pada level interaksi</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
+      <h2>Prinsip Dasar Interaction Design</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Interaction design mengatur bagaimana produk "berdialog" dengan penggunanya — setiap sentuhan, ketukan, atau gestur harus disambut dengan respons yang jelas dan masuk akal. Ada empat prinsip dasar yang, kalau dipegang dengan konsisten, sudah menyelesaikan sebagian besar masalah pengalaman pengguna sehari-hari.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Feedback</div>
+        <div class="gc-body">Produk harus merespons setiap aksi pengguna secara instan dan jelas. Saat menekan tombol "Pesan Sekarang" di Gojek, muncul animasi loading dan perubahan warna tombol — memberi tahu pengguna bahwa aksinya "terdengar" dan sedang diproses, bukan diam tanpa reaksi yang membuat pengguna bertanya-tanya apakah harus menekan lagi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Affordance</div>
+        <div class="gc-body">Elemen antarmuka harus memberi petunjuk visual tentang cara memakainya tanpa perlu dijelaskan. Tombol dengan bayangan dan warna solid "terlihat bisa ditekan", sementara teks biru bergaris bawah otomatis dikenali sebagai tautan — pengguna tidak perlu diberi tahu, mereka sudah tahu dari kebiasaan visual yang berulang.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Konsistensi</div>
+        <div class="gc-body">Pola interaksi yang sama harus berlaku di seluruh aplikasi. Kalau geser ke kanan berarti "hapus" di satu layar, jangan sampai geser ke kanan berarti "arsipkan" di layar lain — pengguna membangun kebiasaan dari pengalaman awal dan akan bingung kalau aturan mainnya berubah-ubah tanpa alasan jelas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Mencegah Error Sebelum Terjadi</div>
+        <div class="gc-body">Desain yang baik mencegah kesalahan daripada sekadar menampilkan pesan error setelah terjadi. Contohnya tombol "Hapus Akun" yang selalu memunculkan dialog konfirmasi, atau tombol "Kirim" yang otomatis nonaktif (abu-abu) sampai semua kolom wajib pada formulir terisi dengan benar.</div>
+      </div>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
+      <div class="hb-title">Analogi: Interaction Design seperti Lawan Bicara yang Baik</div>
+      <p>Bayangkan mengobrol dengan seseorang yang setiap kali Anda bicara, dia diam tanpa ekspresi (tidak ada feedback), atau caranya merespons berubah-ubah setiap saat (tidak konsisten) — percakapan itu pasti terasa melelahkan dan membingungkan. Interaction design yang baik membuat produk terasa seperti lawan bicara yang responsif, dapat diprediksi, dan selalu memberi isyarat jelas sebelum kita salah langkah.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-3">
+  <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
+      <h2>Elemen UX: Information Architecture & Navigasi</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
-    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Information architecture adalah cara mengatur dan melabeli seluruh konten dalam produk supaya pengguna bisa menemukan apa yang mereka cari tanpa tersesat — mirip seperti menyusun rak-rak di perpustakaan atau minimarket. Kalau pengaturannya buruk, sekalipun setiap halaman terlihat indah satu per satu, pengguna akan kesulitan menemukan jalan dari satu tujuan ke tujuan lain.</p>
     <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
+      <h3>Kedalaman Navigasi: Jangan Membuat Pengguna "Tersesat di Dalam Menu"</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Semakin dalam sebuah fitur "dikubur" di balik banyak lapisan menu, semakin besar kemungkinan pengguna menyerah sebelum menemukannya. Aturan praktis yang sering dipakai desainer adalah usahakan fitur penting bisa dicapai dalam maksimal 3 kali ketukan dari layar utama.</p>
+      <div class="grid-2">
         <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
+          <div class="gc-title">Navigasi Dangkal (Baik)</div>
+          <div class="gc-body">Aplikasi kampus dengan bottom navigation bar berisi 4-5 menu utama (Jadwal, Nilai, KRS, Profil) yang langsung terlihat di layar utama — mahasiswa tidak perlu menebak-nebak di mana fitur "Cek Nilai" berada.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
+          <div class="gc-title">Navigasi Terlalu Dalam (Buruk)</div>
+          <div class="gc-body">Fitur "Cek Nilai" yang harus diakses lewat Menu &gt; Pengaturan &gt; Akademik &gt; Riwayat &gt; Nilai Semester — lima langkah untuk sesuatu yang seharusnya dicari mahasiswa setiap hari di akhir semester.</div>
         </div>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-4">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Data Sources</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
-      </div>
+      <div class="card-title">Label Menu Harus Memakai Bahasa Pengguna, Bukan Bahasa Internal Tim</div>
+      <p style="font-size:.88rem;line-height:1.75;">Kesalahan umum information architecture adalah memakai istilah yang masuk akal bagi tim pengembang tapi asing bagi pengguna — misalnya menu "Modul Transaksional" alih-alih "Riwayat Pesanan". Sama seperti prinsip di Pertemuan 9 tentang menggunakan bahasa yang benar-benar dipakai persona, penamaan menu juga harus diuji langsung ke calon pengguna, bukan sekadar disepakati di dalam rapat tim.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Microinteraction</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Microinteraction adalah animasi atau respons kecil yang terjadi dalam hitungan sepersekian detik, tapi punya dampak besar terhadap bagaimana produk "terasa" dipakai. Kalau feedback adalah prinsip besarnya, microinteraction adalah eksekusi kecilnya — detail-detail halus yang sering tidak disadari pengguna secara sadar, tapi akan sangat terasa hilang kalau tidak ada.</p>
+    <div class="sub-section">
+      <h3>Contoh Microinteraction dari Aplikasi Populer</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Aplikasi</th><th>Microinteraction</th><th>Fungsi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Instagram</td><td>Animasi hati membesar saat double-tap like</td><td>Konfirmasi visual instan bahwa aksi like berhasil dilakukan</td></tr>
+          <tr><td>Gojek/Tokopedia</td><td>Loading spinner atau skeleton screen saat memuat data</td><td>Memberi tahu pengguna sistem sedang bekerja, bukan macet</td></tr>
+          <tr><td>Duolingo</td><td>Animasi confetti dan suara saat menyelesaikan pelajaran</td><td>Memberi rasa pencapaian yang memotivasi pengguna lanjut belajar</td></tr>
+          <tr><td>Hampir semua aplikasi</td><td>Pull-to-refresh dengan animasi elastis di bagian atas layar</td><td>Memberi cara intuitif memuat ulang data tanpa perlu tombol khusus</td></tr>
+          <tr><td>Aplikasi chat (WhatsApp dsb.)</td><td>Titik tiga berdenyut saat lawan bicara sedang mengetik</td><td>Mengurangi kecemasan menunggu dengan memberi tahu ada respons datang</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Microinteraction Kecil, Dampaknya Tidak Kecil</div>
+      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan tombol like Instagram tanpa animasi apa pun — hati hanya berubah warna secara instan tanpa gerakan. Fungsinya tetap sama, tapi rasanya jauh lebih hambar dan kurang memuaskan. Microinteraction yang dirancang dengan baik memberi kepuasan emosional kecil di setiap aksi, yang jika dikumpulkan dari ratusan interaksi setiap hari, membentuk kesan keseluruhan bahwa sebuah produk terasa "halus" dan menyenangkan dipakai.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>Aksesibilitas dalam Desain Multimedia</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+      <div class="hb-title">Aksesibilitas Bukan "Opsional"</div>
+      <p>Sering kali aksesibilitas dianggap fitur tambahan yang bisa dikerjakan "kalau sempat" di akhir proyek. Padahal aksesibilitas adalah kelanjutan langsung dari empati yang sudah dilatih sejak Pertemuan 2 — kalau kita benar-benar berempati kepada pengguna, kita tidak bisa hanya memikirkan pengguna yang "normal" secara penglihatan, pendengaran, dan motorik, karena kenyataannya pengguna kita jauh lebih beragam dari itu.</p>
     </div>
     <div class="sub-section">
-      <h3>Konsep Airflow</h3>
+      <h3>Praktik Dasar Aksesibilitas yang Wajib Diperhatikan</h3>
       <div class="grid-3">
         <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
+          <div class="gc-title">Kontras Warna Cukup</div>
+          <div class="gc-body">Teks dan latar belakang harus punya perbedaan kontras yang jelas, bukan hanya beda tipis yang cantik di mata desainer namun sulit dibaca penyandang low vision atau saat layar terkena cahaya matahari.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
+          <div class="gc-title">Teks Alternatif untuk Gambar</div>
+          <div class="gc-body">Setiap gambar penting sebaiknya punya deskripsi teks (alt text) agar pengguna tunanetra yang memakai pembaca layar tetap bisa memahami konten visual tersebut.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
+          <div class="gc-title">Ukuran Target Sentuh</div>
+          <div class="gc-body">Tombol dan elemen interaktif sebaiknya cukup besar (idealnya minimal 44x44px) agar mudah disentuh pengguna dengan keterbatasan motorik atau saat tangan sedang gemetar/tergesa.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Caption untuk Video/Audio</div>
+          <div class="gc-body">Video promosi atau tutorial sebaiknya menyediakan teks terjemahan (caption) agar bisa dinikmati pengguna tunarungu maupun pengguna yang menonton di tempat umum tanpa suara.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Navigasi Tanpa Bergantung pada Warna Saja</div>
+          <div class="gc-body">Status "berhasil" atau "gagal" sebaiknya tidak hanya ditandai warna hijau/merah, tapi juga ikon atau teks — karena pengguna buta warna tidak selalu bisa membedakan kedua warna tersebut.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Ukuran Teks yang Bisa Disesuaikan</div>
+          <div class="gc-body">Idealnya antarmuka tetap terbaca dan tidak berantakan ketika pengguna memperbesar ukuran teks di pengaturan perangkat mereka, sesuatu yang penting bagi pengguna lanjut usia.</div>
         </div>
       </div>
     </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Kenapa Ini Bagian dari Empati, Bukan Beban Tambahan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan seorang nenek yang ingin memesan obat lewat aplikasi kesehatan, tapi teksnya terlalu kecil dan tombolnya terlalu rapat sehingga salah pencet berkali-kali. Dari sudut pandang tim developer, aplikasi ini "berfungsi sempurna" karena semua fitur teknisnya bekerja. Tapi dari sudut pandang design thinking yang kita pelajari sejak awal semester, produk ini gagal total karena tidak benar-benar dirancang untuk manusia yang akan memakainya — persis inti dari human-centered design yang sudah kita bahas di Pertemuan 1.</p>
     </div>
   </section>
   <hr class="section-divider">
@@ -652,20 +416,70 @@ with DAG(
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Menghubungkan Interaction Design dengan Hasil Testing (Pertemuan 6)</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Di Pertemuan 6, kita sudah belajar melakukan usability testing — mengamati pengguna asli mencoba memakai prototipe kita dan mencatat di mana mereka bingung, ragu, atau melakukan kesalahan. Banyak mahasiswa berhenti di tahap "mencatat temuan" tanpa menindaklanjutinya menjadi perubahan nyata. Padahal siklus design thinking yang sesungguhnya baru selesai ketika temuan testing diterjemahkan menjadi perbaikan konkret di level interaksi — inilah wujud nyata dari iterasi yang terus berputar.</p>
+    <div class="sub-section">
+      <h3>Dari Temuan Testing Menuju Perbaikan Interaksi</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Temuan Usability Testing</th><th>Kemungkinan Penyebab</th><th>Perbaikan di Level Interaksi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pengguna tidak sadar tombol bisa ditekan</td><td>Affordance lemah — tombol terlihat seperti teks biasa</td><td>Tambahkan bayangan, warna solid, atau bentuk yang jelas menandakan bisa ditekan</td></tr>
+          <tr><td>Pengguna menekan tombol berkali-kali</td><td>Tidak ada feedback setelah aksi pertama</td><td>Tambahkan animasi loading atau perubahan status tombol segera setelah ditekan</td></tr>
+          <tr><td>Pengguna salah masuk menu berulang kali</td><td>Label menu ambigu atau navigasi terlalu dalam</td><td>Ganti label sesuai bahasa pengguna, pindahkan fitur penting lebih dangkal</td></tr>
+          <tr><td>Pengguna panik saat menghapus data penting</td><td>Tidak ada dialog konfirmasi sebelum aksi destruktif</td><td>Tambahkan dialog konfirmasi dan opsi "batalkan" setelah aksi dilakukan</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Ingat: Testing Tanpa Tindak Lanjut Hanyalah Dokumentasi</div>
+      <p>Laporan usability testing yang penuh temuan tapi tidak pernah diubah menjadi perbaikan nyata sama saja seperti hasil rontgen yang tidak pernah dibawa ke dokter untuk ditindaklanjuti — datanya lengkap, tapi tidak menyembuhkan apa pun. Pastikan proyek akhir semester Anda menunjukkan jejak yang jelas dari temuan testing menuju keputusan desain interaksi yang benar-benar diubah.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 11</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Evaluasi Heuristik Sederhana pada Aplikasi Favorit</div>
+        <ul>
+          <li>Pilih 1 aplikasi favorit yang biasa Anda gunakan sehari-hari (boleh Gojek, Tokopedia, Instagram, aplikasi kampus, atau lainnya)</li>
+          <li>Buat checklist evaluasi heuristik berisi 5-10 poin, mengacu pada prinsip feedback, affordance, konsistensi, pencegahan error, information architecture, dan aksesibilitas yang sudah dipelajari</li>
+          <li>Jalankan aplikasi tersebut dan nilai setiap poin checklist: sudah baik, cukup, atau bermasalah — sertakan tangkapan layar sebagai bukti</li>
+          <li>Untuk setiap masalah yang ditemukan, tuliskan dampaknya terhadap pengguna dan usulan perbaikan singkat</li>
+          <li>Deliverable: 1 file PDF laporan evaluasi heuristik</li>
+          <li>Format nama file: NIM_Nama_P11_EvaluasiHeuristik.pdf</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Redesain Satu Microinteraction Bermasalah</div>
+        <ul>
+          <li>Dari temuan Latihan 1, pilih satu masalah interaksi yang menurut Anda paling mengganggu pengalaman pengguna</li>
+          <li>Sketsakan solusi perbaikannya — bisa berupa sketsa tangan, wireframe digital, atau storyboard singkat yang menunjukkan kondisi sebelum dan sesudah perbaikan</li>
+          <li>Jelaskan prinsip interaction design mana (feedback, affordance, konsistensi, atau pencegahan error) yang diterapkan dalam solusi tersebut</li>
+          <li>Deliverable: 1 file PDF berisi sketsa dan penjelasan singkat</li>
+          <li>Format nama file: NIM_Nama_P11_RedesainInteraksi.pdf</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="desain-thinking-multimedia-p10.html">← Pertemuan 10</a>
+    <a href="../index.html?matkul=dtm" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="desain-thinking-multimedia-p12.html" class="next-btn">Pertemuan 12 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Desain Thinking for Multimedia</div>
 
 </main>
 
@@ -698,7 +512,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +580,27 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'design thinking':'Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen untuk berinovasi',
+    'empathy map':'Alat visual untuk memetakan apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan pengguna agar tim lebih memahami kebutuhan mereka',
+    'persona':'Representasi fiktif pengguna ideal berdasarkan riset nyata, dipakai agar tim desain tetap fokus pada kebutuhan pengguna yang sebenarnya',
+    'POV':'Point of View — pernyataan masalah yang memadukan pengguna, kebutuhan, dan insight menjadi satu kalimat fokus dalam design thinking',
+    'HMW':'How Might We — format pertanyaan pembuka sesi ideasi yang mengubah sebuah masalah menjadi peluang untuk dicarikan solusi',
+    'ideation':'Tahap menghasilkan dan mengeksplorasi sebanyak mungkin kemungkinan ide sebelum memilih solusi terbaik untuk dikembangkan',
+    'wireframe':'Sketsa struktural low-fidelity yang menunjukkan tata letak elemen pada layar tanpa detail visual seperti warna atau gambar final',
+    'storyboard':'Rangkaian sketsa atau gambar yang menggambarkan alur cerita/adegan secara berurutan sebelum produksi multimedia dimulai',
+    'prototipe':'Purwarupa atau model awal sebuah produk yang dibuat untuk diuji dan mendapat umpan balik sebelum dikembangkan sepenuhnya',
+    'MVP':'Minimum Viable Product — versi paling sederhana dari sebuah produk yang sudah bisa diuji ke pengguna nyata dengan fitur inti saja',
+    'usability testing':'Metode evaluasi dengan mengamati pengguna asli saat mencoba memakai produk, untuk menemukan masalah kegunaan yang perlu diperbaiki',
+    'iterasi':'Proses mengulang dan menyempurnakan desain secara bertahap berdasarkan umpan balik dan hasil pengujian sebelumnya',
+    'journey map':'Peta visual yang menggambarkan setiap langkah, perasaan, dan titik masalah yang dialami pengguna saat berinteraksi dengan sebuah produk',
+    'affinity diagram':'Teknik mengelompokkan catatan atau insight hasil riset yang mirip ke dalam beberapa kategori untuk menemukan pola dan tema utama',
+    'low-fidelity':'Tingkat purwarupa yang sederhana dan kasar, misalnya sketsa tangan di atas kertas, dibuat cepat untuk menguji ide dasar',
+    'high-fidelity':'Tingkat purwarupa yang sudah mendekati produk akhir — lengkap dengan visual, warna, dan interaksi yang realistis',
+    'user research':'Proses sistematis mengumpulkan data tentang perilaku, kebutuhan, dan motivasi pengguna lewat wawancara, observasi, atau survei',
+    'stakeholder':'Pihak yang punya kepentingan atau terpengaruh oleh sebuah proyek, misalnya klien, pengguna, tim internal, atau investor',
+    'information architecture':'Cara mengorganisasikan dan melabeli konten agar pengguna mudah menavigasi dan menemukan informasi yang mereka cari',
+    'microinteraction':'Animasi atau respons kecil (misalnya tombol berubah warna saat ditekan) yang memberi umpan balik instan kepada pengguna atas sebuah aksi',
+    'affordance':'Petunjuk visual pada sebuah elemen antarmuka yang menunjukkan bagaimana cara menggunakannya, misalnya tombol yang terlihat bisa ditekan',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

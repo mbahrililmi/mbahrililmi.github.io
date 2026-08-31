@@ -267,19 +267,19 @@ ul.styled li::marker{color:var(--gold);}
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Regression Analysis</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami konsep regression analysis sebagai supervised learning untuk memprediksi nilai numerik kontinu (continuous value), seperti harga rumah, temperatur, atau penjualan.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Kalau pertemuan lalu kita belajar menebak "kategori", sekarang kita belajar menebak "angka". Regression analysis adalah teknik supervised learning untuk memprediksi nilai numerik yang kontinu — misalnya berapa kira-kira harga sebuah rumah, berapa suhu besok, atau berapa unit yang akan terjual bulan depan.</p>
         </div>
         <div class="card">
           <div class="card-title">Jenis-Jenis Regression</div>
-          <p style="font-size:.88rem;line-height:1.75;">Menjelaskan dan membedakan <b>Linear Regression</b> (hubungan linear), <b>Polynomial Regression</b> (non-linear), dan <b>Logistic Regression</b> (binary classification dengan output probabilitas).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mengenal dan membedakan tiga jenis regresi yang paling umum: <b>Linear Regression</b> untuk hubungan yang lurus/linear, <b>Polynomial Regression</b> untuk hubungan yang melengkung (non-linear), dan <b>Logistic Regression</b> yang meski namanya "regression", sebenarnya dipakai untuk klasifikasi biner dengan output berupa probabilitas.</p>
         </div>
         <div class="card">
           <div class="card-title">Time Series Forecasting</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami teknik time series forecasting untuk memprediksi nilai future berdasarkan historical data temporal: ARIMA, Moving Average, dan Exponential Smoothing.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Memahami cara meramal masa depan berdasarkan data historis yang punya urutan waktu (time series) — lewat teknik seperti ARIMA, Moving Average, dan Exponential Smoothing.</p>
         </div>
         <div class="card">
           <div class="card-title">Evaluasi Model Prediction</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mampu menghitung dan menginterpretasikan metrics evaluasi regression: <b>MAE</b> (Mean Absolute Error), <b>RMSE</b> (Root Mean Squared Error), dan <b>R²</b> (Coefficient of Determination).</p>
+          <p style="font-size:.88rem;line-height:1.75;">Mampu menghitung sendiri dan memaknai metrik-metrik evaluasi regresi: <b>MAE</b> (Mean Absolute Error), <b>RMSE</b> (Root Mean Squared Error), dan <b>R²</b> (Coefficient of Determination) — supaya tahu seberapa dekat tebakan model dengan kenyataan.</p>
         </div>
       </div>
     </div>
@@ -290,18 +290,18 @@ ul.styled li::marker{color:var(--gold);}
     <div class="section-header"><div class="section-num">2</div><h2>Apa itu Prediction?</h2></div>
     <div class="highlight-box">
       <div class="hb-title">Definisi</div>
-      <p>Prediction adalah <b>supervised learning technique</b> untuk memprediksi nilai numerik kontinu (continuous value) berdasarkan features. Berbeda dengan classification yang output-nya kategori, prediction output-nya adalah angka.</p>
+      <p>Kalau classification menjawab pertanyaan "ini termasuk kategori apa?", prediction menjawab pertanyaan "berapa nilainya?". Prediction adalah <b>teknik supervised learning</b> yang dipakai untuk menebak nilai numerik yang kontinu berdasarkan fitur-fitur yang ada. Bedanya dengan classification cuma satu: kalau classification output-nya kategori, prediction output-nya angka.</p>
     </div>
     <div class="sub-section">
       <h3>Classification vs Prediction</h3>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">Classification — Output Diskrit</div>
-          <p style="font-size:.88rem;line-height:1.75;">Output berupa <b>kategori/class</b>: Spam/Not Spam, Approve/Reject, Sehat/Sakit. Algoritma: Decision Tree, Random Forest, SVM, Naive Bayes. Evaluasi: Accuracy, Precision, Recall, F1.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Hasilnya selalu berupa <b>kategori/class</b> yang terbatas jumlahnya: Spam/Not Spam, Approve/Reject, Sehat/Sakit. Biasa memakai algoritma seperti Decision Tree, Random Forest, SVM, atau Naive Bayes, dan dievaluasi dengan Accuracy, Precision, Recall, F1.</p>
         </div>
         <div class="card">
           <div class="card-title">Prediction (Regression) — Output Kontinu</div>
-          <p style="font-size:.88rem;line-height:1.75;">Output berupa <b>nilai numerik kontinu</b>: harga rumah (Rp 500 juta), temperatur (27.5°C), penjualan (1.250 unit). Algoritma: Linear Regression, Neural Network. Evaluasi: RMSE, MAE, R².</p>
+          <p style="font-size:.88rem;line-height:1.75;">Hasilnya berupa <b>angka yang kontinu</b>, bisa berapa saja nilainya: harga rumah (Rp 500 juta), temperatur (27,5°C), penjualan (1.250 unit). Algoritmanya seperti Linear Regression atau Neural Network, dievaluasi dengan RMSE, MAE, R².</p>
         </div>
       </div>
       <table class="rubric-table">
@@ -321,23 +321,23 @@ ul.styled li::marker{color:var(--gold);}
     <div class="section-header"><div class="section-num">3</div><h2>Linear Regression</h2></div>
     <div class="card">
       <div class="card-title">Linear Regression</div>
-      <p style="font-size:.88rem;line-height:1.75;">Linear regression memodelkan relationship antara independent variable(s) dan dependent variable dengan linear equation. Tujuannya adalah menemukan garis lurus (line of best fit) yang meminimalkan error.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Ini adalah bentuk regresi paling sederhana dan paling sering jadi titik awal belajar prediction. Linear regression mencoba menggambarkan hubungan antara satu atau beberapa variabel bebas (independent variable) dengan variabel target (dependent variable) memakai persamaan garis lurus. Tujuannya sederhana: menemukan garis lurus (line of best fit) yang paling pas melewati sebaran data, dengan error sekecil mungkin.</p>
     </div>
     <div class="sub-section">
       <h3>Formula</h3>
       <div class="highlight-box">
         <div class="hb-title">Simple Linear Regression</div>
-        <p style="font-size:.95rem;line-height:1.8;"><b>y = β₀ + β₁x + ε</b><br><br>
-        y = dependent variable (target)<br>
-        x = independent variable (feature)<br>
-        β₀ = intercept (nilai y ketika x=0)<br>
+        <p style="font-size:.95rem;line-height:1.8;">Kalau hanya ada satu fitur yang dipakai untuk menebak, bentuknya paling sederhana begini:<br><b>y = β₀ + β₁x + ε</b><br><br>
+        y = dependent variable (target, yang mau ditebak)<br>
+        x = independent variable (feature, yang jadi dasar tebakan)<br>
+        β₀ = intercept (nilai y ketika x=0, titik potong garis)<br>
         β₁ = slope (kemiringan garis)<br>
-        ε = error term</p>
+        ε = error term (selisih yang tidak bisa dijelaskan model)</p>
       </div>
       <div class="highlight-box">
         <div class="hb-title">Multiple Linear Regression</div>
-        <p style="font-size:.95rem;line-height:1.8;"><b>y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε</b><br><br>
-        Multiple features untuk predict satu target variable.</p>
+        <p style="font-size:.95rem;line-height:1.8;">Kalau fiturnya lebih dari satu, tinggal ditambahkan saja satu per satu:<br><b>y = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ + ε</b><br><br>
+        Jadi banyak fitur dipakai bersama-sama untuk menebak satu variabel target.</p>
       </div>
     </div>
     <div class="sub-section">
@@ -380,11 +380,11 @@ print(f"Intercept: {lr_model.intercept_:.2f}")</code></pre>
       <h3>Polynomial Regression</h3>
       <div class="card">
         <div class="card-title">Polynomial Regression — Non-Linear Relationships</div>
-        <p style="font-size:.88rem;line-height:1.75;">Polynomial Regression digunakan ketika hubungan antara X dan Y bersifat <b>non-linear (kurva)</b>. Cara kerjanya adalah dengan mentransformasi fitur X menjadi X, X², X³, ..., Xⁿ, kemudian menerapkan linear regression pada fitur polynomial tersebut.</p>
+        <p style="font-size:.88rem;line-height:1.75;">Masalahnya, tidak semua hubungan di dunia nyata itu lurus — kadang datanya melengkung seperti kurva. Nah, untuk kasus begini, dipakailah Polynomial Regression: hubungan antara X dan Y bersifat <b>non-linear (kurva)</b>. Trik yang dipakai sebenarnya cukup sederhana — fitur X ditransformasi dulu menjadi X, X², X³, ..., Xⁿ, baru kemudian linear regression biasa diterapkan pada fitur-fitur polynomial itu.</p>
         <ul class="styled" style="margin-top:8px;">
-          <li><b>Degree 2 (Quadratic):</b> y = β₀ + β₁x + β₂x² — cocok untuk data berbentuk parabola</li>
-          <li><b>Degree 3 (Cubic):</b> y = β₀ + β₁x + β₂x² + β₃x³ — lebih fleksibel</li>
-          <li><b>Overfitting Risk:</b> Degree terlalu tinggi → model menghafalkan noise, perlu regularisasi</li>
+          <li><b>Degree 2 (Quadratic):</b> y = β₀ + β₁x + β₂x² — cocok untuk data yang bentuknya seperti parabola</li>
+          <li><b>Degree 3 (Cubic):</b> y = β₀ + β₁x + β₂x² + β₃x³ — bentuk kurvanya lebih fleksibel lagi</li>
+          <li><b>Overfitting Risk:</b> Hati-hati, kalau degree-nya dipaksa terlalu tinggi, model justru jadi menghafal noise-nya, bukan polanya — perlu regularisasi untuk mencegah ini</li>
         </ul>
       </div>
       <div class="code-block">
@@ -404,12 +404,12 @@ model.fit(X_poly, y)</code></pre>
       <h3>Logistic Regression</h3>
       <div class="card">
         <div class="card-title">Logistic Regression — Binary Classification</div>
-        <p style="font-size:.88rem;line-height:1.75;">Meskipun bernama "regression", Logistic Regression adalah <b>classification algorithm</b> untuk binary outcome. Menggunakan fungsi sigmoid untuk mengubah output linear menjadi <b>probabilitas (0-1)</b>, yang kemudian di-threshold (biasanya 0.5) menjadi class label 0 atau 1.</p>
+        <p style="font-size:.88rem;line-height:1.75;">Namanya memang mengandung kata "regression", tapi jangan sampai tertukar — Logistic Regression sebenarnya adalah <b>algoritma classification</b> untuk hasil biner (dua pilihan). Triknya, output dari perhitungan linear biasa diubah dulu memakai fungsi sigmoid menjadi <b>probabilitas (0-1)</b>, lalu probabilitas itu di-threshold (biasanya di angka 0,5) untuk menentukan label kelasnya, 0 atau 1.</p>
         <ul class="styled" style="margin-top:8px;">
-          <li><b>Sigmoid Function:</b> σ(z) = 1 / (1 + e⁻ᶻ) → menghasilkan nilai antara 0 dan 1</li>
-          <li><b>Decision Boundary:</b> P ≥ 0.5 → class 1 (positif), P &lt; 0.5 → class 0 (negatif)</li>
-          <li><b>Use Cases:</b> Churn prediction, fraud detection, medical diagnosis</li>
-          <li><b>Multi-class:</b> Extend ke softmax regression untuk lebih dari 2 kelas</li>
+          <li><b>Sigmoid Function:</b> σ(z) = 1 / (1 + e⁻ᶻ) — fungsi inilah yang "meremas" nilai berapa pun menjadi angka antara 0 dan 1</li>
+          <li><b>Decision Boundary:</b> kalau P ≥ 0,5 maka masuk class 1 (positif), kalau P &lt; 0,5 maka masuk class 0 (negatif)</li>
+          <li><b>Use Cases:</b> banyak dipakai untuk churn prediction, fraud detection, sampai medical diagnosis</li>
+          <li><b>Multi-class:</b> kalau kelasnya lebih dari 2, konsep ini bisa diperluas jadi softmax regression</li>
         </ul>
       </div>
       <div class="code-block">
@@ -433,26 +433,26 @@ y_pred = log_model.predict(X_test)</code></pre>
     <div class="section-header"><div class="section-num">5</div><h2>Time Series Forecasting</h2></div>
     <div class="card">
       <div class="card-title">Time Series Prediction</div>
-      <p style="font-size:.88rem;line-height:1.75;">Time series forecasting memprediksi nilai future berdasarkan historical data yang memiliki temporal ordering. Digunakan untuk sales forecasting, stock price prediction, demand planning.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Ada satu jenis data yang punya ciri khusus: urutannya berdasarkan waktu, seperti penjualan harian atau harga saham. Time series forecasting adalah cara meramal nilai di masa depan berdasarkan data historis yang tersusun berurutan menurut waktu (temporal ordering) itu. Banyak dipakai untuk meramal penjualan, memprediksi harga saham, sampai perencanaan permintaan (demand planning).</p>
     </div>
     <div class="sub-section">
       <h3>Komponen Time Series</h3>
       <div class="grid-2">
         <div class="grid-card">
           <div class="gc-title">Trend</div>
-          <div class="gc-body">Pola jangka panjang (upward/downward movement over time).</div>
+          <div class="gc-body">Arah pergerakan jangka panjang data — apakah cenderung naik atau turun seiring waktu.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Seasonality</div>
-          <div class="gc-body">Pola berulang pada interval waktu tertentu (daily, weekly, monthly).</div>
+          <div class="gc-body">Pola yang berulang di interval waktu tertentu, misalnya penjualan yang selalu naik tiap akhir pekan, tiap bulan, atau tiap musim liburan.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Cyclic</div>
-          <div class="gc-body">Fluktuasi jangka panjang tanpa periode tetap.</div>
+          <div class="gc-body">Mirip seasonality, tapi fluktuasinya jangka panjang dan tidak punya periode yang tetap — misalnya siklus ekonomi.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Noise</div>
-          <div class="gc-body">Random variation yang tidak bisa diprediksi.</div>
+          <div class="gc-body">Variasi acak yang memang tidak bisa diprediksi atau dijelaskan pola apa pun — bagian "berisik" dari data.</div>
         </div>
       </div>
     </div>
@@ -488,15 +488,15 @@ print(forecast)</code></pre>
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">MAE (Mean Absolute Error)</div>
-          <div class="gc-body"><b>Average |yᵢ - ŷᵢ|</b><br>Rata-rata absolute error. Easy to interpret, same unit as target.</div>
+          <div class="gc-body"><b>Average |yᵢ - ŷᵢ|</b><br>Rata-rata selisih absolut antara tebakan dan kenyataan. Paling gampang dimaknai karena satuannya sama persis dengan target aslinya.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">RMSE (Root Mean Squared Error)</div>
-          <div class="gc-body"><b>√(Average (yᵢ - ŷᵢ)²)</b><br>Penalizes large errors lebih berat. Sensitif terhadap outliers.</div>
+          <div class="gc-body"><b>√(Average (yᵢ - ŷᵢ)²)</b><br>Mirip MAE, tapi kesalahan besar "dihukum" lebih berat karena dikuadratkan dulu. Jadi lebih sensitif terhadap outlier.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">R² Score (Coefficient of Determination)</div>
-          <div class="gc-body"><b>1 - (SS_res / SS_tot)</b><br>Proporsi variance yang explained by model (0-1). Higher is better.</div>
+          <div class="gc-body"><b>1 - (SS_res / SS_tot)</b><br>Menunjukkan seberapa besar proporsi variasi data yang berhasil dijelaskan oleh model, nilainya antara 0-1 — makin mendekati 1, makin bagus modelnya.</div>
         </div>
       </div>
     </div>

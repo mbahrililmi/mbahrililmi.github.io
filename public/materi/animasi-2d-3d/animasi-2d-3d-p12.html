@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 7 – Penerapan Metode Analitik | Big Data</title>
+<title>Pertemuan 12 – Camera, Lighting & Rendering | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,17 +226,17 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Penerapan Metode Analitik</div>
-    <div class="pertemuan-badge">Pertemuan 7</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">Camera, Lighting &amp; Rendering</div>
+    <div class="pertemuan-badge">Pertemuan 12</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Case Study: Churn Prediction</a>
-    <a href="#section-3" class="toc-link">Case Study: Sales Forecasting</a>
-    <a href="#section-4" class="toc-link">Case Study: Customer Segmentation</a>
-    <a href="#section-5" class="toc-link">Case Study: Product Bundling</a>
+    <a href="#section-2" class="toc-link">Kamera dalam 3D</a>
+    <a href="#section-3" class="toc-link">Three-Point Lighting</a>
+    <a href="#section-4" class="toc-link">Render Engine</a>
+    <a href="#section-5" class="toc-link">Render Settings Dasar</a>
     <a href="#section-6" class="toc-link">Praktikum</a>
   </nav>
 </aside>
@@ -244,49 +244,40 @@ ul.styled li::marker{color:var(--gold);}
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 7 · Big Data</div>
-    <h1>Penerapan Metode Analitik</h1>
-    <p class="subtitle">Praktik penerapan metode classification, prediction, clustering, dan association rules pada studi kasus nyata.</p>
+    <div class="pre-title">Pertemuan 12 · Animasi 2D dan 3D</div>
+    <h1>Camera, Lighting & Rendering</h1>
+    <p class="subtitle">Belajar mengatur sudut pandang kamera, menyusun pencahayaan tiga titik ala studio foto, memilih render engine yang tepat, dan menghasilkan render akhir dari scene 3D yang sudah dibangun.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 7</div>
-      <p>Mahasiswa mampu <b>menerapkan berbagai metode analitik</b> (classification, regression, clustering, association rules) dalam studi kasus bisnis nyata dan menginterpretasikan hasil untuk pengambilan keputusan.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu mengatur kamera, pencahayaan, dan melakukan rendering sederhana pada scene 3D.</p>
     </div>
     <div class="card">
-      <div class="card-title">Mengapa Studi Kasus Penting?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sejauh ini kita sudah belajar classification, prediction, clustering, dan association rules satu per satu — di pertemuan ini, semuanya dirangkai jadi satu dalam konteks bisnis yang nyata. Lewat studi kasus, kita jadi lebih paham kapan sebaiknya memakai metode yang mana, bagaimana caranya memilih algoritma yang paling pas, dan bagaimana menerjemahkan hasil model jadi keputusan bisnis yang benar-benar bisa ditindaklanjuti.</p>
+      <div class="card-title">Dari Objek Jadi ke Sebuah "Foto"</div>
+      <p style="font-size:.88rem;line-height:1.75;">Coba kita tengok kembali perjalanan yang sudah kita lalui. Di pertemuan-pertemuan sebelumnya, kita sudah membangun objek 3D dari nol, memberinya tekstur dan material supaya terlihat nyata, lalu menghidupkannya lewat animasi dan rigging. Semua elemen sudah siap di atas panggung scene kita — tapi ada satu pertanyaan penting yang belum terjawab: bagaimana caranya semua kerja keras itu benar-benar "dipotret" dengan baik supaya orang lain bisa melihatnya?</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Di sinilah peran kamera, pencahayaan, dan rendering masuk. Ibaratkan diri Anda sebagai fotografer profesional yang dipanggil untuk memotret sebuah produk mewah. Produknya sudah bagus, sudah didandani rapi — tapi kalau kameranya salah posisi atau pencahayaannya asal-asalan, hasil fotonya bisa jadi datar dan tidak menarik. Sebaliknya, dengan sudut kamera yang pas dan cahaya yang ditata dengan cermat, objek yang sederhana sekalipun bisa terlihat dramatis dan profesional. Itulah yang akan kita pelajari di pertemuan ini: bagaimana "memotret" scene 3D kita dengan baik, lalu mengubahnya menjadi gambar atau video jadi lewat proses rendering.</p>
     </div>
-    <div class="sub-section">
-      <h3>Tujuan Pembelajaran</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Pemilihan Metode Tepat</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mampu menentukan metode analitik yang paling cocok berdasarkan jenis masalahnya: classification kalau ingin memprediksi kategori, regression untuk nilai numerik, clustering untuk segmentasi, dan association kalau tujuannya membuat rekomendasi.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">End-to-End Pipeline</div>
-          <p style="font-size:.88rem;line-height:1.75;">Memahami keseluruhan alur proyek analytics dari ujung ke ujung: mulai dari merumuskan masalah bisnis, menyiapkan data, membangun model, mengevaluasi, sampai menyusun rekomendasi bisnis.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Interpretasi Bisnis</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mampu membaca hasil model analytics dalam konteks bisnisnya, lalu mengkomunikasikan insight tersebut secara efektif kepada stakeholder yang bahkan tidak punya latar belakang teknis.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Multi-Method Approach</div>
-          <p style="font-size:.88rem;line-height:1.75;">Belajar menggabungkan beberapa metode analitik sekaligus dalam satu studi kasus, supaya insight yang didapat lebih lengkap dan benar-benar bisa ditindaklanjuti.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami fungsi kamera dalam scene 3D, termasuk konsep field of view dan depth of field</li>
+        <li>Mengenal berbagai jenis shot dan komposisi kamera dasar dalam sinematografi</li>
+        <li>Memahami dan menerapkan teknik pencahayaan three-point lighting (Key, Fill, Back Light)</li>
+        <li>Membandingkan render engine Eevee dan Cycles serta mengetahui kapan masing-masing cocok digunakan</li>
+        <li>Memahami pengaturan render dasar: resolusi, format output, dan estimasi waktu render</li>
+        <li>Menghasilkan render akhir dari scene 3D dengan pencahayaan dan pengaturan yang tepat</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
@@ -294,99 +285,50 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Case Study: Churn Prediction</h2>
+      <h2>Kamera dalam 3D</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Business Problem</div>
-      <p>Coba bayangkan Anda memimpin divisi customer retention di sebuah perusahaan telekomunikasi. Setiap bulan, 15% pelanggan pergi begitu saja (monthly churn rate) — padahal mencari pelanggan baru biaya-nya 5 kali lipat lebih mahal dibanding mempertahankan yang sudah ada. Jelas ini masalah yang harus segera diatasi. <b>Goal: Prediksi pelanggan yang akan churn 30 hari ke depan.</b></p>
-    </div>
+
     <div class="sub-section">
-      <h3>Data & Fitur</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Demographic Features</div>
-          <div class="gc-body">Gender, usia, lokasi, status pernikahan, tenure (lama berlangganan)</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Usage Features</div>
-          <div class="gc-body">Total minutes, SMS count, data usage, call frequency, peak vs off-peak usage</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Account Features</div>
-          <div class="gc-body">Contract type, payment method, monthly charges, total charges, number of services subscribed</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Complaint Features</div>
-          <div class="gc-body">Number of complaints filed, call center contacts, satisfaction score, last complaint date</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Behavioral Features</div>
-          <div class="gc-body">Days since last login, frequency of plan change, referrals made, app usage patterns</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Target Variable</div>
-          <div class="gc-body"><b>Churn</b>: 1 (pelanggan meninggalkan dalam 30 hari), 0 (tetap berlangganan)</div>
-        </div>
-      </div>
+      <h3>Kamera sebagai Mata Penonton</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Dalam software 3D, kamera bukan sekadar objek dekorasi di dalam scene — kamera adalah representasi mata penonton. Apa pun yang berada di dalam bingkai kamera itulah yang akan terlihat di hasil render, sementara apa pun yang di luar bingkai tidak akan pernah tampil sama sekali, walaupun objeknya ada dan sudah ditekstur dengan indah. Sama persis seperti fotografer yang memilih ke mana lensanya diarahkan, menentukan apa yang masuk frame dan apa yang tidak, seorang animator 3D juga harus sengaja menata posisi, arah, dan sudut kamera supaya cerita atau produk yang ingin ditonjolkan benar-benar tersampaikan.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Menariknya, kamera di software 3D bisa dianimasikan seperti objek lain — bisa bergerak mengelilingi objek, mengikuti karakter yang berjalan, atau melakukan zoom perlahan untuk membangun ketegangan. Tapi sebelum masuk ke animasi kamera yang lebih rumit, penting dulu memahami dua pengaturan dasar yang paling sering menentukan "rasa" dari sebuah gambar: field of view dan depth of field.</p>
     </div>
+
     <div class="sub-section">
-      <h3>Methodology & Implementation</h3>
+      <h3>Field of View (FOV)</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Field of view adalah seberapa luas area yang bisa "dilihat" dan ditangkap oleh kamera dalam satu bidikan. Bayangkan Anda memotret menggunakan lensa kamera sungguhan: lensa <b>wide-angle</b> (sudut lebar) bisa menangkap area yang sangat luas dalam satu frame, cocok untuk memotret pemandangan gedung atau ruangan besar, tapi efeknya objek di pinggir frame bisa terlihat sedikit melengkung atau terdistorsi. Sebaliknya, lensa <b>telephoto</b> (sudut sempit) hanya menangkap area kecil yang jauh lebih fokus, membuat objek terlihat lebih dekat dan "dipadatkan", cocok untuk memotret detail wajah atau objek dari kejauhan tanpa distorsi berlebihan.</p>
       <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Algoritma yang Digunakan</div>
-          <p style="font-size:.88rem;line-height:1.75;">Karena yang ditebak cuma dua kemungkinan — churn atau tidak — ini jelas kasus <b>Binary Classification</b>. Algoritma yang dicoba: Random Forest, Gradient Boosting, dan Logistic Regression. Evaluasinya memakai Precision, Recall, F1-Score, dengan fokus utama di <b>Recall</b> — sebab kita tidak boleh sampai kelewatan mendeteksi pelanggan yang benar-benar akan churn!</p>
+        <div class="grid-card">
+          <div class="gc-title">FOV Lebar (Wide)</div>
+          <div class="gc-body">Menangkap area yang luas dalam satu frame — cocok untuk memperlihatkan keseluruhan ruangan, lanskap, atau suasana sebuah scene. Risikonya, objek di tepi frame bisa terlihat sedikit melar atau terdistorsi kalau sudutnya terlalu ekstrem.</div>
         </div>
-        <div class="card">
-          <div class="card-title">Feature Engineering</div>
-          <p style="font-size:.88rem;line-height:1.75;">Beberapa fitur turunan yang dibuat: <b>RFM features</b> — Recency (kapan terakhir kontak), Frequency (frekuensi transaksi), Monetary (nilai total transaksi); <b>Trend features</b> — pertumbuhan atau penurunan penggunaan dalam 3 bulan terakhir; dan <b>Interaction terms</b> seperti tenure × monthly_charges.</p>
+        <div class="grid-card">
+          <div class="gc-title">FOV Sempit (Narrow)</div>
+          <div class="gc-body">Menangkap area yang lebih kecil dan terasa "mendekat" ke objek, mirip efek zoom pada kamera sungguhan. Cocok untuk menonjolkan detail sebuah objek atau ekspresi karakter tanpa gangguan latar belakang yang terlalu luas.</div>
         </div>
-      </div>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.metrics import classification_report, roc_auc_score
-import pandas as pd
-
-# Prepare data
-X = df.drop('churn', axis=1)
-y = df['churn']
-
-# Handle imbalanced dataset dengan class_weight
-rf = RandomForestClassifier(
-    n_estimators=200,
-    max_depth=10,
-    class_weight='balanced',  # Handle imbalanced classes
-    random_state=42
-)
-rf.fit(X_train, y_train)
-
-# Evaluate
-y_pred = rf.predict(X_test)
-y_proba = rf.predict_proba(X_test)[:, 1]
-
-print(classification_report(y_test, y_pred))
-print(f"ROC-AUC: {roc_auc_score(y_test, y_proba):.3f}")
-
-# Feature importance untuk business insights
-feat_imp = pd.Series(rf.feature_importances_, index=X.columns)
-feat_imp.nlargest(10).plot(kind='barh')</code></pre>
       </div>
     </div>
+
     <div class="sub-section">
-      <h3>Business Action Plan</h3>
+      <h3>Depth of Field (DOF)</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Pernah lihat foto potret di mana wajah orangnya tajam dan jelas, tapi latar belakangnya blur lembut? Itulah efek <span class="tooltip">depth of field<span class="tooltip-text">Efek kamera yang membuat objek pada jarak fokus tertentu terlihat tajam, sementara latar depan/belakang terlihat blur — dipakai untuk mengarahkan perhatian penonton</span></span>. Efek ini sangat berguna untuk mengarahkan mata penonton langsung ke objek yang paling penting, tanpa mereka harus disuruh — mata manusia secara alami akan tertarik ke bagian gambar yang paling tajam. Dalam scene 3D, efek DOF bisa diatur lewat pengaturan kamera dengan menentukan jarak fokus (seberapa jauh objek yang ingin ditajamkan) dan seberapa kuat efek blur di luar jarak itu. Untuk pemula, tidak perlu terburu-buru memakai DOF di setiap render — gunakan secukupnya saat memang ingin menonjolkan satu objek utama, misalnya karakter di tengah scene yang ramai dengan objek lain di sekitarnya.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Komposisi & Jenis Shot Dasar</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Selain pengaturan teknis, posisi kamera juga menentukan bagaimana cerita disampaikan. Dalam dunia sinematografi (baik film maupun animasi), ada beberapa jenis shot dasar yang perlu dikenal supaya komposisi gambar tidak asal-asalan:</p>
       <div class="grid-3">
         <div class="grid-card">
-          <div class="gc-title">High Risk (Prob > 0.7)</div>
-          <div class="gc-body">Pelanggan di level ini butuh perhatian segera — tim customer success langsung menghubungi secara personal, menawarkan retention deal khusus, upgrade gratis, atau kompensasi.</div>
+          <div class="gc-title">Wide Shot</div>
+          <div class="gc-body">Kamera diletakkan jauh dari objek sehingga seluruh tubuh karakter dan sebagian besar lingkungan sekitarnya terlihat. Cocok untuk memperkenalkan suasana atau lokasi sebuah scene di awal adegan.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Medium Risk (0.4-0.7)</div>
-          <div class="gc-body">Masih bisa diselamatkan lewat pendekatan yang lebih ringan: email/SMS personal dengan penawaran tertarget, survei kepuasan proaktif, dan follow-up dari tim CS.</div>
+          <div class="gc-title">Medium Shot</div>
+          <div class="gc-body">Kamera mendekat sehingga yang terlihat kira-kira dari pinggang ke atas. Jenis shot ini paling sering dipakai karena seimbang — masih memperlihatkan gestur tubuh, tapi juga cukup dekat untuk melihat ekspresi.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Low Risk (&lt; 0.4)</div>
-          <div class="gc-body">Untuk pelanggan yang risikonya masih rendah, cukup dijaga lewat kampanye engagement via notifikasi aplikasi, loyalty reward, dan program referral agar makin lengket dengan layanan.</div>
+          <div class="gc-title">Close-Up</div>
+          <div class="gc-body">Kamera fokus sangat dekat, biasanya hanya menangkap wajah atau detail kecil seperti tangan yang memegang sesuatu. Dipakai untuk menonjolkan emosi karakter atau detail penting yang harus diperhatikan penonton.</div>
         </div>
       </div>
     </div>
@@ -396,61 +338,50 @@ feat_imp.nlargest(10).plot(kind='barh')</code></pre>
   <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Case Study: Sales Forecasting</h2>
+      <h2>Teknik Pencahayaan: Three-Point Lighting</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Business Problem</div>
-      <p>Kasus lain: sebuah perusahaan retail terus-menerus salah menebak berapa banyak stok yang harus disiapkan — kadang kelebihan (overstock), kadang malah kehabisan (stockout). Akibatnya kerugiannya mencapai Rp 2 miliar per bulan. <b>Goal: Forecast weekly sales 4 minggu ke depan per SKU per toko.</b></p>
+    <div class="card">
+      <div class="card-title">Cahaya Menentukan Suasana</div>
+      <p style="font-size:.88rem;line-height:1.75;">Kalau kamera menentukan apa yang dilihat, pencahayaan menentukan bagaimana perasaan penonton terhadap apa yang mereka lihat. Bayangkan panggung teater: sebelum aktor tampil, ada tim tata cahaya yang sengaja menata beberapa lampu sorot dari berbagai arah supaya aktor terlihat jelas, tidak datar, dan sesuai suasana adegan — entah itu ceria, misterius, atau menegangkan. Prinsip yang sama berlaku persis di dunia 3D. Salah satu teknik pencahayaan paling klasik dan paling sering diajarkan pertama kali, baik di studio foto maupun studio animasi, adalah <b>three-point lighting</b> atau pencahayaan tiga titik.</p>
     </div>
+
     <div class="sub-section">
-      <h3>Komponen Time Series & Data</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Komponen Data</div>
-          <p style="font-size:.88rem;line-height:1.75;">Seperti dibahas di pertemuan sebelumnya, data penjualan mingguan ini juga tersusun dari beberapa komponen: <b>Trend</b> — pertumbuhan/penurunan jangka panjang; <b>Seasonality</b> — pola berulang mingguan/bulanan/tahunan seperti lonjakan saat lebaran atau harbolnas; <b>Cyclical</b> — siklus ekonomi jangka panjang; dan <b>Noise</b> — variasi acak yang memang tidak bisa diprediksi.</p>
+      <h3>Tiga Sumber Cahaya, Tiga Peran Berbeda</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Key Light</div>
+          <div class="gc-body">Ini adalah cahaya utama, sumber pencahayaan paling terang yang menerangi objek dari satu sisi — biasanya diletakkan agak menyamping dan sedikit di atas objek, mirip posisi matahari sore. Key light inilah yang paling menentukan bentuk dan volume objek, karena dari sinilah bayangan utama terbentuk.</div>
         </div>
-        <div class="card">
-          <div class="card-title">External Features</div>
-          <p style="font-size:.88rem;line-height:1.75;">Selain data penjualan itu sendiri, faktor-faktor dari luar juga ikut memengaruhi dan perlu dimasukkan sebagai fitur: <b>Promotions</b> (diskon, voucher, flash sale), <b>Holidays</b> (hari libur, Lebaran, Natal, Harbolnas), <b>Weather</b> (cuaca — penting untuk retail fashion dan makanan), <b>Price changes</b> (perubahan harga kompetitor), dan <b>Economic indicators</b> (inflasi, daya beli).</p>
+        <div class="grid-card">
+          <div class="gc-title">Fill Light</div>
+          <div class="gc-body">Cahaya pengisi ini diletakkan di sisi berlawanan dari Key Light, dengan intensitas yang lebih lembut. Tugasnya sederhana tapi penting: mengurangi bayangan gelap pekat yang ditimbulkan Key Light, supaya sisi objek yang tidak terkena cahaya utama tidak hilang total ditelan kegelapan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Back Light</div>
+          <div class="gc-body">Cahaya ini diletakkan di belakang objek, mengarah ke kamera. Fungsinya untuk memisahkan objek dari latar belakang lewat garis tepi cahaya tipis (rim light), supaya objek tidak terlihat menyatu atau "menempel" dengan background di belakangnya.</div>
         </div>
       </div>
     </div>
+
     <div class="sub-section">
-      <h3>Multi-Model Approach</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from prophet import Prophet
-from sklearn.ensemble import GradientBoostingRegressor
+      <h3>Kenapa Harus Tiga Titik?</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Kalau hanya memakai satu lampu saja (Key Light), hasilnya biasanya terlihat kontras berlebihan — satu sisi terang benderang, sisi lainnya gelap total tanpa detail. Dengan menambahkan Fill Light, kontras itu jadi lebih seimbang dan detail objek tetap terlihat di sisi yang lebih gelap. Lalu dengan menambahkan Back Light, objek jadi punya "napas" — terpisah jelas dari background, tidak terlihat seperti stiker yang ditempel di atas foto. Kombinasi tiga peran ini yang membuat objek terlihat punya volume, kedalaman, dan tampak profesional, alih-alih datar seperti gambar dua dimensi yang dipaksa jadi tiga dimensi.</p>
+    </div>
 
-# Model 1: SARIMA untuk seasonal data
-sarima = SARIMAX(
-    train['sales'],
-    order=(1, 1, 1),           # (p, d, q) ARIMA
-    seasonal_order=(1, 1, 1, 52)  # Seasonal dengan period 52 weeks
-)
-sarima_fit = sarima.fit()
-sarima_forecast = sarima_fit.forecast(steps=4)
+    <div class="highlight-box">
+      <div class="hb-title">Bonus: Ambient / Environment Light</div>
+      <p>Selain tiga lampu utama, banyak software 3D modern juga menyediakan pencahayaan ambient atau environment light — semacam cahaya "latar" yang menerangi seluruh scene secara merata, biasanya berasal dari gambar panorama (HDRI) yang mensimulasikan langit atau ruangan sungguhan. Untuk pemula, environment light ini bisa dipakai sebagai pelengkap ringan di belakang three-point lighting supaya scene terasa lebih hidup, tanpa harus mengatur banyak lampu tambahan secara manual.</p>
+    </div>
 
-# Model 2: Prophet (Facebook) untuk trend + seasonality
-model = Prophet(
-    yearly_seasonality=True,
-    weekly_seasonality=True,
-    seasonality_mode='multiplicative'
-)
-model.add_regressor('promotion')  # External regressor
-model.fit(df_train)
-forecast = model.predict(future)
-
-# Model 3: Gradient Boosting (ML-based)
-# Feature engineering: lag features, rolling mean, date features
-df['lag_1'] = df['sales'].shift(1)
-df['lag_7'] = df['sales'].shift(7)
-df['rolling_mean_4w'] = df['sales'].rolling(4).mean()
-
-gb = GradientBoostingRegressor(n_estimators=200, max_depth=5)
-gb.fit(X_train, y_train)</code></pre>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Kesalahan Umum Pemula dalam Pencahayaan <span class="icon">▼</span></div>
+      <div class="accordion-body">
+        <ul class="styled">
+          <li><b>Cuma pakai satu lampu:</b> hasilnya kontras berlebihan, satu sisi objek jadi gelap total tanpa detail sama sekali</li>
+          <li><b>Semua lampu disamakan terangnya:</b> objek jadi terlihat datar dan "flat" karena tidak ada satu sumber cahaya yang benar-benar dominan sebagai Key Light</li>
+          <li><b>Lupa Back Light:</b> objek terlihat menyatu dengan background, terutama kalau warna objek dan background mirip</li>
+          <li><b>Cahaya terlalu terang (overexposed):</b> detail tekstur dan material yang sudah susah payah dibuat jadi hilang karena terlalu silau</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -459,70 +390,53 @@ gb.fit(X_train, y_train)</code></pre>
   <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Case Study: Customer Segmentation</h2>
+      <h2>Render Engine: Eevee vs Cycles</h2>
     </div>
+    <div class="card">
+      <div class="card-title">Dua Cara Berbeda Menghitung Cahaya</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah kamera dan pencahayaan siap, langkah berikutnya adalah memilih <span class="tooltip">rendering<span class="tooltip-text">Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit</span></span> engine — mesin di balik layar yang menghitung bagaimana cahaya berinteraksi dengan setiap permukaan objek untuk menghasilkan gambar akhir. Ibaratnya dua juru masak dengan gaya berbeda: satu mengutamakan kecepatan penyajian, satu lagi mengutamakan kesempurnaan rasa walaupun butuh waktu lebih lama. Blender, sebagai salah satu software 3D paling populer, menyediakan dua render engine utama dengan filosofi yang jauh berbeda: Eevee dan Cycles.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-eevee')">Eevee</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-cycles')">Cycles</button>
+      </div>
+      <div id="tab-eevee" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Real-time rendering:</b> hasil render bisa langsung terlihat di viewport hampir seketika, tanpa perlu menunggu proses hitung yang lama</li>
+          <li><b>Cepat:</b> sangat cocok untuk tahap eksplorasi — mencoba-coba posisi kamera, warna material, atau pengaturan lampu berkali-kali tanpa membuang waktu</li>
+          <li><b>Cocok untuk pemula:</b> karena hasilnya instan, lebih mudah belajar "efek apa yang dihasilkan dari perubahan apa" tanpa menunggu lama setiap kali mencoba</li>
+          <li><b>Kekurangan:</b> beberapa efek pencahayaan yang sangat realistis (seperti pantulan cahaya tidak langsung yang rumit) disederhanakan, jadi hasilnya kadang kurang senyata Cycles</li>
+          <li><b>Kapan dipakai:</b> untuk preview cepat, animasi playblast, latihan, atau proyek dengan tenggat waktu ketat yang tidak menuntut fotorealisme penuh</li>
+        </ul>
+      </div>
+      <div id="tab-cycles" class="tab-panel">
+        <ul class="styled">
+          <li><b>Ray-tracing:</b> menghitung jalur cahaya sungguhan yang memantul dari satu permukaan ke permukaan lain, mirip cara cahaya bekerja di dunia nyata</li>
+          <li><b>Lebih realistis:</b> pantulan, bayangan lembut, dan interaksi material dengan cahaya terlihat jauh lebih meyakinkan dan detail</li>
+          <li><b>Lebih lambat:</b> karena perhitungannya jauh lebih rumit, waktu render bisa jauh lebih lama dibanding Eevee, apalagi untuk scene yang kompleks</li>
+          <li><b>Butuh sabar:</b> tidak cocok untuk mencoba-coba pengaturan berkali-kali karena setiap kali render butuh waktu tunggu yang tidak sebentar</li>
+          <li><b>Kapan dipakai:</b> untuk hasil akhir (final render) yang kualitasnya sudah jadi prioritas utama — misalnya poster, portofolio, atau video final yang akan dipresentasikan</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Aspek</th><th>Eevee</th><th>Cycles</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Kecepatan</td><td>Sangat cepat, hampir real-time</td><td>Lebih lambat, tergantung kompleksitas scene</td></tr>
+        <tr><td>Tingkat realisme</td><td>Baik, tapi disederhanakan</td><td>Tinggi, mendekati fotorealistik</td></tr>
+        <tr><td>Cocok untuk</td><td>Preview, latihan, animasi cepat</td><td>Render final, portofolio, presentasi</td></tr>
+        <tr><td>Kebutuhan sabar/waktu</td><td>Rendah</td><td>Tinggi</td></tr>
+      </tbody>
+    </table>
+
     <div class="highlight-box">
-      <div class="hb-title">Business Problem</div>
-      <p>Sekarang bayangkan sebuah platform e-commerce dengan 5 juta pelanggan aktif, tapi masih memakai satu pendekatan marketing yang sama untuk semuanya — padahal jelas kebutuhan tiap pelanggan berbeda-beda. Tidak heran, conversion rate kampanyenya cuma 2%. <b>Goal: Segmentasi pelanggan untuk personalized marketing yang meningkatkan conversion rate.</b></p>
-    </div>
-    <div class="sub-section">
-      <h3>RFM Analysis</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Recency (R)</div>
-          <div class="gc-body">Menjawab pertanyaan: kapan terakhir kali pelanggan ini bertransaksi? Semakin baru transaksinya, semakin tinggi nilai R-nya — pelanggan yang masih aktif akan punya R tinggi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Frequency (F)</div>
-          <div class="gc-body">Menjawab: seberapa sering pelanggan ini bertransaksi dalam periode tertentu? Pelanggan yang loyal biasanya punya F tinggi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Monetary (M)</div>
-          <div class="gc-body">Menjawab: berapa total nilai belanja pelanggan ini? Pelanggan bernilai tinggi (high-value) akan punya M tinggi — angka ini juga dipakai untuk menghitung CLV (Customer Lifetime Value).</div>
-        </div>
-      </div>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from datetime import datetime
-
-# Hitung RFM
-today = datetime.now()
-rfm = df.groupby('customer_id').agg({
-    'order_date': lambda x: (today - x.max()).days,  # Recency
-    'order_id': 'count',                              # Frequency
-    'total_amount': 'sum'                             # Monetary
-}).reset_index()
-
-rfm.columns = ['customer_id', 'recency', 'frequency', 'monetary']
-
-# Normalize RFM
-scaler = StandardScaler()
-rfm_scaled = scaler.fit_transform(rfm[['recency','frequency','monetary']])
-
-# K-Means clustering
-kmeans = KMeans(n_clusters=4, random_state=42)
-rfm['segment'] = kmeans.fit_predict(rfm_scaled)
-
-# Profiling tiap segment
-print(rfm.groupby('segment')[['recency','frequency','monetary']].mean())</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Customer Segments & Strategy</h3>
-      <table class="rubric-table">
-        <thead>
-          <tr><th>Segment</th><th>RFM Profile</th><th>Label</th><th>Marketing Strategy</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>Segment A</b></td><td>R↑ F↑ M↑</td><td>Champions</td><td>Loyalty program premium, early access, referral rewards</td></tr>
-          <tr><td><b>Segment B</b></td><td>R↑ F↓ M↑</td><td>Big Spenders</td><td>Personalized high-value offers, VIP treatment</td></tr>
-          <tr><td><b>Segment C</b></td><td>R↓ F↑ M↓</td><td>At-Risk Loyal</td><td>Win-back campaign, exclusive deals, customer success outreach</td></tr>
-          <tr><td><b>Segment D</b></td><td>R↓ F↓ M↓</td><td>Dormant</td><td>Reactivation email series, aggressive discount, atau stop spending budget</td></tr>
-        </tbody>
-      </table>
+      <div class="hb-title">Tips Memilih Render Engine</div>
+      <p>Aturan sederhananya: gunakan Eevee saat masih dalam tahap mencoba-coba dan menata scene, lalu beralih ke Cycles hanya di detik-detik akhir saat semua sudah pasti dan Anda ingin menghasilkan gambar terbaik. Tidak perlu memaksakan Cycles dari awal kalau scene masih sering berubah-ubah — itu hanya akan membuang waktu tanpa manfaat yang berarti.</p>
     </div>
   </section>
   <hr class="section-divider">
@@ -530,69 +444,43 @@ print(rfm.groupby('segment')[['recency','frequency','monetary']].mean())</code><
   <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Case Study: Product Bundling</h2>
+      <h2>Render Settings Dasar</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Business Problem</div>
-      <p>Studi kasus terakhir kita kembali ke association rules. Sebuah minimarket ingin meningkatkan Average Order Value (AOV)-nya lewat bundling produk, karena saat ini AOV-nya baru Rp 85.000 per transaksi. <b>Goal: Temukan product bundles yang sering dibeli bersamaan untuk rekomendasi di kasir dan di-app.</b></p>
-    </div>
+
     <div class="sub-section">
-      <h3>Market Basket Analysis Pipeline</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Data Preprocessing</div>
-          <p style="font-size:.88rem;line-height:1.75;">Semuanya dimulai dari mengumpulkan data transaksi POS (Point of Sale), di mana tiap transaksi berisi daftar produk yang dibeli bersamaan. Data ini kemudian di-encode ke format binary matrix (1 = produk dibeli, 0 = tidak), dan transaksi yang isinya kurang dari 2 item difilter karena tidak relevan untuk mencari asosiasi.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Association Rules Mining</div>
-          <p style="font-size:.88rem;line-height:1.75;">Barulah algoritma Apriori atau FP-Growth dipakai untuk menemukan frequent itemsets. Rules-nya kemudian disaring dengan ambang batas: <b>Support ≥ 0.02</b> (muncul di setidaknya 2% transaksi), <b>Confidence ≥ 0.5</b>, dan <b>Lift ≥ 1.5</b>.</p>
-        </div>
-      </div>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from mlxtend.frequent_patterns import fpgrowth, association_rules
-from mlxtend.preprocessing import TransactionEncoder
-import pandas as pd
-
-# Prepare transaction data
-transactions = pos_df.groupby('transaction_id')['product_name'].apply(list)
-
-# Encode
-te = TransactionEncoder()
-te_arr = te.fit_transform(transactions)
-basket = pd.DataFrame(te_arr, columns=te.columns_)
-
-# FP-Growth (lebih efisien dari Apriori untuk large datasets)
-freq_items = fpgrowth(basket, min_support=0.02, use_colnames=True)
-
-# Generate rules
-rules = association_rules(
-    freq_items,
-    metric='lift',
-    min_threshold=1.5
-)
-rules = rules[rules['confidence'] >= 0.5]
-
-# Top bundles sorted by lift
-top_bundles = rules.sort_values('lift', ascending=False).head(10)
-print(top_bundles[['antecedents','consequents','support','confidence','lift']])</code></pre>
-      </div>
+      <h3>Resolusi Output</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Resolusi menentukan seberapa detail dan tajam gambar hasil render, diukur dalam jumlah piksel lebar dikali tinggi. Untuk kebutuhan umum seperti presentasi atau upload ke media sosial, resolusi HD (1920×1080 piksel) biasanya sudah lebih dari cukup. Kalau hasilnya ingin dicetak besar atau ditampilkan di layar beresolusi tinggi, bisa naik ke 4K (3840×2160 piksel) — tapi perlu diingat, makin tinggi resolusinya, makin lama pula waktu yang dibutuhkan untuk merendernya, karena setiap piksel tambahan berarti perhitungan cahaya tambahan yang harus dilakukan komputer.</p>
     </div>
+
     <div class="sub-section">
-      <h3>Implementasi Rekomendasi</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Kasir (POS Integration)</div>
-          <div class="gc-body">Saat pelanggan membeli item A di kasir, layar POS otomatis menampilkan saran item B yang confidence asosiasinya tinggi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Mobile App</div>
-          <div class="gc-body">Rules yang sama juga dipakai untuk section "Frequently Bought Together" di halaman detail produk, dengan rekomendasi real-time berdasarkan isi keranjang.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Shelf Placement</div>
-          <div class="gc-body">Produk yang sering dibeli bersamaan sengaja ditempatkan berdekatan di rak fisik toko, supaya mendorong pembelian impulsif (impulse purchase).</div>
-        </div>
+      <h3>Format File Output</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Pemilihan format file juga tidak boleh asal, karena masing-masing punya kegunaan yang berbeda:</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Format</th><th>Digunakan untuk</th><th>Catatan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PNG</td><td>Gambar diam (still image)</td><td>Kualitas tanpa kompresi berlebih, mendukung transparansi (alpha channel)</td></tr>
+          <tr><td>JPEG</td><td>Gambar diam untuk keperluan ringan</td><td>Ukuran file lebih kecil, tapi ada sedikit penurunan kualitas akibat kompresi</td></tr>
+          <tr><td>MP4</td><td>Video jadi (final)</td><td>Praktis untuk dibagikan atau diputar langsung, tapi berisiko kalau proses render terhenti di tengah jalan</td></tr>
+          <tr><td>Image Sequence (PNG per frame)</td><td>Render animasi/video</td><td>Setiap frame tersimpan terpisah — kalau render terhenti, tinggal lanjutkan dari frame terakhir tanpa mengulang dari awal</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-section">
+      <h3>Waktu Render yang Perlu Diperhitungkan</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Salah satu hal yang sering mengejutkan pemula adalah betapa lamanya proses render bisa berlangsung, apalagi untuk animasi yang terdiri dari ratusan bahkan ribuan frame. Waktu render dipengaruhi banyak faktor: resolusi, render engine yang dipakai, jumlah sampling (seberapa banyak "percobaan" perhitungan cahaya yang dilakukan untuk mengurangi noise/bintik pada gambar), kompleksitas scene, dan spesifikasi komputer yang digunakan. Karena itu, sangat disarankan untuk selalu merencanakan waktu render jauh-jauh hari sebelum tenggat, bukan menunggu di menit-menit terakhir — sebuah animasi pendek berdurasi beberapa detik saja bisa memakan waktu render berjam-jam kalau pengaturannya tinggi.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Render untuk Preview</div>
+        <div class="gc-body">Resolusi lebih rendah, sampling sedikit, pakai Eevee. Tujuannya cepat melihat gambaran umum hasil, bukan kesempurnaan detail. Cocok dipakai berulang kali saat masih menata scene.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Render Final</div>
+        <div class="gc-body">Resolusi sesuai kebutuhan akhir (HD/4K), sampling lebih tinggi supaya noise berkurang, bisa pakai Cycles kalau realisme jadi prioritas. Dilakukan setelah semua pengaturan scene benar-benar final.</div>
       </div>
     </div>
   </section>
@@ -601,51 +489,47 @@ print(top_bundles[['antecedents','consequents','support','confidence','lift']])<
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Praktikum Pertemuan 12</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Integrasi Semua Metode Analitik</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran Anda merangkai sendiri classification, regression, clustering, dan association rules ke dalam satu studi kasus nyata, persis seperti yang baru saja dibahas.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">Churn Prediction End-to-End</div>
-          <ul>
-            <li>Dataset: Telco Customer Churn (Kaggle)</li>
-            <li>EDA: Analisis distribusi churn, korelasi fitur</li>
-            <li>Feature engineering: buat fitur baru dari existing data</li>
-            <li>Build model: Random Forest + Logistic Regression</li>
-            <li>Evaluate: Classification report, confusion matrix, ROC-AUC</li>
-            <li>Business interpretation: identifikasi top 5 faktor penyebab churn</li>
-            <li>Deliverable: Jupyter notebook + 1 slide executive summary</li>
-          </ul>
-        </div>
+
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Three-Point Lighting & Render Akhir</div>
+        <ul>
+          <li>Buka kembali scene 3D yang sudah dibuat pada Pertemuan 9-11 (objek yang sudah dimodel, ditekstur, dan/atau dianimasikan)</li>
+          <li>Tambahkan dan atur tiga sumber cahaya: Key Light, Fill Light, dan Back Light sesuai konsep yang sudah dipelajari</li>
+          <li>Atur posisi kamera dengan komposisi yang baik (pilih salah satu jenis shot: wide, medium, atau close-up)</li>
+          <li>Tentukan resolusi output (minimal HD 1920×1080) dan format file (PNG)</li>
+          <li>Render minimal 1 gambar hasil akhir dengan pencahayaan dan pengaturan yang sudah dipelajari</li>
+          <li>Deliverable: file gambar hasil render (.png) + file project (.blend)</li>
+          <li>Format nama file: NIM_Nama_P12_ThreePointLighting.png dan .blend</li>
+        </ul>
       </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Customer Segmentation dengan RFM</div>
-          <ul>
-            <li>Dataset: Online Retail Dataset (UCI)</li>
-            <li>Hitung RFM score untuk setiap pelanggan</li>
-            <li>K-Means clustering dengan Elbow Method untuk optimal K</li>
-            <li>Profile setiap segment: mean RFM values, ukuran segment</li>
-            <li>Beri nama dan strategi marketing untuk setiap segment</li>
-            <li>Visualisasi: 3D scatter plot RFM colored by cluster</li>
-          </ul>
-        </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Perbandingan Render Engine Eevee vs Cycles</div>
+        <ul>
+          <li>Gunakan scene dan pengaturan kamera/lighting yang sama seperti Latihan 1</li>
+          <li>Render scene tersebut dua kali dengan resolusi dan sudut kamera yang identik: satu kali menggunakan Eevee, satu kali menggunakan Cycles</li>
+          <li>Catat waktu yang dibutuhkan masing-masing render engine untuk menyelesaikan proses render</li>
+          <li>Amati dan bandingkan perbedaan kualitas visual di antara keduanya, terutama pada bayangan dan pantulan cahaya</li>
+          <li>Deliverable: 2 file gambar hasil render (.png) + catatan singkat perbandingan (bisa ditulis dalam 1 halaman PDF atau dokumen singkat)</li>
+          <li>Format nama file: NIM_Nama_P12_RenderCompare.png (beri akhiran _Eevee dan _Cycles pada masing-masing file)</li>
+        </ul>
       </div>
     </div>
   </section>
+
   <nav class="footer-nav">
-    <a href="bigdata-p6.html">← Pertemuan 6</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p8.html" class="next-btn">Pertemuan 8 →</a>
+    <a href="animasi-2d-3d-p11.html">← Pertemuan 11</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="animasi-2d-3d-p13.html" class="next-btn">Pertemuan 13 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -678,7 +562,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -746,6 +630,26 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
+    'depth of field':'Efek kamera yang membuat objek pada jarak fokus tertentu terlihat tajam, sementara latar depan/belakang terlihat blur — dipakai untuk mengarahkan perhatian penonton',
+    'particle system':'Sistem yang menghasilkan banyak objek kecil secara otomatis (misal butiran hujan, percikan api, debu) tanpa perlu membuatnya satu per satu secara manual',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

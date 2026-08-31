@@ -261,22 +261,22 @@ ul.styled li::marker{color:var(--gold);}
     </div>
     <div class="highlight-box">
       <div class="hb-title">Sub-CPMK Pertemuan 10</div>
-      <p>Mahasiswa mampu <b>melakukan instalasi, konfigurasi, dan verifikasi</b> tools big data yang digunakan dalam praktikum: Docker, Hadoop (via Docker), Python/Anaconda, Jupyter, dan development tools pendukung.</p>
+      <p>Sekarang giliran kalian turun tangan langsung. Di pertemuan ini kalian akan <b>meng-install, mengkonfigurasi, dan memverifikasi</b> sendiri semua tools big data yang bakal dipakai selama praktikum — mulai dari Docker, Hadoop (lewat Docker), Python/Anaconda, Jupyter, hingga development tools pendukung lainnya. Anggap ini seperti menyiapkan "bengkel kerja" sebelum mulai mengerjakan proyek-proyek besar nanti.</p>
     </div>
     <div class="sub-section">
       <h3>Checklist Instalasi</h3>
       <div class="grid-3">
         <div class="card">
           <div class="card-title">1. Docker Desktop</div>
-          <p style="font-size:.88rem;line-height:1.75;">Platform containerization. Download dari docker.com. Diperlukan untuk menjalankan Hadoop, Kafka, dan services lain tanpa instalasi native yang rumit.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Ini adalah tools pertama yang perlu kalian pasang — platform containerization yang bisa diunduh langsung dari docker.com. Dengan Docker, kita bisa menjalankan Hadoop, Kafka, dan berbagai services lain tanpa harus repot melakukan instalasi native yang ribet satu per satu.</p>
         </div>
         <div class="card">
           <div class="card-title">2. Anaconda / Miniconda</div>
-          <p style="font-size:.88rem;line-height:1.75;">Python distribution dengan conda package manager. Memudahkan manajemen environment dan instalasi library data science seperti PySpark, Pandas, Scikit-learn.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Ini adalah distribusi Python yang sudah dilengkapi conda sebagai package manager, jadi kalian tidak perlu pusing mengatur environment satu-satu secara manual. Cukup pakai Anaconda, dan instalasi library data science seperti PySpark, Pandas, atau Scikit-learn jadi jauh lebih mudah.</p>
         </div>
         <div class="card">
           <div class="card-title">3. Development Tools</div>
-          <p style="font-size:.88rem;line-height:1.75;">VS Code (editor) + extensions Python, Jupyter, Docker. Git untuk version control. Postman/Insomnia untuk testing REST API. DBeaver untuk database exploration.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Terakhir, siapkan juga "perkakas" pendukung: VS Code sebagai editor utama beserta extension Python, Jupyter, dan Docker; Git untuk mencatat riwayat perubahan kode (version control); Postman atau Insomnia untuk mencoba-coba REST API; serta DBeaver untuk menjelajahi isi database.</p>
         </div>
       </div>
     </div>
@@ -361,7 +361,7 @@ docker-compose -f docker-compose-hadoop.yml up -d
     </div>
     <div class="card">
       <div class="card-title">Hadoop Installation</div>
-      <p style="font-size:.88rem;line-height:1.75;"><b>Hadoop Setup (Pseudo-Distributed Mode):</b><br><br>1. <b>Prerequisites:</b> Java JDK 8+<br>2. <b>Download:</b> Apache Hadoop binary<br>3. <b>Extract:</b> <code>tar -xzf hadoop-3.x.tar.gz</code><br>4. <b>Configure:</b><br>   • core-site.xml (NameNode URI)<br>   • hdfs-site.xml (replication factor)<br>   • mapred-site.xml (JobTracker)<br>   • yarn-site.xml (ResourceManager)<br>5. <b>Format NameNode:</b> <code>hdfs namenode -format</code><br>6. <b>Start:</b> <code>start-dfs.sh && start-yarn.sh</code><br>7. <b>Verify:</b> http://localhost:9870</p>
+      <p style="font-size:.88rem;line-height:1.75;">Selain lewat Docker, ada baiknya kalian juga tahu cara install Hadoop secara manual, karena ini membantu memahami apa yang sebenarnya terjadi "di balik layar". Berikut alurnya kalau mau setup Hadoop dalam <b>Pseudo-Distributed Mode</b> (satu mesin yang berperan seolah-olah cluster):<br><br>1. <b>Prerequisites:</b> pastikan Java JDK 8 ke atas sudah terpasang<br>2. <b>Download:</b> ambil binary Apache Hadoop resmi<br>3. <b>Extract:</b> <code>tar -xzf hadoop-3.x.tar.gz</code><br>4. <b>Configure:</b> atur file-file konfigurasi intinya —<br>   • core-site.xml (menentukan URI NameNode)<br>   • hdfs-site.xml (menentukan replication factor)<br>   • mapred-site.xml (menentukan JobTracker)<br>   • yarn-site.xml (menentukan ResourceManager)<br>5. <b>Format NameNode:</b> <code>hdfs namenode -format</code><br>6. <b>Start:</b> jalankan <code>start-dfs.sh && start-yarn.sh</code><br>7. <b>Verify:</b> buka http://localhost:9870 untuk memastikan semuanya sudah hidup</p>
     </div>
   </section>
   <hr class="section-divider">
@@ -411,7 +411,7 @@ jupyter lab  # Buka di browser: http://localhost:8888</code></pre>
       <h3>VS Code Setup</h3>
       <div class="card">
         <div class="card-title">Extensions yang Direkomendasikan</div>
-        <p style="font-size:.88rem;line-height:1.75;"><b>Python</b> (Microsoft) — syntax highlighting, IntelliSense, debugger<br><b>Jupyter</b> (Microsoft) — run .ipynb notebooks di VS Code<br><b>Docker</b> (Microsoft) — manage containers dari VS Code<br><b>GitLens</b> — enhanced Git history dan blame<br><b>Thunder Client</b> — REST API testing langsung di VS Code (alternatif Postman)<br><b>Rainbow CSV</b> — visualisasi CSV files dengan warna per kolom</p>
+        <p style="font-size:.88rem;line-height:1.75;">Supaya VS Code kalian makin nyaman dipakai untuk kerja big data, coba pasang beberapa extension ini: <b>Python</b> (Microsoft) untuk syntax highlighting, IntelliSense, dan debugger; <b>Jupyter</b> (Microsoft) supaya file .ipynb bisa langsung dijalankan di VS Code; <b>Docker</b> (Microsoft) untuk mengelola container tanpa keluar dari editor; <b>GitLens</b> untuk melihat history dan blame Git yang lebih detail; <b>Thunder Client</b> sebagai alternatif Postman untuk testing REST API langsung dari VS Code; dan <b>Rainbow CSV</b> yang memberi warna berbeda tiap kolom saat membuka file CSV, jadi lebih mudah dibaca.</p>
       </div>
     </div>
   </section>
@@ -424,7 +424,7 @@ jupyter lab  # Buka di browser: http://localhost:8888</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Development Tools</div>
-      <p style="font-size:.88rem;line-height:1.75;">Jupyter Notebook, VS Code with extensions, Git for version control.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Selain tools inti, ada beberapa "sahabat kerja" yang akan sering kalian pakai sehari-hari: Jupyter Notebook untuk eksperimen interaktif, VS Code lengkap dengan extension-nya, dan Git untuk mencatat setiap perubahan kode (version control).</p>
     </div>
 
     <div class="sub-section">
@@ -432,27 +432,27 @@ jupyter lab  # Buka di browser: http://localhost:8888</code></pre>
       <div class="grid-3">
         <div class="grid-card">
           <div class="gc-title">VS Code + Extensions</div>
-          <div class="gc-body">Editor utama. Install: Python, Jupyter, Docker, GitLens, Rainbow CSV, Thunder Client</div>
+          <div class="gc-body">Ini akan jadi editor utama kalian sehari-hari. Lengkapi dengan extension Python, Jupyter, Docker, GitLens, Rainbow CSV, dan Thunder Client agar makin efisien dipakai.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Postman / Thunder Client</div>
-          <div class="gc-body">Testing REST API. Send HTTP requests (GET/POST/PUT/DELETE), inspect response headers & body</div>
+          <div class="gc-body">Dipakai untuk mencoba-coba REST API tanpa perlu menulis kode — cukup kirim HTTP request (GET/POST/PUT/DELETE), lalu periksa header dan body dari responsnya.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">DBeaver</div>
-          <div class="gc-body">GUI database client universal. Connect ke PostgreSQL, MySQL, MongoDB, SQLite untuk explore dan query data</div>
+          <div class="gc-body">Sebuah GUI database client serbaguna yang bisa terhubung ke PostgreSQL, MySQL, MongoDB, hingga SQLite, sehingga kalian bisa menjelajah dan query data tanpa harus lewat terminal.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Git & GitHub</div>
-          <div class="gc-body">Version control untuk project notebook. Push ke GitHub untuk backup dan submission. git init, add, commit, push</div>
+          <div class="gc-body">Alat version control untuk project notebook kalian. Dengan alur sederhana git init, add, commit, push, hasil kerja bisa di-backup dan dikumpulkan lewat GitHub.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Jupyter Lab</div>
-          <div class="gc-body">Enhanced Jupyter interface. Fitur: multi-tab, file browser, terminal, extensions. Lebih powerful dari Jupyter Notebook</div>
+          <div class="gc-body">Versi "upgrade" dari Jupyter Notebook, dengan fitur multi-tab, file browser, terminal, dan dukungan extension — bikin eksplorasi data jadi lebih powerful dan nyaman.</div>
         </div>
         <div class="grid-card">
           <div class="gc-title">Docker Desktop</div>
-          <div class="gc-body">GUI untuk manage containers. View running containers, logs, inspect, pull images tanpa command line</div>
+          <div class="gc-body">Antarmuka visual untuk mengelola container tanpa perlu mengetik perintah satu-satu — kalian bisa melihat container yang sedang berjalan, membaca log, inspect, sampai pull image hanya dengan klik.</div>
         </div>
       </div>
     </div>
@@ -466,7 +466,7 @@ jupyter lab  # Buka di browser: http://localhost:8888</code></pre>
     </div>
     <div class="card">
       <div class="card-title">Verifikasi Instalasi</div>
-      <p style="font-size:.88rem;line-height:1.75;">Setelah menginstal semua tools, verifikasi bahwa semua berjalan dengan benar sebelum ke praktikum selanjutnya.</p>
+      <p style="font-size:.88rem;line-height:1.75;">Jangan buru-buru lanjut dulu — setelah semua tools ter-install, luangkan waktu sebentar untuk memastikan semuanya benar-benar berjalan dengan baik. Ini penting supaya di praktikum-praktikum berikutnya kalian tidak terhambat oleh masalah setup yang sebenarnya bisa dicek dari sekarang.</p>
     </div>
     <div class="sub-section">
       <h3>Tugas Praktikum</h3>

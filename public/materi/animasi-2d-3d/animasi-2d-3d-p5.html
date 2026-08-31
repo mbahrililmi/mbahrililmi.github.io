@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 5 – Animasi 2D Lanjutan: Rigging & Motion Sederhana | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,446 +226,238 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">Rigging &amp; Motion Sederhana</div>
+    <div class="pertemuan-badge">Pertemuan 5</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <a href="#section-2" class="toc-link">Rigging 2D & Cutout Animation</a>
+    <a href="#section-3" class="toc-link">Walk Cycle 2D</a>
+    <a href="#section-4" class="toc-link">Lip Sync Dasar</a>
+    <a href="#section-5" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 5 · Animasi 2D dan 3D</div>
+    <h1>Animasi 2D Lanjutan: Rigging & Motion Sederhana</h1>
+    <p class="subtitle">Mengenal teknik rigging 2D dan cutout animation untuk mempercepat produksi, menyusun walk cycle dengan 4 pose kunci, dan memahami dasar lip sync menggunakan viseme sederhana.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menerapkan teknik rigging 2D/cutout animation untuk menggerakkan karakter secara efisien, menyusun walk cycle sederhana dengan pose-pose kunci, serta menerapkan lip sync dasar menggunakan viseme.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+      <div class="card-title">Dari Karakter yang Diam ke Karakter yang Bergerak</div>
+      <p style="font-size:.88rem;line-height:1.75;">Di Pertemuan 4, kita sudah merancang karakter secara matang lewat model sheet dan menyusun jalan ceritanya lewat storyboard. Karakter itu sekarang sudah punya "identitas" yang jelas — bentuknya sudah pasti, ekspresinya sudah dipetakan, dan adegannya sudah direncanakan. Tapi sampai di titik ini, karakter itu masih diam di atas kertas. Pertanyaannya sekarang: bagaimana caranya menggerakkan karakter itu tanpa harus menggambar ulang dari nol di setiap frame, seperti yang kita lakukan waktu belajar frame-by-frame di Pertemuan 3?</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Jawabannya ada di teknik yang akan kita pelajari hari ini: rigging 2D, atau sering juga disebut cutout animation. Ini adalah pendekatan yang dipakai banyak serial animasi TV dan konten digital modern — termasuk banyak animasi pendek yang wara-wiri di YouTube dan Instagram — karena jauh lebih hemat waktu dibanding menggambar ulang karakter penuh di setiap frame. Selain rigging, kita juga akan belajar dua keterampilan gerak dasar yang paling sering dipakai: walk cycle (siklus jalan) dan lip sync (sinkronisasi gerak mulut dengan suara).</p>
     </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami konsep rigging 2D dan cutout animation beserta keuntungan serta keterbatasannya</li>
+        <li>Mengenal bagian-bagian tubuh karakter yang biasa dipisah dalam proses rigging</li>
+        <li>Memahami konsep pivot point dan hierarki (parenting) antar bagian tubuh karakter</li>
+        <li>Menyusun walk cycle sederhana menggunakan 4 pose kunci: contact, down, passing, up</li>
+        <li>Memahami konsep viseme sebagai dasar lip sync sederhana</li>
+        <li>Membuat animasi walk cycle dan lip sync dasar untuk karakter dari Pertemuan 4</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
+      <h2>Rigging 2D & Cutout Animation</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
+    <div class="card">
+      <div class="card-title">Apa itu Rigging 2D / Cutout Animation?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan Anda punya boneka kertas dengan sendi-sendi yang bisa digerakkan — kepalanya bisa diputar, lengannya bisa diangkat, kakinya bisa dilangkahkan — tanpa harus menggambar ulang bonekanya dari awal setiap kali ingin mengubah posenya. Itulah inti dari cutout animation. Karakter dipecah menjadi bagian-bagian tubuh terpisah, misalnya kepala, badan, lengan atas, lengan bawah, tangan, paha, betis, dan kaki, lalu masing-masing potongan itu digerakkan, diputar, dan digeser sebagai satu kesatuan potongan gambar — bukan digambar ulang piksel demi piksel di setiap frame seperti pada animasi frame-by-frame murni.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Proses membangun "kerangka gerak" inilah yang disebut rigging. Setiap potongan tubuh diberi titik sendi (pivot point) supaya bisa berputar secara wajar, lalu bagian-bagian itu disusun dalam hierarki tertentu sehingga saat satu bagian digerakkan, bagian lain yang "menempel" padanya ikut bergerak secara otomatis. Teknik ini banyak dipakai di serial animasi TV modern dan konten media sosial, karena satu episode bisa selesai jauh lebih cepat dibanding kalau setiap frame harus digambar ulang penuh dari nol.</p>
     </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Keuntungan Rigging 2D</div>
+        <div class="gc-body">Produksi jauh lebih cepat karena tidak perlu menggambar ulang karakter di setiap frame, revisi pose jadi lebih mudah karena tinggal menggerakkan potongan yang sudah ada, konsisten secara visual karena memakai aset gambar yang sama persis di seluruh episode, dan lebih hemat tenaga untuk proyek dengan banyak episode atau durasi panjang.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Keterbatasan Rigging 2D</div>
+        <div class="gc-body">Gerakan kadang terasa kurang organik dan sedikit "kaku" dibanding animasi frame-by-frame penuh, karena bentuk setiap potongan tubuh tidak berubah — hanya posisi dan sudutnya saja yang berbeda. Perubahan bentuk yang ekstrem, seperti squash & stretch yang dramatis, jadi lebih sulit dicapai dibanding menggambar ulang setiap frame dari nol.</div>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
+      <h3>Bagian Tubuh yang Biasa Dipisah</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Supaya karakter bisa bergerak luwes, tubuhnya biasanya dipecah menjadi potongan-potongan berikut: kepala (biasanya terpisah dari leher supaya bisa menoleh), badan/torso sebagai titik pusat, lengan atas dan lengan bawah yang dipisah di siku supaya bisa menekuk, tangan yang dipisah dari lengan supaya bisa berayun bebas, serta paha dan betis yang dipisah di lutut supaya kaki bisa melangkah secara wajar. Semakin banyak potongan yang dibuat, semakin luwes gerakannya — tapi juga semakin rumit proses riggingnya, jadi untuk pemula biasanya cukup memecah karakter menjadi 8-10 potongan utama saja.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Pivot Point & Hierarki (Parenting)</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Pivot point adalah titik jangkar tempat sebuah potongan tubuh berputar — mirip seperti engsel pintu. Kalau pivot point lengan atas diletakkan di bahu, maka lengan itu akan berputar wajar mengikuti bahu, bukan berputar dari tengah-tengah lengan yang justru terlihat aneh dan tidak natural. Selain pivot point, konsep hierarki atau parenting juga penting dipahami: lengan bawah "menjadi anak" dari lengan atas, dan tangan "menjadi anak" dari lengan bawah. Artinya, saat lengan atas digerakkan, lengan bawah dan tangan otomatis ikut terbawa bergerak bersamanya — persis seperti saat Anda mengangkat lengan atas sendiri, otomatis siku, lengan bawah, dan tangan juga ikut terangkat tanpa harus digerakkan satu per satu secara terpisah.</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-gratis')">Software Gratis untuk Pemula</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-pro')">Software Profesional</button>
+      </div>
+      <div id="tab-gratis" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Krita:</b> aplikasi gambar digital gratis dan open-source yang punya fitur animasi frame-by-frame dasar, cocok untuk latihan awal</li>
+          <li><b>Adobe Animate (versi trial/edukasi):</b> punya fitur bone tool untuk membuat rig sederhana pada potongan-potongan gambar</li>
+          <li><b>OpenToonz:</b> software animasi 2D open-source yang pernah dipakai studio Ghibli, mendukung cutout animation dasar</li>
+        </ul>
+      </div>
+      <div id="tab-pro" class="tab-panel">
+        <ul class="styled">
+          <li><b>Toon Boom Harmony:</b> standar industri untuk serial animasi TV, punya sistem rigging dan deformasi yang sangat lengkap</li>
+          <li><b>Adobe Character Animator:</b> memungkinkan rig karakter digerakkan secara real-time menggunakan webcam dan mikrofon</li>
+          <li><b>Live2D:</b> populer untuk menganimasikan karakter dari gambar ilustrasi 2D menjadi terlihat "hidup", sering dipakai untuk VTuber</li>
+        </ul>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-3">
+  <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
+      <h2>Walk Cycle 2D</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
+      <div class="hb-title">Kenapa Walk Cycle Penting Dipelajari?</div>
+      <p>Walk cycle atau siklus jalan adalah salah satu gerakan paling mendasar yang wajib dikuasai animator, karena hampir semua cerita pasti membutuhkan karakter yang berjalan dari satu titik ke titik lain. Bedanya dengan animasi biasa, walk cycle dirancang supaya bisa "berputar" (looping) tanpa terlihat sambungannya — pose terakhir harus bisa nyambung mulus kembali ke pose pertama, sehingga karakter terlihat terus berjalan meski sebenarnya hanya beberapa pose saja yang diulang-ulang terus-menerus.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Pose 1: Contact</div>
+      <p style="font-size:.88rem;line-height:1.75;">Contact adalah momen ketika kaki depan baru saja menyentuh tanah, sementara kaki belakang masih menapak di belakang sebelum terangkat. Ini adalah pose "pembuka" dari satu langkah — istilahnya diambil dari kata contact karena inilah saat kaki melakukan kontak pertama dengan permukaan tanah. Di pose ini, kedua kaki terlihat paling terentang jauh satu sama lain dibanding pose-pose lainnya dalam siklus.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Pose 2: Down</div>
+      <p style="font-size:.88rem;line-height:1.75;">Down adalah momen ketika tubuh karakter turun sedikit karena menahan beban badan yang bertumpu pada kaki yang baru saja melakukan contact. Penurunan tubuh ini penting untuk memberi kesan berat dan gravitasi yang nyata — tanpa pose down, karakter akan terlihat melayang seperti hantu, bukan benar-benar melangkah di atas tanah dengan berat badan sungguhan.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Pose 3: Passing</div>
+      <p style="font-size:.88rem;line-height:1.75;">Passing adalah momen ketika satu kaki melewati kaki yang lain persis di tengah-tengah langkah, biasanya di titik tertinggi tubuh karena kaki penyangga sedang dalam kondisi paling lurus. Di pose ini, kedua kaki terlihat paling berdekatan, hampir bersilangan, seperti sedang "lewat" satu sama lain — dari sinilah nama passing berasal.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Pose 4: Up</div>
+      <p style="font-size:.88rem;line-height:1.75;">Up adalah momen ketika tubuh karakter naik kembali karena kaki depan sedang bersiap melakukan contact berikutnya, sementara kaki belakang mendorong tubuh ke depan dan ke atas. Setelah pose up, siklus akan kembali lagi ke pose contact — tapi kali ini dengan kaki yang berlawanan — sehingga rangkaian contact-down-passing-up ini terus berulang selama karakter berjalan.</p>
     </div>
     <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
+      <h3>Menyusun Siklus Sederhana</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Pose</th><th>Posisi Frame (siklus 8 frame)</th><th>Ciri Utama</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Contact (kaki kanan depan)</td><td>Frame 1</td><td>Kaki paling terentang, tubuh di posisi tengah</td></tr>
+          <tr><td>Down</td><td>Frame 2-3</td><td>Tubuh turun karena menahan beban</td></tr>
+          <tr><td>Passing</td><td>Frame 4</td><td>Kedua kaki bersilangan, tubuh di titik tertinggi</td></tr>
+          <tr><td>Up</td><td>Frame 5-6</td><td>Tubuh naik, bersiap contact berikutnya</td></tr>
+          <tr><td>Contact (kaki kiri depan)</td><td>Frame 7-8</td><td>Pola sama seperti frame 1 tapi kaki berlawanan, lalu loop kembali ke frame 1</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Untuk latihan pemula, siklus 8-12 frame biasanya sudah cukup untuk menghasilkan walk cycle yang meyakinkan tanpa terlalu memusingkan. Yang paling penting justru bukan jumlah framenya, tapi ketepatan pose-pose kuncinya — kalau keempat pose (contact, down, passing, up) sudah terasa jelas perbedaannya, siklus jalan akan otomatis terlihat meyakinkan meski dikerjakan dengan cutout animation sederhana sekalipun.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-4">
+  <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>Lip Sync Dasar</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Konsep Viseme: Kunci Lip Sync yang Sederhana</div>
+      <p style="font-size:.88rem;line-height:1.75;">Lip sync adalah teknik menyelaraskan gerakan mulut karakter dengan suara dialog, supaya karakter terlihat benar-benar sedang berbicara, bukan sekadar diam sambil ada suara terdengar di latar. Kabar baiknya, untuk animasi tingkat pemula, kita tidak perlu menggambar bentuk mulut yang presisi mengikuti setiap fonem bahasa secara detail seperti yang dilakukan studio besar. Cukup memakai beberapa bentuk mulut dasar yang disebut viseme — representasi visual sederhana dari sekelompok suara yang mirip bentuk mulutnya.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Misalnya, huruf "B", "M", dan "P" semuanya diucapkan dengan bibir tertutup rapat, jadi ketiganya bisa memakai satu viseme mulut tertutup yang sama, tanpa perlu membuat viseme terpisah untuk masing-masing huruf. Pendekatan seperti ini memangkas banyak pekerjaan menggambar, tapi tetap menghasilkan lip sync yang cukup meyakinkan di mata penonton — mirip seperti yang biasa kita lihat di serial animasi lokal seperti Nussa atau Adit Sopo Jarwo, yang tidak memakai lip sync super detail tapi tetap terasa natural saat karakternya berbicara.</p>
     </div>
-    <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
-        </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Mulut Tertutup (Rest/M-B-P)</div>
+        <div class="gc-body">Bibir menutup rapat, dipakai untuk posisi diam/istirahat dan suara-suara yang diucapkan dengan bibir tertutup seperti M, B, dan P.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Mulut Terbuka Lebar (A)</div>
+        <div class="gc-body">Rahang turun cukup jauh dan mulut terbuka lebar, dipakai untuk suara vokal terbuka seperti "A" pada kata "makan" atau "apa".</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Bentuk O</div>
+        <div class="gc-body">Bibir membentuk lingkaran kecil menonjol ke depan, dipakai untuk suara vokal bundar seperti "O" dan "U" pada kata "bola" atau "buku".</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Senyum/Bentuk E-I</div>
+        <div class="gc-body">Sudut bibir tertarik ke samping membentuk senyuman tipis, dipakai untuk suara vokal seperti "E" dan "I" pada kata "beli" atau "ini".</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Gigi Bertemu Bibir (F-V)</div>
+        <div class="gc-body">Gigi atas menyentuh bibir bawah, dipakai untuk suara konsonan seperti "F" dan "V" yang jarang muncul tapi tetap penting untuk detail.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Lidah Terlihat (L-T-D)</div>
+        <div class="gc-body">Mulut sedikit terbuka dengan ujung lidah terlihat menyentuh bagian belakang gigi atas, dipakai untuk suara seperti "L", "T", dan "D".</div>
       </div>
     </div>
-    <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
-      </div>
+    <div class="card">
+      <div class="card-title">Tips Timing Lip Sync untuk Pemula</div>
+      <p style="font-size:.88rem;line-height:1.75;">Yang paling penting dalam lip sync bukan soal seberapa presisi bentuk mulutnya mengikuti fonetik, melainkan seberapa pas timing pergantian visemenya dengan ritme suara. Coba dengarkan rekaman audio dialog Anda berkali-kali dan tandai kira-kira di detik keberapa terjadi pergantian suku kata yang jelas — di titik-titik itulah viseme sebaiknya berganti. Untuk latihan awal, tidak masalah kalau lip sync-nya masih terasa agak kasar; yang penting mulut karakter benar-benar bergerak mengikuti ritme bicara, bukan diam kaku sepanjang dialog berlangsung.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>Praktikum Pertemuan 5</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Konsep Airflow</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
-        </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Walk Cycle Sederhana</div>
+        <ul>
+          <li>Gunakan karakter dari model sheet Pertemuan 4 sebagai acuan, lalu pecah menjadi potongan-potongan tubuh sederhana (kepala, badan, lengan, kaki)</li>
+          <li>Susun rig dasar dengan pivot point yang wajar pada setiap sendi (bahu, siku, pinggul, lutut)</li>
+          <li>Animasikan walk cycle looping pendek 8-12 frame menggunakan 4 pose kunci: contact, down, passing, up</li>
+          <li>Pastikan siklusnya bisa berputar (loop) tanpa terlihat sambungan yang patah-patah saat diulang terus-menerus</li>
+          <li>Deliverable: file animasi .gif atau .mp4 (looping), format nama file: NIM_Nama_P5_WalkCycle.mp4</li>
+        </ul>
       </div>
     </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Lip Sync Dasar</div>
+        <ul>
+          <li>Rekam atau pilih potongan audio dialog pendek berdurasi 5-10 detik (boleh suara sendiri atau rekaman teman)</li>
+          <li>Gambar minimal 4 viseme dasar untuk karakter yang sama (mulut tertutup, terbuka lebar, bentuk O, dan senyum/E-I)</li>
+          <li>Sinkronkan pergantian viseme dengan ritme suara pada audio yang sudah dipilih</li>
+          <li>Boleh dikerjakan menggunakan software animasi 2D apa pun yang sudah dikenali (Krita, Adobe Animate, atau software cutout lain)</li>
+          <li>Deliverable: file video pendek .mp4 dengan audio tersinkron, format nama file: NIM_Nama_P5_LipSync.mp4</li>
+        </ul>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-  <section class="content-section" id="section-6">
-    <div class="section-header">
-      <div class="section-num">6</div>
-      <h2>Praktikum</h2>
-    </div>
-    <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="animasi-2d-3d-p4.html">← Pertemuan 4</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="animasi-2d-3d-p6.html" class="next-btn">Pertemuan 6 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -698,7 +490,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +558,24 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

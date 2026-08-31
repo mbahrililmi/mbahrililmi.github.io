@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 2 – 12 Prinsip Dasar Animasi | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,425 +226,170 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">12 Prinsip Dasar Animasi</div>
+    <div class="pertemuan-badge">Pertemuan 2</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <a href="#section-2" class="toc-link">Asal-usul 12 Prinsip</a>
+    <a href="#section-3" class="toc-link">Prinsip 1-4</a>
+    <a href="#section-4" class="toc-link">Prinsip 5-8</a>
+    <a href="#section-5" class="toc-link">Prinsip 9-12</a>
+    <a href="#section-6" class="toc-link">Studi Kasus: Bola Memantul</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 2 · Animasi 2D dan 3D</div>
+    <h1>12 Prinsip Dasar Animasi</h1>
+    <p class="subtitle">Mengenal 12 prinsip dasar animasi warisan Disney yang menjadi fondasi setiap animator, dari squash & stretch sampai appeal, lengkap dengan contoh penerapan di gerakan sehari-hari.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menjelaskan dan mengidentifikasi 12 prinsip dasar animasi serta menganalisis penerapannya pada contoh gerakan dan karya animasi.</p>
     </div>
     <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
-        </div>
-      </div>
+      <div class="card-title">Melanjutkan dari Pertemuan Sebelumnya</div>
+      <p style="font-size:.88rem;line-height:1.75;">Minggu lalu kita sudah berkenalan dengan dunia animasi secara umum — sejarahnya, jenis-jenisnya, sampai ekosistem industrinya. Sekarang saatnya masuk ke bagian yang jadi jantung dari keterampilan seorang animator: bagaimana caranya membuat sebuah gerakan terasa hidup, punya berat, dan meyakinkan, alih-alih terlihat kaku dan robotik. Jawabannya ada pada 12 prinsip dasar animasi, sebuah "resep" yang sudah dipakai animator di seluruh dunia selama puluhan tahun, dan akan menjadi bekal utama Anda sepanjang praktik-praktik berikutnya di mata kuliah ini.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Penting dipahami sejak awal: 12 prinsip ini bukan rumus matematika yang kaku. Mereka lebih tepat disebut sebagai "kebiasaan mengamati" yang membantu animator meniru bagaimana benda dan makhluk hidup benar-benar bergerak di dunia nyata, lalu melebih-lebihkannya sedikit supaya lebih ekspresif di layar. Begitu Anda memahami dan bisa mengenali prinsip-prinsip ini, cara Anda menonton animasi apa pun — baik animasi 2D sederhana maupun film 3D besar — akan berubah total; Anda akan mulai "melihat" kenapa sebuah gerakan terasa memukau, bukan cuma menikmatinya begitu saja.</p>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-3">
-    <div class="section-header">
-      <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-4">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>Kenapa 12 Prinsip Ini Masih Dipakai?</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Asal-usul: Buku "The Illusion of Life"</div>
+      <p style="font-size:.88rem;line-height:1.75;">12 prinsip dasar animasi pertama kali dirumuskan secara formal oleh dua animator senior Walt Disney, <b>Frank Thomas dan Ollie Johnston</b>, dalam buku legendaris mereka berjudul <i>"The Illusion of Life: Disney Animation"</i> yang terbit tahun 1981. Kedua orang ini adalah bagian dari "Nine Old Men" — sembilan animator inti Disney yang menciptakan gaya animasi klasik studio tersebut sejak era 1930-an, termasuk karya-karya ikonik seperti Snow White, Cinderella, hingga Sleeping Beauty. Buku mereka bukan cuma menceritakan pengalaman pribadi, tapi juga merangkum puluhan tahun pengamatan dan eksperimen tentang apa yang membuat gambar diam terasa "hidup" ketika dirangkai jadi gerakan.</p>
     </div>
-    <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
-        </div>
+    <div class="card">
+      <div class="card-title">Kenapa Masih Relevan di Era CGI dan 3D?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Menariknya, meski dirumuskan puluhan tahun lalu untuk animasi gambar tangan, 12 prinsip ini justru tetap dipakai secara luas di studio-studio animasi 3D modern seperti Pixar dan DreamWorks, bahkan di industri game. Alasannya sederhana: prinsip-prinsip ini sebenarnya bukan soal teknik menggambar, melainkan soal bagaimana manusia mempersepsikan gerakan dan berat suatu benda. Baik Anda menggambar karakter di kertas atau menggerakkan model 3D lewat software seperti Blender, mata penonton tetap sama — dan hukum-hukum "rasa" gerakan yang meyakinkan ini tidak berubah. Itulah kenapa mata kuliah ini sengaja membahasnya di awal, sebelum masuk ke teknik 2D maupun 3D, karena prinsip inilah fondasi yang akan dipakai terus-menerus di kedua dunia tersebut.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Bagaimana Cara Mempelajari 12 Prinsip Secara Efektif?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Wajar kalau 12 istilah ini terasa banyak untuk dihafal sekaligus di awal. Tapi sebenarnya Anda tidak perlu menghafalnya seperti rumus ujian — cara paling efektif justru dengan sering-sering mengamati gerakan di sekitar Anda: bagaimana daun jatuh tertiup angin, bagaimana kucing melompat dari sofa, bagaimana teman Anda melambaikan tangan. Setiap kali menonton animasi favorit, coba tanyakan pada diri sendiri "kenapa gerakan ini terasa meyakinkan?" — jawabannya hampir selalu bisa ditelusuri ke salah satu atau beberapa dari 12 prinsip ini. Semakin sering berlatih mengamati dengan cara ini, lama-lama prinsip-prinsip tersebut akan menjadi naluri, bukan sekadar hafalan di kepala.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Prinsip 1-4</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">1. Squash & Stretch</div>
+        <div class="gc-body">Prinsip paling mendasar dan paling sering disebut pertama kali: objek meregang (stretch) saat bergerak cepat, dan menggepeng (squash) saat menghentak atau mendarat. Contoh paling gampang: bola karet yang jatuh — saat menyentuh lantai, bagian bawahnya sedikit menggepeng, lalu memanjang lagi saat memantul naik. Tujuannya bukan sekadar efek lucu, tapi memberi kesan bahwa objek itu punya berat dan elastisitas, bukan benda kaku seperti robot. Prinsip ini juga sering diterapkan pada wajah karakter kartun saat berekspresi kaget atau tertawa lebar.</div>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
+      <div class="grid-card">
+        <div class="gc-title">2. Anticipation</div>
+        <div class="gc-body">Sebelum aksi utama terjadi, biasanya ada gerakan kecil "bersiap-siap" lebih dulu. Contohnya, sebelum karakter melompat tinggi, ia akan menekuk lutut dan sedikit merunduk dulu. Sebelum melempar bola, tangan akan ditarik ke belakang dulu. Fungsi anticipation ini penting sekali: ia membantu penonton "membaca" apa yang akan terjadi berikutnya, sehingga gerakan besar yang menyusul terasa lebih jelas dan tidak mengejutkan secara membingungkan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">3. Staging</div>
+        <div class="gc-body">Prinsip ini soal bagaimana menyajikan sebuah ide, aksi, atau emosi dengan cara yang paling jelas bagi penonton — lewat posisi karakter di layar, sudut kamera, pencahayaan, dan komposisi adegan. Intinya, penonton harus langsung mengerti fokus dari sebuah adegan tanpa harus menebak-nebak. Contohnya, saat karakter utama sedang sedih, staging yang baik akan menempatkan karakter tersebut di posisi yang jelas terlihat, dengan latar yang tidak ramai supaya perhatian tidak teralihkan.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">4. Straight Ahead & Pose to Pose</div>
+        <div class="gc-body">Ini adalah dua pendekatan berbeda dalam menggambar animasi. <b>Straight ahead</b> berarti menggambar frame demi frame secara berurutan dari awal sampai akhir — cocok untuk gerakan yang liar dan spontan seperti api atau air. <b>Pose to pose</b> berarti menggambar pose-pose kunci (keyframe) besar dulu, baru mengisi gambar di antaranya (in-between) — cocok untuk gerakan yang butuh timing dan komposisi yang lebih terkontrol, misalnya dialog karakter.</div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Prinsip 5-8</h2>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">5. Follow Through & Overlapping Action</div>
+        <div class="gc-body"><b>Follow through</b> adalah kondisi ketika bagian-bagian tubuh karakter tidak berhenti bersamaan saat gerakan utama berhenti — misalnya rambut atau baju yang masih "menyusul" bergerak sesaat setelah badan sudah berhenti. <b>Overlapping action</b> mirip, tapi lebih ke bagaimana bagian tubuh berbeda bergerak dengan timing yang sedikit tidak sinkron satu sama lain (misalnya lengan menyusul gerakan bahu). Kedua prinsip ini membuat gerakan terasa lebih natural, karena di dunia nyata memang jarang ada bagian tubuh yang berhenti serentak persis di waktu yang sama.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">6. Slow In & Slow Out (Easing)</div>
+        <div class="gc-body">Di dunia nyata, benda yang bergerak jarang sekali bergerak dengan kecepatan konstan dari awal sampai akhir — biasanya mulai pelan, mempercepat di tengah, lalu melambat lagi sebelum berhenti. Prinsip ini menerapkan hal itu dengan menambah lebih banyak gambar/frame di dekat awal dan akhir gerakan, dan lebih sedikit frame di tengah gerakan yang cepat. Hasilnya, gerakan terasa alami dan halus, bukan konstan kaku seperti mesin.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">7. Arc</div>
+        <div class="gc-body">Hampir semua gerakan makhluk hidup mengikuti jalur melengkung (arc), bukan garis lurus kaku. Coba perhatikan ayunan tangan saat berjalan, atau gerakan kepala saat menoleh — semuanya membentuk lengkungan halus. Kalau seorang animator menggambar gerakan mengikuti jalur lurus tanpa lengkungan, hasilnya akan terlihat kaku dan tidak wajar, seperti gerakan robot yang belum diprogram dengan baik.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">8. Secondary Action</div>
+        <div class="gc-body">Ini adalah gerakan tambahan yang mendukung aksi utama, tapi tidak sampai mengalihkan perhatian darinya. Misalnya, saat karakter berjalan sambil marah (aksi utama), ia mungkin juga mengepalkan tangan atau menggerutu pelan (aksi sekunder). Gerakan tambahan ini membuat karakter terasa lebih hidup dan berdimensi, seolah punya banyak hal terjadi sekaligus dalam dirinya, persis seperti manusia sungguhan.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
+      <h2>Prinsip 9-12</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">9. Timing</div>
+        <div class="gc-body">Timing adalah soal berapa banyak frame/gambar yang dipakai untuk sebuah gerakan, yang secara langsung menentukan kecepatan gerakan tersebut. Timing yang tepat bisa menceritakan banyak hal: gerakan cepat bisa menunjukkan objek ringan atau karakter yang panik, sementara gerakan lambat bisa menunjukkan objek berat atau karakter yang santai. Timing yang salah bisa membuat animasi terasa aneh meskipun posenya sendiri sudah bagus.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">10. Exaggeration</div>
+        <div class="gc-body">Melebih-lebihkan sedikit ekspresi, pose, atau gerakan dari kondisi realistiknya, supaya kesannya lebih kuat dan jelas tersampaikan ke penonton. Bukan berarti jadi berlebihan sampai tidak masuk akal, tapi cukup "dibumbui" supaya emosi atau aksinya terasa lebih hidup. Contohnya, karakter yang kaget biasanya digambar dengan mata melotot besar dan tubuh melompat mundur — lebih dramatis dibanding reaksi kaget manusia sungguhan, tapi tetap masuk akal secara emosional.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">11. Solid Drawing</div>
+        <div class="gc-body">Prinsip ini menekankan pentingnya memahami dasar-dasar menggambar: bentuk tiga dimensi, berat, keseimbangan, anatomi, dan perspektif — meski karakter yang digambar bergaya kartun sekalipun. Karakter yang digambar dengan solid drawing yang baik akan terasa punya "volume" nyata di ruang, bukan sekadar gambar datar tanpa kedalaman, bahkan saat dilihat dari berbagai sudut berbeda.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">12. Appeal</div>
+        <div class="gc-body">Appeal adalah daya tarik visual sebuah karakter — sesuatu yang membuat penonton senang melihatnya, entah karena desainnya menarik, ekspresif, atau punya kepribadian yang jelas terasa hanya dari tampilannya. Appeal tidak berarti karakter harus terlihat "cantik" atau "lucu" saja; karakter jahat atau menyeramkan pun bisa punya appeal yang kuat kalau desainnya berkesan dan mudah diingat.</div>
+      </div>
     </div>
+
     <div class="sub-section">
-      <h3>Konsep Airflow</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
-        </div>
-      </div>
+      <h3>Ringkasan Cepat: Kartu Contekan 12 Prinsip</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Supaya lebih mudah diingat sebelum praktik, berikut ringkasan singkat fungsi utama tiap prinsip beserta contoh sederhananya. Tabel ini bisa Anda jadikan referensi cepat setiap kali sedang menganimasikan sesuatu dan bertanya-tanya "kira-kira prinsip apa yang masih kurang di gerakan ini?".</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Prinsip</th><th>Fungsi Utama</th><th>Contoh Sederhana</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. Squash & Stretch</td><td>Memberi kesan berat dan elastisitas</td><td>Bola karet menggepeng saat memantul</td></tr>
+          <tr><td>2. Anticipation</td><td>Bersiap sebelum aksi utama</td><td>Menekuk lutut sebelum melompat</td></tr>
+          <tr><td>3. Staging</td><td>Memperjelas fokus adegan</td><td>Posisi karakter di tengah frame saat sedih</td></tr>
+          <tr><td>4. Straight Ahead & Pose to Pose</td><td>Menentukan metode menggambar</td><td>Api digambar berurutan, dialog digambar pose kunci dulu</td></tr>
+          <tr><td>5. Follow Through & Overlapping</td><td>Bagian tubuh tak berhenti bersamaan</td><td>Rambut menyusul gerak kepala</td></tr>
+          <tr><td>6. Slow In & Slow Out</td><td>Kecepatan gerak tidak konstan</td><td>Mobil melambat sebelum berhenti total</td></tr>
+          <tr><td>7. Arc</td><td>Gerakan mengikuti jalur lengkung</td><td>Ayunan tangan saat berjalan</td></tr>
+          <tr><td>8. Secondary Action</td><td>Gerakan pendukung aksi utama</td><td>Mengepalkan tangan sambil berjalan marah</td></tr>
+          <tr><td>9. Timing</td><td>Jumlah frame menentukan kesan berat/kecepatan</td><td>Gerakan lambat = benda berat</td></tr>
+          <tr><td>10. Exaggeration</td><td>Melebihkan ekspresi/pose agar jelas</td><td>Mata melotot besar saat kaget</td></tr>
+          <tr><td>11. Solid Drawing</td><td>Kesan volume & keseimbangan 3D</td><td>Karakter tetap proporsional dari sudut manapun</td></tr>
+          <tr><td>12. Appeal</td><td>Daya tarik visual & kepribadian</td><td>Desain karakter yang mudah diingat</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
   <hr class="section-divider">
@@ -652,20 +397,79 @@ with DAG(
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Menggabungkan Beberapa Prinsip dalam Satu Gerakan</h2>
     </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Di dunia nyata, 12 prinsip ini hampir tidak pernah dipakai satu-satu secara terpisah — biasanya beberapa prinsip bekerja bersamaan dalam satu gerakan yang sama. Supaya lebih jelas, mari kita bedah studi kasus paling klasik dalam belajar animasi: <b>bola yang memantul (bouncing ball)</b>. Latihan ini sederhana tapi mengandung hampir semua prinsip inti sekaligus, itulah sebabnya hampir semua animator di dunia memulai latihan mereka dari sini.</p>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+      <div class="card-title">Langkah demi Langkah: Kenapa Bola Memantul Terasa "Hidup"</div>
+      <ol class="styled">
+        <li><b>Squash & stretch</b> — bola memanjang (stretch) saat jatuh cepat di udara, lalu menggepeng (squash) sesaat saat menyentuh lantai, seolah menyerap benturan seperti bola karet sungguhan</li>
+        <li><b>Timing & slow in-slow out</b> — bola bergerak lebih cepat saat mendekati lantai (tarikan gravitasi), lalu melambat saat mencapai titik tertinggi pantulan berikutnya, persis seperti hukum fisika di dunia nyata</li>
+        <li><b>Arc</b> — jalur pantulan bola tidak digambar naik-turun lurus vertikal, melainkan membentuk lengkungan halus menyamping, sama seperti pantulan bola sungguhan yang punya momentum ke samping</li>
+        <li><b>Timing antar pantulan</b> — setiap pantulan berikutnya sedikit lebih rendah dan sedikit lebih cepat dari pantulan sebelumnya, menunjukkan energi bola yang berangsur berkurang akibat gesekan dan gravitasi</li>
+      </ol>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Yang menarik, hanya dengan menggabungkan 3-4 prinsip sederhana ini pada objek sesederhana bola, hasilnya sudah terasa jauh lebih hidup dibanding bola yang bergerak naik-turun dengan kecepatan konstan tanpa squash & stretch sama sekali. Inilah kenapa latihan bola memantul selalu jadi titik awal wajib sebelum melangkah ke animasi karakter yang lebih kompleks — begitu Anda menguasai "rasa" gerakan di latihan sederhana ini, prinsip yang sama bisa diterapkan ke gerakan berjalan, melompat, bahkan ekspresi wajah karakter.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Kesalahan Umum Pemula</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Gerakan terasa kaku seperti robot <span class="icon">▼</span></div>
+        <div class="accordion-body">Ini biasanya terjadi karena animator lupa menerapkan slow in & slow out — semua frame digambar dengan jarak yang rata, sehingga kecepatan gerak terasa konstan dari awal sampai akhir. Solusinya, coba tambahkan lebih banyak gambar di dekat titik awal dan akhir gerakan, dan lebih sedikit gambar di bagian tengah yang cepat.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Objek terasa tidak punya berat <span class="icon">▼</span></div>
+        <div class="accordion-body">Biasanya karena squash & stretch tidak diterapkan sama sekali, atau timing gerakan tidak disesuaikan dengan ukuran/berat objek. Objek besar dan berat semestinya bergerak lebih lambat dan butuh anticipation yang lebih jelas dibanding objek kecil dan ringan.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Terlalu banyak detail sampai gerakan malah membingungkan <span class="icon">▼</span></div>
+        <div class="accordion-body">Ini biasanya terjadi karena secondary action ditambahkan terlalu banyak atau terlalu mencolok, sampai mengalihkan perhatian dari aksi utamanya. Ingat, secondary action sifatnya mendukung, bukan bersaing dengan aksi utama untuk mencuri perhatian penonton.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 2</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Identifikasi Prinsip Animasi pada Klip Pendek</div>
+        <ul>
+          <li>Pilih satu klip animasi pendek (bebas — bisa cuplikan film, serial, atau video animasi pendek di YouTube), durasi cukup 30 detik hingga 2 menit</li>
+          <li>Tonton klip tersebut minimal 2-3 kali dengan cermat</li>
+          <li>Identifikasi dan jelaskan minimal 4 dari 12 prinsip dasar animasi yang terlihat dipakai pada klip tersebut</li>
+          <li>Untuk setiap prinsip yang diidentifikasi, sertakan momen/adegan spesifik (misal: "di detik ke-12, karakter menekuk lutut sebelum melompat — ini contoh anticipation")</li>
+          <li>Deliverable: PDF laporan (2-3 halaman) berisi link/judul klip beserta analisisnya</li>
+          <li>Format nama file: NIM_Nama_P2_12PrinsipAnimasi.pdf</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Sketsa Pose Kunci Sederhana</div>
+        <ul>
+          <li>Pilih satu gerakan sederhana (misal: karakter melompat, melambaikan tangan, atau menendang bola)</li>
+          <li>Gambar sketsa tangan (boleh kasar/stick figure) untuk 3 pose kunci utama gerakan tersebut: pose awal (anticipation), pose puncak aksi, dan pose akhir</li>
+          <li>Beri catatan singkat di tiap pose, prinsip apa saja yang sudah Anda terapkan (misal: "pose 1 menerapkan anticipation dengan menekuk lutut")</li>
+          <li>Foto/scan hasil sketsa Anda dan gabungkan menjadi satu file</li>
+          <li>Deliverable: PDF berisi 3 sketsa pose beserta catatannya</li>
+          <li>Format nama file: NIM_Nama_P2_SketsaPoseKunci.pdf</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="animasi-2d-3d-p1.html">← Pertemuan 1</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="animasi-2d-3d-p3.html" class="next-btn">Pertemuan 3 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -698,7 +502,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +570,24 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

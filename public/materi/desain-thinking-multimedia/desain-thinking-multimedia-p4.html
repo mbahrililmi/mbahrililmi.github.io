@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 2 – Data Analytics Lifecycle | Big Data</title>
+<title>Pertemuan 4 – Fase Ideate: Menghasilkan & Menyaring Ide | Desain Thinking for Multimedia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -226,18 +226,18 @@ ul.styled li::marker{color:var(--gold);}
 
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Analytics Lifecycle</div>
-    <div class="pertemuan-badge">Pertemuan 2</div>
+    <div class="course-label">Desain Thinking for Multimedia</div>
+    <div class="course-title">Fase Ideate: Menghasilkan &amp; Menyaring Ide</div>
+    <div class="pertemuan-badge">Pertemuan 4</div>
   </div>
   <nav class="toc-nav" id="toc">
     <div class="toc-section-label">Materi</div>
     <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Analytics Lifecycle</a>
-    <a href="#section-3" class="toc-link">Phase 1: Discovery</a>
-    <a href="#section-4" class="toc-link">Phase 2: Data Preparation</a>
-    <a href="#section-5" class="toc-link">Phase 3&amp;4: Model</a>
-    <a href="#section-6" class="toc-link">Phase 5&amp;6: Communicate</a>
+    <a href="#section-2" class="toc-link">Prinsip Ideation yang Baik</a>
+    <a href="#section-3" class="toc-link">Teknik Brainstorming Klasik</a>
+    <a href="#section-4" class="toc-link">Teknik Lanjutan Ideation</a>
+    <a href="#section-5" class="toc-link">Ideation untuk Multimedia</a>
+    <a href="#section-6" class="toc-link">Menyaring & Memilih Ide</a>
     <a href="#section-7" class="toc-link">Praktikum</a>
   </nav>
 </aside>
@@ -245,16 +245,15 @@ ul.styled li::marker{color:var(--gold);}
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 2 · Big Data</div>
-    <h1>Data Analytics Lifecycle</h1>
-    <p class="subtitle">Memahami tahapan-tahapan dalam data analytics lifecycle: Discovery, Data Preparation, Model Planning, Model Building, Communicate Results, dan Operationalize.</p>
+    <div class="pre-title">Pertemuan 4 · Desain Thinking for Multimedia</div>
+    <h1>Fase Ideate: Menghasilkan & Menyaring Ide</h1>
+    <p class="subtitle">Dari satu rumusan masalah (POV) dan pertanyaan pemantik (HMW), kita membuka ruang selebar-lebarnya untuk kemungkinan solusi — lalu belajar menyaringnya kembali menjadi satu ide yang layak dikembangkan.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>DTM301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
-
 
   <section class="content-section" id="section-1">
     <div class="section-header">
@@ -262,29 +261,24 @@ ul.styled li::marker{color:var(--gold);}
       <h2>Pengantar</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 2</div>
-      <p>Mahasiswa mampu <b>memahami konsep dasar Data Analytics Lifecycle</b> dan tahapan-tahapannya dalam analisis big data, serta dapat menjelaskan aktivitas di setiap fase lifecycle.</p>
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menerapkan berbagai teknik ideation (brainstorming, brainwriting, crazy 8s, SCAMPER, mind mapping) untuk menghasilkan beragam alternatif ide multimedia, serta mampu menyaring dan memilih ide paling potensial menggunakan teknik dot voting dan matriks impact-effort.</p>
     </div>
-    <div class="sub-section">
-      <h3>Tujuan Pembelajaran</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Structured Approach</div>
-          <p style="font-size:.88rem;line-height:1.75;">Analisis big data itu gampang berantakan kalau dikerjakan asal-asalan. Makanya penting memahami kenapa kita butuh pendekatan yang terstruktur (structured approach) — supaya proses analisisnya jelas arahnya, hasilnya bisa diulang orang lain dengan output yang sama (reproducible), dan tetap sanggup menangani data yang makin besar (scalable).</p>
-        </div>
-        <div class="card">
-          <div class="card-title">6 Fase Analytics Lifecycle</div>
-          <p style="font-size:.88rem;line-height:1.75;">Mengenal keenam fase dalam Data Analytics Lifecycle satu per satu — Discovery, Data Preparation, Model Planning, Model Building, Communicate Results, sampai Operationalize — dan memahami apa yang sebenarnya terjadi di masing-masing fase itu.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Deliverables & Aktivitas</div>
-          <p style="font-size:.88rem;line-height:1.75;">Setiap fase punya "hasil kerja" (deliverable) dan aktivitas khasnya masing-masing. Di bagian ini kita akan mengenali apa saja yang dikerjakan dan dihasilkan di tiap fase, mulai dari merumuskan problem statement di awal sampai proyeknya benar-benar di-deploy ke production.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Iterative Nature</div>
-          <p style="font-size:.88rem;line-height:1.75;">Satu hal yang sering disalahpahami: proses analytics ini tidak selalu berjalan lurus dari fase 1 sampai fase 6. Begitu ditemukan insight baru, data baru, atau ternyata modelnya perlu diperbaiki, kita bisa saja kembali lagi ke fase sebelumnya. Sifat bolak-balik seperti inilah yang disebut iteratif.</p>
-        </div>
-      </div>
+    <div class="card">
+      <div class="card-title">Dari Satu Kalimat Masalah, Menuju Seratus Kemungkinan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Minggu lalu, di Pertemuan 3, kelompok kalian sudah bekerja keras merumuskan <b>POV</b> — satu kalimat fokus yang memadukan siapa penggunanya, apa kebutuhannya, dan insight di baliknya — lalu menerjemahkannya menjadi beberapa pertanyaan <b>HMW (How Might We)</b>. Kalau diibaratkan, POV dan HMW itu seperti alamat tujuan yang sudah kalian ketik di aplikasi peta seperti Gojek atau Google Maps. Tujuannya sudah jelas, tapi rutenya belum — dan justru di situlah serunya: ada banyak jalan yang bisa ditempuh untuk sampai ke sana, ada yang lewat tol, ada yang lewat jalan kecil yang lebih cepat, ada yang muter tapi pemandangannya lebih bagus.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Fase <b>Ideate</b> adalah momen kita mengeksplorasi rute-rute itu. Ini adalah fase paling "bebas" dalam design thinking — bukan berarti asal-asalan, tapi justru butuh disiplin tersendiri: disiplin untuk tidak buru-buru menghakimi ide, disiplin untuk terus menghasilkan alternatif sebanyak mungkin sebelum memutuskan mana yang terbaik. Banyak tim gagal di fase ini bukan karena kekurangan ide, tapi karena terlalu cepat jatuh cinta pada ide pertama yang muncul — padahal ide kelima belas atau kedua puluh sering kali jauh lebih segar dan lebih tidak terduga.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami dan mempraktikkan empat prinsip dasar ideation yang sehat</li>
+        <li>Memfasilitasi sesi brainstorming klasik agar tidak didominasi satu-dua orang saja</li>
+        <li>Menerapkan teknik ideation lanjutan: Brainwriting 6-3-5, Crazy 8s, SCAMPER, dan Mind Mapping</li>
+        <li>Menggunakan storyboard ideation, concept sketching, dan mood boarding untuk menuangkan ide visual produk multimedia</li>
+        <li>Menyaring puluhan ide menjadi beberapa kandidat kuat lewat dot voting</li>
+        <li>Memprioritaskan ide menggunakan matriks impact-effort</li>
+      </ol>
     </div>
   </section>
   <hr class="section-divider">
@@ -292,39 +286,25 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Apa itu Data Analytics Lifecycle?</h2>
+      <h2>Prinsip Ideation yang Baik</h2>
     </div>
-    <div class="highlight-box">
-      <div class="hb-title">Definisi</div>
-      <p>Bayangkan mengerjakan proyek analitik tanpa peta jalan sama sekali — bisa jadi bingung harus mulai dari mana. Nah, Data Analytics Lifecycle ini semacam <b>kerangka kerja sistematis</b>, "peta jalan" yang menuntun kita melewati tahap demi tahap dalam proyek big data analytics, mulai dari memahami masalah bisnisnya sampai solusinya benar-benar dijalankan di lapangan.</p>
-    </div>
-    <div class="sub-section">
-      <h3>6 Fase Data Analytics Lifecycle</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">1. Discovery</div>
-          <div class="gc-body">Tahap awal untuk mengenali masalah bisnisnya, kebutuhan dan sumber daya yang tersedia, sekaligus menyusun dugaan awal (initial hypothesis) yang nanti akan diuji.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">2. Data Preparation</div>
-          <div class="gc-body">Data mentah dikumpulkan, dijelajahi, dibersihkan, lalu diubah bentuknya sampai siap dianalisis — biasanya tahap yang paling banyak menyita waktu.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">3. Model Planning</div>
-          <div class="gc-body">Di sini ditentukan metode analitik, algoritma, dan alur kerja (workflow) apa yang paling pas dipakai.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">4. Model Building</div>
-          <div class="gc-body">Model mulai dibangun: dilatih (train) lalu diuji (test) memakai dataset training dan validation.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">5. Communicate Results</div>
-          <div class="gc-body">Temuan, insight, dan rekomendasi dipresentasikan ke stakeholder — percuma modelnya bagus kalau hasilnya tidak tersampaikan dengan jelas.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">6. Operationalize</div>
-          <div class="gc-body">Model di-deploy ke production, lalu terus dipantau dan dirawat supaya benar-benar memberi dampak bagi bisnis.</div>
-        </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Sebelum masuk ke teknik-tekniknya, penting dulu memahami "aturan main" ideation. Tanpa prinsip ini, sesi brainstorming yang harusnya seru justru sering berubah jadi hening mencekam, atau malah dikuasai satu-dua orang yang paling vokal sementara yang lain cuma manggut-manggut. Keempat prinsip berikut ini datang dari IDEO — biro desain yang mempopulerkan design thinking — dan kalau dipegang teguh, sesi ideation kalian akan terasa jauh lebih hidup dan produktif.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">1. Defer Judgment (Tunda Menghakimi)</div>
+        <div class="gc-body">Ini prinsip paling sulit dipraktikkan tapi paling penting. Bayangkan sesi brainstorming ide fitur baru untuk aplikasi kampus, lalu ada teman yang nyeletuk "ah itu mah kayak fitur yang sudah ada di Tokopedia, gak kreatif" — begitu komentar seperti ini keluar, seluruh ruangan langsung jadi hati-hati, orang jadi takut menyampaikan ide karena takut dikritik. Aturannya sederhana: simpan dulu semua kritik dan evaluasi untuk sesi terpisah (fase menyaring). Selama sesi ideation berlangsung, tidak ada ide yang "buruk" — hanya ada ide yang belum dieksplorasi.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">2. Go for Quantity (Kuantitas Dulu)</div>
+        <div class="gc-body">Semakin banyak ide yang dihasilkan, semakin besar peluang menemukan satu yang benar-benar cemerlang. Ini mirip logika di balik fitur "shuffle" di Spotify — semakin banyak lagu dalam playlist, semakin besar kemungkinan kamu menemukan lagu yang pas dengan mood saat itu. Target realistis untuk sesi 15-20 menit: minimal 30-50 ide per kelompok, sekasar apa pun bentuknya. Jangan berhenti di ide kelima yang "sudah lumayan" — teruskan sampai benar-benar mentok.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">3. Build on the Ideas of Others</div>
+        <div class="gc-body">Dalam dunia stand-up comedy dan teater improvisasi ada aturan emas "Yes, and..." — menerima tawaran ide rekan lalu menambahkannya, bukan menolaknya dengan "tapi...". Kalau temanmu mengusulkan "fitur pengingat tugas dengan notifikasi lucu", jangan langsung bilang "tapi itu ribet dibuat" — coba dulu "ya, dan bagaimana kalau notifikasinya bisa disuarakan pakai karakter maskot kampus?". Ide terbaik sering lahir dari kombinasi dua-tiga ide "biasa saja" yang saling menumpuk.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">4. Encourage Wild Ideas</div>
+        <div class="gc-body">Ide liar dan sedikit "gila" justru sering membuka jalan pikiran baru yang tidak terduga. Misalnya dalam ideation aplikasi belajar bahasa, ide liar seperti "aplikasi yang memarahi penggunanya kalau bolos belajar seperti kakak galak" ternyata pernah beneran diadopsi sebagian oleh Duolingo lewat maskot burung hijaunya yang terkenal suka "mengancam" lewat notifikasi. Ide ekstrem tidak selalu langsung dipakai mentah-mentah, tapi elemen di dalamnya bisa dijinakkan menjadi solusi yang lebih realistis namun tetap menarik.</div>
       </div>
     </div>
   </section>
@@ -333,43 +313,31 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="section-3">
     <div class="section-header">
       <div class="section-num">3</div>
-      <h2>Phase 1: Discovery</h2>
+      <h2>Teknik Brainstorming Klasik</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Aktivitas Discovery Phase</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sebelum masuk ke urusan teknis, fase Discovery ini adalah tahap awal yang krusial untuk benar-benar memahami konteks bisnisnya lebih dulu — di sinilah fondasi seluruh proyek analytics dibangun.</p>
-    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Brainstorming adalah teknik ideation paling dikenal — saking familiarnya, banyak orang mengira "brainstorming" itu sinonim dari "ideation" itu sendiri, padahal ia hanyalah satu dari sekian banyak teknik. Justru karena terlalu familiar, brainstorming sering dilakukan asal-asalan tanpa struktur, dan hasilnya jadi mengecewakan — bukan karena tekniknya buruk, tapi karena cara memfasilitasinya yang keliru.</p>
     <div class="sub-section">
-      <h3>Key Activities</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Business Understanding</div>
-          <p style="font-size:.88rem;line-height:1.75;">Ngobrol langsung dengan stakeholder untuk menggali apa sebenarnya masalah (pain points) yang mereka rasakan, menentukan tolok ukur keberhasilan yang bisa diukur (measurable), dan memperkirakan dampak bisnis yang diharapkan dari proyek analytics ini.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Resource Assessment</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cek dulu apa saja yang sudah kita punya: sumber data yang tersedia, tools dan infrastruktur yang dimiliki, kemampuan tim, sampai budget dan batasan-batasan yang perlu diperhatikan sejak awal.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Hypothesis Formation</div>
-          <p style="font-size:.88rem;line-height:1.75;">Coba susun dugaan awal (initial hypothesis) tentang pola, hubungan, atau keanehan apa yang mungkin muncul dalam data. Dugaan ini nantinya akan diuji dan dibuktikan benar-tidaknya di fase model building.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Project Planning</div>
-          <p style="font-size:.88rem;line-height:1.75;">Tetapkan ruang lingkup (scope), timeline, hasil yang diharapkan (deliverables), dan penilaian risikonya. Semua ini dirangkum dalam project charter yang menjadi pegangan seluruh tim selama proyek berjalan.</p>
-        </div>
+      <h3>Aturan Dasar Sebelum Memulai</h3>
+      <div class="card">
+        <ul class="styled">
+          <li><b>Satu fasilitator, satu pencatat.</b> Fasilitator menjaga ritme dan aturan main, pencatat menuliskan semua ide di sticky notes atau papan tulis agar tidak ada yang hilang</li>
+          <li><b>Tentukan durasi di depan (time-box).</b> Sesi 15-20 menit dengan batas waktu jelas justru memacu adrenalin dan mencegah diskusi melebar ke mana-mana</li>
+          <li><b>Satu ide, satu sticky note.</b> Memudahkan pengelompokan dan voting di tahap berikutnya — jangan menumpuk beberapa ide dalam satu catatan</li>
+          <li><b>Visualisasikan semua ide agar terlihat bersama-sama</b>, layaknya dinding referensi visual yang dipakai desainer game saat merancang dunia baru</li>
+        </ul>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Deliverables</h3>
+      <h3>Memfasilitasi Sesi Agar Tidak Didominasi Satu Orang</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Masalah klasik brainstorming kelompok: satu-dua orang yang paling percaya diri mendominasi pembicaraan, sementara anggota yang lebih pendiam justru sering menyimpan ide-ide segar yang tidak sempat terucap. Beberapa trik sederhana berikut terbukti efektif mengatasi hal ini.</p>
       <div class="grid-2">
         <div class="grid-card">
-          <div class="gc-title">Problem Statement</div>
-          <div class="gc-body">Rumusan yang jelas tentang masalah bisnis apa yang ingin diselesaikan lewat analytics.</div>
+          <div class="gc-title">Silent Brainstorming Dulu</div>
+          <div class="gc-body">Beri waktu 3-5 menit setiap orang menulis ide sendiri-sendiri di kertas tanpa bicara, baru setelah itu dibacakan bergiliran. Cara ini memastikan ide orang introvert tidak "kalah cepat" dari yang ekstrovert.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Project Charter</div>
-          <div class="gc-body">Dokumen formal yang merangkum ruang lingkup, tujuan, siapa saja yang terlibat, sumber daya, dan timeline proyek.</div>
+          <div class="gc-title">Round Robin</div>
+          <div class="gc-body">Setiap orang wajib menyampaikan satu ide secara bergiliran mengelilingi kelompok, boleh melewati giliran ("pass") kalau sedang buntu, tapi semua tetap kebagian jatah bicara yang setara.</div>
         </div>
       </div>
     </div>
@@ -379,68 +347,39 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="section-4">
     <div class="section-header">
       <div class="section-num">4</div>
-      <h2>Phase 2: Data Preparation</h2>
+      <h2>Teknik Lanjutan Ideation</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Data Preparation Activities</div>
-      <p style="font-size:.88rem;line-height:1.75;">Ini fase yang sering diremehkan padahal justru paling banyak makan waktu — sekitar 70-80% dari keseluruhan proyek data analytics dihabiskan di sini. Wajar saja, karena data mentah harus dibersihkan, diubah bentuknya, dan disiapkan matang-matang dulu sebelum masuk ke tahap modeling.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tahapan Data Preparation</h3>
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-title">1. Data Collection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Data diambil dari mana saja: database relasional, NoSQL, REST API, file biasa seperti CSV/JSON, cloud storage, sampai sumber data streaming.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">2. Data Exploration (EDA)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Sebelum diapa-apakan, kita perlu "kenalan" dulu dengan datanya: lihat strukturnya, sebaran statistiknya, hubungan antar variabel, sampai mencari keanehan atau pola menarik lewat visualisasi dan statistik deskriptif.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">3. Data Cleaning</div>
-          <p style="font-size:.88rem;line-height:1.75;">Bersihkan data dari nilai yang hilang (diisi ulang atau dibuang), hapus data duplikat, perbaiki data yang tidak konsisten, dan tangani nilai-nilai ekstrem (outlier) supaya kualitas datanya terjaga sebelum masuk modeling.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">4. Data Transformation</div>
-          <p style="font-size:.88rem;line-height:1.75;">Ubah bentuk data supaya lebih "ramah" untuk model: normalisasi/standardisasi nilai numerik, encoding variabel kategorikal, log transformation untuk data yang miring (skewed), dan agregasi data sesuai kebutuhan.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">5. Feature Engineering</div>
-          <p style="font-size:.88rem;line-height:1.75;">Racik fitur-fitur baru dari data yang sudah ada — misalnya memecah tanggal, membuat rasio, atau fitur lag — supaya kemampuan prediksi model machine learning-nya makin tajam.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">📊 70-80% Waktu</div>
-          <p style="font-size:.88rem;line-height:1.75;">Ingat baik-baik: data preparation memang menyita 70–80% waktu proyek analytics. Tapi ini investasi yang sepadan, karena kualitas data langsung menentukan kualitas model yang dihasilkan.</p>
-        </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Brainstorming klasik memang bagus untuk pemanasan, tapi begitu masalah yang dihadapi lebih kompleks — misalnya merancang alur cerita animasi edukasi atau fitur baru di aplikasi kampus — kita butuh teknik yang lebih terstruktur agar hasilnya lebih beragam dan lebih dalam. Empat teknik berikut ini sering dipakai tim desain profesional, termasuk di studio game dan agensi kreatif.</p>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-brainwriting')">Brainwriting 6-3-5</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-crazy8')">Crazy 8s</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-scamper')">SCAMPER</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-mindmap')">Mind Mapping</button>
       </div>
-      <table class="rubric-table">
-        <thead>
-          <tr><th>Tahap</th><th>Aktivitas</th><th>Tools</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><b>Data Collection</b></td><td>Extract data dari berbagai sources (databases, APIs, files)</td><td>SQL, Python, REST APIs</td></tr>
-          <tr><td><b>Data Exploration</b></td><td>Understand data structure, statistics, distributions, anomalies</td><td>Pandas, NumPy, Matplotlib</td></tr>
-          <tr><td><b>Data Cleaning</b></td><td>Handle missing values, duplicates, outliers, inconsistencies</td><td>Pandas, OpenRefine</td></tr>
-          <tr><td><b>Data Transformation</b></td><td>Normalization, standardization, encoding, aggregation</td><td>Scikit-learn, Pandas</td></tr>
-          <tr><td><b>Feature Engineering</b></td><td>Create new features dari existing data untuk improve model performance</td><td>Feature-engine, Featuretools</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="sub-section">
-      <h3>Common Data Quality Issues</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Missing Data</div>
-          <div class="gc-body">Bisa diisi ulang (imputation) memakai mean/median/mode, atau kalau datanya yang hilang sudah kelewat banyak, baris/kolomnya langsung dibuang saja.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Outliers</div>
-          <div class="gc-body">Dideteksi memakai metode IQR atau Z-score, lalu ditangani dengan cara dibatasi nilainya (capping), ditransformasi, atau dibuang sepenuhnya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Inconsistencies</div>
-          <div class="gc-body">Format, satuan, dan kategori data disamakan (standardize), sekaligus dibetulkan typo dan penamaan yang masih berantakan.</div>
-        </div>
+      <div id="tab-brainwriting" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;">Bayangkan permainan estafet tulis-menulis: <b>6</b> orang, masing-masing menulis <b>3</b> ide dalam <b>5</b> menit, lalu kertasnya digeser ke teman sebelah untuk dilanjutkan atau dikembangkan. Setelah enam putaran, kelompok punya total 108 ide (6 orang × 3 ide × 6 putaran) tanpa satu kata pun terucap! Teknik ini sangat pas dipakai saat anggota kelompok kelelahan bicara atau saat ada anggota yang cenderung pendiam — semua orang dapat kesempatan yang sama persis untuk berkontribusi, dan ide-ide justru berkembang lebih dalam karena setiap orang membangun di atas ide sebelumnya tanpa tekanan sosial berbicara di depan umum.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>Contoh penerapan:</b> kelompok merancang fitur baru aplikasi presensi kampus. Kertas pertama diisi ide "notifikasi pengingat presensi", kertas digeser, teman berikutnya menambahkan "notifikasi bisa dikustomisasi nada suaranya", digeser lagi, "bisa pakai suara rekaman dosen sendiri" — ide makin detail dan matang tanpa satu orang pun mendominasi arah pembicaraan.</p>
+      </div>
+      <div id="tab-crazy8" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;">Crazy 8s adalah sprint sketsa super cepat: lipat selembar kertas menjadi 8 kotak, lalu dalam waktu <b>8 menit</b> (1 menit per kotak), gambar 8 variasi solusi berbeda untuk satu masalah yang sama. Kecepatannya sengaja dibuat "gila" (crazy) agar otak tidak sempat mengedit diri sendiri atau terjebak menyempurnakan satu ide saja — mirip seperti menggambar cepat di game Gartic Phone, di mana keterbatasan waktu justru memaksa ide-ide segar keluar tanpa filter berlebihan.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>Contoh penerapan:</b> untuk HMW "Bagaimana caranya membuat mahasiswa baru tidak tersesat di kampus?", 8 kotak bisa berisi variasi solusi berbeda: peta AR di aplikasi kampus, sistem warna lantai fisik, chatbot penunjuk arah, video orientasi interaktif, papan petunjuk digital, buddy system senior-junior, QR code di setiap gedung, sampai game mini "cari ruangan" saat ospek. Delapan sketsa kasar ini jadi bahan mentah kaya untuk tahap penyaringan berikutnya.</p>
+      </div>
+      <div id="tab-scamper" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">SCAMPER adalah daftar tujuh "kata kerja pemantik" yang membantu memutar ide dari berbagai sudut pandang berbeda ketika kalian merasa buntu. Coba terapkan tiap huruf ke satu ide dasar — misalnya "aplikasi presensi kampus" — dan lihat betapa cepat ide baru bermunculan.</p>
+        <ul class="styled">
+          <li><b>S — Substitute (Ganti):</b> Ganti sidik jari dengan pengenalan wajah untuk presensi, seperti fitur Face ID di iPhone</li>
+          <li><b>C — Combine (Gabungkan):</b> Gabungkan presensi dengan fitur absen otomatis lewat GPS saat mahasiswa masuk radius kampus, mirip cara Gojek mendeteksi driver mendekati titik jemput</li>
+          <li><b>A — Adapt (Adaptasi):</b> Adaptasi sistem "streak" dari Duolingo — mahasiswa dapat lencana kalau presensi tepat waktu berturut-turut selama sebulan</li>
+          <li><b>M — Modify (Modifikasi):</b> Perbesar tampilan status kehadiran jadi dashboard visual berwarna, bukan sekadar tabel angka membosankan</li>
+          <li><b>P — Put to Other Use (Gunakan untuk Hal Lain):</b> Data presensi dipakai juga untuk menghitung okupansi ruang kelas secara real-time, membantu bagian sarana kampus</li>
+          <li><b>E — Eliminate (Hilangkan):</b> Hilangkan proses login manual — cukup scan QR code di pintu kelas tanpa membuka aplikasi dulu</li>
+          <li><b>R — Reverse (Balik):</b> Alih-alih mahasiswa yang absen ke sistem, sistem yang "mencari" mahasiswa lewat notifikasi push saat mereka terdeteksi di gedung</li>
+        </ul>
+      </div>
+      <div id="tab-mindmap" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;">Mind mapping menempatkan satu topik inti di tengah kertas, lalu cabang-cabang ide bercabang keluar darinya seperti akar pohon — persis seperti cara kita menjelajahi rekomendasi video di YouTube, dari satu video utama, muncul banyak video terkait, lalu dari salah satu video terkait itu muncul lagi cabang rekomendasi baru. Teknik ini sangat cocok dipakai ketika masalahnya luas dan berlapis, karena membantu melihat keterkaitan antar-ide yang mungkin tidak terlihat kalau ditulis sebagai daftar linear biasa.</p>
+        <p style="font-size:.88rem;line-height:1.75;margin-top:10px;"><b>Contoh penerapan:</b> topik utama "Pengalaman Orientasi Mahasiswa Baru" di tengah, lalu cabang pertama "sebelum hari-H" (video perkenalan, grup chat, FAQ interaktif), cabang kedua "hari pelaksanaan" (peta digital, buddy senior, games perkenalan), cabang ketiga "setelah orientasi" (komunitas online, mentoring lanjutan). Setiap cabang bisa terus bercabang lagi sampai kelompok merasa ide sudah cukup dieksplorasi.</p>
       </div>
     </div>
   </section>
@@ -449,60 +388,21 @@ ul.styled li::marker{color:var(--gold);}
   <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Phase 3 & 4: Model Planning & Building</h2>
+      <h2>Ideation Khusus untuk Produk Multimedia</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Model Development</div>
-      <p style="font-size:.88rem;line-height:1.75;">Setelah data beres disiapkan, saatnya masuk ke bagian yang sering dianggap paling seru: memilih algoritma yang cocok, membangun modelnya, lalu mengevaluasi seberapa bagus performanya.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Model Planning Activities</h3>
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Algorithm Selection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Algoritma yang dipilih tergantung jenis masalahnya: kalau problemnya <b>classification</b> bisa pakai Decision Tree, Random Forest, atau SVM; kalau <b>regression</b> ada Linear atau Polynomial; kalau <b>clustering</b> ada K-Means atau DBSCAN. Pertimbangkan juga ukuran datanya, seberapa mudah hasilnya dijelaskan (interpretability), dan performanya.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Tool Selection</div>
-          <p style="font-size:.88rem;line-height:1.75;">Tools-nya pun menyesuaikan kebutuhan: <b>Python</b> dengan scikit-learn cocok untuk machine learning pada umumnya, <b>R</b> untuk analisis statistik, <b>Spark MLlib</b> kalau datanya sudah skala big data, atau <b>TensorFlow/PyTorch</b> untuk deep learning.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Workflow Design</div>
-          <p style="font-size:.88rem;line-height:1.75;">Susun alur kerja (pipeline) yang jelas: bagaimana data dibagi jadi train/validation/test, strategi cross-validation, cara melakukan hyperparameter tuning, sampai apakah perlu memakai ensemble methods.</p>
-        </div>
-        <div class="card">
-          <div class="card-title">Success Metrics</div>
-          <p style="font-size:.88rem;line-height:1.75;">Tentukan dulu tolok ukur keberhasilannya (KPI): <b>Accuracy/Precision/Recall/F1</b> untuk classification, <b>RMSE/MAE/R²</b> untuk regression, atau <b>Silhouette Score</b> untuk clustering — supaya kita tahu model yang dibangun benar-benar bagus atau belum.</p>
-        </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Karena mata kuliah ini fokus pada produk multimedia — aplikasi, video, animasi, media interaktif — ide-ide yang dihasilkan sering kali bersifat visual dan berbasis waktu (time-based), bukan cuma teks di sticky note. Tiga teknik berikut membantu menuangkan ide multimedia dengan cara yang lebih natural sesuai medium akhirnya nanti.</p>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Storyboard Ideation</div>
+        <div class="gc-body">Menuangkan ide sebagai rangkaian panel bergambar berurutan, layaknya komik strip atau story di Instagram. Cocok untuk mengeksplorasi alur video promosi, animasi pendek, atau perjalanan pengguna di dalam aplikasi — sebelum satu detik pun benar-benar difilmkan atau dianimasikan, kita sudah bisa "menonton" cerita itu di atas kertas.</div>
       </div>
-    </div>
-    <div class="sub-section">
-      <h3>Model Building Process</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code># Example: Building a classification model
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
-
-# Load prepared data
-df = pd.read_csv('prepared_data.csv')
-X = df.drop('target', axis=1)
-y = df['target']
-
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
-
-# Train model
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train, y_train)
-
-# Evaluate
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))</code></pre>
+      <div class="grid-card">
+        <div class="gc-title">Concept Sketching</div>
+        <div class="gc-body">Coretan cepat dan kasar dari sebuah gagasan — mirip doodle di pinggir buku catatan kuliah. Tujuannya bukan gambar yang indah, tapi kecepatan menangkap ide sebelum lupa. Seorang desainer UI aplikasi biasanya membuat puluhan concept sketch layar aplikasi hanya dalam hitungan menit sebelum memilih satu untuk dikembangkan lebih jauh.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Mood Boarding</div>
+        <div class="gc-body">Kumpulan referensi visual — warna, font, foto, tekstur, gaya ilustrasi — yang ditempel bersebelahan untuk menangkap "rasa" atau nuansa produk yang diinginkan. Seperti playlist mood di Spotify yang mengumpulkan lagu dengan vibe serupa, mood board mengumpulkan potongan visual agar seluruh tim punya bayangan arah estetika yang sama sebelum mulai mendesain detail.</div>
       </div>
     </div>
   </section>
@@ -511,43 +411,40 @@ print(classification_report(y_test, y_pred))</code></pre>
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Phase 5 & 6: Communicate & Operationalize</h2>
+      <h2>Menyaring & Memilih Ide</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Delivering Value</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sebagus apa pun modelnya, semua itu jadi sia-sia kalau hasilnya tidak dikomunikasikan dengan baik dan tidak benar-benar dioperasikan untuk memberi dampak nyata bagi bisnis.</p>
-    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:16px;">Setelah menghasilkan puluhan bahkan ratusan ide, tantangan berikutnya justru sama beratnya: memilih. Terlalu banyak pilihan bisa membuat kelompok "lumpuh" karena bingung harus mulai dari mana (fenomena ini disebut analysis paralysis). Dua teknik berikut membantu kelompok menyaring secara objektif dan cepat, tanpa terjebak debat kusir berlarut-larut.</p>
     <div class="sub-section">
-      <h3>Communicate Results</h3>
-      <div class="grid-2">
-        <div class="grid-card">
-          <div class="gc-title">Visualization</div>
-          <div class="gc-body">Buat dashboard (pakai Tableau, Power BI), chart, dan grafik supaya insight-nya lebih mudah dicerna orang lain.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Storytelling</div>
-          <div class="gc-body">Sampaikan temuan dalam bentuk cerita (narrative) yang menarik, lengkap dengan rekomendasi yang bisa langsung ditindaklanjuti.</div>
-        </div>
+      <h3>Dot Voting</h3>
+      <p style="font-size:.88rem;line-height:1.75;">Caranya sederhana: tempel semua ide di dinding atau papan, lalu setiap anggota kelompok diberi sejumlah stiker bulat (dot) terbatas — biasanya 3-5 dot per orang — untuk ditempelkan pada ide favorit mereka. Ide dengan dot terbanyak otomatis naik jadi kandidat prioritas. Mekanismenya mirip fitur "like" di media sosial: satu suara mungkin tidak berarti apa-apa, tapi begitu banyak orang menempelkan dot di titik yang sama, pola preferensi kelompok jadi terlihat jelas secara visual dalam hitungan menit, jauh lebih cepat dibanding berdebat satu per satu.</p>
+      <div class="card" style="margin-top:12px;">
+        <div class="card-title">Tips Dot Voting yang Adil</div>
+        <ul class="styled">
+          <li>Batasi jumlah dot per orang (jangan terlalu banyak, supaya benar-benar memilih yang terbaik, bukan asal tempel semua)</li>
+          <li>Boleh menempelkan lebih dari satu dot di ide yang sama kalau memang sangat menyukainya</li>
+          <li>Lakukan voting dalam diam dulu (silent voting) sebelum berdiskusi, agar tidak saling mempengaruhi pilihan orang lain</li>
+        </ul>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Operationalize Model</h3>
+      <h3>Matriks Impact-Effort</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Kalau dot voting mengandalkan "rasa suka" kelompok, matriks impact-effort menyaring ide secara lebih rasional dengan dua sumbu: seberapa besar <b>dampak</b> (impact) ide itu bagi pengguna, dan seberapa besar <b>usaha</b> (effort) yang dibutuhkan untuk mewujudkannya. Setiap ide diplot ke dalam salah satu dari empat kuadran berikut.</p>
       <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Deployment Strategi</div>
-          <p style="font-size:.88rem;line-height:1.75;">Ada beberapa cara men-deploy model ke production: lewat <b>REST API</b> (Flask/FastAPI) kalau butuh prediksi real-time, <b>batch processing</b> untuk prediksi skala besar secara offline, atau langsung ditanam (<b>embedded model</b>) di dalam aplikasi mobile/web.</p>
+        <div class="grid-card">
+          <div class="gc-title">Quick Wins (Dampak Tinggi, Usaha Rendah)</div>
+          <div class="gc-body">Prioritas utama — kerjakan segera! Contoh: menambahkan animasi loading yang lucu di aplikasi, sesuatu yang mudah dibuat tapi langsung terasa menyenangkan bagi pengguna.</div>
         </div>
-        <div class="card">
-          <div class="card-title">Monitoring & Alerting</div>
-          <p style="font-size:.88rem;line-height:1.75;">Model yang sudah berjalan tetap perlu dipantau performanya secara berkala — waspadai <b>data drift</b> (ketika distribusi data input berubah) dan <b>concept drift</b> (ketika hubungan input-output ikut berubah). Pasang juga sistem alert supaya kita segera tahu begitu performanya turun di bawah batas aman.</p>
+        <div class="grid-card">
+          <div class="gc-title">Big Bets (Dampak Tinggi, Usaha Tinggi)</div>
+          <div class="gc-body">Layak diperjuangkan tapi butuh perencanaan matang dan waktu lebih panjang. Contoh: membangun fitur rekomendasi personalisasi berbasis kebiasaan pengguna seperti algoritma For You Page TikTok.</div>
         </div>
-        <div class="card">
-          <div class="card-title">Model Maintenance</div>
-          <p style="font-size:.88rem;line-height:1.75;">Model perlu dilatih ulang (retraining) secara berkala memakai data terbaru supaya tetap relevan. Di sinilah praktik <b>MLOps</b> berperan: mulai dari versioning model, A/B testing, sampai pipeline retraining otomatis.</p>
+        <div class="grid-card">
+          <div class="gc-title">Fill-ins (Dampak Rendah, Usaha Rendah)</div>
+          <div class="gc-body">Boleh dikerjakan kalau ada waktu luang, tapi bukan prioritas. Contoh: mengganti ikon tombol dengan variasi warna baru — enak dilihat tapi tidak mengubah banyak hal.</div>
         </div>
-        <div class="card">
-          <div class="card-title">Documentation</div>
-          <p style="font-size:.88rem;line-height:1.75;">Jangan lupa dokumentasikan semuanya dengan lengkap: model card (deskripsi, batasan, dan tujuan penggunaannya), asal-usul data (data lineage), prosedur training, sampai runbook untuk troubleshooting. Dokumentasi ini penting supaya hasil kerja bisa direproduksi dan ilmunya bisa diwariskan ke tim lain.</p>
+        <div class="grid-card">
+          <div class="gc-title">Thankless Tasks (Dampak Rendah, Usaha Tinggi)</div>
+          <div class="gc-body">Hindari dulu — banyak usaha, hasil minim. Contoh: membangun sistem login super rumit dengan banyak lapisan keamanan untuk aplikasi tugas kuliah sederhana yang penggunanya cuma 30 orang sekelas.</div>
         </div>
       </div>
     </div>
@@ -557,49 +454,43 @@ print(classification_report(y_test, y_pred))</code></pre>
   <section class="content-section" id="section-7">
     <div class="section-header">
       <div class="section-num">7</div>
-      <h2>Praktikum</h2>
+      <h2>Praktikum Pertemuan 4</h2>
     </div>
-    <div class="card">
-      <div class="card-title">Hands-on Practice: Complete Lifecycle</div>
-      <p style="font-size:.88rem;line-height:1.75;">Saatnya praktik langsung: terapkan keseluruhan data analytics lifecycle memakai studi kasus nyata, dari awal sampai akhir.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">Mini Project: Customer Churn Prediction</div>
-          <ul>
-            <li>Dataset: Telco customer churn dataset</li>
-            <li>Discovery: Define problem statement dan success metrics</li>
-            <li>Data Preparation: Clean data, handle missing values, feature engineering</li>
-            <li>Model Building: Build classification model (Decision Tree, Random Forest, XGBoost)</li>
-            <li>Evaluation: Compare models, select best performer</li>
-            <li>Deliverable: Jupyter notebook + presentation slides</li>
-          </ul>
-        </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 1: Sesi Crazy 8s untuk Satu HMW</div>
+        <ul>
+          <li>Ambil salah satu pertanyaan HMW yang sudah dirumuskan kelompok di Pertemuan 3</li>
+          <li>Lipat selembar kertas A4 menjadi 8 kotak sama besar</li>
+          <li>Set timer 8 menit — 1 menit per kotak, jangan berhenti menggambar walau hasilnya kasar</li>
+          <li>Setiap anggota kelompok melakukan sesi Crazy 8s masing-masing secara terpisah dan bersamaan</li>
+          <li>Setelah selesai, tempel semua sketsa di dinding/meja agar terlihat oleh seluruh kelompok</li>
+        </ul>
       </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Documentation Exercise</div>
-          <ul>
-            <li>Buat project charter untuk studi kasus pilihan Anda</li>
-            <li>Dokumentasikan setiap fase lifecycle dalam project Anda</li>
-            <li>Include challenges faced dan solutions implemented</li>
-          </ul>
-        </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Latihan 2: Dot Voting & Pemilihan Ide Terbaik</div>
+        <ul>
+          <li>Dari seluruh sketsa Crazy 8s kelompok, lakukan sesi dot voting (3 dot per anggota)</li>
+          <li>Diskusikan singkat 2-3 ide dengan dot terbanyak, lalu petakan ke matriks impact-effort</li>
+          <li>Pilih satu ide final yang paling potensial untuk dikembangkan ke Pertemuan 5 (Prototype)</li>
+          <li>Dokumentasikan proses: foto seluruh sketsa Crazy 8s, hasil dot voting, dan alasan singkat pemilihan ide final</li>
+          <li>Deliverable: laporan PDF (3-5 halaman) berisi dokumentasi proses ideation lengkap</li>
+          <li>Format nama file: NIM_Nama_P4_IdeationMultimedia.pdf</li>
+        </ul>
       </div>
     </div>
   </section>
 
-
   <nav class="footer-nav">
-    <a href="bigdata-p1.html">← Pertemuan 1</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p3.html" class="next-btn">Pertemuan 3 →</a>
+    <a href="desain-thinking-multimedia-p3.html">← Pertemuan 3</a>
+    <a href="../index.html?matkul=dtm" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="desain-thinking-multimedia-p5.html" class="next-btn">Pertemuan 5 →</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Desain Thinking for Multimedia</div>
 
 </main>
 
@@ -632,7 +523,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -700,6 +591,24 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'design thinking':'Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen untuk berinovasi',
+    'empathy map':'Alat visual untuk memetakan apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan pengguna agar tim lebih memahami kebutuhan mereka',
+    'persona':'Representasi fiktif pengguna ideal berdasarkan riset nyata, dipakai agar tim desain tetap fokus pada kebutuhan pengguna yang sebenarnya',
+    'POV':'Point of View — pernyataan masalah yang memadukan pengguna, kebutuhan, dan insight menjadi satu kalimat fokus dalam design thinking',
+    'HMW':'How Might We — format pertanyaan pembuka sesi ideasi yang mengubah sebuah masalah menjadi peluang untuk dicarikan solusi',
+    'ideation':'Tahap menghasilkan dan mengeksplorasi sebanyak mungkin kemungkinan ide sebelum memilih solusi terbaik untuk dikembangkan',
+    'wireframe':'Sketsa struktural low-fidelity yang menunjukkan tata letak elemen pada layar tanpa detail visual seperti warna atau gambar final',
+    'storyboard':'Rangkaian sketsa atau gambar yang menggambarkan alur cerita/adegan secara berurutan sebelum produksi multimedia dimulai',
+    'prototipe':'Purwarupa atau model awal sebuah produk yang dibuat untuk diuji dan mendapat umpan balik sebelum dikembangkan sepenuhnya',
+    'MVP':'Minimum Viable Product — versi paling sederhana dari sebuah produk yang sudah bisa diuji ke pengguna nyata dengan fitur inti saja',
+    'usability testing':'Metode evaluasi dengan mengamati pengguna asli saat mencoba memakai produk, untuk menemukan masalah kegunaan yang perlu diperbaiki',
+    'iterasi':'Proses mengulang dan menyempurnakan desain secara bertahap berdasarkan umpan balik dan hasil pengujian sebelumnya',
+    'journey map':'Peta visual yang menggambarkan setiap langkah, perasaan, dan titik masalah yang dialami pengguna saat berinteraksi dengan sebuah produk',
+    'affinity diagram':'Teknik mengelompokkan catatan atau insight hasil riset yang mirip ke dalam beberapa kategori untuk menemukan pola dan tema utama',
+    'low-fidelity':'Tingkat purwarupa yang sederhana dan kasar, misalnya sketsa tangan di atas kertas, dibuat cepat untuk menguji ide dasar',
+    'high-fidelity':'Tingkat purwarupa yang sudah mendekati produk akhir — lengkap dengan visual, warna, dan interaksi yang realistis',
+    'user research':'Proses sistematis mengumpulkan data tentang perilaku, kebutuhan, dan motivasi pengguna lewat wawancara, observasi, atau survei',
+    'stakeholder':'Pihak yang punya kepentingan atau terpengaruh oleh sebuah proyek, misalnya klien, pengguna, tim internal, atau investor',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

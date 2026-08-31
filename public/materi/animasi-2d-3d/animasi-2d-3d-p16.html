@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pertemuan 11 – Data Ingestion | Big Data</title>
+<title>Pertemuan 16 – Ujian Akhir Semester (UAS) | Animasi 2D dan 3D</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -223,426 +223,244 @@ ul.styled li::marker{color:var(--gold);}
 <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-
 <aside class="sidebar">
   <div class="sidebar-header">
-    <div class="course-label">Big Data</div>
-    <div class="course-title">Data Ingestion</div>
-    <div class="pertemuan-badge">Pertemuan 11</div>
+    <div class="course-label">Animasi 2D dan 3D</div>
+    <div class="course-title">Ujian Akhir Semester (UAS)</div>
+    <div class="pertemuan-badge">Pertemuan 16</div>
   </div>
   <nav class="toc-nav" id="toc">
-    <div class="toc-section-label">Materi</div>
-    <a href="#section-1" class="toc-link">Pengantar</a>
-    <a href="#section-2" class="toc-link">Batch Ingestion</a>
-    <a href="#section-3" class="toc-link">Stream Ingestion</a>
-    <a href="#section-4" class="toc-link">Data Sources</a>
-    <a href="#section-5" class="toc-link">Data Pipeline</a>
-    <a href="#section-6" class="toc-link">Praktikum</a>
+    <div class="toc-section-label">Informasi UAS</div>
+    <a href="#section-1" class="toc-link">Informasi UAS</a>
+    <a href="#section-2" class="toc-link">Format Ujian</a>
+    <a href="#section-3" class="toc-link">Materi yang Diujikan</a>
+    <a href="#section-4" class="toc-link">Contoh Soal</a>
+    <a href="#section-5" class="toc-link">Persiapan</a>
+    <a href="#section-6" class="toc-link">Ketentuan</a>
   </nav>
 </aside>
 
 <main class="main-content">
 
   <div class="page-header">
-    <div class="pre-title">Pertemuan 11 · Big Data</div>
-    <h1>Data Ingestion</h1>
-    <p class="subtitle">Teknik pengambilan data dari berbagai sources, batch vs stream ingestion, ETL pipeline, dan data quality.</p>
+    <div class="pre-title">Pertemuan 16 · Animasi 2D dan 3D</div>
+    <h1>Ujian Akhir Semester (UAS)</h1>
+    <p class="subtitle">Evaluasi pemahaman materi Pertemuan 9-15: 3D Modeling & Texturing, Rigging & Animasi 3D, Camera/Lighting/Rendering, Motion Graphics, dan Studi Kasus Produksi Animasi.</p>
     <div class="header-meta">
-      <div class="meta-badge">Kode: <span>E02303</span></div>
-      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Kode: <span>ANI301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
       <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
     </div>
   </div>
 
-    <section class="content-section" id="section-1">
+  <section class="content-section" id="section-1">
     <div class="section-header">
       <div class="section-num">1</div>
-      <h2>Pengantar</h2>
+      <h2>Informasi UAS</h2>
     </div>
     <div class="highlight-box">
-      <div class="hb-title">Sub-CPMK Pertemuan 11</div>
-      <p>Sebelum data bisa dianalisis, disimpan rapi, atau divisualisasikan, data itu harus "masuk" dulu ke sistem kita — dan proses itulah yang akan kita pelajari hari ini. Mahasiswa diharapkan mampu <b>memahami konsep dan teknik Data Ingestion</b> dalam big data pipeline: proses mengumpulkan data dari berbagai sumber dan memasukkannya ke dalam storage system agar siap diproses lebih lanjut.</p>
+      <div class="hb-title">Ujian Akhir Semester Animasi 2D dan 3D</div>
+      <p>Inilah muara dari seluruh materi Pertemuan 9-15 yang sudah kita bahas bersama, mulai dari dunia 3D modeling sampai studi kasus produksi. <b>Ujian Akhir Semester (UAS)</b> akan mengevaluasi seberapa jauh pemahaman kalian terhadap materi-materi tersebut, dengan bobot <b>20% dari total nilai akhir</b>, dan mengombinasikan soal teori maupun praktik langsung di software 3D supaya benar-benar mengukur pemahaman konsep sekaligus kemampuan eksekusi teknisnya.</p>
     </div>
-    <div class="card">
-      <div class="card-title">Apa itu Data Ingestion?</div>
-      <p style="font-size:.88rem;line-height:1.75;">Coba bayangkan Data Ingestion seperti pintu masuk gudang besar — semua barang (data) dari berbagai pemasok (databases, APIs, files, streaming) harus melewati pintu ini dulu sebelum ditata di rak penyimpanan (HDFS, Data Lake, database). Sederhananya, Data Ingestion adalah proses <b>mengumpulkan, mentransfer, dan memuat data</b> dari berbagai sumber ke dalam sistem storage big data. Karena jadi pintu masuk pertama, langkah ini sangat kritis — kalau di sini saja sudah berantakan, seluruh pipeline di belakangnya ikut bermasalah.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Detail Ujian</div>
+        <div class="gc-body">
+          <b>Durasi:</b> 150 menit<br>
+          <b>Sifat:</b> Teori: Close book | Praktik: Open notes<br>
+          <b>Format:</b> Campuran (Pilihan Ganda + Essay + Praktik)<br>
+          <b>Platform:</b> Blender (untuk bagian praktik)<br>
+          <b>Bobot UAS:</b> 20% dari nilai akhir
+        </div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Cakupan Materi</div>
+        <div class="gc-body">
+          <b>P9:</b> 3D Modeling Dasar<br>
+          <b>P10:</b> Texturing & Material 3D<br>
+          <b>P11:</b> Rigging & Animasi 3D<br>
+          <b>P12:</b> Camera, Lighting & Rendering<br>
+          <b>P13:</b> Motion Graphics & Efek Visual<br>
+          <b>P14:</b> Studi Kasus Produksi Animasi 1<br>
+          <b>P15:</b> Studi Kasus 2 & Proyek Akhir
+        </div>
+      </div>
     </div>
     <div class="sub-section">
-      <h3>Batch vs Stream Ingestion</h3>
-      <div class="grid-2">
+      <h3>Distribusi Nilai</h3>
+      <div class="grid-3">
         <div class="card">
-          <div class="card-title">Batch Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Cara kerjanya mirip seperti mengantar surat lewat pos — dikumpulkan dulu dalam periode tertentu (bisa per jam, per hari, atau per minggu), baru kemudian diantar dan diproses sekaligus sebagai satu batch. Pendekatan ini cocok untuk kebutuhan seperti laporan harian, ETL ke data warehouse, atau workload lain yang tidak masalah kalau datanya terlambat beberapa saat (toleran terhadap latency tinggi).</p>
+          <div class="card-title">Teori (40 Poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Pilihan Ganda:</b> 20 soal × 1 poin = 20 poin<br><b>Essay:</b> 4 soal × 5 poin = 20 poin<br><br>Mencakup konsep, definisi, perbandingan teknik, dan interpretasi kasus produksi.</p>
         </div>
         <div class="card">
-          <div class="card-title">Stream Ingestion</div>
-          <p style="font-size:.88rem;line-height:1.75;">Kalau batch ingestion seperti kiriman pos, stream ingestion lebih mirip panggilan telepon langsung — data diproses <b>secara real-time</b> begitu ia tiba, dengan latency yang sangat rendah (hitungan milidetik). Pendekatan ini jadi andalan untuk kasus-kasus yang butuh reaksi seketika, seperti fraud detection, live dashboard, monitoring IoT, dan aplikasi lain yang tidak bisa menunggu.</p>
+          <div class="card-title">Praktik (60 Poin)</div>
+          <p style="font-size:.88rem;line-height:1.75;">Modeling, texturing, lighting, dan render <b>1 objek 3D sederhana</b> sesuai skenario yang diberikan saat ujian berlangsung — misalnya sebuah properti benda sehari-hari lengkap dengan material dan pencahayaan dasar.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Format Jawaban</div>
+          <p style="font-size:.88rem;line-height:1.75;"><b>Teori:</b> Lembar jawaban / Google Form<br><b>Praktik:</b> File project (.blend) + hasil render<br><b>Submit via:</b> LMS / Google Classroom<br><b>Deadline:</b> Saat ujian berakhir</p>
         </div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-2">
+  <section class="content-section" id="section-2">
     <div class="section-header">
       <div class="section-num">2</div>
-      <h2>Batch Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Cara Kerja Batch Ingestion</div>
-      <p>Prinsipnya sederhana: data "ditampung" dulu dalam <b>rentang waktu tertentu</b> (bisa per jam atau per hari), lalu begitu waktunya tiba, semua data yang terkumpul diproses sekaligus sebagai satu batch. Beberapa tools yang biasa dipakai untuk ini antara lain Apache Sqoop, Apache Airflow, skrip ETL Python, dan AWS Glue.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Tools Batch Ingestion</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Apache Sqoop</div>
-          <div class="gc-body">Tool jembatan yang memindahkan data antara database relasional (MySQL, PostgreSQL) dan Hadoop/HDFS. Karena memanfaatkan MapReduce di baliknya, transfer datanya bisa dilakukan secara paralel dan efisien.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Apache Airflow</div>
-          <div class="gc-body">Sebuah platform orchestration untuk mengatur alur kerja (workflow). Di sini, workflow ETL didefinisikan sebagai DAG (Directed Acyclic Graphs), lengkap dengan scheduling, monitoring, dan alerting yang sudah terintegrasi.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Python ETL Scripts</div>
-          <div class="gc-body">Kalau butuh sesuatu yang lebih custom, kita bisa menulis skrip sendiri memakai Pandas, SQLAlchemy, atau requests. Sifatnya fleksibel, meski konsekuensinya perlu lebih banyak maintenance — cocok untuk workflow ETL yang masih sederhana.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Batch Ingestion dengan Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import sqlalchemy
-from pathlib import Path
-import logging
-from datetime import datetime, timedelta
-
-logging.basicConfig(level=logging.INFO)
-
-def batch_ingest_daily():
-    """Ingest data harian dari database ke data lake"""
-    yesterday = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-    
-    # Extract: baca dari source database
-    engine = sqlalchemy.create_engine('mysql+pymysql://user:pass@host/db')
-    query = f"""
-        SELECT * FROM transactions 
-        WHERE DATE(created_at) = '{yesterday}'
-    """
-    df = pd.read_sql(query, engine)
-    logging.info(f"Extracted {len(df)} rows for {yesterday}")
-    
-    # Transform: basic cleaning dan transformation
-    df['amount'] = pd.to_numeric(df['amount'], errors='coerce')
-    df = df.dropna(subset=['customer_id', 'amount'])
-    df['ingestion_date'] = datetime.now()
-    
-    # Load: simpan ke data lake (partitioned by date)
-    output_path = f"data_lake/transactions/date={yesterday}/"
-    Path(output_path).mkdir(parents=True, exist_ok=True)
-    df.to_parquet(f"{output_path}data.parquet", index=False)
-    logging.info(f"Loaded {len(df)} rows to {output_path}")
-    
-    return len(df)
-
-if __name__ == "__main__":
-    rows = batch_ingest_daily()
-    print(f"Batch ingestion complete: {rows} rows")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-3">
-    <div class="section-header">
-      <div class="section-num">3</div>
-      <h2>Stream Ingestion</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Real-Time Data Streaming</div>
-      <p>Seperti dibahas sebelumnya, stream ingestion memproses data <b>secara real-time</b> tepat saat ia tiba, tanpa menunggu terkumpul dulu. Ada tiga nama besar yang perlu kalian kenal di ranah ini: <b>Apache Kafka</b> yang berperan sebagai message broker (perantara pesan), <b>Apache Flink/Spark Streaming</b> untuk mengolah stream data-nya, dan <b>AWS Kinesis</b> sebagai layanan streaming yang sudah dikelola penuh oleh cloud.</p>
-    </div>
-    <div class="sub-section">
-      <h3>Apache Kafka Architecture</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Producer</div>
-          <div class="gc-body">Ini adalah "pengirim surat" dalam ekosistem Kafka — aplikasi yang mengirimkan (publish) messages ke sebuah Kafka topic. Contohnya bisa berupa website event tracker, sensor IoT, atau sistem pemrosesan pembayaran.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Broker (Kafka Cluster)</div>
-          <div class="gc-body">Kalau Producer adalah pengirim, Broker adalah "kantor pos"-nya — server Kafka yang menerima, menyimpan, lalu mendistribusikan messages tersebut. Setiap message disimpan dalam topic yang dibagi-bagi lewat partitioning dan diamankan lewat replication.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Consumer</div>
-          <div class="gc-body">Dan ini adalah "penerima surat"-nya — aplikasi yang membaca (subscribe) messages dari sebuah topic. Contohnya seperti mesin fraud detection, dashboard real-time, atau layanan notifikasi.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Kafka Producer & Consumer Python</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from kafka import KafkaProducer, KafkaConsumer
-import json
-from datetime import datetime
-
-# === PRODUCER: Kirim event transaksi ===
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],
-    value_serializer=lambda v: json.dumps(v).encode('utf-8')
-)
-
-# Simulasi event transaksi
-transaction = {
-    "transaction_id": "TXN-001",
-    "customer_id": "C-123",
-    "amount": 150000,
-    "merchant": "Alfamart",
-    "timestamp": datetime.now().isoformat()
-}
-producer.send('transactions', value=transaction)
-producer.flush()
-print("Transaction sent to Kafka!")
-
-# === CONSUMER: Real-time fraud detection ===
-consumer = KafkaConsumer(
-    'transactions',
-    bootstrap_servers=['localhost:9092'],
-    value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-    auto_offset_reset='earliest'
-)
-
-for message in consumer:
-    txn = message.value
-    # Simple fraud check: amount > 5 juta
-    if txn['amount'] > 5000000:
-        print(f"⚠️  FRAUD ALERT: {txn['transaction_id']} - Rp{txn['amount']:,}")</code></pre>
-      </div>
-    </div>
-  </section>
-  <hr class="section-divider">
-
-    <section class="content-section" id="section-4">
-    <div class="section-header">
-      <div class="section-num">4</div>
-      <h2>Data Sources</h2>
+      <h2>Format Ujian</h2>
     </div>
     <div class="card">
-      <div class="card-title">Berbagai Jenis Data Sources</div>
-      <p style="font-size:.88rem;line-height:1.75;">Di dunia nyata, data jarang datang dari satu tempat saja — sebuah pipeline data ingestion yang baik harus siap "menerima tamu" dari berbagai sumber yang berbeda-beda karakternya. Setiap sumber punya protokol, format, dan tantangannya masing-masing, jadi penting bagi kita mengenali ragamnya satu per satu.</p>
+      <div class="card-title">Struktur Waktu Ujian</div>
+      <p style="font-size:.88rem;line-height:1.75;">Dalam ujian dengan format campuran seperti ini, mengatur waktu dengan baik sama pentingnya dengan menguasai materi — jangan sampai kehabisan waktu di bagian praktik hanya karena terlalu lama berkutat di soal pilihan ganda. Berikut alokasi waktu yang disarankan supaya kalian bisa menyelesaikan semua bagian dengan tenang, dari teori sampai render akhir.</p>
     </div>
     <div class="sub-section">
-      <h3>Kategori Data Sources</h3>
-      <div class="grid-3">
-        <div class="grid-card">
-          <div class="gc-title">Relational Databases</div>
-          <div class="gc-body">Sumber data yang paling akrab dengan kita: MySQL, PostgreSQL, Oracle, SQL Server. Kita cukup menjalankan query SQL lewat connection string, dengan bantuan tools seperti SQLAlchemy, JDBC/ODBC, atau Apache Sqoop kalau perlu transfer data dalam jumlah besar ke Hadoop.</div>
+      <h3>Alokasi Waktu</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Bagian</th><th>Durasi</th><th>Isi</th><th>Tips</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Pilihan Ganda</b></td><td>20 menit</td><td>20 soal konsep dan teori</td><td>Jawab yang mudah dulu, skip yang ragu</td></tr>
+          <tr><td><b>Essay</b></td><td>30 menit</td><td>4 soal uraian/analisis</td><td>Buat outline jawaban sebelum menulis</td></tr>
+          <tr><td><b>Praktik Modeling & Texturing</b></td><td>50 menit</td><td>Membuat mesh objek + UV mapping + material</td><td>Jangan tergoda detail berlebihan, kejar bentuk dasar dulu</td></tr>
+          <tr><td><b>Praktik Lighting & Render</b></td><td>30 menit</td><td>Menata pencahayaan + render final</td><td>Gunakan preview render dulu sebelum render final</td></tr>
+          <tr><td><b>Review & Submit</b></td><td>20 menit</td><td>Cek file, submit jawaban dan hasil render</td><td>Pastikan file .blend dan hasil render tersimpan lengkap</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Materi yang Diujikan</h2>
+    </div>
+    <div class="sub-section">
+      <h3>3D Modeling & Texturing (P9-P10)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">3D Modeling Dasar</div>
+          <p style="font-size:.88rem;line-height:1.75;">Pastikan kalian sudah lancar dengan konsep mesh, vertex, edge, dan face sebagai penyusun objek 3D, cara memodifikasi primitive shape (cube, sphere, cylinder) menjadi bentuk yang lebih kompleks, teknik dasar seperti extrude dan loop cut, serta navigasi viewport untuk melihat dan mengedit objek dari berbagai sudut.</p>
         </div>
-        <div class="grid-card">
-          <div class="gc-title">REST APIs</div>
-          <div class="gc-body">Data yang dikirim dalam format JSON/XML lewat HTTP, biasanya diakses dengan library requests atau httpx. Yang perlu diperhatikan di sini adalah cara menangani pagination, batasan rate limiting, dan proses autentikasi (API key, OAuth) — contohnya seperti Twitter API, weather API, atau financial data API.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">File Systems</div>
-          <div class="gc-body">Data yang tersimpan dalam berbagai format file — CSV, JSON, Parquet, ORC, Avro — baik dari disk lokal, SFTP/FTP, maupun cloud storage seperti S3/GCS/Azure Blob. Untuk file dalam jumlah banyak biasanya cukup pakai Pandas dan glob, sedangkan file berukuran besar lebih baik ditangani PySpark.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Message Queues</div>
-          <div class="gc-body">Sumber untuk event streaming real-time, seperti Apache Kafka, RabbitMQ, atau AWS SQS. Consumer groups memungkinkan pemrosesan paralel, dengan jaminan durability dan pengiriman minimal sekali (at-least-once delivery).</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">IoT & Sensors</div>
-          <div class="gc-body">Data dari sensor biasanya mengalir lewat protokol MQTT, misalnya lewat AWS IoT atau Azure IoT Hub. Frekuensinya bisa sangat tinggi — bahkan lebih dari 1000 events per detik — sehingga butuh stream processing seperti Flink atau Spark Streaming untuk menanganinya.</div>
-        </div>
-        <div class="grid-card">
-          <div class="gc-title">Web Scraping</div>
-          <div class="gc-body">Kalau data yang dibutuhkan tidak tersedia lewat API resmi, kita bisa "memanen" langsung dari halaman web memakai BeautifulSoup + requests atau framework Scrapy — misalnya untuk memantau harga di e-commerce atau mengumpulkan berita. Ingat untuk selalu memperhatikan aturan robots.txt dan terms of service situs yang di-scrape.</div>
+        <div class="card">
+          <div class="card-title">Texturing & Material</div>
+          <p style="font-size:.88rem;line-height:1.75;">Ingat kembali proses UV mapping untuk "membuka" permukaan model menjadi bidang 2D, konsep shader dan bagaimana ia menentukan tampilan permukaan objek terhadap cahaya, perbedaan material dasar (warna, roughness, metallic), serta cara menerapkan texture painting sederhana pada model 3D.</p>
         </div>
       </div>
     </div>
     <div class="sub-section">
-      <h3>Python: Multi-Source Data Ingestion</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>import pandas as pd
-import requests
-import sqlalchemy
-from pathlib import Path
-import json
-
-# === Source 1: REST API ===
-def ingest_from_api(url, params=None, headers=None):
-    """Ingest data dari REST API dengan pagination"""
-    all_data = []
-    page = 1
-    while True:
-        p = (params or {})
-        p['page'] = page
-        r = requests.get(url, params=p, headers=headers, timeout=30)
-        r.raise_for_status()
-        data = r.json()
-        
-        if not data.get('results'):
-            break
-        all_data.extend(data['results'])
-        
-        if not data.get('next'):  # No more pages
-            break
-        page += 1
-    
-    return pd.DataFrame(all_data)
-
-# === Source 2: Database ===
-def ingest_from_db(connection_str, query):
-    """Ingest data dari relational database"""
-    engine = sqlalchemy.create_engine(connection_str)
-    with engine.connect() as conn:
-        df = pd.read_sql(query, conn)
-    return df
-
-# === Source 3: Files (CSV/JSON/Parquet) ===
-def ingest_from_files(pattern, format='csv'):
-    """Ingest multiple files menggunakan glob"""
-    files = list(Path('.').glob(pattern))
-    dfs = []
-    for f in files:
-        if format == 'csv':
-            dfs.append(pd.read_csv(f))
-        elif format == 'json':
-            dfs.append(pd.read_json(f))
-        elif format == 'parquet':
-            dfs.append(pd.read_parquet(f))
-    return pd.concat(dfs, ignore_index=True)
-
-# === Pipeline: Combine all sources ===
-api_df = ingest_from_api('https://api.example.com/data')
-db_df = ingest_from_db('postgresql://user:pass@host/db', 'SELECT * FROM orders')
-files_df = ingest_from_files('data/*.csv')
-
-combined = pd.concat([api_df, db_df, files_df], ignore_index=True)
-print(f"Total records ingested: {len(combined)}")</code></pre>
+      <h3>Rigging, Animasi & Rendering (P11-P12)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Rigging & Animasi 3D</div>
+          <p style="font-size:.88rem;line-height:1.75;">Kuasai kembali konsep armature sebagai kerangka penggerak karakter 3D, cara kerja weight paint dalam menentukan pengaruh bone terhadap mesh, serta dasar-dasar animating karakter 3D lewat keyframe di timeline, termasuk prinsip animasi yang tetap berlaku di ranah 3D.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Camera, Lighting & Rendering</div>
+          <p style="font-size:.88rem;line-height:1.75;">Review kembali pengaturan kamera virtual (posisi, sudut, focal length), jenis-jenis pencahayaan dalam scene 3D beserta fungsinya masing-masing, cara kerja render engine secara umum, serta pengaturan resolusi dan format output hasil render.</p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Motion Graphics & Studi Kasus (P13-P15)</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Motion Graphics & Efek Visual</div>
+          <p style="font-size:.88rem;line-height:1.75;">Ingat kembali konsep motion graphics sebagai animasi elemen desain grafis (teks, ikon, bentuk), dasar-dasar compositing untuk menggabungkan lapisan visual, serta teknik animasi tipografi dan transisi sederhana antar elemen dalam sebuah komposisi visual.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Studi Kasus Produksi</div>
+          <p style="font-size:.88rem;line-height:1.75;">Kuasai kembali tahapan pipeline produksi animasi lengkap (pra-produksi, produksi, pasca-produksi), bagaimana keputusan produksi lahir dari keterbatasan waktu/sumber daya, tantangan umum dalam produksi, serta pertimbangan khusus motion graphics untuk konten media sosial (durasi pendek, keterbacaan teks, konsistensi branding).</p>
+        </div>
       </div>
     </div>
   </section>
   <hr class="section-divider">
 
-    <section class="content-section" id="section-5">
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Contoh Soal</h2>
+    </div>
+    <div class="sub-section">
+      <h3>Contoh Soal Pilihan Ganda</h3>
+      <div class="card">
+        <div class="card-title">Contoh Soal</div>
+        <ol class="styled">
+          <li>Proses "membuka" permukaan model 3D menjadi bidang datar 2D agar tekstur bisa ditempelkan dengan pas disebut...<br><b>A.</b> Rigging &nbsp;&nbsp;<b>B.</b> UV Mapping &nbsp;&nbsp;<b>C.</b> Rendering &nbsp;&nbsp;<b>D.</b> Compositing<br><i>Jawaban: B</i></li>
+          <li>Struktur tulang virtual yang menjadi kerangka penggerak sebuah karakter 3D disebut...<br><b>A.</b> Mesh &nbsp;&nbsp;<b>B.</b> Shader &nbsp;&nbsp;<b>C.</b> Armature &nbsp;&nbsp;<b>D.</b> Viewport<br><i>Jawaban: C</i></li>
+          <li>Teknik menentukan seberapa besar pengaruh sebuah bone terhadap area mesh tertentu saat karakter digerakkan disebut...<br><b>A.</b> Weight Paint &nbsp;&nbsp;<b>B.</b> Texture Paint &nbsp;&nbsp;<b>C.</b> Vertex Paint &nbsp;&nbsp;<b>D.</b> UV Unwrap<br><i>Jawaban: A</i></li>
+          <li>Proses menghasilkan output akhir berupa gambar/video dari sebuah scene 3D yang sudah disiapkan disebut...<br><b>A.</b> Modeling &nbsp;&nbsp;<b>B.</b> Rigging &nbsp;&nbsp;<b>C.</b> Rendering &nbsp;&nbsp;<b>D.</b> Storyboarding<br><i>Jawaban: C</i></li>
+        </ol>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Contoh Soal Essay</h3>
+      <div class="card">
+        <div class="card-title">Contoh Pertanyaan Essay</div>
+        <ol class="styled">
+          <li><b>Jelaskan proses UV mapping</b> dan kenapa proses ini penting dilakukan sebelum menerapkan tekstur pada model 3D. Berikan contoh apa yang terjadi jika UV mapping tidak dilakukan dengan benar. (5 poin)</li>
+          <li><b>Bandingkan konsep rigging pada animasi 2D dan 3D</b>: jelaskan perbedaan pendekatan armature di keduanya, dan bagaimana peran weight paint dalam animasi karakter 3D. (5 poin)</li>
+          <li><b>Sebuah tim diminta membuat render objek 3D sederhana</b> (misalnya cangkir keramik) untuk keperluan katalog produk online. Jelaskan: (a) tahapan dari modeling hingga rendering yang perlu dilalui, (b) pertimbangan lighting yang tepat untuk foto produk, (c) format output file yang sesuai kebutuhan tersebut. (5 poin)</li>
+          <li><b>Jelaskan konsep motion graphics</b> dan sebutkan minimal 3 pertimbangan khusus yang harus diperhatikan saat membuat motion graphics untuk konten promosi di media sosial. (5 poin)</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
     <div class="section-header">
       <div class="section-num">5</div>
-      <h2>Data Pipeline</h2>
-    </div>
-    <div class="highlight-box">
-      <div class="hb-title">Apache Airflow untuk Orchestrasi Pipeline</div>
-      <p>Bayangkan Airflow sebagai "manajer proyek" untuk pipeline data kalian — ia yang mengatur urutan tugas, mengingatkan jadwal, dan memberi tahu kalau ada yang gagal di tengah jalan. Secara teknis, <b>Apache Airflow</b> adalah platform untuk <b>authoring, scheduling, dan monitoring workflow</b>, di mana setiap workflow didefinisikan sebagai <b>DAG (Directed Acyclic Graphs)</b> menggunakan Python. Enaknya, setiap task dalam DAG bisa dipantau, di-retry otomatis kalau gagal, dan dikirimkan alert supaya kita tahu ada masalah tanpa perlu mengecek manual.</p>
+      <h2>Persiapan</h2>
     </div>
     <div class="sub-section">
-      <h3>Konsep Airflow</h3>
+      <h3>Strategi Belajar</h3>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Kuasai Konsep Kunci</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Mesh, vertex, edge, face dan proses modeling dasar<br>
+            ☐ UV mapping, shader, dan material 3D<br>
+            ☐ Armature, bone, dan weight paint dalam rigging<br>
+            ☐ Kamera virtual, jenis lighting, dan render engine<br>
+            ☐ Motion graphics dan compositing dasar<br>
+            ☐ Tahapan pipeline produksi (pra/produksi/pasca)<br>
+            ☐ Pertimbangan khusus motion graphics untuk medsos<br>
+            ☐ Rubrik dan kriteria penilaian proyek produksi
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-title">Latihan Praktik Blender</div>
+          <p style="font-size:.88rem;line-height:1.75;">
+            ☐ Modeling objek sederhana dari primitive shape<br>
+            ☐ UV unwrap dan menerapkan material/texture<br>
+            ☐ Membuat armature sederhana dan weight paint dasar<br>
+            ☐ Mengatur pencahayaan (key light, fill light) dalam scene<br>
+            ☐ Setting kamera dan melakukan render preview<br>
+            ☐ Render final dengan resolusi dan format yang tepat<br>
+            ☐ Latihan modeling & render objek dalam batas waktu terbatas
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="sub-section">
+      <h3>Tips Ujian</h3>
       <div class="grid-3">
         <div class="grid-card">
-          <div class="gc-title">DAG</div>
-          <div class="gc-body">Singkatan dari Directed Acyclic Graph — ini adalah "peta alur" yang mendefinisikan urutan dan ketergantungan (dependencies) antar tasks. Setiap DAG punya jadwalnya sendiri, bisa dalam bentuk cron expression atau shortcut seperti @daily dan @hourly.</div>
+          <div class="gc-title">Teori: Pahami Konsep</div>
+          <div class="gc-body">Daripada menghafal mati-matian istilah teknis, coba pahami <em>mengapa</em> sebuah teknik itu dilakukan dan kapan sebaiknya dipakai — pemahaman seperti ini jauh lebih tahan lama saat ujian. Buat analogi sendiri untuk konsep yang terasa abstrak, seperti UV mapping atau weight paint.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Operators</div>
-          <div class="gc-body">Ini adalah "unit kerja" dalam Airflow — setiap operator mewakili satu task. Ada PythonOperator untuk menjalankan kode Python, BashOperator untuk perintah bash, SQLOperator untuk query database, dan HTTPOperator untuk memanggil API.</div>
+          <div class="gc-title">Praktik: Kerjakan Bertahap</div>
+          <div class="gc-body">Jangan langsung mengejar detail rumit di awal. Bangun bentuk dasar objek dulu sampai proporsinya benar, baru masuk ke UV mapping, material, dan pencahayaan. Kerjakan preview render sesering mungkin untuk mengecek progres, jangan menunggu sampai akhir baru render sekali.</div>
         </div>
         <div class="grid-card">
-          <div class="gc-title">Sensors</div>
-          <div class="gc-body">Operator khusus yang "menunggu" sampai kondisi tertentu terpenuhi sebelum melanjutkan ke task berikutnya — misalnya FileSensor yang menunggu file muncul, S3KeySensor yang menunggu objek di S3, atau ExternalTaskSensor yang menunggu task lain selesai.</div>
-        </div>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Contoh Airflow DAG</h3>
-      <div class="code-block">
-        <button class="copy-btn" onclick="copyCode(this)">Salin</button>
-        <pre><code>from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
-import pandas as pd
-
-# Define default args
-default_args = {
-    'owner': 'bahril',
-    'depends_on_past': False,
-    'email_on_failure': True,
-    'email': ['bahril@example.com'],
-    'retries': 2,
-    'retry_delay': timedelta(minutes=5),
-}
-
-# Define DAG
-with DAG(
-    'daily_sales_etl',
-    default_args=default_args,
-    description='Daily sales data ETL pipeline',
-    schedule_interval='0 6 * * *',  # Setiap hari jam 6 pagi
-    start_date=datetime(2024, 1, 1),
-    catchup=False,
-    tags=['sales', 'etl', 'bigdata'],
-) as dag:
-
-    # Task 1: Extract dari database
-    def extract_sales(**context):
-        date = context['ds']  # execution date (YYYY-MM-DD)
-        df = pd.read_sql(f"SELECT * FROM sales WHERE date='{date}'", engine)
-        df.to_parquet(f'/tmp/sales_{date}.parquet')
-        print(f"Extracted {len(df)} rows for {date}")
-
-    # Task 2: Transform data
-    def transform_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_{date}.parquet')
-        df['revenue'] = df['quantity'] * df['price']
-        df['date'] = pd.to_datetime(df['date'])
-        df.to_parquet(f'/tmp/sales_clean_{date}.parquet')
-
-    # Task 3: Load ke data warehouse
-    def load_sales(**context):
-        date = context['ds']
-        df = pd.read_parquet(f'/tmp/sales_clean_{date}.parquet')
-        df.to_sql('fact_sales', dw_engine, if_exists='append', index=False)
-        print(f"Loaded {len(df)} rows to data warehouse")
-
-    extract = PythonOperator(task_id='extract_sales', python_callable=extract_sales)
-    transform = PythonOperator(task_id='transform_sales', python_callable=transform_sales)
-    load = PythonOperator(task_id='load_sales', python_callable=load_sales)
-    
-    # Define dependencies
-    extract >> transform >> load  # Sequential pipeline</code></pre>
-      </div>
-    </div>
-    <div class="sub-section">
-      <h3>Tugas Praktikum</h3>
-      <div class="task-card">
-        <div class="task-num">1</div>
-        <div class="task-content">
-          <div class="task-title">ETL Pipeline: Batch Ingestion dari API</div>
-          <ul>
-            <li>Gunakan public API: <b>Open-Meteo Weather API</b> (gratis, no key) untuk data cuaca</li>
-            <li>Ingest data cuaca 30 hari terakhir untuk 3 kota: Banjarmasin, Jakarta, Surabaya</li>
-            <li>Transform: hitung daily average temperature, find hottest/coldest days</li>
-            <li>Load ke SQLite database menggunakan SQLAlchemy</li>
-            <li>Buat simple dashboard dengan matplotlib (line chart suhu per kota)</li>
-            <li>Deliverable: Jupyter notebook lengkap</li>
-          </ul>
-        </div>
-      </div>
-      <div class="task-card">
-        <div class="task-num">2</div>
-        <div class="task-content">
-          <div class="task-title">Stream Ingestion Simulation dengan Kafka</div>
-          <ul>
-            <li>Setup Kafka menggunakan Docker Compose (kafka + zookeeper)</li>
-            <li>Buat Producer: simulasi transaksi e-commerce (random customer, product, amount)</li>
-            <li>Buat Consumer: real-time analytics (running total, top products, fraud alert jika amount &gt; 5 juta)</li>
-            <li>Jalankan Producer selama 60 detik (1 event per detik), Consumer mencatat analytics</li>
-            <li>Print summary: total transactions, total revenue, fraud count</li>
-          </ul>
+          <div class="gc-title">Manajemen Waktu</div>
+          <div class="gc-body">Jangan terjebak terlalu lama di satu soal atau satu detail model saja. Berhubung porsi praktik bernilai 60 poin, alokasikan waktu lebih banyak di bagian itu, tapi tetap sisakan waktu di akhir untuk review dan memastikan file berhasil tersimpan dan ter-submit.</div>
         </div>
       </div>
     </div>
@@ -652,20 +470,59 @@ with DAG(
   <section class="content-section" id="section-6">
     <div class="section-header">
       <div class="section-num">6</div>
-      <h2>Praktikum</h2>
+      <h2>Ketentuan</h2>
     </div>
     <div class="card">
-      <div class="card-title">Praktikum</div>
-      <p style="font-size:.88rem;line-height:1.75;">Sekarang giliran kalian mempraktikkan semua konsep yang sudah dipelajari: membangun ETL pipeline sederhana dengan Python, mulai dari mengambil data dari API sampai memasukkannya ke database.</p>
+      <div class="card-title">Ketentuan Ujian</div>
+      <p style="font-size:.88rem;line-height:1.75;">
+        Supaya ujian berjalan adil dan lancar untuk semua orang, mohon perhatikan ketentuan berikut ini baik-baik:<br><br>
+        <b>📖 Teori (Pilihan Ganda + Essay):</b> sifatnya closed book, closed notes, dan tidak boleh menggunakan perangkat elektronik apa pun<br><br>
+        <b>💻 Praktik (Modeling, Texturing, Lighting, Rendering):</b> sifatnya open notes, jadi kalian boleh mengakses materi pertemuan di laptop. Namun <b>DILARANG</b> keras browsing internet atau berkomunikasi dengan pihak lain (chat, email, dan sejenisnya)<br><br>
+        <b>📁 Submit:</b> semua file project (.blend) beserta hasil render wajib di-submit lewat LMS sebelum waktu ujian benar-benar habis<br><br>
+        <b>⚠️ Integritas:</b> plagiarisme atau kecurangan dalam bentuk apa pun akan berujung pada nilai 0 dan sanksi akademis<br><br>
+        <b>🕐 Keterlambatan:</b> tidak ada perpanjangan waktu, jadi usahakan datang 15 menit sebelum ujian dimulai
+      </p>
+    </div>
+    <div class="sub-section">
+      <h3>Penilaian Akhir Semester</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Komponen</th><th>Bobot</th><th>Keterangan</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Kehadiran & Partisipasi</b></td><td><span class="score-badge">10%</span></td><td>Minimal 75% kehadiran</td></tr>
+          <tr><td><b>Tugas & Praktikum</b></td><td><span class="score-badge">20%</span></td><td>Weekly assignments + laporan</td></tr>
+          <tr><td><b>Quiz</b></td><td><span class="score-badge">10%</span></td><td>2-3 kali quiz</td></tr>
+          <tr><td><b>UTS (Pertemuan 8)</b></td><td><span class="score-badge">20%</span></td><td>Materi P1-P7</td></tr>
+          <tr><td><b>Studi Kasus & Proyek Akhir</b></td><td><span class="score-badge">20%</span></td><td>Proyek Akhir (P14-P15)</td></tr>
+          <tr><td><b>UAS (Pertemuan 16)</b></td><td><span class="score-badge">20%</span></td><td>Materi P9-P15</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sub-section">
+      <h3>Konversi Nilai</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Nilai A (≥ 85)</div>
+          <div class="gc-body">Sangat Memuaskan — penguasaan konsep 3D dan produksinya excellent, model dan render berkualitas tinggi, serta interpretasi teknisnya tepat sasaran.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Nilai B (70-84)</div>
+          <div class="gc-body">Memuaskan — sudah memahami konsep-konsep kunci, hasil modeling dan render berfungsi dengan baik, dan analisisnya cukup meyakinkan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Nilai C (60-69)</div>
+          <div class="gc-body">Cukup — pemahaman dasarnya sudah ada, hasil praktik masih parsial atau kurang rapi, dan masih perlu pendalaman lebih lanjut.</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <nav class="footer-nav">
-    <a href="bigdata-p10.html">← Pertemuan 10</a>
-    <a href="../index.html?matkul=bigdata" class="index-btn"><i>⌂</i> Semua Materi</a>
-    <a href="bigdata-p12.html" class="next-btn">Pertemuan 12 →</a>
+    <a href="animasi-2d-3d-p15.html">← Pertemuan 15</a>
+    <a href="../index.html?matkul=animasi" class="index-btn"><i>⌂</i> Semua Materi</a>
   </nav>
-  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Big Data</div>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Animasi 2D dan 3D</div>
 
 </main>
 
@@ -698,7 +555,7 @@ window.copyCode=function(btn){
   var b=clone.querySelector('button');
   if(b)b.remove();
   var code=(clone.innerText||clone.textContent||'').trim();
-  function done(){btn.textContent='\u2713 Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
   if(navigator.clipboard&&navigator.clipboard.writeText){
     navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
   }else{fallback(code,done);}
@@ -766,6 +623,24 @@ function fallback(code,cb){
     'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
     'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
     'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'squash & stretch':'Prinsip animasi paling dasar: objek meregang saat bergerak cepat dan menggepeng saat menghentak, supaya gerakannya terasa punya berat dan elastisitas, bukan kaku seperti robot',
+    'anticipation':'Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat — membantu penonton "membaca" gerakan berikutnya',
+    'tweening':'Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, sehingga animator tidak perlu menggambar setiap frame satu per satu',
+    'in-between':'Gambar-gambar yang mengisi jarak antara dua pose kunci (keyframe) agar gerakan terlihat halus dan berkesinambungan',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi/produksi sesungguhnya dimulai',
+    'model sheet':'Lembar referensi berisi tampilan karakter dari berbagai sudut, ekspresi, dan pose standar, dipakai supaya karakter tetap konsisten meski digambar oleh animator berbeda-beda',
+    'rigging':'Proses membuat kerangka/tulang virtual pada karakter atau objek agar bisa digerakkan secara fleksibel tanpa harus menggambar ulang dari awal setiap kali',
+    'armature':'Struktur tulang virtual (skeleton) dalam software 3D yang menjadi "kerangka penggerak" bagi mesh karakter saat dianimasikan',
+    'mesh':'Kumpulan titik (vertex), garis (edge), dan bidang (face) yang membentuk permukaan sebuah objek 3D',
+    'vertex':'Titik terkecil pembentuk sebuah objek 3D — gabungan banyak vertex yang terhubung membentuk edge dan face',
+    'UV mapping':'Proses "membuka" permukaan model 3D menjadi bidang datar 2D, supaya gambar tekstur bisa ditempelkan dengan pas dan tidak melar/terdistorsi',
+    'shader':'Program kecil yang menentukan bagaimana permukaan sebuah objek 3D merespons cahaya — menentukan warna, kilap, kekasaran, hingga transparansi',
+    'compositing':'Proses menggabungkan beberapa lapisan visual (hasil render, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu',
+    'walk cycle':'Rangkaian pose yang berulang secara siklus untuk menggambarkan gerakan berjalan sebuah karakter, biasanya terdiri dari pose contact, down, passing, dan up',
+    'lip sync':'Teknik menyelaraskan gerakan mulut karakter animasi dengan suara dialog, agar terlihat seperti benar-benar sedang berbicara',
+    'motion graphics':'Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan atau informasi secara dinamis',
+    'viewport':'Jendela kerja utama dalam software 3D tempat kita melihat, menavigasi, dan mengedit objek dalam sebuah scene secara langsung',
+    'weight paint':'Teknik "mewarnai" mesh karakter untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan',
   };
   var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
   function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}

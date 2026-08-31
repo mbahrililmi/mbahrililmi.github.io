@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 7 – Menyatukan Siklus Design Thinking dalam Proyek Multimedia | Desain Thinking for Multimedia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+
+/* === Code Block Styles === */
+.code-block{
+  position:relative;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:16px 16px 16px 18px;
+  margin:12px 0 16px;
+  overflow-x:auto;
+  border:1px solid rgba(184,137,59,.2);
+}
+.code-block pre{
+  margin:0;
+  color:#d4d4d4;
+  font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  overflow-x:auto;
+}
+.code-block code{
+  color:#d4d4d4;
+  font-family:inherit;
+}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  z-index:10;
+}
+.copy-btn:hover{
+  background:var(--gold-deep);
+  transform:scale(1.05);
+}
+.copy-btn.copied{
+  background:#27ae60;
+}
+
+/* === Task Card Styles === */
+.task-card{
+  background:#fff;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:16px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 3px 10px rgba(184,137,59,.15);
+}
+.task-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.task-content{
+  flex:1;
+}
+.task-title{
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.task-content ul{
+  margin:0;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.7;
+}
+.task-content ul li{
+  margin-bottom:4px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Desain Thinking for Multimedia</div>
+    <div class="course-title">Menyatukan Siklus Design Thinking dalam Proyek Multimedia</div>
+    <div class="pertemuan-badge">Pertemuan 7</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Iteratif, Bukan Linear</a>
+    <a href="#section-3" class="toc-link">Studi Kasus Presensi Kampus</a>
+    <a href="#section-4" class="toc-link">Integrasi Proses Produksi</a>
+    <a href="#section-5" class="toc-link">Kolaborasi Tim</a>
+    <a href="#section-6" class="toc-link">Dokumentasi Proses</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 7 · Desain Thinking for Multimedia</div>
+    <h1>Menyatukan Siklus Design Thinking dalam Proyek Multimedia</h1>
+    <p class="subtitle">Menutup rangkaian enam pertemuan pertama dengan merajut empathize, define, ideate, prototype, dan test menjadi satu alur kerja yang utuh pada sebuah proyek multimedia nyata, sekaligus menyiapkan pondasi proposal proyek akhir semester.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Kode: <span>DTM301</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=1, P=2)</span></div>
+      <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="section-1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menerapkan seluruh siklus design thinking secara terintegrasi pada sebuah proyek multimedia.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Sampai di Titik Kumpul</div>
+      <p style="font-size:.88rem;line-height:1.75;">Coba tarik napas sebentar dan lihat ke belakang. Sejak pertemuan pertama, kita sudah berjalan pelan-pelan menyusuri lima tahap design thinking satu per satu — mulai dari duduk dan benar-benar mendengarkan cerita pengguna (empathize), merumuskan masalah yang sebenarnya ingin diselesaikan (define), melempar ide sebanyak-banyaknya tanpa takut salah (ideate), menuangkan ide itu jadi sesuatu yang bisa dipegang atau dicoba (prototype), sampai menguji purwarupa itu ke pengguna asli dan mendengar reaksi jujur mereka (test). Setiap pertemuan itu terasa seperti mempelajari satu alat baru dalam kotak perkakas, tapi seorang desainer yang baik tidak pernah memakai satu alat lalu menyimpannya begitu saja — ia terus bolak-balik memakai alat-alat itu sampai hasilnya benar-benar pas.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Pertemuan ke-7 ini adalah titik kumpul. Bukan materi baru yang berdiri sendiri, tapi kesempatan untuk melihat kelima tahap itu bekerja bersamaan dalam satu proyek multimedia yang utuh, memahami bagaimana design thinking berdampingan dengan proses produksi multimedia yang sesungguhnya (pra-produksi, produksi, pasca-produksi), dan mulai merancang proyek akhir semester yang akan kita kembangkan terus sampai pertemuan ke-15. Minggu depan kita akan Ujian Tengah Semester, jadi anggap pertemuan ini sebagai sesi "menyambungkan titik-titik" sebelum evaluasi.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami bahwa design thinking bersifat iteratif dan non-linear, bukan tahapan yang dijalani sekali lalu selesai</li>
+        <li>Mampu menelusuri satu studi kasus multimedia secara utuh melalui seluruh lima tahap design thinking</li>
+        <li>Memahami bagaimana design thinking berintegrasi dengan proses produksi multimedia (pre-production, production, post-production)</li>
+        <li>Mengenali peran-peran dalam tim design thinking dan pentingnya kolaborasi lintas peran</li>
+        <li>Memahami pentingnya mendokumentasikan proses, bukan hanya hasil akhir, untuk penilaian dan portofolio</li>
+        <li>Mulai menyusun draft awal proposal proyek akhir semester bersama kelompok</li>
+      </ol>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Design Thinking itu Iteratif, Bukan Linear</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Kesalahan paling umum yang dilakukan mahasiswa baru belajar design thinking adalah menganggapnya seperti resep masak: ikuti langkah 1 sampai 5 berurutan, lalu selesai. Padahal kenyataannya jauh lebih cair dari itu, dan memahami sifat ini penting supaya proyek kalian tidak berhenti di prototipe pertama yang belum tentu benar.</p>
+    <div class="card">
+      <div class="card-title">Analogi: Spiral, Bukan Tangga</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan menaiki tangga — setiap anak tangga dilewati sekali, kalian tidak pernah turun lagi ke anak tangga sebelumnya. Design thinking bukan seperti itu. Design thinking lebih mirip spiral atau tangga melingkar: kalian memang bergerak maju, tapi sering kali harus kembali memutar ke titik yang lebih rendah untuk mengambil sesuatu yang terlewat, sebelum naik lagi dengan pemahaman yang lebih matang. Tim yang mengembangkan aplikasi seperti Gojek atau Tokopedia tidak pernah benar-benar "selesai" melakukan riset pengguna — mereka terus mengulang siklus empathize-define-ideate-prototype-test setiap kali merilis fitur baru, karena kebutuhan pengguna dan konteks pasar terus berubah.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Contoh paling nyata: ketika kalian melakukan usability testing di tahap Test dan menemukan bahwa pengguna ternyata salah paham dengan masalah yang kalian rumuskan di tahap Define, itu bukan kegagalan. Itu justru sinyal yang sehat untuk memutar kembali ke Define — bahkan mungkin ke Empathize — dan memperbaiki pemahaman sebelum melanjutkan. Iterasi seperti ini bukan tanda proyek berantakan, melainkan tanda proses berjalan dengan benar.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Siklus Lima Tahap dan Arah Baliknya</h3>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px;justify-content:center;">
+        <div class="grid-card" style="flex:1;min-width:140px;">
+          <div class="gc-title">1. Empathize</div>
+          <div class="gc-body">Menyelami dunia pengguna lewat wawancara &amp; observasi langsung.</div>
+        </div>
+        <div style="font-size:1.3rem;color:var(--gold);font-weight:700;">→</div>
+        <div class="grid-card" style="flex:1;min-width:140px;">
+          <div class="gc-title">2. Define</div>
+          <div class="gc-body">Merumuskan POV &amp; pertanyaan HMW dari insight yang ditemukan.</div>
+        </div>
+        <div style="font-size:1.3rem;color:var(--gold);font-weight:700;">→</div>
+        <div class="grid-card" style="flex:1;min-width:140px;">
+          <div class="gc-title">3. Ideate</div>
+          <div class="gc-body">Melempar sebanyak mungkin ide sebelum menyaringnya.</div>
+        </div>
+        <div style="font-size:1.3rem;color:var(--gold);font-weight:700;">→</div>
+        <div class="grid-card" style="flex:1;min-width:140px;">
+          <div class="gc-title">4. Prototype</div>
+          <div class="gc-body">Mewujudkan ide terpilih jadi sesuatu yang bisa dicoba.</div>
+        </div>
+        <div style="font-size:1.3rem;color:var(--gold);font-weight:700;">→</div>
+        <div class="grid-card" style="flex:1;min-width:140px;">
+          <div class="gc-title">5. Test</div>
+          <div class="gc-body">Menguji ke pengguna asli &amp; menampung reaksi jujur mereka.</div>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <div class="hb-title">↺ Kapan Harus Memutar Balik?</div>
+        <p>Jika hasil Test menunjukkan pengguna bingung memakai prototipe, biasanya cukup putar balik ke Prototype untuk memperbaiki desainnya. Tapi jika pengguna ternyata sama sekali tidak merasa punya masalah yang kalian coba selesaikan, itu tandanya harus putar balik jauh — ke Define, bahkan ke Empathize — karena akar masalahnya ada di pemahaman awal, bukan di eksekusi desainnya.</p>
+      </div>
+    </div>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Tahap</th><th>Fokus Pertanyaan</th><th>Output Utama</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Empathize</b></td><td>Apa yang sebenarnya dialami dan dirasakan pengguna?</td><td>Catatan wawancara, empathy map, journey map</td></tr>
+        <tr><td><b>Define</b></td><td>Masalah inti apa yang paling layak diselesaikan?</td><td>Persona, POV statement, pertanyaan HMW</td></tr>
+        <tr><td><b>Ideate</b></td><td>Sebanyak apa kemungkinan solusi yang bisa dijelajahi?</td><td>Daftar ide hasil brainstorming, ide terpilih</td></tr>
+        <tr><td><b>Prototype</b></td><td>Seperti apa bentuk nyata dari ide ini jika dicoba?</td><td>Wireframe low-fidelity hingga prototipe high-fidelity</td></tr>
+        <tr><td><b>Test</b></td><td>Apakah solusi ini benar-benar menjawab kebutuhan pengguna?</td><td>Hasil usability testing, catatan revisi</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Studi Kasus Lengkap: Redesain Aplikasi Presensi Kampus</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Supaya kelima tahap ini terasa hidup dan bukan sekadar teori, mari kita jalankan bersama-sama satu studi kasus yang dekat dengan keseharian kalian sendiri: merancang ulang aplikasi presensi/akademik kampus yang sering dikeluhkan mahasiswa — gagal login pas jam sibuk, tidak ada notifikasi pengingat, atau bingung ketika koneksi jaringan di kelas sedang lambat. Perhatikan bagaimana setiap tahap menghasilkan sesuatu yang konkret, yang menjadi bahan untuk tahap berikutnya.</p>
+
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Empathize — Menggali Keluhan yang Sesungguhnya</div>
+        <ul>
+          <li>Mewawancarai 15 mahasiswa lintas jurusan dan 3 dosen tentang pengalaman mereka memakai aplikasi presensi</li>
+          <li>Mengamati langsung suasana lima menit sebelum kelas dimulai — momen paling ramai orang mencoba presensi bersamaan</li>
+          <li>Menyusun empathy map untuk merangkum apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan mahasiswa saat itu</li>
+          <li>Temuan awal: banyak mahasiswa panik ketika sinyal lemah dan takut dianggap alpa padahal sudah hadir di kelas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Define — Merumuskan Masalah yang Layak Diselesaikan</div>
+        <ul>
+          <li>Menyusun persona "Rafi, mahasiswa semester 3 yang sering duduk di baris belakang kelas dengan sinyal WiFi lemah"</li>
+          <li>Merumuskan POV: "Mahasiswa membutuhkan cara presensi yang tetap bisa diandalkan meski koneksi jaringan tidak stabil, karena kegagalan presensi membuat mereka cemas dianggap tidak hadir"</li>
+          <li>Menurunkan beberapa pertanyaan HMW, misalnya "Bagaimana caranya kita membuat mahasiswa yakin presensinya tercatat, walau sinyal sedang buruk?"</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">3</div>
+      <div class="task-content">
+        <div class="task-title">Ideate — Melempar Ide Sebanyak Mungkin</div>
+        <ul>
+          <li>Sesi brainstorming dengan teknik Crazy 8s: tiap anggota tim menggambar 8 ide berbeda dalam 8 menit</li>
+          <li>Ide yang muncul antara lain: presensi via QR code offline-first, kombinasi geofencing lokasi kelas, presensi cadangan lewat SMS, hingga indikator "presensi tertunda, akan otomatis dikirim ulang"</li>
+          <li>Melakukan dot-voting bersama untuk memilih dua-tiga ide paling realistis untuk dilanjutkan ke tahap prototipe</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">4</div>
+      <div class="task-content">
+        <div class="task-title">Prototype — Mewujudkan Ide Terpilih</div>
+        <ul>
+          <li>Membuat wireframe low-fidelity di atas kertas untuk alur presensi QR dengan status "tersimpan lokal, menunggu sinkronisasi"</li>
+          <li>Melanjutkan ide terbaik menjadi prototipe high-fidelity yang bisa diklik di Figma, lengkap dengan notifikasi dan indikator status jaringan</li>
+          <li>Prototipe sengaja dibuat sederhana dulu — tujuannya menguji alur logika, bukan mempercantik tampilan terlebih dahulu</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">5</div>
+      <div class="task-content">
+        <div class="task-title">Test — Menguji ke Pengguna Asli</div>
+        <ul>
+          <li>Melakukan usability testing ke 5 mahasiswa dengan skenario "coba lakukan presensi pagi ini seperti biasa" tanpa diarahkan</li>
+          <li>Mencatat momen mereka ragu atau salah tap, bukan hanya mencatat apakah mereka berhasil atau gagal</li>
+          <li>Hasil: empat dari lima peserta merasa lebih tenang melihat indikator "tersimpan lokal", tapi satu peserta masih bingung dengan istilah "sinkronisasi" — jadi tim memutar balik sebentar ke Prototype untuk mengganti istilah itu menjadi lebih sederhana</li>
+        </ul>
+      </div>
+    </div>
+
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Tahap</th><th>Aktivitas Utama</th><th>Output / Insight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>Empathize</b></td><td>Wawancara &amp; observasi jam masuk kelas</td><td>Empathy map, kecemasan mahasiswa soal sinyal lemah</td></tr>
+        <tr><td><b>Define</b></td><td>Menyusun persona &amp; POV</td><td>POV statement, daftar pertanyaan HMW</td></tr>
+        <tr><td><b>Ideate</b></td><td>Crazy 8s &amp; dot-voting</td><td>Ide presensi QR offline-first terpilih</td></tr>
+        <tr><td><b>Prototype</b></td><td>Wireframe kertas → prototipe klik Figma</td><td>Alur presensi dengan indikator status jaringan</td></tr>
+        <tr><td><b>Test</b></td><td>Usability testing 5 mahasiswa</td><td>Istilah "sinkronisasi" perlu disederhanakan → iterasi balik</td></tr>
+      </tbody>
+    </table>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Design Thinking dalam Proses Produksi Multimedia</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Di dunia produksi multimedia — entah itu video, animasi, atau aplikasi interaktif — sudah lama dikenal tiga tahap besar: pre-production, production, dan post-production. Design thinking bukan pengganti alur kerja ini, melainkan "bumbu" yang meresap di setiap tahapnya agar keputusan kreatif yang diambil benar-benar berangkat dari kebutuhan pengguna, bukan sekadar selera pribadi tim produksi.</p>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-pre')">Pre-Production</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-pro')">Production</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-post')">Post-Production</button>
+      </div>
+      <div id="tab-pre" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Tahap pra-produksi adalah rumah bagi Empathize, Define, dan sebagian besar Ideate. Sebelum tim mulai menulis naskah iklan kampus atau membuat storyboard animasi promosi, riset pengguna dulu yang berbicara — sama seperti bagaimana tim kreatif di balik iklan Gojek melakukan riset mendalam ke pengemudi dan penumpang sebelum satu adegan pun difilmkan.</p>
+        <ul class="styled">
+          <li><b>Riset audiens</b> menggantikan tebak-tebakan tentang siapa yang akan menonton atau memakai produk multimedia ini</li>
+          <li><b>Brief kreatif</b> disusun dari POV dan HMW, bukan dari asumsi tim semata</li>
+          <li><b>Storyboard</b> dan naskah awal adalah bentuk prototipe low-fidelity dari sebuah video atau animasi — murah untuk direvisi sebelum syuting sungguhan dimulai</li>
+        </ul>
+      </div>
+      <div id="tab-pro" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Saat produksi berjalan — syuting, animating, atau coding fitur aplikasi — prototipe yang sudah disiapkan di tahap sebelumnya menjadi peta jalan. Tapi design thinking tetap hidup di sini lewat iterasi kecil: sutradara yang mengecek preview shot di lokasi, atau developer yang mendemokan build sementara ke teman satu tim, pada dasarnya sedang melakukan mini-testing sebelum produksi berlanjut lebih jauh.</p>
+        <ul class="styled">
+          <li>Prototipe (storyboard, wireframe aplikasi, animatic kasar) jadi acuan supaya arah produksi tidak melenceng dari insight awal</li>
+          <li>Perubahan kecil di lapangan tetap dicatat sebagai bagian dari proses iteratif, bukan dianggap "keluar jalur"</li>
+          <li>Kolaborasi lintas peran paling terasa di tahap ini — sutradara, editor, dan developer harus terus menyelaraskan hasil kerja mereka</li>
+        </ul>
+      </div>
+      <div id="tab-post" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Pasca-produksi adalah rumah tahap Test. Sebelum sebuah video promosi kampus atau aplikasi dirilis luas, tim idealnya memutar preview ke sekelompok kecil calon penonton atau pengguna dan mengamati reaksi mereka — persis seperti usability testing pada studi kasus presensi kampus tadi.</p>
+        <ul class="styled">
+          <li>Screening preview terbatas berfungsi sama seperti sesi usability testing: menampung reaksi jujur sebelum rilis final</li>
+          <li>Revisi editing, pewarnaan, atau perbaikan bug aplikasi dilakukan berdasarkan hasil testing, bukan tebakan</li>
+          <li>Jika hasil testing menunjukkan pesan utama tidak sampai, itu sinyal untuk memutar balik — kadang cukup ke revisi editing, kadang harus kembali jauh ke Define</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Kolaborasi Tim dalam Design Thinking</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Design thinking nyaris tidak pernah dikerjakan sendirian. Proyek multimedia kampus biasanya dikerjakan berkelompok, dan setiap peran dalam tim membawa sudut pandang yang saling melengkapi — mirip bagaimana sebuah startup aplikasi seperti Duolingo dibangun oleh orang-orang dengan keahlian berbeda yang duduk di meja yang sama, bukan bekerja terpisah lalu digabung di akhir.</p>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">UX Researcher</div>
+        <div class="gc-body">Bertugas menggali kebutuhan pengguna lewat wawancara, observasi, dan user research. Merekalah yang memastikan tim tidak membangun solusi berdasarkan asumsi, melainkan berdasarkan fakta di lapangan — seperti tim riset di balik fitur baru Instagram yang selalu mengamati kebiasaan pengguna sebelum merilis apa pun.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">UI / Visual Designer</div>
+        <div class="gc-body">Menerjemahkan hasil ideate dan insight riset menjadi tampilan visual yang mudah dipahami — mulai dari wireframe sederhana sampai desain high-fidelity yang siap diuji. Perannya menjembatani antara "apa yang dibutuhkan pengguna" dengan "apa yang enak dilihat dan digunakan".</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Developer / Prototyper</div>
+        <div class="gc-body">Mewujudkan rancangan menjadi sesuatu yang benar-benar bisa dicoba, entah itu prototipe interaktif di Figma atau aplikasi fungsional sederhana. Developer yang baik selalu bertanya balik ke researcher: "insight apa yang membuat fitur ini penting?" — bukan sekadar menerima daftar fitur mentah-mentah.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Stakeholder / Product Owner</div>
+        <div class="gc-body">Membawa perspektif bisnis dan batasan nyata — anggaran, waktu, dan tujuan proyek. Dalam konteks tugas kuliah, dosen atau "klien simulasi" berperan sebagai stakeholder yang memberi arahan dan menilai apakah solusi yang dihasilkan benar-benar menjawab masalah yang disepakati di awal.</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Dalam Kelompok Kecil, Peran Bisa Tumpang Tindih</div>
+      <p>Karena kelompok tugas biasanya hanya beranggotakan 3-5 orang, satu mahasiswa sering harus merangkap dua peran sekaligus, misalnya menjadi researcher sekaligus designer. Itu wajar. Yang lebih penting adalah setiap anggota tim tetap saling berbagi apa yang mereka temukan — seorang developer yang membangun fitur tanpa tahu insight dari sesi wawancara berisiko membangun sesuatu yang teknis canggih tapi tidak menjawab masalah pengguna sama sekali.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Mendokumentasikan Proses Design Thinking</h2>
+    </div>
+    <p style="font-size:.88rem;line-height:1.75;margin-bottom:14px;">Satu kebiasaan yang sering diremehkan mahasiswa: hanya menyimpan hasil akhir yang mengilap, lalu membuang semua "sampah proses" seperti catatan wawancara berantakan, sketsa kasar, atau hasil voting yang penuh coretan. Padahal justru proses itulah yang dinilai dosen, dan proses itu jugalah yang paling berharga ketika kelak kalian melamar kerja sebagai UX/UI designer atau content creator — perusahaan kreatif biasanya jauh lebih tertarik melihat bagaimana kalian berpikir dan mengambil keputusan, dibanding sekadar melihat produk jadi yang rapi.</p>
+    <div class="sub-section">
+      <h3>Apa yang Perlu Didokumentasikan di Tiap Tahap?</h3>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Empathize <span class="icon">▾</span></div>
+        <div class="accordion-body">Screenshot atau rekaman percakapan wawancara (dengan izin narasumber), foto sesi observasi lapangan, dan hasil empathy map yang sudah diisi bersama tim. Simpan juga catatan kutipan langsung dari narasumber — kutipan asli jauh lebih meyakinkan daripada rangkuman versi kalian sendiri.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Define <span class="icon">▾</span></div>
+        <div class="accordion-body">Foto papan affinity diagram saat mengelompokkan insight, draft persona sebelum dan sesudah direvisi, serta catatan diskusi tim ketika merumuskan POV dan pertanyaan HMW. Perdebatan tim saat merumuskan masalah justru menarik untuk didokumentasikan — itu menunjukkan proses berpikir kritis, bukan cuma hasil jadi.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Ideate <span class="icon">▾</span></div>
+        <div class="accordion-body">Foto seluruh sketsa ide dari sesi Crazy 8s, bukan hanya ide yang akhirnya terpilih. Simpan juga hasil dot-voting lengkap dengan jumlah suara tiap ide — ini membuktikan proses penyaringan ide dilakukan secara sadar, bukan asal pilih.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Prototype <span class="icon">▾</span></div>
+        <div class="accordion-body">Foto wireframe kertas versi awal, tangkapan layar tiap iterasi prototipe di Figma, dan catatan alasan setiap perubahan dibuat. Menyimpan versi low-fidelity di samping versi high-fidelity menunjukkan perjalanan desain, bukan cuma hasil terakhir.</div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header" onclick="toggleAccordion(this)">Test <span class="icon">▾</span></div>
+        <div class="accordion-body">Catatan lapangan saat usability testing (ekspresi, komentar spontan, momen ragu peserta), rekaman singkat jika diizinkan, dan daftar temuan yang jelas ditandai mana yang sudah diperbaiki dan mana yang belum sempat ditindaklanjuti.</div>
+      </div>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">Bahan Penilaian</div>
+        <div class="gc-body">Dosen menilai kedalaman proses berpikir kalian, bukan hanya kilau tampilan akhir prototipe.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Portofolio Karier</div>
+        <div class="gc-body">Case study proses adalah yang paling dicari recruiter kreatif dan startup saat melihat portofolio pelamar.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Refleksi Tim</div>
+        <div class="gc-body">Dokumentasi memudahkan tim melihat kembali keputusan lama saat proyek berkembang atau berubah arah.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tips Praktis Menyusun Portofolio Proses</div>
+      <ul class="styled">
+        <li>Buat satu folder Google Drive dengan sub-folder per tahap (01-Empathize, 02-Define, dan seterusnya) agar mudah ditelusuri</li>
+        <li>Beri nama file yang konsisten, misalnya NamaKelompok_Tahap_Deskripsi_Tanggal, supaya tidak tercecer</li>
+        <li>Sisipkan caption singkat di tiap foto atau screenshot — jelaskan konteksnya, jangan biarkan gambar berbicara sendiri</li>
+        <li>Susun tangkapan layar before-after di tiap iterasi prototipe agar perkembangan desain terlihat jelas</li>
+      </ul>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 7</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Kerja Kelompok: Draft Awal Proposal Proyek Akhir Semester</div>
+        <ul>
+          <li>Bersama kelompok (3-5 orang), tentukan satu produk multimedia yang ingin dikembangkan sebagai proyek akhir semester: aplikasi mobile, video/animasi kampanye, atau media interaktif lain</li>
+          <li>Susun draft proposal yang mencakup garis besar seluruh lima tahap design thinking — belum perlu detail, cukup rencana awal untuk tiap tahap</li>
+          <li>Empathize: rencana riset apa yang akan dilakukan dan siapa target respondennya</li>
+          <li>Define: dugaan awal masalah dan calon persona pengguna</li>
+          <li>Ideate: dua-tiga arah ide solusi yang ingin dieksplorasi</li>
+          <li>Prototype: bentuk purwarupa yang direncanakan (low-fidelity atau high-fidelity)</li>
+          <li>Test: rencana metode pengujian dan target jumlah peserta uji</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Checklist Kelengkapan Draft Proposal</div>
+        <ul>
+          <li>Nama kelompok, anggota, dan pembagian peran sementara (researcher, designer, developer, dsb.)</li>
+          <li>Judul proyek dan satu paragraf ringkas tentang masalah yang ingin diselesaikan</li>
+          <li>Timeline kasar dari pertemuan 8 sampai pertemuan 15, kapan tiap tahap akan dikerjakan</li>
+          <li>Deliverable: dokumen proposal (PDF, 2-3 halaman)</li>
+          <li>Format nama file: NIM_NamaKelompok_P7_DraftProposal.pdf, dikumpulkan melalui LMS</li>
+          <li>Catatan: proposal ini bersifat draft awal dan akan terus disempurnakan hingga presentasi proyek akhir di pertemuan 15</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="desain-thinking-multimedia-p6.html">← Pertemuan 6</a>
+    <a href="../index.html?matkul=dtm" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="desain-thinking-multimedia-p8.html" class="next-btn">Pertemuan 8 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Desain Thinking for Multimedia</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'design thinking':'Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen untuk berinovasi',
+    'empathy map':'Alat visual untuk memetakan apa yang dikatakan, dipikirkan, dirasakan, dan dilakukan pengguna agar tim lebih memahami kebutuhan mereka',
+    'persona':'Representasi fiktif pengguna ideal berdasarkan riset nyata, dipakai agar tim desain tetap fokus pada kebutuhan pengguna yang sebenarnya',
+    'POV':'Point of View — pernyataan masalah yang memadukan pengguna, kebutuhan, dan insight menjadi satu kalimat fokus dalam design thinking',
+    'HMW':'How Might We — format pertanyaan pembuka sesi ideasi yang mengubah sebuah masalah menjadi peluang untuk dicarikan solusi',
+    'ideation':'Tahap menghasilkan dan mengeksplorasi sebanyak mungkin kemungkinan ide sebelum memilih solusi terbaik untuk dikembangkan',
+    'wireframe':'Sketsa struktural low-fidelity yang menunjukkan tata letak elemen pada layar tanpa detail visual seperti warna atau gambar final',
+    'storyboard':'Rangkaian sketsa atau gambar yang menggambarkan alur cerita/adegan secara berurutan sebelum produksi multimedia dimulai',
+    'prototipe':'Purwarupa atau model awal sebuah produk yang dibuat untuk diuji dan mendapat umpan balik sebelum dikembangkan sepenuhnya',
+    'MVP':'Minimum Viable Product — versi paling sederhana dari sebuah produk yang sudah bisa diuji ke pengguna nyata dengan fitur inti saja',
+    'usability testing':'Metode evaluasi dengan mengamati pengguna asli saat mencoba memakai produk, untuk menemukan masalah kegunaan yang perlu diperbaiki',
+    'iterasi':'Proses mengulang dan menyempurnakan desain secara bertahap berdasarkan umpan balik dan hasil pengujian sebelumnya',
+    'journey map':'Peta visual yang menggambarkan setiap langkah, perasaan, dan titik masalah yang dialami pengguna saat berinteraksi dengan sebuah produk',
+    'affinity diagram':'Teknik mengelompokkan catatan atau insight hasil riset yang mirip ke dalam beberapa kategori untuk menemukan pola dan tema utama',
+    'low-fidelity':'Tingkat purwarupa yang sederhana dan kasar, misalnya sketsa tangan di atas kertas, dibuat cepat untuk menguji ide dasar',
+    'high-fidelity':'Tingkat purwarupa yang sudah mendekati produk akhir — lengkap dengan visual, warna, dan interaksi yang realistis',
+    'user research':'Proses sistematis mengumpulkan data tentang perilaku, kebutuhan, dan motivasi pengguna lewat wawancara, observasi, atau survei',
+    'stakeholder':'Pihak yang punya kepentingan atau terpengaruh oleh sebuah proyek, misalnya klien, pengguna, tim internal, atau investor',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
+</body>
+</html>
