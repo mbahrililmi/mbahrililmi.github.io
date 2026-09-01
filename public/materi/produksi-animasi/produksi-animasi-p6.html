@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 6 – Perencanaan Jadwal Produksi | Produksi Animasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+
+/* === Code Block Styles === */
+.code-block{
+  position:relative;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:16px 16px 16px 18px;
+  margin:12px 0 16px;
+  overflow-x:auto;
+  border:1px solid rgba(184,137,59,.2);
+}
+.code-block pre{
+  margin:0;
+  color:#d4d4d4;
+  font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  overflow-x:auto;
+}
+.code-block code{
+  color:#d4d4d4;
+  font-family:inherit;
+}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  z-index:10;
+}
+.copy-btn:hover{
+  background:var(--gold-deep);
+  transform:scale(1.05);
+}
+.copy-btn.copied{
+  background:#27ae60;
+}
+
+/* === Task Card Styles === */
+.task-card{
+  background:#fff;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:16px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 3px 10px rgba(184,137,59,.15);
+}
+.task-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.task-content{
+  flex:1;
+}
+.task-title{
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.task-content ul{
+  margin:0;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.7;
+}
+.task-content ul li{
+  margin-bottom:4px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Produksi Animasi</div>
+    <div class="course-title">Perencanaan Jadwal Produksi</div>
+    <div class="pertemuan-badge">Pertemuan 6</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Kenapa Jadwal Produksi Penting</a>
+    <a href="#section-3" class="toc-link">Memecah Proyek jadi Milestone</a>
+    <a href="#section-4" class="toc-link">Breakdown Tugas per Departemen/Minggu</a>
+    <a href="#section-5" class="toc-link">Gantt Chart Sederhana</a>
+    <a href="#section-6" class="toc-link">Realistis vs Optimis: Buffer Time</a>
+    <a href="#section-7" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 6 · Produksi Animasi</div>
+    <h1>Perencanaan Jadwal Produksi</h1>
+    <p class="subtitle">Mengubah shot list dan estimasi beban kerja dari pertemuan sebelumnya menjadi jadwal produksi yang konkret — lengkap dengan milestone, pembagian tugas mingguan, gantt chart sederhana, dan waktu cadangan yang realistis.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Kode: <span>PAN401</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="section-1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menyusun perencanaan jadwal produksi animasi menggunakan milestone, breakdown tugas, dan gantt chart sederhana.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Shot List ke Jadwal yang Sungguhan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Di Pertemuan 5, Anda sudah belajar menyusun shot list dan menghitung estimasi total hari kerja yang dibutuhkan untuk sebuah produksi — misalnya "53 hari kerja" dari contoh perhitungan sebelumnya. Tapi angka total itu saja belum cukup untuk benar-benar menjalankan sebuah produksi. Pertanyaannya sekarang: 53 hari kerja itu dimulai dari kapan sampai kapan? Siapa mengerjakan apa di minggu keberapa? Kapan tim tahu bahwa mereka "on track" atau justru sudah mulai molor?</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Nah, di pertemuan ini kita akan mengubah angka estimasi itu menjadi jadwal produksi yang benar-benar bisa dipakai sehari-hari: dipecah jadi milestone, dibagi per departemen dan per minggu, divisualisasikan dalam bentuk gantt chart sederhana, dan yang tidak kalah penting — diberi waktu cadangan supaya tidak meleset jauh dari kenyataan.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami kenapa jadwal produksi yang jelas sangat penting bagi keberhasilan sebuah proyek animasi</li>
+        <li>Memecah proyek besar menjadi milestone-milestone yang bisa dipantau progresnya</li>
+        <li>Melakukan breakdown tugas per departemen dan per minggu agar setiap anggota tim tahu tanggung jawabnya</li>
+        <li>Membaca dan menyusun gantt chart sederhana untuk memvisualisasikan jadwal produksi</li>
+        <li>Memahami pentingnya buffer time dan menghindari estimasi waktu yang terlalu optimis</li>
+        <li>Menyusun jadwal produksi sederhana untuk proyek yang sedang dikembangkan sejak Pertemuan 2</li>
+      </ol>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Kenapa Jadwal Produksi Penting</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Tiga Alasan Utama</div>
+      <p style="font-size:.88rem;line-height:1.75;">Membuat jadwal produksi mungkin terasa seperti pekerjaan administratif yang membosankan dibanding kerja kreatif seperti menggambar atau menganimasikan karakter. Tapi tanpa jadwal yang jelas, sebuah produksi animasi — sekecil apa pun — sangat rentan berantakan. Ada tiga alasan besar kenapa jadwal ini begitu krusial.</p>
+    </div>
+    <div class="grid-3">
+      <div class="grid-card">
+        <div class="gc-title">1. Deadline Klien Itu Nyata</div>
+        <div class="gc-body">Kalau proyek Anda dibuat untuk klien — misalnya iklan animasi untuk sebuah brand, atau konten edukasi untuk sebuah lembaga — mereka biasanya sudah punya tanggal tayang yang tidak bisa digeser-geser, misalnya untuk momentum hari raya tertentu. Tanpa jadwal internal yang jelas, tim bisa saja sudah setengah jalan produksi dan baru sadar bahwa waktu tersisa tidak cukup untuk menyelesaikan sisanya dengan kualitas yang layak.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">2. Sumber Daya Tim Terbatas</div>
+        <div class="gc-body">Setiap tim punya jumlah animator, artist, dan editor yang terbatas — tidak bisa asal menambah orang begitu saja di tengah jalan tanpa proses onboarding yang memakan waktu. Jadwal membantu memastikan beban kerja terbagi rata dan tidak ada satu departemen yang kebanjiran tugas sementara departemen lain justru menganggur menunggu giliran.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">3. Konsekuensi Kalau Tidak Terjadwal</div>
+        <div class="gc-body">Tanpa jadwal, yang sering terjadi adalah kerja santai di awal karena "masih lama deadline-nya", lalu mendadak lembur habis-habisan menjelang akhir karena baru sadar waktu sudah mepet. Kerja terburu-buru seperti ini hampir selalu berujung pada kualitas yang menurun, karena tidak ada lagi waktu untuk revisi dan quality control yang layak.</div>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Contoh Nyata</div>
+      <p>Banyak konten behind-the-scenes dari studio animasi besar seperti Pixar menunjukkan bagaimana satu film panjang direncanakan bertahun-tahun sebelum tayang, dengan jadwal yang dipecah sangat detail per departemen — story, layout, animasi, lighting, sampai sound. Skala studio Anda mungkin jauh lebih kecil, tapi prinsip yang sama tetap berlaku: semakin jelas jadwalnya, semakin kecil risiko kekacauan di menit-menit akhir.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Memecah Proyek jadi Milestone</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Milestone, Diingatkan Kembali</div>
+      <p>Milestone adalah titik pencapaian penting dalam jadwal produksi (misalnya "storyboard selesai" atau "animasi pass pertama selesai") yang dipakai untuk memantau progres proyek.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Tidak Cukup Hanya Punya Satu Deadline Besar?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan sebuah proyek animasi berdurasi tiga bulan yang hanya punya satu deadline besar: "harus selesai 30 November". Tanpa titik-titik pengecekan di tengah jalan, tim bisa saja terus merasa "masih ada waktu" sampai tiba-tiba sisa waktu tinggal dua minggu dan pekerjaan yang selesai baru separuh. Milestone memecah perjalanan panjang itu menjadi titik-titik pengecekan yang lebih kecil dan mudah dipantau, sehingga masalah bisa terdeteksi sejak dini — bukan di menit-menit terakhir.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Contoh Milestone Khas Produksi Animasi</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Milestone</th><th>Penanda Selesai</th><th>Kenapa Penting Dicek</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pre-production Selesai</td><td>Naskah, production bible, storyboard, dan animatic sudah disetujui</td><td>Fondasi kreatif sudah solid sebelum animasi mulai dikerjakan</td></tr>
+          <tr><td>Shot List Final</td><td>Seluruh shot sudah terdaftar dengan estimasi durasi & kompleksitas</td><td>Dasar perhitungan jadwal dan anggaran sudah pasti</td></tr>
+          <tr><td>First Pass Animation Selesai</td><td>Semua shot punya animasi kasar (rough) dari awal sampai akhir</td><td>Menandakan seluruh cerita sudah "hidup", meski belum halus</td></tr>
+          <tr><td>Revisi & Polish Selesai</td><td>Animasi sudah dihaluskan sesuai masukan review</td><td>Kualitas visual sudah mendekati standar akhir</td></tr>
+          <tr><td>Final Render Selesai</td><td>Seluruh shot sudah dirender dalam kualitas final</td><td>Siap masuk tahap penggabungan dan penyuntingan akhir</td></tr>
+          <tr><td>Delivery ke Klien/Publikasi</td><td>File final sudah diserahkan atau ditayangkan</td><td>Penanda resmi proyek selesai</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Milestone Bukan Sekadar Tanggal, Tapi Kriteria yang Jelas</div>
+      <p style="font-size:.88rem;line-height:1.75;">Satu hal yang sering keliru: milestone bukan hanya "tanggal 15 Oktober" tanpa penjelasan apa yang harus tercapai di tanggal itu. Milestone yang baik selalu punya kriteria selesai yang jelas dan bisa diperiksa — misalnya bukan sekadar "animasi harus jalan", tapi "seluruh 20 shot sudah punya first pass animation yang sudah direview minimal sekali oleh sutradara". Dengan kriteria yang jelas seperti ini, tim tidak akan berdebat soal "apakah ini sudah dianggap selesai atau belum".</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Breakdown Tugas per Departemen/Minggu</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Milestone Besar ke Tugas Mingguan yang Bisa Dipantau</div>
+      <p style="font-size:.88rem;line-height:1.75;">Milestone memberi kita titik-titik besar dalam perjalanan produksi, tapi masih terlalu besar untuk jadi panduan kerja sehari-hari. Langkah berikutnya adalah memecah pekerjaan menuju tiap milestone itu menjadi tugas-tugas mingguan yang lebih kecil dan konkret, sehingga setiap anggota tim tahu persis apa yang harus mereka kerjakan minggu ini — bukan hanya "target akhir bulan".</p>
+    </div>
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-story')">Departemen Story/Board</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-animasi')">Departemen Animasi</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-post')">Departemen Post-Production</button>
+      </div>
+      <div id="tab-story" class="tab-panel active">
+        <ul class="styled">
+          <li><b>Minggu 1-2:</b> Menyelesaikan naskah final dan production bible</li>
+          <li><b>Minggu 3-4:</b> Menyusun storyboard lengkap untuk seluruh cerita</li>
+          <li><b>Minggu 5:</b> Menyusun animatic dan melakukan sesi review timing bersama tim</li>
+          <li><b>Minggu 6:</b> Finalisasi shot list berdasarkan animatic yang sudah disetujui</li>
+        </ul>
+      </div>
+      <div id="tab-animasi" class="tab-panel">
+        <ul class="styled">
+          <li><b>Minggu 7-10:</b> Mengerjakan first pass animation untuk seluruh shot, dibagi rata antar animator</li>
+          <li><b>Minggu 11-12:</b> Sesi review dan revisi animasi berdasarkan masukan sutradara</li>
+          <li><b>Minggu 13:</b> Polish akhir animasi sebelum masuk tahap render</li>
+        </ul>
+      </div>
+      <div id="tab-post" class="tab-panel">
+        <ul class="styled">
+          <li><b>Minggu 13-14:</b> Proses render seluruh shot dalam kualitas final</li>
+          <li><b>Minggu 15:</b> Penggabungan shot, penambahan musik dan sound effect</li>
+          <li><b>Minggu 16:</b> Quality control akhir dan persiapan file untuk delivery</li>
+        </ul>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Kenapa Dipecah per Departemen?</div>
+      <p>Membagi tugas per departemen membantu setiap tim fokus pada pekerjaannya sendiri tanpa harus bingung menunggu-nunggu tim lain, sekaligus memperlihatkan dengan jelas kapan sebuah departemen harus sudah "menyerahkan" hasil kerjanya ke departemen berikutnya. Peran seorang <span>production coordinator</span> menjadi sangat penting di sini — memastikan aset dan informasi mengalir lancar dari satu departemen ke departemen berikutnya tanpa tersendat.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Gantt Chart Sederhana</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Gantt Chart, Diingatkan Kembali</div>
+      <p>Gantt chart adalah diagram batang horizontal yang menampilkan jadwal tugas-tugas proyek dari waktu ke waktu, membantu tim melihat tugas apa berjalan paralel dan kapan tenggat waktunya.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Cara Membaca Gantt Chart</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bentuk aslinya biasanya berupa diagram batang horizontal, tapi di halaman ini kita representasikan secara sederhana lewat tabel supaya lebih mudah dibaca. Setiap baris mewakili satu tugas, dan tanda ● di kolom minggu menunjukkan tugas tersebut sedang berjalan pada minggu itu. Perhatikan bagaimana beberapa tugas bisa berjalan <b>paralel</b> (tumpang tindih mingguannya) sementara yang lain harus <b>berurutan</b> karena bergantung pada hasil tugas sebelumnya.</p>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Tugas</th><th>Mgu 1-2</th><th>Mgu 3-4</th><th>Mgu 5-6</th><th>Mgu 7-10</th><th>Mgu 11-12</th><th>Mgu 13-14</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Naskah & Production Bible</td><td>●</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Storyboard</td><td></td><td>●</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Animatic & Shot List</td><td></td><td></td><td>●</td><td></td><td></td><td></td></tr>
+        <tr><td>First Pass Animation</td><td></td><td></td><td></td><td>●</td><td></td><td></td></tr>
+        <tr><td>Sound Design (paralel)</td><td></td><td></td><td>●</td><td>●</td><td></td><td></td></tr>
+        <tr><td>Revisi & Polish</td><td></td><td></td><td></td><td></td><td>●</td><td></td></tr>
+        <tr><td>Render Final</td><td></td><td></td><td></td><td></td><td></td><td>●</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Contoh Tugas Paralel vs Berurutan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Dari tabel di atas, terlihat jelas bahwa "Sound Design" bisa mulai dikerjakan paralel sejak minggu 5, bersamaan dengan animatic dan berlanjut sampai animasi berjalan — karena proses merekam dan menyusun musik tidak harus menunggu animasi selesai sepenuhnya. Sebaliknya, "First Pass Animation" harus menunggu "Animatic & Shot List" selesai lebih dulu, karena animator butuh acuan shot yang sudah final sebelum mulai bekerja. Memahami mana yang bisa paralel dan mana yang harus berurutan seperti inilah yang membuat jadwal produksi bisa dipersingkat tanpa mengorbankan kualitas.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Realistis vs Optimis dalam Estimasi Waktu</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Buffer Time, Diingatkan Kembali</div>
+      <p>Buffer time adalah waktu cadangan yang sengaja ditambahkan ke jadwal produksi untuk mengantisipasi keterlambatan atau kendala tak terduga.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Estimasi yang "Pas-pasan" Itu Berbahaya</div>
+      <p style="font-size:.88rem;line-height:1.75;">Sangat wajar bagi tim yang bersemangat untuk membuat estimasi waktu yang optimis — berpikir semua akan berjalan lancar tanpa hambatan. Tapi kenyataannya, hampir tidak ada produksi yang benar-benar berjalan 100% sesuai rencana. Ada saja kendala yang muncul: animator sakit di tengah jalan, revisi dari klien lebih banyak dari perkiraan, file corrupt dan harus dikerjakan ulang, atau sekadar meremehkan tingkat kesulitan sebuah shot yang ternyata jauh lebih rumit dari perkiraan awal.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Kalau jadwal disusun tanpa buffer time sama sekali — setiap tugas dijadwalkan mepet dengan estimasi paling optimis — maka satu saja kendala kecil bisa membuat seluruh rantai jadwal berikutnya ikut molor, seperti efek domino. Inilah kenapa menambahkan waktu cadangan bukan tanda tim yang malas atau kurang percaya diri, justru sebaliknya: tanda tim yang berpengalaman dan realistis.</p>
+    </div>
+    <div class="accordion">
+      <div class="accordion-header" onclick="toggleAccordion(this)">Contoh Kasus: Proyek Molor Karena Tidak Ada Buffer <span class="icon">▼</span></div>
+      <div class="accordion-body">Sebuah tim kecil menjadwalkan seluruh proses animasi untuk 20 shot selesai persis dalam 40 hari kerja, tanpa cadangan waktu sama sekali — persis sesuai estimasi "kondisi ideal". Di minggu ketiga, satu animator jatuh sakit selama lima hari, dan revisi dari sutradara ternyata butuh dua putaran tambahan yang tidak diperkirakan sebelumnya. Karena tidak ada buffer, seluruh jadwal berikutnya otomatis mundur, dan tim akhirnya harus lembur habis-habisan di dua minggu terakhir untuk mengejar deadline — hasil kerja lembur itu pun kualitasnya jauh di bawah standar yang diharapkan.</div>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Berapa Banyak Buffer yang Wajar?</div>
+        <div class="gc-body">Tidak ada angka baku yang berlaku untuk semua proyek, tapi banyak praktisi produksi menambahkan buffer sekitar 15-20% dari total estimasi waktu untuk mengantisipasi kendala tak terduga. Untuk proyek dengan tim yang masih baru bekerja sama atau shot yang kompleksitasnya tinggi, buffer yang lebih besar biasanya lebih aman.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Di Mana Buffer Diletakkan?</div>
+        <div class="gc-body">Buffer time paling efektif diletakkan menjelang milestone-milestone penting, terutama sebelum delivery final ke klien — bukan disebar tipis-tipis di setiap tugas kecil, karena buffer yang tersebar kecil-kecil cenderung "habis begitu saja" tanpa benar-benar dimanfaatkan sebagai cadangan.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Praktikum Pertemuan 6</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Susun Timeline/Jadwal Produksi Sederhana</div>
+        <ul>
+          <li>Gunakan proyek yang sudah dikembangkan sejak Pertemuan 2 sampai Pertemuan 5 (konsep, naskah, production bible, dan shot list)</li>
+          <li>Tentukan minimal 4-6 milestone utama untuk proyek Anda, lengkap dengan kriteria selesai yang jelas untuk masing-masing milestone</li>
+          <li>Buat tabel jadwal per minggu (boleh mengikuti format tabel gantt sederhana di materi) yang menunjukkan tugas apa dikerjakan di minggu keberapa</li>
+          <li>Tunjukkan minimal satu contoh tugas yang berjalan paralel dan satu contoh tugas yang harus berurutan</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Tambahkan Buffer Time</div>
+        <ul>
+          <li>Hitung total estimasi waktu produksi murni (tanpa buffer) dari jadwal yang sudah Anda susun</li>
+          <li>Tambahkan buffer time sekitar 15-20% dari total tersebut, dan jelaskan di mana buffer itu Anda letakkan serta alasannya</li>
+          <li>Tuliskan refleksi singkat 3-5 kalimat: risiko atau kendala apa yang paling mungkin membuat proyek Anda molor, dan bagaimana buffer time membantu mengantisipasinya?</li>
+          <li>Deliverable: 1 file berisi tabel milestone + jadwal mingguan + perhitungan buffer time (PDF atau spreadsheet)</li>
+          <li>Format nama file: NIM_Nama_P6_JadwalProduksi.pdf</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="produksi-animasi-p5.html">← Pertemuan 5</a>
+    <a href="../index.html?matkul=produksi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="produksi-animasi-p7.html" class="next-btn">Pertemuan 7 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Produksi Animasi</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'pitch bible':'Dokumen ringkas berisi inti sebuah konsep animasi — premis cerita, karakter utama, dunia cerita, gaya visual, dan target penonton — dipakai untuk "menjual" ide ke klien, investor, atau studio',
+    'logline':'Ringkasan cerita dalam satu-dua kalimat singkat yang menjelaskan inti konflik dan karakter utama, biasanya dipakai untuk menarik perhatian sejak awal saat pitching',
+    'treatment':'Dokumen naratif yang menceritakan alur cerita secara prosa (bukan format naskah/dialog), biasanya 1-3 halaman, sebagai jembatan antara ide singkat dan naskah lengkap',
+    'production bible':'Dokumen acuan tunggal ("single source of truth") berisi seluruh referensi visual dan naratif sebuah produksi — desain karakter, palet warna, dunia cerita, tone — supaya seluruh tim punya pemahaman yang sama',
+    'style guide':'Panduan visual yang lebih spesifik dari production bible, berisi aturan konsisten seperti kombinasi warna, jenis garis, atau gaya rendering yang harus diikuti semua anggota tim',
+    'shot list':'Daftar rinci setiap shot/pengambilan gambar yang harus diproduksi dalam sebuah adegan, dipakai sebagai alat perencanaan jumlah kerja dan estimasi waktu',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses produksi sesungguhnya dimulai — dalam manajemen produksi, storyboard juga dipakai untuk menghitung estimasi jumlah shot dan durasi',
+    'animatic':'Storyboard yang sudah disusun berurutan dengan estimasi durasi (dan kadang musik/dialog kasar) untuk menguji ritme dan timing cerita sebelum animasi sesungguhnya dibuat',
+    'milestone':'Titik pencapaian penting dalam jadwal produksi (misalnya "storyboard selesai" atau "animasi pass pertama selesai") yang dipakai untuk memantau progres proyek',
+    'gantt chart':'Diagram batang horizontal yang menampilkan jadwal tugas-tugas proyek dari waktu ke waktu, membantu tim melihat tugas apa berjalan paralel dan kapan tenggat waktunya',
+    'dailies':'Sesi review harian/berkala di mana tim menonton hasil kerja terbaru bersama-sama untuk memberi masukan cepat sebelum kesalahan menumpuk terlalu jauh',
+    'version control':'Sistem penamaan dan pengorganisasian file yang memungkinkan tim melacak perubahan/revisi sebuah aset dari waktu ke waktu tanpa kehilangan versi sebelumnya',
+    'deliverable':'Hasil kerja konkret yang harus diserahkan pada suatu tahap produksi, misalnya file render final, storyboard, atau naskah yang sudah disetujui',
+    'line producer':'Orang yang bertanggung jawab mengelola anggaran dan operasional sehari-hari sebuah produksi agar tetap sesuai jadwal dan biaya yang direncanakan',
+    'production coordinator':'Anggota tim yang menjadi penghubung antar departemen, memastikan informasi dan aset mengalir lancar antara satu tim dengan tim lainnya',
+    'asset management':'Proses mengatur, menamai, dan melacak seluruh file/aset produksi (model karakter, tekstur, audio, dll) agar mudah ditemukan dan tidak tertukar',
+    'quality control':'Proses pemeriksaan sistematis terhadap hasil kerja untuk memastikan sudah sesuai standar sebelum dianggap selesai dan lanjut ke tahap berikutnya',
+    'buffer time':'Waktu cadangan yang sengaja ditambahkan ke jadwal produksi untuk mengantisipasi keterlambatan atau kendala tak terduga',
+    'stakeholder':'Pihak yang punya kepentingan terhadap sebuah produksi, misalnya klien, investor, sutradara, atau anggota tim — kebutuhan mereka harus dikelola sepanjang produksi',
+    'pipeline':'Rangkaian tahapan kerja yang berurutan dan saling terhubung dalam sebuah produksi, dari ide awal sampai hasil akhir siap ditonton',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
+</body>
+</html>

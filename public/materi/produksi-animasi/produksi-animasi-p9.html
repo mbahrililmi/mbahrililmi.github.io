@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 9 – Struktur & Peran Tim Produksi | Produksi Animasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+
+/* === Code Block Styles === */
+.code-block{
+  position:relative;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:16px 16px 16px 18px;
+  margin:12px 0 16px;
+  overflow-x:auto;
+  border:1px solid rgba(184,137,59,.2);
+}
+.code-block pre{
+  margin:0;
+  color:#d4d4d4;
+  font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  overflow-x:auto;
+}
+.code-block code{
+  color:#d4d4d4;
+  font-family:inherit;
+}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  z-index:10;
+}
+.copy-btn:hover{
+  background:var(--gold-deep);
+  transform:scale(1.05);
+}
+.copy-btn.copied{
+  background:#27ae60;
+}
+
+/* === Task Card Styles === */
+.task-card{
+  background:#fff;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:16px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 3px 10px rgba(184,137,59,.15);
+}
+.task-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.task-content{
+  flex:1;
+}
+.task-title{
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.task-content ul{
+  margin:0;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.7;
+}
+.task-content ul li{
+  margin-bottom:4px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Produksi Animasi</div>
+    <div class="course-title">Struktur & Peran Tim Produksi</div>
+    <div class="pertemuan-badge">Pertemuan 9</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Struktur Tim dalam Studio</a>
+    <a href="#section-3" class="toc-link">Hierarki & Alur Komunikasi</a>
+    <a href="#section-4" class="toc-link">Kolaborasi Tim Besar</a>
+    <a href="#section-5" class="toc-link">Peran Rangkap di Tim Kecil</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 9 · Produksi Animasi</div>
+    <h1>Struktur & Peran Tim Produksi</h1>
+    <p class="subtitle">Mengenal peran-peran kunci dalam studio animasi, memahami hierarki dan alur komunikasi yang sehat, mempelajari tools kolaborasi tim besar, serta menyiasati peran rangkap yang lazim terjadi di tim kecil seperti kelompok proyek Anda.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Kode: <span>PAN401</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="section-1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menjelaskan struktur tim dan peran-peran dalam produksi animasi serta menerapkan alur komunikasi yang efektif.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Perencanaan ke Pelaksanaan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Selamat, UTS sudah di belakang Anda! Sampai Pertemuan 7, Anda sudah menyusun Rencana Produksi Lengkap: pitch deck, naskah/treatment, production bible, shot list, jadwal produksi, sampai estimasi anggaran. Semua dokumen itu menjawab pertanyaan "apa yang akan dibuat" dan "kapan harus selesai". Tapi ada satu pertanyaan besar yang belum benar-benar kita bedah tuntas: "siapa yang mengerjakan, dan bagaimana mereka bekerja sama supaya rencana di atas kertas benar-benar terwujud jadi karya?" Nah, mulai pertemuan ini sampai akhir semester, kita masuk ke topik-topik yang lebih operasional — bagaimana sebuah tim produksi benar-benar berjalan hari demi hari.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Coba bayangkan serial animasi Nussa. Di balik satu episode berdurasi beberapa menit itu, ada puluhan orang dengan peran berbeda-beda: yang menentukan visi cerita, yang menggambar karakter bergerak, yang mengisi latar belakang, yang mengurus suara, sampai yang menyunting hasil akhir. Kalau semua orang itu bekerja sendiri-sendiri tanpa struktur yang jelas, hasilnya bukan animasi yang rapi, melainkan potongan-potongan yang tidak nyambung satu sama lain. Struktur tim dan alur komunikasi yang sehat adalah "kerangka tubuh" yang membuat sebuah produksi bisa bergerak sebagai satu kesatuan, bukan sekumpulan orang yang kebetulan mengerjakan proyek yang sama.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Mengidentifikasi peran-peran kunci dalam studio animasi beserta tanggung jawab masing-masing</li>
+        <li>Memahami konsep hierarki dan alur komunikasi (siapa lapor ke siapa) dalam sebuah produksi</li>
+        <li>Menjelaskan mengapa struktur yang jelas mencegah kebingungan dan duplikasi kerja</li>
+        <li>Mengenal tools dan kebiasaan komunikasi yang efektif untuk tim produksi berskala besar</li>
+        <li>Menerapkan strategi mengelola peran rangkap pada tim kecil seperti kelompok proyek kuliah</li>
+        <li>Menyusun struktur tim untuk proyek produksi yang sedang dikerjakan sepanjang semester</li>
+      </ol>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Struktur Tim dalam Studio Animasi</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Struktur Tim Itu Perlu?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setiap studio animasi, sekecil apa pun, pada dasarnya menyusun timnya berdasarkan satu prinsip sederhana: setiap orang punya wilayah tanggung jawab yang jelas, supaya tidak ada pekerjaan yang terlewat dan tidak ada dua orang yang mengerjakan hal yang sama tanpa sadar. Struktur ini bukan soal siapa yang "lebih penting" — melainkan soal pembagian fokus, supaya seorang animator bisa fokus menganimasikan tanpa harus memikirkan juga soal jadwal keseluruhan, dan seorang produser bisa fokus mengelola sumber daya tanpa harus ikut menggambar setiap frame. Mari kita kenali peran-peran yang paling umum ditemui.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Tiga Peran Pemegang Visi & Arah</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Director / Sutradara</div>
+          <div class="gc-body">Pemegang visi kreatif keseluruhan sebuah produksi. Dialah yang menentukan bagaimana sebuah adegan "terasa" — tempo ceritanya, ekspresi karakter, sampai keputusan-keputusan artistik besar. Kalau ada dua opsi visual yang sama-sama bagus tapi berbeda arah, sutradara yang memutuskan mana yang paling sesuai dengan cerita yang ingin disampaikan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Producer</div>
+          <div class="gc-body">Kalau sutradara menjaga "rasa" cerita, producer menjaga agar produksi benar-benar bisa selesai — mengelola anggaran, jadwal, dan sumber daya tim (persis seperti yang Anda latih di Pertemuan 6 dan 7). Producer sering jadi orang yang harus mengatakan "tidak, kita tidak punya waktu untuk itu" demi menjaga keseluruhan proyek tetap realistis.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Art Director</div>
+          <div class="gc-body">Penjaga konsistensi visual sepanjang produksi, berpedoman pada production bible dan <b>style guide</b> yang sudah dibuat di Pertemuan 4. Art director memastikan warna kulit karakter tidak berubah antar episode, gaya garis tetap konsisten, dan seluruh tim visual "bicara dalam bahasa yang sama".</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Tiga Peran Pelaksana Inti</h3>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Animator</div>
+          <div class="gc-body">Orang yang benar-benar menggerakkan karakter, mengubah desain diam menjadi gerakan yang hidup dan meyakinkan — mulai dari cara Riri melangkah dengan riang sampai bagaimana ekspresi Rangga berubah saat kaget. Pekerjaan ini butuh pemahaman timing, berat gerak, dan kepribadian karakter, bukan sekadar menggambar banyak frame.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Background Artist</div>
+          <div class="gc-body">Bertugas melukis dan menyusun latar tempat cerita berlangsung — rumah, sekolah, halaman, atau suasana malam hari. Background yang baik tidak sekadar indah, tapi juga mendukung mood adegan tanpa "merebut perhatian" dari karakter yang sedang beraksi di depannya.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Sound Designer</div>
+          <div class="gc-body">Mengisi dunia visual dengan suara: dialog, musik latar, efek suara langkah kaki atau pintu tertutup, sampai keheningan yang disengaja untuk momen dramatis. Banyak penonton tidak sadar betapa besar peran suara membentuk emosi sebuah adegan sampai suara itu dimatikan.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Editor — Penyambung Semua Potongan</div>
+      <p>Ada satu peran lagi yang sering kurang terlihat tapi krusial: <b>editor</b>. Setelah semua shot selesai dianimasikan, diberi background, dan diisi suara, editor-lah yang menyusun potongan-potongan itu menjadi satu alur yang mengalir mulus — menentukan timing transisi antar adegan, memastikan ritme cerita tidak terasa terburu-buru atau justru terlalu lambat. Dalam banyak produksi kecil, editor juga merangkap sedikit tugas <b>color grading</b> ringan supaya tone warna terasa konsisten dari awal sampai akhir video.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Hierarki & Alur Komunikasi</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Siapa Lapor ke Siapa, dan Kenapa Itu Penting</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah mengenal peran-peran di atas, pertanyaan berikutnya adalah: bagaimana mereka saling terhubung? Inilah yang disebut hierarki — garis yang menunjukkan siapa melapor kepada siapa, dan siapa yang berhak mengambil keputusan final di area tertentu. Tanpa hierarki yang jelas, seorang animator bisa bingung: kalau saya menemukan masalah di sebuah shot, saya harus bicara ke siapa? Art director? Sutradara? Atau langsung ke producer? Kalau semua orang bisa "menyuruh" semua orang lain tanpa jalur yang jelas, yang terjadi justru kekacauan instruksi yang saling bertentangan.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Analogi yang Sudah Anda Kenal: Struktur Organisasi Kampus</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Konsep hierarki ini sebenarnya tidak asing. Coba pikirkan struktur BEM (Badan Eksekutif Mahasiswa) di kampus Anda: ada Ketua BEM yang memegang visi dan arah organisasi secara keseluruhan, di bawahnya ada Koordinator Divisi yang mengelola bidang masing-masing (misalnya divisi acara, divisi humas, divisi keuangan), dan di bawah koordinator ada anggota divisi yang menjalankan tugas harian. Kalau seorang anggota divisi acara punya ide baru, biasanya dia menyampaikannya dulu ke koordinator divisinya, bukan langsung memutuskan sendiri atau langsung "memanggil rapat" dengan Ketua BEM. Struktur studio animasi bekerja dengan logika yang serupa.</p>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Level Studio Animasi</th><th>Analogi Struktur Kampus</th><th>Contoh Wewenang</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Producer / Director</b></td><td>Ketua BEM / Ketua Panitia</td><td>Visi keseluruhan, keputusan besar soal jadwal & anggaran</td></tr>
+          <tr><td><b>Art Director / Lead Animator</b></td><td>Koordinator Divisi</td><td>Standar kualitas & konsistensi di bidangnya masing-masing</td></tr>
+          <tr><td><b>Animator / Background Artist / Sound Designer</b></td><td>Anggota Divisi</td><td>Mengeksekusi tugas harian sesuai arahan koordinator</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Jalur Eskalasi yang Sehat</div>
+        <div class="gc-body">Kalau seorang animator menemukan masalah kecil (misalnya proporsi karakter di satu shot terasa aneh), idealnya dia membicarakannya dulu dengan art director sebagai penjaga konsistensi visual. Kalau masalahnya menyangkut arah cerita atau butuh keputusan besar yang berdampak ke jadwal, barulah dieskalasi ke sutradara atau producer. Jalur bertingkat ini bukan birokrasi yang memperlambat, justru mempercepat — karena setiap masalah ditangani oleh orang yang paling tepat kapasitasnya, bukan menumpuk semua ke satu orang paling atas.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Ketika Hierarki Tidak Jelas</div>
+        <div class="gc-body">Bayangkan dua animator menerima arahan berbeda soal gaya gerakan karakter yang sama — satu dari art director, satu lagi dari sutradara, tanpa keduanya saling tahu. Hasilnya, dua shot yang seharusnya konsisten malah terlihat seperti dikerjakan tim yang berbeda. Inilah kenapa hierarki yang jelas bukan tentang siapa "berkuasa", melainkan tentang memastikan satu sumber keputusan yang sama untuk setiap area, supaya seluruh tim bergerak searah.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Kolaborasi Tim Besar</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Ketika Tim Sudah Terlalu Besar untuk Sekadar "Ngobrol Langsung"</div>
+      <p style="font-size:.88rem;line-height:1.75;">Struktur dan hierarki yang sudah dibahas di atas hanya akan berjalan kalau didukung oleh alur komunikasi yang benar-benar dijalankan sehari-hari, bukan sekadar tergambar rapi di atas kertas org chart. Semakin besar tim, semakin besar pula risiko informasi tidak sampai ke orang yang tepat — apalagi kalau anggotanya bekerja dari tempat dan waktu yang berbeda-beda, seperti yang sering terjadi di produksi animasi modern (banyak studio bekerja lintas kota bahkan lintas negara). Di titik inilah tools dan kebiasaan komunikasi yang tepat menjadi penyelamat.</p>
+    </div>
+
+    <div class="tab-group">
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-slack')">Slack / Channel Terstruktur</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-wa')">WhatsApp Group Terstruktur</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-meeting')">Meeting Terjadwal Rutin</button>
+      </div>
+      <div id="tab-slack" class="tab-panel active">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Slack adalah salah satu platform komunikasi tim yang paling banyak dipakai studio animasi profesional karena memungkinkan percakapan dipisah ke dalam "channel" per topik, sehingga tidak semua obrolan bercampur jadi satu.</p>
+        <ul class="styled">
+          <li><b>Struktur channel yang umum:</b> #general (pengumuman), #storyboard, #animation, #sound, #random (obrolan santai supaya tim tetap akrab)</li>
+          <li><b>Kelebihan:</b> riwayat percakapan mudah dicari, bisa terhubung dengan tools lain seperti Google Drive atau Trello</li>
+          <li><b>Cocok untuk:</b> tim menengah-besar yang butuh memisahkan diskusi teknis per departemen</li>
+        </ul>
+      </div>
+      <div id="tab-wa" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Untuk tim mahasiswa, WhatsApp Group biasanya lebih realistis dipakai karena semua orang sudah familiar. Kuncinya bukan pada aplikasinya, tapi pada bagaimana grup itu "distrukturkan" supaya tidak jadi obrolan campur aduk yang informasinya mudah tenggelam.</p>
+        <ul class="styled">
+          <li><b>Tips struktur:</b> buat grup terpisah per divisi kerja (misalnya grup khusus storyboard, grup khusus animasi) selain grup utama untuk pengumuman umum</li>
+          <li><b>Gunakan fitur pin</b> untuk menyematkan informasi penting seperti deadline atau link dokumen supaya tidak hilang tenggelam di chat</li>
+          <li><b>Buat kesepakatan jam aktif</b> supaya tidak ada yang merasa harus membalas pesan tengah malam</li>
+        </ul>
+      </div>
+      <div id="tab-meeting" class="tab-panel">
+        <p style="font-size:.88rem;line-height:1.75;margin-bottom:10px;">Selain komunikasi tertulis, tim juga butuh momen bertatap muka (langsung atau daring) secara rutin — semacam <b>dailies</b> ringan — untuk membahas progres dan kendala secara langsung, sesuatu yang sering lebih cepat diselesaikan lewat obrolan daripada bolak-balik chat.</p>
+        <ul class="styled">
+          <li><b>Frekuensi ideal untuk tim kuliah:</b> 1-2 kali seminggu, cukup 15-30 menit supaya tidak menyita waktu belajar mata kuliah lain</li>
+          <li><b>Agenda sederhana:</b> apa yang sudah selesai, apa yang sedang dikerjakan, dan hambatan apa yang perlu dibantu tim lain</li>
+          <li><b>Kunci sukses:</b> selalu ada satu orang yang mencatat kesimpulan rapat dan membagikannya ke grup, supaya yang berhalangan hadir tetap tahu perkembangan terbaru</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Cerita Peringatan: Ketika Komunikasi Gagal</div>
+      <p>Bayangkan skenario ini: dua animator dalam satu tim sama-sama diberi tugas mengerjakan shot pembuka cerita, karena tidak ada yang mengecek ulang status di tools pelacak (seperti spreadsheet dari Pertemuan 7) sebelum mulai bekerja. Dua-duanya menghabiskan waktu berhari-hari mengerjakan shot yang sama, sementara shot-shot lain di bagian akhir cerita justru belum tersentuh sama sekali karena dikira "sudah ada yang pegang". Ini bukan cerita fiktif belaka — miskomunikasi semacam ini adalah salah satu penyebab paling umum keterlambatan produksi, dan kerugiannya bukan cuma waktu yang hilang, tapi juga tenaga dua orang yang seharusnya bisa dipakai untuk mengerjakan bagian lain. Solusinya sederhana namun sering diabaikan: selalu update status tugas di tools bersama <em>sebelum</em> mulai mengerjakan, bukan sesudahnya.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Tim Kecil vs Tim Besar: Peran Rangkap</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Realita Tim Mahasiswa (dan Banyak Studio Indie)</div>
+      <p style="font-size:.88rem;line-height:1.75;">Semua peran yang dibahas di Bagian 2 terdengar rapi kalau masing-masing dipegang satu orang khusus. Tapi kenyataannya, studio besar seperti yang membuat film-film Pixar mungkin punya ratusan orang dengan peran sangat spesifik, sementara tim Anda kemungkinan besar hanya beranggotakan 3-5 orang untuk mengerjakan proyek satu semester penuh. Ini bukan berarti struktur yang dipelajari tadi tidak relevan — justru sebaliknya, memahami peran-peran itu membantu Anda sadar peran mana saja yang sedang dirangkap oleh satu orang, supaya bebannya bisa dikelola dengan sengaja, bukan dibiarkan menumpuk begitu saja.</p>
+    </div>
+
+    <div class="sub-section">
+      <h3>Contoh Peran Rangkap dalam Tim 4 Orang</h3>
+      <table class="rubric-table">
+        <thead>
+          <tr><th>Anggota</th><th>Peran yang Dirangkap</th><th>Catatan Beban Kerja</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Anggota A</td><td>Director + Art Director</td><td>Fokus utama menjaga visi cerita dan konsistensi visual; sebaiknya dibebaskan dari tugas teknis harian</td></tr>
+          <tr><td>Anggota B</td><td>Producer + Editor</td><td>Mengelola jadwal & anggaran sekaligus menyunting hasil akhir; rawan sibuk di dua ujung waktu produksi (awal dan akhir)</td></tr>
+          <tr><td>Anggota C</td><td>Animator + Background Artist</td><td>Peran paling padat karya; perlu shot list yang realistis agar tidak overload</td></tr>
+          <tr><td>Anggota D</td><td>Sound Designer + Production Coordinator</td><td>Menghubungkan progres antar anggota sekaligus mengurus audio; cocok untuk yang komunikatif</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:.85rem;line-height:1.7;color:#555;">Perhatikan bahwa peran-peran yang dirangkap sengaja dipasangkan dengan mempertimbangkan waktu kerjanya: producer dan editor misalnya cocok dirangkap karena keduanya sama-sama lebih sibuk di awal (perencanaan) dan akhir (finishing) produksi, bukan di tengah-tengah proses animasi berlangsung.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Tips Mengelola Beban Peran Rangkap</div>
+        <div class="gc-body">Pertama, sadari dulu bahwa Anda sedang memakai "topi" yang berbeda-beda dalam satu hari — bukan berarti harus sempurna di semua topi itu sekaligus. Kedua, prioritaskan: tentukan mana dari peran rangkap Anda yang paling krusial untuk proyek saat ini, dan mana yang boleh dikerjakan dengan standar "cukup baik" dulu. Ketiga, blok waktu terpisah untuk tiap peran — misalnya pagi untuk tugas sebagai animator, sore untuk tugas sebagai production coordinator — supaya tidak terus-menerus berpindah fokus yang justru menurunkan kualitas kerja.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Kapan Perlu Minta Bantuan Tim</div>
+        <div class="gc-body">Kalau Anda merasa satu peran rangkap sudah terlalu berat sampai mengorbankan peran lain (misalnya terlalu sibuk jadi editor sampai tugas animasinya terbengkalai), inilah saatnya berbicara jujur ke tim. Redistribusi tugas sementara, atau meminta anggota lain membantu satu bagian kecil, jauh lebih sehat daripada memaksakan diri sampai kelelahan dan akhirnya kualitas seluruh proyek yang menurun.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <div class="hb-title">Ingat: Peran Rangkap Bukan Tanda Kegagalan</div>
+      <p>Banyak animator dan sutradara terkenal justru memulai karier dengan merangkap banyak peran sekaligus di studio kecil atau proyek independen, sebelum akhirnya berkesempatan fokus di satu spesialisasi di studio besar. Kemampuan mengelola beban peran rangkap dengan baik justru menjadi bekal berharga — Anda belajar memahami bagaimana rasanya berada di posisi rekan tim lain, sehingga saat nanti benar-benar bekerja di tim besar dengan peran yang lebih spesifik, Anda jadi kolaborator yang lebih peka terhadap tantangan orang lain.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Praktikum Pertemuan 9</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Menyusun Struktur Tim Proyek</div>
+        <ul>
+          <li>Buat diagram atau tabel struktur tim untuk proyek produksi yang sedang Anda kerjakan sepanjang semester ini</li>
+          <li>Untuk tiap anggota (atau untuk diri sendiri kalau mengerjakan solo), tentukan peran utama dan peran tambahan yang dirangkap, mengacu pada peran-peran di Bagian 2</li>
+          <li>Jelaskan singkat alur eskalasi tim Anda: kalau ada masalah kreatif, siapa yang dihubungi lebih dulu? Kalau ada masalah jadwal/anggaran, siapa yang berwenang memutuskan?</li>
+          <li>Jika mengerjakan solo, tentukan secara eksplisit peran mana yang jadi prioritas utama (misalnya sebagai director sekaligus animator) dan peran mana yang akan Anda sederhanakan standarnya (misalnya sound design cukup memakai musik/SFX royalty-free tanpa produksi audio orisinal)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Menyiapkan Kesepakatan Komunikasi Tim</div>
+        <ul>
+          <li>Pilih kombinasi tools komunikasi untuk tim Anda (misalnya WhatsApp Group + meeting mingguan), mengacu pada Bagian 4</li>
+          <li>Tuliskan kesepakatan sederhana: frekuensi meeting, jam aktif komunikasi, dan siapa yang bertanggung jawab mencatat hasil tiap meeting</li>
+          <li>Sertakan minimal 1 aturan untuk mencegah duplikasi kerja seperti yang dibahas di highlight-box Bagian 4 (misalnya: wajib update status di spreadsheet sebelum mulai mengerjakan sebuah shot)</li>
+          <li>Deliverable: dokumen struktur tim + kesepakatan komunikasi, digabung dalam 1 file PDF (1-2 halaman)</li>
+          <li>Format nama file: NIM_Nama_P9_StrukturTim.pdf</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="produksi-animasi-p8.html">← Pertemuan 8</a>
+    <a href="../index.html?matkul=produksi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="produksi-animasi-p10.html" class="next-btn">Pertemuan 10 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Produksi Animasi</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'pitch bible':'Dokumen ringkas berisi inti sebuah konsep animasi — premis cerita, karakter utama, dunia cerita, gaya visual, dan target penonton — dipakai untuk "menjual" ide ke klien, investor, atau studio',
+    'logline':'Ringkasan cerita dalam satu-dua kalimat singkat yang menjelaskan inti konflik dan karakter utama, biasanya dipakai untuk menarik perhatian sejak awal saat pitching',
+    'treatment':'Dokumen naratif yang menceritakan alur cerita secara prosa (bukan format naskah/dialog), biasanya 1-3 halaman, sebagai jembatan antara ide singkat dan naskah lengkap',
+    'production bible':'Dokumen acuan tunggal ("single source of truth") berisi seluruh referensi visual dan naratif sebuah produksi — desain karakter, palet warna, dunia cerita, tone — supaya seluruh tim punya pemahaman yang sama',
+    'style guide':'Panduan visual yang lebih spesifik dari production bible, berisi aturan konsisten seperti kombinasi warna, jenis garis, atau gaya rendering yang harus diikuti semua anggota tim',
+    'shot list':'Daftar rinci setiap shot/pengambilan gambar yang harus diproduksi dalam sebuah adegan, dipakai sebagai alat perencanaan jumlah kerja dan estimasi waktu',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses produksi sesungguhnya dimulai — dalam manajemen produksi, storyboard juga dipakai untuk menghitung estimasi jumlah shot dan durasi',
+    'animatic':'Storyboard yang sudah disusun berurutan dengan estimasi durasi (dan kadang musik/dialog kasar) untuk menguji ritme dan timing cerita sebelum animasi sesungguhnya dibuat',
+    'milestone':'Titik pencapaian penting dalam jadwal produksi (misalnya "storyboard selesai" atau "animasi pass pertama selesai") yang dipakai untuk memantau progres proyek',
+    'gantt chart':'Diagram batang horizontal yang menampilkan jadwal tugas-tugas proyek dari waktu ke waktu, membantu tim melihat tugas apa berjalan paralel dan kapan tenggat waktunya',
+    'dailies':'Sesi review harian/berkala di mana tim menonton hasil kerja terbaru bersama-sama untuk memberi masukan cepat sebelum kesalahan menumpuk terlalu jauh',
+    'version control':'Sistem penamaan dan pengorganisasian file yang memungkinkan tim melacak perubahan/revisi sebuah aset dari waktu ke waktu tanpa kehilangan versi sebelumnya',
+    'deliverable':'Hasil kerja konkret yang harus diserahkan pada suatu tahap produksi, misalnya file render final, storyboard, atau naskah yang sudah disetujui',
+    'line producer':'Orang yang bertanggung jawab mengelola anggaran dan operasional sehari-hari sebuah produksi agar tetap sesuai jadwal dan biaya yang direncanakan',
+    'production coordinator':'Anggota tim yang menjadi penghubung antar departemen, memastikan informasi dan aset mengalir lancar antara satu tim dengan tim lainnya',
+    'asset management':'Proses mengatur, menamai, dan melacak seluruh file/aset produksi (model karakter, tekstur, audio, dll) agar mudah ditemukan dan tidak tertukar',
+    'quality control':'Proses pemeriksaan sistematis terhadap hasil kerja untuk memastikan sudah sesuai standar sebelum dianggap selesai dan lanjut ke tahap berikutnya',
+    'buffer time':'Waktu cadangan yang sengaja ditambahkan ke jadwal produksi untuk mengantisipasi keterlambatan atau kendala tak terduga',
+    'stakeholder':'Pihak yang punya kepentingan terhadap sebuah produksi, misalnya klien, investor, sutradara, atau anggota tim — kebutuhan mereka harus dikelola sepanjang produksi',
+    'pipeline':'Rangkaian tahapan kerja yang berurutan dan saling terhubung dalam sebuah produksi, dari ide awal sampai hasil akhir siap ditonton',
+    'color grading':'Proses menyesuaikan warna dan pencahayaan sebuah video/render secara keseluruhan supaya tampilan akhirnya konsisten dan sesuai mood yang diinginkan',
+    'severity rating':'Sistem pemberian tingkat keparahan pada temuan masalah (misalnya kritis/sedang/ringan) saat proses review, supaya tim tahu mana yang harus diperbaiki lebih dulu',
+    'hak cipta':'Perlindungan hukum atas sebuah karya orisinal (termasuk animasi) yang memberi pembuatnya kendali atas bagaimana karya tersebut digunakan, disalin, atau didistribusikan',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
+</body>
+</html>

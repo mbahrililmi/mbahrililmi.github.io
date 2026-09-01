@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 5 – Storyboard & Animatic sebagai Alat Perencanaan | Produksi Animasi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#b8893b;--navy:#1a2942;--ivory:#faf7f2;--gold-soft:#d4ac6e;--gold-deep:#8b6a2a;--navy-light:#2c3e6b;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--ivory);color:#2d2d2d;display:flex;min-height:100vh;}
+a{color:var(--gold);text-decoration:none;}a:hover{text-decoration:underline;}
+.sidebar{width:260px;min-width:260px;background:var(--navy);color:#fff;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;}
+.sidebar-header{padding:28px 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-header .course-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-soft);margin-bottom:4px;}
+.sidebar-header .course-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1.3;}
+.sidebar-header .pertemuan-badge{display:inline-block;margin-top:10px;background:var(--gold);color:#fff;font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:20px;}
+.toc-nav{padding:16px 0 24px;}
+.toc-section-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.4);padding:10px 20px 4px;}
+.toc-link{display:block;padding:8px 20px;font-size:.82rem;color:rgba(255,255,255,.75);border-left:3px solid transparent;transition:all .2s;}
+.toc-link:hover,.toc-link.active{background:rgba(184,137,59,.12);color:var(--gold-soft);border-left-color:var(--gold);text-decoration:none;}
+.main-content{flex:0 0 auto;margin:0 auto;padding:40px 48px;max-width:900px;width:100%;}
+.page-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,var(--navy) 100%);color:#fff;padding:44px 48px;border-radius:16px;margin-bottom:36px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(184,137,59,.15);border-radius:50%;}
+.page-header .pre-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold-soft);margin-bottom:8px;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2rem;line-height:1.2;margin-bottom:12px;}
+.page-header .subtitle{font-size:.95rem;color:rgba(255,255,255,.7);max-width:560px;}
+.header-meta{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;}
+.meta-badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.85);}
+.meta-badge span{color:var(--gold-soft);font-weight:600;}
+.content-section{margin-bottom:44px;}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-num{background:var(--gold);color:#fff;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;}
+.section-header h2{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--navy);}
+.sub-section{margin-bottom:20px;}
+.sub-section h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px;padding-left:12px;border-left:3px solid var(--gold);}
+.card{background:#fff;border-radius:12px;padding:20px 24px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid rgba(184,137,59,.1);}
+.card-title{font-weight:700;color:var(--navy);font-size:.95rem;margin-bottom:8px;}
+ul.styled,ol.styled{padding-left:20px;line-height:1.8;font-size:.9rem;}
+ul.styled li{margin-bottom:4px;}
+ul.styled li::marker{color:var(--gold);}
+.accordion{border:1px solid rgba(184,137,59,.2);border-radius:10px;overflow:hidden;margin-bottom:10px;}
+.accordion-header{background:#fff;padding:14px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.9rem;color:var(--navy);transition:background .2s;}
+.accordion-header:hover{background:rgba(184,137,59,.05);}
+.accordion-header.open{background:rgba(26,41,66,.04);color:var(--gold-deep);}
+.accordion-header .icon{transition:transform .3s;font-size:.8rem;color:var(--gold);}
+.accordion-header.open .icon{transform:rotate(180deg);}
+.accordion-body{display:none;padding:16px 18px;background:#fdfbf7;border-top:1px solid rgba(184,137,59,.15);font-size:.88rem;line-height:1.75;}
+.accordion-body.open{display:block;}
+.tab-group{margin-bottom:20px;}
+.tab-buttons{display:flex;gap:4px;margin-bottom:0;flex-wrap:wrap;}
+.tab-btn{padding:8px 16px;border:none;background:#e8e2d9;border-radius:8px 8px 0 0;cursor:pointer;font-size:.83rem;font-weight:600;color:#666;transition:all .2s;}
+.tab-btn.active{background:var(--navy);color:#fff;}
+.tab-panel{display:none;background:#fff;border:1px solid rgba(184,137,59,.2);border-radius:0 8px 8px 8px;padding:20px;}
+.tab-panel.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px;}
+.grid-card{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(184,137,59,.15);box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.grid-card .gc-title{font-weight:700;font-size:.85rem;color:var(--navy);margin-bottom:6px;}
+.grid-card .gc-body{font-size:.82rem;color:#555;line-height:1.6;}
+.highlight-box{background:linear-gradient(135deg,rgba(26,41,66,.04),rgba(184,137,59,.08));border:1px solid rgba(184,137,59,.25);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+.highlight-box .hb-title{font-weight:700;color:var(--navy);font-size:.9rem;margin-bottom:8px;}
+.highlight-box p{font-size:.88rem;line-height:1.7;color:#444;}
+.rubric-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:16px;}
+.rubric-table th{background:var(--navy);color:#fff;padding:10px 14px;text-align:left;}
+.rubric-table td{padding:10px 14px;border-bottom:1px solid rgba(184,137,59,.15);vertical-align:top;}
+.rubric-table tr:nth-child(even) td{background:rgba(184,137,59,.04);}
+.score-badge{display:inline-block;background:var(--gold);color:#fff;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:12px;}
+.section-divider{border:none;border-top:1px solid rgba(184,137,59,.2);margin:36px 0;}
+.footer-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid rgba(184,137,59,.2);margin-top:48px;gap:12px;}
+.footer-nav a{background:#fff;border:1px solid rgba(184,137,59,.3);border-radius:10px;padding:12px 20px;font-size:.85rem;font-weight:600;color:var(--navy);transition:all .2s;display:flex;align-items:center;gap:8px;}
+.footer-nav a:hover{background:var(--gold);color:#fff;border-color:var(--gold);text-decoration:none;}
+.footer-nav .next-btn{background:var(--navy);color:#fff;border-color:var(--navy);}
+.footer-nav .next-btn:hover{background:var(--gold);border-color:var(--gold);}
+
+/* === Index Back Button === */
+.index-btn{background:rgba(184,137,59,.1);border-color:rgba(184,137,59,.4);color:var(--gold-deep);}
+.index-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.index-btn i{font-style:normal;}
+.footer-credit{text-align:center;padding:20px 0 0;font-size:.78rem;color:#888;}
+@media(max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr;}}
+
+/* === Tooltip Styles === */
+.tooltip{position:relative;display:inline;border-bottom:1px dashed #b8893b;color:inherit;cursor:help;}
+.tooltip .tooltip-text{visibility:hidden;background:#1a2942;color:#fff;text-align:left;border-radius:8px;padding:9px 13px;position:absolute;z-index:500;bottom:130%;left:50%;transform:translateX(-50%);width:240px;font-size:.8rem;line-height:1.55;opacity:0;transition:opacity .2s;pointer-events:none;font-family:'Inter',sans-serif;white-space:normal;box-shadow:0 4px 16px rgba(0,0,0,.25);}
+.tooltip:hover .tooltip-text{visibility:visible;opacity:1;}
+.tooltip .tooltip-text::after{content:"";position:absolute;top:100%;left:50%;margin-left:-5px;border:5px solid transparent;border-top-color:#1a2942;}
+/* === Hamburger Menu === */
+.menu-toggle{display:none;position:fixed;top:14px;left:14px;z-index:1002;background:#1a2942;color:#fff;border:none;border-radius:8px;padding:9px 13px;font-size:1.15rem;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35);line-height:1;align-items:center;justify-content:center;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:1000;opacity:0;transition:opacity .3s;}
+.sidebar-overlay.open{display:block;opacity:1;}
+/* === Mobile Responsive === */
+@media(max-width:900px){
+  .menu-toggle{display:flex!important;}
+  body{display:block!important;}
+  .page-wrap{display:block!important;}
+  aside.sidebar,.sidebar,nav.sidebar{
+    display:flex!important;flex-direction:column!important;
+    position:fixed!important;left:-272px!important;top:0!important;
+    height:100vh!important;z-index:1001!important;
+    transition:left .28s ease!important;
+    width:260px!important;min-width:260px!important;overflow-y:auto!important;
+  }
+  aside.sidebar.sidebar-open,.sidebar.sidebar-open,nav.sidebar.sidebar-open{left:0!important;}
+  .main-content{width:100%!important;max-width:100%!important;padding:64px 16px 28px!important;}
+  .page-header{padding:22px 18px!important;border-radius:10px!important;margin-bottom:20px!important;}
+  .page-header h1{font-size:1.4rem!important;line-height:1.25!important;}
+  .page-header::before{width:130px!important;height:130px!important;}
+  .grid-2,.grid-3{grid-template-columns:1fr!important;}
+  .compare-grid,.video-grid,.software-compare{grid-template-columns:1fr!important;}
+  .header-meta,.header-badges{flex-direction:column!important;gap:6px!important;}
+  .meta-badge,.badge{font-size:.72rem!important;}
+  .tab-btn{padding:7px 11px!important;font-size:.79rem!important;}
+  .tab-buttons,.tab-bar{flex-wrap:wrap!important;}
+  .footer-nav{flex-direction:column!important;}
+  .rubric-table{font-size:.78rem!important;display:block!important;overflow-x:auto!important;}
+  table{font-size:.8rem!important;display:block!important;overflow-x:auto!important;}
+  thead th,td,th{padding:7px 9px!important;}
+  .topology{font-size:.68rem!important;overflow-x:auto!important;}
+  .code-block{font-size:.8rem!important;padding:12px 12px 12px 14px!important;}
+  .copy-btn{top:6px!important;right:6px!important;padding:3px 8px!important;font-size:.72rem!important;}
+  .tool-grid{grid-template-columns:1fr 1fr!important;}
+  .section-title,.section-header h2{font-size:1.1rem!important;}
+  .breadcrumb{padding-top:4px;}
+  .callout{flex-direction:column;gap:6px;}
+  pre.topology{white-space:pre;overflow-x:scroll;}
+}
+
+/* === Code Block Styles === */
+.code-block{
+  position:relative;
+  background:#1e1e1e;
+  border-radius:10px;
+  padding:16px 16px 16px 18px;
+  margin:12px 0 16px;
+  overflow-x:auto;
+  border:1px solid rgba(184,137,59,.2);
+}
+.code-block pre{
+  margin:0;
+  color:#d4d4d4;
+  font-family:'Consolas','Monaco','Courier New',monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  overflow-x:auto;
+}
+.code-block code{
+  color:#d4d4d4;
+  font-family:inherit;
+}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  padding:4px 10px;
+  font-size:.75rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  z-index:10;
+}
+.copy-btn:hover{
+  background:var(--gold-deep);
+  transform:scale(1.05);
+}
+.copy-btn.copied{
+  background:#27ae60;
+}
+
+/* === Task Card Styles === */
+.task-card{
+  background:#fff;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:16px;
+  display:flex;
+  gap:16px;
+  box-shadow:0 3px 10px rgba(184,137,59,.15);
+}
+.task-num{
+  flex-shrink:0;
+  width:42px;
+  height:42px;
+  background:var(--gold);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.task-content{
+  flex:1;
+}
+.task-title{
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--navy);
+  margin-bottom:8px;
+}
+.task-content ul{
+  margin:0;
+  padding-left:20px;
+  font-size:.86rem;
+  line-height:1.7;
+}
+.task-content ul li{
+  margin-bottom:4px;
+  color:#444;
+}
+
+</style>
+</head>
+<body>
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle navigasi">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="course-label">Produksi Animasi</div>
+    <div class="course-title">Storyboard & Animatic sebagai Alat Perencanaan</div>
+    <div class="pertemuan-badge">Pertemuan 5</div>
+  </div>
+  <nav class="toc-nav" id="toc">
+    <div class="toc-section-label">Materi</div>
+    <a href="#section-1" class="toc-link">Pengantar</a>
+    <a href="#section-2" class="toc-link">Storyboard sebagai Alat Estimasi</a>
+    <a href="#section-3" class="toc-link">Animatic: Validasi Timing</a>
+    <a href="#section-4" class="toc-link">Shot List: Daftar Kerja Konkret</a>
+    <a href="#section-5" class="toc-link">Menghitung Estimasi Beban Kerja</a>
+    <a href="#section-6" class="toc-link">Praktikum</a>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="page-header">
+    <div class="pre-title">Pertemuan 5 · Produksi Animasi</div>
+    <h1>Storyboard & Animatic sebagai Alat Perencanaan</h1>
+    <p class="subtitle">Melihat storyboard dan animatic dari sudut pandang yang berbeda — bukan sebagai latihan menggambar, melainkan sebagai alat hitung untuk memperkirakan jumlah kerja, waktu, dan biaya sebuah produksi sebelum sumber daya besar dikeluarkan.</p>
+    <div class="header-meta">
+      <div class="meta-badge">Kode: <span>PAN401</span></div>
+      <div class="meta-badge">SKS: <span>3 (T=2, P=1)</span></div>
+      <div class="meta-badge">Dosen: <span>M. BAHRIL ILMI, S.Kom., M.Kom</span></div>
+    </div>
+  </div>
+
+  <section class="content-section" id="section-1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Pengantar</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Sub-CPMK</div>
+      <p>Mahasiswa mampu menggunakan storyboard dan animatic sebagai alat perencanaan produksi untuk mengestimasi jumlah shot, waktu, dan beban kerja.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Sudut Pandang yang Berbeda dari yang Sudah Anda Kenal</div>
+      <p style="font-size:.88rem;line-height:1.75;">Sebelum lanjut, penting untuk meluruskan satu hal dulu. Kalau Anda mengambil mata kuliah Animasi 2D dan 3D, Anda mungkin sudah pernah belajar cara membuat storyboard dan animatic sebagai <b>skill teknis menggambar</b> — bagaimana menyusun komposisi panel yang enak dilihat, bagaimana menggambar sketsa kasar yang jelas, bagaimana menganimasikan pratinjau kasar itu. Nah, di mata kuliah Produksi Animasi ini, kita tidak akan mengulang skill menggambar itu. Sudut pandang kita di sini sama sekali berbeda.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Di sini, storyboard dan animatic kita perlakukan sebagai <b>alat manajemen</b> — bukan karya seni yang dinilai dari bagus-tidaknya sketsa, melainkan sebagai dasar untuk menjawab pertanyaan-pertanyaan yang sangat praktis: berapa banyak shot yang harus dikerjakan? Berapa lama waktu yang dibutuhkan? Berapa besar anggaran yang harus disiapkan? Berapa banyak animator yang perlu direkrut? Dengan kata lain, kalau di mata kuliah lain Anda belajar "bagaimana cara menggambarnya", di sini Anda belajar "bagaimana cara membaca dan menghitung dari apa yang sudah digambar itu".</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tujuan Pembelajaran</div>
+      <ol class="styled">
+        <li>Memahami storyboard sebagai alat estimasi jumlah shot, waktu, dan biaya — bukan sekadar latihan menggambar</li>
+        <li>Menjelaskan fungsi animatic sebagai validasi timing sebelum produksi penuh dimulai</li>
+        <li>Menyusun shot list yang konkret dari sebuah storyboard atau naskah</li>
+        <li>Menghitung estimasi beban kerja produksi berdasarkan jumlah dan kompleksitas shot dalam shot list</li>
+        <li>Menerapkan alat perencanaan ini pada proyek yang sedang dikembangkan sejak Pertemuan 3</li>
+      </ol>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Storyboard sebagai Alat Estimasi</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Storyboard, Diingatkan Kembali</div>
+      <p>Storyboard adalah rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses produksi sesungguhnya dimulai. Dalam konteks manajemen produksi, storyboard juga dipakai untuk menghitung estimasi jumlah shot dan durasi — dan justru fungsi inilah yang menjadi fokus kita sekarang.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa Jumlah Panel Bisa Jadi Alat Hitung?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setiap panel dalam storyboard pada dasarnya mewakili satu shot (atau kadang satu kelompok shot yang sangat mirip) yang nantinya harus benar-benar diproduksi oleh tim animasi. Kalau storyboard untuk satu episode terdiri dari 45 panel, itu artinya kita punya perkiraan awal bahwa akan ada sekitar 45 shot yang perlu digambar, dianimasikan, diwarnai, dan dirender. Semakin banyak panel, semakin banyak pula pekerjaan yang menanti — dan sebaliknya, storyboard yang lebih ringkas juga menandakan beban kerja yang lebih ringan.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Di sinilah letak nilai storyboard bagi seorang manajer produksi atau line producer: dari sekadar menghitung jumlah panel yang sudah disetujui, kita bisa mulai membayangkan berapa banyak sumber daya (waktu, orang, anggaran) yang perlu disiapkan — bahkan sebelum satu detik pun animasi sungguhan mulai dikerjakan. Ini jauh lebih efisien dibanding menunggu produksi berjalan dulu baru menyadari bahwa beban kerjanya ternyata jauh lebih besar dari perkiraan.</p>
+    </div>
+    <div class="grid-2">
+      <div class="grid-card">
+        <div class="gc-title">Storyboard Padat vs Storyboard Ringkas</div>
+        <div class="gc-body">Sebuah adegan aksi yang penuh gerakan cepat biasanya membutuhkan lebih banyak panel storyboard untuk menangkap setiap momen penting, dibanding adegan percakapan tenang yang bisa "diselesaikan" hanya dengan beberapa shot statis. Semakin dinamis sebuah adegan, biasanya semakin banyak pula shot yang dibutuhkan — dan ini langsung berdampak pada estimasi waktu produksinya.</div>
+      </div>
+      <div class="grid-card">
+        <div class="gc-title">Contoh dari Produksi Nyata</div>
+        <div class="gc-body">Dalam banyak konten behind-the-scenes produksi Pixar, tim story sering menunjukkan bagaimana storyboard sebuah film panjang bisa mencapai ribuan panel yang direvisi berkali-kali sebelum versi final disetujui. Jumlah panel inilah yang kemudian menjadi salah satu dasar bagi tim produksi untuk merencanakan jadwal dan anggaran film tersebut secara keseluruhan.</div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Animatic — Validasi Timing Sebelum Produksi Penuh</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Animatic, Diingatkan Kembali</div>
+      <p>Animatic adalah storyboard yang sudah disusun berurutan dengan estimasi durasi (dan kadang musik/dialog kasar) untuk menguji ritme dan timing cerita sebelum animasi sesungguhnya dibuat.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Analogi: Gladi Resik Sebelum Pertunjukan Sungguhan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bayangkan sebuah pertunjukan teater sekolah. Sebelum hari pementasan yang sesungguhnya — lengkap dengan kostum, tata panggung, dan pencahayaan penuh — pasti ada sesi gladi resik terlebih dahulu. Di gladi resik ini, para pemain hanya memakai pakaian biasa dan properti seadanya, tapi mereka tetap menjalankan seluruh alur cerita dari awal sampai akhir dengan timing yang sesungguhnya, supaya sutradara bisa melihat: apakah durasinya pas? Apakah ada bagian yang terasa terlalu lama atau terlalu buru-buru? Animatic berfungsi persis seperti gladi resik ini bagi produksi animasi.</p>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:10px;">Dengan menyusun panel-panel storyboard secara berurutan dan memberi setiap panel durasi perkiraan (misalnya "panel ini tayang 2 detik, panel berikutnya 4 detik"), tim produksi bisa menonton "pratinjau murah" dari keseluruhan cerita jauh sebelum satu frame animasi sungguhan pun dikerjakan. Kalau ternyata ritmenya terasa lambat di bagian tengah, atau sebuah adegan penting terasa terlalu terburu-buru, revisi masih sangat murah untuk dilakukan di tahap ini — cukup mengatur ulang panel dan durasinya, tanpa harus membuang animasi yang sudah jadi.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Kenapa "Murah" Itu Penting?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Bandingkan dua skenario ini. Skenario pertama: tim langsung terjun membuat animasi penuh tanpa animatic, lalu setelah setengah jalan baru sadar bahwa timing sebuah adegan penting terasa janggal — akibatnya harus membuang ulang animasi yang sudah memakan waktu berminggu-minggu. Skenario kedua: tim membuat animatic terlebih dahulu, menemukan masalah timing yang sama, tapi memperbaikinya hanya dengan menggeser durasi beberapa panel storyboard dalam hitungan jam. Selisih biaya dan waktu antara dua skenario ini sangat jauh, dan itulah sebabnya animatic dianggap sebagai salah satu langkah paling hemat biaya dalam seluruh tahapan produksi.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Shot List — Daftar Kerja Konkret</h2>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Shot List, Diingatkan Kembali</div>
+      <p>Shot list adalah daftar rinci setiap shot/pengambilan gambar yang harus diproduksi dalam sebuah adegan, dipakai sebagai alat perencanaan jumlah kerja dan estimasi waktu.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Dari Storyboard ke Daftar yang Bisa Ditugaskan</div>
+      <p style="font-size:.88rem;line-height:1.75;">Kalau storyboard memberi kita gambaran visual tentang cerita, shot list mengubah gambaran itu menjadi daftar kerja yang konkret dan bisa ditugaskan satu per satu ke anggota tim. Shot list biasanya disusun dalam bentuk tabel, dan setiap barisnya berisi informasi penting tentang satu shot spesifik.</p>
+    </div>
+    <table class="rubric-table">
+      <thead>
+        <tr><th>Kolom</th><th>Isi</th><th>Contoh</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nomor Shot</td><td>Kode urut unik untuk tiap shot</td><td>SC01-SH03</td></tr>
+        <tr><td>Deskripsi Singkat</td><td>Apa yang terjadi di shot ini</td><td>Nussa berlari menuju masjid</td></tr>
+        <tr><td>Durasi Perkiraan</td><td>Estimasi lama tayang shot</td><td>3 detik</td></tr>
+        <tr><td>Kompleksitas</td><td>Tingkat kesulitan animasi shot</td><td>Sedang (banyak gerakan)</td></tr>
+        <tr><td>Departemen Terkait</td><td>Tim yang mengerjakan</td><td>Animasi, Background, Sound</td></tr>
+        <tr><td>Status</td><td>Progres pengerjaan shot</td><td>Belum dikerjakan / Proses / Selesai</td></tr>
+      </tbody>
+    </table>
+    <div class="card">
+      <div class="card-title">Kompleksitas: Kenapa Tidak Semua Shot Setara?</div>
+      <p style="font-size:.88rem;line-height:1.75;">Satu hal yang sering terlewat oleh pemula: tidak semua shot itu setara bebannya, meski durasinya sama-sama pendek. Sebuah shot berisi dua karakter yang hanya duduk diam mengobrol jelas jauh lebih ringan dikerjakan dibanding shot berisi kejar-kejaran dengan banyak gerakan cepat, perubahan sudut kamera, dan efek tambahan seperti debu atau percikan air. Karena itu, kolom "kompleksitas" dalam shot list sangat penting — biasanya diberi kategori sederhana seperti Ringan, Sedang, dan Berat, supaya estimasi waktu pengerjaannya bisa disesuaikan, bukan disamaratakan begitu saja.</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Shot List Juga Jadi Dasar Sesi Dailies</div>
+      <p>Kolom "status" pada shot list bukan hanya formalitas pencatatan — ia menjadi bahan utama sesi <span>dailies</span>, yaitu sesi review rutin di mana seluruh tim menonton hasil kerja terbaru bersama-sama. Dengan shot list yang selalu diperbarui, sutradara bisa langsung melihat shot mana saja yang sudah selesai, mana yang masih dalam proses, dan mana yang belum tersentuh sama sekali, sehingga masalah bisa cepat terlihat dan dibicarakan sebelum menumpuk terlalu jauh menjelang deadline.</p>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Menghitung Estimasi Beban Kerja dari Shot List</h2>
+    </div>
+    <div class="card">
+      <div class="card-title">Rumus Sederhana untuk Mulai Menghitung</div>
+      <p style="font-size:.88rem;line-height:1.75;">Setelah shot list selesai disusun, kita sudah punya bahan dasar untuk menghitung estimasi total waktu produksi. Cara paling sederhana adalah mengalikan jumlah shot dengan rata-rata waktu pengerjaan per shot. Misalnya, kalau naskah kita menghasilkan 20 shot, dan berdasarkan pengalaman tim rata-rata satu shot butuh waktu 3 hari kerja untuk diselesaikan (mulai dari animasi kasar sampai final), maka estimasi kasarnya adalah:</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Contoh Perhitungan Sederhana</div>
+      <p><b>20 shot × 3 hari kerja per shot = 60 hari kerja</b> estimasi total waktu produksi untuk tahap animasi, dengan asumsi seluruh shot dikerjakan berurutan oleh satu animator. Kalau tim punya 2 animator yang bekerja paralel, estimasi waktu ini bisa dipersingkat menjadi sekitar 30 hari kerja — dengan catatan pembagian tugasnya seimbang.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Menyempurnakan Perhitungan dengan Kompleksitas</div>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Perhitungan di atas masih sangat kasar karena menganggap semua shot butuh waktu yang sama. Perhitungan yang lebih akurat mempertimbangkan kompleksitas tiap shot, misalnya dengan memberi bobot waktu berbeda:</p>
+      <div class="grid-3">
+        <div class="grid-card">
+          <div class="gc-title">Shot Ringan</div>
+          <div class="gc-body">Contoh: 10 shot × 1.5 hari = <b>15 hari kerja</b><br>Adegan diam, dialog sederhana, minim gerakan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Shot Sedang</div>
+          <div class="gc-body">Contoh: 6 shot × 3 hari = <b>18 hari kerja</b><br>Gerakan karakter cukup aktif, perubahan ekspresi.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Shot Berat</div>
+          <div class="gc-body">Contoh: 4 shot × 5 hari = <b>20 hari kerja</b><br>Aksi cepat, banyak karakter, efek tambahan.</div>
+        </div>
+      </div>
+      <p style="font-size:.88rem;line-height:1.75;margin-top:12px;">Total estimasi dari ketiga kategori ini adalah 15 + 18 + 20 = <b>53 hari kerja</b> — angka yang jauh lebih realistis dibanding perhitungan rata-rata kasar sebelumnya, karena sudah memperhitungkan bahwa shot berat memang butuh waktu jauh lebih lama dibanding shot ringan.</p>
+    </div>
+    <div class="highlight-box">
+      <div class="hb-title">Kenapa Ini Penting Buat Line Producer</div>
+      <p>Angka-angka hasil perhitungan ini bukan sekadar latihan matematika — inilah dasar yang dipakai seorang <span>line producer</span> untuk menyusun jadwal produksi yang realistis di Pertemuan 6 nanti, dan juga dasar untuk memperkirakan anggaran di Pertemuan 7. Semakin akurat shot list dan perhitungan bebannya di tahap ini, semakin kecil pula risiko jadwal molor atau anggaran membengkak di kemudian hari.</p>
+    </div>
+    <div class="sub-section">
+      <h3>Faktor-faktor yang Bisa Mengubah Estimasi</h3>
+      <p style="font-size:.88rem;line-height:1.75;margin-bottom:12px;">Perhitungan di atas memberi kita angka dasar yang berguna, tapi seorang manajer produksi yang berpengalaman tahu bahwa angka itu perlu disesuaikan lagi dengan beberapa faktor nyata di lapangan. Berikut beberapa faktor yang paling sering mengubah estimasi awal.</p>
+      <div class="grid-2">
+        <div class="grid-card">
+          <div class="gc-title">Pengalaman Tim</div>
+          <div class="gc-body">Tim yang sudah lama bekerja sama dan terbiasa dengan gaya visual tertentu biasanya bisa mengerjakan shot lebih cepat dibanding tim baru yang masih saling menyesuaikan cara kerja. Kalau sebagian besar animator Anda baru pertama kali bekerja sama, wajar untuk menambah sedikit waktu ekstra di estimasi awal.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Jumlah Putaran Revisi</div>
+          <div class="gc-body">Estimasi dasar biasanya hanya menghitung waktu pengerjaan pertama, padahal hampir semua shot akan melalui setidaknya satu atau dua putaran revisi setelah direview sutradara. Semakin ketat standar kualitas yang diinginkan, semakin banyak pula putaran revisi yang perlu diperhitungkan.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Kompleksitas Software/Pipeline</div>
+          <div class="gc-body">Kalau tim baru pertama kali memakai software atau alur kerja (pipeline) tertentu, akan ada waktu tambahan untuk belajar dan menyesuaikan diri di awal produksi. Estimasi yang realistis perlu memasukkan "masa penyesuaian" ini, terutama di beberapa shot pertama.</div>
+        </div>
+        <div class="grid-card">
+          <div class="gc-title">Ketersediaan Referensi</div>
+          <div class="gc-body">Shot yang sudah punya referensi visual jelas dari production bible dan style guide biasanya dikerjakan lebih cepat, karena animator tidak perlu menebak-nebak atau menunggu klarifikasi. Sebaliknya, shot dengan referensi yang minim sering butuh waktu tambahan untuk bolak-balik konfirmasi.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="section-divider">
+
+  <section class="content-section" id="section-6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Praktikum Pertemuan 5</h2>
+    </div>
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-content">
+        <div class="task-title">Susun Shot List dari Naskah/Treatment</div>
+        <ul>
+          <li>Gunakan naskah atau treatment yang sudah dikembangkan sejak Pertemuan 3</li>
+          <li>Pecah cerita tersebut menjadi daftar shot dalam bentuk tabel (boleh memakai spreadsheet atau tabel dokumen)</li>
+          <li>Setiap baris shot list wajib mencantumkan: nomor shot, deskripsi singkat, durasi perkiraan, dan kategori kompleksitas (Ringan/Sedang/Berat)</li>
+          <li>Minimal susun 10-15 shot untuk cerita pendek Anda</li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-content">
+        <div class="task-title">Hitung Estimasi Total Durasi Produksi</div>
+        <ul>
+          <li>Berdasarkan shot list di atas, kelompokkan shot menurut kategori kompleksitasnya</li>
+          <li>Tetapkan asumsi rata-rata hari kerja per kategori (boleh mengikuti contoh di materi atau membuat asumsi sendiri yang masuk akal, dengan alasan singkat)</li>
+          <li>Hitung total estimasi hari kerja produksi seperti contoh perhitungan di materi</li>
+          <li>Tuliskan kesimpulan singkat: apakah estimasi ini realistis untuk dikerjakan sendiri, atau membutuhkan lebih dari satu animator?</li>
+          <li>Deliverable: 1 file berisi shot list + perhitungan estimasi (PDF atau spreadsheet)</li>
+          <li>Format nama file: NIM_Nama_P5_ShotListEstimasi.pdf</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <nav class="footer-nav">
+    <a href="produksi-animasi-p4.html">← Pertemuan 4</a>
+    <a href="../index.html?matkul=produksi" class="index-btn"><i>⌂</i> Semua Materi</a>
+    <a href="produksi-animasi-p6.html" class="next-btn">Pertemuan 6 →</a>
+  </nav>
+  <div class="footer-credit">Politeknik Negeri Banjarmasin · M. BAHRIL ILMI, S.Kom., M.Kom. · Produksi Animasi</div>
+
+</main>
+
+<script>
+function toggleAccordion(header){header.classList.toggle('open');header.nextElementSibling.classList.toggle('open');}
+function switchTab(btn,panelId){var g=btn.closest('.tab-group');g.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});g.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});btn.classList.add('active');document.getElementById(panelId).classList.add('active');}
+(function(){var links=document.querySelectorAll('.toc-link:not(.indent)');var num=1;links.forEach(function(a){var clean=a.textContent.replace(/^[\d]+\.\s*/,'').trim();a.textContent=num+'. '+clean;num++;});})();
+window.addEventListener('scroll',function(){var sections=document.querySelectorAll('.content-section');var links=document.querySelectorAll('.toc-link');var scrollY=window.scrollY+120;sections.forEach(function(sec){if(sec.offsetTop<=scrollY&&sec.offsetTop+sec.offsetHeight>scrollY){links.forEach(function(l){l.classList.remove('active');});var id=sec.getAttribute('id');var active=document.querySelector('.toc-link[href="#'+id+'"]');if(active)active.classList.add('active');}});});
+</script>
+<script>
+/* === Hamburger Menu === */
+(function(){
+  var btn=document.getElementById('menuToggle');
+  var overlay=document.getElementById('sidebarOverlay');
+  var sb=document.querySelector('aside.sidebar,.sidebar,nav.sidebar');
+  if(!btn||!sb)return;
+  function open(){sb.classList.add('sidebar-open');if(overlay)overlay.classList.add('open');}
+  function close(){sb.classList.remove('sidebar-open');if(overlay)overlay.classList.remove('open');}
+  btn.addEventListener('click',function(){sb.classList.contains('sidebar-open')?close():open();});
+  if(overlay)overlay.addEventListener('click',close);
+  document.querySelectorAll('.toc-link,.toc-nav a').forEach(function(a){
+    a.addEventListener('click',function(){if(window.innerWidth<=900)close();});
+  });
+})();
+
+/* === Copy Code (overrides any previous copyCode) === */
+window.copyCode=function(btn){
+  var block=btn.closest('.code-block');
+  var clone=block.cloneNode(true);
+  var b=clone.querySelector('button');
+  if(b)b.remove();
+  var code=(clone.innerText||clone.textContent||'').trim();
+  function done(){btn.textContent='✓ Disalin';btn.classList.add('copied');setTimeout(function(){btn.textContent='Salin';btn.classList.remove('copied');},2200);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(code).then(done).catch(function(){fallback(code,done);});
+  }else{fallback(code,done);}
+};
+function fallback(code,cb){
+  var ta=document.createElement('textarea');
+  ta.value=code;ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+/* === Auto-tooltip for technical terms === */
+(function(){
+  var terms={
+    'OSPF':'Open Shortest Path First — protokol routing dinamis berbasis Link State yang menggunakan algoritma Dijkstra untuk mencari jalur terpendek',
+    'BGP':'Border Gateway Protocol — protokol routing antar jaringan besar (Autonomous System) di internet publik',
+    'DHCP':'Dynamic Host Configuration Protocol — mendistribusikan konfigurasi IP (alamat, gateway, DNS) secara otomatis ke perangkat jaringan',
+    'NAT':'Network Address Translation — menerjemahkan alamat IP privat ke IP publik agar bisa mengakses internet',
+    'VPN':'Virtual Private Network — koneksi jaringan privat yang aman melalui internet publik menggunakan enkripsi',
+    'QoS':'Quality of Service — mekanisme pengelolaan dan prioritas bandwidth agar layanan kritis mendapat jaminan kecepatan',
+    'VLAN':'Virtual Local Area Network — segmentasi logis jaringan fisik menjadi beberapa jaringan virtual yang terisolasi',
+    'DNS':'Domain Name System — menerjemahkan nama domain (misal: google.com) menjadi alamat IP yang bisa dirouting',
+    'ICMP':'Internet Control Message Protocol — protokol diagnostik jaringan, digunakan perintah ping dan traceroute',
+    'ACL':'Access Control List — daftar aturan yang mengontrol trafik masuk/keluar berdasarkan IP, port, atau protokol',
+    'PPTP':'Point-to-Point Tunneling Protocol — protokol sederhana untuk membuat tunnel VPN melalui jaringan IP',
+    'GRE':'Generic Routing Encapsulation — protokol yang membungkus (enkapsulasi) paket jaringan dalam header IP baru',
+    'PCQ':'Per Connection Queue — algoritma QoS yang membagi bandwidth secara adil antar semua koneksi aktif',
+    'WPA2':'Wi-Fi Protected Access 2 — standar keamanan WiFi menggunakan enkripsi AES-CCMP yang kuat',
+    'SSID':'Service Set Identifier — nama jaringan WiFi yang terlihat oleh perangkat saat melakukan pencarian',
+    'DAW':'Digital Audio Workstation — perangkat lunak untuk merekam, mengedit, mixing, dan memproduksi audio digital',
+    'codec':'Coder/Decoder — algoritma kompresi yang mengecilkan ukuran file audio/video sambil mempertahankan kualitas',
+    'bitrate':'Jumlah data yang diproses per detik (bit/s) — semakin tinggi, semakin baik kualitas namun ukuran file lebih besar',
+    'FPS':'Frames Per Second — jumlah frame/gambar yang ditampilkan setiap detik dalam video; 24fps sinematik, 60fps gaming',
+    'dB':'Decibel — satuan logaritmik pengukuran intensitas suara; 0dB = ambang pendengaran, 120dB = ambang nyeri',
+    'EQ':'Equalizer — alat untuk menyesuaikan keseimbangan frekuensi audio (bass, mid, treble) secara presisi',
+    'kerning':'Penyesuaian jarak antar dua karakter huruf tertentu untuk meningkatkan estetika dan keterbacaan teks',
+    'leading':'Jarak vertikal (spasi baris) antar baris teks — mempengaruhi kenyamanan baca dan tampilan visual',
+    'tracking':'Penyesuaian jarak yang merata di antara semua karakter dalam sebuah kata atau paragraf',
+    'vector':'Grafis berbasis persamaan matematis (path & anchor point) — bisa diperbesar tanpa batas tanpa kehilangan kualitas',
+    'raster':'Grafis berbasis pixel — kualitas gambar menurun (pecah) jika diperbesar melebihi resolusi aslinya',
+    'typography':'Seni dan teknik penataan huruf dalam desain untuk menyampaikan pesan dengan efektif dan estetis',
+    'subnet':'Sub-jaringan — pembagian jaringan IP menjadi bagian lebih kecil untuk efisiensi routing dan keamanan',
+    'gateway':'Perangkat (biasanya router) yang menghubungkan jaringan lokal ke jaringan lain termasuk internet',
+    'bandwidth':'Kapasitas maksimum transfer data dalam jaringan, diukur dalam bps (bit per second) atau Mbps',
+    'latency':'Waktu tunda (delay) yang dibutuhkan paket data untuk berpindah dari sumber ke tujuan, diukur dalam ms',
+    'firewall':'Sistem keamanan jaringan yang memantau dan mengontrol lalu lintas data berdasarkan aturan keamanan',
+    'routing':'Proses memilih jalur terbaik untuk mengirimkan paket data antar jaringan yang berbeda',
+    'switching':'Proses pengiriman frame data dalam jaringan lokal (LAN) berdasarkan tabel alamat MAC',
+    'masquerade':'Bentuk NAT yang menyembunyikan semua alamat IP privat dengan satu IP publik interface WAN',
+    'adjacency':'Hubungan tetangga (neighbor relationship) antar router dalam protokol routing dinamis seperti OSPF',
+    'convergence':'Kondisi stabil ketika semua router dalam jaringan memiliki informasi routing yang sinkron dan konsisten',
+    'ABR':'Area Border Router — router OSPF yang menghubungkan dua area atau lebih dan merangkum LSA antar area',
+    'ASBR':'AS Boundary Router — router OSPF yang menghubungkan domain routing berbeda (redistribusi dari BGP/EIGRP)',
+    'LSA':'Link State Advertisement — paket informasi topologi yang disebarkan router OSPF ke seluruh area',
+    'LSDB':'Link State Database — database lengkap topologi jaringan yang dimiliki setiap router OSPF dalam area',
+    'keyframe':'Frame kunci dalam animasi/video yang mendefinisikan nilai properti pada titik waktu tertentu',
+    'chroma':'Chroma Key (Green Screen) — teknik video yang menghapus latar belakang berwarna solid untuk diganti gambar lain',
+    'mastering':'Tahap akhir produksi audio untuk mengoptimalkan volume, EQ, dan kompresi sebelum distribusi',
+    'mixing':'Proses menggabungkan dan menyeimbangkan berbagai track audio menjadi satu hasil yang kohesif',
+    'sampling':'Proses mengambil sampel suara analog secara digital; sample rate menentukan akurasi representasi suara',
+    'rendering':'Proses menghasilkan output akhir (file gambar/video) dari project yang sudah diedit',
+    'interface':'Antarmuka pengguna grafis dari sebuah aplikasi; bagian yang dilihat dan dioperasikan pengguna',
+    'protokol':'Seperangkat aturan standar yang mengatur bagaimana perangkat berkomunikasi dalam jaringan',
+    'enkripsi':'Proses mengubah data menjadi format terenkripsi yang hanya bisa dibaca pihak yang memiliki kunci deskripsi',
+    'autentikasi':'Proses verifikasi identitas pengguna atau perangkat untuk memastikan mereka berhak mengakses sistem',
+    'topology':'Gambar/diagram yang menunjukkan tata letak fisik atau logis perangkat dan koneksi dalam jaringan',
+    'pitch bible':'Dokumen ringkas berisi inti sebuah konsep animasi — premis cerita, karakter utama, dunia cerita, gaya visual, dan target penonton — dipakai untuk "menjual" ide ke klien, investor, atau studio',
+    'logline':'Ringkasan cerita dalam satu-dua kalimat singkat yang menjelaskan inti konflik dan karakter utama, biasanya dipakai untuk menarik perhatian sejak awal saat pitching',
+    'treatment':'Dokumen naratif yang menceritakan alur cerita secara prosa (bukan format naskah/dialog), biasanya 1-3 halaman, sebagai jembatan antara ide singkat dan naskah lengkap',
+    'production bible':'Dokumen acuan tunggal ("single source of truth") berisi seluruh referensi visual dan naratif sebuah produksi — desain karakter, palet warna, dunia cerita, tone — supaya seluruh tim punya pemahaman yang sama',
+    'style guide':'Panduan visual yang lebih spesifik dari production bible, berisi aturan konsisten seperti kombinasi warna, jenis garis, atau gaya rendering yang harus diikuti semua anggota tim',
+    'shot list':'Daftar rinci setiap shot/pengambilan gambar yang harus diproduksi dalam sebuah adegan, dipakai sebagai alat perencanaan jumlah kerja dan estimasi waktu',
+    'storyboard':'Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses produksi sesungguhnya dimulai — dalam manajemen produksi, storyboard juga dipakai untuk menghitung estimasi jumlah shot dan durasi',
+    'animatic':'Storyboard yang sudah disusun berurutan dengan estimasi durasi (dan kadang musik/dialog kasar) untuk menguji ritme dan timing cerita sebelum animasi sesungguhnya dibuat',
+    'milestone':'Titik pencapaian penting dalam jadwal produksi (misalnya "storyboard selesai" atau "animasi pass pertama selesai") yang dipakai untuk memantau progres proyek',
+    'gantt chart':'Diagram batang horizontal yang menampilkan jadwal tugas-tugas proyek dari waktu ke waktu, membantu tim melihat tugas apa berjalan paralel dan kapan tenggat waktunya',
+    'dailies':'Sesi review harian/berkala di mana tim menonton hasil kerja terbaru bersama-sama untuk memberi masukan cepat sebelum kesalahan menumpuk terlalu jauh',
+    'version control':'Sistem penamaan dan pengorganisasian file yang memungkinkan tim melacak perubahan/revisi sebuah aset dari waktu ke waktu tanpa kehilangan versi sebelumnya',
+    'deliverable':'Hasil kerja konkret yang harus diserahkan pada suatu tahap produksi, misalnya file render final, storyboard, atau naskah yang sudah disetujui',
+    'line producer':'Orang yang bertanggung jawab mengelola anggaran dan operasional sehari-hari sebuah produksi agar tetap sesuai jadwal dan biaya yang direncanakan',
+    'production coordinator':'Anggota tim yang menjadi penghubung antar departemen, memastikan informasi dan aset mengalir lancar antara satu tim dengan tim lainnya',
+    'asset management':'Proses mengatur, menamai, dan melacak seluruh file/aset produksi (model karakter, tekstur, audio, dll) agar mudah ditemukan dan tidak tertukar',
+    'quality control':'Proses pemeriksaan sistematis terhadap hasil kerja untuk memastikan sudah sesuai standar sebelum dianggap selesai dan lanjut ke tahap berikutnya',
+    'buffer time':'Waktu cadangan yang sengaja ditambahkan ke jadwal produksi untuk mengantisipasi keterlambatan atau kendala tak terduga',
+    'stakeholder':'Pihak yang punya kepentingan terhadap sebuah produksi, misalnya klien, investor, sutradara, atau anggota tim — kebutuhan mereka harus dikelola sepanjang produksi',
+    'pipeline':'Rangkaian tahapan kerja yang berurutan dan saling terhubung dalam sebuah produksi, dari ide awal sampai hasil akhir siap ditonton',
+  };
+  var SKIP={'script':1,'style':1,'code':1,'pre':1,'kbd':1,'button':1,'a':1,'input':1,'select':1,'textarea':1,'svg':1,'math':1};
+  function escH(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function wrap(node){
+    if(!node)return;
+    var kids=Array.from(node.childNodes);
+    kids.forEach(function(n){
+      if(n.nodeType===3){
+        var txt=n.textContent;if(!txt.trim())return;
+        var changed=false;var used={};
+        Object.keys(terms).forEach(function(t){
+          var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+t+'(?![\\w\\u00C0-\\u024F\\-])','g');
+          if(re.test(txt)){used[t]=1;changed=true;}
+        });
+        if(changed){
+          var html=escH(txt);
+          Object.keys(used).forEach(function(t){
+            var re=new RegExp('(?<![\\w\\u00C0-\\u024F\\-])'+escH(t)+'(?![\\w\\u00C0-\\u024F\\-])','g');
+            html=html.replace(re,'<span class="tooltip">'+t+'<span class="tooltip-text">'+escH(terms[t])+'</span></span>');
+          });
+          var sp=document.createElement('span');sp.innerHTML=html;
+          n.parentNode.replaceChild(sp,n);
+        }
+      } else if(n.nodeType===1){
+        var tag=(n.tagName||'').toLowerCase();
+        if(SKIP[tag])return;
+        var cl=n.classList||[];
+        if(cl.contains&&(cl.contains('tooltip')||cl.contains('code-block')||cl.contains('topology')||cl.contains('menu-toggle')))return;
+        wrap(n);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var main=document.querySelector('.main-content,main');
+    if(main)wrap(main);
+  });
+})();
+</script>
+
+<script>
+/* Remove .html from URL bar for clean URLs */
+(function(){
+  var p=window.location.pathname;
+  if(p.endsWith('.html')){
+    window.history.replaceState({},'',p.slice(0,-5)+window.location.search+window.location.hash);
+  }
+})();
+</script>
+</body>
+</html>

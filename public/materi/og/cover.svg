@@ -13,8 +13,8 @@
   <text x="80" y="160" font-size="52" font-family="Arial">🎓</text>
   <text x="80" y="270" font-size="76" font-family="Georgia,serif" fill="#b8893b" font-weight="bold">Materi Kuliah</text>
   <text x="80" y="360" font-size="52" font-family="Georgia,serif" fill="rgba(255,255,255,0.85)">M. Bahril Ilmi, S.Kom., M.Kom</text>
-  <text x="80" y="430" font-size="34" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.55)">9 Mata Kuliah · 115 Modul Pembelajaran</text>
+  <text x="80" y="430" font-size="34" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.55)">10 Mata Kuliah · 131 Modul Pembelajaran</text>
   <rect x="80" y="458" width="640" height="2" fill="#b8893b" fill-opacity="0.4"/>
-  <text x="80" y="510" font-size="24" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.4)">Jaringan Komputer · Big Data · Vercel · Desain Grafis · DKV · RVA · DTM · Animasi</text>
+  <text x="80" y="510" font-size="22" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.4)">Jaringan Komputer · Big Data · Vercel · Desain Grafis · DKV · RVA · DTM · Animasi · Produksi</text>
   <text x="80" y="600" font-size="22" font-family="Arial,sans-serif" fill="rgba(255,255,255,0.3)">Politeknik Negeri Banjarmasin</text>
 </svg>
