@@ -1,0 +1,69 @@
+Menurut materi Pertemuan 10, kenapa kalimat yang menggambarkan situasi nyata (misalnya cerita buru-buru bayar parkir lalu scan QRIS) lebih mudah diingat dibanding daftar fitur teknis?
+[single]
+a) Karena kalimatnya lebih pendek dari daftar fitur
+b) Karena otak membayangkan situasi nyata, bukan sekadar mencatat daftar fitur*
+c) Karena kalimat tersebut menyebutkan angka waktu yang spesifik
+d) Karena kalimat tersebut tidak menyebutkan nama fitur sama sekali
+
+Dalam struktur narasi 3 babak untuk onboarding aplikasi, apa yang seharusnya ditampilkan pada bagian "konflik"?
+[single]
+a) Ajakan bertindak (CTA) yang jelas seperti "Mulai Sekarang"
+b) Sapaan hangat dan janji manfaat utama dalam satu kalimat
+c) Masalah yang selama ini dialami pengguna sehingga mereka merasa dipahami*
+d) Fitur utama aplikasi yang menyelesaikan masalah pengguna
+
+Kesalahan yang sering dilakukan mahasiswa menurut materi saat menyusun narasi onboarding atau video promosi adalah...
+[single]
+a) Terlalu lama membangun konflik sebelum menunjukkan solusi
+b) Langsung menampilkan resolusi (fitur produk) tanpa membangun konflik terlebih dahulu*
+c) Menggunakan hook yang menarik perhatian di detik-detik pertama video
+d) Menutup video dengan CTA yang singkat dan mudah diingat
+
+Dalam elemen storyboard profesional, istilah "angle" merujuk pada...
+[single]
+a) Estimasi lama tiap panel ditampilkan
+b) Cara berpindah dari satu panel ke panel berikutnya
+c) Sudut pandang kamera terhadap objek yang memengaruhi kesan yang ditimbulkan*
+d) Musik atau sound effect yang menyertai tiap panel
+
+Manakah pasangan jenis shot dan fungsinya yang paling tepat sesuai materi?
+[single]
+a) Wide shot untuk menunjukkan suasana, close-up untuk ekspresi atau emosi*
+b) Close-up untuk suasana, wide shot untuk interaksi
+c) Medium shot khusus dipakai untuk transisi antar adegan
+d) Wide shot khusus dipakai untuk menampilkan dialog
+
+Manakah microcopy di bawah ini yang paling sesuai dengan prinsip "terasa membantu / manusiawi" menurut materi?
+[single]
+a) "Error 404. Request failed."
+b) "Invalid input."
+c) "Kata sandinya belum pas nih, coba cek lagi ya."*
+d) "Tidak ada data."
+
+Kesalahan umum penerapan tone of voice yang disebutkan pada materi adalah...
+[single]
+a) Memakai nada santai penuh emoji di onboarding tapi pesan error tiba-tiba kaku dan teknis*
+b) Menggunakan nada formal secara konsisten di seluruh bagian aplikasi perbankan
+c) Menyesuaikan tone of voice dengan kepribadian brand
+d) Menulis pesan error dengan bahasa yang ramah dan membantu
+
+Kampanye Tokopedia "Mulai Aja Dulu" berhasil secara storytelling menurut materi terutama karena...
+[single]
+a) Menonjolkan diskon 0% biaya admin secara langsung
+b) Menyentuh rasa takut umum calon pengusaha ("belum siap", "belum sempurna") dan memposisikan Tokopedia sebagai teman perjalanan*
+c) Menggunakan animasi visual yang lebih canggih dibanding kompetitor
+d) Menampilkan daftar fitur transaksi secara lengkap dan detail
+
+Analogi yang dipakai materi untuk menjelaskan pentingnya storyboard yang detail (shot, angle, durasi, transisi jelas) adalah...
+[single]
+a) Storyboard seperti resep masakan yang harus diikuti persis
+b) Storyboard seperti partitur musik yang membuat pembacanya bisa "mendengar" ritme cerita tanpa menonton hasil akhir*
+c) Storyboard seperti peta jalan yang menunjukkan rute tercepat
+d) Storyboard seperti kontrak kerja yang mengikat tim produksi
+
+Pada video promosi produk dengan struktur 3 babak, bagian "resolusi" idealnya berada di rentang waktu...
+[single]
+a) 0-5 detik
+b) 5-20 detik
+c) 20-30 detik, menunjukkan produk sebagai solusi dan ditutup CTA singkat*
+d) Tidak memiliki batas waktu karena dianggap bagian paling penting

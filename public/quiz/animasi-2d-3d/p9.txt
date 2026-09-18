@@ -1,0 +1,69 @@
+Dalam istilah modeling 3D di Blender, "mesh" paling tepat didefinisikan sebagai...
+[single]
+a) Kumpulan lengkap vertex, edge, dan face yang membungkus bentuk sebuah objek 3D*
+b) Kumpulan modifier yang diterapkan secara berurutan pada sebuah objek
+c) Garis potongan yang menentukan bagaimana permukaan objek dibuka menjadi UV
+d) Jenis primitive dasar yang paling sering dipakai sebagai titik awal modeling
+
+Pendekatan modeling yang dimulai dari bentuk primitive dasar (cube, cylinder, sphere) lalu dibentuk lewat serangkaian operasi kecil yang berulang disebut...
+[single]
+a) UV unwrapping
+b) Weight painting
+c) Box modeling*
+d) Compositing berlapis
+
+Manakah pernyataan yang BENAR mengenai perbedaan UV Sphere dan Ico Sphere sebagai primitive dasar?
+[single]
+a) UV Sphere hanya bisa dipakai untuk objek kotak, sedangkan Ico Sphere untuk objek silinder
+b) UV Sphere tidak bisa diberi modifier Subdivision Surface, sedangkan Ico Sphere bisa
+c) UV Sphere dipakai untuk topology buruk, sedangkan Ico Sphere selalu menghasilkan topology baik
+d) UV Sphere punya pola garis lintang-bujur, sedangkan Ico Sphere punya pola segitiga yang lebih merata*
+
+Seorang mahasiswa ingin membuat pegangan (handle) cangkir dengan menarik keluar beberapa face kecil di sisi badan cangkir secara bertahap. Teknik modeling dasar yang paling tepat digunakan adalah...
+[single]
+a) Inset
+b) Extrude*
+c) Loop Cut
+d) Mirror
+
+Sebelum menarik keluar sebuah tombol kecil pada panel remote, seorang modeler biasanya membuat bidang baru yang lebih kecil di dalam face yang sudah ada terlebih dahulu. Teknik yang digunakan untuk langkah persiapan ini disebut...
+[single]
+a) Extrude
+b) Subdivision Surface
+c) Inset*
+d) Loop Cut
+
+Menambahkan garis potongan baru yang melingkari seluruh objek untuk menambah jumlah edge dan face tanpa mengubah bentuk keseluruhan objek adalah fungsi dari teknik...
+[single]
+a) Loop Cut*
+b) Mirror
+c) Inset
+d) Automatic Weights
+
+Modifier yang paling tepat digunakan untuk memodelkan wajah karakter yang simetris, di mana modeler cukup membentuk setengah bagian saja karena sisi lainnya akan otomatis dilengkapi, adalah...
+[single]
+a) Subdivision Surface
+b) Loop Cut
+c) Weight Paint
+d) Mirror*
+
+Kenapa loop cut secukupnya perlu ditambahkan di sekitar area yang ingin tetap tajam SEBELUM modifier Subdivision Surface diterapkan?
+[single]
+a) Karena Subdivision Surface tidak akan berfungsi sama sekali tanpa loop cut
+b) Karena tanpa loop cut, seluruh sudut objek akan ikut membulat termasuk yang ingin dipertahankan tegas*
+c) Karena loop cut akan otomatis menghapus modifier lain yang sudah terpasang
+d) Karena loop cut mengubah mesh asli secara permanen sehingga tidak bisa dibatalkan
+
+Manakah ciri topology yang BERMASALAH menurut materi Pertemuan 9?
+[single]
+a) Didominasi segi empat (quad) dan mengikuti kontur objek
+b) Kepadatan polygon lebih rapat di area detail penting
+c) Banyak segitiga dan n-gon serta alur edge yang acak tidak mengikuti bentuk alami objek*
+d) Permukaan melengkung halus di area sendi saat animasi
+
+Dalam langkah-langkah studi kasus modeling cangkir/mug pada Pertemuan 9, apa yang dilakukan untuk membentuk rongga bagian dalam cangkir setelah menambahkan objek Cylinder?
+[single]
+a) Memilih face atas, melakukan Inset, lalu Extrude bidang itu ke bawah*
+b) Langsung menerapkan modifier Mirror pada seluruh objek
+c) Menambahkan loop cut sebanyak-banyaknya di seluruh badan cangkir
+d) Mengaktifkan tampilan wireframe untuk memeriksa n-gon

@@ -1,11 +1,13 @@
 ---
 name: matkul-baru
-description: Membuat mata kuliah baru lengkap (16 pertemuan — materi + kisi-kisi UTS + kisi-kisi UAS) untuk situs materi kuliah ini di public/materi/, mengikuti desain dan pola struktur yang sudah dipakai course-course lain (contoh acuan: Big Data & Desain Thinking for Multimedia). Pakai skill ini kapan pun user minta menambahkan/membuat materi mata kuliah baru — user cukup sebutkan nama mata kuliahnya (+ instruksi tambahan kalau ada), skill ini yang menyusun kurikulum 16 pertemuan, menulis semua halaman HTML, dan menyambungkannya ke index materi, share page, dan OG image.
+description: Membuat mata kuliah baru lengkap — 16 pertemuan materi (+ kisi-kisi UTS + kisi-kisi UAS) di public/materi/, DAN soal quiz per pertemuan di public/quiz/ — mengikuti desain dan pola struktur yang sudah dipakai course-course lain (contoh acuan: Big Data & Desain Thinking for Multimedia). Pakai skill ini kapan pun user minta menambahkan/membuat mata kuliah baru — user cukup sebutkan nama mata kuliahnya (+ instruksi tambahan kalau ada), skill ini yang menyusun kurikulum 16 pertemuan, menulis semua halaman HTML, menyambungkannya ke index materi/share page/OG image, DAN membuat file soal quiz siap-copas untuk tiap pertemuan.
 ---
 
-# Membuat Mata Kuliah Baru
+# Membuat Mata Kuliah Baru (Materi + Quiz)
 
-Ini adalah runbook lengkap untuk menambahkan satu mata kuliah baru ke situs materi kuliah (`public/materi/`) milik M. Bahril Ilmi (Politeknik Negeri Banjarmasin). User biasanya cuma akan bilang sesuatu seperti "tambahin mata kuliah X" atau "buatkan materi untuk mata kuliah Y, dengan tambahan Z" — kamu (Claude) yang harus menyusun seluruh kurikulum dan kontennya sendiri, tidak perlu tanya balik kecuali user memang menyebutkan sesuatu yang ambigu/kontradiktif.
+Ini adalah runbook lengkap untuk menambahkan satu mata kuliah baru ke situs materi kuliah (`public/materi/`) milik M. Bahril Ilmi (Politeknik Negeri Banjarmasin) — LENGKAP dengan soal quiz per pertemuan di `public/quiz/`. User biasanya cuma akan bilang sesuatu seperti "tambahin mata kuliah X" atau "buatkan materi untuk mata kuliah Y, dengan tambahan Z" — kamu (Claude) yang harus menyusun seluruh kurikulum dan kontennya sendiri, tidak perlu tanya balik kecuali user memang menyebutkan sesuatu yang ambigu/kontradiktif.
+
+Alur skill ini punya DUA bagian besar yang berurutan: (A) Langkah 0-5 — bikin 16 halaman materi HTML dan sambungkan ke situs, (B) Langkah 6 — bikin soal quiz per pertemuan berdasarkan materi yang baru dibuat di bagian A. Bagian B **selalu dikerjakan** setiap kali skill ini dipakai untuk course baru, bukan langkah opsional — kecuali user secara eksplisit bilang tidak usah dibuatkan quiz.
 
 Baca **seluruh** file ini dulu sebelum mulai bekerja — jangan lompat langsung ke bagian eksekusi.
 
@@ -108,9 +110,75 @@ Setelah semua agent selesai (kamu akan dapat notifikasi otomatis per agent — j
 1. Jalankan pengecekan struktural cepat via Bash untuk SEMUA 16 file sekaligus: hitung kemunculan `<html`/`</html>`, `<script`/`</script>`, `<style>`/`</style>` (harus match), cek satu entry glossary terakhir yang kamu minta muncul tepat 1x per file (tanda `terms` object ditambahkan sekali, tidak dobel/rusak).
 2. Cek rantai footer-nav: grep href `<slug>-pN.html` di tiap file untuk pastikan P1→P2→…→P16 tersambung tanpa link putus, P1 tanpa prev, P16 tanpa next.
 3. Kalau ada agent yang gagal (misal kena rate limit/error) — JANGAN mulai ulang dari nol. Cek dulu file mana saja yang sudah sempat tertulis (`ls`/`wc -l`), lalu `SendMessage` ke `agentId` yang sama untuk melanjutkan dari file yang belum selesai (agent yang di-resume ingat konteks sebelumnya).
-4. Laporkan ke user: daftar file yang dibuat, asumsi metadata yang dipakai (kode/SKS/semester — supaya user bisa koreksi kalau perlu), dan bahwa perubahan belum di-commit (jangan commit sendiri kecuali diminta eksplisit).
+4. Setelah 16 halaman materi ini bersih terverifikasi, lanjut ke **Langkah 6** di bawah untuk membuat soal quiz-nya — jangan laporkan hasil ke user dulu sebelum quiz-nya juga selesai (laporan akhir digabung, lihat penutup Langkah 6).
+
+## Langkah 6 — Buat Soal Quiz per Pertemuan (public/quiz/)
+
+Bagian ini SELALU dikerjakan setelah 16 halaman materi selesai & terverifikasi (Langkah 5), sebagai bagian standar dari "menambah mata kuliah baru" — bukan langkah terpisah yang perlu diminta ulang oleh user.
+
+Soal-soal ini akan langsung di-copy-paste user ke aplikasi quiz mereka, jadi formatnya HARUS presisi sampai ke spasi dan baris kosong. Berikut format WAJIB (tempelkan blok ini apa adanya ke setiap prompt sub-agent di bawah):
+
+```
+Teks pertanyaan pertama
+[single]
+a) Pilihan A
+b) Pilihan B*
+c) Pilihan C
+d) Pilihan D
+
+Teks pertanyaan kedua
+[single]
+a) Pilihan A*
+b) Pilihan B
+c) Pilihan C
+```
+
+Aturan format (semua WAJIB, tanpa pengecualian):
+1. JANGAN tulis nomor (1. 2. 3. dst) di depan pertanyaan — langsung teks pertanyaannya.
+2. TEPAT SATU baris kosong di antara tiap blok soal — tidak lebih, tidak kurang. Tidak ada baris kosong di awal atau akhir file.
+3. Semua soal pakai tipe `[single]` — JANGAN pakai `[multiple]`, `[essay]`, atau `[likert]` sama sekali, kecuali user secara eksplisit minta jenis lain untuk course ini.
+4. Setiap soal WAJIB punya persis 4 opsi, diberi label `a)` `b)` `c)` `d)` (huruf kecil + tanda kurung tutup + spasi + teks opsi).
+5. TEPAT SATU opsi per soal diberi tanda bintang (`*`) tertempel langsung di akhir teksnya (tanpa spasi sebelum bintang) sebagai penanda jawaban benar. Tiga opsi lainnya tanpa tanda apa pun.
+6. File HANYA berisi blok-blok soal — TANPA judul, TANPA nama pertemuan/mata kuliah, TANPA penjelasan/catatan, TANPA markdown (tidak ada ```, #, atau bold) di mana pun dalam file.
+7. Bahasa Indonesia, memakai istilah yang sama persis dengan yang dipakai di halaman materi aslinya.
+8. Setiap soal WAJIB digali dari isi nyata halaman materi HTML (definisi, konsep, istilah, perbandingan, contoh, angka/fakta yang benar-benar disebutkan di teks) — JANGAN mengarang fakta yang tidak ada di materi. Variasikan gaya soal dalam satu file: sebagian recall definisi, sebagian "manakah yang BUKAN...", sebagian perbandingan (X vs Y), sebagian soal skenario/penerapan memakai contoh yang ada di materi.
+9. Hindari soal yang duplikat/mirip dalam satu file.
+10. Opsi jawaban (a/b/c/d) harus masuk akal dan proporsional panjangnya — distraktor (opsi salah) harus terasa mungkin benar, bukan asal-asalan/absurd/terlalu pendek dibanding opsi lain.
+
+Jumlah soal per file:
+- Pertemuan materi biasa (1-7 dan 9-15): TEPAT 10 soal per file, digali HANYA dari halaman pertemuan itu sendiri.
+- Pertemuan 8 (UTS): TEPAT 30 soal, kumulatif mencakup materi Pertemuan 1-7 (boleh skim `<slug>-p8.html` untuk kalibrasi topik yang diujikan/gaya soal, tapi JANGAN jadikan teks p8.html sendiri sebagai sumber soal — itu halaman info-ujian/logistik, bukan materi ajar; jangan copy soal contoh yang mungkin sudah ada di p8.html, buat soal baru dari materi p1-p7). Distribusikan kira-kira merata ke 7 pertemuan (±4-5 soal per pertemuan).
+- Pertemuan 16 (UAS): TEPAT 30 soal, kumulatif dari materi Pertemuan 9-15, pola sama seperti UTS di atas (kalibrasi dari `<slug>-p16.html`, tapi soal digali dari p9-p15).
+
+Struktur folder & nama file: `public/quiz/<slug>/p1.txt` sampai `public/quiz/<slug>/p16.txt` (nama file cukup `pN.txt`, tanpa prefix slug, karena sudah jelas dari nama foldernya). Buat folder `public/quiz/<slug>/` kalau belum ada.
+
+Eksekusi — pecah jadi 2 sub-agent `Agent` (`subagent_type: general-purpose`, `run_in_background: true`) dipanggil paralel dalam satu pesan (lebih ringan dari 6 agent materi karena tugas ini "ekstraksi dari sumber", bukan "mengarang struktur HTML dari nol"):
+
+- **Agent A** → baca `public/materi/<slug>/<slug>-p1.html` s.d. `-p7.html` satu per satu secara utuh, tulis `public/quiz/<slug>/p1.txt` s.d. `p7.txt` (10 soal tiap file, dari halaman itu sendiri). Lalu skim `-p8.html`, tulis `p8.txt` (30 soal kumulatif dari p1-p7).
+- **Agent B** → sama polanya untuk `-p9.html` s.d. `-p15.html` → `p9.txt`-`p15.txt` (10 soal tiap file), lalu skim `-p16.html` → tulis `p16.txt` (30 soal kumulatif dari p9-p15).
+
+Setiap prompt agent WAJIB berisi: repo root + konteks singkat mata kuliah ini (nama, topik), daftar path file materi sumber yang harus dibaca (sebutkan judul tiap pertemuan supaya agent tahu apa yang dicari), daftar path file quiz output yang harus ditulis, seluruh blok format+10 aturan di atas (tempel kata per kata, jangan diringkas), dan larangan menyentuh file di luar assignment-nya (agent lain menulis paruh lainnya secara paralel).
+
+Verifikasi setelah kedua agent selesai — **jalankan sendiri via Bash**, jangan cuma percaya laporan tekstual agent:
+
+```bash
+for f in public/quiz/<slug>/*.txt; do
+  n=$(grep -c '^\[single\]$' "$f")
+  a=$(grep -o '\*' "$f" | wc -l)
+  echo "$f: soal=$n asterisk=$a"
+done
+grep -rlE '^[0-9]+\.' public/quiz/<slug>/ || echo "tidak ada nomor — bersih"
+grep -rE '^\[(multiple|essay|likert)\]' public/quiz/<slug>/ || echo "semua [single] — sesuai"
+```
+
+Pastikan: p1-p7 dan p9-p15 masing-masing persis 10 soal, p8 dan p16 masing-masing persis 30 soal, jumlah asterisk = jumlah soal di tiap file (satu jawaban benar per soal, tidak nol tidak dua), tidak ada baris bernomor, dan tidak ada tipe selain `[single]` yang menyelip. Kalau ada mismatch, perbaiki langsung (Edit file yang bermasalah) sebelum lapor ke user.
+
+Kalau ada agent gagal di tengah jalan (rate limit/connection error) — sama seperti Langkah 5: cek file `pN.txt` mana yang sudah ada di disk, lalu `SendMessage` ke `agentId` yang sama untuk melanjutkan dari file yang belum selesai, jangan mulai ulang dari nol.
+
+**Laporan akhir ke user** (setelah materi + quiz keduanya selesai): daftar 16 halaman materi yang dibuat, daftar 16 file quiz yang dibuat (sebutkan totalnya, misal "160 soal materi harian + 60 soal UTS/UAS = 220 soal"), asumsi metadata yang dipakai (kode/SKS/semester), dan bahwa semua perubahan belum di-commit (jangan commit sendiri kecuali diminta eksplisit).
 
 ## Catatan Tambahan
 
 - Skill ini SELALU membuat course baru dari nol. Kalau user memang minta "sederhanakan/perbaiki bahasa" pada course yang **sudah ada** (bukan course baru), itu bukan alur skill ini — itu adalah task edit-in-place: baca semua file course tsb, lalu delegasikan ke sub-agent paralel untuk menulis ulang PROSA-nya saja (jangan sentuh struktur/CSS/JS) supaya lebih hangat & mudah dipahami, tanpa mengurangi kedalaman materi. Pola pembagian kerja sub-agent-nya sama seperti Langkah 4 (paralel, per beberapa file).
+- Kalau user minta "buatkan quiz" untuk course yang **materinya sudah ada** (bukan minta course baru) — jalankan **hanya Langkah 6** langsung terhadap course tsb (skip Langkah 0-5 sepenuhnya, materinya sudah ada jadi tidak perlu dibuat ulang). Ini juga berlaku kalau user minta quiz untuk beberapa course sekaligus — jalankan Langkah 6 secara terpisah per course (masing-masing dapat 2 sub-agent sendiri: Agent A untuk P1-8, Agent B untuk P9-16), semua course boleh dikerjakan paralel dalam satu batch pemanggilan `Agent` asal tiap agent hanya menyentuh folder `public/quiz/<slug>/` miliknya sendiri.
 - Jangan pernah commit git tanpa diminta eksplisit oleh user, meski semua langkah di atas sudah selesai.

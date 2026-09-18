@@ -1,0 +1,69 @@
+Attention yang dipicu secara otomatis oleh properti visual seperti warna mencolok, gerakan, dan kontras tinggi disebut?
+[single]
+a) Top-Down Attention
+b) Bottom-Up Attention*
+c) Selective Attention
+d) Inattentional Attention
+
+Menurut materi, rata-rata berapa lama waktu yang dibutuhkan viewer untuk memutuskan tetap berada di sebuah halaman web?
+[single]
+a) 1-2 detik
+b) 3-5 detik*
+c) 10-15 detik
+d) 20-30 detik
+
+Fenomena di mana pengguna web secara otomatis mengabaikan area yang terlihat seperti iklan disebut?
+[single]
+a) Selective attention
+b) Inattentional blindness
+c) Banner blindness*
+d) Cognitive overload
+
+Teknik cepat untuk mengevaluasi visual hierarchy dengan cara menyipitkan mata atau mem-blur gambar guna melihat elemen mana yang paling menonjol disebut?
+[single]
+a) Squint Test*
+b) Contrast Test
+c) Gutenberg Test
+d) Scan Test
+
+Rasio kontras minimum menurut standar WCAG untuk keterbacaan teks yang direkomendasikan dalam materi adalah?
+[single]
+a) 2:1
+b) 3:1
+c) 4.5:1*
+d) 7:1
+
+Pola eye-tracking yang cocok untuk halaman text-heavy seperti artikel dan blog, dengan pola scan horizontal atas penuh lalu vertical scan di sisi kiri, disebut?
+[single]
+a) Z-Pattern
+b) F-Pattern*
+c) Gutenberg Diagram
+d) Radial Pattern
+
+Dalam Gutenberg Diagram, kuadran yang menjadi titik akhir pandangan dan cocok untuk penempatan CTA berada di posisi?
+[single]
+a) Primary (kiri-atas)
+b) Strong fallow (kanan-atas)
+c) Weak fallow (kiri-bawah)
+d) Terminal (kanan-bawah)*
+
+Manakah dari berikut ini yang BUKAN termasuk komponen anatomy of effective CTA menurut materi?
+[single]
+a) Action verb
+b) Value clarity
+c) Banner blindness*
+d) Whitespace
+
+Ukuran minimum tombol CTA yang direkomendasikan agar mudah di-tap pada perangkat mobile adalah?
+[single]
+a) 24×24px
+b) 32×32px
+c) 44×44px*
+d) 60×60px
+
+Sebuah landing page sederhana dengan sedikit teks menempatkan logo di kiri-atas, navigasi di kanan-atas, dan CTA di kanan-bawah mengikuti alur diagonal. Pola eye-tracking yang diterapkan adalah?
+[single]
+a) F-Pattern
+b) Z-Pattern*
+c) Gutenberg Diagram
+d) Radial Pattern

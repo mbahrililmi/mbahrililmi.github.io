@@ -1,0 +1,69 @@
+Fitur Proportional Editing pada Blender diaktifkan dengan tombol...
+[single]
+a) P
+b) O*
+c) K
+d) B
+
+Menurut materi, apa fungsi utama Knife Tool (K) dalam Edit Mode?
+[single]
+a) Menghaluskan permukaan mesh secara otomatis
+b) Memotong mesh secara bebas untuk membuat detail custom*
+c) Menggabungkan dua objek menjadi satu
+d) Menduplikasi objek dengan offset tertentu
+
+Operasi Bridge Edge Loops digunakan untuk...
+[single]
+a) Memotong mesh menjadi dua bagian terpisah
+b) Menghubungkan dua edge loop terpisah dengan geometry baru*
+c) Menghapus edge loop yang tidak diperlukan
+d) Mengubah face menjadi n-gon
+
+Dalam operasi Boolean, operasi manakah yang hanya menyisakan bagian yang overlap dari dua objek?
+[single]
+a) Union
+b) Difference
+c) Intersect*
+d) Merge
+
+Menurut rekomendasi urutan modifier stack pada materi, modifier apa yang sebaiknya diletakkan paling akhir untuk hasil smooth?
+[single]
+a) Mirror
+b) Bevel
+c) Subdivision Surface*
+d) Array
+
+Modifier apa yang digunakan agar sebuah Array modifier dapat mengikuti jalur/lengkungan tertentu, seperti anak tangga mengikuti tangga melingkar?
+[single]
+a) Curve*
+b) Lattice
+c) Displace
+d) Smooth
+
+Dalam hard surface modeling, apa fungsi "supporting loops" (edge loop tambahan dekat sudut tajam)?
+[single]
+a) Membuat objek menjadi lebih ringan secara file size
+b) Menjaga bentuk sudut tetap tajam saat mesh di-subdivide*
+c) Menghapus geometry yang tidak terlihat
+d) Mengubah warna material objek
+
+Manakah topologi yang sebaiknya DIHINDARI, terutama untuk area yang akan di-subdivide, menurut materi Clean Topology?
+[single]
+a) Quads (4 vertices)
+b) N-gons (5+ vertices)*
+c) Edge loops
+d) Vertex tunggal
+
+Apa perbedaan utama antara Hard Surface modeling dan Organic modeling menurut materi?
+[single]
+a) Hard surface hanya untuk karakter, organic hanya untuk mesin
+b) Hard surface: sharp edges dan mekanis; Organic: flowing curves dan natural*
+c) Hard surface tidak menggunakan modifier, organic menggunakan modifier
+d) Keduanya identik, hanya berbeda nama
+
+Untuk setup reference image 3-view (front, side, top) dalam modeling dari referensi, langkah pertama adalah...
+[single]
+a) Langsung membuat objek 3D tanpa referensi
+b) Menyiapkan 3 gambar referensi dari sudut front, side, dan top*
+c) Menghapus semua objek default di scene
+d) Mengaktifkan Sculpt Mode

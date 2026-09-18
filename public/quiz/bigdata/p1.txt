@@ -1,0 +1,69 @@
+Menurut materi, big data didefinisikan sebagai kumpulan data yang seperti apa?
+[single]
+a) Kumpulan data kecil namun sangat akurat dan terverifikasi
+b) Kumpulan data yang saking besar dan rumitnya sampai tidak sanggup ditangani database tradisional*
+c) Data yang hanya dihasilkan oleh media sosial dan aplikasi mobile
+d) Sistem penyimpanan data berbasis cloud yang gratis digunakan
+
+Manakah yang BUKAN termasuk dalam karakteristik 5V's Big Data?
+[single]
+a) Volume
+b) Velocity
+c) Vocabulary*
+d) Veracity
+
+Menurut materi, sekitar berapa besar data yang dihasilkan Facebook setiap harinya dari aktivitas para penggunanya?
+[single]
+a) 4 gigabyte
+b) 4 terabyte
+c) 4 petabyte*
+d) 4 exabyte
+
+Contoh karakteristik Velocity yang disebutkan dalam materi adalah...
+[single]
+a) Sekitar 500 juta tweet diposting di Twitter setiap hari*
+b) Sekitar 4 petabyte data dihasilkan Facebook setiap hari
+c) Miliaran sensor IoT yang saling terkoneksi
+d) Jutaan transaksi e-commerce yang tersimpan di data warehouse
+
+Karakteristik Variety pada big data merujuk pada...
+[single]
+a) Kecepatan data yang harus diproses secara real-time
+b) Keberagaman bentuk data, mulai dari terstruktur sampai tidak terstruktur*
+c) Ukuran data yang mencapai petabyte hingga exabyte
+d) Tingkat akurasi dan kebersihan data dari noise
+
+Dalam perbandingan traditional data vs big data pada materi, pendekatan schema yang digunakan big data disebut...
+[single]
+a) Schema-on-write
+b) Schema-on-read*
+c) Schema-on-demand
+d) Schema-on-cloud
+
+Dari segi storage, big data pada umumnya menggunakan pendekatan...
+[single]
+a) Vertical scaling pada satu server tunggal
+b) Horizontal scaling pada cluster*
+c) Penyimpanan lokal tanpa jaringan
+d) Penyimpanan pada satu database relasional besar
+
+Menurut materi, manakah yang BUKAN termasuk pemicu munculnya fenomena big data?
+[single]
+a) Internet of Things (IoT)
+b) Digitalisasi aktivitas sehari-hari
+c) Penurunan jumlah pengguna internet secara global*
+d) Pertumbuhan penggunaan media sosial
+
+Dalam ecosystem big data yang dibahas materi, Hadoop HDFS berfungsi sebagai...
+[single]
+a) Bahasa pemrograman untuk analisis statistik
+b) Platform visualisasi data interaktif
+c) Sistem file terdistribusi untuk menyimpan data besar di banyak komputer*
+d) Tool untuk membuat dashboard business intelligence
+
+Profesi yang bertugas membangun dan menjaga pipeline data serta infrastrukturnya, dengan bekal Hadoop, Spark, SQL, dan platform cloud, adalah...
+[single]
+a) Data Scientist
+b) Data Analyst
+c) Data Engineer*
+d) Business Intelligence Developer

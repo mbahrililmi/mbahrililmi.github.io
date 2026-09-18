@@ -1,0 +1,69 @@
+Pada studi kasus Churn Prediction di materi, perusahaan telekomunikasi tersebut kehilangan berapa persen pelanggan setiap bulannya (monthly churn rate)?
+[single]
+a) 5%
+b) 10%
+c) 15%*
+d) 25%
+
+Mengapa evaluasi model churn prediction di studi kasus tersebut difokuskan pada metrik Recall?
+[single]
+a) Karena Recall lebih mudah dihitung dibanding Precision
+b) Karena perusahaan tidak boleh sampai kelewatan mendeteksi pelanggan yang benar-benar akan churn*
+c) Karena dataset yang digunakan sudah seimbang (balanced)
+d) Karena Recall tidak dipengaruhi oleh False Negative
+
+Menurut business action plan pada studi kasus churn, pelanggan dengan probability churn > 0.7 (High Risk) sebaiknya ditangani dengan...
+[single]
+a) Dibiarkan saja tanpa tindakan khusus
+b) Dihubungi tim customer success secara personal dengan penawaran retention khusus*
+c) Hanya dikirimi notifikasi aplikasi standar
+d) Dihapus dari database pelanggan
+
+Pada studi kasus Sales Forecasting, kerugian perusahaan retail akibat salah menebak stok (overstock/stockout) mencapai...
+[single]
+a) Rp 500 juta per bulan
+b) Rp 1 miliar per bulan
+c) Rp 2 miliar per bulan*
+d) Rp 5 miliar per bulan
+
+Manakah yang termasuk external features yang disebutkan dalam studi kasus Sales Forecasting?
+[single]
+a) Recency, Frequency, Monetary
+b) Support, Confidence, Lift
+c) Promotions, Holidays, Weather*
+d) Precision, Recall, F1-Score
+
+Model Prophet dari Facebook digunakan dalam studi kasus Sales Forecasting terutama untuk menangkap...
+[single]
+a) Frequent itemsets dalam data transaksi
+b) Trend dan seasonality data penjualan*
+c) Jarak antar centroid dalam clustering
+d) Confusion matrix dari hasil klasifikasi
+
+Sebelum menerapkan customer segmentation, conversion rate kampanye marketing platform e-commerce pada studi kasus hanya sebesar...
+[single]
+a) 2%*
+b) 10%
+c) 25%
+d) 50%
+
+Dalam RFM Analysis pada studi kasus Customer Segmentation, huruf 'M' merepresentasikan...
+[single]
+a) Marketing
+b) Monetary*
+c) Membership
+d) Method
+
+Segmen pelanggan 'Champions' pada studi kasus RFM memiliki profil...
+[single]
+a) Recency rendah, Frequency rendah, Monetary rendah
+b) Recency tinggi, Frequency tinggi, Monetary tinggi*
+c) Recency rendah, Frequency tinggi, Monetary rendah
+d) Recency tinggi, Frequency rendah, Monetary tinggi
+
+Pada studi kasus Product Bundling, rules association hanya diambil jika memenuhi ambang batas...
+[single]
+a) Support ≥ 0.02, Confidence ≥ 0.5, Lift ≥ 1.5*
+b) Support ≥ 0.5, Confidence ≥ 0.02, Lift ≥ 0.5
+c) Support ≥ 0.9, Confidence ≥ 0.9, Lift ≥ 0.9
+d) Support ≥ 0.1, Confidence ≥ 0.1, Lift ≥ 0.1

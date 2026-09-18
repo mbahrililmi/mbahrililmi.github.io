@@ -1,0 +1,69 @@
+Apa kepanjangan dari SMTVA, yaitu 5 kriteria logo yang baik menurut materi?
+[single]
+a) Simple, Memorable, Timeless, Versatile, Appropriate*
+b) Simple, Modern, Trendy, Vibrant, Attractive
+c) Symmetrical, Modern, Timeless, Vector, Abstract
+d) Simple, Minimalist, Trendy, Visual, Artistic
+
+Jenis logo apa yang hanya menggunakan inisial atau singkatan brand, seperti pada contoh NASA atau HBO?
+[single]
+a) Wordmark
+b) Lettermark*
+c) Pictorial Mark
+d) Emblem
+
+Mengapa Combination Mark disebut sebagai pilihan terbaik untuk brand baru menurut materi?
+[single]
+a) Karena hanya terdiri dari teks tanpa simbol apapun
+b) Karena biayanya paling murah untuk didesain
+c) Karena paling fleksibel, bisa dipakai lengkap atau terpisah saat brand sudah dikenal*
+d) Karena tidak memerlukan proses sketsa manual sama sekali
+
+Menurut materi, mengapa sketching manual di kertas dianjurkan sebelum masuk ke tahap digital?
+[single]
+a) Karena software vector tidak mendukung pembuatan sketsa
+b) Karena membebaskan eksplorasi ide, dan 10-20 sketsa kasar lebih baik dari sedikit sketsa yang terlalu dipoles*
+c) Karena sketsa manual otomatis akan berubah menjadi file vector
+d) Karena proses digitalisasi tidak memerlukan referensi apapun
+
+Operasi Pathfinder apa yang digunakan untuk menggabungkan semua shape menjadi satu bentuk?
+[single]
+a) Subtract
+b) Intersect
+c) Unite*
+d) Exclude
+
+Apa istilah untuk ruang kosong fungsional dalam desain logo, seperti pada contoh panah tersembunyi di logo FedEx?
+[single]
+a) White Balance
+b) Negative Space*
+c) Golden Ratio
+d) Color Contrast
+
+Warna apa yang menurut materi diasosiasikan dengan trust, calm, dan profesional?
+[single]
+a) Merah
+b) Kuning
+c) Biru*
+d) Ungu
+
+Skema warna apa yang menggunakan warna-warna berlawanan di color wheel untuk menghasilkan high contrast?
+[single]
+a) Monochromatic
+b) Analogous
+c) Triadic
+d) Complementary*
+
+Berapa rasio proporsi estetis yang disebutkan dalam materi untuk membantu menyusun proporsi logo, dikenal sebagai golden ratio?
+[single]
+a) 1.414
+b) 1.618*
+c) 2.718
+d) 3.142
+
+Manakah berikut ini yang BUKAN termasuk dalam 6 tahap proses desain logo menurut materi?
+[single]
+a) Brainstorm
+b) Sketching
+c) Refinement
+d) Client Billing*

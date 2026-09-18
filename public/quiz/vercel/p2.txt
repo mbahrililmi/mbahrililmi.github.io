@@ -1,0 +1,69 @@
+Perintah untuk menginstal Vercel CLI secara global menggunakan npm adalah?
+[single]
+a) npm install vercel-cli
+b) npm install -g vercel*
+c) npm add global vercel
+d) npm setup vercel
+
+Mengapa signup ke Vercel via GitHub direkomendasikan menurut materi?
+[single]
+a) Karena wajib untuk semua akun baru
+b) Karena memungkinkan import repository langsung dan auto-deploy saat push*
+c) Karena satu-satunya cara untuk mendapat plan gratis
+d) Karena GitHub memberi diskon biaya Vercel
+
+Pada plan Hobby (gratis) Vercel, berapa kapasitas bandwidth per bulan menurut materi?
+[single]
+a) 10 GB/bulan
+b) 50 GB/bulan
+c) 100 GB/bulan*
+d) 1 TB/bulan
+
+Perintah CLI untuk login ke akun Vercel adalah?
+[single]
+a) vercel signin
+b) vercel auth
+c) vercel login*
+d) vercel connect
+
+Perintah CLI untuk mengecek akun yang sedang login di Vercel adalah?
+[single]
+a) vercel whoami*
+b) vercel status
+c) vercel account
+d) vercel me
+
+Untuk otomasi di GitHub Actions atau CI/CD pipeline, sebaiknya digunakan apa alih-alih login interaktif?
+[single]
+a) Password akun biasa
+b) Personal Access Token*
+c) Kode OTP
+d) Session cookie browser
+
+Perintah vercel --prod digunakan untuk?
+[single]
+a) Menjalankan development server lokal
+b) Melihat daftar semua deployment
+c) Deploy ke production URL (domain utama project)*
+d) Menghapus deployment lama
+
+Di dashboard Vercel, menu mana yang menampilkan Real User Monitoring seperti page views dan Core Web Vitals?
+[single]
+a) Projects
+b) Deployments
+c) Analytics*
+d) Settings
+
+Perintah vercel dev digunakan untuk apa?
+[single]
+a) Menghapus project dari Vercel
+b) Menjalankan development server lokal yang mensimulasikan environment Vercel*
+c) Deploy langsung ke production
+d) Menambah environment variable baru
+
+Menurut materi, apa saja persiapan yang dibutuhkan sebelum setup Vercel CLI?
+[single]
+a) Akun Netlify dan Docker
+b) Browser modern, akun GitHub, Node.js versi 16+, dan terminal*
+c) Akses ke server VPS pribadi
+d) Kartu kredit untuk verifikasi

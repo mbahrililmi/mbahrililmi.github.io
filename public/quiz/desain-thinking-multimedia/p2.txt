@@ -1,0 +1,69 @@
+Menurut materi Pertemuan 2, apa yang dimaksud dengan tahap Empathize dalam design thinking?
+[single]
+a) Tahap secara aktif memahami perasaan, pikiran, dan perilaku pengguna lewat pertemuan, pengamatan, dan mendengarkan langsung — bukan menebak*
+b) Tahap merumuskan problem statement berdasarkan hasil riset yang sudah dikumpulkan
+c) Tahap menghasilkan sebanyak mungkin ide solusi tanpa menghakimi dulu
+d) Tahap menguji purwarupa ke pengguna asli untuk mendapatkan umpan balik
+
+Materi menyebut kesalahan umum "designing for yourself" — apa maksud dari kesalahan ini?
+[single]
+a) Desainer berasumsi kebutuhan dan selera pribadinya mewakili kebutuhan seluruh calon pengguna, padahal belum tentu sama*
+b) Desainer terlalu sering meminta pendapat orang lain sebelum membuat keputusan desain
+c) Desainer menghabiskan waktu terlalu lama mendesain untuk dirinya sendiri sebagai hobi
+d) Desainer tidak pernah mau memakai produk yang ia rancang sendiri
+
+Materi menggunakan analogi "dokter vs tukang obat pinggir jalan" untuk menjelaskan pentingnya...
+[single]
+a) Mendiagnosis (riset) dulu sebelum meresepkan solusi, bukan langsung menebak berdasarkan gejala umum*
+b) Pentingnya memiliki sertifikasi profesi sebelum menjadi desainer produk
+c) Perbedaan harga jasa desain profesional dan desain amatir
+d) Pentingnya kecepatan dalam merilis produk ke pasar
+
+Manakah dari contoh pertanyaan berikut yang termasuk pertanyaan TERBUKA yang dianjurkan saat wawancara pengguna?
+[single]
+a) "Ceritakan pengalaman terakhir kamu memakai aplikasi ini."*
+b) "Apakah kamu suka aplikasi ini?"
+c) "Kamu pasti setuju kalau aplikasi ini bagus, kan?"
+d) "Apakah aplikasi ini lambat atau tidak?"
+
+Pada contoh teknik 5 Whys tentang aplikasi absensi kampus yang lag, pertanyaan "kenapa" berulang akhirnya mengungkap bahwa akar masalah sebenarnya adalah...
+[single]
+a) Kecemasan mahasiswa soal IPK dan peluang mendapat beasiswa*
+b) Server aplikasi kampus yang terlalu lambat dan sering down
+c) Mahasiswa tidak tahu cara menggunakan aplikasi tersebut
+d) Aplikasi tidak kompatibel dengan sebagian besar tipe smartphone
+
+Berdasarkan daftar "Hindari (Don'ts)" saat wawancara pada materi, manakah tindakan yang sebaiknya dihindari pewawancara?
+[single]
+a) Menggiring jawaban narasumber, misalnya dengan kalimat "kamu pasti setuju kan..."*
+b) Membiarkan narasumber berbicara lebih banyak dari pewawancara
+c) Mencatat kata-kata persis dari narasumber, bukan interpretasi sendiri
+d) Memberi jeda diam sejenak setelah mengajukan pertanyaan
+
+Apa perbedaan utama antara observasi pasif dan contextual inquiry menurut materi?
+[single]
+a) Observasi pasif mengamati dari jauh tanpa berinteraksi, sedangkan contextual inquiry mengamati sekaligus bertanya langsung saat pengguna memakai produk di lingkungan aslinya*
+b) Observasi pasif hanya bisa dilakukan secara online, sedangkan contextual inquiry hanya bisa dilakukan secara tatap muka
+c) Observasi pasif membutuhkan izin tertulis, sedangkan contextual inquiry tidak memerlukan izin apa pun
+d) Observasi pasif dilakukan oleh satu peneliti, sedangkan contextual inquiry harus dilakukan oleh tim besar
+
+Pada contoh kasus aplikasi pencatatan pengeluaran, hasil wawancara mengatakan mahasiswa "selalu mencatat rapi", tapi observasi langsung menunjukkan ia hanya membuka aplikasi dua kali seminggu. Kesenjangan ini mengajarkan bahwa...
+[single]
+a) Apa yang dikatakan pengguna saat wawancara tidak selalu sama dengan apa yang benar-benar mereka lakukan, sehingga observasi tetap diperlukan*
+b) Wawancara adalah metode riset yang tidak berguna dan sebaiknya tidak pernah dipakai
+c) Pengguna sengaja berbohong kepada peneliti agar terlihat rapi dan disiplin
+d) Aplikasi pencatatan pengeluaran sebaiknya dihapus karena tidak ada gunanya
+
+Empathy map yang dibahas di materi P2 terdiri dari empat kuadran utama ditambah dua area tambahan. Manakah kombinasi berikut yang BENAR sebagai empat kuadran utamanya?
+[single]
+a) Says, Thinks, Does, Feels*
+b) Says, Plans, Builds, Tests
+c) Thinks, Reviews, Acts, Judges
+d) Feels, Sees, Hears, Says
+
+Menurut materi, kenapa affinity diagram sebaiknya dikerjakan bersama tim secara terbuka, bukan disimpulkan sendiri oleh satu orang?
+[single]
+a) Karena otak manusia cenderung memilih bukti yang mendukung opini yang sudah ada (bias konfirmasi), sehingga pola yang muncul dari kerja tim lebih objektif*
+b) Karena affinity diagram membutuhkan minimal lima orang secara hukum untuk dianggap sah
+c) Karena satu orang tidak diperbolehkan menyentuh sticky note lebih dari sepuluh kali
+d) Karena hanya dosen yang berwenang menyimpulkan hasil riset mahasiswa

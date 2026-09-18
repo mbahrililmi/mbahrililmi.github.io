@@ -1,0 +1,69 @@
+Menurut materi Pertemuan 7, apa fungsi utama pertemuan ini dalam rangkaian perkuliahan sebelum masuk Ujian Tengah Semester?
+[single]
+a) Memperkenalkan teknik animasi 3D yang benar-benar baru dan lebih berat
+b) Menjadi "simpul pengikat" yang menggabungkan semua materi P1-P6 dalam satu alur kerja produksi sederhana*
+c) Mengganti seluruh materi 2D dengan materi 3D sepenuhnya
+d) Menjadi sesi ujian praktik pertama di semester ini
+
+Menurut tabel "Rangkuman Kontribusi Tiap Pertemuan", apa peran materi Pertemuan 4 (Character Design) terhadap proyek akhir?
+[single]
+a) Jadi acuan kualitas gerak untuk menilai apakah animasi terasa hidup
+b) Membuka opsi medium produksi antara 2D maupun 3D
+c) Menyediakan aset visual (karakter, model sheet) yang siap dianimasikan*
+d) Melatih gerak yang lebih kompleks seperti walk cycle
+
+Berapa tahap inti pipeline mini produksi animasi yang dijelaskan pada materi Pertemuan 7?
+[single]
+a) Tiga tahap
+b) Empat tahap
+c) Lima tahap*
+d) Enam tahap
+
+Pada tahap pipeline mini produksi, tahap apa yang dijelaskan sebagai proses menuliskan premis singkat seperti "seekor bola karet yang penasaran mencoba melompati rintangan pertamanya"?
+[single]
+a) Tahap 1 — Konsep & Ide*
+b) Tahap 2 — Storyboard
+c) Tahap 4 — Animasi
+d) Tahap 5 — Review & Revisi
+
+Mengapa latihan bouncing ball (bola memantul) disebut sebagai "ritual wajib" bagi animator pemula menurut materi Pertemuan 7?
+[single]
+a) Karena gerakan ini sudah mengandung hampir semua elemen dasar animasi seperti timing, spacing, dan squash & stretch*
+b) Karena bola adalah satu-satunya objek yang bisa dianimasikan dengan Blender
+c) Karena latihan ini wajib dikumpulkan sebagai syarat kelulusan mata kuliah
+d) Karena bola memantul tidak memerlukan prinsip animasi apa pun
+
+Pada rute 3D (rigging & keyframe) untuk studi kasus bouncing ball, apa yang perlu disesuaikan secara manual di titik kontak agar efek squash & stretch tetap terasa alami, bukan sekadar interpolasi lurus?
+[single]
+a) Warna material objek
+b) Skala objek*
+c) Posisi kamera
+d) Jumlah vertex pada mesh
+
+Peran dalam kolaborasi tim produksi animasi yang bertugas memberi masukan objektif, memastikan konsistensi gaya visual, dan menjadi penengah perbedaan pendapat kreatif antar anggota tim disebut?
+[single]
+a) Storyboard Artist
+b) Animator
+c) Reviewer / Sutradara*
+d) Compositor
+
+Menurut materi, mengapa mendokumentasikan proses kerja (sketsa awal, revisi gagal, catatan keputusan kreatif) dianggap sama pentingnya dengan hasil akhir?
+[single]
+a) Karena dosen dan calon employer sering lebih tertarik melihat proses berpikir dan kemampuan menerima masukan, bukan cuma hasil akhir yang rapi*
+b) Karena tanpa dokumentasi, file animasi tidak bisa dibuka kembali
+c) Karena dokumentasi proses menggantikan kebutuhan membuat storyboard
+d) Karena hasil akhir animasi tidak akan pernah dinilai oleh dosen
+
+Manakah dari berikut ini yang BUKAN termasuk kesalahan umum yang perlu dihindari menurut materi Pertemuan 7 dalam studi kasus mini bouncing ball ke karakter?
+[single]
+a) Gerakan terasa kaku seperti robot karena lupa menerapkan squash & stretch
+b) Lompatan karakter terasa tiba-tiba karena tidak ada anticipation
+c) Terlalu lama di satu tahap dan kehabisan waktu karena perfeksionis
+d) Terlalu banyak menggunakan warna cerah pada karakter sehingga sulit dianimasikan*
+
+Draf awal proposal proyek akhir semester yang mulai dirancang di Pertemuan 7 memiliki target durasi animasi pendek berapa lama?
+[single]
+a) 5-10 detik
+b) 15-30 detik*
+c) 1-2 menit
+d) 3-5 menit

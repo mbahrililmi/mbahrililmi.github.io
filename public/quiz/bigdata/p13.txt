@@ -1,0 +1,69 @@
+Dalam analisis RFM pada materi, apa yang dimaksud dengan "Recency"?
+[single]
+a) Jumlah total transaksi yang dilakukan pelanggan
+b) Total uang yang dibelanjakan pelanggan
+c) Berapa lama sejak pelanggan terakhir kali bertransaksi*
+d) Jumlah produk berbeda yang dibeli pelanggan
+
+Fitur "You may also like" dan "Frequently bought together" pada aplikasi e-commerce menurut materi memanfaatkan teknik...
+[single]
+a) Dynamic pricing
+b) Collaborative filtering dan association rules*
+c) Fraud detection
+d) Demand forecasting
+
+Menurut materi, dynamic pricing pada layanan seperti Gojek/Grab (surge pricing) menyesuaikan harga secara real-time berdasarkan...
+[single]
+a) Hanya waktu dalam sehari, tidak ada faktor lain
+b) Permintaan, harga kompetitor, dan level stok*
+c) Jumlah karyawan yang tersedia
+d) Rating aplikasi di app store
+
+Metode analitik apa yang digunakan pada materi untuk melakukan Customer Segmentation berbasis RFM?
+[single]
+a) Random Forest
+b) K-Means*
+c) Apriori
+d) SARIMA
+
+Untuk kasus Churn Prediction pada materi, metode analitik yang digunakan adalah...
+[single]
+a) K-Means
+b) Random Forest*
+c) FP-Growth
+d) Linear Regression sederhana
+
+Manakah berikut ini yang termasuk pengecekan Data Quality pada materi, khususnya aspek Validity?
+[single]
+a) Memeriksa apakah format tanggal seragam di seluruh dataset
+b) Memeriksa seberapa banyak missing values di setiap kolom
+c) Memeriksa apakah amount lebih besar dari 0 dan customer_id benar-benar ada di tabel customer*
+d) Memeriksa kecepatan query database
+
+Manakah berikut ini yang BUKAN termasuk use case Big Data di Retail yang dibahas dalam materi?
+[single]
+a) Demand Forecasting
+b) Dynamic Pricing
+c) Fraud Detection
+d) Drug Discovery*
+
+Pada tugas praktikum Pertemuan 13, dataset yang digunakan untuk studi kasus customer segmentation adalah...
+[single]
+a) Titanic Dataset
+b) Brazilian E-Commerce Dataset (Olist)*
+c) MNIST Dataset
+d) Iris Dataset
+
+Metode Apriori/FP-Growth pada materi digunakan untuk menjawab use case bisnis...
+[single]
+a) Customer Segmentation
+b) Churn Prediction
+c) Product Bundling melalui Association Rules*
+d) Price Optimization
+
+Dalam skenario "E-Commerce Analytics Challenge" pada materi, manakah yang termasuk salah satu dari empat problem bisnis yang harus dijawab?
+[single]
+a) Menentukan gaji karyawan gudang
+b) Memprediksi pelanggan yang berpotensi churn*
+c) Menghitung pajak perusahaan
+d) Mendesain ulang logo perusahaan

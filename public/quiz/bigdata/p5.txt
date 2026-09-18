@@ -1,0 +1,69 @@
+Clustering berbeda dari classification karena clustering merupakan teknik...
+[single]
+a) Supervised learning yang membutuhkan data berlabel
+b) Unsupervised learning yang mengelompokkan data tanpa label yang diketahui sebelumnya*
+c) Reinforcement learning yang belajar dari trial and error
+d) Teknik yang hanya bisa dipakai untuk data time series
+
+Metode inisialisasi centroid pada K-Means yang direkomendasikan karena menyebar posisi centroid secara lebih cerdas adalah...
+[single]
+a) Random initialization
+b) K-Means++*
+c) Manual selection oleh user
+d) Hierarchical initialization
+
+Elbow Method dalam K-Means digunakan untuk menentukan...
+[single]
+a) Jenis linkage yang paling optimal
+b) Jumlah cluster (K) yang optimal berdasarkan grafik WCSS*
+c) Radius area tetangga (eps) yang tepat
+d) Nilai Silhouette Score tertinggi secara otomatis
+
+Salah satu kekurangan K-Means menurut materi adalah...
+[single]
+a) Tidak bisa diterapkan pada data berskala besar
+b) Hanya cocok untuk cluster berbentuk bulat (spherical)*
+c) Selalu membutuhkan proses training yang sangat lama
+d) Tidak bisa diimplementasikan dengan scikit-learn
+
+Pendekatan Hierarchical Clustering yang dimulai dengan setiap titik data sebagai cluster tersendiri, lalu digabung sedikit demi sedikit, disebut...
+[single]
+a) Divisive (Top-Down)
+b) Agglomerative (Bottom-Up)*
+c) Density-based
+d) Partitional
+
+Metode linkage yang direkomendasikan pada Hierarchical Clustering karena meminimalkan variansi di dalam cluster adalah...
+[single]
+a) Single Linkage
+b) Complete Linkage
+c) Average Linkage
+d) Ward Linkage*
+
+Pada algoritma DBSCAN, parameter MinPts merujuk pada...
+[single]
+a) Radius maksimum agar dua titik dianggap bertetangga
+b) Jumlah minimum titik tetangga dalam radius eps agar suatu titik menjadi core point*
+c) Jumlah cluster yang harus ditentukan di awal
+d) Jarak rata-rata antar semua titik dalam dataset
+
+Dalam DBSCAN, titik yang sama sekali tidak masuk ke cluster mana pun disebut...
+[single]
+a) Core point
+b) Border point
+c) Noise point*
+d) Centroid point
+
+Dibandingkan K-Means, keunggulan DBSCAN menurut tabel perbandingan pada materi adalah...
+[single]
+a) DBSCAN mengharuskan penentuan jumlah cluster (K) di awal
+b) DBSCAN hanya cocok untuk cluster berbentuk spherical
+c) DBSCAN dapat menemukan cluster berbentuk arbitrary dan otomatis mendeteksi noise*
+d) DBSCAN memiliki scalability yang lebih buruk daripada Hierarchical Clustering
+
+Silhouette Score memiliki rentang nilai [-1, 1], di mana nilai yang semakin tinggi (misalnya ≥ 0.5) menunjukkan...
+[single]
+a) Hasil clustering yang semakin buruk
+b) Hasil clustering yang semakin baik, cohesion dan separation-nya bagus*
+c) Jumlah noise point yang semakin banyak
+d) Nilai K yang harus segera ditambah

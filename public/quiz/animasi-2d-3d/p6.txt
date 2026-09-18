@@ -1,0 +1,69 @@
+Dalam analogi "menggambar di kertas vs memahat patung" pada materi, apa yang menjadi perbedaan mendasar antara cara berpikir animasi 2D dan 3D?
+[single]
+a) Animasi 2D hanya memikirkan dua dimensi (tinggi dan lebar), sedangkan animasi 3D menambahkan dimensi ketiga yaitu kedalaman yang bisa dilihat dari segala sudut*
+b) Animasi 2D memakai warna, animasi 3D hanya hitam putih
+c) Animasi 2D hanya untuk pemula, sedangkan animasi 3D hanya untuk profesional
+d) Animasi 2D tidak memiliki karakter, sedangkan animasi 3D selalu memiliki karakter
+
+Sumbu tambahan apa yang dipakai dalam animasi 3D dibanding animasi 2D yang hanya memakai sumbu X dan Y?
+[single]
+a) Sumbu W
+b) Sumbu Z (kedalaman)*
+c) Sumbu waktu
+d) Sumbu rotasi khusus
+
+Menurut materi, apa alasan utama mata kuliah ini memilih Blender sebagai software 3D dibanding Maya, 3ds Max, atau Cinema 4D?
+[single]
+a) Blender lebih mudah dipelajari karena tidak memiliki fitur rigging
+b) Blender sepenuhnya gratis dan open-source, tapi tetap dipakai untuk produksi profesional dan punya komunitas besar*
+c) Blender adalah satu-satunya software yang bisa membuat animasi 2D dan 3D sekaligus
+d) Blender hanya bisa dipakai di sistem operasi tertentu sehingga lebih aman
+
+Area terbesar di tengah layar Blender, tempat kita melihat, menavigasi, dan mengedit objek dalam scene secara langsung, disebut?
+[single]
+a) Outliner
+b) Properties Panel
+c) Viewport*
+d) Toolbar
+
+Bagian interface Blender yang berbentuk daftar bertingkat menampilkan semua objek dalam scene, sehingga kita bisa memilih objek langsung dari daftar tanpa mengklik di viewport, disebut?
+[single]
+a) Toolbar
+b) Outliner*
+c) Viewport
+d) Properties Panel
+
+Menurut materi, apa perbedaan utama antara Object Mode dan Edit Mode di Blender?
+[single]
+a) Object Mode mengatur objek secara keseluruhan (posisi, rotasi, skala), sedangkan Edit Mode mengubah bentuk detail di dalam objek seperti vertex, edge, dan face*
+b) Object Mode hanya untuk kamera, Edit Mode hanya untuk lampu
+c) Object Mode dipakai untuk rendering, Edit Mode dipakai untuk menyimpan file
+d) Object Mode dan Edit Mode adalah dua nama lain untuk hal yang sama
+
+Tombol keyboard apa yang dipakai untuk berpindah antara Object Mode dan Edit Mode di Blender menurut materi?
+[single]
+a) Spasi
+b) Enter
+c) Tab*
+d) Shift
+
+Gerakan navigasi 3D yang dilakukan dengan menekan dan menahan tombol tengah mouse sambil menggeser, untuk memutar sudut pandang mengelilingi objek seperti berjalan mengelilingi patung, disebut?
+[single]
+a) Pan
+b) Zoom
+c) Orbit*
+d) Scale
+
+Seorang mahasiswa ingin menggerakkan objek cube hanya sepanjang sumbu Z (naik-turun) saja tanpa bergeser ke sumbu lain. Menurut materi, kombinasi shortcut apa yang harus ditekan?
+[single]
+a) R lalu Z
+b) S lalu Z
+c) G lalu Z*
+d) Tab lalu Z
+
+Manakah pasangan shortcut dan fungsinya berikut ini yang SALAH menurut tabel transform dasar pada materi?
+[single]
+a) G untuk Move (menggerakkan objek)
+b) R untuk Rotate (memutar objek)
+c) S untuk Scale (mengubah ukuran)
+d) T untuk Toggle Viewport*

@@ -1,0 +1,69 @@
+Platform manakah yang menurut materi paling cocok dengan pendekatan native-feel ads dengan filosofi "Don't make ads, make TikToks"?
+[single]
+a) LinkedIn
+b) TikTok*
+c) X (Twitter)
+d) YouTube
+
+Pada advertising funnel, tahap Consideration (middle funnel) paling berkaitan dengan objective apa?
+[single]
+a) Reach dan brand awareness
+b) Traffic, engagement, dan video views*
+c) Sales, leads, dan app install
+d) Retargeting eksklusif untuk pembeli lama
+
+Berapa ukuran yang tepat untuk format IG/FB Story & Reels menurut tabel spesifikasi platform pada materi Pertemuan 15?
+[single]
+a) 1080×1080 (1:1)
+b) 1080×1350 (4:5)
+c) 1080×1920 (9:16)*
+d) 1200×628 (1.91:1)
+
+Menurut aturan umum lintas platform, berapa persentase maksimal area gambar yang direkomendasikan Meta untuk diisi teks?
+[single]
+a) Kurang dari 5%
+b) Kurang dari 20%*
+c) Kurang dari 50%
+d) Kurang dari 80%
+
+Manakah pendekatan copywriting yang paling sesuai untuk platform LinkedIn menurut materi?
+[single]
+a) Casual dengan emoji secukupnya
+b) Bahasa native gen-Z dan mengikuti trends
+c) Profesional dan data-driven*
+d) Storytelling panjang bergaya santai
+
+Teknik persuasi Problem-agitate-solve dalam ad copywriting bekerja dengan cara...
+[single]
+a) Menampilkan testimonial dan rating bintang dari pelanggan
+b) Mengangkat masalah, memperbesar dampaknya, lalu menawarkan solusi*
+c) Membuat penasaran tanpa memberi informasi lengkap
+d) Menyebutkan angka diskon secara spesifik
+
+Mengapa video ads untuk feed sebaiknya tetap efektif meskipun ditonton tanpa suara?
+[single]
+a) Karena semua platform social media melarang penggunaan audio pada ads
+b) Karena banyak pengguna men-scroll feed tanpa menyalakan suara, sehingga captions menjadi penting*
+c) Karena audio membuat file video menjadi terlalu besar
+d) Karena hanya video promosi yang boleh menggunakan suara
+
+Kapan static ads lebih disarankan digunakan dibandingkan video ads menurut materi?
+[single]
+a) Saat membutuhkan storytelling emosional yang mendalam
+b) Saat produk memerlukan demo penggunaan yang detail
+c) Saat budget produksi terbatas dan diperlukan A/B testing yang cepat*
+d) Saat target utama adalah platform TikTok/Reels
+
+Fitur Canva apa yang digunakan untuk mengadaptasi satu desain ad ke berbagai format ukuran platform sekaligus?
+[single]
+a) Brand Kit
+b) Magic Resize*
+c) Content Planner
+d) Background Remover
+
+Dalam optimization loop campaign, apa yang sebaiknya dilakukan setelah memonitor performa creative selama 3-7 hari?
+[single]
+a) Langsung menghentikan seluruh campaign tanpa terkecuali
+b) Mematikan creative yang berkinerja buruk dan men-scale yang berkinerja baik*
+c) Mengabaikan data karena learning phase belum cukup lama
+d) Mengganti seluruh platform distribusi iklan

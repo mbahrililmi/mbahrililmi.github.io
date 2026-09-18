@@ -1,0 +1,69 @@
+Menurut materi, apa keunggulan utama Blender dibanding software 3D lain bagi mahasiswa?
+[single]
+a) Hanya tersedia untuk sistem operasi Windows
+b) Gratis, open-source, dan sudah digunakan secara profesional di industri*
+c) Tidak memiliki fitur rendering
+d) Hanya bisa digunakan untuk modeling, tanpa animasi
+
+Panel mana pada interface Blender yang menampilkan daftar semua objek dalam scene?
+[single]
+a) Timeline
+b) Properties Panel
+c) Outliner*
+d) 3D Viewport
+
+Kombinasi tombol apa yang digunakan untuk orbit/memutar tampilan 3D Viewport dengan mouse?
+[single]
+a) Scroll wheel
+b) Middle Mouse + Drag*
+c) Shift + Middle Mouse
+d) Ctrl + Middle Mouse
+
+Manakah pasangan shortcut transformasi objek yang benar dalam Blender?
+[single]
+a) G = Rotate, R = Move, S = Scale
+b) G = Move, R = Rotate, S = Scale*
+c) G = Scale, R = Move, S = Rotate
+d) G = Move, R = Scale, S = Rotate
+
+Tombol apa yang digunakan untuk berpindah antara Object Mode dan Edit Mode?
+[single]
+a) Tab*
+b) Enter
+c) Shift+A
+d) Ctrl+E
+
+Objek primitif Blender manakah yang paling cocok digunakan sebagai basis untuk membuat gelas atau botol?
+[single]
+a) Cube
+b) Plane
+c) Cylinder*
+d) Torus
+
+Modifier apa yang digunakan untuk menambah ketebalan pada mesh datar seperti plane agar menjadi objek padat?
+[single]
+a) Mirror
+b) Array
+c) Bevel
+d) Solidify*
+
+Dalam pengaturan material Principled BSDF dasar, nilai Metallic = 0 menunjukkan bahwa material tersebut...
+[single]
+a) Bersifat logam sepenuhnya
+b) Bersifat dielectric seperti plastik atau kayu*
+c) Transparan seperti kaca
+d) Memancarkan cahaya sendiri (emissive)
+
+Manakah jenis lampu di Blender yang meniru cahaya matahari (directional, tidak terpengaruh posisi, hanya rotasi)?
+[single]
+a) Point Light
+b) Sun Light*
+c) Spot Light
+d) Area Light
+
+Untuk melakukan render pertama pada scene di Blender, tombol shortcut yang digunakan adalah...
+[single]
+a) F5
+b) F9
+c) F12*
+d) Ctrl+R

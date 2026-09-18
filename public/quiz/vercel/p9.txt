@@ -1,0 +1,69 @@
+Apa keuntungan utama Serverless Functions dibanding Traditional Server menurut materi?
+[single]
+a) Bayar per invocation dan scale otomatis dari 0 ke jutaan request*
+b) Server selalu running 24/7 tanpa henti
+c) Wajib dikonfigurasi manual setiap hari
+d) Hanya bisa menangani satu request dalam satu waktu
+
+Menurut materi, berapa kisaran cold start pada Serverless Functions saat pertama kali dipanggil?
+[single]
+a) ~100-500ms*
+b) ~10-20 detik
+c) ~1 jam
+d) Tidak ada cold start sama sekali
+
+Pada Next.js App Router, function GET dan POST didefinisikan di file apa untuk membuat API endpoint?
+[single]
+a) app/api/hello/route.ts*
+b) pages/api/hello.js saja tanpa alternatif lain
+c) api/hello.config.ts
+d) server/hello.controller.ts
+
+Apa perbedaan utama Edge Functions dibanding Serverless Functions dari sisi lokasi eksekusi menurut tabel materi?
+[single]
+a) Serverless Functions jalan di 100+ edge locations, Edge Functions hanya 1 region
+b) Edge Functions jalan di 100+ edge locations global, Serverless Functions di 1 region (us-east-1 default)*
+c) Keduanya selalu berjalan di region yang sama persis
+d) Edge Functions hanya bisa dijalankan secara lokal
+
+Runtime apa yang digunakan oleh Edge Functions menurut tabel perbandingan di materi?
+[single]
+a) Node.js penuh
+b) Python runtime
+c) V8 Isolates (subset)*
+d) Java Virtual Machine
+
+Middleware pada Next.js (middleware.ts) yang berjalan di edge biasanya digunakan untuk use case apa menurut materi?
+[single]
+a) Auth, redirect, dan geo-routing/A-B testing*
+b) Menyimpan file gambar besar
+c) Menjalankan query database kompleks jangka panjang
+d) Mengkompilasi seluruh aplikasi dari awal
+
+Menurut tabel perbandingan, berapa Max Duration untuk Serverless Functions di Vercel?
+[single]
+a) 5 detik
+b) 10-60 detik*
+c) 5 menit
+d) Tidak terbatas
+
+Pada contoh kode Contact Form Handler di materi, layanan apa yang digunakan untuk mengirim email?
+[single]
+a) SendGrid saja tanpa alternatif
+b) Resend*
+c) Mailgun
+d) Amazon SES
+
+Untuk kebutuhan seperti database queries dan file operations yang butuh full Node.js API, menurut tabel materi sebaiknya menggunakan?
+[single]
+a) Edge Functions
+b) Serverless Functions*
+c) Static HTML saja
+d) Client-side JavaScript murni
+
+Apa fungsi utama dari import { ImageResponse } from 'next/og' pada contoh kode di materi?
+[single]
+a) Mengoptimasi gambar upload user
+b) Membuat dynamic OG (Open Graph) image*
+c) Mengkompresi video
+d) Menghapus gambar dari CDN

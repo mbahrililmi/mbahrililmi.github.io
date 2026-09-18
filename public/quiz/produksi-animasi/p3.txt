@@ -1,0 +1,69 @@
+Dalam analogi "Naskah sebagai Blueprint Bangunan" pada materi, apa yang terjadi jika tim konstruksi membangun tanpa blueprint yang jelas?
+[single]
+a) Bangunan akan selesai lebih cepat dari jadwal
+b) Dinding tidak sejajar, kabel listrik menabrak jalur pipa, dan revisi besar-besaran harus dilakukan*
+c) Biaya konstruksi otomatis menjadi lebih murah
+d) Semua tukang bekerja lebih kompak tanpa masalah
+
+Struktur cerita 3 babak menurut materi terdiri dari urutan...
+[single]
+a) Konfrontasi, Setup, Resolusi
+b) Setup, Konfrontasi, Resolusi*
+c) Resolusi, Konfrontasi, Setup
+d) Setup, Resolusi, Konfrontasi
+
+Babak yang memperkenalkan dunia cerita dan karakter utama kepada penonton sebelum masalah muncul disebut babak...
+[single]
+a) Setup*
+b) Konfrontasi
+c) Resolusi
+d) Klimaks
+
+Menurut materi, babak mana yang biasanya membutuhkan lebih banyak shot rumit sehingga penting diperhatikan producer saat membuat perkiraan awal?
+[single]
+a) Babak 1 (Setup)
+b) Babak 2 (Konfrontasi)*
+c) Babak 3 (Resolusi)
+d) Ketiga babak sama rumitnya
+
+Tiga elemen dasar format naskah sederhana yang wajib ada menurut materi adalah...
+[single]
+a) Judul, Sinopsis, Karakter
+b) Scene heading, deskripsi aksi, dialog*
+c) Logline, Premis, Tone
+d) Setup, Konfrontasi, Resolusi
+
+Penanda "EXT." dan "INT." pada scene heading berfungsi untuk menunjukkan...
+[single]
+a) Nama karakter yang sedang berbicara
+b) Lokasi luar ruangan atau dalam ruangan*
+c) Durasi adegan dalam hitungan detik
+d) Tingkat kompleksitas animasi sebuah shot
+
+Perbedaan utama antara sinopsis dan treatment menurut materi adalah...
+[single]
+a) Sinopsis sangat singkat (satu paragraf sampai setengah halaman), sedangkan treatment lebih rinci (1-3 halaman) dalam bentuk prosa*
+b) Sinopsis selalu memakai format dialog sedangkan treatment tidak
+c) Treatment hanya dipakai untuk animasi panjang, sinopsis untuk animasi pendek
+d) Sinopsis tidak boleh membocorkan akhir cerita sedangkan treatment boleh
+
+Menurut materi, dokumen apa yang sebaiknya digunakan saat tim produksi perlu memvalidasi bahwa keseluruhan alur cerita sudah masuk akal sebelum menulis naskah penuh dengan dialog?
+[single]
+a) Sinopsis
+b) Treatment*
+c) Pitch bible
+d) Character brief
+
+Menurut materi, character brief yang dibahas di Pertemuan 3 berbeda dari model sheet karena character brief fokus pada...
+[single]
+a) Pose, ekspresi, dan proporsi tubuh karakter secara visual
+b) Sisi naratif karakter: siapa dia, apa yang diinginkan, dan bagaimana perannya dalam cerita*
+c) Palet warna resmi yang dipakai untuk menggambar karakter
+d) Teknik rigging yang dipakai untuk menganimasikan karakter
+
+Elemen character brief yang menjelaskan pergulatan batin karakter seperti rasa takut atau keraguan, terpisah dari musuh atau rintangan fisik, disebut...
+[single]
+a) Motivasi & Tujuan
+b) Konflik Internal*
+c) Arc / Perubahan Karakter
+d) Hubungan dengan Karakter Lain

@@ -1,0 +1,69 @@
+Production bible menurut materi berfungsi sebagai...
+[single]
+a) Alat estimasi jumlah shot dan durasi produksi
+b) Dokumen acuan tunggal (single source of truth) berisi referensi visual dan naratif produksi*
+c) Diagram batang yang menampilkan jadwal tugas proyek
+d) Daftar rinci setiap shot yang harus diproduksi
+
+Dalam analogi "Resep Masakan di Dapur Restoran" pada materi, production bible berfungsi seperti...
+[single]
+a) Menu yang ditawarkan kepada pelanggan
+b) Resep tertulis yang memastikan rasa dan tampilan masakan tetap konsisten siapa pun yang memasak*
+c) Peralatan dapur yang dipakai untuk memasak
+d) Daftar harga bahan baku masakan
+
+Manakah yang BUKAN termasuk lima komponen inti wajib dalam production bible menurut materi?
+[single]
+a) World Building
+b) Palet Warna
+c) Gantt Chart*
+d) Tone & Mood Keseluruhan
+
+Menurut materi, untuk proyek skala kecil seperti tugas kuliah atau proyek independen, seberapa tebal production bible yang disarankan?
+[single]
+a) 50 halaman agar terlihat lebih profesional
+b) 5-10 halaman yang padat dan jelas*
+c) Minimal 100 halaman sesuai standar studio besar
+d) Tidak perlu ditulis, cukup disampaikan secara lisan
+
+Perbedaan utama style guide dari production bible menurut materi adalah...
+[single]
+a) Style guide fokus pada "bagaimana cara menggambar secara teknis", sedangkan production bible bicara "siapa dan apa" dari produksi secara menyeluruh*
+b) Style guide hanya dipakai sebelum pitching, sedangkan production bible dipakai sepanjang produksi
+c) Style guide ditujukan untuk klien dan investor, sedangkan production bible untuk animator
+d) Style guide tidak boleh memuat kode warna, sedangkan production bible wajib memuatnya
+
+Menurut tabel perbandingan di materi, audiens utama dari style guide adalah...
+[single]
+a) Seluruh tim, klien, dan investor
+b) Terutama animator dan artist teknis*
+c) Hanya sutradara dan producer
+d) Penonton umum
+
+Contoh aturan proporsi karakter dalam style guide yang disebutkan materi menyatakan karakter anak-anak digambar dengan tinggi tubuh setara...
+[single]
+a) 2 kali tinggi kepala
+b) 4 kali tinggi kepala (4-head tall)*
+c) 6 kali tinggi kepala
+d) 8 kali tinggi kepala
+
+Lembar yang menunjukkan bagaimana wajah karakter utama terlihat saat senang, sedih, marah, atau terkejut menurut materi disebut...
+[single]
+a) Model sheet
+b) Expression sheet*
+c) Shot list
+d) Turnaround sheet
+
+Dalam skenario "tanpa production bible" yang dijelaskan materi, apa yang terjadi ketika Animator A menggambar baju karakter utama biru tua sementara Animator B menggambarnya biru muda?
+[single]
+a) Penonton tidak menyadari perbedaannya sama sekali
+b) Penonton menyadari ketidakkonsistenan dan kepercayaan terhadap kualitas produksi menurun*
+c) Biaya produksi otomatis berkurang karena lebih cepat dikerjakan
+d) Sutradara tidak perlu melakukan revisi apa pun
+
+Menurut materi, hubungan antara style guide dan production bible adalah...
+[single]
+a) Style guide selalu dibuat sebelum production bible ada
+b) Style guide biasanya "hidup di dalam" production bible dan harus selalu selaras dengannya*
+c) Keduanya adalah dokumen yang sama sekali tidak berkaitan
+d) Production bible hanya dibuat setelah style guide selesai sepenuhnya

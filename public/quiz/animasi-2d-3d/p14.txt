@@ -1,0 +1,69 @@
+Tiga tahap utama pipeline produksi animasi menurut materi Pertemuan 14 adalah...
+[single]
+a) Pra-Produksi, Produksi, Pasca-Produksi*
+b) Modeling, Texturing, Rendering
+c) Storyboard, Animatic, Compositing
+d) Ide, Naskah, Render Final
+
+Versi kasar dari storyboard yang sudah disusun sesuai timing dan biasanya ditambah dummy audio/musik, dipakai untuk mengecek pacing cerita sebelum masuk produksi sungguhan, disebut...
+[single]
+a) Model sheet
+b) Animatic*
+c) Color grading
+d) Layout
+
+Menurut tabel alokasi waktu tipikal produksi pada materi, tahap yang biasanya memakan porsi waktu paling besar (40%-50%) adalah...
+[single]
+a) Pre-Production
+b) Post-Production
+c) Production*
+d) Semua tahap memakan porsi waktu yang sama persis
+
+Dalam pipeline produksi, peran yang bertanggung jawab menjaga visi cerita tetap konsisten dan mengambil keputusan besar saat terjadi perdebatan kreatif adalah...
+[single]
+a) Animator
+b) Compositor
+c) Sound Designer
+d) Sutradara / Project Lead*
+
+Pada studi kasus tim "Titik Balik", masalah apa yang ditemukan setelah animatic selesai dibuat di akhir tahap pra-produksi?
+[single]
+a) Durasi animatic mencapai 1 menit 20 detik, melebihi batas maksimal lomba 60 detik*
+b) Storyboard hilang dan harus dibuat ulang dari nol
+c) Kedua karakter yang didesain terlalu detail sehingga sulit dianimasikan
+d) Tidak ada anggota tim yang bersedia mengerjakan sound design
+
+Kenapa tim "Titik Balik" pada akhirnya memilih memangkas dua adegan transisi yang dianggap "manis tapi tidak esensial", bukan mempercepat animasi di semua adegan lain?
+[single]
+a) Karena dosen pembimbing melarang keras adegan transisi apa pun
+b) Karena memangkas adegan yang tidak esensial adalah kompromi yang lebih murah dibanding mempercepat semua adegan yang berisiko merusak kualitas gerakan keseluruhan*
+c) Karena adegan transisi tersebut mengandung kesalahan teknis yang tidak bisa diperbaiki
+d) Karena lomba mewajibkan jumlah adegan minimal harus dikurangi
+
+Masalah konsistensi outline yang lebih tebal dari salah satu animator pada hari ke-6 produksi "Titik Balik" akhirnya diatasi tim dengan cara...
+[single]
+a) Mengganti seluruh gaya visual proyek menjadi gaya 3D
+b) Memecat salah satu animator dari tim
+c) Menyepakati satu brush preset khusus dan melakukan review harian singkat setiap sore*
+d) Menghapus seluruh adegan yang sudah dikerjakan dan memulai dari awal
+
+Kenapa revisi besar pada studi kasus "Titik Balik" sengaja dibatasi hanya di tahap pra-produksi, bukan terus-menerus dilakukan sepanjang proses?
+[single]
+a) Karena revisi di tahap produksi dilarang oleh peraturan lomba
+b) Karena dosen pembimbing hanya boleh memberi masukan satu kali dalam satu semester
+c) Karena pra-produksi tidak memiliki dampak apa pun terhadap tahap produksi
+d) Karena merevisi storyboard di atas kertas jauh lebih murah dan cepat dibanding merevisi animasi yang sudah selesai dianimasikan*
+
+Fenomena di mana masukan revisi kecil yang terus menerus ditambahkan akhirnya terakumulasi menjadi beban besar yang mengancam tenggat waktu produksi dikenal luas di industri kreatif sebagai...
+[single]
+a) Scope creep*
+b) Color grading
+c) Buffer time
+d) Proxy editing
+
+Menurut tips mengatasi tantangan keterbatasan perangkat/software pada materi, salah satu strategi yang disarankan adalah...
+[single]
+a) Selalu memaksakan resolusi render maksimal tanpa kompromi
+b) Memanfaatkan render farm/cloud rendering gratis dan menyesuaikan resolusi dengan kebutuhan realistis*
+c) Menghindari seluruh software open-source dan hanya menggunakan software premium
+d) Mengabaikan deadline demi menunggu perangkat baru yang lebih canggih

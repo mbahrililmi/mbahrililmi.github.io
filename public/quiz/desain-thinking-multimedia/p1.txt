@@ -1,0 +1,69 @@
+Menurut materi Pertemuan 1, apa definisi design thinking yang paling tepat?
+[single]
+a) Pendekatan pemecahan masalah yang berpusat pada manusia (human-centered), memadukan empati, kreativitas, dan eksperimen*
+b) Metode desain grafis yang berfokus pada estetika visual dan tren warna terkini
+c) Proses linear dari brief klien ke hasil akhir tanpa perlu pengujian ke pengguna
+d) Teknik manajemen proyek untuk mempercepat waktu rilis produk digital
+
+Istilah design thinking mulai populer lewat firma desain IDEO dan sekolah desain Stanford (d.school). Salah satu proyek terkenal IDEO yang sering dijadikan contoh awal penerapan pendekatan ini adalah...
+[single]
+a) Merancang ulang troli belanja supermarket hanya dalam waktu lima hari*
+b) Membangun mesin pencari internet pertama di dunia
+c) Mendesain ulang logo perusahaan teknologi besar
+d) Menciptakan aplikasi media sosial pertama untuk kalangan mahasiswa
+
+Menurut materi, kenapa pendekatan ini disebut design "thinking", bukan sekadar "process"?
+[single]
+a) Karena sifatnya seperti mindset/cara pandang yang fleksibel, boleh melompat antar tahap sesuai temuan*
+b) Karena hanya dilakukan oleh desainer profesional yang sudah bersertifikat
+c) Karena prosesnya harus diikuti secara berurutan dan kaku dari tahap 1 sampai 5
+d) Karena istilah "process" dianggap terlalu teknis untuk dipahami mahasiswa baru
+
+Berdasarkan tabel perbandingan pada materi, apa yang menjadi titik awal (starting point) pada cara desain konvensional?
+[single]
+a) Asumsi dan intuisi tim internal*
+b) Riset dan empati langsung ke pengguna
+c) Hasil usability testing dari purwarupa sebelumnya
+d) Insight yang dikumpulkan dari observasi lapangan
+
+Materi menggunakan analogi "memasak untuk tamu tanpa bertanya dulu soal alergi atau selera pedas" untuk menjelaskan...
+[single]
+a) Cara kerja desain konvensional yang hanya mengandalkan asumsi desainer, dibanding design thinking yang bertanya dan menyesuaikan berdasarkan reaksi pengguna*
+b) Pentingnya memasak sehat sebagai bagian dari gaya hidup mahasiswa desain
+c) Perbedaan antara high-fidelity dan low-fidelity prototype
+d) Cara menyusun problem statement yang baik dalam tahap Define
+
+Dari lima tahap design thinking klasik ala Stanford d.school, tahap manakah yang menjadi titik awal karena berfokus memahami pengguna lewat wawancara dan observasi?
+[single]
+a) Empathize*
+b) Define
+c) Ideate
+d) Prototype
+
+Manakah dari pilihan berikut ini yang BUKAN termasuk salah satu dari lima tahap design thinking yang dibahas di Pertemuan 1?
+[single]
+a) Deployment*
+b) Ideate
+c) Prototype
+d) Test
+
+Menurut materi Pertemuan 1, yang dimaksud dengan "produk multimedia" dalam mata kuliah ini adalah...
+[single]
+a) Karya digital yang menggabungkan lebih dari satu jenis media (teks, gambar, audio, video, animasi) dan seringkali bersifat interaktif*
+b) Karya cetak seperti poster dan brosur yang sekali jadi lalu selesai
+c) Perangkat keras komputer yang digunakan untuk mengedit video
+d) Dokumen teks panjang yang berisi laporan penelitian ilmiah
+
+Materi menyebutkan contoh kegagalan aplikasi presensi kampus yang dirancang penuh fitur gamifikasi rumit, padahal mahasiswa hanya butuh tombol besar "Absen Sekarang" yang cepat dan tidak error. Contoh ini menggambarkan pentingnya...
+[single]
+a) Merancang berdasarkan kebutuhan nyata pengguna, bukan sekadar menambah fitur yang terlihat canggih*
+b) Menambahkan sebanyak mungkin fitur agar aplikasi terlihat lengkap dan modern
+c) Memilih warna dan tipografi yang menarik secara visual
+d) Mempercepat waktu rilis aplikasi tanpa perlu tahap pengujian
+
+Berdasarkan rincian komponen penilaian pada kontrak kuliah, berapa bobot Ujian Tengah Semester (UTS) terhadap nilai akhir?
+[single]
+a) 20%*
+b) 10%
+c) 30%
+d) 15%

@@ -1,0 +1,69 @@
+12 prinsip dasar animasi pertama kali dirumuskan secara formal oleh siapa dalam buku "The Illusion of Life: Disney Animation"?
+[single]
+a) Walt Disney dan Ub Iwerks
+b) Frank Thomas dan Ollie Johnston*
+c) John Lasseter dan Brad Bird
+d) Chuck Jones dan Tex Avery
+
+Kenapa 12 prinsip animasi yang dirumuskan puluhan tahun lalu masih relevan dipakai di studio animasi 3D modern seperti Pixar dan DreamWorks menurut materi?
+[single]
+a) Karena prinsip ini soal bagaimana manusia mempersepsikan gerakan dan berat suatu benda, bukan soal teknik menggambar semata*
+b) Karena semua studio 3D modern wajib memakai teknik menggambar tangan
+c) Karena prinsip ini hanya berlaku untuk software CGI generasi terbaru
+d) Karena Disney memegang hak paten atas seluruh prinsip animasi tersebut
+
+Prinsip animasi di mana objek meregang saat bergerak cepat dan menggepeng saat menghentak atau mendarat, untuk memberi kesan berat dan elastisitas, disebut?
+[single]
+a) Follow through
+b) Squash & stretch*
+c) Slow in & slow out
+d) Secondary action
+
+Gerakan kecil "bersiap-siap" sebelum aksi utama terjadi, misalnya karakter menekuk lutut sebelum melompat, adalah contoh penerapan prinsip?
+[single]
+a) Staging
+b) Arc
+c) Anticipation*
+d) Timing
+
+Manakah pasangan pendekatan menggambar animasi berikut yang paling sesuai dengan penjelasan prinsip "Straight Ahead & Pose to Pose"?
+[single]
+a) Straight ahead cocok untuk gerakan liar dan spontan seperti api atau air, sedangkan pose to pose cocok untuk gerakan yang butuh timing terkontrol seperti dialog*
+b) Straight ahead hanya dipakai di animasi 3D, sedangkan pose to pose hanya dipakai di animasi 2D
+c) Straight ahead berarti menggambar pose kunci dulu baru mengisi in-between, sedangkan pose to pose berarti menggambar berurutan dari awal
+d) Keduanya adalah istilah lain untuk tweening otomatis pada software
+
+Rambut atau baju karakter yang masih "menyusul" bergerak sesaat setelah badan sudah berhenti adalah contoh prinsip?
+[single]
+a) Exaggeration
+b) Follow through*
+c) Solid drawing
+d) Appeal
+
+Kenapa gerakan benda di dunia nyata biasanya digambar dengan lebih banyak frame di dekat awal dan akhir gerakan, serta lebih sedikit frame di tengah gerakan yang cepat?
+[single]
+a) Untuk menghemat waktu produksi tanpa mempedulikan kualitas gerak
+b) Untuk menerapkan prinsip slow in & slow out supaya gerakan terasa alami, bukan konstan seperti mesin*
+c) Untuk menerapkan prinsip staging agar fokus adegan lebih jelas
+d) Karena software animasi hanya bisa membaca frame dalam jumlah ganjil
+
+Manakah dari berikut ini yang BUKAN termasuk salah satu dari 12 prinsip dasar animasi yang dijelaskan pada materi?
+[single]
+a) Arc
+b) Timing
+c) Rendering*
+d) Appeal
+
+Dalam studi kasus bola memantul (bouncing ball) pada materi, prinsip apa yang membuat jalur pantulan bola tidak digambar naik-turun lurus vertikal, melainkan membentuk lengkungan halus menyamping?
+[single]
+a) Arc*
+b) Secondary action
+c) Exaggeration
+d) Solid drawing
+
+Seorang animator pemula membuat animasi bola memantul, tetapi hasilnya terasa kaku seperti robot karena semua frame digambar dengan jarak yang rata sehingga kecepatan gerak terasa konstan. Menurut materi, prinsip apa yang paling mungkin terlupakan oleh animator tersebut?
+[single]
+a) Staging
+b) Slow in & slow out*
+c) Appeal
+d) Secondary action

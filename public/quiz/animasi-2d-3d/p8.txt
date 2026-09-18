@@ -1,0 +1,209 @@
+Konsep kerja mata dan otak manusia yang membuat bayangan gambar "tersimpan" sesaat di retina sehingga rangkaian gambar diam terlihat sebagai gerakan mulus disebut apa?
+[single]
+a) Persistence of vision*
+b) Motion tweening
+c) Frame rate
+d) Shape language
+
+Film "Snow White and the Seven Dwarfs" (1937) menjadi tonggak penting karena merupakan apa dalam sejarah animasi?
+[single]
+a) Film animasi panjang pertama yang sepenuhnya dibuat komputer
+b) Film animasi panjang berwarna pertama dalam sejarah*
+c) Film animasi Indonesia pertama yang tayang di bioskop
+d) Film yang memperkenalkan teknik motion capture
+
+Menurut materi Pertemuan 1, apa perbedaan utama cara kerja animasi 2D dan animasi 3D?
+[single]
+a) Animasi 2D bekerja pada bidang datar sumbu X dan Y, sedangkan animasi 3D membangun objek dalam ruang tiga dimensi dengan tambahan sumbu Z*
+b) Animasi 2D selalu dibuat secara digital, animasi 3D selalu dibuat manual
+c) Animasi 2D tidak memerlukan karakter, animasi 3D wajib memakai karakter manusia
+d) Animasi 2D hanya dipakai untuk iklan, animasi 3D hanya untuk film
+
+Peran dalam ekosistem industri animasi yang bertugas membangun kerangka/tulang virtual (armature) pada karakter 2D digital maupun model 3D agar bisa digerakkan secara fleksibel disebut?
+[single]
+a) Character Designer
+b) Compositor
+c) Rigger*
+d) Lighting Artist
+
+Prinsip animasi yang menjelaskan bahwa objek meregang saat bergerak cepat dan menggepeng saat menghentak, untuk memberi kesan berat dan elastisitas, disebut?
+[single]
+a) Squash & stretch*
+b) Anticipation
+c) Arc
+d) Staging
+
+Gerakan kecil bersiap-siap sebelum aksi utama terjadi, misalnya menekuk lutut sebelum melompat, sehingga penonton bisa "membaca" gerakan berikutnya, adalah prinsip?
+[single]
+a) Timing
+b) Anticipation*
+c) Follow through
+d) Exaggeration
+
+Prinsip animasi mana yang menjelaskan bahwa hampir semua gerakan makhluk hidup mengikuti jalur melengkung, bukan garis lurus kaku?
+[single]
+a) Arc*
+b) Solid drawing
+c) Secondary action
+d) Appeal
+
+Manakah dari berikut ini yang BUKAN termasuk salah satu dari 12 prinsip dasar animasi menurut materi Pertemuan 2?
+[single]
+a) Overlapping action
+b) UV mapping*
+c) Slow in & slow out
+d) Secondary action
+
+Satuan terkecil pembentuk sebuah animasi atau video, yang jumlahnya per detik diukur dengan FPS, disebut?
+[single]
+a) Frame*
+b) Viseme
+c) Pivot point
+d) Armature
+
+Gambar/frame yang menandai pose paling penting dalam sebuah gerakan (titik awal, puncak aksi, titik akhir) disebut?
+[single]
+a) In-between
+b) Keyframe*
+c) Tween
+d) Turnaround
+
+Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, tanpa perlu digambar satu per satu secara manual, disebut?
+[single]
+a) Frame-by-frame
+b) Rigging
+c) Tweening*
+d) Compositing
+
+Pengaturan kurva percepatan-perlambatan pada sebuah tween, supaya gerakan terasa mempercepat di awal atau memperlambat di akhir alih-alih bergerak dengan kecepatan yang sama rata, disebut?
+[single]
+a) Staging
+b) Easing*
+c) Shape language
+d) Weight paint
+
+Prinsip desain yang memanfaatkan bentuk-bentuk geometris dasar (bulat, kotak, segitiga) untuk "berbicara" tentang kepribadian sebuah karakter kepada penonton disebut?
+[single]
+a) Storyboard language
+b) Shape language*
+c) Model sheet system
+d) Turnaround method
+
+Dokumen visual berisi tampilan karakter dari berbagai sudut, ekspresi, dan proporsi tubuh standar, yang berfungsi sebagai "kartu identitas visual" karakter, disebut?
+[single]
+a) Model sheet*
+b) Animatic
+c) Storyboard
+d) Walk cycle
+
+Rangkaian sketsa/panel yang menggambarkan urutan adegan sebuah cerita sebelum proses animasi sesungguhnya dimulai disebut?
+[single]
+a) Model sheet
+b) Storyboard*
+c) Animatic
+d) Turnaround
+
+Apa perbedaan utama antara storyboard dan animatic menurut materi Pertemuan 4?
+[single]
+a) Storyboard adalah gambar statis berurutan, sedangkan animatic sudah diberi durasi waktu dan disusun jadi video kasar*
+b) Storyboard dibuat setelah animasi selesai, sedangkan animatic dibuat sebelum naskah cerita ada
+c) Storyboard hanya dipakai untuk animasi 3D, animatic hanya untuk animasi 2D
+d) Keduanya adalah istilah yang sepenuhnya sama tanpa perbedaan fungsi
+
+Teknik animasi yang memecah karakter menjadi bagian-bagian tubuh terpisah lalu digerakkan sebagai satu kesatuan potongan gambar tanpa digambar ulang di setiap frame disebut?
+[single]
+a) Cutout animation*
+b) Frame-by-frame
+c) Motion graphics
+d) Stop motion
+
+Dalam walk cycle, pose yang menunjukkan momen ketika kaki depan baru saja menyentuh tanah sementara kaki belakang masih menapak di belakang disebut pose?
+[single]
+a) Down
+b) Passing
+c) Contact*
+d) Up
+
+Representasi visual sederhana dari sekelompok suara yang mirip bentuk mulutnya, dipakai sebagai dasar lip sync sederhana, disebut?
+[single]
+a) Keyframe
+b) Viseme*
+c) Shape language
+d) Pivot point
+
+Titik jangkar tempat sebuah potongan tubuh berputar dalam proses rigging 2D, mirip seperti engsel pintu, disebut?
+[single]
+a) Vertex
+b) Mesh
+c) Pivot point*
+d) Armature
+
+Sumbu tambahan apa yang membedakan cara kerja animasi 3D dari animasi 2D yang hanya memakai sumbu X dan Y?
+[single]
+a) Sumbu Z (kedalaman)*
+b) Sumbu waktu (T)
+c) Sumbu W
+d) Sumbu rotasi global
+
+Mengapa Blender dipilih sebagai software utama pada mata kuliah ini menurut materi Pertemuan 6?
+[single]
+a) Karena satu-satunya software yang mendukung animasi 2D dan 3D sekaligus
+b) Karena gratis, open-source, tetap dipakai untuk produksi profesional, dan punya komunitas besar*
+c) Karena tidak memerlukan navigasi 3D sama sekali
+d) Karena hanya bisa dipakai di sistem operasi Windows
+
+Area terbesar di tengah layar Blender tempat kita melihat, menavigasi, dan mengedit objek dalam scene secara langsung disebut?
+[single]
+a) Outliner
+b) Toolbar
+c) Viewport*
+d) Properties Panel
+
+Apa perbedaan utama antara Object Mode dan Edit Mode di Blender?
+[single]
+a) Object Mode mengatur objek secara keseluruhan, sedangkan Edit Mode mengubah bentuk detail seperti vertex, edge, dan face*
+b) Object Mode hanya untuk kamera, Edit Mode hanya untuk cahaya
+c) Object Mode dipakai untuk rendering final, Edit Mode untuk menyimpan file project
+d) Keduanya adalah mode yang sama, hanya beda nama
+
+Shortcut keyboard G, R, dan S di Blender masing-masing dipakai untuk transformasi apa?
+[single]
+a) Move, Rotate, Scale*
+b) Group, Render, Save
+c) Grab, Rewind, Snap
+d) Generate, Render, Select
+
+Menurut Pertemuan 7, apa fungsi utama pertemuan integrasi ini sebelum masuk Ujian Tengah Semester?
+[single]
+a) Memperkenalkan software 3D yang sama sekali baru
+b) Menjadi "simpul pengikat" yang menggabungkan semua materi P1-P6 dalam satu alur kerja produksi mini*
+c) Mengganti seluruh kurikulum 2D menjadi 3D sepenuhnya
+d) Menjadi sesi evaluasi akhir semester
+
+Berapa tahap inti pipeline mini produksi animasi yang dijelaskan pada materi Pertemuan 7, mulai dari konsep hingga review?
+[single]
+a) Tiga tahap
+b) Empat tahap
+c) Lima tahap*
+d) Tujuh tahap
+
+Mengapa latihan bouncing ball dianggap sebagai latihan ideal untuk animator pemula menurut materi Pertemuan 2 dan 7?
+[single]
+a) Karena gerakan sederhana ini sudah mengandung hampir semua elemen dasar animasi seperti timing, spacing, dan squash & stretch*
+b) Karena bola adalah objek satu-satunya yang bisa dianimasikan di Blender
+c) Karena bola memantul tidak membutuhkan penerapan prinsip animasi apa pun
+d) Karena latihan ini menggantikan kebutuhan membuat storyboard
+
+Peran dalam tim produksi animasi yang bertugas memberi masukan objektif, menjaga konsistensi gaya visual, dan menjadi penengah perbedaan pendapat kreatif disebut?
+[single]
+a) Storyboard Artist
+b) Animator
+c) Reviewer / Sutradara*
+d) Rigger
+
+Mengapa mendokumentasikan proses kerja (sketsa awal, revisi gagal, catatan keputusan kreatif) dianggap penting untuk portofolio menurut materi Pertemuan 7?
+[single]
+a) Karena dokumentasi menggantikan kebutuhan membuat model sheet
+b) Karena rekruter industri kreatif sering menilai calon animator dari proses iteratif, bukan hanya hasil akhir yang sempurna*
+c) Karena tanpa dokumentasi, file animasi otomatis akan terhapus
+d) Karena dokumentasi proses wajib lebih panjang daripada video animasi jadi

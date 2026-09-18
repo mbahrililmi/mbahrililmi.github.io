@@ -1,0 +1,69 @@
+Apa perbedaan Image Editing dan Image Manipulation menurut materi?
+[single]
+a) Keduanya adalah istilah yang sama persis tanpa perbedaan
+b) Image Editing hanya untuk media digital, Image Manipulation hanya untuk media cetak
+c) Image Editing memperbaiki kualitas tanpa mengubah realitas, Image Manipulation mengubah atau menciptakan realitas baru*
+d) Image Manipulation hanya boleh dilakukan oleh wartawan resmi
+
+Manakah berikut ini yang termasuk karakteristik foto jurnalistik menurut materi?
+[single]
+a) Staged, yaitu direkayasa untuk hasil terbaik
+b) Actual, yaitu merupakan kejadian nyata bukan rekayasa*
+c) Manipulated, yaitu bebas diedit sesuai selera
+d) Anonymous, yaitu tanpa keterangan sumber
+
+Konsep apa yang diperkenalkan oleh Henri Cartier-Bresson dalam prinsip komposisi foto jurnalistik?
+[single]
+a) Rule of Thirds
+b) Leading Lines
+c) Decisive Moment*
+d) Framing
+
+Manakah tindakan berikut yang TIDAK diperbolehkan dalam etika foto jurnalistik menurut materi?
+[single]
+a) Crop untuk improve composition
+b) Convert to Black and White
+c) Menambah atau menghapus konten dari foto*
+d) Color correction untuk match scene asli
+
+Apa saja 4 prinsip utama jurnalistik yang disebutkan dalam materi?
+[single]
+a) Speed, Reach, Engagement, Virality
+b) Accuracy, Honesty, Independence, Minimize Harm*
+c) Creativity, Drama, Emotion, Impact
+d) Resolution, Color, Contrast, Sharpness
+
+Adjustment apa yang menurut materi disebut sebagai "adjustment paling powerful" untuk exposure dan tone?
+[single]
+a) Levels
+b) Shadows/Highlights
+c) Curves*
+d) White Balance
+
+Bagaimana cara memperbaiki color cast akibat pencahayaan menggunakan White Balance menurut materi?
+[single]
+a) Menggunakan eyedropper pada area netral seperti abu-abu atau putih*
+b) Menghapus seluruh warna dari foto
+c) Mengubah resolusi foto menjadi 72ppi
+d) Menambahkan noise secara manual pada foto
+
+Tiga parameter utama dalam Unsharp Mask menurut materi adalah?
+[single]
+a) Contrast, Brightness, Hue
+b) Amount, Radius, Threshold*
+c) Exposure, Highlights, Shadows
+d) Opacity, Flow, Blend Mode
+
+Teknik retouching apa yang disebut sebagai teknik advanced untuk memisahkan texture dari color demi hasil retouching kulit yang sempurna?
+[single]
+a) Spot Healing Brush
+b) Patch Tool
+c) Frequency Separation*
+d) Content-Aware Fill
+
+Apa prinsip penting dalam portrait retouching yang ditekankan pada bagian penutup materi ini?
+[single]
+a) Semakin banyak retouching, semakin profesional hasilnya
+b) Keep it natural, subtle adjustment lebih professional daripada heavy retouching*
+c) Selalu gunakan warna kulit putih bersih pada bagian gigi
+d) Retouching harus dilakukan sebelum color correction

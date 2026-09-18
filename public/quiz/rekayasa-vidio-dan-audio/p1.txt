@@ -1,0 +1,69 @@
+Berapa jumlah SKS mata kuliah Rekayasa Video dan Audio?
+[single]
+a) 1 SKS
+b) 2 SKS*
+c) 3 SKS
+d) 4 SKS
+
+Berapa bobot komponen Tugas-tugas dalam sistem penilaian mata kuliah ini?
+[single]
+a) 25%
+b) 40%
+c) 55%*
+d) 70%
+
+Software mana yang digunakan sebagai audio editor gratis dan open-source utama dalam mata kuliah ini?
+[single]
+a) Adobe Audition
+b) Audacity*
+c) Pro Tools
+d) Logic Pro
+
+Manakah software yang dideskripsikan sebagai DAW (Digital Audio Workstation) profesional dengan skema pay-what-you-want?
+[single]
+a) Ardour*
+b) Audacity
+c) OBS Studio
+d) GIMP
+
+DaVinci Resolve memiliki modul Fusion dan Fairlight. Apa fungsi kedua modul tersebut?
+[single]
+a) Fusion untuk VFX, Fairlight untuk audio post-production*
+b) Fusion untuk audio, Fairlight untuk color grading
+c) Fusion untuk editing dasar, Fairlight untuk export
+d) Fusion untuk rendering, Fairlight untuk import
+
+Kdenlive dibangun di atas framework apa?
+[single]
+a) FFmpeg Framework
+b) MLT Framework*
+c) OpenCV Framework
+d) GStreamer Framework
+
+Berapa persen minimum kehadiran yang disyaratkan agar mahasiswa dapat mengikuti UAS?
+[single]
+a) 60%
+b) 65%
+c) 70%
+d) 75%*
+
+Berapa besar penalti keterlambatan pengumpulan tugas per hari (maksimal 3 hari)?
+[single]
+a) -5% per hari
+b) -10% per hari*
+c) -15% per hari
+d) -20% per hari
+
+Pada struktur 16 pertemuan, pertemuan berapa yang dialokasikan untuk Ujian Tengah Semester (UTS)?
+[single]
+a) Pertemuan 7
+b) Pertemuan 8*
+c) Pertemuan 9
+d) Pertemuan 16
+
+Manakah yang BUKAN termasuk spesifikasi hardware minimum yang disyaratkan untuk mata kuliah ini?
+[single]
+a) RAM 8GB
+b) Storage 50GB free
+c) Intel i5 gen 8 / AMD Ryzen 5
+d) GPU NVIDIA RTX 3080*

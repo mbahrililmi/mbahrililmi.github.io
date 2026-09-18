@@ -1,0 +1,69 @@
+Menurut best practices recording podcast, berapa jarak ideal mikrofon dari mulut pembicara?
+[single]
+a) 1-3cm
+b) 10-15cm*
+c) 30-40cm
+d) 50-60cm
+
+Apa spesifikasi ukuran yang disyaratkan untuk podcast cover art agar sesuai standar platform seperti Apple/Spotify?
+[single]
+a) 1080×1080px, di bawah 100KB
+b) 3000×3000px, di bawah 512KB*
+c) 500×500px, tanpa batas ukuran file
+d) 1920×1080px, di bawah 1MB
+
+Mengapa materi menyarankan untuk menghindari kata "podcast" pada desain cover art?
+[single]
+a) Karena melanggar kebijakan hak cipta platform
+b) Karena kata tersebut redundan, sudah jelas dari konteks platform podcast itu sendiri*
+c) Karena font untuk kata "podcast" tidak tersedia di kebanyakan software
+d) Karena kata tersebut membuat file cover art menjadi terlalu besar
+
+Dalam Audacity, fitur apa yang digunakan untuk menyeragamkan volume audio yang tidak konsisten?
+[single]
+a) Fade In/Out
+b) Amplify/Normalize*
+c) Selection tool
+d) Zoom
+
+Berapa target loudness standar untuk podcast versi stereo menurut materi Pertemuan 14?
+[single]
+a) -6 LUFS
+b) -10 LUFS
+c) -16 LUFS*
+d) -30 LUFS
+
+Dalam script dua kolom untuk video release, kolom apa yang digunakan untuk mencatat narasi, dialog, atau musik?
+[single]
+a) Kolom VISUAL
+b) Kolom AUDIO*
+c) Kolom TIMING
+d) Kolom CAMERA
+
+Pada teknik three-point lighting, apa fungsi dari Back light?
+[single]
+a) Menjadi sumber cahaya utama dari sudut 45 derajat
+b) Melunakkan bayangan yang dihasilkan oleh cahaya utama
+c) Memisahkan subjek dari background agar tidak menyatu secara visual*
+d) Mensimulasikan efek cahaya matahari terbenam
+
+Manakah workspace/page pada DaVinci Resolve yang paling erat kaitannya dengan color grading?
+[single]
+a) FUSION
+b) FAIRLIGHT
+c) COLOR*
+d) DELIVER
+
+Apa yang dimaksud dengan teknik editing J-cut/L-cut dalam video editing?
+[single]
+a) Memotong video tepat saat terjadi gerakan agar transisi terlihat mulus
+b) Audio yang mendahului atau mengikuti visual sehingga menciptakan alur yang natural*
+c) Menambahkan footage pendukung untuk menutupi cut dan menambah konteks
+d) Teknik pewarnaan ulang seluruh footage agar terlihat kohesif
+
+Manakah rasio aspek video yang tepat digunakan untuk konten Reels/TikTok menurut materi distribusi konten Pertemuan 14?
+[single]
+a) 16:9
+b) 1:1
+c) 9:16*
+d) 4:3

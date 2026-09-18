@@ -1,0 +1,69 @@
+Menurut materi, prinsip ideation "Defer Judgment" berarti...
+[single]
+a) Menunda kritik dan evaluasi ide sampai sesi menyaring terpisah, karena selama sesi ideation tidak ada ide yang "buruk"*
+b) Menunda keputusan proyek sampai semua anggota tim hadir lengkap
+c) Menyerahkan penilaian akhir ide sepenuhnya kepada dosen pembimbing
+d) Menunggu hasil usability testing sebelum mulai brainstorming ide baru
+
+Berdasarkan prinsip "Go for Quantity", berapa target realistis jumlah ide per kelompok untuk sesi brainstorming 15-20 menit menurut materi?
+[single]
+a) Minimal 30-50 ide*
+b) Minimal 3-5 ide
+c) Tepat 10 ide, tidak lebih tidak kurang
+d) Minimal 100-150 ide
+
+Prinsip "Build on the Ideas of Others" mengacu pada aturan "Yes, and..." yang dipinjam dari dunia stand-up comedy dan teater improvisasi. Maksud aturan ini adalah...
+[single]
+a) Menerima dan menambahkan ide rekan, bukan langsung menolaknya dengan kata "tapi..."*
+b) Selalu setuju dengan ide siapa pun tanpa boleh memberi tambahan apa pun
+c) Hanya boleh mengembangkan ide milik fasilitator sesi brainstorming
+d) Menunggu giliran bicara sesuai urutan absen di kelas
+
+Materi menyebut contoh Duolingo yang mengadopsi sebagian ide liar "maskot yang mengancam lewat notifikasi" sebagai ilustrasi prinsip...
+[single]
+a) Encourage Wild Ideas — ide ekstrem bisa dijinakkan menjadi solusi realistis yang tetap menarik*
+b) Defer Judgment — menunda semua keputusan produk sampai akhir semester
+c) Go for Quantity — memperbanyak jumlah notifikasi yang dikirim aplikasi
+d) Build on the Ideas of Others — meniru fitur aplikasi kompetitor secara langsung
+
+Pada teknik Brainwriting 6-3-5, apa arti dari ketiga angka tersebut?
+[single]
+a) 6 orang menulis 3 ide dalam 5 menit per putaran, lalu kertas digeser ke teman sebelah*
+b) 6 menit waktu total, 3 fasilitator, dan 5 sticky note per orang
+c) 6 ide per orang, 3 kali putaran, dalam waktu 5 jam
+d) 6 kelompok, 3 dosen penguji, dan 5 kriteria penilaian
+
+Teknik Crazy 8s dilakukan dengan cara...
+[single]
+a) Melipat kertas menjadi 8 kotak, lalu menggambar 8 variasi solusi berbeda dalam waktu 8 menit (1 menit per kotak)*
+b) Mengundang 8 pengguna sekaligus untuk diwawancarai dalam satu sesi
+c) Membagi kelompok menjadi 8 tim kecil yang bekerja secara terpisah
+d) Menuliskan 8 pertanyaan How Might We sebelum sesi ideation dimulai
+
+Dalam teknik SCAMPER, huruf "S" merujuk pada kata kerja pemantik...
+[single]
+a) Substitute (Ganti)*
+b) Simplify (Sederhanakan)
+c) Sort (Urutkan)
+d) Summarize (Ringkas)
+
+Teknik ideation yang cocok untuk mengeksplorasi alur video promosi atau perjalanan pengguna dengan menuangkan ide sebagai rangkaian panel bergambar berurutan, layaknya komik strip, disebut...
+[single]
+a) Storyboard Ideation*
+b) Mood Boarding
+c) Mind Mapping
+d) Dot Voting
+
+Cara kerja dot voting menurut materi adalah...
+[single]
+a) Setiap anggota kelompok diberi sejumlah stiker bulat terbatas untuk ditempelkan pada ide favorit mereka, dan ide dengan dot terbanyak jadi kandidat prioritas*
+b) Setiap ide dinilai dengan skor 1-100 oleh dosen sebelum dipilih
+c) Kelompok mengundi ide secara acak menggunakan aplikasi lotere digital
+d) Hanya fasilitator sesi yang berhak memilih ide mana yang akan dilanjutkan
+
+Pada matriks impact-effort, kuadran ide dengan dampak tinggi namun usaha rendah — sehingga menjadi prioritas utama untuk segera dikerjakan — disebut...
+[single]
+a) Quick Wins*
+b) Big Bets
+c) Fill-ins
+d) Thankless Tasks

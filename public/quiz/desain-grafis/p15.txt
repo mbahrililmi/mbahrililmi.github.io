@@ -1,0 +1,69 @@
+Menurut materi, apa perbedaan utama Motion Graphics dengan Character Animation?
+[single]
+a) Motion graphics selalu lebih lama diproduksi daripada character animation
+b) Motion graphics bersifat abstract dan design-focused, sedangkan character animation organic dan storytelling*
+c) Character animation tidak memerlukan rigging sama sekali
+d) Keduanya identik tanpa perbedaan signifikan
+
+Untuk membuat 3D text di Blender, urutan langkah awal yang benar menurut materi adalah...
+[single]
+a) Shift+A → Curve → Bezier
+b) Shift+A → Text*
+c) Shift+A → Mesh → Plane
+d) File → Import → Text
+
+Pada Object Data Properties untuk teks 3D, parameter apa yang mengatur ketebalan (kedalaman 3D) dari teks?
+[single]
+a) Bevel Depth
+b) Bevel Resolution
+c) Extrude*
+d) Offset
+
+Teknik animasi teks "Per-Letter Animation" mengharuskan mahasiswa melakukan langkah apa terlebih dahulu?
+[single]
+a) Menambahkan modifier Array pada teks
+b) Convert to Mesh lalu Separate by Loose Parts*
+c) Mengatur Emission Strength ke nilai maksimum
+d) Menghapus semua keyframe yang ada
+
+Dalam Final Project, Project Type manakah yang secara khusus menekankan pada "Turntable atau animated reveal" dengan durasi 15-30 detik?
+[single]
+a) Logo Animation Sequence
+b) Motion Graphics Piece
+c) Product Showcase Animation*
+d) Animated Scene
+
+Berapa minimal jumlah objek distinct yang disyaratkan dalam Minimum Requirements Modeling untuk Final Project?
+[single]
+a) 1 objek
+b) 2 objek
+c) 3 objek*
+d) 5 objek
+
+Pada rubrik penilaian Final Project, kriteria apa yang memiliki bobot terbesar (25%)?
+[single]
+a) Modeling Quality
+b) Animation*
+c) Camera & Komposisi
+d) Dokumentasi
+
+Menurut materi, apa manfaat mengaktifkan fitur Denoising saat rendering?
+[single]
+a) Menambah jumlah polygon pada scene
+b) Mengurangi noise pada render dengan sample yang lebih rendah*
+c) Mempercepat proses UV unwrapping
+d) Mengubah resolusi render secara otomatis
+
+Manakah yang termasuk "Common Mistakes dalam Final Project" menurut materi?
+[single]
+a) Mulai mengerjakan jauh sebelum deadline
+b) Melakukan test render secara berkala
+c) Scope project yang terlalu ambisius sehingga sulit diselesaikan*
+d) Mendokumentasikan proses kerja secara rutin
+
+Berapa minimal durasi animasi yang disyaratkan pada Minimum Requirements Animation untuk Final Project?
+[single]
+a) 5 detik
+b) 10 detik*
+c) 15 detik
+d) 30 detik

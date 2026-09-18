@@ -1,0 +1,209 @@
+Tiga elemen dasar pembentuk sebuah mesh 3D di Blender adalah...
+[single]
+a) Vertex, edge, face*
+b) Material, texture, shader
+c) Key light, fill light, back light
+d) Armature, bone, weight
+
+Modifier yang berfungsi mencerminkan objek secara otomatis pada sumbu tertentu, sangat menghemat waktu untuk objek simetris seperti wajah karakter, adalah...
+[single]
+a) Subdivision Surface
+b) Mirror*
+c) Loop Cut
+d) Array
+
+Kenapa topology yang baik (didominasi quad, mengikuti kontur objek) penting dipersiapkan sejak tahap modeling, meski objek belum digerakkan?
+[single]
+a) Karena topology buruk akan menyebabkan file tidak bisa disimpan
+b) Karena Blender tidak mengizinkan render objek dengan topology buruk
+c) Karena nanti saat rigging dan animasi, area dengan topology buruk (terutama di sendi) akan menunjukkan lipatan aneh dan permukaan pecah*
+d) Karena topology menentukan warna dasar material objek
+
+Dalam studi kasus modeling cangkir/mug pada Pertemuan 9, objek primitive apa yang dipakai sebagai titik awal badan cangkir?
+[single]
+a) Cube
+b) UV Sphere
+c) Cone
+d) Cylinder*
+
+Proses "membuka" permukaan mesh 3D menjadi bidang datar 2D supaya texture bisa ditempel tanpa melar atau terdistorsi disebut...
+[single]
+a) Rigging
+b) UV mapping*
+c) Compositing
+d) Rendering
+
+Dalam Principled BSDF, parameter yang menentukan seberapa "logam" kesan sebuah material, di mana nilai mendekati 1 membuatnya memantulkan warna cahaya sekitar seperti besi atau emas, adalah...
+[single]
+a) Base Color
+b) Roughness
+c) Alpha
+d) Metallic*
+
+Format gambar texture yang mendukung transparansi (alpha channel), berguna kalau texture punya bagian tembus pandang, adalah...
+[single]
+a) PNG*
+b) JPG
+c) MP4
+d) BLEND
+
+Garis yang menentukan di mana permukaan mesh "dipotong" dan dibuka saat proses UV unwrap disebut...
+[single]
+a) Modifier
+b) Loop cut
+c) Seam*
+d) Node
+
+Teknik "mewarnai" mesh untuk menentukan seberapa besar pengaruh sebuah tulang (bone) terhadap area tubuh tertentu saat karakter digerakkan disebut...
+[single]
+a) Texture paint
+b) Vertex paint
+c) UV paint
+d) Weight paint*
+
+Mode yang dipakai untuk benar-benar menggerakkan tulang armature demi kebutuhan animasi, tempat animator menghabiskan waktu paling banyak mengatur pose dan keyframe, adalah...
+[single]
+a) Pose Mode*
+b) Edit Mode
+c) Object Mode
+d) Sculpt Mode
+
+Pose kunci dalam walk cycle di mana kedua kaki menyentuh tanah, satu di depan dan satu di belakang, sebagai posisi transisi antar langkah, disebut pose...
+[single]
+a) Down
+b) Passing
+c) Contact*
+d) Up
+
+Jenis interpolasi keyframe yang membuat gerakan berkecepatan konstan dari awal sampai akhir, terasa lebih kaku dan mekanis dibanding Bezier, adalah interpolasi...
+[single]
+a) Ease
+b) Linear*
+c) Bezier
+d) Automatic
+
+Dalam teknik three-point lighting, cahaya utama yang paling menentukan bentuk dan volume objek karena dari sinilah bayangan utama terbentuk adalah...
+[single]
+a) Fill Light
+b) Back Light
+c) Ambient Light
+d) Key Light*
+
+Render engine di Blender yang mengandalkan real-time rendering, sangat cepat, dan cocok untuk tahap eksplorasi/preview, tapi menyederhanakan beberapa efek pencahayaan realistis, adalah...
+[single]
+a) Eevee*
+b) Cycles
+c) Workbench
+d) Freestyle
+
+Jenis shot kamera yang menangkap seluruh tubuh karakter dan sebagian besar lingkungan sekitarnya, cocok untuk memperkenalkan suasana atau lokasi di awal adegan, adalah...
+[single]
+a) Close-Up
+b) Wide Shot*
+c) Medium Shot
+d) Extreme Close-Up
+
+Resolusi output yang menurut materi biasanya sudah lebih dari cukup untuk kebutuhan presentasi atau upload ke media sosial adalah...
+[single]
+a) 640×480
+b) 320×240
+c) 1920×1080 (HD)*
+d) 800×600
+
+Animasi yang berfokus pada elemen desain grafis seperti teks, ikon, dan bentuk geometris untuk menyampaikan pesan secara dinamis, bukan cerita tokoh, disebut...
+[single]
+a) Walk cycle
+b) Rigging
+c) Weight paint
+d) Motion graphics*
+
+Dalam particle system, titik dari mana partikel dimunculkan atau "ditembakkan" disebut...
+[single]
+a) Emitter*
+b) Seam
+c) Armature
+d) Node
+
+"Area transparan" pada sebuah gambar yang menandai bagian mana yang harus tetap tembus pandang saat lapisan-lapisan visual digabung dalam compositing disebut...
+[single]
+a) Metallic channel
+b) Alpha channel*
+c) Roughness map
+d) Depth of field
+
+Contoh integrasi 2D dan 3D di mana teks judul atau logo dianimasikan secara 2D lalu ditempatkan di atas hasil render 3D sebagai title card, menunjukkan bahwa...
+[single]
+a) 2D dan 3D harus selalu dipisah dan tidak boleh digabung dalam satu karya
+b) Render 3D harus dihapus setelah teks 2D ditambahkan
+c) Dua dunia berbeda ini bisa saling melengkapi dalam satu karya produksi tanpa harus dimodel ulang dalam 3D*
+d) Motion graphics 2D tidak pernah dipakai dalam produksi yang melibatkan 3D
+
+Tiga tahap utama pipeline produksi animasi menurut materi adalah pra-produksi, produksi, dan...
+[single]
+a) Pra-rendering
+b) Post-rigging
+c) Review akhir
+d) Pasca-produksi*
+
+Dokumen yang berisi tampilan karakter dari berbagai sudut dan ekspresi, dipakai supaya karakter tetap konsisten meski dikerjakan oleh animator berbeda-beda, disebut...
+[single]
+a) Model sheet*
+b) Storyboard
+c) Animatic
+d) Moodboard
+
+Pada studi kasus tim "Titik Balik", keputusan memangkas durasi animatic dari 1 menit 20 detik menjadi 58 detik terutama didorong oleh...
+[single]
+a) Keinginan pribadi salah satu anggota tim tanpa alasan khusus
+b) Aturan lomba yang membatasi durasi maksimal 60 detik*
+c) Kehabisan file gambar untuk adegan tambahan
+d) Permintaan mendadak untuk menambah jumlah karakter
+
+Fenomena di mana masukan revisi kecil yang terus-menerus ditambahkan akhirnya terakumulasi menjadi beban besar yang mengancam tenggat waktu produksi dikenal sebagai...
+[single]
+a) Buffer time
+b) Color grading
+c) Scope creep*
+d) Proxy editing
+
+Menurut materi, kenapa merevisi cerita/desain sebaiknya dikunci di tahap pra-produksi, bukan terus-menerus diubah di tengah produksi?
+[single]
+a) Karena software animasi tidak mengizinkan perubahan setelah production dimulai
+b) Karena dosen pembimbing dilarang memberi masukan lebih dari satu kali
+c) Karena revisi hanya boleh dilakukan oleh sutradara, bukan anggota tim lain
+d) Karena revisi di tahap pra-produksi (misalnya storyboard) jauh lebih murah dan cepat dibanding revisi setelah animasi selesai dianimasikan*
+
+Studi kasus motion graphics pada Pertemuan 15 ("Kopi Rimba") berbeda dari studi kasus animasi naratif "Titik Balik" (Pertemuan 14) terutama dalam hal...
+[single]
+a) "Kopi Rimba" berfokus pada teks, ikon, dan bentuk geometris untuk promosi cepat, tanpa karakter naratif*
+b) "Kopi Rimba" melibatkan karakter dengan cerita emosional yang panjang
+c) "Kopi Rimba" memakan waktu produksi jauh lebih lama dibanding "Titik Balik"
+d) "Kopi Rimba" tidak melibatkan tahap pasca-produksi sama sekali
+
+Salah satu dari tiga pertimbangan khusus motion graphics untuk media sosial adalah konsistensi branding, yang berarti...
+[single]
+a) Setiap video promosi harus memakai gaya visual yang selalu berbeda-beda
+b) Warna, font, logo, dan nada visual brand harus konsisten di setiap konten yang dibuat*
+c) Logo brand tidak boleh ditampilkan sama sekali dalam video promosi
+d) Branding hanya penting untuk animasi naratif, bukan motion graphics
+
+Menurut materi Pertemuan 15, kesalahan umum yang sebaiknya dihindari saat presentasi proyek akhir adalah...
+[single]
+a) Menceritakan kendala dan revisi yang dihadapi selama produksi
+b) Menguji file video di perangkat presentasi sebelum hari-H
+c) Langsung memutar hasil akhir tanpa menjelaskan konteks proses produksinya*
+d) Melakukan latihan presentasi minimal satu kali di depan orang lain
+
+Berdasarkan rubrik penilaian proyek akhir semester, kriteria "Penerapan Prinsip Animasi" memiliki bobot sebesar...
+[single]
+a) 15%
+b) 20%
+c) 30%
+d) 25%*
+
+Urutan alur presentasi proyek akhir yang disarankan pada materi Pertemuan 15, dari awal hingga akhir, adalah...
+[single]
+a) Konsep & Latar Belakang → Storyboard & Perencanaan → Proses Produksi → Kendala & Revisi → Hasil Akhir → Refleksi & Pembelajaran*
+b) Hasil Akhir → Kendala & Revisi → Konsep → Refleksi
+c) Refleksi & Pembelajaran → Hasil Akhir → Proses Produksi → Konsep
+d) Proses Produksi → Konsep & Latar Belakang → Hasil Akhir → Storyboard

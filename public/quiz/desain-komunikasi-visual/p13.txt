@@ -1,0 +1,69 @@
+Manakah karakteristik yang tepat untuk digital brosur dibandingkan dengan brosur cetak?
+[single]
+a) Menggunakan color mode CMYK dan resolusi 300 DPI
+b) Menggunakan color mode RGB, resolusi 72-150 DPI, dan bisa bersifat interaktif*
+c) Tidak bisa diupdate setelah didistribusikan
+d) Selalu menggunakan orientasi potrait karena dilihat di layar
+
+Menurut materi, mengapa email marketing dianggap memiliki ROI tertinggi di antara channel digital lainnya?
+[single]
+a) Karena email tidak memerlukan biaya produksi sama sekali
+b) Karena audience-nya owned (bukan pinjam platform), targeting personal, dan hasilnya measurable penuh*
+c) Karena email tidak memerlukan izin dari penerima
+d) Karena email hanya bisa dikirim ke pelanggan lama
+
+Apa urutan anatomy email yang benar dari atas ke bawah menurut materi Pertemuan 13?
+[single]
+a) Body → Subject line → CTA → header/hero → preheader → footer
+b) Subject line → preheader → header/hero → body → CTA → footer*
+c) Footer → CTA → body → header/hero → preheader → subject line
+d) Preheader → subject line → footer → body → header/hero → CTA
+
+Manakah yang termasuk elemen wajib secara legal dan etika dalam email marketing menurut materi?
+[single]
+a) Menyertakan minimal lima gambar produk
+b) Unsubscribe link dan identitas pengirim yang jelas*
+c) Menggunakan email list yang dibeli dari vendor pihak ketiga
+d) Mengirim email setiap hari tanpa jeda
+
+Berapa lebar standar dalam pixel yang direkomendasikan untuk desain email agar mobile-responsive?
+[single]
+a) 320-400px
+b) 600-640px*
+c) 900-1000px
+d) 1200-1440px
+
+Mengapa tombol CTA pada email sebaiknya berukuran minimal 44×44px?
+[single]
+a) Agar sesuai dengan ukuran logo perusahaan
+b) Agar thumb-friendly dan mudah ditekan di perangkat mobile*
+c) Karena itu adalah ukuran maksimal yang diizinkan oleh Gmail
+d) Agar file email menjadi lebih kecil
+
+Dalam prinsip CTA Design untuk EDM, berapa jumlah primary CTA yang disarankan dalam satu email?
+[single]
+a) Satu*
+b) Tiga
+c) Lima
+d) Sebanyak mungkin agar peluang klik lebih besar
+
+Apa fungsi GIMP dalam workflow produksi EDM menurut materi Pertemuan 13?
+[single]
+a) Membuat template email siap pakai dengan drag-and-drop
+b) Mengompres dan mengoptimasi ukuran gambar tanpa kehilangan kualitas visual*
+c) Mengelola daftar subscriber email secara otomatis
+d) Mengirim campaign email ke seluruh audiens
+
+Dalam prinsip A/B testing yang dijelaskan, apa yang harus diperhatikan agar hasil test valid?
+[single]
+a) Menguji sebanyak mungkin variabel sekaligus dalam satu waktu
+b) Menguji satu variabel dalam satu waktu dengan sample size dan durasi yang memadai*
+c) Mengabaikan dokumentasi hasil karena tidak penting
+d) Menggunakan hasil dari satu segmen audiens untuk semua audiens lain
+
+Manakah dari berikut ini yang termasuk "Common Mistakes EDM" menurut materi Pertemuan 13?
+[single]
+a) Menyertakan alt text pada gambar
+b) Menyediakan unsubscribe link yang jelas
+c) Mengirim email image-only tanpa teks pendukung*
+d) Menguji tampilan email di berbagai email client sebelum kirim

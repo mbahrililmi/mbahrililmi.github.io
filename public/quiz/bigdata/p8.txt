@@ -1,0 +1,209 @@
+Karakteristik Veracity pada big data berkaitan dengan...
+[single]
+a) Kecepatan pemrosesan data secara real-time
+b) Tingkat keakuratan dan kebersihan data dari noise atau data yang tidak lengkap*
+c) Ukuran data yang mencapai skala petabyte
+d) Kemampuan mengambil manfaat/insight dari data
+
+Dalam tabel perbandingan traditional data vs big data, rentang volume yang menjadi ciri big data adalah...
+[single]
+a) Kilobytes - Megabytes
+b) Megabytes - Gigabytes
+c) Gigabytes - Terabytes
+d) Petabytes - Exabytes*
+
+Apache Spark disebutkan dalam materi sebagai framework pemrosesan data yang unggul karena...
+[single]
+a) Bekerja langsung di memori (in-memory) sehingga jauh lebih cepat*
+b) Hanya bisa dipakai untuk visualisasi data
+c) Merupakan bahasa pemrograman statistik
+d) Tidak memerlukan cluster komputer sama sekali
+
+Profesi yang berfokus menerjemahkan data bisnis menjadi laporan mudah dipahami manajemen, dengan bekal SQL, Excel, dan Tableau/Power BI, adalah...
+[single]
+a) Data Engineer
+b) Data Analyst*
+c) ML Engineer
+d) Big Data Architect
+
+Setelah fase Model Building selesai dalam Data Analytics Lifecycle, fase berikutnya adalah...
+[single]
+a) Data Preparation
+b) Model Planning
+c) Communicate Results*
+d) Discovery
+
+Problem statement dan project charter merupakan deliverable dari fase...
+[single]
+a) Discovery*
+b) Model Planning
+c) Communicate Results
+d) Operationalize
+
+Menurut materi, fase yang biasanya menyita 70-80% waktu keseluruhan proyek data analytics adalah...
+[single]
+a) Discovery
+b) Data Preparation*
+c) Model Building
+d) Communicate Results
+
+Strategi deployment model yang cocok digunakan ketika dibutuhkan prediksi secara real-time adalah...
+[single]
+a) Batch processing
+b) REST API*
+c) Data warehousing
+d) Dendrogram cutting
+
+Classification merupakan teknik supervised learning yang menghasilkan output berupa...
+[single]
+a) Nilai numerik yang kontinu
+b) Kategori/class yang diskrit dan terbatas*
+c) Kelompok data tanpa label
+d) Kombinasi item yang sering muncul bersamaan
+
+Perbedaan utama antara CART dengan ID3/C4.5 dalam membangun Decision Tree terletak pada...
+[single]
+a) CART memakai Gini Impurity, sedangkan ID3/C4.5 memakai Information Gain/Entropy*
+b) CART tidak bisa dipakai untuk classification
+c) ID3/C4.5 hanya bisa dipakai pada data numerik
+d) CART selalu menghasilkan pohon dengan satu level saja
+
+Disebut "naive" pada Naive Bayes karena algoritma ini mengasumsikan bahwa...
+[single]
+a) Semua fitur saling bebas/independen satu sama lain*
+b) Data yang dipakai selalu tidak lengkap
+c) Model tidak memerlukan data latihan
+d) Prediksi selalu bernilai 100% akurat
+
+Mengapa feature scaling menjadi wajib dilakukan sebelum menerapkan algoritma k-NN?
+[single]
+a) Karena k-NN tidak bisa membaca data numerik sama sekali
+b) Karena tanpa scaling, fitur dengan skala besar akan mendominasi perhitungan jarak*
+c) Karena k-NN hanya bisa dipakai pada data kategorikal
+d) Karena scaling akan mengubah k-NN menjadi algoritma unsupervised
+
+Formula Precision dalam evaluasi model classification adalah...
+[single]
+a) TP / (TP + FN)
+b) (TP + TN) / Total
+c) TP / (TP + FP)*
+d) 2 × (Precision × Recall) / (Precision + Recall)
+
+Output dari teknik prediction (regression) berupa...
+[single]
+a) Kategori/class yang diskrit
+b) Nilai numerik yang kontinu*
+c) Kelompok cluster tanpa label
+d) Kombinasi item yang sering dibeli bersamaan
+
+Perbedaan Multiple Linear Regression dari Simple Linear Regression adalah...
+[single]
+a) Multiple Linear Regression memakai lebih dari satu variabel independen (fitur)*
+b) Multiple Linear Regression tidak memiliki error term
+c) Multiple Linear Regression hanya bisa dipakai untuk classification
+d) Multiple Linear Regression tidak memerlukan variabel target
+
+Meskipun bernama "regression", Logistic Regression sebenarnya digunakan untuk...
+[single]
+a) Clustering data tanpa label
+b) Classification biner dengan output probabilitas*
+c) Peramalan time series
+d) Menemukan frequent itemset
+
+Dibanding MAE, RMSE lebih sensitif terhadap outlier karena...
+[single]
+a) RMSE mengabaikan seluruh nilai negatif pada error
+b) RMSE mengkuadratkan selisih sebelum dirata-ratakan sehingga error besar dihukum lebih berat*
+c) RMSE hanya dihitung dari data training
+d) RMSE tidak memiliki satuan yang sama dengan data asli
+
+Cluster Analysis tergolong teknik unsupervised learning karena...
+[single]
+a) Membutuhkan data yang sudah diberi label sebelum diproses
+b) Mengelompokkan data mirip tanpa memakai label yang sudah diketahui sebelumnya*
+c) Selalu memerlukan variabel target berupa angka kontinu
+d) Hanya bisa dipakai pada data transaksi retail
+
+Pada algoritma K-Means, setiap titik data ditempatkan ke cluster dengan cara...
+[single]
+a) Memilih cluster secara acak tanpa perhitungan jarak
+b) Menghitung jarak Euclidean ke semua centroid dan memilih yang paling dekat*
+c) Mengurutkan data berdasarkan abjad nama fitur
+d) Menghitung nilai support dan confidence antar titik
+
+Diagram pohon yang dihasilkan Hierarchical Clustering, yang bisa "dipotong" pada level tertentu untuk menentukan jumlah cluster, disebut...
+[single]
+a) Confusion matrix
+b) Dendrogram*
+c) ROC curve
+d) FP-Tree
+
+Pada algoritma DBSCAN, parameter eps (ε) menyatakan...
+[single]
+a) Jumlah minimum tetangga agar suatu titik menjadi core point
+b) Radius area maksimum agar dua titik dianggap bertetangga*
+c) Jumlah cluster yang harus ditentukan sejak awal
+d) Ambang batas confidence sebuah rule
+
+Nilai Silhouette Score yang mendekati 1 menunjukkan bahwa hasil clustering...
+[single]
+a) Sangat buruk karena cluster saling tumpang tindih
+b) Semakin baik, karena cohesion dan separation antar cluster bagus*
+c) Tidak bisa dievaluasi sama sekali
+d) Pasti dihasilkan oleh algoritma DBSCAN
+
+Association Rule Mining tergolong teknik unsupervised learning yang bertujuan untuk...
+[single]
+a) Memprediksi nilai penjualan di masa depan
+b) Menemukan hubungan/rules menarik antar item dalam data transaksi*
+c) Mengklasifikasikan email menjadi spam atau bukan spam
+d) Meramalkan tren time series jangka panjang
+
+Perbedaan utama Apriori dan FP-Growth dalam memproses database transaksi adalah...
+[single]
+a) Apriori memindai database berkali-kali, sedangkan FP-Growth hanya 2 kali dengan struktur FP-Tree*
+b) FP-Growth memindai database lebih banyak dibanding Apriori
+c) Apriori tidak memerlukan minimum support threshold
+d) FP-Growth tidak bisa menghasilkan association rules
+
+Jika nilai Lift(A→B) suatu rule lebih besar dari 1, artinya...
+[single]
+a) A dan B benar-benar independen
+b) Membeli A meningkatkan kemungkinan membeli B*
+c) Membeli A menurunkan kemungkinan membeli B
+d) Confidence rule tersebut otomatis bernilai 0
+
+Contoh klasik "Beer-Diaper Rule" yang ditemukan Walmart adalah bentuk penerapan dari...
+[single]
+a) Sequential Pattern Mining
+b) Market Basket Analysis*
+c) Time Series Forecasting
+d) RFM Analysis
+
+Pada studi kasus Churn Prediction, evaluasi model difokuskan pada metrik Recall karena...
+[single]
+a) Recall lebih mudah dihitung dibanding metrik lain
+b) Perusahaan tidak boleh sampai kelewatan mendeteksi pelanggan yang benar-benar akan churn*
+c) Dataset churn yang dipakai sudah seimbang secara sempurna
+d) Recall tidak dipengaruhi oleh jumlah False Negative
+
+Dalam RFM Analysis pada studi kasus Customer Segmentation, ketiga huruf R, F, M secara berurutan merepresentasikan...
+[single]
+a) Recency, Frequency, Monetary*
+b) Rating, Feedback, Membership
+c) Recency, Feedback, Marketing
+d) Recovery, Frequency, Margin
+
+Komponen data time series yang menunjukkan arah pergerakan jangka panjang (naik/turun) dalam studi kasus Sales Forecasting disebut...
+[single]
+a) Noise
+b) Seasonality
+c) Trend*
+d) Cyclic
+
+Pada studi kasus Product Bundling, ambang batas minimum yang dipakai untuk menyaring association rules adalah...
+[single]
+a) Support ≥ 0.02, Confidence ≥ 0.5, Lift ≥ 1.5*
+b) Support ≥ 0.5, Confidence ≥ 0.02, Lift ≥ 0.1
+c) Support ≥ 0.9, Confidence ≥ 0.9, Lift ≥ 0.9
+d) Support ≥ 0.1, Confidence ≥ 1.5, Lift ≥ 0.02

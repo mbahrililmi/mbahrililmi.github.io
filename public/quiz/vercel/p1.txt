@@ -1,0 +1,69 @@
+Vercel dikenal sebagai platform dengan slogan "the platform for..." siapa?
+[single]
+a) Backend developers
+b) Frontend developers*
+c) Database administrators
+d) Network engineers
+
+Manakah definisi yang paling tepat untuk deployment?
+[single]
+a) Proses menulis kode aplikasi dari awal
+b) Proses memindahkan kode dari komputer lokal ke server yang dapat diakses publik secara 24/7*
+c) Proses mendesain tampilan antarmuka aplikasi
+d) Proses menguji bug pada aplikasi sebelum dirilis
+
+Vercel awalnya didirikan pada tahun 2015 dengan nama apa?
+[single]
+a) Netlify
+b) Cloudflare
+c) ZEIT*
+d) Railway
+
+Siapa pencipta socket.io yang mendirikan Vercel (saat itu bernama ZEIT)?
+[single]
+a) Guillermo Rauch*
+b) Evan You
+c) Dan Abramov
+d) Tom Preston-Werner
+
+Vercel adalah kreator dan maintainer utama dari framework React apa?
+[single]
+a) Remix
+b) Gatsby
+c) Next.js*
+d) Vue.js
+
+Fitur Vercel yang memberikan URL unik setiap kali push ke Git branch disebut?
+[single]
+a) Production Deployment
+b) Preview Deployments*
+c) Rollback Deployment
+d) Static Deployment
+
+Manakah yang BUKAN termasuk generasi evolusi hosting web menurut materi?
+[single]
+a) Shared Hosting
+b) VPS / Dedicated
+c) PaaS
+d) Local Hosting*
+
+Menurut materi, platform mana yang paling cocok untuk kebutuhan "Fullstack + Database built-in"?
+[single]
+a) Vercel
+b) Netlify
+c) Railway*
+d) Cloudflare Pages
+
+Jenis SSL certificate gratis yang otomatis digunakan Vercel untuk semua domain adalah?
+[single]
+a) Let's Encrypt*
+b) DigiCert
+c) Comodo
+d) GlobalSign
+
+Manakah use case yang menurut materi sebaiknya menggunakan alternatif lain (misalnya Railway) daripada Vercel?
+[single]
+a) Deploy aplikasi Next.js
+b) Deploy landing page statis
+c) Aplikasi dengan WebSocket heavy*
+d) Deploy portfolio pribadi

@@ -1,0 +1,209 @@
+Menurut materi Pertemuan 9, Docker menyelesaikan masalah klasik "kok di laptop saya jalan, tapi di server error" karena...
+[single]
+a) Docker menjalankan OS penuh yang identik dengan server
+b) Docker membungkus aplikasi beserta seluruh dependencies ke dalam container yang portable dan konsisten di berbagai environment*
+c) Docker menghapus kebutuhan environment sama sekali
+d) Docker hanya berjalan di sistem operasi Linux
+
+Dalam Hadoop Ecosystem yang dibahas pada Pertemuan 9, komponen yang menyediakan SQL interface untuk query data di HDFS adalah...
+[single]
+a) Apache Spark
+b) Apache Hive*
+c) YARN
+d) Apache Kafka
+
+Salah satu kekurangan pendekatan Cloud Big Data dibanding On-Premise menurut materi Pertemuan 9 adalah...
+[single]
+a) Setup yang sangat lambat
+b) Tidak tersedia secara global
+c) Risiko vendor lock-in dan biaya yang bisa membengkak untuk pemakaian jangka panjang*
+d) Tidak mendukung high availability
+
+Pada REST API, HTTP method (GET/POST/PUT/DELETE) beserta status code menurut materi Pertemuan 9 berfungsi sebagai...
+[single]
+a) Alat enkripsi data
+b) "Kata kerja" permintaan beserta kode balasan dari server*
+c) Metode kompresi data
+d) Bahasa pemrograman backend
+
+Menurut materi Pertemuan 10, tujuan utama menggunakan Docker Compose untuk menjalankan Hadoop cluster adalah...
+[single]
+a) Mengganti kebutuhan instalasi Java sepenuhnya
+b) Memudahkan setup multi-container (namenode, datanode) dengan satu file konfigurasi*
+c) Membuat REST API secara otomatis
+d) Mengganti fungsi Jupyter Notebook
+
+Sebelum menginstal Hadoop secara manual dalam Pseudo-Distributed Mode, prasyarat yang disebutkan pada materi Pertemuan 10 adalah...
+[single]
+a) Java JDK 8 ke atas sudah terpasang*
+b) Node.js versi terbaru
+c) Database MySQL sudah berjalan
+d) Koneksi internet berkecepatan tinggi
+
+Extension VS Code "GitLens" pada materi Pertemuan 10 berguna untuk...
+[single]
+a) Menjalankan file .ipynb langsung di VS Code
+b) Melihat history dan blame Git secara lebih detail*
+c) Memberi warna berbeda pada tiap kolom file CSV
+d) Menjalankan container Docker dari editor
+
+Library Python apa yang perlu di-install untuk memverifikasi kemampuan pemrosesan data terdistribusi di lingkungan bigdata pada materi Pertemuan 10?
+[single]
+a) matplotlib
+b) pyspark*
+c) seaborn
+d) requests
+
+Pada materi Pertemuan 11, tool yang digunakan sebagai message broker dalam arsitektur stream ingestion adalah...
+[single]
+a) Apache Sqoop
+b) Apache Airflow
+c) Apache Kafka*
+d) DBeaver
+
+Menurut materi Pertemuan 11, workflow ETL pada Apache Airflow didefinisikan dalam bentuk...
+[single]
+a) Tabel relasional
+b) DAG (Directed Acyclic Graph) menggunakan Python*
+c) File JSON statis
+d) Skrip shell tanpa struktur
+
+Kategori Data Sources "IoT & Sensors" pada materi Pertemuan 11 umumnya mengalir melalui protokol...
+[single]
+a) FTP
+b) HTTP saja
+c) MQTT*
+d) SMTP
+
+Consumer pada arsitektur Kafka menurut materi Pertemuan 11 berperan sebagai...
+[single]
+a) Pengirim (publish) messages ke topic
+b) Server yang menyimpan dan mendistribusikan messages
+c) Aplikasi yang membaca (subscribe) messages dari sebuah topic*
+d) Database penyimpanan permanen
+
+Menurut materi Pertemuan 12, pola akses data yang menjadi dasar desain HDFS adalah...
+[single]
+a) Write-once, read-many*
+b) Write-many, read-once
+c) Read-only tanpa penulisan
+d) Write-many, read-many secara acak
+
+Tipe NoSQL "Column-Family" seperti Cassandra dan HBase pada materi Pertemuan 12 dioptimalkan untuk...
+[single]
+a) Query graph yang kompleks
+b) Kecepatan penulisan (write-optimized) dan skalabilitas tinggi*
+c) Caching sederhana dengan key-value
+d) Transaksi ACID yang ketat
+
+Perbedaan utama data warehouse dan data lake dari sisi biaya penyimpanan menurut materi Pertemuan 12 adalah...
+[single]
+a) Data lake lebih mahal karena columnar storage
+b) Keduanya memiliki biaya penyimpanan yang identik
+c) Data lake lebih murah karena menggunakan object storage seperti S3/GCS*
+d) Data warehouse tidak memiliki biaya penyimpanan
+
+Pada Star Schema di materi Pertemuan 12, dim_customer termasuk kategori tabel apa?
+[single]
+a) Fact table
+b) Dimension table*
+c) Staging table
+d) Log table
+
+Fitur "time travel" yang dibawa Delta Lake ke dalam object storage menurut materi Pertemuan 12 merupakan bagian dari...
+[single]
+a) ACID transactions dan schema enforcement*
+b) Enkripsi data end-to-end
+c) Kompresi gambar
+d) Load balancing server
+
+Menurut materi Pertemuan 13, metode SARIMA/Prophet pada tabel Metode Analitik per Use Case digunakan untuk menjawab kebutuhan bisnis...
+[single]
+a) Customer Segmentation
+b) Demand Forecasting*
+c) Fraud Detection
+d) Product Bundling
+
+Perusahaan seperti Amazon, Tokopedia, dan Shopee menurut materi Pertemuan 13 mengandalkan big data untuk hampir semua operasional, salah satunya adalah...
+[single]
+a) Menentukan gaji karyawan
+b) Rekomendasi produk dan penentuan harga*
+c) Mendesain logo perusahaan
+d) Menentukan lokasi kantor pusat
+
+Pada Data Quality Checks di materi Pertemuan 13, aspek "Consistency" berfokus untuk memastikan...
+[single]
+a) Tidak ada missing values sama sekali
+b) Format data seragam di seluruh dataset, misalnya format tanggal ISO 8601*
+c) Amount selalu lebih besar dari 0
+d) Customer_id selalu unik
+
+RFM Score pada materi Pertemuan 13 dihitung berdasarkan kombinasi dari...
+[single]
+a) Recency, Frequency, Monetary*
+b) Rating, Feedback, Marketing
+c) Revenue, Followers, Margin
+d) Region, Frequency, Media
+
+Menurut materi Pertemuan 14, regulasi data pribadi di Indonesia yang mengatur consent, transparansi, dan keamanan data pribadi WNI adalah...
+[single]
+a) GDPR
+b) HIPAA
+c) UU PDP*
+d) Basel III
+
+Value at Risk (VaR) dan stress testing pada materi Pertemuan 14 termasuk bagian dari use case...
+[single]
+a) Credit Scoring
+b) Fraud Detection
+c) Risk Management*
+d) Algorithmic Trading
+
+Menurut materi Pertemuan 14, algorithmic bias dalam Ethical AI Considerations merujuk pada kondisi di mana...
+[single]
+a) Model berjalan terlalu lambat
+b) Model justru mendiskriminasi berdasarkan ras atau gender tanpa disadari*
+c) Model tidak bisa dijalankan di cloud
+d) Model kekurangan data training
+
+Prinsip "Access Control & Encryption" pada materi Pertemuan 14 menyarankan penerapan...
+[single]
+a) Akses penuh untuk seluruh karyawan tanpa batasan
+b) Role-Based Access Control (RBAC) dengan akses seminimal mungkin sesuai kebutuhan*
+c) Data disimpan tanpa enkripsi demi kecepatan akses
+d) Menghapus seluruh audit log secara berkala
+
+Pada studi kasus Credit Fraud Detection di materi Pertemuan 14, rasio kelas fraud pada dataset yang digunakan bersifat...
+[single]
+a) Seimbang 50:50
+b) Sangat imbalanced, fraud jauh lebih sedikit dari transaksi normal*
+c) Fraud lebih banyak dari transaksi normal
+d) Tidak relevan untuk dianalisis
+
+Menurut materi Pertemuan 15, format ujian UAS terdiri dari kombinasi soal...
+[single]
+a) Hanya essay
+b) Pilihan Ganda, Essay, dan Coding/Implementasi*
+c) Hanya praktikum coding
+d) Hanya pilihan ganda
+
+Sertifikasi cloud (AWS/GCP) menurut materi Pertemuan 15 dinilai penting oleh perusahaan karena...
+[single]
+a) Wajib dimiliki sebelum lulus SMA
+b) Menunjukkan kesiapan bekerja dengan infrastruktur cloud yang dipakai perusahaan sehari-hari*
+c) Menggantikan kebutuhan pengalaman kerja sepenuhnya
+d) Tidak berpengaruh pada proses rekrutmen
+
+Berdasarkan materi Pertemuan 15, profesi "ML Engineer" memiliki tugas utama...
+[single]
+a) Membuat laporan dan dashboard sederhana
+b) Deploy dan maintain ML systems*
+c) Mengelola kepatuhan hukum perusahaan
+d) Menjadi kasir toko online
+
+Menurut Best Practices pada materi Pertemuan 15, sebuah model dengan akurasi 95% dianggap tidak ada artinya jika...
+[single]
+a) Modelnya menggunakan Python
+b) Modelnya tidak pernah di-deploy atau tidak ada tindakan nyata (business impact) dari hasilnya*
+c) Modelnya dilatih dengan data yang bersih
+d) Modelnya menggunakan cross-validation

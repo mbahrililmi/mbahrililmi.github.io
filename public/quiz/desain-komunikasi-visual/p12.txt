@@ -1,0 +1,69 @@
+Apa tujuan utama in house journal dalam konteks corporate communications?
+[single]
+a) Memasarkan produk secara langsung kepada konsumen eksternal
+b) Menjadi sarana komunikasi korporat internal yang membangun budaya, engagement, dan keterbukaan informasi*
+c) Menggantikan seluruh laporan keuangan tahunan perusahaan
+d) Menjadi media promosi utama untuk investor asing
+
+Manakah perbedaan yang tepat antara in house journal dan publikasi eksternal menurut materi Pertemuan 12?
+[single]
+a) In house journal bertujuan marketing dan reputasi, publikasi eksternal bertujuan engagement dan budaya
+b) In house journal bertone formal/promotional, publikasi eksternal bertone personal/familial
+c) In house journal menyasar audiens internal dengan tone personal, publikasi eksternal menyasar publik/customer dengan tone formal*
+d) Keduanya memiliki audiens, tone, dan tujuan yang identik
+
+Gaya penulisan apa yang disarankan untuk konten bertipe news dalam corporate journalism, di mana informasi terpenting diletakkan di awal?
+[single]
+a) Kronologis
+b) Inverted pyramid*
+c) Flashback
+d) Stream of consciousness
+
+Dalam anatomy magazine layout, elemen apa yang berfungsi sebagai kutipan menarik yang diperbesar sebagai visual break dan hook?
+[single]
+a) Folios
+b) Pull Quotes*
+c) Deck
+d) Gutters
+
+Manakah jenis grid untuk majalah yang menurut materi PALING UMUM digunakan karena fleksibel?
+[single]
+a) 2-column
+b) 3-column*
+c) 4+ column
+d) Single column tanpa gutter
+
+Saat mengimplementasikan grid system di Scribus/Canva, berapa margin yang disarankan pada dokumen A4 untuk in house journal?
+[single]
+a) 2-5mm
+b) 15-20mm*
+c) 40-50mm
+d) 60-70mm
+
+Berdasarkan typography hierarchy untuk publikasi, urutan ukuran font dari besar ke kecil yang tepat adalah...
+[single]
+a) Body → Headline → Caption → Deck
+b) Caption → Body → Deck → Headline
+c) Headline → Deck → Subheading → Body → Caption*
+d) Deck → Headline → Body → Subheading
+
+Mengapa font serif lebih disarankan untuk body text pada versi cetak in house journal?
+[single]
+a) Karena serif lebih murah dicetak dibanding sans-serif
+b) Karena serif lebih readable untuk teks panjang dibanding sans-serif*
+c) Karena serif tidak bisa digunakan pada layar digital
+d) Karena serif selalu berwarna hitam pekat
+
+Apa yang dimaksud dengan "widow/orphan" yang harus dihindari dalam typography publikasi?
+[single]
+a) Font yang tidak memiliki lisensi resmi
+b) Kata tunggal yang terpisah di akhir atau awal kolom teks*
+c) Gambar yang tidak memiliki caption
+d) Halaman yang tidak memiliki nomor folio
+
+Pada tahap production workflow in house journal, format apa yang digunakan untuk menghasilkan print-ready PDF?
+[single]
+a) RGB, 72 DPI, tanpa bleed
+b) CMYK, 300 DPI, dengan bleed*
+c) Grayscale, 150 DPI, tanpa margin
+d) RGB, 600 DPI, dengan watermark

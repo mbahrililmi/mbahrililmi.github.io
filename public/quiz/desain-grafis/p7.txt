@@ -1,0 +1,69 @@
+Apa perbedaan Color Correction dan Color Grading menurut materi?
+[single]
+a) Color Correction untuk creative mood, Color Grading untuk fix problems
+b) Keduanya adalah istilah yang sama persis
+c) Color Correction untuk fix problems dan membuat natural, Color Grading untuk creative decisions demi mood dan style*
+d) Color Grading hanya bisa dilakukan di Illustrator
+
+Popular color grade apa yang disebut sebagai "cinematic look populer" dalam materi?
+[single]
+a) Matte Finish
+b) Teal & Orange*
+c) Cool Blue
+d) Monochromatic
+
+Fitur apa yang digunakan untuk menerapkan instant cinematic look dari preset, diakses lewat New Adjustment Layer?
+[single]
+a) Gradient Maps
+b) Split Toning
+c) Color Lookup (LUT)*
+d) Curves manual
+
+Teknik masking apa yang sangat cocok untuk menyeleksi objek dengan edge kompleks seperti rambut, pohon, atau asap?
+[single]
+a) Quick Mask Mode
+b) Color Range Masking
+c) Channel Masking*
+d) Luminosity Masking
+
+Fitur apa dalam Select and Mask workspace yang digunakan untuk menghilangkan fringe atau halo warna di sekitar tepi seleksi?
+[single]
+a) Refine Edge Brush
+b) Edge Detection
+c) Decontaminate Colors*
+d) Smooth slider
+
+Langkah apa yang dilakukan untuk membuat efek shadow pada compositing menurut materi?
+[single]
+a) Duplicate layer, fill putih, lalu naikkan opacity ke 100%
+b) Duplicate object layer, fill hitam, transform skew/distort, gaussian blur, opacity 20-40%*
+c) Hapus layer object dan ganti dengan warna hitam solid
+d) Gunakan Clone Stamp untuk menggandakan bayangan asli
+
+Blend mode apa yang menurut materi baik digunakan untuk membuat efek glow dan light effects saat compositing?
+[single]
+a) Multiply
+b) Screen*
+c) Normal
+d) Color Burn
+
+Apa yang harus dilakukan pertama kali sebelum menerapkan filter agar filter bersifat non-destructive (Smart Filter)?
+[single]
+a) Flatten seluruh gambar terlebih dahulu
+b) Convert layer menjadi Smart Object terlebih dahulu*
+c) Hapus semua layer mask yang ada
+d) Ubah color mode menjadi Grayscale
+
+Teknik special effect apa yang menggunakan blend mode Screen atau Lighten dengan menumpuk foto portrait dan landscape?
+[single]
+a) Dispersion Effect
+b) Levitation Effect
+c) Double Exposure Effect*
+d) Miniature Effect
+
+Manakah berikut ini yang termasuk contoh Neural Filters menurut materi?
+[single]
+a) Gaussian Blur
+b) Skin Smoothing*
+c) Clone Stamp
+d) Unsharp Mask

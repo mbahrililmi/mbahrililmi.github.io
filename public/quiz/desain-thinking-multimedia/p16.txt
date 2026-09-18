@@ -1,0 +1,209 @@
+Kenapa Instagram menggunakan gradasi warna ungu-merah muda-oranye pada logonya menurut materi Pertemuan 9?
+[single]
+a) Karena gradasi lebih murah diproduksi dibanding warna solid
+b) Untuk merepresentasikan keberagaman konten kreatif penggunanya yang dirasa terlalu kaku jika hanya satu warna tunggal*
+c) Karena algoritma Instagram mewajibkan logo memakai gradasi warna
+d) Untuk menyamai warna kompetitor media sosial lain
+
+Leading yang terlalu rapat pada sebuah paragraf akan berdampak pada...
+[single]
+a) Paragraf terasa sesak dan melelahkan mata pembaca*
+b) Mata pembaca kehilangan baris saat membaca
+c) Judul terasa lebih lega dan premium
+d) Huruf "A" dan "V" terlihat memiliki lubang aneh di antaranya
+
+Grid 12 kolom menurut materi Pertemuan 9 merupakan standar industri yang biasa dipakai untuk layout...
+[single]
+a) Smartphone dengan layar sempit
+b) Web dan tablet*
+c) Poster cetak ukuran besar
+d) Ikon aplikasi
+
+Dalam komponen minimum style guide sederhana pada materi Pertemuan 9, aspek "jarak (spacing)" disarankan mengikuti satuan...
+[single]
+a) Kelipatan 5px
+b) Kelipatan 8px, misalnya 8, 16, 24, 32px*
+c) Kelipatan 10px tetap tanpa variasi
+d) Ukuran font judul yang dipakai pada halaman tersebut
+
+Pada struktur narasi 3 babak untuk onboarding aplikasi, bagian "pembukaan" (layar 1-2) sebaiknya berisi...
+[single]
+a) Ajakan bertindak (CTA) yang jelas seperti "Mulai Sekarang"
+b) Sapaan hangat dan janji manfaat utama produk dalam satu kalimat, bukan daftar fitur*
+c) Masalah yang selama ini dialami pengguna
+d) Fitur utama aplikasi secara lengkap
+
+Dalam elemen storyboard profesional, transisi jenis "fade" digunakan untuk memberi kesan...
+[single]
+a) Tegas dan cepat
+b) Lembut, dengan jeda waktu*
+c) Perubahan halus antar adegan tanpa jeda sama sekali
+d) Perpindahan kamera dari sudut rendah ke sudut tinggi
+
+Kenapa akun media sosial Duolingo Indonesia membangun cerita berkelanjutan tentang maskot burung hantu "Duo" yang posesif dan lucu?
+[single]
+a) Supaya kontennya bisa diklasifikasikan sebagai iklan formal
+b) Membuat audiens menanti dan ikut membagikan konten karena merasa related, mengubah pengingat belajar jadi hiburan yang dinanti*
+c) Karena maskot burung hantu wajib dipakai semua aplikasi edukasi
+d) Untuk menghindari biaya produksi konten edukatif formal
+
+Menurut materi, tone of voice aplikasi perbankan sebaiknya cenderung...
+[single]
+a) Sangat santai dan penuh emoji seperti aplikasi belajar bahasa untuk anak muda
+b) Tetap ramah tapi lebih formal dan meyakinkan*
+c) Menggunakan bahasa teknis internal tim pengembang
+d) Tidak perlu memperhatikan nada bahasa sama sekali
+
+Prinsip interaction design "konsistensi" berarti...
+[single]
+a) Setiap layar boleh memiliki pola interaksi yang berbeda selama terlihat menarik
+b) Pola interaksi yang sama harus berlaku di seluruh aplikasi, misalnya arti gestur geser tidak berubah-ubah di layar berbeda*
+c) Warna tombol harus selalu sama di semua kondisi termasuk saat error
+d) Navigasi harus selalu memakai ikon tanpa label teks
+
+Titik tiga yang berdenyut saat lawan bicara sedang mengetik pada aplikasi chat adalah contoh microinteraction yang berfungsi untuk...
+[single]
+a) Menghemat kuota data pengguna
+b) Mengurangi kecemasan menunggu dengan memberi tahu ada respons yang datang*
+c) Menggantikan fitur notifikasi push
+d) Menandai status akun terverifikasi
+
+Praktik aksesibilitas yang memastikan antarmuka tetap terbaca dan tidak berantakan ketika pengguna memperbesar ukuran teks di pengaturan perangkat disebut...
+[single]
+a) Kontras warna cukup
+b) Ukuran teks yang bisa disesuaikan*
+c) Caption untuk video/audio
+d) Navigasi tanpa bergantung pada warna saja
+
+Analogi yang dipakai materi Pertemuan 11 untuk menjelaskan interaction design yang baik adalah...
+[single]
+a) Interaction design seperti resep masakan yang harus diikuti persis
+b) Interaction design seperti lawan bicara yang responsif, dapat diprediksi, dan memberi isyarat jelas sebelum pengguna salah langkah*
+c) Interaction design seperti seragam sekolah yang menyatukan identitas
+d) Interaction design seperti partitur musik yang menentukan ritme cerita
+
+Manfaat "version history" pada tools digital kolaboratif menurut materi Pertemuan 12 adalah...
+[single]
+a) Menghapus otomatis file yang sudah lama tidak dipakai
+b) Menyimpan setiap perubahan lengkap dengan riwayat versi sehingga bisa diklik mundur jika revisi terbaru lebih buruk*
+c) Membatasi jumlah anggota tim yang bisa mengakses file
+d) Mengubah seluruh warna desain secara otomatis
+
+Kenapa memberi nama layer yang jelas di Layer Panel Figma dianggap penting menurut materi?
+[single]
+a) Karena Figma otomatis menghapus layer yang tidak diberi nama
+b) Supaya tim lain atau diri sendiri di kemudian hari tidak kesulitan mencari elemen tertentu di antara banyak layer bernama generik seperti "Rectangle 47"*
+c) Karena nama layer memengaruhi ukuran file secara signifikan
+d) Karena nama layer otomatis menjadi judul presentasi
+
+Salah satu kelebihan Adobe XD yang disebutkan materi dibanding tools berbasis browser adalah...
+[single]
+a) Bisa dipakai tanpa perlu diinstal sama sekali
+b) Berjalan sebagai aplikasi desktop sehingga lebih ringan di beberapa perangkat dan offline-friendly*
+c) Tidak memerlukan lisensi apa pun untuk dipakai
+d) Otomatis terintegrasi dengan Miro dan FigJam
+
+Menurut materi, kebiasaan mem-backup file sehari sebelum presentasi bertujuan untuk...
+[single]
+a) Mengurangi ukuran file agar lebih cepat diakses
+b) Memiliki cadangan yang bisa dikembalikan tanpa panik kalau ada perubahan mendadak yang merusak tampilan*
+c) Memenuhi syarat administratif dari dosen pembimbing
+d) Menghindari plagiarisme antar kelompok
+
+Anatomi skenario task usability testing yang efektif menurut materi terdiri dari tiga bagian, yaitu...
+[single]
+a) Nama partisipan, waktu mulai, dan waktu selesai
+b) Konteks singkat, tugas yang jelas, dan kondisi realistis tanpa petunjuk berlebihan dari fasilitator*
+c) Pertanyaan pendapat, skala penilaian, dan kesimpulan akhir
+d) Jumlah partisipan, lokasi testing, dan jenis perangkat yang dipakai
+
+Kelebihan utama moderated testing dibanding unmoderated testing menurut materi adalah...
+[single]
+a) Bisa menjangkau lebih banyak partisipan dengan biaya lebih hemat
+b) Fasilitator bisa bertanya lebih dalam dan menangkap reaksi non-verbal secara langsung sehingga data lebih kaya*
+c) Tidak membutuhkan kehadiran fasilitator sama sekali
+d) Selalu lebih cepat dilakukan dibanding metode lainnya
+
+Metrik yang mengukur berapa lama waktu yang dibutuhkan partisipan untuk menyelesaikan satu task, dan bisa menandakan ada langkah yang membingungkan jika jauh lebih lama dari perkiraan, disebut...
+[single]
+a) Task Success Rate
+b) Time on Task*
+c) SUS Score
+d) Severity Rating
+
+Bagian "Ringkasan Eksekutif" dalam laporan usability testing menurut materi sebaiknya berisi...
+[single]
+a) Seluruh transkrip wawancara partisipan secara lengkap
+b) Berapa partisipan diuji, metode yang dipakai, dan tiga temuan paling penting, ditulis untuk pembaca yang sibuk*
+c) Daftar seluruh kode program yang dipakai dalam prototipe
+d) Riwayat revisi desain sejak awal proyek
+
+Setelah tim pada studi kasus game edukasi matematika melakukan perbaikan (memperbesar tombol, menambah animasi feedback, mengganti instruksi teks dengan ikon) dan menjalankan retest, Task Success Rate naik menjadi...
+[single]
+a) 70%
+b) 80%
+c) 90%*
+d) 100%
+
+Dari affinity diagram yang disusun tim BelajarBahasa berdasarkan hasil wawancara, tiga tema besar yang muncul adalah...
+[single]
+a) Harga, promosi, dan kompetitor
+b) Monoton, waktu sempit, dan progres tidak terlihat*
+c) Bug aplikasi, server down, dan loading lambat
+d) Kurangnya iklan, kurangnya notifikasi, dan kurangnya media sosial
+
+Teknik "crazy 8" yang dipakai tim BelajarBahasa pada tahap Ideate menghasilkan...
+[single]
+a) 8 partisipan untuk sesi wawancara lanjutan
+b) Lebih dari 40 ide mentah dari lima anggota tim*
+c) 8 prototipe high-fidelity yang siap diuji langsung
+d) 8 pertanyaan HMW yang menjadi acuan akhir
+
+Urutan tahap Prototype yang dilakukan tim BelajarBahasa dari awal hingga akhir adalah...
+[single]
+a) Prototipe high-fidelity langsung dibuat tanpa sketsa awal
+b) Sketsa kertas (low-fidelity) untuk alur, dilanjutkan wireframe digital di Figma, lalu prototipe high-fidelity untuk satu modul*
+c) Wireframe digital dibuat terlebih dahulu sebelum riset pengguna dilakukan
+d) Prototipe dibuat langsung untuk seluruh aplikasi sejak awal
+
+Tantangan "bias tim sendiri" pada studi kasus BelajarBahasa terjadi ketika...
+[single]
+a) Tim kehabisan anggaran riset di tengah proyek
+b) Anggota tim yang sudah lama berkecimpung di produk merasa "sudah tahu" keinginan pengguna tanpa perlu bertanya lagi*
+c) Investor menekan tim untuk cepat meluncurkan produk
+d) Sampel riset dianggap terlalu kecil secara statistik
+
+Pertanyaan reflektif "bisakah kalian menjawab 'karena riset menunjukkan...' untuk setiap fitur di prototipe kalian?" pada materi Pertemuan 14 bertujuan untuk...
+[single]
+a) Menilai kecepatan tim menyelesaikan prototipe
+b) Mendorong mahasiswa memastikan setiap keputusan desain proyek akhir mereka berakar dari temuan riset, bukan sekadar asumsi*
+c) Menentukan siapa anggota tim yang paling banyak berkontribusi
+d) Mengukur jumlah partisipan riset yang dilibatkan
+
+Pertimbangan "engagement" pada studi kasus game SehatKita diuji dengan cara...
+[single]
+a) Menghitung jumlah unduhan aplikasi dalam sebulan
+b) Menguji tiga prototipe mekanik gameplay berbeda dan mengukur mana yang membuat siswa betah bermain lebih dari 5 menit tanpa diminta*
+c) Membandingkan harga produksi game dengan kompetitor
+d) Mensurvei guru mengenai kesesuaian kurikulum
+
+Berdasarkan struktur presentasi proyek akhir yang disarankan materi, bagian "Penutup & Rencana Lanjutan" dialokasikan waktu sekitar...
+[single]
+a) 1 menit*
+b) 3 menit
+c) 5 menit
+d) 8 menit
+
+Berdasarkan rubrik penilaian proyek akhir pada materi, bobot kriteria "Kualitas Presentasi" adalah...
+[single]
+a) 10%
+b) 15%*
+c) 20%
+d) 25%
+
+Berdasarkan tabel review materi satu semester, konsep kunci "persona, journey map, metode riset kualitatif vs kuantitatif" paling sesuai dibahas pada pertemuan...
+[single]
+a) P5 - Tahap Prototype
+b) P7 - Riset Pengguna Lanjutan*
+c) P11 - Interaction Design
+d) P13 - Evaluasi & Iterasi Desain

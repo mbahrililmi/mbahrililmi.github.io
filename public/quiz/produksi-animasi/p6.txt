@@ -1,0 +1,69 @@
+Menurut materi, salah satu dari tiga alasan utama kenapa jadwal produksi penting adalah...
+[single]
+a) Deadline klien yang tidak bisa digeser-geser*
+b) Supaya laporan administrasi terlihat lebih rapi
+c) Karena dosen mewajibkan setiap tugas punya jadwal tertulis
+d) Supaya tim bisa bekerja tanpa target yang jelas
+
+Milestone menurut materi didefinisikan sebagai...
+[single]
+a) Diagram batang horizontal yang menampilkan jadwal tugas proyek
+b) Titik pencapaian penting dalam jadwal produksi yang dipakai untuk memantau progres proyek*
+c) Waktu cadangan yang ditambahkan untuk mengantisipasi keterlambatan
+d) Daftar rinci setiap shot yang harus diproduksi
+
+Menurut materi, milestone yang baik harus memiliki...
+[single]
+a) Hanya tanggal tanpa penjelasan tambahan
+b) Kriteria selesai yang jelas dan bisa diperiksa*
+c) Jumlah revisi yang tidak dibatasi
+d) Nama yang unik dan menarik
+
+Manakah urutan milestone berikut yang sesuai dengan contoh di materi?
+[single]
+a) First Pass Animation Selesai, kemudian Shot List Final, kemudian Pre-production Selesai
+b) Pre-production Selesai, kemudian Shot List Final, kemudian First Pass Animation Selesai*
+c) Final Render Selesai, kemudian Pre-production Selesai, kemudian Shot List Final
+d) Shot List Final, kemudian Final Render Selesai, kemudian Pre-production Selesai
+
+Gantt chart menurut materi berfungsi untuk...
+[single]
+a) Menampilkan jadwal tugas-tugas proyek dari waktu ke waktu, termasuk tugas mana yang berjalan paralel*
+b) Menghitung total anggaran produksi secara otomatis
+c) Menilai kualitas hasil render sebelum dirilis
+d) Menentukan kode warna resmi karakter dalam produksi
+
+Pada contoh tabel gantt chart di materi, tugas apa yang digambarkan bisa berjalan paralel sejak minggu 5 bersamaan dengan animatic?
+[single]
+a) Storyboard
+b) Sound Design*
+c) Render Final
+d) Revisi & Polish
+
+Buffer time menurut materi didefinisikan sebagai...
+[single]
+a) Total durasi keseluruhan proyek dari awal sampai akhir
+b) Waktu cadangan yang sengaja ditambahkan untuk mengantisipasi keterlambatan atau kendala tak terduga*
+c) Waktu istirahat wajib bagi seluruh anggota tim setiap minggu
+d) Waktu tambahan yang diberikan klien untuk revisi tanpa biaya
+
+Menurut materi, berapa persentase buffer time yang umum ditambahkan banyak praktisi dari total estimasi waktu?
+[single]
+a) 5-10%
+b) 15-20%*
+c) 30-40%
+d) 50-60%
+
+Menurut materi, di mana sebaiknya buffer time paling efektif diletakkan?
+[single]
+a) Disebar tipis-tipis di setiap tugas kecil
+b) Menjelang milestone-milestone penting, terutama sebelum delivery final ke klien*
+c) Hanya di awal proyek sebelum pekerjaan dimulai
+d) Setelah seluruh proyek selesai dan diserahkan ke klien
+
+Menurut materi, peran yang menjadi sangat penting dalam memastikan aset dan informasi mengalir lancar dari satu departemen ke departemen berikutnya dalam breakdown tugas mingguan adalah...
+[single]
+a) Pipeline Supervisor
+b) Production Coordinator*
+c) Sound Designer
+d) Compositor

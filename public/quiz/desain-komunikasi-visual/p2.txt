@@ -1,0 +1,69 @@
+Dalam model komunikasi visual Sender - Encoding - Message - Channel - Decoding - Receiver - Feedback, istilah yang digunakan untuk menyebut distraksi atau misinterpretasi yang dapat mengganggu di setiap tahap adalah?
+[single]
+a) Feedback
+b) Channel
+c) Noise*
+d) Encoding
+
+Fungsi komunikasi visual yang bertujuan mengubah sikap atau perilaku audiens, seperti kampanye sosial atau iklan produk, termasuk kategori fungsi?
+[single]
+a) Informative
+b) Persuasive*
+c) Decorative
+d) Identificatory
+
+Bagian mata yang berfungsi mengatur jumlah cahaya yang masuk, membesar dalam kondisi gelap dan mengecil dalam kondisi terang, adalah?
+[single]
+a) Cornea
+b) Retina
+c) Iris & Pupil*
+d) Optic Nerve
+
+Manakah pernyataan yang BENAR tentang perbedaan antara Rods dan Cones sebagai photoreceptor mata?
+[single]
+a) Rods sensitif terhadap warna, sedangkan Cones sensitif terhadap gerakan di kondisi gelap
+b) Rods sensitif pada cahaya rendah dan gerakan namun tidak sensitif warna, sedangkan Cones sensitif warna dan detail serta terkonsentrasi di fovea*
+c) Jumlah Cones jauh lebih banyak dibandingkan Rods pada tiap mata
+d) Rods dan Cones sama-sama terkonsentrasi di area fovea
+
+Prinsip Gestalt yang menjelaskan bagaimana otak "melengkapi" bentuk yang tidak komplit, seperti panah tersembunyi pada logo FedEx dan panda pada logo WWF, disebut?
+[single]
+a) Proximity
+b) Closure*
+c) Common Fate
+d) Symmetry
+
+Proses psikologis interpretasi visual yang melibatkan memory, expectation, dan context, berbeda dengan proses fisiologis deteksi stimulus oleh mata, disebut?
+[single]
+a) Sensation
+b) Perception*
+c) Adaptation
+d) Convergence
+
+Menurut materi, visible spectrum atau spektrum cahaya tampak yang dapat dipersepsikan mata manusia berada pada kisaran?
+[single]
+a) ~100-300 nanometer
+b) ~380-700 nanometer*
+c) ~700-1000 nanometer
+d) ~1-100 nanometer
+
+Warna putih di budaya Barat umumnya bermakna kesucian (purity), sedangkan di budaya Timur warna putih umumnya bermakna?
+[single]
+a) Keberuntungan
+b) Duka (mourning)*
+c) Keberanian
+d) Optimisme
+
+Prinsip Gestalt yang mendasari desain card-based layout seperti Pinterest dan Trello, di mana elemen dalam satu boundary/kotak dipersepsikan sebagai satu grup, disebut?
+[single]
+a) Similarity
+b) Continuity
+c) Common Region*
+d) Figure-Ground
+
+Manakah dari berikut ini yang BUKAN termasuk faktor yang mempengaruhi persepsi visual menurut materi?
+[single]
+a) Past Experience
+b) Cultural Background
+c) Fovea*
+d) Motivation

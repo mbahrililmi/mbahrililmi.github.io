@@ -1,0 +1,69 @@
+Dalam scene 3D, kamera berfungsi sebagai representasi dari...
+[single]
+a) Mata penonton — apa pun di luar bingkainya tidak akan pernah tampil di hasil render*
+b) Sumber cahaya utama dalam scene
+c) Modifier yang menghaluskan permukaan objek
+d) Titik pusat rotasi armature
+
+Lensa kamera yang menangkap area sangat luas dalam satu frame namun berisiko membuat objek di pinggir frame terlihat melengkung/terdistorsi disebut lensa...
+[single]
+a) Telephoto
+b) Wide-angle*
+c) Makro
+d) Fixed focus
+
+Efek kamera yang membuat objek pada jarak fokus tertentu terlihat tajam sementara latar depan/belakang terlihat blur, berguna untuk mengarahkan perhatian penonton, disebut...
+[single]
+a) Field of View
+b) Ray-tracing
+c) Depth of Field*
+d) Three-point lighting
+
+Jenis shot kamera yang menampilkan karakter kira-kira dari pinggang ke atas, dan paling sering dipakai karena masih memperlihatkan gestur tubuh sekaligus cukup dekat untuk melihat ekspresi, adalah...
+[single]
+a) Wide Shot
+b) Close-Up
+c) Extreme Wide Shot
+d) Medium Shot*
+
+Dalam teknik three-point lighting, cahaya yang diletakkan di belakang objek mengarah ke kamera untuk memisahkan objek dari latar belakang lewat garis tepi cahaya tipis (rim light) adalah...
+[single]
+a) Back Light*
+b) Key Light
+c) Fill Light
+d) Ambient Light
+
+Apa yang biasanya terjadi jika sebuah scene hanya diterangi satu lampu saja (Key Light) tanpa Fill Light maupun Back Light?
+[single]
+a) Objek akan terlihat datar tanpa bayangan sama sekali
+b) Hasilnya terlihat kontras berlebihan, satu sisi terang benderang dan sisi lain gelap total tanpa detail*
+c) Objek otomatis menyatu sempurna dengan latar belakang
+d) Render akan otomatis lebih cepat selesai dibanding memakai tiga lampu
+
+Manakah yang BUKAN merupakan kesalahan umum pemula dalam pencahayaan menurut materi Pertemuan 12?
+[single]
+a) Cuma pakai satu lampu
+b) Semua lampu disamakan terangnya sehingga objek terlihat flat
+c) Menggunakan environment light sebagai pelengkap ringan three-point lighting*
+d) Lupa menambahkan Back Light
+
+Render engine di Blender yang menghitung jalur cahaya sungguhan lewat ray-tracing, menghasilkan pantulan dan bayangan yang lebih realistis tapi butuh waktu render lebih lama, adalah...
+[single]
+a) Eevee
+b) Workbench
+c) Grease Pencil Engine
+d) Cycles*
+
+Menurut tips memilih render engine pada materi, kapan sebaiknya Cycles digunakan?
+[single]
+a) Hanya di detik-detik akhir saat semua pengaturan scene sudah pasti dan hasil terbaik ingin dicapai*
+b) Sejak awal proses menata scene supaya hasilnya langsung akurat
+c) Setiap kali mencoba-coba posisi kamera atau warna material
+d) Cycles tidak pernah direkomendasikan untuk render final
+
+Format file output yang paling tepat dipakai untuk render animasi karena setiap frame tersimpan terpisah, sehingga jika render terhenti bisa dilanjutkan tanpa mengulang dari awal, adalah...
+[single]
+a) MP4
+b) Image Sequence (PNG per frame)*
+c) JPEG
+d) GIF

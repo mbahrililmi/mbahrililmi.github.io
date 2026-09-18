@@ -1,0 +1,69 @@
+Menurut kutipan Jeff Bezos yang dikutip dalam materi, "Brand is what people say about you when you're not in the room" merupakan definisi dari?
+[single]
+a) Branding
+b) Brand*
+c) Brand Identity
+d) Brand Guidelines
+
+Jenis logo yang hanya menggunakan inisial perusahaan, seperti IBM, HBO, CNN, dan NASA, disebut?
+[single]
+a) Wordmark
+b) Lettermark (Monogram)*
+c) Brandmark
+d) Emblem
+
+Logo Nike swoosh, menurut materi, merupakan contoh jenis logo?
+[single]
+a) Mascot Logo
+b) Combination Mark
+c) Abstract Mark*
+d) Wordmark
+
+Manakah dari berikut ini yang BUKAN termasuk prinsip desain logo efektif menurut materi Pertemuan 6?
+[single]
+a) Simple
+b) Timeless
+c) Complex*
+d) Versatile
+
+Dalam Inkscape, operasi Boolean path yang digunakan untuk memotong shape yang berada di atas dari shape di bawahnya disebut?
+[single]
+a) Union
+b) Difference*
+c) Intersection
+d) Exclusion
+
+Tahap pertama dalam proses desain logo profesional menurut materi adalah?
+[single]
+a) Sketching
+b) Research
+c) Discovery / Brief*
+d) Digital Execution
+
+Keseluruhan bahasa visual sebuah brand yang bekerja secara konsisten di semua touchpoint, mulai dari kartu nama hingga media sosial, disebut?
+[single]
+a) Logo
+b) Brand Identity System*
+c) Mood Board
+d) Brand Guidelines saja
+
+Manakah kesalahan umum (common mistake) dalam desain logo yang disebutkan dalam materi?
+[single]
+a) Selalu menggunakan format vector
+b) Menguji logo di berbagai ukuran
+c) Bergantung pada warna/efek sehingga tidak bekerja dalam hitam-putih*
+d) Mempertimbangkan semua use case
+
+Jenis logo berupa teks yang diletakkan di dalam simbol atau badge, seperti pada Starbucks dan Harley-Davidson, disebut?
+[single]
+a) Combination Mark
+b) Emblem*
+c) Brandmark
+d) Lettermark
+
+Sebuah UMKM ingin logonya tetap tajam baik digunakan sebagai favicon website kecil maupun dicetak pada billboard besar. Prinsip desain logo yang paling relevan untuk kebutuhan ini adalah?
+[single]
+a) Memorable
+b) Appropriate
+c) Scalable (Vector)*
+d) Timeless

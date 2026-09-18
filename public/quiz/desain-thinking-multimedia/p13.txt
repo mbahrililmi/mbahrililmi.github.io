@@ -1,0 +1,69 @@
+Menurut materi, kenapa pertanyaan "menurut kamu aplikasi ini bagus tidak?" dianggap kurang baik sebagai skenario usability testing?
+[single]
+a) Karena pertanyaan itu terlalu panjang untuk dijawab partisipan
+b) Karena partisipan hampir selalu menjawab sopan-sopan saja sehingga tidak memberi data yang berguna*
+c) Karena pertanyaan itu hanya bisa dijawab oleh partisipan yang sudah ahli desain
+d) Karena pertanyaan itu tidak berkaitan dengan tugas apa pun
+
+Saat menguji video atau animasi, fokus pengujian bergeser dari task completion menjadi...
+[single]
+a) Kecepatan partisipan menyelesaikan tugas teknis
+b) Pemahaman pesan utama dan pengalaman menonton, termasuk apakah durasinya terasa pas*
+c) Jumlah klik yang dilakukan partisipan selama sesi
+d) Warna dan tipografi yang dipakai dalam video
+
+Kombinasi metode testing yang direkomendasikan materi untuk praktikum mahasiswa dengan keterbatasan waktu satu semester adalah...
+[single]
+a) Moderated dan in-person
+b) Unmoderated dan in-person
+c) Moderated dan remote*
+d) Unmoderated dan remote
+
+Manakah pernyataan yang benar mengenai unmoderated testing menurut materi?
+[single]
+a) Fasilitator hadir langsung memandu sesi dan bisa bertanya lebih dalam
+b) Partisipan menyelesaikan task sendiri tanpa fasilitator hadir langsung, sehingga bisa menjangkau lebih banyak partisipan dengan biaya lebih hemat*
+c) Hanya bisa dilakukan secara tatap muka di ruangan yang sama
+d) Selalu menghasilkan data yang lebih kaya dibanding moderated testing
+
+Jika dari 5 partisipan, 4 berhasil menyelesaikan task mendaftar akun tanpa bantuan, maka Task Success Rate-nya adalah...
+[single]
+a) 40%
+b) 60%
+c) 80%*
+d) 100%
+
+Dalam menghitung SUS Score, untuk pertanyaan bernomor genap, cara menghitung skor kontribusinya adalah...
+[single]
+a) Nilai jawaban dikurangi 1
+b) 5 dikurangi nilai jawaban*
+c) Nilai jawaban dikali 2.5
+d) Nilai jawaban ditambah 1
+
+Berdasarkan materi, skor rata-rata SUS dari berbagai riset industri berada di angka...
+[single]
+a) 50
+b) 60
+c) 68*
+d) 80
+
+Dalam laporan usability testing, temuan sebaiknya dikelompokkan berdasarkan...
+[single]
+a) Urutan ditemukan selama sesi testing
+b) Tingkat keparahan (severity), bukan urutan ditemukan, supaya prioritas perbaikan langsung terlihat*
+c) Nama partisipan yang menemukan masalah tersebut
+d) Abjad nama fitur yang bermasalah
+
+Menurut materi, sebuah temuan yang hanya disebut satu partisipan tapi berpotensi membuat pengguna gagal total menyelesaikan tugas inti tetap harus dikategorikan sebagai...
+[single]
+a) Cosmetic, karena hanya disebut satu orang
+b) Minor, karena jarang muncul
+c) Critical, karena severity dinilai dari dampak terhadap keberhasilan pengguna, bukan jumlah suara yang mengeluhkan*
+d) Diabaikan karena datanya tidak representatif
+
+Pada studi kasus game edukasi matematika, penyebab utama Task Success Rate hanya mencapai 60% adalah...
+[single]
+a) Anak-anak tidak tertarik dengan tema perkalian
+b) Banyak partisipan bingung membedakan tombol "Mulai" dan tombol "Petunjuk" yang bentuknya mirip*
+c) Sesi testing dilakukan secara unmoderated sehingga tidak ada pendampingan
+d) Game tersebut tidak memiliki animasi maupun suara sama sekali

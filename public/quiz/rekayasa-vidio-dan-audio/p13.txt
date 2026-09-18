@@ -1,0 +1,69 @@
+Menurut pipeline audio post-production dalam materi, urutan langkah yang benar dimulai dari...
+[single]
+a) Mixing, lalu Dialogue Editing
+b) Dialogue Editing, lalu Sound Design/SFX*
+c) Mastering, lalu Music
+d) Export, lalu Ambience
+
+Untuk meningkatkan clarity/presence pada dialog, boost EQ menurut materi dilakukan pada frekuensi...
+[single]
+a) 80-100 Hz
+b) 200-400 Hz
+c) 2-5 kHz*
+d) 10-12 kHz
+
+High-Pass Filter pada dialogue editing biasanya diterapkan pada frekuensi berapa untuk menghilangkan rumble?
+[single]
+a) 80-100 Hz*
+b) 500-800 Hz
+c) 2-5 kHz
+d) 10-12 kHz
+
+Manakah yang termasuk kategori "Hard SFX (Sync Sound)" menurut materi?
+[single]
+a) Suara lalu lintas latar belakang
+b) Suara angin berkelanjutan
+c) Suara pintu menutup yang disinkronkan dengan aksi visual*
+d) Room tone
+
+Teknik menurunkan volume musik secara manual atau otomatis saat dialog berlangsung disebut...
+[single]
+a) Compression
+b) Music Ducking*
+c) De-Essing
+d) Noise Reduction
+
+Berdasarkan Level Balancing (Priority Hierarchy) dalam materi, elemen manakah yang seharusnya memiliki level paling keras dalam mix?
+[single]
+a) Music
+b) SFX
+c) Dialogue*
+d) Ambience
+
+Fairlight Page dalam DaVinci Resolve berfungsi sebagai...
+[single]
+a) Tools color grading profesional
+b) Digital Audio Workstation (DAW) lengkap untuk audio post-production*
+c) Node-based compositor untuk VFX
+d) Tools khusus export dan render
+
+Target loudness standar untuk broadcast TV menurut EBU R128 pada materi adalah...
+[single]
+a) -16 LUFS
+b) -23 LUFS*
+c) -8 LUFS
+d) 0 LUFS
+
+Apa perbedaan antara True Peak dan Sample Peak menurut materi?
+[single]
+a) Keduanya adalah istilah yang identik
+b) True Peak adalah peak aktual setelah konversi D/A yang bisa lebih tinggi dari Sample Peak*
+c) Sample Peak hanya berlaku untuk musik, True Peak hanya untuk dialog
+d) True Peak selalu lebih rendah dari Sample Peak
+
+Menurut materi, mengapa tidak disarankan menghapus SEMUA napas saat dialogue editing?
+[single]
+a) Karena akan membuat ukuran file menjadi lebih besar
+b) Karena akan membuat suara terdengar robotik dan tidak natural*
+c) Karena napas berisi informasi penting untuk sinkronisasi video
+d) Karena software tidak mengizinkan penghapusan napas

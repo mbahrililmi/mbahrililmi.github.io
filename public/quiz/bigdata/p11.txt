@@ -1,0 +1,69 @@
+Apa yang dimaksud dengan Data Ingestion menurut materi?
+[single]
+a) Proses menghapus data yang sudah tidak terpakai
+b) Proses mengumpulkan, mentransfer, dan memuat data dari berbagai sumber ke sistem storage big data*
+c) Proses membuat visualisasi dashboard dari data
+d) Proses mengenkripsi data sebelum disimpan
+
+Perbedaan utama antara Batch Ingestion dan Stream Ingestion adalah...
+[single]
+a) Batch ingestion memproses data secara real-time, sedangkan stream ingestion menunggu terkumpul dulu
+b) Batch ingestion mengumpulkan data dalam periode tertentu sebelum diproses, sedangkan stream ingestion memproses data real-time begitu tiba*
+c) Keduanya sama-sama memproses data secara real-time
+d) Stream ingestion hanya bisa digunakan untuk data terstruktur
+
+Manakah use case yang paling tepat menggunakan Stream Ingestion menurut materi?
+[single]
+a) Laporan penjualan bulanan
+b) ETL ke data warehouse setiap malam
+c) Fraud detection secara real-time*
+d) Backup database mingguan
+
+Dalam arsitektur Apache Kafka, komponen yang berperan sebagai "kantor pos" yang menerima, menyimpan, dan mendistribusikan messages adalah...
+[single]
+a) Producer
+b) Consumer
+c) Broker*
+d) Topic Reader
+
+Manakah berikut ini yang BUKAN termasuk tools batch ingestion yang dibahas pada materi?
+[single]
+a) Apache Sqoop
+b) Apache Airflow
+c) Python ETL Scripts
+d) Apache Kafka*
+
+Apache Sqoop menurut materi berfungsi untuk...
+[single]
+a) Mengatur workflow orchestration berbasis DAG
+b) Memindahkan data antara database relasional dan Hadoop/HDFS secara paralel*
+c) Melakukan streaming data secara real-time
+d) Menyimpan data dalam format key-value
+
+Dalam Apache Airflow, DAG (Directed Acyclic Graph) berfungsi sebagai...
+[single]
+a) Unit kerja tunggal yang menjalankan satu perintah bash
+b) Peta alur yang mendefinisikan urutan dan ketergantungan antar tasks*
+c) Database untuk menyimpan hasil ETL
+d) Library Python untuk visualisasi data
+
+Sebuah workflow yang menunggu sampai sebuah file muncul di sistem sebelum melanjutkan ke task berikutnya pada Airflow menggunakan komponen...
+[single]
+a) Operator
+b) Sensor*
+c) Scheduler
+d) Executor
+
+Untuk mengambil data JSON/XML dari REST API pihak ketiga seperti weather API, hal yang perlu diperhatikan menurut materi adalah...
+[single]
+a) Hanya perlu mengabaikan pagination dan rate limiting
+b) Cara menangani pagination, rate limiting, dan autentikasi (API key, OAuth)*
+c) Data API tidak pernah memerlukan autentikasi
+d) REST API tidak bisa diakses menggunakan Python
+
+Pada tugas praktikum Pertemuan 11 mengenai batch ingestion, API publik yang digunakan untuk mengambil data cuaca 30 hari terakhir adalah...
+[single]
+a) Twitter API
+b) Open-Meteo Weather API*
+c) Google Maps API
+d) OpenWeatherMap Premium API

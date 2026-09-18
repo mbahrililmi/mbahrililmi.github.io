@@ -1,0 +1,69 @@
+Node material apa yang menurut materi menjadi standar industri untuk physically-based rendering (PBR) dan bisa mensimulasikan hampir semua material dunia nyata?
+[single]
+a) Diffuse BSDF
+b) Principled BSDF*
+c) Glass BSDF
+d) Emission Shader
+
+Untuk membuat material kaca (glass) yang realistis pada Principled BSDF, parameter Transmission sebaiknya diatur ke nilai...
+[single]
+a) 0
+b) 0.5
+c) 1.0*
+d) 2.0
+
+Procedural texture manakah yang menurut materi cocok digunakan untuk membuat pola cell seperti kulit ular, batu akik, atau ubin lantai?
+[single]
+a) Noise Texture
+b) Voronoi Texture*
+c) Wave Texture
+d) Magic Texture
+
+Apa fungsi node ColorRamp dalam Shader Editor menurut materi?
+[single]
+a) Menghubungkan dua objek berbeda
+b) Merender scene menjadi gambar akhir
+c) Remap nilai 0-1 dari procedural texture menjadi warna atau nilai baru*
+d) Membuat UV map otomatis
+
+Dalam proses UV Unwrapping, tombol apa yang digunakan untuk menandai garis potong (seam) pada edge yang dipilih?
+[single]
+a) Ctrl+E → Mark Seam*
+b) U → Unwrap
+c) Ctrl+R → Loop Cut
+d) Shift+A → Add Seam
+
+Metode UV unwrap manakah yang bekerja otomatis berbasis angle tanpa perlu menandai seam secara manual?
+[single]
+a) Unwrap (Manual Seam)
+b) Smart UV Project*
+c) Project from View
+d) Cube Projection
+
+Dalam setup Three-Point Lighting, lampu manakah yang berfungsi mengisi bayangan yang dihasilkan oleh Key Light?
+[single]
+a) Key Light
+b) Fill Light*
+c) Rim Light
+d) Ambient Light
+
+Menurut tabel perbandingan render engine pada materi, engine mana yang lebih cocok untuk product visualization dan hasil photorealistic?
+[single]
+a) Eevee
+b) Cycles*
+c) Workbench
+d) OpenGL
+
+Focal length berapa yang menurut materi paling cocok untuk foto portrait karena flattering dan distorsi minim?
+[single]
+a) 24-35mm
+b) 50mm
+c) 85mm*
+d) 100-200mm
+
+Menurut materi, HDRI digunakan untuk keperluan apa dalam Blender?
+[single]
+a) Menambah jumlah polygon pada mesh
+b) Memberikan environment lighting yang natural dan realistis*
+c) Mengoptimalkan UV mapping otomatis
+d) Meningkatkan resolusi image texture

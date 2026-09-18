@@ -1,0 +1,69 @@
+Apa domain default yang diberikan Vercel untuk setiap project sebelum menambahkan custom domain?
+[single]
+a) project-name.vercel.app*
+b) project-name.netlify.app
+c) project-name.herokuapp.com
+d) project-name.github.io
+
+Jenis DNS record apa yang digunakan untuk memetakan domain ke alamat IPv4?
+[single]
+a) CNAME Record
+b) A Record*
+c) NS Record
+d) TXT Record
+
+DNS record jenis apa yang digunakan untuk memetakan subdomain (misalnya www) ke domain lain?
+[single]
+a) A Record
+b) AAAA Record
+c) CNAME Record*
+d) MX Record
+
+Berapa lama waktu propagasi DNS umumnya menurut materi, dan berapa maksimal dalam kasus ekstrem?
+[single]
+a) 5-60 menit, bisa hingga 48 jam dalam kasus ekstrem*
+b) 1-2 detik saja tanpa pengecualian
+c) Selalu instan tanpa delay
+d) Minimal 1 minggu
+
+Sertifikat SSL gratis dan otomatis yang digunakan Vercel untuk semua domain (termasuk custom domain) disediakan oleh?
+[single]
+a) DigiCert
+b) Let's Encrypt*
+c) GoDaddy SSL
+d) Symantec
+
+Perintah CLI untuk menambahkan custom domain ke project Vercel adalah?
+[single]
+a) vercel domains add mysite.com*
+b) vercel domain create mysite.com
+c) vercel connect mysite.com
+d) vercel dns add mysite.com
+
+Menurut materi, opsi mana yang paling mudah untuk mengontrol semua DNS settings domain lewat Vercel?
+[single]
+a) Menambahkan A record manual satu per satu
+b) Mengubah nameserver (NS) di registrar ke ns1.vercel-dns.com dan ns2.vercel-dns.com*
+c) Menghubungkan domain langsung ke database
+d) Menghapus semua DNS record yang ada
+
+Untuk root domain (misalnya mysite.com), Vercel merekomendasikan A record menunjuk ke IP berapa menurut materi?
+[single]
+a) 192.168.1.1
+b) 76.76.21.21*
+c) 127.0.0.1
+d) 10.0.0.1
+
+Perintah command line untuk memverifikasi propagasi DNS suatu domain, selain dig, adalah?
+[single]
+a) nslookup*
+b) traceroute
+c) netstat
+d) whois-check
+
+Header apa yang digunakan pada vercel.json untuk memaksa enforcement HTTPS dengan Strict-Transport-Security?
+[single]
+a) "Content-Security-Policy"
+b) "Strict-Transport-Security"*
+c) "X-Frame-Options"
+d) "Access-Control-Allow-Origin"

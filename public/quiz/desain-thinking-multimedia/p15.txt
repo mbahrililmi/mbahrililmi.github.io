@@ -1,0 +1,69 @@
+Apa perbedaan utama tantangan desain pada studi kasus game "SehatKita" dibanding studi kasus BelajarBahasa di Pertemuan 14?
+[single]
+a) SehatKita tidak memerlukan tahap empathize sama sekali
+b) SehatKita harus bersaing dengan game hiburan lain agar dimainkan secara sukarela, bukan karena disuruh guru*
+c) SehatKita dikembangkan tanpa melibatkan proses design thinking
+d) SehatKita hanya ditujukan untuk siswa SMA, bukan SMP
+
+Rumusan POV pada studi kasus SehatKita menekankan bahwa siswa lebih mudah menyerap informasi kesehatan lewat...
+[single]
+a) Membaca teks bacaan yang panjang dan detail
+b) Tantangan bermain yang punya konsekuensi jelas seperti menang atau kalah*
+c) Menonton video ceramah dari tenaga kesehatan
+d) Mengisi kuesioner tertulis tentang pola hidup sehat
+
+Manakah yang dimaksud dengan "Replay Value" sebagai pertimbangan tambahan khusus konten interaktif menurut materi?
+[single]
+a) Seberapa cepat game bisa dimuat di perangkat siswa
+b) Apakah siswa mau memainkan ulang game tersebut keesokan harinya secara sukarela*
+c) Berapa banyak level yang tersedia dalam game
+d) Seberapa realistis grafis yang ditampilkan dalam game
+
+Dari tiga prototipe mekanik gameplay yang diuji tim SehatKita, mekanik mana yang paling disukai dan kenapa?
+[single]
+a) Kuis cepat, karena paling mudah dipahami
+b) Simulasi memilih menu makanan, karena paling realistis
+c) Mini-game lari menghindari junk food, karena punya elemen kompetisi (skor tertinggi) yang membuat penasaran mencoba lagi*
+d) Ketiganya disukai secara merata tanpa ada yang menonjol
+
+Berdasarkan struktur presentasi proyek akhir yang disarankan materi, bagian "Demo Prototipe" idealnya dialokasikan waktu sekitar...
+[single]
+a) 1-2 menit
+b) 2-3 menit
+c) 3-4 menit*
+d) 5-6 menit
+
+Manakah yang termasuk kesalahan umum presentasi proyek akhir yang perlu dihindari menurut materi?
+[single]
+a) Membangun konteks masalah sebelum menunjukkan solusi
+b) Langsung menunjukkan hasil akhir ("ini aplikasi kami") tanpa menjelaskan masalah dan riset di baliknya*
+c) Membagi peran bicara secara merata antar anggota kelompok
+d) Mencoba menjalankan demo di perangkat dan jaringan yang sama seperti saat presentasi
+
+Berdasarkan rubrik penilaian proyek akhir pada materi, kriteria dengan bobot penilaian terbesar (masing-masing 20%) adalah...
+[single]
+a) Ketajaman problem statement dan kreativitas ideasi
+b) Kedalaman riset pengguna dan kualitas prototype*
+c) Hasil iterasi dari testing dan kualitas presentasi
+d) Kreativitas ideasi dan kualitas presentasi
+
+Menurut catatan penting pada rubrik penilaian materi, kelompok manakah yang akan mendapat nilai lebih baik?
+[single]
+a) Kelompok dengan prototipe indah secara visual tapi tanpa dasar riset yang jelas
+b) Kelompok dengan prototipe sederhana secara visual tapi didukung riset kuat dan iterasi yang jelas*
+c) Kelompok yang tidak melakukan usability testing sama sekali
+d) Kelompok dengan presentasi terpanjang di antara semua kelompok
+
+Manakah yang menjadi kesalahan umum presentasi terkait pembagian peran anggota kelompok menurut materi?
+[single]
+a) Setiap anggota kelompok siap menjawab pertanyaan tentang bagian mana pun dari proyek
+b) Satu orang bicara terus sementara anggota lain diam saja*
+c) Peran bicara dibagi secara merata antar anggota
+d) Seluruh anggota memahami keseluruhan proyek, bukan hanya bagian masing-masing
+
+Berdasarkan tabel review materi satu semester pada Pertemuan 15, konsep kunci "prinsip 'karena riset menunjukkan...'" paling terkait dengan pertemuan yang membahas topik...
+[single]
+a) P9 - Visual Design untuk Multimedia
+b) P11 - Interaction Design
+c) P14 - Studi Kasus Implementasi 1*
+d) P6 - Tahap Test

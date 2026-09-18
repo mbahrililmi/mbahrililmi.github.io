@@ -1,0 +1,69 @@
+Empat prinsip dasar interaction design menurut materi Pertemuan 11 adalah...
+[single]
+a) Warna, tipografi, layout, dan konsistensi
+b) Feedback, affordance, konsistensi, dan pencegahan error*
+c) Riset, ideasi, prototipe, dan testing
+d) Kontras, hierarki, keseimbangan, dan whitespace
+
+Ketika tombol "Pesan Sekarang" di Gojek menampilkan animasi loading dan perubahan warna setelah ditekan, ini adalah penerapan prinsip...
+[single]
+a) Affordance
+b) Konsistensi
+c) Feedback*
+d) Pencegahan error
+
+Elemen antarmuka yang memberi petunjuk visual tentang cara memakainya tanpa perlu dijelaskan, misalnya tombol dengan bayangan yang "terlihat bisa ditekan", disebut...
+[single]
+a) Affordance*
+b) Microinteraction
+c) Information architecture
+d) Whitespace
+
+Manakah contoh penerapan prinsip "mencegah error sebelum terjadi" menurut materi?
+[single]
+a) Menampilkan pesan error setelah pengguna salah mengisi formulir
+b) Tombol "Kirim" otomatis nonaktif sampai semua kolom wajib terisi dengan benar*
+c) Mengganti warna tombol setiap kali diklik
+d) Menyembunyikan tombol "Hapus Akun" agar tidak mudah ditemukan
+
+Berdasarkan aturan praktis kedalaman navigasi pada materi, fitur penting sebaiknya bisa dicapai dalam maksimal...
+[single]
+a) 1 kali ketukan dari layar utama
+b) 3 kali ketukan dari layar utama*
+c) 5 kali ketukan dari layar utama
+d) Tidak ada batasan selama menunya rapi
+
+Manakah yang menjadi contoh kesalahan information architecture menurut materi?
+[single]
+a) Memakai label "Riwayat Pesanan" pada menu transaksi
+b) Memakai istilah "Modul Transaksional" yang masuk akal bagi tim developer tapi asing bagi pengguna*
+c) Menempatkan menu Jadwal, Nilai, KRS, Profil pada bottom navigation
+d) Menguji penamaan menu langsung ke calon pengguna
+
+Animasi confetti dan suara yang muncul saat pengguna Duolingo menyelesaikan satu pelajaran adalah contoh dari...
+[single]
+a) Information architecture
+b) Affordance
+c) Microinteraction yang memberi rasa pencapaian dan memotivasi pengguna*
+d) Konsistensi navigasi
+
+Manakah yang BUKAN termasuk praktik dasar aksesibilitas yang disebutkan dalam materi?
+[single]
+a) Menyediakan teks alternatif (alt text) untuk gambar penting
+b) Membuat ukuran target sentuh minimal 44x44px
+c) Menandai status berhasil/gagal hanya dengan warna hijau/merah tanpa ikon atau teks*
+d) Menyediakan caption untuk video atau audio
+
+Menurut materi, kenapa aksesibilitas dianggap bagian dari empati, bukan beban tambahan?
+[single]
+a) Karena aksesibilitas hanya dibutuhkan sebagian kecil pengguna sehingga bisa dikerjakan belakangan
+b) Karena human-centered design berarti tidak bisa hanya memikirkan pengguna yang "normal" secara penglihatan, pendengaran, dan motorik*
+c) Karena aksesibilitas adalah fitur premium yang membedakan produk dari kompetitor
+d) Karena aksesibilitas hanya berkaitan dengan kontras warna semata
+
+Sebuah tim menemukan dari usability testing bahwa pengguna menekan tombol berkali-kali karena tidak yakin aksinya terekam. Berdasarkan tabel perbaikan interaksi pada materi, penyebab dan solusinya adalah...
+[single]
+a) Label menu ambigu; solusinya ganti label sesuai bahasa pengguna
+b) Tidak ada feedback setelah aksi pertama; solusinya tambahkan animasi loading atau perubahan status tombol segera setelah ditekan*
+c) Affordance lemah; solusinya tambahkan bayangan pada tombol
+d) Tidak ada dialog konfirmasi; solusinya tambahkan opsi "batalkan"

@@ -1,0 +1,69 @@
+Apa perbedaan utama raster dan vector menurut materi pertemuan ini?
+[single]
+a) Raster resolution-independent, vector resolution-dependent
+b) Raster terdiri dari pixel dan resolution-dependent, vector terdiri dari mathematical paths*
+c) Keduanya sama-sama scalable tanpa batas
+d) Vector hanya bisa dibuka menggunakan Photoshop
+
+Resolusi berapa yang direkomendasikan untuk kebutuhan screen/web menurut materi?
+[single]
+a) 72 ppi*
+b) 150 dpi
+c) 300 dpi
+d) 600 dpi
+
+Color mode apa yang digunakan untuk kebutuhan printing dengan komponen Cyan, Magenta, Yellow, Black?
+[single]
+a) RGB
+b) Grayscale
+c) CMYK*
+d) Bitmap
+
+Format file apa yang merupakan format native GIMP dengan seluruh layer tetap tersimpan?
+[single]
+a) PSD
+b) XCF*
+c) TIFF
+d) RAW
+
+Layer apa yang bersifat default, terkunci, dan tidak memiliki transparency sampai di-convert ke normal?
+[single]
+a) Normal Layer
+b) Adjustment Layer
+c) Background Layer*
+d) Smart Object
+
+Blend mode apa yang berfungsi membuat layer di bawahnya terlihat lebih gelap (darken)?
+[single]
+a) Screen
+b) Multiply*
+c) Overlay
+d) Normal
+
+Selection tool apa yang bekerja dengan memilih area berdasarkan kemiripan warna menggunakan tolerance setting?
+[single]
+a) Lasso Tool
+b) Polygonal Lasso
+c) Magic Wand*
+d) Quick Selection
+
+Shortcut apa yang digunakan untuk melakukan inverse selection pada Photoshop/GIMP?
+[single]
+a) Ctrl + A
+b) Ctrl + D
+c) Ctrl + Shift + I*
+d) Ctrl + J
+
+Menurut materi, apa yang terjadi saat menggunakan modifier "Alt + drag" ketika membuat selection?
+[single]
+a) Menambahkan area ke selection yang sudah ada
+b) Mengurangi (subtract) area dari selection yang sudah ada*
+c) Menghapus seluruh selection secara permanen
+d) Membalik warna area yang sedang diseleksi
+
+Manakah berikut ini yang BUKAN termasuk 6 jenis layer yang dijelaskan dalam materi?
+[single]
+a) Text Layer
+b) Shape Layer
+c) Smart Object
+d) Render Layer*

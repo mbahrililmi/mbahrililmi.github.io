@@ -1,0 +1,79 @@
+Istilah "dailies" dalam produksi animasi berasal dari kebiasaan lama industri film, yaitu...
+
+[single]
+a) Menghitung gaji harian tiap kru produksi
+b) Sesi menonton bersama hasil kerja terbaru secara rutin untuk memberi masukan cepat*
+c) Rapat tahunan untuk mengevaluasi seluruh proyek studio
+d) Proses mengirim laporan keuangan setiap hari ke investor
+
+Menurut materi, mengapa review rutin (dailies) lebih disarankan dibanding menunggu review sampai akhir produksi?
+
+[single]
+a) Karena review di akhir produksi dilarang oleh standar industri
+b) Karena kesalahan yang tidak terdeteksi sejak dini akan menumpuk dan menular ke banyak shot*
+c) Karena dailies tidak membutuhkan kehadiran sutradara sama sekali
+d) Karena review di akhir produksi selalu lebih murah dan cepat
+
+Manakah contoh feedback yang dianggap KONSTRUKTIF menurut materi (spesifik dan actionable)?
+
+[single]
+a) "Kurang bagus, coba diperbaiki lagi."
+b) "Warnanya aneh."
+c) "Di detik 0:03-0:05, gerakan tangan Riri terlalu cepat dibanding storyboard, coba perlambat 4-5 frame."*
+d) "Rasanya kurang pas ya gerakannya."
+
+Dalam sistem severity rating pada materi Pertemuan 11, temuan seperti "karakter keluar dari frame tanpa alasan cerita" atau "audio dialog terpotong di tengah kalimat" termasuk kategori...
+
+[single]
+a) Ringan
+b) Sedang
+c) Kritis*
+d) Tidak perlu diberi rating sama sekali
+
+Temuan review berupa "detail kecil pada tekstur background yang bisa dipertajam" paling tepat digolongkan ke severity rating...
+
+[single]
+a) Kritis
+b) Sedang
+c) Ringan*
+d) Darurat
+
+Menurut materi, apa masalah utama dari kata "selesai" yang tidak didefinisikan dengan jelas dalam tim produksi?
+
+[single]
+a) Kata tersebut tidak boleh digunakan dalam dokumen produksi
+b) Maknanya berbeda-beda bagi setiap orang, sehingga menimbulkan kebingungan standar kualitas*
+c) Kata tersebut hanya berlaku untuk tahap distribusi saja
+d) Kata tersebut otomatis berarti file sudah dirender dalam resolusi tinggi
+
+Checklist QC untuk shot animasi pada materi mencakup poin "warna dan gaya visual sesuai dengan..." dokumen apa?
+
+[single]
+a) Shot list dari Pertemuan 5
+b) Style guide dari Pertemuan 4*
+c) Jadwal produksi dari Pertemuan 6
+d) Kontrak klien dari Pertemuan 15
+
+Checklist QC audio pada materi menekankan pentingnya memastikan musik dan SFX memiliki lisensi/sumber yang jelas, terutama untuk menghindari masalah...
+
+[single]
+a) Kompresi file yang terlalu besar
+b) Hak cipta di kemudian hari*
+c) Sinkronisasi warna antar shot
+d) Kapasitas penyimpanan cloud
+
+Menurut highlight-box "Checklist Bukan Formalitas" di materi, apa tujuan utama penggunaan checklist QC di studio-studio profesional seperti yang memproduksi film Disney?
+
+[single]
+a) Menciptakan pekerjaan tambahan supaya tim terlihat sibuk
+b) Mencegah kelalaian kecil yang mudah terlewat karena kelelahan atau terburu-buru mengejar deadline*
+c) Menggantikan kebutuhan sutradara sepenuhnya
+d) Membuktikan bahwa tim tersebut kurang kompeten
+
+Menurut materi, siapa saja yang idealnya hadir dalam sesi review shot animasi?
+
+[single]
+a) Seluruh mahasiswa di kampus tanpa terkecuali
+b) PIC shot tersebut, art director/lead animator, dan sutradara jika menyangkut arah cerita*
+c) Hanya klien eksternal yang membayar produksi
+d) Semua anggota tim tanpa memandang relevansi tugasnya

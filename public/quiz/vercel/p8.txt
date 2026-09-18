@@ -1,0 +1,69 @@
+Apa kepanjangan dari CI dalam konteks CI/CD menurut materi?
+[single]
+a) Code Integration
+b) Continuous Integration*
+c) Central Infrastructure
+d) Client Interface
+
+Apa yang terjadi jika developer push kode ke branch selain main pada project yang terhubung ke Vercel?
+[single]
+a) Deployment otomatis ditolak
+b) Vercel trigger preview deployment dengan URL unik*
+c) Project otomatis dihapus
+d) Production langsung ter-update
+
+Ketika sebuah Pull Request dibuka di GitHub pada project yang terhubung Vercel, apa yang dilakukan Vercel bot?
+[single]
+a) Menghapus branch PR tersebut
+b) Menambahkan komentar di PR dengan preview URL*
+c) Langsung merge PR secara otomatis
+d) Mengirim email tagihan ke pemilik repo
+
+Perintah CLI untuk menghubungkan (link) sebuah project lokal ke project Vercel yang sudah ada adalah?
+[single]
+a) vercel link*
+b) vercel connect
+c) vercel attach
+d) vercel sync
+
+Manakah manfaat Preview Deployments yang disebutkan dalam materi?
+[single]
+a) Mengurangi ukuran database secara otomatis
+b) Menghapus riwayat deployment lama
+c) Memungkinkan client review sebelum production tanpa perlu akses server*
+d) Mengganti seluruh source code menjadi minified
+
+Pada branch strategy dengan Vercel, branch mana yang biasanya menghasilkan deployment ke URL production resmi?
+[single]
+a) feature/login
+b) develop
+c) main*
+d) staging-temp
+
+Di file workflow GitHub Actions untuk Vercel, environment variable apa yang menyimpan token autentikasi Vercel?
+[single]
+a) VERCEL_TOKEN (via secrets.VERCEL_TOKEN)*
+b) GITHUB_TOKEN
+c) NPM_TOKEN
+d) DEPLOY_KEY
+
+Pada contoh vercel.json terkait Git di materi, properti apa yang digunakan untuk mengaktifkan/menonaktifkan deployment per branch?
+[single]
+a) "git": { "deploymentEnabled": {...} }*
+b) "git": { "branchAccess": {...} }
+c) "deploy": { "allowedBranches": {...} }
+d) "vercel": { "branches": {...} }
+
+Perintah Vercel CLI apa yang digunakan dalam workflow GitHub Actions untuk deploy prebuilt project ke production?
+[single]
+a) vercel deploy --prebuilt --prod*
+b) vercel push --production
+c) vercel release --main
+d) vercel build --deploy
+
+Menurut materi, setiap deployment di Vercel tersimpan di history sehingga developer bisa melakukan apa dengan satu klik di dashboard?
+[single]
+a) Menghapus repository GitHub
+b) Rollback ke versi mana pun*
+c) Mengubah bahasa pemrograman project
+d) Mengganti nama organisasi

@@ -1,0 +1,69 @@
+Perbedaan paling tepat antara material dan texture dalam produksi 3D adalah...
+[single]
+a) Material adalah keseluruhan sifat permukaan objek (warna, kilap, sifat logam), sedangkan texture adalah gambar 2D yang ditempelkan untuk detail visual spesifik*
+b) Material adalah gambar 2D yang ditempelkan ke permukaan, sedangkan texture adalah sifat permukaan objek secara umum
+c) Material dan texture adalah istilah yang sama persis dan bisa dipertukarkan bebas
+d) Material hanya berlaku untuk objek 3D, sedangkan texture hanya berlaku untuk objek 2D
+
+Manakah pernyataan yang BENAR mengenai hubungan material dan texture image?
+[single]
+a) Texture image bisa berdiri sendiri tanpa material sama sekali
+b) Material bisa berdiri sendiri tanpa texture image, tapi texture image selalu butuh material sebagai wadah*
+c) Sebuah objek hanya boleh punya satu material tanpa texture image
+d) Material dan texture image harus selalu digunakan bersamaan pada setiap objek
+
+Proses "membuka" permukaan mesh 3D yang melengkung menjadi bidang datar 2D supaya texture bisa ditempel dengan pas disebut...
+[single]
+a) Rigging
+b) Compositing
+c) UV mapping*
+d) Extrude
+
+Garis yang menentukan di mana "kardus" mesh 3D dipotong dan dibuka saat proses UV unwrap disebut...
+[single]
+a) Loop cut
+b) Modifier
+c) Shader
+d) Seam*
+
+Menurut materi, di mana sebaiknya seam ditempatkan supaya sambungan pola texture tidak terlalu mencolok?
+[single]
+a) Di sisi objek yang tersembunyi atau di sudut-sudut alami, misalnya bagian bawah cangkir*
+b) Selalu di tengah wajah objek yang paling sering terlihat
+c) Di bagian atas objek yang paling sering difoto
+d) Seam tidak perlu ditempatkan secara khusus karena posisinya tidak berpengaruh
+
+Dalam shader Principled BSDF, parameter yang mengatur seberapa kasar atau mengkilap sebuah permukaan adalah...
+[single]
+a) Base Color
+b) Roughness*
+c) Metallic
+d) Transmission
+
+Untuk mensimulasikan kesan sendok stainless yang mengkilap, kombinasi parameter Principled BSDF yang paling tepat adalah...
+[single]
+a) Roughness tinggi dan Metallic rendah
+b) Roughness rendah dan Metallic rendah
+c) Roughness rendah dan Metallic tinggi*
+d) Roughness tinggi dan Metallic tinggi
+
+Mode tampilan viewport yang menampilkan hasil paling mendekati render final lengkap dengan pencahayaan scene sesungguhnya, dan paling sering dipakai saat mengatur material dan texture, adalah...
+[single]
+a) Solid
+b) Wireframe
+c) Material Preview
+d) Rendered*
+
+Dalam alur kerja mengimpor texture gambar di Shader Editor, output "Color" dari node Image Texture perlu dihubungkan ke input mana pada node Principled BSDF?
+[single]
+a) Base Color*
+b) Roughness
+c) Metallic
+d) Alpha
+
+Made menempelkan texture gambar kayu pada model mejanya, tapi hasilnya terlihat melar dan terdistorsi tidak karuan. Penyebab paling umum dari masalah ini adalah...
+[single]
+a) Resolusi gambar texture terlalu tinggi
+b) Objek belum di-UV unwrap sehingga memakai koordinat UV default*
+c) Parameter Metallic diatur terlalu tinggi
+d) File gambar disimpan dalam format PNG, bukan JPG

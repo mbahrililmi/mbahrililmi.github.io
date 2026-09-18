@@ -1,0 +1,209 @@
+Design thinking pertama kali populer dipakai secara luas lewat kombinasi firma desain dan institusi pendidikan tertentu. Manakah pasangan yang tepat menurut materi Pertemuan 1?
+[single]
+a) IDEO dan Stanford d.school*
+b) Google dan Harvard Business School
+c) Apple dan MIT Media Lab
+d) Adobe dan Massachusetts Institute of Technology
+
+Manakah pernyataan yang paling tepat menggambarkan sifat lima tahap design thinking (Empathize, Define, Ideate, Prototype, Test)?
+[single]
+a) Bersifat iteratif — tim boleh melompat maju atau kembali ke tahap sebelumnya sesuai temuan*
+b) Bersifat linear ketat — setiap tahap hanya boleh dikerjakan satu kali secara berurutan
+c) Hanya empat tahap yang wajib dikerjakan, satu tahap bersifat opsional
+d) Harus diselesaikan seluruhnya dalam satu hari kerja penuh
+
+Menurut materi, apa yang membedakan produk multimedia dari karya cetak seperti poster atau brosur?
+[single]
+a) Produk multimedia selalu melibatkan interaksi, sehingga selalu berkaitan dengan pengalaman pengguna (UX)*
+b) Produk multimedia tidak pernah menggunakan elemen visual sama sekali
+c) Produk multimedia hanya boleh dibuat dalam format video tanpa audio
+d) Produk multimedia tidak memerlukan proses desain sama sekali
+
+Berdasarkan tabel perbandingan pada Pertemuan 1, kapan produk diuji ke pengguna pada pendekatan design thinking, dibanding cara desain konvensional?
+[single]
+a) Sejak tahap purwarupa kasar (low-fidelity), jauh lebih awal dibanding cara konvensional yang menguji setelah produk hampir jadi*
+b) Hanya setelah produk resmi dirilis ke publik
+c) Design thinking tidak pernah melibatkan pengujian ke pengguna sama sekali
+d) Pengujian dilakukan di pertengahan proyek, sama persis dengan cara konvensional
+
+Teknik "5 Whys" dalam riset pengguna digunakan untuk...
+[single]
+a) Menggali secara berulang dengan pertanyaan "kenapa" sampai ditemukan akar masalah yang sebenarnya, bukan sekadar jawaban permukaan*
+b) Menghitung rata-rata lima jawaban tercepat dari seluruh partisipan wawancara
+c) Membatasi sesi wawancara maksimal lima menit per partisipan
+d) Menyusun lima pertanyaan penutup di akhir sesi wawancara
+
+Perbedaan mendasar antara observasi pasif dan contextual inquiry adalah...
+[single]
+a) Contextual inquiry melibatkan bertanya langsung sambil mengamati pengguna dalam konteks nyata, sedangkan observasi pasif hanya mengamati dari jauh tanpa berinteraksi*
+b) Observasi pasif hanya bisa dilakukan lewat survei online
+c) Contextual inquiry tidak boleh dilakukan di lingkungan asli pengguna
+d) Keduanya adalah istilah lain untuk affinity diagram
+
+Empat kuadran utama pada empathy map yang diajarkan di Pertemuan 2 adalah...
+[single]
+a) Says, Thinks, Does, Feels*
+b) See, Hear, Speak, Move
+c) Plan, Build, Measure, Learn
+d) Ask, Answer, Record, Review
+
+Kenapa affinity diagram sebaiknya disusun bersama tim, bukan disimpulkan sendirian oleh satu orang, menurut materi Pertemuan 2?
+[single]
+a) Untuk menghindari bias konfirmasi, sehingga pola yang ditemukan lebih objektif berdasarkan data banyak narasumber*
+b) Karena hukum hak cipta mewajibkan minimal tiga orang penulis
+c) Karena satu orang tidak diperbolehkan menyentuh sticky note fisik
+d) Karena affinity diagram hanya bisa dibuat menggunakan software berbayar
+
+Rumus problem statement / Point of View (POV) yang diajarkan di Pertemuan 3 memadukan tiga elemen, yaitu...
+[single]
+a) Pengguna (user), kebutuhan (need), dan insight/alasan mendalam*
+b) Anggaran, waktu pengerjaan, dan jumlah anggota tim
+c) Nama produk, harga jual, dan target penjualan
+d) Fitur utama, warna desain, dan platform yang dipakai
+
+Kesalahan umum saat menyusun pertanyaan How Might We (HMW) adalah menyisipkan solusi terselubung, misalnya "Bagaimana kita bisa membuat fitur reminder yang lebih baik?". Masalah dari kalimat ini adalah...
+[single]
+a) Kata "fitur reminder" sudah membatasi jenis solusi yang bisa dieksplorasi, padahal HMW seharusnya membuka banyak kemungkinan*
+b) Kalimatnya terlalu pendek sehingga sulit dipahami peserta ideasi
+c) Kalimat tersebut tidak menggunakan kata tanya "bagaimana"
+d) HMW tidak boleh membahas topik reminder sama sekali
+
+User persona berbeda dari proto-persona karena persona...
+[single]
+a) Disusun berdasarkan data wawancara dan observasi nyata dari calon pengguna, bukan sekadar asumsi awal tim*
+b) Selalu berupa data statistik tanpa nama atau cerita
+c) Hanya boleh dipakai pada tahap Prototype, bukan tahap Define
+d) Tidak memerlukan riset apa pun karena bersifat sepenuhnya fiktif
+
+Pada customer/user journey map, elemen yang membantu tim menemukan titik-titik paling menyakitkan dalam perjalanan pengguna disebut...
+[single]
+a) Pain point*
+b) Quick win
+c) Severity rating
+d) Affinity cluster
+
+Manakah pernyataan yang PALING TEPAT menggambarkan tahap Define dalam design thinking?
+[single]
+a) Mengolah data mentah hasil riset dari tahap Empathize menjadi satu rumusan masalah yang tajam dan siap dijadikan bahan ideasi*
+b) Menghasilkan sebanyak mungkin ide solusi tanpa menghakimi dulu
+c) Mewujudkan ide terpilih menjadi purwarupa yang bisa dicoba
+d) Menguji purwarupa ke pengguna asli untuk mengumpulkan umpan balik
+
+Salah satu dari empat prinsip ideation ala IDEO adalah menunda kritik dan evaluasi ide sampai sesi terpisah. Prinsip ini disebut...
+[single]
+a) Defer Judgment*
+b) Go for Quantity
+c) Encourage Wild Ideas
+d) Build on the Ideas of Others
+
+Teknik ideation yang melibatkan melipat kertas menjadi delapan kotak dan menggambar delapan variasi solusi dalam waktu delapan menit disebut...
+[single]
+a) Crazy 8s*
+b) Brainwriting 6-3-5
+c) SCAMPER
+d) Mind Mapping
+
+Dalam teknik SCAMPER, huruf "E" merujuk pada kata kerja pemantik...
+[single]
+a) Eliminate (Hilangkan)*
+b) Explore (Jelajahi)
+c) Evaluate (Evaluasi)
+d) Expand (Perluas)
+
+Pada matriks impact-effort untuk menyaring ide, kuadran dengan dampak tinggi namun juga membutuhkan usaha tinggi — layak diperjuangkan tapi perlu perencanaan matang — disebut...
+[single]
+a) Big Bets*
+b) Quick Wins
+c) Fill-ins
+d) Thankless Tasks
+
+Istilah "fidelity" dalam prototyping mengacu pada...
+[single]
+a) Seberapa dekat sebuah prototipe menyerupai produk akhirnya*
+b) Seberapa mahal biaya pembuatan sebuah prototipe
+c) Seberapa cepat sebuah prototipe bisa diunggah ke internet
+d) Seberapa banyak anggota tim yang terlibat membuat prototipe
+
+Manakah dari berikut ini yang merupakan CIRI dari low-fidelity prototype, bukan high-fidelity prototype?
+[single]
+a) Bentuknya kasar — kotak, garis, dan teks placeholder tanpa warna asli*
+b) Sudah bisa diklik dengan transisi dan animasi yang terlihat nyata
+c) Membutuhkan waktu berhari-hari hingga berminggu-minggu untuk dibuat
+d) Menggunakan gambar dan foto yang sudah final
+
+Wireframe pada tahap Prototype berfungsi untuk membantu tim fokus pada...
+[single]
+a) Tata letak dan alur elemen pada layar, bukan detail visual seperti warna tombol*
+b) Pemilihan skema warna final produk
+c) Estimasi anggaran produksi keseluruhan proyek
+d) Penulisan naskah dialog karakter dalam animasi
+
+Menurut materi Pertemuan 5, tools mana yang paling cocok dipakai untuk mockup visual cepat dan materi promosi bagi pemula, meski fitur prototyping-nya tidak selengkap Figma/Adobe XD?
+[single]
+a) Canva*
+b) Adobe XD
+c) Figma
+d) Miro
+
+Menurut riset klasik Jakob Nielsen yang dikutip pada materi Pertemuan 6, menambah jumlah partisipan usability testing di atas jumlah tertentu hanya memberi tambahan insight yang semakin kecil. Fenomena ini disebut...
+[single]
+a) Diminishing returns*
+b) Confirmation bias
+c) Analysis paralysis
+d) Fail fast, fail cheap
+
+Pada sistem severity rating, level "Sedang" didefinisikan sebagai kondisi ketika partisipan...
+[single]
+a) Berhasil menyelesaikan tugas, tapi butuh waktu lama, salah klik berkali-kali, atau tampak frustrasi*
+b) Gagal total menyelesaikan tugas dan menyerah
+c) Hanya memberi komentar soal warna tombol tanpa hambatan berarti
+d) Menolak untuk mengikuti sesi pengujian sama sekali
+
+Apa perbedaan utama antara usability testing kualitatif dan A/B testing menurut materi?
+[single]
+a) Usability testing menjawab "kenapa" pengguna bingung, sedangkan A/B testing menjawab "versi mana" yang menghasilkan lebih banyak konversi berdasarkan data kuantitatif*
+b) Usability testing hanya bisa dilakukan pada produk yang sudah live, sedangkan A/B testing dilakukan pada prototype awal
+c) Keduanya adalah istilah berbeda untuk proses yang sama persis
+d) A/B testing tidak pernah melibatkan pengguna asli sama sekali
+
+Siklus "test → revisi → test lagi" yang bisa berulang beberapa kali sampai desain benar-benar matang disebut...
+[single]
+a) Iterasi*
+b) Affinity diagram
+c) Dot voting
+d) Contextual inquiry
+
+Materi Pertemuan 7 menekankan bahwa tim yang mengembangkan aplikasi besar seperti Gojek atau Tokopedia tidak pernah benar-benar "selesai" melakukan riset pengguna. Hal ini menggambarkan bahwa design thinking bersifat...
+[single]
+a) Iteratif — siklus terus berputar setiap kali produk merilis fitur baru karena kebutuhan pengguna terus berubah*
+b) Sekali jalan — riset hanya dilakukan satu kali di awal proyek
+c) Tidak relevan untuk perusahaan teknologi berskala besar
+d) Hanya berlaku untuk produk fisik, bukan aplikasi digital
+
+Pada studi kasus redesain aplikasi presensi kampus, ide "presensi via QR code offline-first" dan "geofencing lokasi kelas" dihasilkan pada tahap...
+[single]
+a) Ideate, lewat sesi brainstorming dengan teknik Crazy 8s*
+b) Empathize, lewat wawancara ke 15 mahasiswa
+c) Test, lewat sesi usability testing ke 5 mahasiswa
+d) Define, lewat penyusunan persona "Rafi"
+
+Menurut materi, design thinking berperan sebagai "bumbu" yang meresap ke tiga tahap besar proses produksi multimedia. Ketiga tahap besar tersebut adalah...
+[single]
+a) Pre-production, production, dan post-production*
+b) Riset, desain, dan pemasaran
+c) Empathize, Define, dan Ideate
+d) Perencanaan, pelaksanaan, dan evaluasi anggaran
+
+Peran tim yang bertugas mewujudkan rancangan menjadi sesuatu yang benar-benar bisa dicoba, seperti prototipe interaktif di Figma atau aplikasi fungsional sederhana, disebut...
+[single]
+a) Developer / Prototyper*
+b) UX Researcher
+c) Stakeholder / Product Owner
+d) UI / Visual Designer
+
+Menurut materi, apa yang sebaiknya didokumentasikan pada tahap Ideate, selain ide yang akhirnya terpilih?
+[single]
+a) Seluruh sketsa ide dari sesi Crazy 8s dan hasil dot-voting lengkap dengan jumlah suara tiap ide*
+b) Hanya nama-nama anggota kelompok yang hadir saat sesi ideation
+c) Struktur organisasi perusahaan yang menjadi studi kasus
+d) Daftar harga software desain yang digunakan tim

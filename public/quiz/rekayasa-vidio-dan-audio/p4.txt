@@ -1,0 +1,69 @@
+Apa fungsi shortcut Ctrl+T di Audacity?
+[single]
+a) Trim ke selection — menyimpan bagian yang diseleksi, menghapus sisanya*
+b) Split clip pada posisi cursor
+c) Menghapus seluruh track
+d) Membuka dialog export
+
+Apa langkah pertama dalam proses Noise Reduction dua tahap di Audacity?
+[single]
+a) Apply Noise Reduction langsung ke seluruh track
+b) Mendapatkan Noise Profile dari region yang hanya berisi noise*
+c) Menghapus track yang berisik
+d) Menambahkan compressor terlebih dahulu
+
+Apa perbedaan utama antara Delete dan Silence pada Audacity?
+[single]
+a) Delete mempertahankan durasi waktu, Silence menghapus waktu
+b) Delete menghapus waktu dan menutup gap, Silence mempertahankan waktu dan hanya membuat senyap*
+c) Keduanya memiliki efek yang identik terhadap waktu
+d) Delete hanya berlaku pada multi-track, Silence hanya pada single-track
+
+Apa perbedaan fungsi Limiter dibandingkan Compressor?
+[single]
+a) Limiter adalah hard ceiling dengan ratio ekstrem yang tidak meloloskan signal di atasnya, compression adalah reduksi gradual*
+b) Limiter hanya bekerja pada frekuensi rendah, compressor pada frekuensi tinggi
+c) Limiter menambah noise, compressor menghilangkan noise
+d) Keduanya adalah effect yang sama dengan nama berbeda
+
+Manakah urutan Typical Processing Chain yang direkomendasikan materi untuk audio editing?
+[single]
+a) Compression → EQ → Noise Reduction → Limiter → Normalization
+b) Normalization → Limiter → EQ → Compression → Noise Reduction
+c) Noise Reduction → EQ → Compression → Normalization → Limiter*
+d) EQ → Normalization → Noise Reduction → Compression → Limiter
+
+Apa perbedaan menyimpan Project (.aup3) dengan melakukan Export Audio di Audacity?
+[single]
+a) Project adalah format deliverable, Export adalah format kerja internal
+b) Project menyimpan seluruh edit non-destructive dan hanya bisa dibuka di Audacity, Export membuat file deliverable seperti WAV/MP3*
+c) Keduanya menghasilkan file identik yang bisa dibuka software apa saja
+d) Export hanya tersedia untuk format MP3
+
+Berapa setting Noise Reduction (dB) yang direkomendasikan sebagai titik awal yang konservatif?
+[single]
+a) 3-6 dB
+b) 12-18 dB, mulai dari 12 dB*
+c) 30-40 dB
+d) 50-60 dB
+
+Apa yang dimaksud dengan crossfade dalam konteks multi-track editing Audacity?
+[single]
+a) Efek untuk mengubah pitch tanpa mengubah speed
+b) Transisi antar track dengan overlap agar perpindahan terasa smooth*
+c) Proses menghapus noise dari dua track sekaligus
+d) Fitur untuk menggandakan track secara otomatis
+
+Manakah setting preferensi yang direkomendasikan diaktifkan (CHECK) pada Audacity untuk membantu identifikasi clipping?
+[single]
+a) Copy data into project
+b) Show clipping*
+c) Solo Button mode Multi
+d) Default Sample Format 16-bit
+
+Apa kesalahan umum dalam editing yang disebutkan materi terkait Noise Reduction yang terlalu agresif?
+[single]
+a) Menghasilkan artifact "underwater sound"*
+b) Menyebabkan file menjadi corrupt
+c) Menambah durasi audio secara otomatis
+d) Menghapus seluruh track audio

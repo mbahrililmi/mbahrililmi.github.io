@@ -1,0 +1,69 @@
+Apa yang dimaksud dengan grafis vector?
+[single]
+a) Grafis yang dibentuk oleh persamaan matematis sehingga bisa diperbesar tanpa buram*
+b) Grafis yang tersusun dari kumpulan pixel dengan kualitas tetap sama
+c) Grafis yang hanya bisa dibuat menggunakan kamera digital
+d) Grafis yang otomatis berubah warna setiap kali diperbesar
+
+Manakah kelompok berikut yang seluruhnya merupakan format file vector?
+[single]
+a) JPG, PNG, dan GIF
+b) AI, SVG, dan EPS*
+c) PSD dan TIFF
+d) BMP dan RAW
+
+Mengapa Inkscape direkomendasikan untuk perkuliahan ini menurut materi?
+[single]
+a) Karena satu-satunya software yang bisa membuka file SVG
+b) Karena gratis selamanya dan fiturnya memadai untuk kebutuhan dasar*
+c) Karena tidak bisa dijalankan di sistem operasi Windows
+d) Karena wajib dibeli dengan lisensi tahunan seperti Illustrator
+
+Apa fungsi utama Pen Tool dalam program vector seperti Inkscape/Illustrator?
+[single]
+a) Untuk memilih dan memindahkan seluruh objek pada canvas
+b) Untuk membuat anchor point dan kurva Bezier secara presisi*
+c) Untuk mengatur warna fill dan stroke suatu objek
+d) Untuk mengubah ukuran halaman dokumen kerja
+
+Saat menggunakan Pen Tool, apa hasil yang didapat jika hanya melakukan klik biasa tanpa drag?
+[single]
+a) Membuat kurva Bezier yang halus dan melengkung
+b) Membuat garis lurus dengan corner node*
+c) Membuat lingkaran secara otomatis
+d) Menghapus anchor point yang terakhir dibuat
+
+Tombol apa yang menurut materi perlu ditekan saat menggambar dengan Rectangle Tool agar menghasilkan persegi sempurna?
+[single]
+a) Alt
+b) Tab
+c) Ctrl*
+d) Shift+Alt bersamaan
+
+Manakah pasangan tool dan shortcut yang sesuai dengan materi?
+[single]
+a) Selection Tool - S atau F1*
+b) Pen Tool - tombol B
+c) Ellipse Tool - tombol Z
+d) Text Tool - tombol G
+
+Apa perbedaan utama antara vector dan raster dalam hal scalability menurut materi?
+[single]
+a) Vector menjadi buram jika diperbesar, raster tetap tajam
+b) Keduanya sama-sama menjadi buram apabila diperbesar
+c) Vector tetap tajam saat diperbesar, raster menjadi buram karena resolution-dependent*
+d) Raster tidak memiliki batas resolusi sehingga selalu tajam
+
+Panel apa yang digunakan untuk mengatur warna fill, stroke, dan style garis pada objek di Inkscape?
+[single]
+a) XML Editor
+b) Object Properties
+c) Fill and Stroke*
+d) Transform
+
+Manakah berikut ini yang BUKAN merupakan bagian dari interface program vector seperti Inkscape/Illustrator menurut materi?
+[single]
+a) Menu Bar
+b) Toolbar/Toolbox
+c) Tool Controls Bar
+d) Timeline Rendering*

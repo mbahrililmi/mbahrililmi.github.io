@@ -1,0 +1,69 @@
+Apa tema utama pertemuan ini yang ditekankan berulang kali dalam materi?
+[single]
+a) Destructive Editing agar proses lebih cepat
+b) Non-Destructive Editing, yaitu edit tanpa merusak image original*
+c) Manual retouching tanpa menggunakan layer
+d) Kompresi file agar ukuran menjadi kecil
+
+Tool apa yang digunakan untuk menyalin pixel dari sumber tertentu (Alt+Click) untuk menghilangkan objek pada foto?
+[single]
+a) Healing Brush
+b) Clone Stamp*
+c) Eraser Tool
+d) Dodge Tool
+
+Adjustment layer manakah yang menurut materi memiliki power level tertinggi sebagai kontrol tonal range paling presisi?
+[single]
+a) Levels
+b) Color Balance
+c) Curves*
+d) Photo Filter
+
+Apa fungsi dari adjustment Vibrance dibandingkan Saturation biasa menurut materi?
+[single]
+a) Menghapus semua warna menjadi grayscale sepenuhnya
+b) Smart saturation yang melindungi skin tone dan enhance warna yang pudar*
+c) Hanya bisa diterapkan pada Background Layer
+d) Mengubah color mode dari RGB ke CMYK
+
+Shortcut apa yang digunakan untuk mengaktifkan Free Transform menurut materi?
+[single]
+a) Ctrl + J
+b) Ctrl + E
+c) Ctrl + T*
+d) Ctrl + G
+
+Dalam konsep Layer Mask, apa yang terjadi jika suatu area di-paint dengan warna hitam?
+[single]
+a) Area tersebut menjadi disembunyikan (hidden)*
+b) Area tersebut menjadi ditampilkan penuh (revealed)
+c) Area tersebut menjadi transparan sebesar 50%
+d) Area tersebut otomatis terhapus secara permanen
+
+Mengapa materi menyarankan menggunakan Mask daripada Eraser untuk menyembunyikan bagian gambar?
+[single]
+a) Karena Eraser tidak tersedia di software GIMP
+b) Karena Mask bersifat non-destructive sehingga pixel asli tidak terhapus dan bisa di-reveal kembali*
+c) Karena Mask lebih cepat diakses lewat keyboard shortcut
+d) Karena Eraser hanya bisa dipakai pada Background Layer
+
+Cara apa yang digunakan untuk menerapkan Clipping Mask antara dua layer menurut materi?
+[single]
+a) Shift + Click pada thumbnail mask
+b) Alt + Click di antara dua layer*
+c) Ctrl + Click pada thumbnail layer
+d) Double-click pada nama layer
+
+Tool apa yang secara otomatis melakukan clone sekaligus blend, sehingga lebih baik untuk skin retouching dibanding Clone Stamp biasa?
+[single]
+a) Healing Brush*
+b) Blur Tool
+c) Burn Tool
+d) Gradient Tool
+
+Format file apa yang direkomendasikan untuk menyimpan file kerja agar semua layer tetap tersimpan sebelum diekspor final?
+[single]
+a) JPG
+b) PSD/XCF*
+c) PNG saja
+d) GIF

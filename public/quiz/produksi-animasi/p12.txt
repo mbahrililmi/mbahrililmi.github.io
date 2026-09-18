@@ -1,0 +1,79 @@
+Menurut materi Pertemuan 12, apa kesalahpahaman paling umum di kalangan mahasiswa mengenai pasca-produksi?
+
+[single]
+a) Menganggap pasca-produksi tidak membutuhkan anggaran sama sekali
+b) Menganggap pasca-produksi cuma soal menunggu render selesai lalu langsung memutar hasilnya*
+c) Menganggap pasca-produksi harus dikerjakan sebelum tahap produksi dimulai
+d) Menganggap pasca-produksi hanya relevan untuk studio besar seperti Pixar
+
+Urutan empat sub-tahap pasca-produksi menurut materi adalah...
+
+[single]
+a) Sound Design → Editing → Final Review → Compositing
+b) Editing → Sound Design & Musik → Compositing & Color Grading → Final Review & QC*
+c) Compositing → Final Review → Editing → Sound Design
+d) Final Review → Editing → Compositing → Sound Design
+
+Dalam proses editing, apa perbedaan utama antara "rough cut" dan "fine cut"?
+
+[single]
+a) Rough cut adalah potongan kasar untuk memastikan alur cerita masuk akal, fine cut adalah versi yang sudah dihaluskan timing dan transisinya*
+b) Rough cut hanya dipakai untuk audio, fine cut hanya dipakai untuk visual
+c) Fine cut selalu dikerjakan sebelum rough cut dalam pipeline yang benar
+d) Rough cut dan fine cut adalah istilah lain untuk hal yang sama persis
+
+Menurut materi, apa risiko jika tim melompat langsung ke fine cut tanpa melalui rough cut terlebih dahulu?
+
+[single]
+a) Tidak ada risiko karena keduanya bisa saling menggantikan
+b) Revisi besar-besaran di kemudian hari karena kesalahan struktur cerita baru ketahuan setelah detail dikerjakan*
+c) File akan otomatis corrupt saat proses render
+d) Editor tidak akan bisa membuka software editing sama sekali
+
+Mengapa materi menyebutkan bahwa sound design idealnya sudah dilibatkan sejak fase produksi berjalan, bukan hanya di bagian akhir?
+
+[single]
+a) Karena software audio harganya lebih murah jika dibeli lebih awal
+b) Karena suara punya pengaruh besar terhadap timing, sehingga animator bisa menyesuaikan gerakan agar sinkron*
+c) Karena aturan festival mewajibkan audio selesai sebelum animasi
+d) Karena sound designer tidak boleh bekerja setelah animator selesai
+
+Dari tiga elemen audio yang dikoordinasikan pada pasca-produksi, elemen mana yang menurut materi biasanya direkam lebih awal (bahkan sebelum animasi selesai) supaya animator punya referensi timing bibir?
+
+[single]
+a) Musik & Scoring
+b) Sound Effect (SFX)
+c) Dialog*
+d) Ambience latar
+
+Apa fungsi utama compositing menurut materi Pertemuan 12?
+
+[single]
+a) Menentukan platform distribusi akhir sebuah karya
+b) Menggabungkan berbagai layer visual (karakter, background, efek) menjadi satu gambar utuh per shot*
+c) Merekam dialog karakter dari voice actor
+d) Menyusun jadwal produksi dan alokasi anggaran
+
+Menurut materi, apa fungsi utama color grading dalam tahap pasca-produksi?
+
+[single]
+a) Menghapus dialog yang dianggap tidak perlu
+b) Menyesuaikan warna dan pencahayaan secara keseluruhan supaya tampilan akhir konsisten dan sesuai mood*
+c) Menyusun struktur folder produksi
+d) Menentukan durasi maksimum sebuah episode
+
+Dalam tabel severity rating untuk compositing & color grading di materi, "warna shot melenceng jauh, ada layer yang hilang/bocor, audio tidak sinkron" termasuk kategori dan tindakan apa?
+
+[single]
+a) Ringan — boleh dilewati untuk versi final jika mendesak waktu
+b) Sedang — diperbaiki jika waktu memungkinkan
+c) Kritis — wajib diperbaiki sebelum lanjut ke tahap berikutnya*
+d) Tidak termasuk kategori manapun karena dianggap wajar
+
+Menurut materi, apa peran utama producer dalam tahap koordinasi editing, meskipun ia tidak harus jago mengoperasikan software compositing?
+
+[single]
+a) Menggantikan editor mengerjakan seluruh proses penyuntingan
+b) Memastikan aset dari tiap departemen sampai tepat waktu, dengan format dan penamaan file yang konsisten*
+c) Membuat musik latar untuk seluruh episode
+d) Menentukan gaya visual karakter secara mandiri tanpa melibatkan art director

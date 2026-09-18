@@ -1,0 +1,69 @@
+Struktur kerangka virtual di dalam Blender yang terdiri dari serangkaian bone dan menjadi "penggerak" bagi mesh objek 3D disebut...
+[single]
+a) Mesh
+b) Armature*
+c) Shader
+d) Modifier
+
+Dalam hierarki bone sebuah rig sederhana, ketika bone lengan atas digerakkan, apa yang terjadi pada bone lengan bawah dan tangan yang berada di bawahnya dalam rantai parent-child?
+[single]
+a) Tidak ikut bergerak sama sekali karena posisinya independen
+b) Ikut bergerak mengikuti, karena bone anak bergerak relatif terhadap bone induknya*
+c) Otomatis terhapus dari armature
+d) Berubah menjadi root bone baru
+
+Mode yang digunakan untuk membentuk dan menyusun posisi awal tulang-tulang armature, mirip menyusun kerangka manekin sebelum dipakai, adalah...
+[single]
+a) Pose Mode
+b) Weight Paint Mode
+c) Edit Mode*
+d) Object Mode
+
+Proses menjadikan armature sebagai "induk" dari mesh sehingga mesh otomatis mengikuti pergerakan tulang-tulangnya disebut...
+[single]
+a) Parenting*
+b) Rendering
+c) Compositing
+d) Extruding
+
+Dalam weight paint, warna yang menandakan bahwa sebuah area mesh TIDAK memiliki pengaruh sama sekali (0%) dari sebuah bone adalah warna...
+[single]
+a) Merah
+b) Kuning
+c) Hijau
+d) Biru*
+
+Seorang mahasiswa menggerakkan tulang siku pada karakternya di Pose Mode, tapi seluruh tubuh karakter ikut melintir aneh, bukan hanya lengan bawahnya. Penyebab paling mungkin dari masalah ini adalah...
+[single]
+a) Weight paint pada area tersebut belum tepat sehingga area yang salah ikut terpengaruh*
+b) Armature belum di-parenting sama sekali dengan mesh
+c) Modifier Subdivision Surface belum diterapkan
+d) Objek belum diberi material dan texture
+
+Properti yang TIDAK termasuk dalam ketiga jenis properti keyframe dasar (Location, Rotation, Scale) yang dijelaskan pada Pertemuan 11 adalah...
+[single]
+a) Rotation
+b) Scale
+c) Location
+d) Roughness*
+
+Jenis interpolasi default Blender yang menghasilkan gerakan dengan sedikit percepatan dan perlambatan alami di awal dan akhir gerakan, mirip mobil yang berangkat pelan lalu melambat sebelum berhenti, adalah interpolasi...
+[single]
+a) Linear
+b) Bezier*
+c) Constant
+d) Automatic Weights
+
+Editor di Blender yang menampilkan seluruh keyframe dari semua properti dan tulang dalam satu tampilan lengkap, biasanya digambarkan sebagai deretan titik berlian di sepanjang garis waktu, disebut...
+[single]
+a) Shader Editor
+b) UV Editor
+c) Dope Sheet*
+d) Timeline sederhana
+
+Dalam siklus walk cycle 3D, pose kunci di mana satu kaki tegak lurus di bawah tubuh sementara kaki lainnya melayang melewatinya disebut pose...
+[single]
+a) Contact
+b) Down
+c) Passing*
+d) Up

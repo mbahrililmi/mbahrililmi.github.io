@@ -1,0 +1,69 @@
+Manajemen produksi animasi paling tepat didefinisikan sebagai...
+[single]
+a) Proses menggambar dan menganimasikan karakter secara teknis menggunakan software seperti Blender atau Maya
+b) Proses mengelola supaya ide animasi benar-benar berubah menjadi karya yang selesai, tepat waktu, dan sesuai anggaran*
+c) Proses memasarkan hasil karya animasi yang sudah selesai ke platform streaming
+d) Proses merekrut animator baru untuk bergabung dengan sebuah studio besar
+
+Dalam analogi "Koki Hebat vs Manajer Restoran" pada materi Pertemuan 1, kemampuan teknik animasi (modeling, rigging, animating) paling setara dengan peran...
+[single]
+a) Manajer restoran yang mengatur jadwal dapur
+b) Koki yang meracik masakan enak*
+c) Pelayan yang mengantar pesanan ke pelanggan
+d) Pemilik restoran yang mencari investor
+
+Menurut materi, kenapa banyak lulusan dengan skill teknik animasi yang sangat bagus justru kesulitan menyelesaikan proyek pertamanya di dunia kerja?
+[single]
+a) Karena mereka tidak menguasai software animasi terbaru
+b) Karena mereka tidak pernah dilatih merencanakan dan mengelola sebuah produksi*
+c) Karena gaji yang ditawarkan studio dianggap terlalu rendah
+d) Karena mereka lebih memilih bekerja sebagai freelancer
+
+Peran yang mencari pendanaan, menjaga hubungan dengan klien atau investor, dan sering menjadi "wajah" produksi saat berhadapan dengan pihak luar adalah...
+[single]
+a) Production Manager
+b) Pipeline Supervisor
+c) Producer*
+d) Production Coordinator
+
+Peran yang fokus menyusun dan memantau jadwal, mengalokasikan sumber daya, serta menjadi penghubung antar departemen sehari-hari adalah...
+[single]
+a) Producer
+b) Production Manager*
+c) Pipeline Supervisor/TD
+d) Studio Manager
+
+Menurut materi, tugas utama seorang Pipeline Supervisor/TD adalah...
+[single]
+a) Mengambil keputusan besar terkait arah kreatif proyek
+b) Menjaga alur kerja antar software dan antar tim, termasuk standar format file dan naming convention*
+c) Menjaga hubungan dengan klien dan investor
+d) Menyusun estimasi anggaran produksi
+
+Urutan tiga tahap animation pipeline yang benar menurut materi adalah...
+[single]
+a) Production, Pre-Production, Post-Production
+b) Post-Production, Production, Pre-Production
+c) Pre-Production, Production, Post-Production*
+d) Pre-Production, Post-Production, Production
+
+Tahap "pabrik" dalam animation pipeline yang mencakup layout, animating, texturing, lighting, dan rendering disebut tahap...
+[single]
+a) Pre-Production
+b) Production*
+c) Post-Production
+d) Distribusi
+
+Menurut materi, sekitar berapa persen masalah produksi animasi sebenarnya bisa dicegah kalau tahap pre-production dikerjakan dengan matang?
+[single]
+a) 20-30%
+b) 40-50%
+c) 70-80%*
+d) 90-100%
+
+Manakah pernyataan yang BUKAN ciri khas studio kecil/indie dibanding studio besar menurut materi?
+[single]
+a) Satu orang bisa merangkap banyak peran sekaligus
+b) Menggunakan tools seperti Trello, Notion, atau Google Sheets
+c) Proses lebih fleksibel dan cepat dengan dokumentasi seperlunya
+d) Menggunakan software pipeline proprietary dan tools enterprise seperti ShotGrid/Ftrack*

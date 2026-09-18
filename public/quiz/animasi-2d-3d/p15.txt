@@ -1,0 +1,69 @@
+Perbedaan utama antara studi kasus "Titik Balik" (Pertemuan 14) dan studi kasus "Kopi Rimba" (Pertemuan 15) adalah...
+[single]
+a) "Titik Balik" adalah animasi pendek naratif berkarakter, sedangkan "Kopi Rimba" adalah motion graphics promosi tanpa karakter*
+b) "Titik Balik" adalah motion graphics promosi, sedangkan "Kopi Rimba" adalah animasi karakter naratif
+c) Keduanya sama-sama motion graphics tanpa karakter dan cerita
+d) "Kopi Rimba" memiliki waktu produksi lebih lama dibanding "Titik Balik"
+
+Berapa lama waktu yang diberikan kepada tim untuk menyelesaikan video promosi "Kopi Rimba" pada studi kasus Pertemuan 15?
+[single]
+a) 6 minggu
+b) 3 hari*
+c) 1 bulan
+d) 15 hari
+
+Format aspek rasio video yang dipilih untuk video promosi "Kopi Rimba" karena ditujukan untuk Instagram Reels adalah...
+[single]
+a) 16:9 horizontal
+b) 1:1 persegi
+c) 9:16 vertikal*
+d) 4:3 klasik
+
+Manakah dari berikut yang termasuk salah satu dari "tiga pertimbangan khusus motion graphics" untuk konten media sosial menurut materi Pertemuan 15?
+[single]
+a) Kompleksitas rigging armature yang tinggi
+b) Jumlah karakter yang harus lebih dari tiga
+c) Penggunaan render engine Cycles secara wajib
+d) Keterbacaan teks, karena banyak penonton menonton tanpa suara atau sambil scroll cepat*
+
+Kenapa penonton media sosial dikatakan membutuhkan "hook" kuat di 3 detik pertama sebuah motion graphics?
+[single]
+a) Karena attention span penonton media sosial sangat singkat, kalau tidak menarik mereka langsung scroll ke konten lain*
+b) Karena algoritma media sosial mewajibkan durasi video minimal 3 detik
+c) Karena 3 detik pertama selalu dipakai untuk menampilkan logo brand tanpa animasi
+d) Karena semua platform media sosial membatasi durasi maksimal video menjadi 3 detik
+
+Manakah yang BUKAN termasuk kesalahan umum presentasi proyek akhir yang disebutkan pada materi Pertemuan 15?
+[single]
+a) Langsung ke hasil akhir tanpa konteks
+b) Menceritakan proses produksi secara mendetail sebelum menampilkan hasil akhir*
+c) Tidak menguji file sebelum presentasi
+d) Menyembunyikan kendala/kegagalan yang dihadapi
+
+Urutan struktur presentasi proyek akhir yang disarankan pada materi, setelah "Konsep & Latar Belakang Ide" dan sebelum "Proses Produksi", adalah...
+[single]
+a) Hasil Akhir
+b) Refleksi & Pembelajaran
+c) Storyboard & Perencanaan Awal*
+d) Rubrik Penilaian
+
+Berdasarkan rubrik penilaian proyek akhir semester pada Pertemuan 15, kriteria dengan bobot penilaian PALING BESAR (25%) ada dua, yaitu Kreativitas Konsep & Cerita dan...
+[single]
+a) Kualitas Presentasi
+b) Konsistensi Produksi
+c) Kualitas Teknis & Kerapian Aset
+d) Penerapan Prinsip Animasi*
+
+Menurut catatan penting pada rubrik penilaian, karya seperti apa yang berpotensi mendapat nilai lebih tinggi dibanding karya yang terlihat ambisius tapi proses produksinya berantakan?
+[single]
+a) Karya yang secara visual sederhana namun dikerjakan konsisten dan dipresentasikan dengan baik*
+b) Karya yang menggunakan software paling mahal dan premium
+c) Karya dengan jumlah karakter terbanyak dalam satu adegan
+d) Karya dengan durasi video paling panjang di antara semua kelompok
+
+Menurut tabel review materi satu semester pada Pertemuan 15, topik yang dibahas pada Pertemuan 11 adalah...
+[single]
+a) Texturing & Material 3D
+b) Rigging & Animasi 3D*
+c) Camera, Lighting & Rendering
+d) Motion Graphics & Efek Visual Dasar

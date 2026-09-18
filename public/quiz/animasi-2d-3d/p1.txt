@@ -1,0 +1,69 @@
+Secara sederhana, animasi didefinisikan sebagai apa dalam materi Pertemuan 1?
+[single]
+a) Ilusi gerak yang tercipta dari rangkaian gambar diam (frame) yang ditampilkan secara cepat dan berurutan*
+b) Kumpulan gambar tiga dimensi yang dirender menggunakan komputer
+c) Teknik menggambar karakter dengan detail wajah yang sangat realistis
+d) Proses merekam video menggunakan kamera film secara langsung
+
+Fenomena kerja mata dan otak manusia yang membuat bayangan gambar masih "tersimpan" sesaat di retina sehingga rangkaian gambar terpisah terlihat sebagai gerakan yang mulus disebut apa?
+[single]
+a) Squash and stretch
+b) Frame rate
+c) Persistence of vision*
+d) Motion blur
+
+Dalam analogi flipbook yang dijelaskan di materi, apa yang membuat gambar-gambar diam di tiap halaman terlihat seperti bergerak?
+[single]
+a) Halaman-halamannya dikibas cepat dengan ibu jari sehingga pose yang sedikit berbeda antar halaman terlihat menyatu*
+b) Halaman-halamannya diwarnai dengan warna yang sama persis
+c) Buku itu harus dibaca dari halaman terakhir ke halaman pertama
+d) Gambar di setiap halaman harus identik agar terlihat stabil
+
+Mainan optik berupa silinder berlubang yang gambar-gambar di dalamnya terlihat bergerak saat silinder diputar dan dilihat lewat celahnya disebut?
+[single]
+a) Zoetrope*
+b) Praxinoscope digital
+c) Flipbook silinder
+d) Proyektor celluloid
+
+Film pendek "Steamboat Willie" (1928) yang memperkenalkan karakter Mickey Mouse termasuk dalam era apa menurut sejarah animasi di materi ini?
+[single]
+a) Era CGI dimulai
+b) Awal animasi hitam-putih (awal 1900-an)*
+c) Era keemasan animasi tradisional
+d) Era pra-film mainan optik
+
+Film apa yang disebut sebagai film animasi panjang pertama di dunia yang sepenuhnya dibuat dengan komputer (CGI) tanpa menggambar tangan sama sekali?
+[single]
+a) Snow White and the Seven Dwarfs
+b) Frozen
+c) Toy Story*
+d) Steamboat Willie
+
+Menurut tabel perbandingan pada materi, apa perbedaan cara kerja utama antara animasi 2D dan animasi 3D?
+[single]
+a) Animasi 2D bekerja pada bidang datar sumbu X dan Y, sedangkan animasi 3D membangun objek dalam ruang tiga dimensi sumbu X, Y, dan Z*
+b) Animasi 2D hanya bisa dibuat dengan tangan, sedangkan animasi 3D hanya bisa dibuat dengan AI
+c) Animasi 2D selalu berwarna, sedangkan animasi 3D selalu hitam putih
+d) Animasi 2D tidak memiliki karakter, sedangkan animasi 3D selalu memiliki karakter
+
+Manakah pernyataan berikut yang TIDAK sesuai dengan penjelasan materi tentang animasi 2D vs 3D?
+[single]
+a) Animasi 2D dianggap sebagai "kelas dua" dari animasi 3D dan sudah ditinggalkan studio besar*
+b) Pilihan 2D atau 3D biasanya ditentukan oleh gaya visual, anggaran, dan kebutuhan proyek
+c) Studio seperti Disney dan Ghibli tetap memproduksi karya 2D berkualitas tinggi hingga hari ini
+d) Keduanya adalah medium berbeda dengan kekuatan masing-masing
+
+Nussa, sebagai contoh animasi Indonesia modern yang disebutkan pada materi, termasuk jenis animasi apa?
+[single]
+a) Animasi 2D tradisional bertema kehidupan sehari-hari
+b) Motion graphics untuk presentasi bisnis
+c) Stop motion menggunakan boneka tanah liat
+d) Animasi 3D edukatif bernuansa islami*
+
+Seorang mahasiswa ingin membuat "cetak biru" visual dari sebuah cerita berupa rangkaian sketsa panel yang menggambarkan urutan adegan dan sudut kamera sebelum animasi diproduksi. Peran dalam ekosistem industri animasi yang bertugas melakukan hal ini adalah?
+[single]
+a) Rigger
+b) Storyboard Artist*
+c) Compositor
+d) Lighting & Rendering Artist

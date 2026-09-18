@@ -1,0 +1,69 @@
+Menurut materi, deploy pertama ke Vercel dirancang agar bisa selesai dalam waktu kurang dari berapa menit?
+[single]
+a) 30 detik
+b) 2 menit*
+c) 10 menit
+d) 30 menit
+
+Apa perbedaan utama antara Preview Deployment dan Production Deployment di Vercel?
+[single]
+a) Preview hanya untuk backend, Production untuk frontend
+b) Preview punya URL unik untuk testing, Production adalah URL tetap dan resmi*
+c) Preview memerlukan biaya, Production gratis
+d) Preview tidak bisa diakses publik sama sekali
+
+Ketika menjalankan perintah "vercel" pertama kali di sebuah folder project, apa yang muncul?
+[single]
+a) Halaman login browser saja
+b) Wizard yang menanyakan setup project seperti nama dan direktori kode*
+c) Otomatis menghapus folder node_modules
+d) Permintaan kartu kredit
+
+Setelah project terhubung ke GitHub, push ke branch apa yang otomatis memicu production deployment?
+[single]
+a) develop
+b) staging
+c) main/master*
+d) feature
+
+Properti apa dalam vercel.json yang digunakan untuk menentukan folder command build dijalankan?
+[single]
+a) "buildCommand"*
+b) "runCommand"
+c) "execCommand"
+d) "startCommand"
+
+Properti "outputDirectory" dalam vercel.json digunakan untuk apa?
+[single]
+a) Menentukan lokasi source code
+b) Menentukan folder hasil build yang akan di-deploy*
+c) Menentukan region server
+d) Menentukan nama domain
+
+Manakah yang BUKAN bagian dari struktur project static site sederhana menurut materi?
+[single]
+a) index.html
+b) css/style.css
+c) js/main.js
+d) package-lock.json*
+
+Apa fungsi properti "cleanUrls": true pada vercel.json?
+[single]
+a) Menghapus semua file HTML
+b) Membersihkan cache browser otomatis
+c) Menghilangkan ekstensi .html dari URL*
+d) Menonaktifkan HTTPS
+
+Ketika mengimpor project via dashboard Vercel dari GitHub, langkah pertama yang dilakukan adalah?
+[single]
+a) Membuat custom domain terlebih dahulu
+b) Klik "Add New Project" lalu pilih "Import Git Repository"*
+c) Menghubungkan database
+d) Mengatur environment variable production
+
+Static site menurut materi paling cocok digunakan untuk kebutuhan apa berikut ini?
+[single]
+a) Portfolio pribadi dan landing page*
+b) Aplikasi dengan database transaksi kompleks
+c) Sistem backend microservices
+d) Server WebSocket real-time

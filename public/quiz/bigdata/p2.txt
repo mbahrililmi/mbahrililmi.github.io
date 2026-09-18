@@ -1,0 +1,69 @@
+Menurut materi, Data Analytics Lifecycle didefinisikan sebagai...
+[single]
+a) Kerangka kerja sistematis yang menuntun proyek big data analytics dari memahami masalah bisnis sampai solusi dijalankan*
+b) Daftar tools yang wajib digunakan dalam proyek big data
+c) Metode statistik untuk menghitung akurasi model machine learning
+d) Prosedur backup data secara berkala di cloud storage
+
+Urutan enam fase Data Analytics Lifecycle yang benar adalah...
+[single]
+a) Data Preparation - Discovery - Model Planning - Model Building - Operationalize - Communicate Results
+b) Discovery - Data Preparation - Model Planning - Model Building - Communicate Results - Operationalize*
+c) Model Planning - Discovery - Data Preparation - Communicate Results - Model Building - Operationalize
+d) Discovery - Model Building - Data Preparation - Model Planning - Operationalize - Communicate Results
+
+Manakah yang BUKAN merupakan salah satu dari 6 fase Data Analytics Lifecycle?
+[single]
+a) Discovery
+b) Data Preparation
+c) Data Governance*
+d) Operationalize
+
+Problem statement dan project charter adalah deliverable utama dari fase...
+[single]
+a) Discovery*
+b) Data Preparation
+c) Model Building
+d) Operationalize
+
+Menurut materi, berapa persen waktu proyek data analytics umumnya dihabiskan pada fase Data Preparation?
+[single]
+a) 10-20%
+b) 30-40%
+c) 50-60%
+d) 70-80%*
+
+Metode yang disebutkan dalam materi untuk mendeteksi outlier pada tahap Data Cleaning adalah...
+[single]
+a) Elbow Method dan Silhouette Score
+b) IQR atau Z-score*
+c) Support dan Confidence
+d) Cross-validation dan Grid Search
+
+Untuk pemodelan pada skala big data, tool yang disebutkan sebagai pilihan tepat pada tahap Model Planning adalah...
+[single]
+a) Microsoft Excel
+b) Spark MLlib*
+c) Tableau
+d) OpenRefine
+
+Pada fase Operationalize, kondisi ketika distribusi data input berubah dari waktu ke waktu disebut...
+[single]
+a) Concept drift
+b) Data drift*
+c) Model decay
+d) Feature leakage
+
+Praktik yang mencakup versioning model, A/B testing, dan pipeline retraining otomatis pada fase Operationalize disebut...
+[single]
+a) EDA (Exploratory Data Analysis)
+b) MLOps*
+c) ETL (Extract Transform Load)
+d) CRISP-DM
+
+Mengapa Data Analytics Lifecycle dikatakan bersifat iteratif?
+[single]
+a) Karena setiap fase harus dikerjakan oleh tim yang berbeda-beda
+b) Karena prosesnya bisa kembali ke fase sebelumnya ketika ditemukan insight atau data baru*
+c) Karena setiap fase wajib diulang tepat tiga kali sebelum lanjut ke fase berikutnya
+d) Karena hasil akhirnya harus selalu berbeda dari proyek sebelumnya

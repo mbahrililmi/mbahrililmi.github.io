@@ -1,0 +1,69 @@
+Perbedaan mendasar output antara classification dan prediction (regression) adalah...
+[single]
+a) Classification menghasilkan output kontinu, prediction menghasilkan output diskrit
+b) Classification menghasilkan output diskrit/kategori, prediction menghasilkan output kontinu/angka*
+c) Keduanya sama-sama menghasilkan output kategori
+d) Keduanya sama-sama menghasilkan output berupa probabilitas 0-1 saja
+
+Pada formula simple linear regression y = β₀ + β₁x + ε, simbol β₁ merepresentasikan...
+[single]
+a) Intercept, yaitu nilai y ketika x=0
+b) Slope, yaitu kemiringan garis*
+c) Error term yang tidak bisa dijelaskan model
+d) Variabel target yang ingin diprediksi
+
+Polynomial Regression digunakan ketika...
+[single]
+a) Hubungan antara X dan Y bersifat linear sempurna
+b) Hubungan antara X dan Y bersifat non-linear/melengkung seperti kurva*
+c) Data yang dimiliki hanya berupa kategori tanpa nilai numerik
+d) Jumlah fitur yang tersedia sangat sedikit
+
+Risiko utama jika degree pada Polynomial Regression dipaksa terlalu tinggi adalah...
+[single]
+a) Model menjadi underfitting karena terlalu sederhana
+b) Model menghafal noise data, bukan polanya (overfitting)*
+c) Model otomatis berubah menjadi algoritma clustering
+d) Waktu training menjadi lebih singkat dari seharusnya
+
+Meskipun namanya mengandung kata 'regression', Logistic Regression sebenarnya adalah algoritma untuk...
+[single]
+a) Clustering data tanpa label
+b) Classification biner dengan output berupa probabilitas*
+c) Mencari frequent itemset dalam data transaksi
+d) Meramalkan nilai time series di masa depan
+
+Fungsi sigmoid pada Logistic Regression berperan untuk...
+[single]
+a) Mengubah nilai linear apapun menjadi probabilitas antara 0 dan 1*
+b) Menghitung jarak Euclidean antar titik data
+c) Menentukan jumlah cluster yang optimal
+d) Mengurangi dimensi fitur yang terlalu banyak
+
+Komponen time series yang menunjukkan pola berulang pada interval waktu tertentu, misalnya penjualan yang naik setiap akhir pekan atau musim liburan, disebut...
+[single]
+a) Trend
+b) Seasonality*
+c) Cyclic
+d) Noise
+
+Dalam model ARIMA dengan notasi (p, d, q), huruf 'd' merepresentasikan...
+[single]
+a) AR order
+b) Differencing*
+c) MA order
+d) Distance metric
+
+Dibandingkan MAE, metrik RMSE lebih sensitif terhadap outlier karena...
+[single]
+a) RMSE tidak memperhitungkan tanda positif/negatif dari error
+b) RMSE mengkuadratkan selisih sebelum dirata-ratakan, sehingga error besar 'dihukum' lebih berat*
+c) RMSE hanya dihitung dari 10% data teratas
+d) RMSE tidak memiliki satuan yang sama dengan data asli
+
+Nilai R² (Coefficient of Determination) yang mendekati 1 menunjukkan bahwa...
+[single]
+a) Model gagal menjelaskan variasi data sama sekali
+b) Proporsi variasi data yang berhasil dijelaskan model semakin besar, artinya model semakin bagus*
+c) Data yang digunakan pasti mengandung banyak outlier
+d) Model tersebut sebenarnya termasuk algoritma classification

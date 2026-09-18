@@ -1,0 +1,69 @@
+Association Rule Mining adalah teknik...
+[single]
+a) Supervised learning untuk memprediksi harga produk di masa depan
+b) Unsupervised learning yang menemukan hubungan menarik (rules) antar variabel dalam data transaksi*
+c) Teknik klasifikasi biner untuk mendeteksi fraud
+d) Algoritma regresi untuk meramalkan penjualan mingguan
+
+Contoh klasik 'Beer-Diaper Rule' yang ditemukan Walmart menunjukkan bahwa...
+[single]
+a) Pelanggan yang membeli bir cenderung tidak membeli produk lain
+b) Ayah muda yang membeli popok juga cenderung membeli bir pada waktu yang sama*
+c) Popok dan bir adalah dua produk dengan lift bernilai 1 (independen)
+d) Analisis ini ditemukan lewat algoritma K-Means pada data pelanggan
+
+Format umum sebuah association rule menurut materi adalah...
+[single]
+a) {Support} → {Confidence}
+b) {Antecedent} → {Consequent}*
+c) {Cluster} → {Centroid}
+d) {Feature} → {Label}
+
+Apriori Property (Anti-monotone) menyatakan bahwa...
+[single]
+a) Jika sebuah itemset frequent, maka semua subset-nya pasti tidak frequent
+b) Jika sebuah itemset tidak frequent, maka semua superset-nya juga pasti tidak frequent*
+c) Semua itemset dalam database pasti memiliki support yang sama
+d) Itemset dengan ukuran terbesar selalu paling frequent
+
+Pada algoritma Apriori, langkah menggabungkan item-item frequent untuk membentuk kandidat itemset yang lebih besar disebut...
+[single]
+a) Scan & Count
+b) Generate Candidates*
+c) Leaf Assignment
+d) Majority Voting
+
+Keunggulan utama FP-Growth dibandingkan Apriori menurut materi adalah...
+[single]
+a) FP-Growth memindai database lebih banyak kali sehingga lebih akurat
+b) FP-Growth hanya perlu memindai database 2 kali dengan struktur FP-Tree yang ringkas*
+c) FP-Growth tidak memerlukan minimum support threshold
+d) FP-Growth hanya bisa digunakan pada dataset yang sangat kecil
+
+Metrik yang mengukur seberapa sering sebuah kombinasi item muncul dalam keseluruhan dataset disebut...
+[single]
+a) Support*
+b) Confidence
+c) Lift
+d) Leverage
+
+Confidence(A→B) = 0.8 berarti...
+[single]
+a) 80% item B muncul di seluruh dataset
+b) 80% transaksi yang mengandung A ternyata juga mengandung B*
+c) Lift dari rule tersebut pasti bernilai 1
+d) A dan B pasti saling independen
+
+Jika nilai Lift sebuah rule A→B kurang dari 1, artinya...
+[single]
+a) Membeli A meningkatkan kemungkinan membeli B
+b) A dan B benar-benar independen tanpa hubungan apa pun
+c) Membeli A justru menurunkan kemungkinan membeli B*
+d) Rule tersebut pasti memiliki confidence 100%
+
+Pada contoh kalkulasi manual rule {roti} → {susu} di materi, hasil Lift yang didapat adalah 0.96, yang berarti...
+[single]
+a) Rule ini sangat kuat dan sangat direkomendasikan untuk bundling
+b) Membeli roti sedikit mengurangi kemungkinan membeli susu (lift di bawah 1)*
+c) Confidence rule tersebut otomatis menjadi 0
+d) Support(roti) dan Support(susu) pasti bernilai sama persis

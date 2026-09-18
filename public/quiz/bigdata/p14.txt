@@ -1,0 +1,69 @@
+Menurut materi, regulasi apa yang melindungi data kesehatan (healthcare) di Amerika Serikat?
+[single]
+a) GDPR
+b) HIPAA*
+c) UU PDP
+d) OJK Regulation
+
+Fraud detection pada transaksi kartu menurut materi harus mampu menganalisis transaksi dalam waktu...
+[single]
+a) Kurang dari 100 milidetik*
+b) Sekitar 1 jam
+c) Sekitar 1 hari
+d) Beberapa minggu
+
+Apa perbedaan antara Anonymization dan Pseudonymization menurut materi?
+[single]
+a) Keduanya adalah istilah yang sama persis
+b) Anonymization menghapus total semua identifier sehingga tidak bisa dilacak, sedangkan Pseudonymization mengganti identifier dengan kode yang masih bisa dipetakan kembali*
+c) Pseudonymization menghapus semua data, Anonymization hanya menyamarkan sebagian
+d) Anonymization hanya berlaku untuk data finansial
+
+High-Frequency Trading (HFT) pada materi menggunakan machine learning untuk...
+[single]
+a) Memprediksi harga saham dan mengeksekusi order dalam hitungan mikrodetik*
+b) Menghitung pajak transaksi otomatis
+c) Mendeteksi penyakit jantung pasien
+d) Mengelola rekam medis pasien
+
+Manakah berikut ini yang termasuk metode unsupervised (tanpa label) yang digunakan dalam contoh fraud detection pada materi?
+[single]
+a) Random Forest
+b) Isolation Forest*
+c) Logistic Regression
+d) K-Nearest Neighbors
+
+Prinsip Data Minimization pada materi menekankan bahwa organisasi sebaiknya...
+[single]
+a) Mengumpulkan sebanyak mungkin data untuk keperluan masa depan
+b) Hanya mengumpulkan data yang benar-benar dibutuhkan untuk tujuan yang jelas*
+c) Menyimpan semua data pelanggan selamanya tanpa batas waktu
+d) Membagikan data pelanggan ke pihak ketiga secara bebas
+
+Manakah berikut ini yang BUKAN termasuk use case Finance Analytics yang dibahas dalam materi?
+[single]
+a) Credit Scoring
+b) Algorithmic Trading
+c) Risk Management
+d) Hospital Resource Management*
+
+SMOTE pada contoh Credit Fraud Detection di materi digunakan untuk...
+[single]
+a) Mempercepat proses training model
+b) Menangani ketidakseimbangan (imbalance) data yang ekstrem antara kelas fraud dan non-fraud*
+c) Menghapus data yang duplikat
+d) Melakukan enkripsi data sebelum training
+
+Berdasarkan tabel perbandingan Healthcare vs Finance Analytics pada materi, metrik utama yang diprioritaskan pada Healthcare Analytics adalah...
+[single]
+a) Precision saja
+b) Recall (sensitivity) dan AUC-ROC*
+c) Akurasi rata-rata tanpa mempertimbangkan false negative
+d) Waktu eksekusi query
+
+Pada tugas praktikum Pertemuan 14 untuk kasus healthcare, dataset yang digunakan adalah...
+[single]
+a) Titanic Dataset
+b) UCI Heart Disease Dataset (Cleveland)*
+c) Netflix Shows Dataset
+d) Olist E-Commerce Dataset

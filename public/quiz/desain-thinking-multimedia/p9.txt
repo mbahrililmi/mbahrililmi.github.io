@@ -1,0 +1,69 @@
+Kenapa Gojek memilih warna hijau untuk identitas visualnya menurut materi?
+[single]
+a) Karena hijau adalah warna favorit tim desain Gojek
+b) Karena hijau secara psikologis diasosiasikan dengan pergerakan, keamanan, dan hal yang sudah dicek aman*
+c) Karena hijau adalah warna termurah untuk dicetak pada material promosi
+d) Karena hijau mudah dibedakan dari warna latar belakang aplikasi manapun
+
+Manakah pasangan warna dan asosiasi psikologisnya yang paling tepat sesuai materi?
+[single]
+a) Merah/oranye untuk urgensi dan energi, seperti tombol "Beli Sekarang" pada Shopee*
+b) Biru untuk kesan ceria dan ramah, cocok untuk lencana pencapaian
+c) Kuning untuk kesan premium dan eksklusif seperti yang dipakai OVO
+d) Ungu untuk indikator status berhasil seperti centang pembayaran sukses
+
+Di halaman produk Tokopedia, kenapa harga ditampilkan jauh lebih besar dan tebal dibanding nama produk?
+[single]
+a) Karena keterbatasan ruang layar sehingga nama produk harus dikecilkan
+b) Karena tim desain tahu harga adalah informasi pertama yang dicari mata pengguna sebelum membaca detail lain*
+c) Karena aturan tipografi mewajibkan angka selalu ditulis lebih besar dari huruf
+d) Karena warna oranye Tokopedia hanya cocok diterapkan pada ukuran font besar
+
+Istilah yang tepat untuk penyesuaian jarak yang merata di antara seluruh huruf dalam sebuah kata atau kalimat, sering dipakai agar judul terasa lebih lega dan "premium", adalah...
+[single]
+a) Leading
+b) Kerning
+c) Tracking*
+d) Hierarki
+
+Manakah yang BUKAN termasuk kesalahan umum tipografi mahasiswa menurut materi?
+[single]
+a) Memakai lebih dari 2-3 jenis font dalam satu tampilan
+b) Menggunakan body text di bawah 14px pada aplikasi smartphone
+c) Menerapkan rata tengah pada paragraf panjang
+d) Membuat kontras ukuran yang jelas antara judul dan body text*
+
+Dalam prinsip keseimbangan (balance) layout, kapan sebaiknya digunakan pendekatan asimetris?
+[single]
+a) Saat produk membutuhkan kesan formal dan tenang seperti halaman login
+b) Saat produk ingin memberi kesan dinamis dan modern, misalnya halaman beranda aplikasi belanja penuh promosi*
+c) Saat semua elemen harus ditata cermin sama persis kiri-kanan
+d) Saat desainer ingin menghindari penggunaan whitespace sama sekali
+
+Apa fungsi utama whitespace (ruang kosong) menurut materi Pertemuan 9?
+[single]
+a) Mengisi ruang kosong supaya layar terlihat lebih penuh dan informatif
+b) Memberi elemen ruang untuk "bernapas", memudahkan mata membedakan kelompok informasi, dan memberi kesan premium*
+c) Mengurangi biaya produksi karena elemen visual yang dipakai lebih sedikit
+d) Menggantikan fungsi kontras warna dalam membedakan informasi penting
+
+Sebuah tim mendesain grid untuk tampilan aplikasi di layar smartphone yang sempit. Berdasarkan materi, pendekatan grid yang biasa dipakai adalah...
+[single]
+a) Tetap memaksakan grid 12 kolom seperti pada desktop
+b) Grid sederhana 4 kolom atau satu kolom penuh dengan margin kiri-kanan yang konsisten*
+c) Menghilangkan grid sepenuhnya karena layar terlalu kecil
+d) Grid 24 kolom agar elemen lebih presisi
+
+Dalam style guide sederhana untuk proyek akhir semester, satuan jarak (spacing) antar elemen yang disarankan mengikuti pola...
+[single]
+a) Kelipatan 8px, misalnya 8, 16, 24, 32px*
+b) Angka acak yang disesuaikan feeling desainer di setiap halaman
+c) Selalu tetap 10px tanpa variasi di seluruh elemen
+d) Mengikuti persis ukuran font judul yang dipakai
+
+Sebuah tim menemukan dari riset bahwa target pengguna mereka adalah lansia yang kesulitan membaca teks kecil dan sering salah pencet tombol kecil. Manakah keputusan visual yang paling sesuai dengan insight tersebut?
+[single]
+a) Mempertahankan ukuran body text 12px agar tampilan tetap rapi
+b) Menaikkan ukuran body text ke 16-18px, memperbesar kontras warna, dan membuat tombol minimal 44x44px*
+c) Mengurangi jumlah warna pada aplikasi menjadi hitam-putih saja
+d) Mengganti seluruh label teks menjadi ikon tanpa teks pendamping

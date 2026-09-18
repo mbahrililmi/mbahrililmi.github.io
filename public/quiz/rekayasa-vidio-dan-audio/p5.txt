@@ -1,0 +1,69 @@
+Menurut materi, apa perbedaan fokus utama antara Mixing dan Mastering?
+[single]
+a) Mixing fokus pada individual track dan relasinya, Mastering fokus pada overall stereo mix*
+b) Mixing fokus pada overall stereo mix, Mastering fokus pada individual track
+c) Keduanya memiliki fokus yang identik
+d) Mixing hanya untuk musik, Mastering hanya untuk podcast
+
+Rentang frekuensi 2-5 kHz pada spektrum frekuensi audio dikenal sebagai apa?
+[single]
+a) Sub-Bass
+b) Low Mids
+c) Upper Mids / Presence*
+d) Air / Sparkle
+
+Apa yang disarankan oleh prinsip strategi EQ "Adding gain adds noise; cutting creates clarity"?
+[single]
+a) Selalu boost frekuensi sebelum memotong
+b) Potong frekuensi bermasalah terlebih dahulu sebelum melakukan boost (subtractive first)*
+c) Hindari penggunaan EQ sama sekali
+d) Gunakan boost dan cut dalam jumlah yang sama besar
+
+Parameter compressor manakah yang menentukan level di mana proses compression mulai bekerja?
+[single]
+a) Ratio
+b) Threshold*
+c) Attack
+d) Release
+
+Apa yang dimaksud dengan Parallel Compression (New York Compression)?
+[single]
+a) Menyusun beberapa compressor secara seri dengan reduction ringan
+b) Blend signal terkompresi dengan signal dry untuk menambah loudness tanpa over-compression*
+c) Compressor yang hanya bekerja pada frekuensi bass
+d) Teknik menghilangkan compressor dari seluruh track
+
+Jenis reverb manakah yang mensimulasikan concert hall besar dengan durasi 1-3 detik, memberi kesan spacious dan grand?
+[single]
+a) Room
+b) Hall*
+c) Plate
+d) Spring
+
+Berapa target LUFS yang direkomendasikan untuk konten podcast (spoken word)?
+[single]
+a) -8 hingga -10 LUFS
+b) -14 LUFS
+c) -16 hingga -19 LUFS*
+d) -23 hingga -24 LUFS
+
+Elemen audio manakah yang menurut materi sebaiknya diposisikan pada center (hard center, mono) dalam panning?
+[single]
+a) Backing vocal
+b) Lead vocal dan kick drum*
+c) Gitar rhythm kiri-kanan
+d) Reverb return
+
+Apa langkah terakhir yang selalu dilakukan dalam mastering chain, terutama saat konversi 24-bit ke 16-bit?
+[single]
+a) Broad EQ
+b) Glue compression
+c) Limiting
+d) Dithering*
+
+Manakah yang BUKAN merupakan tujuan mastering menurut materi?
+[single]
+a) Optimasi tonal balance untuk berbagai sistem playback
+b) Mencapai loudness kompetitif tanpa distorsi
+c) Merekam ulang seluruh track dari awal*
+d) Menyiapkan file untuk distribusi (codec, format, metadata)

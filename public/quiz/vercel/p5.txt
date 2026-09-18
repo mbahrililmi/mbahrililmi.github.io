@@ -1,0 +1,69 @@
+Untuk membuat React app dengan Vite, perintah yang digunakan menurut materi adalah?
+[single]
+a) npm create vite@latest my-react-app -- --template react*
+b) npx create-react-app my-app --vite
+c) npm install vite-react
+d) vercel init react-vite
+
+Pada React app dengan Vite, di folder mana hasil build production disimpan?
+[single]
+a) build/
+b) dist/*
+c) output/
+d) .next/
+
+Kenapa React Router bisa menyebabkan 404 saat user mengakses URL seperti /about secara langsung di Vercel?
+[single]
+a) Karena Vercel tidak mendukung React sama sekali
+b) Karena React Router pakai client-side routing sehingga server mencari file about.html yang tidak ada*
+c) Karena React tidak kompatibel dengan HTTPS
+d) Karena file about.html selalu otomatis terhapus
+
+Konfigurasi apa di vercel.json yang digunakan untuk memperbaiki masalah 404 pada SPA routing?
+[single]
+a) "redirects" ke halaman 404
+b) "rewrites" yang mengarahkan semua route ke /index.html*
+c) "headers" dengan Content-Security-Policy
+d) "regions" ke Singapore
+
+Perintah untuk membuat project Vue.js baru menurut materi adalah?
+[single]
+a) npm create vue@latest*
+b) npx vue-cli new
+c) npm install -g vue-app
+d) vercel create vue
+
+Nuxt.js membutuhkan apa agar dapat berjalan optimal saat dideploy di Vercel?
+[single]
+a) Docker container khusus
+b) Adapter, seperti preset "vercel" atau "vercel-edge"*
+c) Server VPS terpisah
+d) Database PostgreSQL wajib
+
+Package apa yang perlu diinstal agar SvelteKit bisa dideploy dengan baik ke Vercel?
+[single]
+a) @sveltejs/adapter-vercel*
+b) @vercel/svelte-plugin
+c) svelte-vercel-cli
+d) @next/svelte-adapter
+
+Menurut tabel Build Config Patterns di materi, apa Output Directory untuk framework Nuxt.js?
+[single]
+a) dist
+b) build
+c) .output*
+d) .svelte-kit
+
+Manakah pasangan framework dan build command yang SESUAI dengan tabel Build Config Patterns pada materi?
+[single]
+a) Angular menggunakan build command "vite build"
+b) Astro menggunakan build command "astro build"*
+c) Vue.js menggunakan build command "nuxt build"
+d) SvelteKit menggunakan build command "react-scripts build"
+
+Framework Angular menurut materi menggunakan build command apa untuk production?
+[single]
+a) ng build --prod*
+b) ng deploy
+c) ng compile
+d) ng start --prod

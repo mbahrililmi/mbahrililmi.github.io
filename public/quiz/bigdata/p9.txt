@@ -1,0 +1,69 @@
+Apa yang dimaksud dengan RESTful Web Services menurut materi?
+[single]
+a) Sebuah bahasa pemrograman khusus untuk big data
+b) Cara standar bagi aplikasi untuk saling bertukar data lewat protokol HTTP*
+c) Sebuah sistem operasi untuk server database
+d) Framework khusus untuk membangun antarmuka pengguna desktop
+
+Dalam contoh REST API dengan Flask pada materi, endpoint /api/users dengan method GET digunakan untuk...
+[single]
+a) Menghapus semua data user
+b) Mengubah data user yang sudah ada
+c) Menampilkan daftar seluruh user*
+d) Membuat user baru ke dalam sistem
+
+Apa perbedaan mendasar antara Docker Container dan Virtual Machine (VM) menurut materi?
+[single]
+a) Container menjalankan OS lengkap sendiri, sedangkan VM berbagi kernel host
+b) VM lebih ringan dan boot-nya lebih cepat dibanding container
+c) Container berbagi kernel host sehingga lebih ringan dan cepat boot, sedangkan VM menjalankan OS lengkap sendiri*
+d) Tidak ada perbedaan signifikan antara keduanya
+
+Dalam Docker, komponen yang berfungsi sebagai "resep" berisi instruksi langkah demi langkah untuk membangun sebuah image disebut...
+[single]
+a) Docker Compose
+b) Docker Hub
+c) Dockerfile*
+d) Docker Volume
+
+Manakah di antara berikut ini yang BUKAN termasuk komponen inti Hadoop Ecosystem yang dibahas dalam materi?
+[single]
+a) HDFS
+b) Apache Airflow*
+c) Apache Hive
+d) YARN
+
+Apa fungsi utama HDFS dalam ekosistem Hadoop?
+[single]
+a) Melakukan resource management dan job scheduling
+b) Menyediakan SQL interface untuk query data
+c) Menyimpan data besar di multiple nodes dengan replikasi*
+d) Melakukan pemrosesan real-time streaming
+
+YARN (Yet Another Resource Negotiator) dalam Hadoop berperan untuk...
+[single]
+a) Menyimpan data dalam format kolom
+b) Mengalokasikan CPU/RAM untuk jobs di cluster*
+c) Menerjemahkan query SQL menjadi MapReduce job
+d) Melakukan streaming data secara real-time
+
+Menurut materi, mengapa Apache Spark bisa jauh lebih cepat (hingga 100x) dibanding MapReduce?
+[single]
+a) Karena Spark menggunakan bahasa pemrograman yang lebih ringan
+b) Karena Spark memproses data secara in-memory*
+c) Karena Spark tidak memerlukan cluster sama sekali
+d) Karena Spark hanya bisa memproses data berukuran kecil
+
+Sebuah perusahaan rintisan ingin memulai proyek big data dengan cepat, tanpa perlu membeli dan merawat hardware sendiri, serta ingin biaya menyesuaikan pemakaian. Berdasarkan perbandingan Cloud vs On-Premise pada materi, pilihan yang paling sesuai adalah...
+[single]
+a) On-Premise Hadoop, karena kontrolnya penuh
+b) Cloud Big Data, karena scalable dan managed tanpa perlu maintain hardware sendiri*
+c) Membangun data center sendiri dari awal
+d) Tidak menggunakan big data tools sama sekali
+
+Docker Hub pada materi dianalogikan seperti GitHub, tetapi untuk...
+[single]
+a) Menyimpan dan berbagi kode sumber aplikasi
+b) Menyimpan dan mengunduh Docker image*
+c) Menjalankan virtual machine di cloud
+d) Mengelola database relasional

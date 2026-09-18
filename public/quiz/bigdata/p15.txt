@@ -1,0 +1,69 @@
+Menurut materi, final project big data analytics dikerjakan secara...
+[single]
+a) Individu tanpa kolaborasi
+b) Berkelompok (2-3 orang)*
+c) Oleh dosen sepenuhnya
+d) Berkelompok minimal 10 orang
+
+Berapa minimal jumlah rows dataset yang disyaratkan untuk final project menurut materi?
+[single]
+a) 5.000 rows
+b) 10.000 rows
+c) 50.000 rows*
+d) 1.000.000 rows
+
+Berdasarkan kriteria penilaian final project pada materi, komponen dengan bobot terbesar adalah...
+[single]
+a) Data & EDA (20%)
+b) Metodologi dan Implementasi (masing-masing 25%)*
+c) Evaluasi (15%)
+d) Presentasi & Business Insights (15%)
+
+Prinsip "garbage in, garbage out" pada Best Practices materi menekankan pentingnya...
+[single]
+a) Membuang data yang sudah tidak berguna
+b) Menjaga kualitas data karena model secanggih apa pun tidak akan menyelamatkan hasil jika datanya berantakan*
+c) Selalu memakai model paling kompleks yang tersedia
+d) Menghapus seluruh outlier tanpa analisis
+
+Prinsip "Start Simple, Scale Up" pada materi menyarankan untuk...
+[single]
+a) Langsung menggunakan model paling kompleks sejak awal
+b) Memulai dari baseline model sederhana sebelum menambah kompleksitas jika dibutuhkan*
+c) Menghindari penggunaan model sama sekali
+d) Fokus hanya pada visualisasi tanpa modeling
+
+Manakah profesi berikut yang menurut materi memiliki fokus tugas pada "Pipeline & infrastructure" dengan skill Python, SQL, Spark, dan Airflow?
+[single]
+a) Data Analyst
+b) Data Engineer*
+c) Business Intelligence Developer
+d) Analytics Manager
+
+Manakah berikut ini yang disarankan materi sebagai langkah membangun karir di bidang big data?
+[single]
+a) Mengunggah project ke GitHub dan mengikuti kompetisi Kaggle*
+b) Menyembunyikan seluruh source code dari publik
+c) Hanya fokus pada nilai ujian tanpa portofolio
+d) Menghindari kompetisi data science
+
+Menurut Checklist Quality Assurance pada materi, hal yang perlu diperiksa pada area "Modeling" adalah...
+[single]
+a) Missing values handled dan outliers addressed
+b) Cross-validation digunakan dan hyperparameter tuning terdokumentasi*
+c) Monitoring setup dan rollback plan
+d) Appropriate metrics untuk tipe masalah
+
+Berdasarkan materi, cakupan materi UAS Big Data adalah...
+[single]
+a) Seluruh materi dari Pertemuan 1 hingga 16
+b) Hanya materi Pertemuan 1-7
+c) Materi Pertemuan 9-15*
+d) Hanya materi final project
+
+Reproducibility dalam praktik data science menurut materi dapat dicapai dengan cara...
+[single]
+a) Mengubah random_state setiap kali menjalankan model
+b) Melakukan version control untuk data, kode, dan parameter model, serta menggunakan requirements.txt/environment.yml*
+c) Tidak mendokumentasikan proses sama sekali
+d) Menghapus seluruh riwayat perubahan kode

@@ -1,0 +1,69 @@
+Mengapa API keys dan database URL tidak boleh ditulis langsung di dalam kode yang di-push ke GitHub?
+[single]
+a) Karena akan memperlambat proses build
+b) Karena bisa terekspos publik dan membahayakan keamanan aplikasi*
+c) Karena GitHub akan otomatis menolak push tersebut
+d) Karena Vercel tidak mendukung karakter khusus di kode
+
+Ada berapa jenis environment variables di Vercel menurut materi?
+[single]
+a) 2 (Production dan Development)
+b) 3 (Production, Preview, Development)*
+c) 4 (Production, Preview, Development, Testing)
+d) 1 (hanya Production)
+
+Environment variable jenis "Preview" di Vercel digunakan untuk apa?
+[single]
+a) Hanya saat menjalankan vercel dev di lokal
+b) Untuk preview deployments pada branch selain main, biasanya berisi database staging*
+c) Untuk deployment production resmi
+d) Tidak pernah digunakan dalam praktik nyata
+
+Perintah CLI untuk menarik (pull) environment variables ke file .env.local adalah?
+[single]
+a) vercel env pull .env.local*
+b) vercel env sync
+c) vercel env download
+d) vercel env fetch
+
+Kamu ingin menyimpan sebuah API key rahasia agar hanya bisa diakses di server-side Next.js dan TIDAK terlihat di browser. Bagaimana cara penamaan variabelnya yang benar?
+[single]
+a) Diberi prefix NEXT_PUBLIC_ agar aman
+b) Ditulis tanpa prefix NEXT_PUBLIC_ sehingga hanya bisa diakses di server*
+c) Disimpan sebagai variabel biasa di file JavaScript client
+d) Ditulis langsung di dalam kode HTML
+
+Prefix apa yang WAJIB ditambahkan pada environment variable Next.js agar bisa diakses dari sisi client/browser?
+[single]
+a) CLIENT_
+b) PUBLIC_ONLY_
+c) NEXT_PUBLIC_*
+d) BROWSER_
+
+Manakah tindakan yang TERMASUK best practice security (DO's) menurut materi?
+[single]
+a) Push file .env ke GitHub agar mudah diakses tim
+b) Menaruh API key sensitif di variabel NEXT_PUBLIC_
+c) Selalu menambahkan .env.local ke .gitignore*
+d) Membagikan isi .env ke tim lewat chat
+
+Manakah tindakan berikut yang termasuk DON'T menurut security best practices di materi?
+[single]
+a) Merotasi API keys secara berkala
+b) Hardcode secrets langsung di dalam kode*
+c) Menambahkan .env.local ke .gitignore
+d) Menggunakan secrets manager untuk production
+
+Perintah CLI untuk menambahkan environment variable API_KEY khusus untuk environment production adalah?
+[single]
+a) vercel env add API_KEY production*
+b) vercel env set API_KEY --prod
+c) vercel add env API_KEY prod
+d) vercel production env API_KEY
+
+Perintah CLI untuk melihat daftar semua environment variables pada project adalah?
+[single]
+a) vercel env show
+b) vercel env ls*
+c) vercel env list-all
+d) vercel env view

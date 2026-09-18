@@ -1,0 +1,69 @@
+Materi mengutip "a problem well-stated is a problem half-solved". Maksud dari ungkapan ini adalah...
+[single]
+a) Masalah yang dirumuskan dengan baik dan tajam sudah membawa tim setengah jalan menuju solusi yang tepat*
+b) Setengah dari masalah yang ditemukan tim biasanya tidak perlu diselesaikan
+c) Perumusan masalah hanya perlu dilakukan pada separuh proyek, bukan keseluruhan
+d) Masalah yang sudah dirumuskan tidak boleh diubah lagi di tahap berikutnya
+
+Analogi "dokter yang salah diagnosis" pada materi Pertemuan 3 digunakan untuk menjelaskan bahwa...
+[single]
+a) Solusi yang hanya menjawab gejala permukaan tanpa memahami akar masalah tidak akan benar-benar menyelesaikan persoalan*
+b) Setiap tim desain wajib memiliki anggota dengan latar belakang pendidikan kedokteran
+c) Proses Define harus dilakukan lebih cepat dari proses Empathize
+d) Masalah kesehatan mental adalah topik yang paling cocok untuk produk multimedia
+
+Rumus dasar Point of View (POV) / problem statement yang diajarkan pada materi adalah...
+[single]
+a) "[User/nama persona] butuh [kebutuhan] karena [insight/alasan mendalam]"*
+b) "[Solusi] akan berhasil jika [fitur] ditambahkan ke [platform]"
+c) "[Masalah] terjadi karena [anggaran] yang terbatas pada [tim]"
+d) "[Ide] harus diuji ke [jumlah] pengguna sebelum [rilis]"
+
+Manakah dari dua problem statement berikut yang termasuk contoh BAIK menurut materi P3?
+[single]
+a) "Siswa kelas 12 yang belajar mendadak menjelang ujian butuh cara belajar singkat dan interaktif karena mereka kehilangan motivasi menonton video panjang di detik-detik terakhir sebelum ujian."*
+b) "Siswa SMA butuh aplikasi belajar yang lebih bagus karena aplikasi yang ada sekarang jelek."
+c) "Aplikasi belajar perlu ditambah fitur gamifikasi supaya terlihat lebih menarik."
+d) "Semua siswa Indonesia butuh laptop baru untuk belajar dengan lebih efektif."
+
+Materi memperingatkan agar tidak menyelipkan solusi ke dalam problem statement, misalnya menulis "siswa butuh aplikasi dengan fitur kuis interaktif karena...". Kesalahan ini berbahaya karena...
+[single]
+a) Secara diam-diam sudah "mengunci" satu solusi sebelum sesi ideasi dimulai, padahal mungkin ada solusi lain yang lebih baik*
+b) Fitur kuis interaktif dianggap fitur yang sudah ketinggalan zaman di semua aplikasi belajar
+c) Problem statement yang menyebut fitur akan otomatis dianggap plagiat oleh dosen
+d) Kalimat tersebut menjadi terlalu pendek untuk dipahami pembaca
+
+Menurut materi, kenapa format pertanyaan ideasi memakai "How Might We" (bisa jadi/mungkin) dan bukan "How Do We"?
+[single]
+a) Kata "might" terasa lebih santai dan membuka ruang eksplorasi, tidak menuntut satu jawaban benar seperti "how do we"*
+b) Kata "might" lebih mudah diterjemahkan ke bahasa Indonesia dibanding "do"
+c) Format "how do we" hanya boleh dipakai oleh tim yang sudah berpengalaman
+d) Kata "might" adalah singkatan resmi dari istilah design thinking di Stanford d.school
+
+Manakah pertanyaan How Might We (HMW) berikut yang tergolong TERLALU SEMPIT menurut contoh pada materi?
+[single]
+a) "Bagaimana kita bisa menambahkan tombol skip di video pembelajaran?"*
+b) "Bagaimana kita bisa membuat belajar jadi menyenangkan?"
+c) "Bagaimana kita bisa membantu siswa menyerap materi penting dalam waktu singkat menjelang ujian tanpa merasa terburu-buru?"
+d) "Bagaimana kita bisa memahami kebutuhan siswa secara lebih mendalam?"
+
+Apa perbedaan utama antara persona dan proto-persona menurut materi?
+[single]
+a) Persona disusun dari data wawancara dan observasi nyata, sedangkan proto-persona disusun cepat dari asumsi tim dan wajib divalidasi ulang begitu data riset tersedia*
+b) Persona hanya boleh dibuat oleh dosen, sedangkan proto-persona dibuat oleh mahasiswa
+c) Persona berupa data statistik murni, sedangkan proto-persona berupa gambar ilustrasi saja
+d) Persona dipakai di tahap Prototype, sedangkan proto-persona dipakai di tahap Test
+
+Materi menekankan bahwa detail persona seperti goals, frustrations, dan quote tidak boleh dikarang bebas. Syarat agar sebuah detail layak dimasukkan ke persona adalah...
+[single]
+a) Detail tersebut merupakan pola yang muncul berulang dari beberapa narasumber dalam hasil riset, bukan hanya disebutkan satu orang*
+b) Detail tersebut harus terdengar dramatis agar persona lebih menarik dibaca
+c) Detail tersebut disetujui oleh seluruh anggota kelompok tanpa perlu dasar data riset
+d) Detail tersebut diambil dari persona produk kompetitor yang sudah terkenal
+
+Pada tabel customer journey map studi kasus aplikasi belajar di materi, tahap manakah yang disebut memiliki potensi pain point besar karena "proses daftar akun terlalu banyak langkah"?
+[single]
+a) Onboarding*
+b) Awareness
+c) Evaluasi
+d) Retensi

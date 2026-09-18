@@ -1,0 +1,239 @@
+Peran yang bertugas menggerakkan karakter dari desain diam menjadi gerakan hidup dan meyakinkan, membutuhkan pemahaman timing, berat gerak, dan kepribadian karakter, disebut...
+
+[single]
+a) Background Artist
+b) Animator*
+c) Sound Designer
+d) Art Director
+
+Dalam materi Pertemuan 9, tugas utama Background Artist adalah...
+
+[single]
+a) Menyusun jadwal dan estimasi anggaran produksi
+b) Melukis dan menyusun latar tempat cerita berlangsung, mendukung mood tanpa merebut perhatian dari karakter*
+c) Menentukan visi kreatif keseluruhan produksi
+d) Menyunting potongan shot menjadi satu alur cerita
+
+Menurut materi struktur tim, kapan sebaiknya sebuah masalah dieskalasi dari art director ke sutradara/producer?
+
+[single]
+a) Setiap kali ada masalah sekecil apa pun tanpa terkecuali
+b) Ketika masalah menyangkut arah cerita atau butuh keputusan besar yang berdampak ke jadwal*
+c) Tidak pernah, karena art director selalu berwenang penuh atas segala hal
+d) Hanya jika sutradara secara khusus memintanya setiap hari
+
+Menurut materi Pertemuan 9, mengapa peran rangkap pada tim kecil (seperti tim mahasiswa) TIDAK berarti struktur peran yang dipelajari menjadi tidak relevan?
+
+[single]
+a) Karena struktur tersebut hanya berlaku untuk studio besar seperti Pixar
+b) Karena memahami peran-peran itu membantu menyadari peran mana yang sedang dirangkap, supaya bebannya bisa dikelola dengan sengaja*
+c) Karena tim kecil tidak pernah mengalami masalah koordinasi
+d) Karena peran rangkap berarti seluruh anggota harus punya keahlian yang identik
+
+Dalam analogi "gudang berantakan vs gudang berlabel rapi" pada materi Pertemuan 10, apa yang dimaksud dengan asset management?
+
+[single]
+a) Proses menghitung nilai aset finansial studio
+b) Proses mengatur, menamai, dan melacak seluruh file produksi supaya mudah ditemukan dan tidak tertukar*
+c) Proses merekrut aset sumber daya manusia baru
+d) Proses menyewa gudang fisik untuk menyimpan peralatan produksi
+
+Pada pola penamaan file [NamaProject]_[NamaAset]_[Versi]_[Tanggal], komponen "char-riri" atau "sh012" pada contoh materi mengisi bagian...
+
+[single]
+a) Nama Project
+b) Nama Aset*
+c) Versi
+d) Tanggal
+
+Menurut highlight-box materi Pertemuan 10, selain membuat folder rapi, asset management yang baik juga membantu menjaga jejak apa terkait karya?
+
+[single]
+a) Jejak karbon produksi
+b) Jejak hak cipta lewat riwayat versi yang jelas sebagai bukti proses kreatif*
+c) Jejak lokasi geografis studio
+d) Jejak nilai jual karya di pasar
+
+Dalam struktur folder produksi contoh materi, apa alasan hasil render dipisah menjadi sub-folder "draft" dan "final"?
+
+[single]
+a) Supaya ukuran file lebih kecil secara otomatis
+b) Supaya tidak tertukar saat proses quality control antara hasil review internal dan yang sudah disetujui*
+c) Karena draft dan final harus disimpan di komputer yang berbeda
+d) Karena aturan platform distribusi mewajibkan pemisahan ini
+
+Menurut materi Pertemuan 11, mengapa studio seperti Pixar dikenal sangat disiplin menjalankan dailies?
+
+[single]
+a) Supaya animator bisa pulang lebih awal setiap hari
+b) Supaya sutradara dan supervisor bisa memberi catatan singkat dan kesalahan segera diperbaiki keesokan harinya*
+c) Karena dailies adalah syarat wajib dari studi banding internasional
+d) Karena dailies menggantikan kebutuhan quality control sepenuhnya
+
+Dalam cerita ilustrasi bergaya Nussa pada materi Pertemuan 11, apa yang baru ketahuan di minggu ketujuh setelah semua shot digabung untuk pertama kalinya?
+
+[single]
+a) Anggaran produksi ternyata sudah habis sejak minggu kedua
+b) Dua animator memahami "gerakan riang" karakter utama dengan cara yang sangat berbeda*
+c) Naskah cerita ternyata belum pernah disetujui sutradara
+d) Seluruh tim ternyata bekerja di platform yang tidak kompatibel
+
+Pada checklist QC storyboard di materi Pertemuan 11, apa syarat yang harus dipenuhi sebelum storyboard dilanjutkan ke tahap animasi?
+
+[single]
+a) Storyboard harus digambar ulang minimal tiga kali oleh orang berbeda
+b) Sudah mendapat persetujuan dari sutradara/director*
+c) Storyboard harus dicetak dalam bentuk fisik
+d) Storyboard harus sudah diberi warna penuh
+
+Apa tujuan utama sistem severity rating dalam proses quality control menurut materi Pertemuan 11?
+
+[single]
+a) Menentukan besaran gaji tiap anggota tim
+b) Memprioritaskan temuan masalah supaya tim tahu mana yang harus diperbaiki lebih dulu*
+c) Mengganti kebutuhan sesi review sepenuhnya
+d) Menentukan platform distribusi yang paling sesuai
+
+Menurut materi Pertemuan 12, pasca-produksi paling tepat dianalogikan sebagai proses apa dalam kegiatan memasak?
+
+[single]
+a) Memasak setiap hidangan satu per satu secara terpisah
+b) Menata semua hidangan di atas meja supaya terlihat seperti satu jamuan yang utuh dan meyakinkan*
+c) Berbelanja bahan baku sebelum proses masak dimulai
+d) Mencicipi masakan orang lain sebagai perbandingan
+
+Apa peran utama producer dalam koordinasi tahap editing menurut materi Pertemuan 12, meskipun tidak harus menguasai teknis editing?
+
+[single]
+a) Menggantikan editor mengerjakan seluruh proses penyuntingan sendiri
+b) Memastikan tiap departemen menyetor aset sesuai jadwal, format konsisten, dan penamaan sesuai konvensi version control*
+c) Menentukan lagu latar yang akan dipakai di seluruh episode
+d) Menulis ulang naskah cerita jika dianggap kurang menarik
+
+Menurut jadwal sound yang realistis pada materi Pertemuan 12, kapan idealnya proses mixing final audio dilakukan?
+
+[single]
+a) Sebelum storyboard/animatic dimulai
+b) Paralel dengan fase produksi animasi
+c) Setelah fine cut gambar selesai*
+d) Sebelum kontrak produksi ditandatangani
+
+Sebelum layer-layer visual digabungkan dalam proses compositing, apa yang menurut materi Pertemuan 12 harus dipastikan sama terlebih dahulu?
+
+[single]
+a) Warna kulit seluruh karakter
+b) Resolusi dan frame rate*
+c) Jumlah dialog dalam sebuah shot
+d) Nama file sutradara
+
+Menurut materi Pertemuan 13, apa perbedaan utama tujuan jalur festival dibanding jalur platform streaming/YouTube?
+
+[single]
+a) Festival mengutamakan jangkauan penonton, sedangkan streaming mengutamakan portofolio kreatif
+b) Festival mengutamakan portofolio dan pengakuan kreatif, sedangkan streaming mengutamakan jangkauan penonton yang luas*
+c) Keduanya memiliki tujuan yang sepenuhnya identik
+d) Festival tidak pernah memiliki proses seleksi apa pun
+
+Menurut tabel spesifikasi platform pada materi Pertemuan 13, bagaimana ciri durasi karya yang dikirim ke festival dibandingkan media sosial seperti TikTok?
+
+[single]
+a) Festival umumnya punya batas maksimum lebih panjang (misalnya 10-15 menit), sedangkan media sosial sangat singkat hitungan detik*
+b) Festival tidak pernah memiliki batas durasi sama sekali
+c) Media sosial selalu mengizinkan durasi lebih dari satu jam
+d) Keduanya memiliki batas durasi yang identik persis
+
+Sebelum benar-benar mengirim/upload karya, checklist pada materi Pertemuan 13 menyarankan pengecekan terhadap hal-hal berikut, KECUALI...
+
+[single]
+a) Rasio aspek sudah sesuai platform tujuan
+b) Durasi tidak melebihi batas yang ditentukan
+c) Audio sudah ter-mix dengan baik
+d) Jumlah subscriber akun media sosial studio*
+
+Untuk proyek klien/komersial, menurut materi Pertemuan 13 siapa yang biasanya memegang hak penuh atas hasil akhir karya sesuai kontrak?
+
+[single]
+a) Selalu tim produksi tanpa terkecuali
+b) Klien yang membayar produksi, sementara tim produksi tetap boleh mencantumkan karya di portofolio dengan izin*
+c) Pemerintah daerah setempat
+d) Tidak ada pihak yang memegang hak sama sekali
+
+Studio kecil pada studi kasus Pertemuan 14 yang memproduksi serial "Kawan-Kawan Rimba" beranggotakan berapa orang?
+
+[single]
+a) Empat orang
+b) Enam orang*
+c) Sepuluh orang
+d) Dua orang
+
+Dalam studi kasus Rimba Animasi Studio, peran apa yang dirangkap oleh Andra selaku sutradara?
+
+[single]
+a) Sound designer sekaligus compositor
+b) Line producer yang mengawasi anggaran dan jadwal*
+c) Storyboard artist sekaligus penulis naskah
+d) Desainer karakter sekaligus background artist
+
+Menurut ringkasan timeline 16 minggu pada studi kasus Rimba Animasi Studio, minggu 7-13 difokuskan pada tahap apa?
+
+[single]
+a) Naskah dan production bible
+b) Storyboard dan animatic
+c) Animasi dan compositing yang dikerjakan paralel per episode*
+d) Pasca-produksi dan pengiriman akhir
+
+Menurut materi Pertemuan 14, apa strategi yang disarankan untuk mengatasi tantangan "deadline yang mepet" dalam produksi animasi?
+
+[single]
+a) Bekerja lebih cepat secara membabi buta tanpa mempertimbangkan prioritas
+b) Memprioritaskan shot krusial, menyederhanakan shot kurang penting, dan memanfaatkan buffer time yang direncanakan sejak awal*
+c) Membatalkan seluruh proyek dan memulai dari konsep baru
+d) Menambah jumlah episode supaya terlihat lebih produktif
+
+Apa solusi yang disarankan materi Pertemuan 14 untuk mengatasi tantangan "miskomunikasi tim", terutama saat banyak anggota merangkap peran?
+
+[single]
+a) Mengurangi jumlah rapat menjadi nol sama sekali
+b) Sesi check-in rutin singkat, satu tempat terpusat untuk status pekerjaan, dan production bible yang jelas*
+c) Membagi tim menjadi kelompok-kelompok yang tidak saling berkomunikasi
+d) Mengganti seluruh anggota tim di tengah produksi
+
+Pada studi kasus Kilau Kreasi Studio di Pertemuan 15, berapa maksimal putaran revisi yang dicantumkan dalam kontrak tanpa biaya tambahan?
+
+[single]
+a) Satu putaran
+b) Dua putaran
+c) Tiga putaran*
+d) Lima putaran
+
+Menurut materi Pertemuan 15, berapa alokasi waktu total yang disarankan untuk presentasi proyek akhir per tim?
+
+[single]
+a) 5-7 menit
+b) 12-15 menit*
+c) 25-30 menit
+d) 45-60 menit
+
+Dalam salah satu pertanyaan yang sering muncul saat presentasi (materi Pertemuan 15), jawaban yang kuat untuk "bagaimana kalau salah satu anggota tim tiba-tiba tidak bisa lanjut mengerjakan bagiannya?" biasanya menyinggung apa?
+
+[single]
+a) Rencana mengganti seluruh konsep cerita dari awal
+b) Buffer time yang dialokasikan serta asset management dan dokumentasi rapi yang memungkinkan anggota lain mengambil alih*
+c) Permintaan perpanjangan deadline kepada dosen tanpa syarat
+d) Pengurangan jumlah shot secara drastis tanpa pertimbangan
+
+Berdasarkan rubrik penilaian proyek akhir pada materi Pertemuan 15, kriteria "Kejelasan Struktur Tim & Rencana QC" memiliki bobot sebesar...
+
+[single]
+a) 10%
+b) 15%
+c) 20%*
+d) 30%
+
+Menurut tabel review materi satu semester pada Pertemuan 15, konsep kunci apa yang dikaitkan dengan topik Pertemuan 12 (Pasca-Produksi)?
+
+[single]
+a) Peran produser vs animator/teknisi
+b) Editing, compositing, color grading, sound mixing & mastering*
+c) Pitch bible, logline, cara menjual ide
+d) Spesifikasi deliverable dan platform distribusi

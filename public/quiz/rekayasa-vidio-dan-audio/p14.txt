@@ -1,0 +1,69 @@
+Menurut materi, motion graphics didefinisikan sebagai...
+[single]
+a) Video editing dasar tanpa efek
+b) Graphic design + animation*
+c) Color grading yang diterapkan pada teks
+d) Sound design untuk video korporat
+
+Dari 12 Principles of Animation Disney yang disederhanakan dalam materi, prinsip yang menjelaskan bahwa objek berakselerasi sebelum bergerak penuh dan melambat sebelum berhenti disebut...
+[single]
+a) Timing
+b) Spacing
+c) Easing (Ease In/Out)*
+d) Exaggeration
+
+Efek Typewriter pada Text+ node Fusion dibuat dengan menganimasikan parameter apa dari 0 ke 1?
+[single]
+a) Tracking
+b) Write On*
+c) Zoom
+d) Anchor Point
+
+Manakah yang termasuk elemen esensial dari sebuah Lower Third menurut materi?
+[single]
+a) Particle emitter dan pTurbulence
+b) Background shape, primary text (nama), dan secondary text (jabatan)*
+c) Vectorscope dan waveform
+d) LUT dan Power Grade
+
+Teknik reveal logo di mana mask mengungkap logo dari kiri ke kanan disebut...
+[single]
+a) Fade + Scale
+b) Slide + Fade
+c) Wipe Reveal*
+d) Build-Up Animation
+
+Untuk mengekspor animated logo dengan background transparan di DaVinci Resolve, codec yang harus digunakan (dengan opsi Export Alpha aktif) adalah...
+[single]
+a) H.264
+b) DNxHR atau ProRes*
+c) MP3
+d) AAC
+
+Dalam Fusion, node yang berfungsi menggabungkan dua input (foreground dan background) menjadi satu komposit disebut...
+[single]
+a) Transform
+b) MediaOut
+c) Merge*
+d) Background
+
+Teknik infographic "Counter" (angka yang bertambah secara beranimasi) pada Fusion dibuat menggunakan...
+[single]
+a) Rectangle Mask Width animation
+b) Expression pada Text+ node*
+c) pEmitter node
+d) Optical Flow
+
+Menurut materi, kapan sebaiknya menggunakan Fusion dibanding Kdenlive untuk motion graphics?
+[single]
+a) Saat hanya butuh title sederhana tanpa animasi
+b) Saat kompositing kompleks, particle system, dan 3D dibutuhkan*
+c) Saat tidak ada kebutuhan animasi sama sekali
+d) Kdenlive dan Fusion selalu identik sehingga tidak ada bedanya
+
+Best practice motion design dalam materi menekankan bahwa animasi sebaiknya selalu menggunakan...
+[single]
+a) Motion linear tanpa easing agar konsisten
+b) Easing (Ease In/Out), bukan linear, agar terasa natural*
+c) Durasi animasi acak tanpa perencanaan
+d) Warna yang selalu berubah setiap frame

@@ -1,0 +1,69 @@
+Menurut materi, satu halaman pada flipbook yang menjadi satuan terkecil pembentuk sebuah animasi atau video disebut apa?
+[single]
+a) Frame*
+b) Keyframe
+c) Tween
+d) Viseme
+
+Apa yang diukur oleh FPS (Frames Per Second) dalam sebuah animasi?
+[single]
+a) Jumlah warna yang dipakai dalam satu adegan
+b) Berapa banyak frame yang ditampilkan setiap satu detik*
+c) Berapa lama proses rendering satu adegan
+d) Jumlah karakter yang muncul dalam satu scene
+
+Menurut tabel standar FPS pada materi, frame rate berapa yang menjadi standar sinematik dengan gerakan terasa halus dan natural bagi mata manusia?
+[single]
+a) 12 fps
+b) 24 fps*
+c) 30 fps
+d) 60 fps
+
+Gambar/frame yang menandai pose-pose paling penting dalam sebuah gerakan, biasanya titik awal, titik puncak aksi, dan titik akhir, disebut?
+[single]
+a) In-between
+b) Tween
+c) Keyframe*
+d) Easing
+
+Dalam analogi tiga foto perjalanan liburan (berangkat, di pantai, pulang malam) yang dijelaskan pada materi, foto-foto tambahan yang mengisi jarak di antara ketiga foto tersebut berperan seperti apa dalam animasi?
+[single]
+a) Keyframe
+b) Frame rate
+c) In-between*
+d) Storyboard
+
+Teknik animasi klasik yang menggambar setiap frame satu per satu secara manual dari awal sampai akhir tanpa bantuan interpolasi otomatis software disebut?
+[single]
+a) Tweening
+b) Frame-by-frame*
+c) Motion tween
+d) Rigging
+
+Menurut materi, apa perbedaan utama antara menggambar "On Twos" dan "On Threes"?
+[single]
+a) On Twos memakai satu gambar untuk 2 frame berturut-turut, On Threes memakai satu gambar untuk 3 frame berturut-turut sehingga lebih hemat gambar tapi lebih patah-patah*
+b) On Twos hanya dipakai untuk animasi 3D, On Threes hanya dipakai untuk animasi 2D
+c) On Twos memakai warna, On Threes hitam putih
+d) On Twos dan On Threes adalah istilah lain untuk tweening dan frame-by-frame
+
+Proses menghasilkan frame-frame perantara secara otomatis oleh software di antara dua keyframe, cukup dengan menentukan posisi, ukuran, rotasi, atau bentuk objek di awal dan akhir, disebut?
+[single]
+a) Tweening*
+b) Frame-by-frame
+c) Staging
+d) Solid drawing
+
+Kenapa hasil tweening paling sederhana (linear tween) sering terasa aneh atau kaku menurut materi?
+[single]
+a) Karena software tidak bisa menghasilkan warna yang konsisten
+b) Karena objek bergerak dengan kecepatan yang sama persis dari awal sampai akhir, tidak seperti gerakan alami di dunia nyata*
+c) Karena linear tween hanya bisa dipakai pada objek berbentuk lingkaran
+d) Karena tweening hanya berfungsi pada animasi 3D, bukan 2D
+
+Sebuah tim ingin membuat animasi 2D untuk produksi serial TV profesional berskala besar dengan sistem rigging karakter yang canggih dan dukungan penuh gaya frame-by-frame tradisional. Menurut tab perbandingan tools pada materi, software mana yang paling sesuai?
+[single]
+a) Pencil2D
+b) OpenToonz
+c) Toon Boom Harmony*
+d) Adobe Animate versi gratis

@@ -1,0 +1,69 @@
+Menurut materi, classification merupakan teknik...
+[single]
+a) Unsupervised learning untuk mengelompokkan data tanpa label
+b) Supervised learning untuk menebak kategori/class berdasarkan data yang sudah diberi label*
+c) Reinforcement learning yang belajar dari reward dan punishment
+d) Teknik statistik untuk mencari korelasi antar variabel
+
+Pada studi kasus spam detection yang dibahas materi, algoritma yang populer dipakai adalah...
+[single]
+a) K-Means
+b) Naive Bayes*
+c) DBSCAN
+d) Apriori
+
+Dalam Decision Tree, ukuran yang dipakai CART untuk memilih split terbaik disebut...
+[single]
+a) Gini Impurity*
+b) Silhouette Score
+c) Support Threshold
+d) Lift Ratio
+
+Manakah yang merupakan KEKURANGAN dari algoritma Decision Tree menurut materi?
+[single]
+a) Tidak bisa menangkap hubungan non-linear antar fitur
+b) Rawan overfitting kalau pohonnya dibiarkan tumbuh terlalu dalam*
+c) Wajib melakukan feature scaling sebelum digunakan
+d) Tidak bisa dijelaskan ke orang non-teknis
+
+Rumus Bayes Theorem yang digunakan Naive Bayes untuk menghitung posterior probability adalah...
+[single]
+a) P(C|X) = P(X|C) × P(C) / P(X)*
+b) P(C|X) = P(C) / P(X|C)
+c) P(C|X) = P(X) × P(C) - P(X|C)
+d) P(C|X) = P(X|C) + P(C)
+
+Jenis Naive Bayes yang cocok untuk klasifikasi dokumen atau teks berdasarkan jumlah kemunculan kata adalah...
+[single]
+a) Gaussian NB
+b) Multinomial NB*
+c) Bernoulli NB
+d) Complement NB
+
+Salah satu keunikan algoritma k-Nearest Neighbors (k-NN) dibanding Decision Tree dan Naive Bayes adalah...
+[single]
+a) k-NN tidak punya fase training yang eksplisit, hanya menyimpan seluruh data latihan*
+b) k-NN selalu menghasilkan pohon keputusan sebagai output
+c) k-NN mengasumsikan semua fitur saling bebas satu sama lain
+d) k-NN tidak memerlukan data latihan sama sekali
+
+Mengapa disarankan memilih nilai k yang ganjil pada k-NN untuk klasifikasi dua kelas?
+[single]
+a) Supaya perhitungan jarak Euclidean lebih akurat
+b) Supaya proses voting tidak menghasilkan hasil seri*
+c) Supaya feature scaling tidak diperlukan lagi
+d) Supaya decision tree yang terbentuk lebih sederhana
+
+Menurut materi, memilih nilai k yang terlalu kecil (misalnya k=1) pada k-NN akan membuat model...
+[single]
+a) Lebih stabil dan tidak terpengaruh noise
+b) Lebih sensitif terhadap noise dengan variance yang tinggi (mudah overfit)*
+c) Memiliki bias yang sangat tinggi karena terlalu general
+d) Tidak bisa dipakai untuk kasus binary classification
+
+Dalam konteks diagnosis medis, kesalahan False Negative (pasien sakit diprediksi sehat) dianggap paling berbahaya karena...
+[single]
+a) Precision model akan langsung turun ke nol
+b) Pasien tidak akan mendapat penanganan yang seharusnya*
+c) Confusion matrix menjadi tidak seimbang
+d) Recall model otomatis menjadi sempurna

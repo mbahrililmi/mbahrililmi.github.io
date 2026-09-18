@@ -1,0 +1,79 @@
+Dalam struktur tim studio animasi, siapa yang bertanggung jawab menjaga visi kreatif keseluruhan produksi, termasuk menentukan tempo cerita dan ekspresi karakter?
+
+[single]
+a) Producer
+b) Director / Sutradara*
+c) Art Director
+d) Editor
+
+Apa perbedaan utama peran Producer dibandingkan Director dalam sebuah studio animasi?
+
+[single]
+a) Producer menjaga "rasa" cerita, sedangkan Director menjaga anggaran dan jadwal
+b) Producer mengelola anggaran, jadwal, dan sumber daya agar produksi bisa selesai, sedangkan Director menjaga visi kreatif*
+c) Producer dan Director memiliki tanggung jawab yang identik dan bisa saling menggantikan kapan saja
+d) Producer hanya bertugas menggambar karakter, sedangkan Director mengurus suara
+
+Manakah dari berikut ini yang merupakan tugas utama Art Director menurut materi Pertemuan 9?
+
+[single]
+a) Menyusun jadwal produksi dan estimasi anggaran
+b) Menjaga konsistensi visual sepanjang produksi berpedoman pada production bible dan style guide*
+c) Merekam dialog dan mengisi efek suara
+d) Menyunting hasil akhir dan menyusun urutan shot
+
+Peran yang bertugas menyusun potongan-potongan shot menjadi satu alur yang mengalir mulus, termasuk menentukan timing transisi antar adegan, disebut sebagai...
+
+[single]
+a) Background Artist
+b) Sound Designer
+c) Editor*
+d) Animator
+
+Dalam analogi struktur BEM kampus yang digunakan pada materi, posisi Producer/Director paling sesuai disamakan dengan...
+
+[single]
+a) Anggota Divisi
+b) Koordinator Divisi
+c) Ketua BEM / Ketua Panitia*
+d) Peserta rapat umum
+
+Menurut materi, apa yang idealnya dilakukan seorang animator ketika menemukan masalah kecil seperti proporsi karakter yang terasa aneh di satu shot?
+
+[single]
+a) Langsung mengeskalasikannya ke producer tanpa membicarakannya dengan siapa pun
+b) Membicarakannya dulu dengan art director sebagai penjaga konsistensi visual*
+c) Membiarkannya saja karena bukan tanggung jawabnya
+d) Mengubah sendiri arah cerita sesuai penilaian pribadinya
+
+Apa dampak yang digambarkan dalam materi ketika dua animator menerima arahan berbeda soal gaya gerakan karakter yang sama tanpa saling tahu?
+
+[single]
+a) Produksi menjadi lebih cepat karena ada dua opsi kreatif
+b) Dua shot yang seharusnya konsisten malah terlihat seperti dikerjakan tim yang berbeda*
+c) Tidak ada dampak karena keduanya sama-sama benar
+d) Art director otomatis mengambil alih seluruh pekerjaan animasi
+
+Manakah tools/kebiasaan komunikasi berikut yang menurut materi PALING cocok untuk tim menengah-besar yang butuh memisahkan diskusi teknis per departemen?
+
+[single]
+a) WhatsApp Group tanpa struktur channel
+b) Slack dengan channel terstruktur seperti #storyboard dan #animation*
+c) Mencatat semua progres hanya di buku catatan pribadi
+d) Bertemu tatap muka setiap hari tanpa agenda
+
+Dalam cerita peringatan tentang kegagalan komunikasi di materi, apa penyebab utama dua animator menghabiskan waktu mengerjakan shot pembuka yang sama?
+
+[single]
+a) Mereka sengaja berkompetisi untuk melihat siapa yang lebih cepat
+b) Tidak ada yang mengecek ulang status di tools pelacak sebelum mulai bekerja*
+c) Sutradara memerintahkan keduanya mengerjakan shot yang sama
+d) Shot list belum pernah dibuat sama sekali
+
+Dalam contoh tim 4 orang di materi, mengapa peran Producer dan Editor dianggap cocok dirangkap oleh satu anggota yang sama?
+
+[single]
+a) Karena keduanya sama-sama lebih sibuk di awal (perencanaan) dan akhir (finishing) produksi*
+b) Karena keduanya membutuhkan keahlian menggambar yang identik
+c) Karena keduanya tidak memiliki tanggung jawab apa pun selama produksi berlangsung
+d) Karena aturan baku mengharuskan kedua peran selalu digabung

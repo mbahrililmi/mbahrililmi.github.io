@@ -1,0 +1,69 @@
+Jenis microphone manakah yang TIDAK memerlukan phantom power dan sangat tahan terhadap sumber suara keras?
+[single]
+a) Dynamic microphone*
+b) Condenser microphone
+c) Ribbon microphone tradisional
+d) USB microphone
+
+Berapa tegangan phantom power yang dibutuhkan condenser microphone agar dapat berfungsi?
+[single]
+a) +12V
+b) +24V
+c) +48V*
+d) +96V
+
+Polar pattern manakah yang paling sensitif di depan (0°), memiliki pickup di sisi, dan rejection di belakang (bentuk hati)?
+[single]
+a) Omnidirectional
+b) Cardioid*
+c) Bidirectional/Figure-8
+d) Shotgun
+
+Manakah polar pattern yang menjadi standar mikrofon film/video (boom mic) karena sangat directional?
+[single]
+a) Cardioid
+b) Omnidirectional
+c) Bidirectional
+d) Shotgun*
+
+Apa jalur signal flow yang benar dari microphone hingga masuk ke DAW?
+[single]
+a) Microphone → ADC → Preamp → Komputer → DAW
+b) Microphone → Preamp → ADC → Komputer → DAW*
+c) Microphone → Komputer → Preamp → ADC → DAW
+d) Microphone → DAW → Preamp → ADC → Komputer
+
+Berapa target level normal (peak) yang direkomendasikan saat melakukan gain staging recording?
+[single]
+a) 0 dBFS
+b) -3 hingga -1 dBFS
+c) -12 hingga -6 dBFS*
+d) -30 hingga -24 dBFS
+
+Menurut Three-to-One Rule, jika Mic A berjarak 1 kaki dari sumber suara, berapa jarak minimum Mic B dari Mic A?
+[single]
+a) 1 kaki
+b) 2 kaki
+c) 3 kaki*
+d) 5 kaki
+
+Apa arti warna meter "merah" pada Audacity saat proses recording?
+[single]
+a) Good signal, level aman
+b) Getting hot, mulai perlu hati-hati
+c) TOO HOT, sinyal akan clipping*
+d) Tidak ada input yang terdeteksi
+
+Untuk recording vokal dengan large diaphragm condenser, berapa jarak mic yang direkomendasikan dan aksesori apa yang esensial?
+[single]
+a) 6-12 inci, pop filter esensial*
+b) 1-2 inci, tanpa aksesori tambahan
+c) 3-5 feet, windscreen wajib
+d) 20-30 inci, boom pole wajib
+
+Manakah rekomendasi terbaik untuk merekam suara di ruangan yang tidak ditreatment akustik (non-ideal)?
+[single]
+a) Gunakan mic omnidirectional dengan jarak jauh dari sumber
+b) Gunakan mic dynamic, pattern cardioid, dan close mic*
+c) Gunakan ribbon mic dengan jarak sejauh mungkin
+d) Rekam di ruangan paling besar yang tersedia

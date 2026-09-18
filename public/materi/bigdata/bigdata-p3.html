@@ -598,19 +598,19 @@ print(f"Accuracy: {accuracy_score(y_test, y_pred):.3f}")</code></pre>
       <div class="grid-2">
         <div class="card">
           <div class="card-title">TP — True Positive</div>
-          <p style="font-size:.88rem;line-height:1.75;">Sebelum masuk ke metrik-metrik di atas, ada baiknya kita kenalan dulu dengan empat kemungkinan hasil prediksi model, yang nantinya jadi bahan dasar semua metrik. Yang pertama, <b>Prediksi Positif, Aktual Positif</b> — model berhasil mengenali kasus positif dengan benar. Contohnya, pasien yang memang sakit, diprediksi sakit. Inilah hasil yang paling kita inginkan.</p>
+          <p style="font-size:.88rem;line-height:1.75;">Sebelum menghitung metrik, kita perlu memahami empat kemungkinan hasil prediksi. <b>True Positive (TP)</b> berarti model memprediksi positif dan kenyataannya memang positif. Contoh: email yang benar-benar spam diprediksi sebagai spam. Jadi, model berhasil menemukan spam.</p>
         </div>
         <div class="card">
           <div class="card-title">TN — True Negative</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Negatif.</b> Sama seperti TP tapi kebalikannya — model juga berhasil mengenali kasus negatif dengan benar. Contohnya, pasien yang memang sehat, diprediksi sehat. Ini juga termasuk prediksi yang benar.</p>
+          <p style="font-size:.88rem;line-height:1.75;"><b>True Negative (TN)</b> berarti model memprediksi negatif dan kenyataannya memang negatif. Contoh: email yang bukan spam diprediksi sebagai bukan spam. Model berhasil membiarkan email normal tetap masuk ke kotak masuk.</p>
         </div>
         <div class="card">
           <div class="card-title">FP — False Positive (Type I Error)</div>
-          <p style="font-size:.88rem;line-height:1.75;">Nah, ini mulai masuk ke kesalahan. <b>Prediksi Positif, Aktual Negatif</b> — model keliru menganggap sesuatu yang sebenarnya negatif sebagai positif. Contohnya, email normal malah dicap sebagai spam. Makanya ini sering disebut juga "false alarm".</p>
+          <p style="font-size:.88rem;line-height:1.75;"><b>False Positive (FP)</b> berarti model memprediksi positif, tetapi kenyataannya negatif. Contoh: email normal justru diprediksi sebagai spam. Ini disebut <i>false alarm</i> karena model memberi peringatan padahal tidak ada masalah.</p>
         </div>
         <div class="card">
           <div class="card-title">FN — False Negative (Type II Error)</div>
-          <p style="font-size:.88rem;line-height:1.75;"><b>Prediksi Negatif, Aktual Positif.</b> Model gagal mendeteksi kasus yang sebenarnya positif. Contohnya, pasien yang sebenarnya sakit, malah diprediksi sehat. Dalam diagnosis medis, inilah jenis kesalahan yang paling berbahaya karena bisa membuat orang tidak mendapat penanganan yang seharusnya.</p>
+          <p style="font-size:.88rem;line-height:1.75;"><b>False Negative (FN)</b> berarti model memprediksi negatif, tetapi kenyataannya positif. Contoh: email yang sebenarnya spam diprediksi sebagai bukan spam. Akibatnya, spam lolos ke kotak masuk dan tidak terdeteksi.</p>
         </div>
       </div>
       <table class="rubric-table">

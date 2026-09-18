@@ -1,0 +1,69 @@
+Perbedaan utama motion graphics dibanding animasi karakter, menurut materi Pertemuan 13, terletak pada...
+[single]
+a) Motion graphics fokus pada elemen desain grafis seperti teks/logo/ikon, sedangkan animasi karakter fokus pada tokoh dengan cerita dan emosi*
+b) Motion graphics selalu menggunakan software 3D, sedangkan animasi karakter selalu 2D
+c) Motion graphics tidak pernah dipakai dalam iklan, hanya animasi karakter yang dipakai
+d) Motion graphics selalu berdurasi lebih panjang dibanding animasi karakter
+
+Manakah yang merupakan contoh penerapan motion graphics yang paling umum menurut materi?
+[single]
+a) Film animasi panjang dengan alur cerita kompleks
+b) Intro/outro video, bumper acara, dan infografis data statistik*
+c) Serial kartun televisi berdurasi 22 menit
+d) Walk cycle karakter 3D yang berjalan mengelilingi scene
+
+Proses menggabungkan beberapa lapisan visual berbeda sumber (render 3D, footage video, efek tambahan) menjadi satu gambar/video akhir yang terlihat menyatu disebut...
+[single]
+a) Rigging
+b) Modeling
+c) Compositing*
+d) UV mapping
+
+Konsep "area transparan" pada sebuah gambar yang menandai bagian mana yang harus tetap tembus pandang, sehingga lapisan compositing di bawahnya tetap muncul, disebut...
+[single]
+a) Depth channel
+b) Roughness channel
+c) Base color channel
+d) Alpha channel*
+
+Fitur compositing bawaan Blender yang berbasis node (kotak-kotak yang saling terhubung dengan garis) disebut...
+[single]
+a) Blender Compositor*
+b) Shader Editor
+c) UV Editor
+d) Dope Sheet
+
+Dalam particle system, titik dari mana partikel "ditembakkan" atau dimunculkan disebut...
+[single]
+a) Seam
+b) Emitter*
+c) Armature
+d) Node
+
+Manakah efek visual yang paling cocok disimulasikan menggunakan particle system dengan partikel bergerak acak dan menghilang perlahan?
+[single]
+a) Hujan turun lurus ke bawah
+b) Teks judul yang muncul dari transparan
+c) Percikan api atau debu beterbangan*
+d) Logo yang berputar elegan
+
+Menurut materi, empat hal dasar yang perlu dipahami pemula untuk membuat particle system sederhana adalah emitter, jumlah partikel, arah gerak, dan...
+[single]
+a) Berapa banyak modifier yang diterapkan pada partikel
+b) Warna Base Color partikel di shader Principled BSDF
+c) Jenis render engine yang dipakai untuk merender partikel
+d) Berapa lama partikel hidup sebelum menghilang*
+
+Contoh integrasi 2D dan 3D di mana garis-garis kecepatan (speed lines) bergaya ilustrasi 2D ditambahkan di atas karakter 3D yang sedang berlari, bertujuan untuk...
+[single]
+a) Membuat kesan gerakan cepat terasa lebih dramatis tanpa perlu menganimasikan ulang karakter 3D-nya*
+b) Mengganti kebutuhan rigging armature pada karakter 3D
+c) Menghilangkan kebutuhan compositing sama sekali
+d) Mengubah karakter 3D tersebut sepenuhnya menjadi karakter 2D
+
+Dalam kolaborasi tim produksi antara artis 3D dan artis motion graphics 2D, pembagian tugas yang digambarkan pada materi adalah...
+[single]
+a) Artis 2D selalu mengerjakan seluruh proses tanpa melibatkan artis 3D sama sekali
+b) Artis 3D membuat model/tekstur/animasi/render, sementara artis motion graphics 2D menambahkan teks/transisi/efek di tahap compositing*
+c) Artis 3D hanya bertugas menulis naskah cerita, bukan membuat model
+d) Kedua tim tidak pernah bekerja pada proyek yang sama dalam praktik industri

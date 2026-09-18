@@ -1,0 +1,69 @@
+Menurut materi, komponen biaya terbesar dalam hampir semua produksi animasi, yang bisa mencapai 60-80% dari total anggaran, adalah...
+[single]
+a) Software & Lisensi
+b) SDM & Waktu Tim*
+c) Biaya Lain-lain
+d) Biaya Promosi
+
+Menurut materi, kenapa animasi disebut sebagai industri padat karya?
+[single]
+a) Karena setiap gerakan karakter dan setiap frame butuh tangan manusia untuk menggambar atau menganimasikan*
+b) Karena semua proses dikerjakan sepenuhnya oleh mesin otomatis
+c) Karena software animasi selalu sangat mahal harganya
+d) Karena studio animasi selalu membutuhkan gedung yang besar
+
+Berdasarkan tabel estimasi waktu kerja di materi, shot dengan efek visual, banyak karakter, dan aksi cepat (kategori Kompleks) membutuhkan waktu sekitar...
+[single]
+a) 4-6 jam per shot
+b) 1-2 hari per shot
+c) 2-4 hari per shot*
+d) 5-7 hari per shot
+
+Menurut materi, asumsi umum kapasitas kerja seorang mahasiswa per minggu untuk shot sederhana adalah...
+[single]
+a) 1 shot sederhana per minggu
+b) 2-4 shot sederhana per minggu*
+c) 8-10 shot sederhana per minggu
+d) 15-20 shot sederhana per minggu
+
+Menurut materi, manakah yang BUKAN termasuk tanda-tanda overload pada anggota tim?
+[single]
+a) Anggota tim yang sama terus-menerus mengerjakan revisi
+b) Kualitas kerja menurun mendekati deadline
+c) Dia menjadi satu-satunya orang yang tahu status suatu bagian
+d) Anggota tim menyelesaikan tugasnya jauh lebih cepat dari estimasi*
+
+Dalam contoh alokasi tim kecil (4 orang) di materi, siapa yang berperan merangkap sebagai Line Producer sekaligus mengerjakan tugas visual?
+[single]
+a) Character Animator
+b) Background & Layout Artist
+c) Storyboard Artist*
+d) Compositor
+
+Menurut materi, tools manajemen proyek berbasis papan kanban yang paling ramah untuk tim kecil dan mahasiswa adalah...
+[single]
+a) ShotGrid/Flow
+b) Trello dan Notion*
+c) Autodesk Maya
+d) Adobe Creative Cloud
+
+Menurut materi, ShotGrid (Flow Production Tracking) adalah tools skala industri yang dipakai oleh studio besar seperti...
+[single]
+a) Pixar dan Industrial Light & Magic*
+b) Rumah produksi Nussa dan Riri & Rangga
+c) Studio indie pemula
+d) Tim mahasiswa tugas akhir
+
+Manakah pasangan dokumen dan asal pertemuan yang BENAR menurut peta dokumen integrasi di materi Pertemuan 7?
+[single]
+a) Storyboard & Shot List berasal dari Pertemuan 5*
+b) Jadwal Produksi berasal dari Pertemuan 3
+c) Production Bible & Style Guide berasal dari Pertemuan 2
+d) Pitch Deck & Pitch Bible berasal dari Pertemuan 6
+
+Menurut materi, apa yang perlu dicek dalam "Checklist Sebelum Disatukan" sebelum menggabungkan seluruh dokumen Pertemuan 2-6 menjadi Rencana Produksi Lengkap?
+[single]
+a) Hanya memastikan jumlah halaman dokumen tidak lebih dari 5
+b) Konsistensi nama karakter, versi dokumen terbaru, dan penomoran shot yang sinkron*
+c) Memastikan seluruh dokumen ditulis dalam bahasa Inggris
+d) Memastikan seluruh dokumen sudah dicetak dalam bentuk fisik

@@ -1,0 +1,69 @@
+Compositing di Fusion Page berbeda dengan Edit Page karena menggunakan pendekatan...
+[single]
+a) Layer-based sederhana
+b) Node-based yang lebih kompleks dan fleksibel*
+c) Hanya bisa mengedit teks
+d) Tidak mendukung particle system
+
+Blend mode manakah yang paling cocok digunakan untuk efek light leak dan lens flare menurut materi?
+[single]
+a) Multiply
+b) Screen*
+c) Overlay
+d) Normal
+
+Dalam alpha channel, nilai alpha 0 (0%) berarti...
+[single]
+a) Fully opaque
+b) Semi-transparent 50%
+c) Fully transparent*
+d) Warna hitam solid
+
+Shape/Power Window manakah yang paling cocok digunakan untuk membuat gradient mask seperti transisi langit ke tanah?
+[single]
+a) Circle/Ellipse
+b) Rectangle/Linear*
+c) Polygon/Bezier Curve
+d) Power Curve
+
+Rotoscoping adalah teknik yang...
+[single]
+a) Menghapus noise pada footage secara otomatis
+b) Menganimasikan mask secara frame-by-frame untuk mengikuti objek bergerak*
+c) Menstabilkan footage yang goyang
+d) Menggabungkan beberapa track audio
+
+Dibandingkan Point Tracking, keunggulan Planar Tracking menurut materi adalah...
+[single]
+a) Hanya bisa melacak posisi, tidak bisa rotasi
+b) Melacak rotasi, skala, dan perspektif serta lebih robust terhadap occlusion*
+c) Tidak memerlukan permukaan/plane sama sekali
+d) Hanya bekerja untuk footage hitam putih
+
+Mode stabilisasi manakah yang mengunci kamera sepenuhnya dan menghapus semua movement?
+[single]
+a) Smooth
+b) Perspective
+c) Camera Lock*
+d) Optical Flow
+
+Dalam Fusion Page DaVinci Resolve, node yang berfungsi sebagai particle emitter untuk membuat efek seperti salju atau api adalah...
+[single]
+a) pRender
+b) pEmitter*
+c) pTurbulence
+d) MediaIn
+
+Untuk efek Typewriter (teks muncul satu huruf per waktu) pada Text+ node di Fusion, parameter yang dianimasikan dari 0 ke 1 adalah...
+[single]
+a) Tracking
+b) Write On*
+c) Opacity
+d) Anchor Point
+
+Menurut materi, mengapa "Keying bukan berarti Composite Selesai"? Karena composite profesional memerlukan integrasi tambahan seperti...
+[single]
+a) Hanya mengganti background tanpa penyesuaian apapun
+b) Lighting match, shadow/light interaction, atmosphere match, dan color harmony*
+c) Cukup menaikkan saturasi subjek saja
+d) Mengubah frame rate subjek agar sesuai background

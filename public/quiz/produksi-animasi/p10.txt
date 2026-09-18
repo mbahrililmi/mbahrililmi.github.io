@@ -1,0 +1,79 @@
+Menurut materi Pertemuan 10, apa yang dimaksud dengan asset management dalam produksi animasi?
+
+[single]
+a) Proses menghitung anggaran produksi secara keseluruhan
+b) Proses mengatur, menamai, dan melacak seluruh file/aset produksi agar mudah ditemukan dan tidak tertukar*
+c) Proses merekrut anggota tim baru untuk mengisi peran yang kosong
+d) Proses menentukan platform distribusi akhir sebuah karya
+
+Pola konvensi penamaan file yang disarankan dalam materi adalah [NamaProject]_[NamaAset]_[Versi]_[Tanggal]. Manakah contoh nama file yang PALING sesuai dengan pola tersebut?
+
+[single]
+a) IMG_20250311.png
+b) storyboard baru fix.pdf
+c) KucingHujan_char-riri_v01_20250311.png*
+d) Untitled_edit_edit.mp4
+
+Mengapa format tanggal YYYYMMDD (misalnya 20250311) direkomendasikan dalam konvensi penamaan file?
+
+[single]
+a) Supaya nama file terlihat lebih panjang dan formal
+b) Karena format ini satu-satunya yang didukung oleh Google Drive
+c) Supaya file otomatis terurut kronologis saat diurutkan berdasarkan abjad*
+d) Karena tanggal tidak penting sehingga formatnya bisa bebas
+
+Dalam struktur folder produksi contoh di materi, folder mana yang menjadi rumah untuk pitch bible, naskah/treatment, dan production bible?
+
+[single]
+a) 02_Assets
+b) 03_Shots
+c) 00_Dokumen_Perencanaan*
+d) 05_Delivery
+
+Manakah dari berikut ini yang BUKAN termasuk salah satu dari tiga prinsip struktur folder yang sehat menurut materi?
+
+[single]
+a) Urutkan folder sesuai alur pipeline produksi
+b) Beri prefix angka di depan nama folder supaya terurut sesuai tahapan
+c) Buat folder sedalam mungkin (banyak tingkat bersarang) supaya lebih rapi*
+d) Jangan terlalu dalam bersarang, cukup 3-4 tingkat kedalaman
+
+Apa fungsi utama version control menurut materi Pertemuan 10?
+
+[single]
+a) Mengubah resolusi file secara otomatis
+b) Melacak perubahan/revisi sebuah aset dari waktu ke waktu tanpa kehilangan versi sebelumnya*
+c) Menghapus semua versi lama supaya folder tidak penuh
+d) Menentukan siapa yang boleh mengakses sebuah file
+
+Menurut materi, apa yang sebaiknya dilakukan tim terhadap file versi lama setelah versi baru dibuat, sebelum versi baru itu benar-benar disetujui final?
+
+[single]
+a) Langsung menghapus versi lama untuk menghemat penyimpanan
+b) Menimpa (overwrite) file lama dengan file baru
+c) Menyimpan dulu versi lama di folder yang sama sampai versi baru disetujui*
+d) Mengirim versi lama ke anggota tim lain agar hilang dari komputer sendiri
+
+Fitur cloud storage seperti "riwayat versi" pada Google Drive atau Dropbox, menurut materi, sebaiknya diperlakukan sebagai...
+
+[single]
+a) Pengganti penuh kebiasaan penamaan versi v01/v02/v03 di nama file
+b) Jaring pengaman tambahan, bukan pengganti kebiasaan penamaan versi yang konsisten*
+c) Satu-satunya cara yang boleh dipakai untuk melacak revisi
+d) Fitur yang tidak relevan sama sekali untuk tim produksi animasi
+
+Apa manfaat "changelog" sederhana yang disarankan dalam materi version control?
+
+[single]
+a) Menggantikan kebutuhan menyimpan file dengan nomor versi
+b) Mencatat riwayat perubahan tiap aset supaya tim tahu versi mana yang harus dikembalikan dan alasannya*
+c) Menghitung otomatis besar file yang tersimpan di cloud
+d) Mengganti nama seluruh file dalam folder secara otomatis
+
+Menurut highlight-box "Aturan Emas" di materi, apa yang harus selalu disepakati tim apa pun kombinasi cara version control yang dipilih?
+
+[single]
+a) Semua anggota harus memakai software yang sama persis
+b) Satu kesepakatan jelas tentang versi mana yang sedang jadi acuan aktif saat ini*
+c) Semua file harus disimpan hanya di satu laptop milik ketua tim
+d) Nama file tidak perlu konsisten selama isinya benar

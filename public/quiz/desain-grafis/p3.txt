@@ -1,0 +1,69 @@
+Manakah dari berikut ini yang termasuk salah satu dari 8 prinsip layout menurut materi?
+[single]
+a) Rendering
+b) Proximity*
+c) Compression
+d) Encryption
+
+Jenis balance apa yang cocok untuk undangan pernikahan formal karena elemen sama di kedua sisi?
+[single]
+a) Asymmetrical
+b) Radial
+c) Symmetrical*
+d) Dynamic
+
+Grid apa yang digunakan untuk layout single column yang text-heavy menurut materi?
+[single]
+a) Modular Grid
+b) Column Grid
+c) Manuscript Grid*
+d) Radial Grid
+
+Menurut materi, berapa idealnya jumlah karakter per baris untuk body text agar nyaman dibaca?
+[single]
+a) 10-20 karakter
+b) 50-75 karakter*
+c) 100-150 karakter
+d) 200-250 karakter
+
+Apa isi dari rule 60-30-10 dalam color harmony pada layout?
+[single]
+a) 60% aksen, 30% dominant, 10% secondary
+b) 60% dominant color, 30% secondary color, 10% accent color*
+c) 60% secondary, 30% aksen, 10% dominant color
+d) 60% putih, 30% hitam, 10% warna lain
+
+Berapa ukuran bleed standar yang disebutkan dalam materi untuk cetak undangan?
+[single]
+a) 1mm
+b) 3mm*
+c) 10mm
+d) 15mm
+
+Manakah berikut ini yang termasuk checklist penting dalam desain backdrop menurut materi?
+[single]
+a) Text kecil agar terlihat elegan
+b) Layout vertical/portrait orientation
+c) High contrast agar jelas untuk foto*
+d) Resolusi rendah agar file cepat diunggah
+
+Ukuran backdrop apa yang direkomendasikan untuk stage backdrop pada conference atau concert menurut materi?
+[single]
+a) 2 x 3 meter
+b) 3 x 4 meter
+c) 4 x 6 meter*
+d) 6 x 8 meter
+
+Pada hierarchy undangan event, elemen apa yang seharusnya mendapat visual treatment paling besar dan menonjol (Level 1)?
+[single]
+a) Info tambahan seperti dress code
+b) Nama acara / judul*
+c) Tanggal, waktu, dan tempat
+d) RSVP info
+
+Apa fungsi grid dalam desain layout menurut materi?
+[single]
+a) Untuk mengunci warna agar tidak bisa diubah
+b) Sebagai framework invisible untuk mengorganisir content secara terstruktur*
+c) Untuk menghapus elemen yang tidak digunakan pada layout
+d) Untuk mengganti resolusi dokumen secara otomatis

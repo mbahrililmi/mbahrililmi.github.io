@@ -1,0 +1,79 @@
+Dalam studi kasus Rimba Animasi Studio, apa judul serial animasi edukasi anak yang mereka produksi dan berapa jumlah episodenya?
+
+[single]
+a) "Kawan-Kawan Rimba", 8 episode berdurasi 5 menit*
+b) "Sahabat Hutan", 12 episode berdurasi 10 menit
+c) "Petualangan Bekantan", 4 episode berdurasi 20 menit
+d) "Rimba Kalimantan", 6 episode berdurasi 15 menit
+
+Menurut studi kasus, apa yang membuat presentasi pitching Andra ke Nusantara Kids paling meyakinkan, menurut materi?
+
+[single]
+a) Storyboard detail seluruh delapan episode yang sudah selesai digambar
+b) Cara menjelaskan target penonton secara spesifik dan bagaimana pesan lingkungan dikemas lewat cerita, bukan ceramah*
+c) Harga produksi yang jauh lebih murah dibanding studio lain
+d) Jumlah anggota tim yang sangat banyak
+
+Mengapa Bunga menyusun treatment untuk kedelapan episode sekaligus di awal, bukan menulis satu episode penuh dulu?
+
+[single]
+a) Karena kontrak mewajibkan seluruh naskah selesai sebelum produksi dimulai
+b) Karena karakter dan hubungan antar tokoh harus konsisten berkembang dari episode 1 sampai 8*
+c) Karena menulis satu episode penuh dianggap melanggar hak cipta
+d) Karena Nusantara Kids hanya menerima naskah dalam satu file utuh
+
+Pada studi kasus Rimba Animasi Studio, kenapa Bunga hanya membuat storyboard detail untuk dua episode pertama sebagai "episode acuan", lalu episode lain mengikuti pola shot yang serupa?
+
+[single]
+a) Karena delapan episode penuh dianggap melanggar aturan platform
+b) Supaya lebih efisien tanpa terasa mengulang-ulang bagi penonton, mengingat keterbatasan waktu dan tim*
+c) Karena Nusantara Kids hanya membayar untuk dua episode
+d) Karena animator menolak mengerjakan lebih dari dua episode
+
+Dalam pembagian peran tim Rimba Animasi Studio, mengapa dua animator (Dewi dan Fajar) membagi tanggung jawab penuh atas beberapa episode masing-masing, bukan dibagi per tahap kerja seperti di studio besar?
+
+[single]
+a) Karena model "per tahap" lebih murah dan selalu lebih baik untuk tim kecil
+b) Dengan tim sekecil ini, rasa kepemilikan penuh terhadap sebuah episode mempercepat pengambilan keputusan tanpa koordinasi berlapis*
+c) Karena Dewi dan Fajar tidak bisa bekerja sama satu sama lain
+d) Karena aturan Nusantara Kids melarang pembagian kerja per tahap
+
+Bagaimana Eka menyusun asset management lintas episode di Rimba Animasi Studio untuk menjaga konsistensi karakter dan latar?
+
+[single]
+a) Setiap episode punya folder aset sendiri yang boleh diduplikasi dan diubah bebas
+b) Satu folder induk berisi aset final yang "diambil" oleh folder kerja tiap episode, bukan diduplikasi dan diubah sendiri-sendiri*
+c) Semua aset disimpan di komputer pribadi masing-masing animator tanpa folder terpusat
+d) Aset tidak diberi nama file khusus karena dianggap tidak penting
+
+Sistem severity rating sederhana yang dipakai Rimba Animasi Studio dalam sesi dailies pagi menggunakan kode warna apa untuk masalah yang harus diperbaiki sebelum lanjut ke shot berikutnya?
+
+[single]
+a) Hijau
+b) Kuning
+c) Merah*
+d) Biru
+
+Menurut analisis di materi, kenapa Andra menaruh buffer time di tiga minggu terakhir jadwal (bukan di tengah)?
+
+[single]
+a) Supaya buffer benar-benar baru dipakai saat dibutuhkan menjelang deadline, bukan diam-diam terpakai oleh tahap sebelumnya yang molor*
+b) Karena minggu-minggu awal produksi dianggap tidak penting
+c) Karena Nusantara Kids mengharuskan buffer selalu di akhir jadwal
+d) Karena buffer di tengah jadwal dilarang oleh standar industri animasi
+
+Apa alasan Andra menetapkan batas maksimal dua putaran revisi untuk setiap shot, menurut analisis pada materi?
+
+[single]
+a) Supaya animator tidak terjebak memperbaiki detail kecil berulang kali sampai kehabisan waktu untuk shot lainnya*
+b) Karena revisi ketiga dan seterusnya melanggar hukum hak cipta
+c) Karena Nusantara Kids hanya membayar untuk dua kali revisi saja
+d) Supaya animator dapat lebih banyak waktu istirahat di luar produksi
+
+Menurut materi, kenapa Andra mengirimkan dua episode "acuan" ke Nusantara Kids lebih awal, jauh sebelum enam episode sisanya digarap penuh?
+
+[single]
+a) Karena itu syarat mutlak dari kontrak yang tidak bisa dinegosiasikan
+b) Sebagai mitigasi risiko: lebih baik menemukan ketidaksesuaian ekspektasi lebih awal daripada di akhir produksi*
+c) Karena dua episode itu sengaja dibuat sebagai episode "buangan" yang boleh gagal
+d) Karena Nusantara Kids meminta seluruh proses produksi dihentikan sementara

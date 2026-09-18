@@ -1,0 +1,69 @@
+Frame rate berapa yang paling identik dengan "cinematic look" dan digunakan pada produksi film?
+[single]
+a) 24 fps (23.976 fps)*
+b) 30 fps
+c) 60 fps
+d) 120 fps
+
+Apa perbedaan utama antara Progressive scan dan Interlaced scan?
+[single]
+a) Progressive setiap frame adalah gambar lengkap, Interlaced terdiri dari dua field yang ditampilkan bergantian*
+b) Progressive hanya digunakan untuk audio, Interlaced hanya untuk video
+c) Interlaced menghasilkan kualitas lebih tinggi daripada progressive
+d) Progressive hanya digunakan pada sistem broadcast lama
+
+Resolusi manakah yang dikenal sebagai Full HD?
+[single]
+a) 1280×720
+b) 1920×1080*
+c) 3840×2160
+d) 7680×4320
+
+Aspect ratio 9:16 umumnya digunakan untuk platform atau format apa?
+[single]
+a) TV broadcast standar
+b) Cinema/teatrikal
+c) Video vertikal seperti Instagram Stories, Reels, TikTok, YouTube Shorts*
+d) Instagram feed square
+
+Codec manakah yang dideskripsikan sebagai codec open-source dan royalty-free milik Google dengan efisiensi mirip H.265?
+[single]
+a) H.264/AVC
+b) VP9*
+c) ProRes
+d) MPEG-2
+
+Apa perbedaan mendasar antara Container dan Codec dalam video digital?
+[single]
+a) Container adalah format file yang menampung video/audio/metadata, Codec adalah algoritma kompresi*
+b) Container adalah algoritma kompresi, Codec adalah format file
+c) Keduanya adalah istilah yang identik dan bisa dipertukarkan
+d) Container hanya digunakan pada audio, Codec hanya pada video
+
+Format container manakah yang paling universal untuk delivery web, misalnya YouTube?
+[single]
+a) MOV
+b) AVI
+c) MP4*
+d) MKV
+
+Sesuai formula estimasi ukuran file (Bitrate × Duration) / 8, berapa perkiraan ukuran file video berbitrate 10 Mbps berdurasi 60 detik?
+[single]
+a) 7,5 MB
+b) 75 MB*
+c) 750 MB
+d) 7,5 GB
+
+Manakah jenis bitrate yang direkomendasikan untuk file delivery dan YouTube karena lebih efisien (bitrate menyesuaikan kompleksitas scene)?
+[single]
+a) CBR (Constant Bitrate)
+b) VBR (Variable Bitrate)*
+c) ABR tanpa variasi
+d) Fixed Bitrate tanpa kompresi
+
+Color space manakah yang menjadi standar untuk Standard Dynamic Range (SDR) dan video HD umum seperti YouTube dan broadcast?
+[single]
+a) Rec.709 (BT.709)*
+b) Rec.2020 (BT.2020)
+c) Log profile S-Log
+d) HDR10

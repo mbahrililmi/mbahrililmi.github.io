@@ -1,0 +1,69 @@
+Berdasarkan studi kasus BelajarBahasa, apa temuan utama tim dari tahap Empathize mengenai penyebab tingkat drop-out yang tinggi?
+[single]
+a) Materi pelajaran dianggap terlalu sulit dipahami siswa
+b) Format pelajaran monoton, sesi belajar terlalu kaku (minimal 15 menit tanpa jeda), dan progres tidak terlihat*
+c) Harga berlangganan aplikasi dianggap terlalu mahal
+d) Aplikasi sering mengalami error teknis dan lambat
+
+Manakah rumusan POV yang paling sesuai dengan studi kasus BelajarBahasa?
+[single]
+a) "Aplikasi ini butuh lebih banyak fitur premium agar terlihat menarik."
+b) "Siswa SMA yang ingin belajar bahasa Inggris secara mandiri butuh cara belajar yang ringan dan singkat karena hanya punya jeda pendek, dan kehilangan motivasi ketika tidak bisa melihat kemajuan yang dicapai."*
+c) "Tim developer butuh waktu lebih banyak untuk membangun ulang aplikasi dari nol."
+d) "Siswa SMA lebih menyukai aplikasi dengan banyak iklan dibanding tanpa iklan."
+
+Dari tiga ide yang lolos seleksi tahap Ideate pada studi kasus BelajarBahasa, manakah yang dimaksud dengan "microlearning"?
+[single]
+a) Menambahkan fitur kelas video call langsung dengan tutor
+b) Memecah satu unit pelajaran 15 menit menjadi lima potongan kecil berdurasi 2-3 menit*
+c) Mengganti seluruh materi teks menjadi video animasi panjang
+d) Menghapus sistem penilaian dan pengukuran progres
+
+Kenapa ide "kelas video call langsung dengan tutor" akhirnya tidak lolos seleksi pada studi kasus BelajarBahasa?
+[single]
+a) Karena idenya dianggap tidak kreatif oleh tim
+b) Karena butuh penjadwalan, sehingga tidak selaras dengan insight riset bahwa siswa butuh sesuatu yang cepat dan fleksibel*
+c) Karena biaya produksinya paling mahal dibanding ide lain
+d) Karena tidak ada anggota tim yang menguasai teknologi video call
+
+Pada tahap Prototype, kenapa tim BelajarBahasa memilih membangun purwarupa high-fidelity hanya untuk satu modul saja, bukan seluruh aplikasi?
+[single]
+a) Karena tim tidak memiliki cukup anggota untuk mengerjakan lebih banyak modul
+b) Karena membangun seluruh aplikasi akan memakan waktu lama dan berisiko besar jika arahnya ternyata salah, sehingga cukup dibuat secukupnya untuk diuji*
+c) Karena dosen pembimbing hanya meminta satu modul saja untuk dinilai
+d) Karena siswa SMA hanya tertarik mempelajari satu modul saja
+
+Hasil usability testing pada prototipe BelajarBahasa menemukan bahwa dua siswa kebingungan dengan ikon lencana pencapaian. Apa iterasi yang dilakukan tim sebagai responsnya?
+[single]
+a) Menghapus fitur lencana pencapaian sepenuhnya dari aplikasi
+b) Menambahkan tooltip singkat penjelasan lencana saat pertama kali muncul*
+c) Mengganti seluruh lencana dengan teks panjang penjelasan
+d) Menunda peluncuran aplikasi sampai enam bulan berikutnya
+
+Kenapa durasi microlearning dipilih 2-3 menit, bukan 5 atau 10 menit, menurut analisis keputusan desain pada materi?
+[single]
+a) Karena angka tersebut terdengar lebih menarik secara pemasaran
+b) Karena riset menunjukkan siswa membuka aplikasi di jeda pendek seperti menunggu angkot, sesuai estimasi waktu jeda yang disebutkan saat wawancara*
+c) Karena keterbatasan teknis aplikasi yang tidak mendukung sesi lebih panjang
+d) Karena kompetitor lain juga memakai durasi yang sama persis
+
+Menurut materi, bagaimana tim BelajarBahasa menyiasati tantangan "stakeholder ingin cepat jadi" saat investor/founder menekan untuk langsung membangun fitur tanpa riset?
+[single]
+a) Mengabaikan permintaan stakeholder sepenuhnya
+b) Menunjukkan data drop-out yang sudah ada sebagai alasan kuat perlunya riset, dan membingkai riset sebagai cara menghemat biaya pengembangan yang salah sasaran*
+c) Menunda seluruh proyek sampai stakeholder berubah pikiran
+d) Melakukan riset secara diam-diam tanpa melaporkannya ke stakeholder
+
+Apa yang dimaksud dengan "titik jenuh" (saturation point) dalam konteks riset kualitatif menurut materi?
+[single]
+a) Momen ketika seluruh anggaran riset sudah habis
+b) Momen setelah wawancara kelima atau keenam, di mana temuan baru mulai berkurang drastis karena pola besar sudah mulai terlihat berulang*
+c) Momen ketika partisipan riset menolak untuk diwawancarai lagi
+d) Momen ketika tim mulai membangun prototipe high-fidelity
+
+Prinsip utama yang ditekankan pada bagian "Analisis Keputusan Desain" dalam materi Pertemuan 14 adalah...
+[single]
+a) Semua keputusan desain harus mengikuti tren aplikasi lain yang sedang populer
+b) Setiap keputusan desain yang baik seharusnya bisa dijawab dengan "karena riset menunjukkan...", bukan sekadar opini pribadi*
+c) Keputusan desain sebaiknya diambil oleh satu orang paling senior di tim
+d) Keputusan desain tidak perlu diubah lagi setelah prototipe pertama selesai dibuat

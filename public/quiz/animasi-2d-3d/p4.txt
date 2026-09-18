@@ -1,0 +1,69 @@
+Dalam analogi "membangun rumah butuh blueprint dulu" pada materi Pertemuan 4, apa yang berperan sebagai "blueprint" untuk karakter animasi?
+[single]
+a) Storyboard dan animatic
+b) Model sheet dan desain karakter*
+c) Frame rate dan tweening
+d) Walk cycle dan lip sync
+
+Prinsip desain yang memanfaatkan bentuk-bentuk geometris dasar untuk "berbicara" tentang kepribadian sebuah karakter bahkan sebelum karakter itu bergerak atau berbicara disebut?
+[single]
+a) Shape language*
+b) Storyboard language
+c) Model sheet language
+d) Visual hierarchy
+
+Menurut materi, karakter dengan bentuk dasar apa yang cenderung memberi kesan licik dan berbahaya, seperti Scar dari The Lion King?
+[single]
+a) Bentuk bulat
+b) Bentuk kotak
+c) Bentuk segitiga*
+d) Bentuk oval
+
+Karakter pahlawan yang gagah dan berbadan besar seperti Wreck-It Ralph, menurut prinsip shape language pada materi, biasanya dibangun dari bentuk dasar apa untuk memberi kesan stabil dan dapat diandalkan?
+[single]
+a) Bentuk bulat
+b) Bentuk kotak*
+c) Bentuk segitiga
+d) Bentuk zig-zag
+
+Bagian model sheet yang menunjukkan bagaimana karakter terlihat dari tampak depan, tampak samping, dan tampak belakang disebut?
+[single]
+a) Lembar ekspresi
+b) Turnaround*
+c) Proporsi tubuh
+d) Storyboard panel
+
+Menurut tabel gaya proporsi pada materi, gaya karakter dengan perbandingan tinggi kepala terhadap badan sekitar 1:2 hingga 1:3, yang memberi kesan sangat imut dan komikal, disebut gaya apa?
+[single]
+a) Realistic
+b) Semi-realistic
+c) Cartoon
+d) Chibi / Super Deformed*
+
+Elemen dalam panel storyboard yang menjelaskan sudut kamera terhadap objek—misalnya dari atas atau dari bawah—dan memberi kesan psikologis berbeda kepada penonton disebut?
+[single]
+a) Shot
+b) Angle*
+c) Durasi
+d) Catatan dialog
+
+Seorang animator ingin menampilkan karakter dari pinggang ke atas dalam sebuah adegan dialog, supaya bahasa tubuh dan ekspresi wajah masih terlihat jelas. Jenis shot apa yang paling sesuai menurut materi?
+[single]
+a) Establishing/Wide shot
+b) Medium shot*
+c) Close-up
+d) Low angle shot
+
+Manakah pernyataan berikut yang paling tepat menggambarkan perbedaan antara storyboard dan animatic menurut materi?
+[single]
+a) Storyboard adalah gambar statis berurutan seperti komik, sedangkan animatic adalah storyboard yang sudah diberi durasi waktu dan disusun jadi video kasar, kadang dengan audio*
+b) Storyboard selalu memakai warna penuh, sedangkan animatic selalu hitam putih
+c) Animatic dibuat sebelum naskah cerita selesai, sedangkan storyboard dibuat setelah animasi jadi
+d) Storyboard dan animatic adalah istilah yang persis sama, hanya beda penyebutan di studio berbeda
+
+Manakah dari berikut ini yang BUKAN merupakan risiko yang disebutkan pada materi apabila proses desain karakter dilewatkan sebelum animasi dimulai?
+[single]
+a) Proporsi tubuh dan warna yang tidak konsisten antar scene
+b) Ekspresi wajah yang sulit dikenali penonton
+c) Revisi besar-besaran di tengah produksi
+d) Ukuran file animasi menjadi lebih besar dan render menjadi lebih lama*

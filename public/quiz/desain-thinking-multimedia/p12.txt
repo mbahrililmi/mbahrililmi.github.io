@@ -1,0 +1,69 @@
+Dalam Figma, wadah yang merepresentasikan satu layar penuh (misalnya berukuran 375x812 untuk iPhone) disebut...
+[single]
+a) Component
+b) Frame*
+c) Auto Layout
+d) Layer
+
+Fitur Figma yang memungkinkan satu elemen "master" diedit dan seluruh salinannya (instance) otomatis ikut berubah disebut...
+[single]
+a) Auto Layout
+b) Prototype & Interaction
+c) Component*
+d) Layer Panel
+
+Fitur Figma yang membuat elemen dalam Frame otomatis mengatur jarak dan posisinya sendiri, mirip cara kerja flexbox pada web, disebut...
+[single]
+a) Auto Layout*
+b) Frame
+c) Component
+d) Prototype
+
+Manakah manfaat tools digital kolaboratif yang disebutkan dalam materi, dibandingkan kerja manual di kertas?
+[single]
+a) Lebih murah karena tidak perlu kertas dan spidol sama sekali
+b) Kolaborasi real-time, version history, dan handoff presisi ke developer*
+c) Tidak memerlukan koneksi internet sama sekali
+d) Menghilangkan kebutuhan sketsa tangan sepenuhnya sejak awal proses
+
+Menurut materi, kapan sebaiknya tim menggunakan Miro atau FigJam?
+[single]
+a) Saat membangun prototipe interaktif presisi yang siap diserahkan ke developer
+b) Saat memindahkan hasil riset dan ideasi seperti empathy map, journey map, dan brainstorming ke papan digital kolaboratif*
+c) Saat membuat moodboard cepat dan slide presentasi hasil riset
+d) Saat perlu bekerja offline tanpa koneksi internet
+
+Teknik "silent brainstorming" yang diceritakan dalam contoh nyata materi Pertemuan 12 dilakukan dengan cara...
+[single]
+a) Setiap anggota tim langsung membacakan idenya secara lisan tanpa menulis
+b) Setiap anggota menuliskan idenya sendiri-sendiri di sticky note digital selama beberapa menit tanpa bicara dulu, baru dibacakan dan dikelompokkan bersama*
+c) Hanya satu orang yang boleh menulis ide sementara yang lain memberi masukan lisan
+d) Ide dikumpulkan lewat survei tertulis tanpa sesi diskusi sama sekali
+
+Berdasarkan tabel perbandingan pada materi, tools yang paling cocok untuk membuat moodboard cepat dan slide presentasi hasil riset dengan tingkat interaktivitas rendah adalah...
+[single]
+a) Figma
+b) Adobe XD
+c) Canva*
+d) FigJam
+
+Manakah contoh format penamaan Frame per layar yang sesuai naming convention pada materi?
+[single]
+a) Frame 1, Frame 2, Copy of Frame 2
+b) 01_Login, 02_Beranda, 03_DetailKursus*
+c) LayarPertama, LayarKedua, LayarKetiga
+d) Login-Final-Fix-Revisi2
+
+Manakah contoh komentar yang dianggap jelas dan efektif menurut materi Pertemuan 12?
+[single]
+a) "Ini kurang pas."
+b) "Kurang bagus, tolong diperbaiki."
+c) "Tombol Daftar terlalu kecil di frame 03, coba naikkan ukurannya biar lebih mudah disentuh di layar HP."*
+d) "Warnanya aneh."
+
+Terkait pengaturan hak akses file kolaboratif, materi menyarankan agar...
+[single]
+a) Semua orang termasuk dosen diberi akses Edit penuh
+b) Akses Edit hanya diberikan pada anggota tim inti, sementara dosen/stakeholder luar diberi akses View*
+c) Tidak perlu mengatur hak akses karena akan menghambat kolaborasi
+d) Hanya satu anggota tim yang boleh mengakses file sama sekali

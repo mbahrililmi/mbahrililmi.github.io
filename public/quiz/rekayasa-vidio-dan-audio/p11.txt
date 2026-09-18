@@ -1,0 +1,69 @@
+Menurut materi, urutan workflow yang benar dalam proses color grading adalah...
+[single]
+a) Color Grading dulu, baru Color Correction
+b) Color Correction dulu, baru Color Grading*
+c) Keduanya dilakukan bersamaan tanpa urutan tertentu
+d) Color Grading dilakukan sebelum proses shooting
+
+Color wheel manakah yang mengontrol area shadow/black pada footage?
+[single]
+a) Lift*
+b) Gamma
+c) Gain
+d) Offset
+
+Untuk membuat look "Teal & Orange" menggunakan color wheels menurut materi, langkah yang tepat adalah...
+[single]
+a) GAIN drag ke oranye, LIFT drag ke teal/cyan*
+b) GAIN drag ke teal, LIFT drag ke oranye
+c) Gamma drag ke oranye saja tanpa menyentuh wheel lain
+d) Offset drag ke hijau
+
+Manakah yang BUKAN termasuk jenis LUT yang dijelaskan dalam materi?
+[single]
+a) Camera LUT
+b) Creative LUT
+c) Calibration LUT
+d) Dynamic LUT*
+
+Pada tools Hue vs Sat vs Lum curve, tool "Luma vs Sat" berfungsi untuk...
+[single]
+a) Mengalihkan hue tertentu ke hue lain
+b) Mengontrol saturasi berdasarkan brightness, misalnya desaturate shadow*
+c) Mencerahkan atau menggelapkan hue tertentu
+d) Mengubah saturation hanya pada hue range tertentu
+
+Karakteristik grading style "Vintage Film" menurut materi meliputi...
+[single]
+a) Desaturasi penuh dan kontras tinggi ekstrem
+b) Tone hangat keemasan, raised blacks (milky), dan tekstur film grain*
+c) Tone biru dingin di seluruh frame
+d) Warna pastel dengan glow berlebihan tanpa grain
+
+Dalam workflow shot matching, langkah pertama yang harus dilakukan adalah...
+[single]
+a) Menerapkan LUT ke semua shot sekaligus
+b) Memilih Hero Shot sebagai baseline*
+c) Menyamakan white balance seluruh timeline secara otomatis
+d) Menggunakan Vectorscope untuk menghapus warna
+
+Scope manakah yang paling tepat digunakan untuk mengecek color cast dengan membandingkan level channel Red, Green, dan Blue secara terpisah?
+[single]
+a) Waveform
+b) Parade (RGB)*
+c) Vectorscope
+d) Histogram
+
+Pada Vectorscope, jarak sebuah titik warna dari titik pusat (center) menunjukkan...
+[single]
+a) Hue warna tersebut
+b) Brightness warna tersebut
+c) Saturasi warna tersebut*
+d) Frame rate footage
+
+Menurut color theory pada materi, hubungan warna "Complementary" ditunjukkan oleh pasangan warna...
+[single]
+a) Merah dan Cyan (berlawanan di color wheel)*
+b) Merah, oranye, dan kuning (berdekatan di color wheel)
+c) Biru dan ungu (berdekatan di color wheel)
+d) Hijau dan kuning (berdekatan di color wheel)

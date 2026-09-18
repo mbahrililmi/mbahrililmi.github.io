@@ -1,0 +1,69 @@
+Menurut materi, sudut pandang mata kuliah Produksi Animasi terhadap storyboard dan animatic berbeda dari mata kuliah Animasi 2D & 3D karena di sini storyboard/animatic diperlakukan sebagai...
+[single]
+a) Karya seni yang dinilai dari bagus-tidaknya sketsa
+b) Alat manajemen untuk menghitung jumlah shot, waktu, dan biaya*
+c) Latihan dasar menggambar sebelum masuk ke animasi
+d) Dokumen yang hanya dipakai untuk keperluan promosi
+
+Menurut materi, jika sebuah storyboard episode terdiri dari 45 panel, maka perkiraan awal jumlah shot yang perlu diproduksi adalah sekitar...
+[single]
+a) 15 shot
+b) 30 shot
+c) 45 shot*
+d) 90 shot
+
+Menurut materi, adegan seperti apa yang biasanya membutuhkan lebih banyak panel storyboard?
+[single]
+a) Adegan percakapan tenang dengan shot statis
+b) Adegan aksi penuh gerakan cepat*
+c) Adegan pembuka yang hanya berisi teks judul
+d) Adegan penutup dengan kredit produksi
+
+Dalam analogi "Gladi Resik Sebelum Pertunjukan Sungguhan" pada materi, animatic berfungsi seperti...
+[single]
+a) Pertunjukan final yang sudah lengkap dengan kostum dan tata panggung
+b) Sesi latihan dengan alur dan timing sesungguhnya, namun tanpa detail penuh, untuk menguji ritme cerita*
+c) Naskah awal sebelum treatment ditulis
+d) Review akhir setelah seluruh animasi selesai dirender
+
+Menurut materi, kenapa memperbaiki masalah timing lewat animatic dianggap jauh lebih "murah" dibanding memperbaikinya setelah animasi penuh dikerjakan?
+[single]
+a) Karena animatic tidak memerlukan storyboard sama sekali
+b) Karena revisi cukup dilakukan dengan menggeser durasi panel, tanpa harus membuang animasi yang sudah jadi*
+c) Karena animatic tidak perlu ditonton oleh sutradara
+d) Karena animatic selalu dikerjakan oleh tim yang berbeda dari tim animasi
+
+Manakah yang BUKAN termasuk kolom standar dalam shot list menurut materi?
+[single]
+a) Nomor Shot
+b) Kompleksitas
+c) Kode Hex Warna*
+d) Status
+
+Kolom "kompleksitas" pada shot list menurut materi biasanya dikategorikan menjadi...
+[single]
+a) Mudah, Sedang, Sulit
+b) Ringan, Sedang, Berat*
+c) Rendah, Menengah, Tinggi
+d) Basic, Intermediate, Advanced
+
+Menurut materi, kolom apa pada shot list yang menjadi bahan utama sesi dailies?
+[single]
+a) Nomor Shot
+b) Durasi Perkiraan
+c) Status*
+d) Departemen Terkait
+
+Berdasarkan contoh perhitungan di materi, jika ada 10 shot ringan (1,5 hari/shot), 6 shot sedang (3 hari/shot), dan 4 shot berat (5 hari/shot), berapa total estimasi hari kerja yang dihasilkan?
+[single]
+a) 43 hari kerja
+b) 48 hari kerja
+c) 53 hari kerja*
+d) 60 hari kerja
+
+Manakah yang BUKAN termasuk faktor yang bisa mengubah estimasi waktu produksi menurut materi?
+[single]
+a) Pengalaman Tim
+b) Jumlah Putaran Revisi
+c) Ketersediaan Referensi
+d) Jumlah Followers Media Sosial Studio*

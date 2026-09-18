@@ -1,0 +1,69 @@
+Dalam HDFS, ukuran default sebuah block data adalah...
+[single]
+a) 64MB
+b) 128MB*
+c) 256MB
+d) 512MB
+
+Berapa replication factor default pada HDFS menurut materi?
+[single]
+a) 1x
+b) 2x
+c) 3x*
+d) 5x
+
+Dalam arsitektur HDFS, komponen yang bertugas menyimpan metadata filesystem (nama file, permissions, lokasi block) adalah...
+[single]
+a) DataNode
+b) NameNode*
+c) ResourceManager
+d) JobTracker
+
+Manakah pasangan tipe NoSQL database dan contohnya yang BENAR menurut materi?
+[single]
+a) Key-Value Store — Neo4j
+b) Document Store — MongoDB*
+c) Column-Family — DynamoDB
+d) Graph Database — Cassandra
+
+Mengapa perusahaan memilih NoSQL dibanding RDBMS tradisional menurut materi?
+[single]
+a) Karena NoSQL selalu lebih murah tanpa terkecuali
+b) Karena NoSQL mendukung horizontal scalability, flexible schema, dan data unstructured/semi-structured*
+c) Karena NoSQL tidak memerlukan server sama sekali
+d) Karena NoSQL hanya cocok untuk data terstruktur
+
+Perbedaan utama antara OLTP dan OLAP menurut materi adalah...
+[single]
+a) OLTP untuk analytical query berat, OLAP untuk transaksi harian kecil
+b) OLTP menangani banyak transaksi read/write kecil dengan ACID, OLAP fokus pada query analitik dan agregasi data besar*
+c) Keduanya digunakan untuk tujuan yang sama persis
+d) OLAP selalu digunakan pada aplikasi e-commerce operasional
+
+Dalam Star Schema pada materi, tabel fact_sales termasuk kategori tabel apa?
+[single]
+a) Dimension table berisi atribut produk
+b) Fact table yang menyimpan transaksi/event dalam jumlah banyak rows*
+c) Tabel kalender waktu
+d) Tabel metadata sistem
+
+Konsep "schema-on-read" pada Data Lake menurut materi berarti...
+[single]
+a) Struktur data ditentukan saat data disimpan pertama kali
+b) Data harus melewati proses ETL sebelum masuk ke lake
+c) Struktur data baru ditentukan nanti saat data dibaca, bukan saat disimpan*
+d) Data Lake tidak pernah memiliki struktur apa pun
+
+Jika sebuah Data Lake tidak dikelola (governance) dengan baik, menurut materi ia berisiko berubah menjadi...
+[single]
+a) Data Warehouse
+b) Lakehouse
+c) Data Swamp*
+d) Data Mart
+
+Manakah berikut ini yang merupakan teknologi Lakehouse yang disebutkan dalam materi (menggabungkan keunggulan Data Lake dan Data Warehouse)?
+[single]
+a) Redis
+b) Delta Lake*
+c) MongoDB
+d) MySQL

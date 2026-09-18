@@ -1,0 +1,69 @@
+Manakah pasangan operasi Boolean pada Inkscape yang paling tepat menghasilkan bentuk gabungan dari dua objek yang saling tumpang tindih?
+[single]
+a) Difference (Ctrl+−)
+b) Union (Ctrl++)*
+c) Intersection (Ctrl+Asterisk)
+d) Exclusion (Ctrl+^)
+
+Apa perbedaan mendasar antara fitur Clip dan Mask di Inkscape?
+[single]
+a) Clip menggunakan grayscale untuk transparansi bertahap, sedangkan Mask hanya bisa on/off penuh
+b) Clip memotong objek dengan tepi tajam menggunakan bentuk lain, sedangkan Mask menggunakan grayscale untuk transparansi bertahap*
+c) Clip hanya berlaku untuk teks, sedangkan Mask hanya berlaku untuk foto
+d) Clip dan Mask menghasilkan efek yang identik, hanya berbeda nama menu
+
+Jenis gradient manakah yang paling cocok digunakan untuk menghasilkan shading realistis dengan transisi warna kompleks multi-arah pada ilustrasi vector?
+[single]
+a) Linear gradient
+b) Radial gradient
+c) Mesh gradient*
+d) Pattern fill
+
+Mengapa teks sebaiknya dikonversi menjadi path (Text to Path) sebelum file vector dikirim ke percetakan atau pihak lain?
+[single]
+a) Agar ukuran file menjadi lebih kecil secara signifikan
+b) Agar warna gradient pada teks otomatis berubah menjadi CMYK
+c) Untuk menghindari masalah font yang hilang (missing font) di komputer penerima*
+d) Karena percetakan tidak bisa membuka file yang mengandung teks
+
+Dalam workflow desain icon set yang konsisten, apa fungsi utama penggunaan grid seperti 24×24 atau 48×48 unit?
+[single]
+a) Mempercepat proses export ke format PNG
+b) Menjaga konsistensi ukuran dan proporsi antar ikon dalam satu set*
+c) Menentukan jumlah warna maksimal yang boleh dipakai
+d) Mengatur resolusi cetak ikon secara otomatis
+
+Manakah yang BUKAN termasuk jenis infographic yang dibahas dalam materi Pertemuan 9?
+[single]
+a) Statistical
+b) Timeline
+c) Interactive 3D*
+d) Comparison
+
+Berapa ukuran bleed yang direkomendasikan saat mempersiapkan file vector untuk keperluan print production?
+[single]
+a) 1-2mm
+b) 3-5mm*
+c) 10-15mm
+d) 20-25mm
+
+Berikut ini adalah item dalam Pre-Print Checklist pada materi Pertemuan 9, KECUALI...
+[single]
+a) Semua teks sudah convert to path
+b) Bleed 3-5mm sudah ditambahkan
+c) File disimpan hanya dalam format JPG tanpa versi vector master*
+d) Raster images minimal 300 DPI
+
+Shortcut apa yang digunakan di Inkscape untuk menyederhanakan (mengurangi) jumlah node pada sebuah path?
+[single]
+a) Ctrl+L*
+b) Ctrl+D
+c) Shift+Ctrl+C
+d) Ctrl+K
+
+Mengapa penggunaan filter dan effects seperti blur atau drop shadow secara berlebihan perlu dihindari dalam desain vector untuk keperluan print?
+[single]
+a) Karena filter akan otomatis menghapus semua warna gradient
+b) Karena filter berlebihan memperlambat render dan berpotensi bermasalah saat export untuk print*
+c) Karena Inkscape membatasi jumlah filter maksimal tiga per objek
+d) Karena filter hanya bisa diterapkan pada objek raster, bukan vector

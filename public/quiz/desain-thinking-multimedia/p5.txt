@@ -1,0 +1,69 @@
+Filosofi "fail fast, fail cheap" yang mendasari tahap Prototype berarti...
+[single]
+a) Semakin dini sebuah ide diketahui tidak bekerja, semakin murah pula ongkos untuk memperbaikinya*
+b) Tim harus sengaja membuat produk yang gagal agar terlihat rendah hati
+c) Kegagalan sebaiknya dihindari sepenuhnya dengan cara tidak membuat prototype sama sekali
+d) Produk akhir harus dirilis secepat mungkin tanpa melalui tahap pengujian
+
+Analogi "sketsa denah arsitek vs bangunan yang sudah jadi" pada materi P5 menjelaskan bahwa...
+[single]
+a) Kesalahan yang ditemukan di tahap sketsa jauh lebih murah diperbaiki dibanding kesalahan yang baru ketahuan setelah produk selesai dibangun*
+b) Arsitek dan desainer produk digital menggunakan software yang persis sama
+c) Sketsa denah rumah tidak pernah dipakai lagi setelah proses desain selesai
+d) Prototype hanya relevan untuk produk fisik seperti bangunan, bukan produk digital
+
+Berdasarkan tabel perbandingan pada materi, apa perbedaan utama low-fidelity dan high-fidelity prototype dari sisi kecepatan pembuatan?
+[single]
+a) Low-fidelity sangat cepat (hitungan menit-jam), sedangkan high-fidelity lebih lama (bisa berhari-hari-berminggu)*
+b) Low-fidelity dan high-fidelity membutuhkan waktu pembuatan yang persis sama
+c) High-fidelity selalu lebih cepat dibuat karena sudah memakai software otomatis
+d) Low-fidelity hanya bisa dibuat oleh desainer senior berpengalaman
+
+Materi menegaskan bahwa low-fidelity dan high-fidelity prototype bukan soal "mana yang lebih bagus", melainkan...
+[single]
+a) Soal mana yang tepat dipakai untuk tahap tertentu dalam proses desain*
+b) Soal siapa yang membuatnya, mahasiswa senior atau junior
+c) Soal berapa lama waktu kuliah yang tersisa dalam satu semester
+d) Soal software apa yang paling mahal harganya
+
+Pada teknik Paper Prototype, bagaimana cara menyimulasikan interaksi seperti menekan tombol?
+[single]
+a) Fasilitator "berperan" sebagai sistem, menggeser potongan kertas tombol saat pengguna "menekannya"*
+b) Prototype dipindai lalu diunggah ke aplikasi khusus interaksi digital
+c) Interaksi tidak bisa disimulasikan sama sekali pada paper prototype
+d) Pengguna diminta membayangkan sendiri tanpa ada bantuan dari tim
+
+Materi mengibaratkan wireframe seperti cetak biru (blueprint) sebuah rumah. Maksud analogi ini adalah...
+[single]
+a) Wireframe menunjukkan tata letak struktural (posisi tombol, gambar, teks) tanpa detail visual seperti warna, mirip denah rumah sebelum ada cat dan furnitur*
+b) Wireframe harus dibuat oleh arsitek berlisensi resmi
+c) Wireframe selalu berbentuk gambar tiga dimensi yang realistis
+d) Wireframe hanya dipakai untuk merancang bangunan fisik, bukan aplikasi
+
+Clickable/Interactive Prototype diibaratkan materi seperti "trailer game yang terlihat bisa dimainkan, padahal hanya potongan rekaman yang disusun rapi". Maksud analogi ini adalah...
+[single]
+a) Prototype ini sudah bisa diklik dan berpindah layar, meski di baliknya belum ada sistem/database sungguhan*
+b) Prototype ini adalah produk akhir yang sudah lengkap dengan seluruh fitur backend
+c) Prototype ini hanya berupa video, tidak bisa disentuh atau diklik sama sekali
+d) Prototype ini tidak boleh ditunjukkan ke pengguna sebelum produk resmi dirilis
+
+Menurut materi, kelebihan utama Figma dibanding tools prototyping lain adalah...
+[single]
+a) Bisa dikerjakan bersama tim secara real-time seperti Google Docs, cocok untuk kerja kelompok jarak jauh*
+b) Merupakan satu-satunya tools yang bisa dipakai untuk membuat mockup
+c) Tidak memerlukan koneksi internet sama sekali untuk digunakan
+d) Hanya bisa dijalankan pada sistem operasi tertentu
+
+Prinsip "cukup baik untuk diuji, bukan untuk sempurna" pada tahap Prototype mengingatkan mahasiswa untuk...
+[single]
+a) Tidak menghabiskan waktu berlebihan mempercantik detail sebelum mendapat umpan balik dari pengguna*
+b) Selalu menyempurnakan setiap detail visual sebelum menunjukkan prototype ke siapa pun
+c) Melewati tahap pengujian karena prototype dianggap sudah cukup sempurna
+d) Membuat prototype sebanyak mungkin tanpa pernah menunjukkannya ke orang lain
+
+Manakah tanda bahwa kelompok terlalu lama berada di fase Prototype menurut materi?
+[single]
+a) Menghabiskan lebih dari satu-dua jam mewarnai sketsa atau memilih font, padahal belum ada satu pun pengguna yang mencobanya*
+b) Menyelesaikan sketsa 5 layar dalam waktu kurang dari 2 jam
+c) Segera mencari orang untuk mencoba prototype setelah selesai dibuat
+d) Menetapkan batas waktu tegas sebelum mulai membuat prototype

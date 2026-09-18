@@ -1,0 +1,69 @@
+Package apa yang perlu diinstal untuk mengaktifkan Vercel Analytics pada project Next.js?
+[single]
+a) @vercel/analytics*
+b) @vercel/monitor
+c) @next/analytics
+d) @vercel/tracking
+
+Komponen apa yang ditambahkan ke app/layout.tsx untuk mengaktifkan Vercel Analytics?
+[single]
+a) <Monitor />
+b) <Analytics />*
+c) <Tracker />
+d) <RUM />
+
+Apa kepanjangan dari LCP dalam Core Web Vitals?
+[single]
+a) Load Content Priority
+b) Largest Contentful Paint*
+c) Live Cache Performance
+d) Layout Content Position
+
+Menurut materi, berapa target waktu maksimal untuk LCP (Largest Contentful Paint) yang baik?
+[single]
+a) < 1 detik
+b) < 2.5 detik*
+c) < 5 detik
+d) < 10 detik
+
+Metrik CLS (Cumulative Layout Shift) mengukur apa menurut materi?
+[single]
+a) Kecepatan loading gambar terbesar
+b) Stabilitas visual, seberapa banyak layout bergeser saat loading*
+c) Jumlah total request API
+d) Waktu respons server database
+
+Package apa yang diinstal untuk mengaktifkan Speed Insights pada project Next.js?
+[single]
+a) @vercel/speed-insights*
+b) @vercel/web-vitals
+c) @next/performance
+d) @vercel/lighthouse
+
+Perintah CLI untuk melihat log real-time dari deployment production adalah?
+[single]
+a) vercel logs --follow*
+b) vercel watch logs
+c) vercel monitor --live
+d) vercel tail
+
+Di mana lokasi Function Logs bisa dilihat melalui Dashboard Vercel menurut materi?
+[single]
+a) Dashboard → Project → Domains → Logs
+b) Dashboard → Project → Functions → klik function → Logs*
+c) Dashboard → Settings → Billing → Logs
+d) Dashboard → Analytics → Export
+
+Menurut Deployment Checklist Production di materi, tools apa yang disarankan untuk kategori Monitoring selain Vercel Analytics?
+[single]
+a) Sentry dan Uptimerobot*
+b) Photoshop dan Figma
+c) MySQL Workbench
+d) Postman saja
+
+Untuk optimasi gambar penting di halaman Next.js, komponen apa yang direkomendasikan menurut materi dibanding tag <img> biasa?
+[single]
+a) <Picture>
+b) next/image*
+c) <ImageOptimizer>
+d) react-image-pro

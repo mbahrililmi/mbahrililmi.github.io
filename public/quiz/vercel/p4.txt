@@ -1,0 +1,69 @@
+Perintah untuk membuat project Next.js baru menggunakan npx adalah?
+[single]
+a) npx create-next-app@latest*
+b) npx next new
+c) npm init next
+d) npx vercel init-next
+
+Di App Router Next.js, file apa yang menjadi halaman utama route "/"?
+[single]
+a) index.tsx
+b) main.tsx
+c) page.tsx*
+d) home.tsx
+
+File di dalam folder app/api/ pada Next.js otomatis menjadi apa saat dideploy ke Vercel?
+[single]
+a) Static assets
+b) Serverless functions*
+c) Middleware global
+d) File konfigurasi domain
+
+Apa yang dimaksud dengan Server Components pada Next.js menurut materi?
+[single]
+a) Komponen yang hanya bisa diakses lewat CLI
+b) Komponen yang render di server dan mengirim HTML ke client, bisa akses database langsung*
+c) Komponen yang wajib ditulis dalam bahasa PHP
+d) Komponen yang hanya berjalan di edge network tanpa server
+
+Saat Vercel mendeteksi project Next.js secara otomatis, apa Build Command default yang digunakan?
+[single]
+a) npm start
+b) next build*
+c) next export
+d) yarn dev
+
+Fitur Next.js yang memungkinkan halaman statis di-regenerate di background tanpa rebuild penuh disebut?
+[single]
+a) SSR (Server-Side Rendering)
+b) ISR (Incremental Static Regeneration)*
+c) CSR (Client-Side Rendering)
+d) SSG murni
+
+Middleware pada Next.js dijalankan di mana menurut materi?
+[single]
+a) Di edge, sebelum request diproses*
+b) Hanya di local development
+c) Di dalam database server
+d) Setelah response dikirim ke browser
+
+Apa fungsi utama dari next/image di Next.js?
+[single]
+a) Mengganti seluruh sistem routing
+b) Optimasi otomatis gambar: resize, compress, convert ke WebP/AVIF, lazy loading*
+c) Membuat file vercel.json otomatis
+d) Menghubungkan ke database eksternal
+
+File apa dalam struktur project Next.js yang berisi konfigurasi Next.js itu sendiri?
+[single]
+a) tailwind.config.js
+b) package.json
+c) next.config.js*
+d) vercel.json
+
+Manakah pernyataan yang paling sesuai dengan hubungan Next.js dan Vercel menurut materi?
+[single]
+a) Next.js dan Vercel dibuat oleh perusahaan yang berbeda dan tidak berkaitan
+b) Vercel membuat Next.js, sehingga fitur-fitur barunya dioptimalkan khusus di Vercel*
+c) Next.js hanya bisa dideploy di Netlify
+d) Vercel tidak mendukung deployment Next.js sama sekali

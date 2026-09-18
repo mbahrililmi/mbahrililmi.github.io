@@ -1,0 +1,69 @@
+Materi menggunakan analogi "spiral, bukan tangga" untuk menjelaskan sifat design thinking. Maksudnya adalah...
+[single]
+a) Tim bergerak maju tapi sering harus memutar kembali ke tahap sebelumnya untuk mengambil sesuatu yang terlewat, sebelum naik lagi dengan pemahaman lebih matang*
+b) Setiap tahap design thinking harus dilalui tepat satu kali tanpa boleh diulang
+c) Design thinking hanya cocok diterapkan pada proyek berbentuk bangunan fisik
+d) Tim harus menyelesaikan seluruh tahap dalam waktu kurang dari satu minggu
+
+Menurut materi, kapan tim sebaiknya memutar balik JAUH ke tahap Define atau bahkan Empathize, bukan sekadar merevisi Prototype?
+[single]
+a) Ketika pengguna ternyata sama sekali tidak merasa punya masalah yang coba diselesaikan tim, menandakan akar masalahnya ada di pemahaman awal*
+b) Ketika satu tombol pada prototype perlu diganti warnanya
+c) Ketika tim ingin mempercantik tampilan sebelum sesi presentasi akhir
+d) Ketika jadwal ujian tengah semester sudah semakin dekat
+
+Pada studi kasus redesain aplikasi presensi kampus, temuan awal tahap Empathize menunjukkan bahwa banyak mahasiswa...
+[single]
+a) Panik ketika sinyal lemah dan takut dianggap alpa padahal sudah hadir di kelas*
+b) Tidak pernah membuka aplikasi presensi sama sekali sepanjang semester
+c) Lebih memilih menggunakan absensi manual dengan kertas dibanding aplikasi
+d) Mengeluhkan warna tampilan aplikasi presensi yang terlalu mencolok
+
+Pada studi kasus yang sama, POV yang dirumuskan tim di tahap Define berbunyi kurang lebih: mahasiswa membutuhkan cara presensi yang tetap bisa diandalkan meski koneksi jaringan tidak stabil, karena...
+[single]
+a) Kegagalan presensi membuat mereka cemas dianggap tidak hadir*
+b) Mereka ingin fitur presensi yang bisa dipakai secara offline sepenuhnya tanpa aplikasi
+c) Dosen selalu memberi nilai tambahan bagi mahasiswa yang presensi tercepat
+d) Sinyal WiFi kampus sudah pasti akan diperbaiki dalam waktu dekat
+
+Pada tahap Test studi kasus presensi kampus, hasil pengujian menunjukkan 4 dari 5 peserta merasa lebih tenang melihat indikator "tersimpan lokal", tapi satu peserta bingung dengan istilah "sinkronisasi". Apa yang dilakukan tim selanjutnya?
+[single]
+a) Memutar balik sebentar ke tahap Prototype untuk mengganti istilah tersebut menjadi lebih sederhana*
+b) Mengabaikan temuan tersebut karena hanya satu dari lima peserta yang bingung
+c) Memutar balik jauh ke tahap Empathize untuk mewawancarai ulang 15 mahasiswa
+d) Langsung merilis aplikasi ke seluruh mahasiswa tanpa revisi lebih lanjut
+
+Menurut materi, tahap pra-produksi (pre-production) dalam proses produksi multimedia menjadi "rumah" bagi tahap design thinking...
+[single]
+a) Empathize, Define, dan sebagian besar Ideate*
+b) Hanya tahap Test saja
+c) Hanya tahap Prototype saja
+d) Seluruh lima tahap secara merata dalam porsi yang sama persis
+
+Pada tahap pasca-produksi (post-production), screening preview terbatas ke calon penonton/pengguna berfungsi setara dengan tahap design thinking...
+[single]
+a) Test / usability testing — menampung reaksi jujur sebelum rilis final*
+b) Empathize — mewawancarai penonton pertama kali
+c) Ideate — menghasilkan ide-ide baru untuk proyek berikutnya
+d) Define — merumuskan POV proyek dari awal
+
+Menurut materi, tugas utama peran UX Researcher dalam tim design thinking adalah...
+[single]
+a) Menggali kebutuhan pengguna lewat wawancara, observasi, dan user research agar tim tidak membangun solusi berdasarkan asumsi*
+b) Menuliskan kode program untuk membangun prototipe interaktif
+c) Menentukan anggaran dan batasan waktu proyek secara keseluruhan
+d) Merancang tampilan visual akhir seperti warna dan tipografi produk
+
+Materi menjelaskan bahwa dalam kelompok kecil (3-5 orang), satu mahasiswa sering merangkap dua peran sekaligus. Hal terpenting yang tetap harus dijaga dalam situasi ini adalah...
+[single]
+a) Setiap anggota tim tetap saling berbagi apa yang mereka temukan, agar keputusan desain tidak dibangun tanpa dasar insight pengguna*
+b) Setiap anggota harus memiliki gelar akademik yang sama sebelum boleh merangkap peran
+c) Satu orang harus mengerjakan seluruh proyek sendirian tanpa bantuan anggota lain
+d) Peran yang dirangkap harus dirahasiakan dari dosen pembimbing
+
+Menurut materi, kenapa dokumentasi proses (bukan hanya hasil akhir) penting untuk portofolio karier di bidang kreatif?
+[single]
+a) Karena perusahaan kreatif dan recruiter startup biasanya lebih tertarik melihat bagaimana kandidat berpikir dan mengambil keputusan, dibanding sekadar produk jadi yang rapi*
+b) Karena dokumentasi proses adalah syarat wajib untuk mendapatkan sertifikat kelulusan mata kuliah
+c) Karena hasil akhir yang rapi tidak diperbolehkan dicantumkan dalam portofolio
+d) Karena recruiter hanya menerima portofolio dalam bentuk video, bukan dokumen foto

@@ -1,0 +1,69 @@
+Apa fungsi utama Anaconda/Miniconda menurut materi?
+[single]
+a) Sebagai editor kode utama untuk menulis Python
+b) Sebagai distribusi Python yang dilengkapi conda sebagai package manager*
+c) Sebagai container engine pengganti Docker
+d) Sebagai database NoSQL untuk menyimpan data besar
+
+Untuk memverifikasi instalasi Docker setelah proses install selesai, perintah yang digunakan menurut materi adalah...
+[single]
+a) docker verify install
+b) docker check status
+c) docker run hello-world*
+d) docker start test
+
+Pada konfigurasi Hadoop cluster dengan Docker Compose di materi, port berapa yang digunakan untuk mengakses HDFS Web UI?
+[single]
+a) 8080
+b) 9870*
+c) 27017
+d) 5000
+
+Manakah urutan langkah instalasi Hadoop Pseudo-Distributed Mode secara manual yang BENAR menurut materi?
+[single]
+a) Format NameNode, lalu Extract, lalu Configure, lalu Install Java
+b) Install Java, Download binary, Extract, Configure file konfigurasi, Format NameNode, lalu Start*
+c) Start service, Download, Configure, lalu Install Java
+d) Configure file konfigurasi, Start service, lalu Install Java, lalu Extract
+
+File konfigurasi Hadoop mana yang berfungsi menentukan replication factor?
+[single]
+a) core-site.xml
+b) hdfs-site.xml*
+c) mapred-site.xml
+d) yarn-site.xml
+
+Manakah dari extension VS Code berikut yang direkomendasikan materi sebagai alternatif Postman untuk testing REST API langsung dari VS Code?
+[single]
+a) GitLens
+b) Rainbow CSV
+c) Thunder Client*
+d) Docker extension
+
+DBeaver pada materi dijelaskan sebagai tools untuk...
+[single]
+a) Menjalankan container Docker
+b) GUI database client yang bisa terhubung ke PostgreSQL, MySQL, MongoDB, hingga SQLite*
+c) Mengedit file konfigurasi Hadoop
+d) Membuat REST API secara visual
+
+Manakah berikut ini yang BUKAN termasuk "perkakas" development tools yang direkomendasikan pada materi Pertemuan 10?
+[single]
+a) VS Code
+b) Git
+c) Postman
+d) Tableau*
+
+Setelah membuat environment conda bernama "bigdata" dengan Python 3.10, perintah yang digunakan untuk mengaktifkannya adalah...
+[single]
+a) conda run bigdata
+b) conda activate bigdata*
+c) conda start bigdata
+d) conda enable bigdata
+
+Pada tugas praktikum "First PySpark Notebook", dataset yang digunakan untuk latihan eksplorasi dan agregasi data adalah...
+[single]
+a) Titanic Dataset
+b) Netflix Shows Dataset*
+c) Iris Dataset
+d) MNIST Dataset

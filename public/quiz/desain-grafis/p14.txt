@@ -1,0 +1,69 @@
+Siapa yang mengembangkan 12 Principles of Animation menurut materi?
+[single]
+a) Pixar Animation Studios
+b) Frank Thomas & Ollie Johnston (Disney Animators)*
+c) Walt Disney sendiri
+d) Studio Ghibli
+
+Prinsip animasi "Squash & Stretch" menggambarkan konsep...
+[single]
+a) Gerakan sekunder setelah aksi utama berhenti
+b) Persiapan sebelum aksi utama terjadi
+c) Fleksibilitas objek yang gepeng saat impact dan memanjang saat terbang*
+d) Presentasi ide yang jelas dalam satu momen
+
+Prinsip animasi manakah yang berkaitan dengan gerakan yang mulai lambat, cepat di tengah, dan melambat lagi di akhir (easing)?
+[single]
+a) Anticipation
+b) Slow In & Out*
+c) Arcs
+d) Timing
+
+Berapa frame rate default pada Blender menurut materi?
+[single]
+a) 30 fps
+b) 60 fps
+c) 24 fps*
+d) 12 fps
+
+Tombol apa yang digunakan untuk memasukkan (insert) keyframe pada objek yang sedang aktif?
+[single]
+a) K
+b) I*
+c) A
+d) E
+
+Di Graph Editor, jenis interpolasi manakah yang menghasilkan kecepatan konstan dan terasa mechanical/robotic?
+[single]
+a) Bezier
+b) Linear*
+c) Constant
+d) Ease
+
+Interpolasi "Constant" pada Graph Editor menghasilkan efek seperti...
+[single]
+a) Gerakan yang sangat halus dan natural
+b) Kecepatan yang berubah secara bertahap
+c) Snap langsung ke value tanpa transisi, cocok untuk flip-book atau blinking*
+d) Gerakan melengkung mengikuti arc
+
+Pada latihan Bouncing Ball di materi, apa yang terjadi pada Scale objek bola saat menyentuh tanah (frame 12)?
+[single]
+a) Scale membesar merata di semua sumbu
+b) Scale XY membesar dan Z mengecil (squash)*
+c) Scale mengecil di semua sumbu
+d) Scale tidak berubah sama sekali
+
+Untuk render animasi menjadi file video MP4, format File Format apa yang dipilih pada Output Properties?
+[single]
+a) PNG
+b) JPEG
+c) FFmpeg Video*
+d) OpenEXR
+
+Menurut materi, kombinasi tombol apa yang digunakan untuk memulai proses Render Animation?
+[single]
+a) F12
+b) Ctrl+F12*
+c) Shift+F12
+d) Alt+F12

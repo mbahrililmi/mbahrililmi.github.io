@@ -1,0 +1,69 @@
+Menurut materi, dua page DaVinci Resolve yang menjadi fokus utama pertemuan ini untuk editing dan export sehari-hari adalah...
+[single]
+a) Cut Page dan Fusion Page
+b) Edit Page dan Deliver Page*
+c) Color Page dan Fairlight Page
+d) Cut Page dan Color Page
+
+Manakah yang BUKAN termasuk salah satu dari 4 area utama pada layout Edit Page DaVinci Resolve?
+[single]
+a) Media Pool
+b) Viewer
+c) Timeline
+d) Gallery*
+
+Pengaturan project settings yang direkomendasikan materi untuk pemula adalah...
+[single]
+a) 3840x2160, 24fps
+b) 1920x1080, 30fps*
+c) 1280x720, 60fps
+d) 640x480, 30fps
+
+Teknik trim yang menyesuaikan panjang clip dan otomatis menggeser clip berikutnya tanpa meninggalkan gap, serta paling sering dipakai (90% waktu), disebut...
+[single]
+a) Normal Trim
+b) Roll Edit
+c) Ripple Edit*
+d) Slip Edit
+
+Apa perbedaan utama antara Slip Tool dan Slide Tool menurut materi?
+[single]
+a) Slip mengubah konten di dalam clip tanpa memindah posisi di timeline, sedangkan Slide memindahkan clip sambil menyesuaikan clip sebelahnya*
+b) Slip memindahkan posisi clip di timeline, sedangkan Slide mengubah konten di dalam clip
+c) Slip hanya berlaku untuk audio, sedangkan Slide hanya berlaku untuk video
+d) Slip dan Slide adalah dua nama lain untuk Ripple Edit
+
+Menurut "Golden Rule" transisi dalam materi, hal apa yang wajib dipenuhi transisi (selain cut) agar layak dipakai?
+[single]
+a) Harus selalu menggunakan Cross Dissolve
+b) Harus berdurasi minimal 2 detik
+c) Harus MOTIVATED — punya alasan story, emosi, atau gaya*
+d) Harus dipakai di setiap edit point
+
+Menurut tabel best practices transisi pada materi, Cross Dissolve paling sesuai digunakan untuk...
+[single]
+a) Menunjukkan passage waktu, perubahan lokasi, atau flashback*
+b) Perubahan scene besar sebelum credits
+c) Efek retro yang sengaja dibuat cheesy
+d) Menutupi kesalahan continuity pada aksi
+
+Curve type manakah pada keyframe yang menahan nilai tanpa interpolasi sampai keyframe berikutnya?
+[single]
+a) Linear
+b) Bezier
+c) Hold*
+d) Ease In & Out
+
+Untuk mengubah speed clip menjadi slow motion setengah dari kecepatan normal, nilai speed yang digunakan adalah...
+[single]
+a) 200%
+b) 50%*
+c) -100%
+d) 25%
+
+Untuk export video YouTube 1080p sesuai preset dalam materi, kombinasi format/codec/bitrate yang direkomendasikan adalah...
+[single]
+a) MP4, H.264, bit rate 8-12 Mbps*
+b) MOV, H.265, bit rate 35-45 Mbps
+c) AVI, H.264, bit rate 1-2 Mbps
+d) MKV, ProRes, bit rate 50 Mbps

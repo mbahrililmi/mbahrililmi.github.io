@@ -1,0 +1,69 @@
+Format gambar yang tersusun dari pixel dan akan pecah/blur ketika diperbesar melebihi resolusi aslinya disebut?
+[single]
+a) Vector
+b) Raster (Bitmap)*
+c) SVG
+d) Path
+
+Software yang digunakan untuk vector graphics dalam materi Pertemuan 7 adalah?
+[single]
+a) GIMP
+b) Inkscape*
+c) Scribus
+d) Blender
+
+Dalam GIMP, shortcut keyboard untuk tool Free Select (Lasso) adalah?
+[single]
+a) R
+b) E
+c) F*
+d) U
+
+Operasi path Boolean di Inkscape yang menggabungkan beberapa shape menjadi satu bentuk disebut?
+[single]
+a) Union*
+b) Difference
+c) Intersection
+d) Exclusion
+
+Format file native GIMP yang dapat menyimpan seluruh layers sebuah project disebut?
+[single]
+a) PNG
+b) JPG
+c) XCF*
+d) SVG
+
+Menurut materi, DPI dan mode warna yang direkomendasikan untuk keperluan cetak (print) adalah?
+[single]
+a) 72 DPI, RGB
+b) 300 DPI, CMYK*
+c) 150 DPI, RGB
+d) 72 DPI, CMYK
+
+Tool di GIMP yang digunakan untuk retouching, yaitu menghilangkan noda atau objek yang mengganggu pada foto secara halus (blending), disebut?
+[single]
+a) Clone
+b) Heal*
+c) Bucket Fill
+d) Gradient
+
+Manakah dari berikut ini yang BUKAN termasuk format vector menurut materi?
+[single]
+a) SVG
+b) PDF
+c) EPS
+d) JPG*
+
+Di Inkscape, kombinasi shortcut untuk membuka dialog Fill and Stroke adalah?
+[single]
+a) Shift+Ctrl+A
+b) Shift+Ctrl+F*
+c) Shift+Ctrl+C
+d) Shift+Ctrl+G
+
+Seorang desainer perlu membuat logo yang tetap tajam baik pada ukuran favicon kecil maupun dicetak besar pada billboard. Software yang paling tepat digunakan untuk pekerjaan ini adalah?
+[single]
+a) GIMP
+b) Inkscape*
+c) Adobe Photoshop
+d) Adobe After Effects

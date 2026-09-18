@@ -1,0 +1,69 @@
+Dalam susunan multi-track timeline yang umum menurut materi, track manakah yang biasanya digunakan untuk Text/Graphics (layer teratas)?
+[single]
+a) V1
+b) V2
+c) V3*
+d) A1
+
+J-cut adalah teknik editing di mana...
+[single]
+a) Audio dari scene berikutnya mulai sebelum video berpindah ke scene tersebut*
+b) Video berpindah scene namun audio scene sebelumnya tetap berlanjut
+c) Dua clip dipotong bersamaan tanpa transisi
+d) Audio dan video dipotong pada frame yang sama persis
+
+Menurut materi, contoh "Action Match" pada teknik match cut adalah...
+[single]
+a) Bulan (lingkaran) cut ke piring (lingkaran)
+b) Bola dilempar di shot 1, mendarat di shot 2*
+c) Orang tertidur cut ke orang terbangun
+d) Warna langit cut ke warna baju karakter
+
+Fitur DaVinci Resolve yang menganalisis frame dan membuat frame interpolasi agar slow motion terlihat mulus disebut...
+[single]
+a) Frame Blending
+b) Optical Flow*
+c) Retime Curve
+d) Speed Ramping
+
+Mengapa warna hijau umum dipilih sebagai warna green screen menurut materi?
+[single]
+a) Karena warna hijau tidak terjadi secara alami pada warna kulit manusia dan mudah diisolasi sensor digital*
+b) Karena warna hijau paling murah untuk dicetak sebagai backdrop
+c) Karena kamera hanya bisa mendeteksi warna hijau
+d) Karena warna hijau menyerap lebih banyak cahaya dibanding warna lain
+
+Pada 3D Keyer DaVinci Resolve, parameter yang berfungsi menghilangkan cast hijau pada subjek disebut...
+[single]
+a) Key Threshold
+b) Clip White
+c) Spill Suppression (Despill)*
+d) Soft Edge
+
+Metode manual untuk menyinkronkan audio eksternal dengan video menggunakan tepukan tangan sebagai penanda disebut...
+[single]
+a) Auto Sync Based on Waveform
+b) Multicam Clip Sync
+c) Metode Tepuk Tangan (Clap Method)*
+d) Linked Selection Sync
+
+Apa fungsi utama Adjustment Clip dalam DaVinci Resolve menurut materi?
+[single]
+a) Menggabungkan beberapa clip menjadi satu "super-clip"
+b) Menerapkan efek ke semua clip yang berada di bawahnya dalam rentang waktu tertentu*
+c) Menyinkronkan audio dan video secara otomatis
+d) Membuat timeline baru di dalam timeline lain
+
+Apa perbedaan Compound Clip dan Nesting Timeline menurut materi?
+[single]
+a) Compound Clip mengelompokkan beberapa klip jadi satu super-clip, sedangkan Nesting menggunakan timeline asli di dalam timeline lain*
+b) Compound Clip hanya untuk audio, Nesting hanya untuk video
+c) Compound Clip tidak bisa diedit ulang, sedangkan Nesting bisa
+d) Keduanya adalah istilah yang identik tanpa perbedaan
+
+Untuk membuat J-cut atau L-cut, pengaturan apa yang harus dinonaktifkan agar video dan audio bisa ditrim secara independen?
+[single]
+a) Snapping
+b) Track Locking
+c) Linked Selection*
+d) Track Targeting

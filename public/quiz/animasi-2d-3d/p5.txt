@@ -1,0 +1,69 @@
+Teknik animasi yang memecah karakter menjadi bagian-bagian tubuh terpisah lalu digerakkan sebagai satu kesatuan potongan gambar tanpa digambar ulang piksel demi piksel di setiap frame disebut?
+[single]
+a) Frame-by-frame
+b) Cutout animation*
+c) Motion graphics
+d) Stop motion
+
+Proses membangun "kerangka gerak" pada karakter 2D digital, di mana setiap potongan tubuh diberi titik sendi agar bisa berputar secara wajar, disebut?
+[single]
+a) Compositing
+b) Rendering
+c) Rigging*
+d) Staging
+
+Menurut materi, apa keterbatasan utama dari rigging 2D / cutout animation dibanding frame-by-frame penuh?
+[single]
+a) Tidak bisa dipakai untuk serial animasi TV
+b) Gerakan kadang terasa kurang organik dan sulit mencapai perubahan bentuk ekstrem seperti squash & stretch dramatis*
+c) Membutuhkan spesifikasi komputer setinggi animasi 3D
+d) Tidak bisa dipakai untuk karakter yang berjalan
+
+Titik jangkar tempat sebuah potongan tubuh berputar, mirip seperti engsel pintu, dalam rigging 2D disebut?
+[single]
+a) Vertex
+b) Armature
+c) Pivot point*
+d) Viseme
+
+Dalam konsep hierarki (parenting) pada rigging, jika lengan atas digerakkan maka lengan bawah dan tangan otomatis ikut terbawa bergerak. Mengapa hal ini bisa terjadi menurut materi?
+[single]
+a) Karena lengan bawah dan tangan "menjadi anak" dari lengan atas dalam struktur hierarki*
+b) Karena setiap potongan tubuh digambar ulang otomatis oleh software
+c) Karena software animasi menerapkan squash & stretch secara otomatis
+d) Karena pivot point selalu diletakkan di tengah-tengah setiap potongan tubuh
+
+Menurut materi, walk cycle dirancang khusus agar bisa melakukan apa yang membedakannya dari animasi biasa?
+[single]
+a) Selalu memakai warna hitam putih
+b) Berputar (looping) tanpa terlihat sambungannya, sehingga pose terakhir nyambung mulus ke pose pertama*
+c) Hanya bisa dianimasikan dengan teknik frame-by-frame
+d) Tidak memerlukan pivot point sama sekali
+
+Pose dalam walk cycle di mana kedua kaki terlihat paling berdekatan, hampir bersilangan, karena kaki penyangga sedang dalam kondisi paling lurus, disebut pose?
+[single]
+a) Contact
+b) Down
+c) Passing*
+d) Up
+
+Kenapa pose "Down" dalam walk cycle penting untuk diterapkan menurut materi?
+[single]
+a) Untuk memberi kesan berat dan gravitasi yang nyata, tanpa pose ini karakter akan terlihat melayang seperti hantu*
+b) Untuk menandakan karakter sedang berhenti berjalan
+c) Karena pose Down adalah pose pembuka dari satu langkah
+d) Untuk memastikan kedua kaki bersilangan sempurna
+
+Konsep representasi visual sederhana dari sekelompok suara yang mirip bentuk mulutnya, misalnya huruf B, M, dan P yang memakai satu bentuk mulut tertutup yang sama, disebut?
+[single]
+a) Keyframe
+b) Viseme*
+c) Turnaround
+d) Pivot point
+
+Menurut materi, apa yang paling penting diperhatikan dalam timing lip sync untuk pemula, dibanding presisi bentuk mulut mengikuti fonetik secara detail?
+[single]
+a) Jumlah viseme yang dipakai harus lebih dari 20 jenis
+b) Seberapa pas timing pergantian viseme dengan ritme suara dialog*
+c) Warna bibir karakter harus selalu merah
+d) Audio dialog harus direkam dengan mikrofon profesional studio

@@ -1,0 +1,69 @@
+Menurut materi, usability testing adalah...
+[single]
+a) Metode evaluasi dengan mengamati langsung orang lain (bukan tim pembuatnya) saat mencoba menyelesaikan tugas menggunakan produk*
+b) Metode menguji kecepatan server aplikasi saat diakses banyak pengguna sekaligus
+c) Proses mewawancarai tim developer tentang kesulitan teknis yang mereka hadapi
+d) Teknik menghitung estimasi biaya produksi sebuah aplikasi
+
+Materi menyebut contoh situs e-commerce yang kehilangan jutaan dolar transaksi karena tombol "checkout" tersembunyi di tempat tidak terduga. Contoh ini menunjukkan bahwa...
+[single]
+a) Masalah usability yang sepele pun bisa berdampak besar, dan sebenarnya bisa ditemukan lebih awal lewat pengamatan sederhana ke beberapa pengguna*
+b) Tombol checkout sebaiknya selalu diletakkan di pojok kiri atas layar
+c) E-commerce tidak memerlukan usability testing karena penggunanya sudah sangat banyak
+d) Kerugian finansial hanya bisa dicegah dengan menambah anggaran iklan
+
+Manakah skenario tugas berikut yang tergolong BAIK untuk sesi usability testing menurut materi?
+[single]
+a) "Bayangkan kamu mahasiswa baru yang ingin tahu jadwal kuliah minggu ini. Coba temukan informasi itu menggunakan prototype ini."*
+b) "Coba lihat aplikasi ini dan kasih pendapatmu."
+c) "Menurutmu aplikasinya bagus tidak?"
+d) "Apakah kamu suka warna tombol pada aplikasi ini?"
+
+Berdasarkan riset klasik Jakob Nielsen yang dikutip materi, berapa jumlah partisipan yang sudah cukup untuk menemukan sekitar 85% masalah usability utama?
+[single]
+a) 5 partisipan*
+b) 20 partisipan
+c) 50 partisipan
+d) 100 partisipan
+
+Think-aloud protocol pada sesi usability testing meminta partisipan untuk...
+[single]
+a) Terus berbicara mengucapkan apa pun yang mereka pikirkan sambil mencoba menggunakan prototype*
+b) Diam sepenuhnya selama sesi pengujian berlangsung agar tidak mempengaruhi hasil
+c) Menuliskan laporan tertulis setelah sesi pengujian selesai, tanpa berbicara sama sekali
+d) Menonton rekaman video orang lain menggunakan prototype yang sama
+
+Pada sistem severity rating yang diajarkan materi, level "Kritis" didefinisikan sebagai kondisi di mana...
+[single]
+a) Partisipan gagal total menyelesaikan tugas, atau kebingungan sampai menyerah*
+b) Partisipan berkomentar warna tombol kurang menarik tapi tetap berhasil menyelesaikan tugas
+c) Partisipan berhasil menyelesaikan tugas dengan sangat cepat tanpa hambatan
+d) Partisipan memberi pujian terhadap tampilan visual prototype
+
+Materi menyarankan mencatat minimal empat hal untuk setiap temuan usability testing. Manakah yang TIDAK termasuk keempat hal tersebut?
+[single]
+a) Jumlah followers media sosial partisipan*
+b) Di layar/langkah mana masalah terjadi
+c) Tingkat severity masalah tersebut
+d) Dugaan penyebab masalah
+
+Cara kerja A/B testing menurut materi adalah...
+[single]
+a) Menampilkan dua versi (Versi A dan Versi B) secara acak dan bersamaan ke pengguna berbeda, lalu mengukur versi mana yang menghasilkan lebih banyak klik/konversi*
+b) Menguji satu prototype ke dua kelompok dosen penguji secara bergantian
+c) Membandingkan harga dua aplikasi kompetitor di pasar yang sama
+d) Mewawancarai dua orang partisipan sekaligus dalam waktu bersamaan
+
+Menurut materi, A/B testing kurang cocok dipakai pada kondisi...
+[single]
+a) Produk masih berupa prototype awal dengan jumlah "pengguna" terlalu sedikit untuk hasil yang valid secara statistik*
+b) Produk sudah live dan memiliki jumlah pengguna yang sangat besar
+c) Tim ingin membandingkan dua variasi desain berdasarkan data perilaku nyata
+d) Produk sudah dirilis ke publik selama lebih dari setahun
+
+Apa perbedaan antara micro-iteration dan major pivot menurut materi?
+[single]
+a) Micro-iteration adalah revisi kecil seperti mengubah posisi tombol, sedangkan major pivot adalah revisi besar yang bisa membawa tim kembali ke fase Ideate atau Define*
+b) Micro-iteration hanya boleh dilakukan oleh dosen, sedangkan major pivot dilakukan mahasiswa
+c) Micro-iteration dilakukan sebelum testing, sedangkan major pivot dilakukan setelah testing
+d) Micro-iteration dan major pivot adalah istilah lain untuk usability testing dan A/B testing

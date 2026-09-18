@@ -1,0 +1,209 @@
+Menurut materi Pertemuan 1, peran yang menjadi penghubung antar departemen dan cocok untuk lulusan baru sebelum naik ke peran manajerial yang lebih besar adalah...
+[single]
+a) Producer
+b) Production Coordinator*
+c) Studio Manager
+d) Pipeline TD
+
+Berdasarkan materi Pertemuan 1, mata kuliah Produksi Animasi berbeda dari mata kuliah Animasi 2D & 3D karena mata kuliah ini melatih mahasiswa untuk...
+[single]
+a) Menguasai teknik rigging dan texturing tingkat lanjut
+b) Mengelola supaya karya animasi benar-benar rampung, tepat waktu, dan sesuai anggaran*
+c) Membuat efek visual yang lebih realistis
+d) Menggambar storyboard dengan kualitas seni yang lebih tinggi
+
+Menurut materi Pertemuan 1, kemampuan mengelola produksi dengan sumber daya terbatas yang sangat relevan bagi lulusan yang memulai karier di studio kecil/indie disebut...
+[single]
+a) Lean production management*
+b) Agile software development
+c) Total quality management
+d) Enterprise resource planning
+
+Berdasarkan tabel perbandingan di materi Pertemuan 1, aspek "Formalitas Proses" pada studio besar dicirikan dengan...
+[single]
+a) Proses fleksibel dan cepat dengan dokumentasi seperlunya
+b) Proses baku, dokumentasi lengkap, dan banyak tahap approval*
+c) Tidak ada proses formal sama sekali
+d) Proses yang seluruhnya diserahkan ke satu orang saja
+
+Menurut materi Pertemuan 2, sumber ide yang muncul dari kebutuhan pihak lain seperti iklan produk atau konten edukasi untuk instansi disebut...
+[single]
+a) Brainstorming Pribadi
+b) Brief dari Klien*
+c) Tren Pasar & Riset Audiens
+d) Adaptasi Cerita Rakyat/Buku
+
+Materi Pertemuan 2 menyebutkan bahwa pitch bible ibarat dokumen presentasi lengkap, sedangkan logline ibarat...
+[single]
+a) Trailer satu kalimat*
+b) Naskah penuh dengan dialog
+c) Jadwal produksi mingguan
+d) Lembar anggaran produksi
+
+Bagian pitch bible yang menjelaskan tempat dan waktu cerita berlangsung beserta aturan unik yang berlaku di dalamnya disebut...
+[single]
+a) Premis
+b) Dunia Cerita (World)*
+c) Tone & Gaya Visual
+d) Target Audiens
+
+Menurut materi Pertemuan 2, salah satu teknik pitching yang efektif adalah memperhatikan bahasa tubuh dan ekspresi pendengar selama presentasi, yang disebut...
+[single]
+a) Bercerita, bukan membaca slide
+b) Membaca reaksi audiens*
+c) Menyiapkan visual aids
+d) Menjawab pertanyaan sulit
+
+Menurut materi Pertemuan 3, ketiadaan naskah yang matang sebelum tim produksi bekerja secara masif bisa mengakibatkan...
+[single]
+a) Biaya revisi membengkak di tahap-tahap selanjutnya*
+b) Anggaran produksi otomatis berkurang
+c) Jadwal produksi menjadi lebih singkat
+d) Kualitas render menjadi lebih baik
+
+Pada babak Konfrontasi dalam struktur 3 babak, menurut materi Pertemuan 3, yang terjadi adalah...
+[single]
+a) Memperkenalkan dunia cerita dan karakter utama
+b) Konflik mulai muncul dan berkembang, karakter menghadapi rintangan yang semakin sulit*
+c) Konflik utama mencapai puncak dan terselesaikan
+d) Kredit produksi ditampilkan
+
+Menurut materi Pertemuan 3, elemen naskah yang berisi kalimat naratif singkat menjelaskan apa yang terlihat di layar disebut...
+[single]
+a) Scene heading
+b) Deskripsi aksi*
+c) Dialog
+d) Character brief
+
+Menurut materi Pertemuan 3, sinopsis biasanya dipakai untuk keperluan...
+[single]
+a) Memberi gambaran cepat di katalog festival, proposal awal, atau materi promosi*
+b) Menjadi acuan teknis warna dan garis bagi animator
+c) Menghitung estimasi jumlah shot dan durasi produksi
+d) Menentukan jadwal mingguan tim produksi
+
+Menurut materi Pertemuan 4, contoh nyata pentingnya production bible dijelaskan lewat konsistensi visual karakter pada produksi...
+[single]
+a) Riri & Rangga
+b) Nussa*
+c) Adit Sopo Jarwo
+d) Malin Kundang
+
+Manakah yang termasuk salah satu dari lima komponen inti production bible menurut materi Pertemuan 4?
+[single]
+a) Gantt chart mingguan
+b) Referensi Visual/Mood*
+c) Estimasi anggaran produksi
+d) Daftar tools manajemen proyek
+
+Menurut materi Pertemuan 4, style guide menjawab pertanyaan teknis seputar...
+[single]
+a) Kenapa cerita ini layak diproduksi
+b) Aturan menggambar apa saja yang harus dipatuhi supaya hasil kerja tiap animator konsisten*
+c) Siapa target penonton utama produksi
+d) Berapa anggaran yang dibutuhkan untuk produksi
+
+Dalam contoh style guide di materi Pertemuan 4, kode hex warna digunakan untuk...
+[single]
+a) Menentukan durasi tayang tiap shot
+b) Memastikan animator memakai warna yang benar-benar identik, bukan sekadar "kira-kira mirip"*
+c) Menghitung estimasi biaya produksi
+d) Menentukan urutan babak dalam cerita
+
+Menurut materi Pertemuan 4, production bible dan style guide dianggap sebagai...
+[single]
+a) Formalitas administratif yang bisa dilewatkan pada proyek kecil
+b) Investasi waktu di awal produksi yang menghemat waktu, biaya, dan energi di tahap berikutnya*
+c) Dokumen yang hanya diperlukan oleh studio besar
+d) Pengganti naskah dan treatment
+
+Menurut materi Pertemuan 5, storyboard dalam konteks manajemen produksi dipakai untuk...
+[single]
+a) Menilai keindahan sketsa gambar
+b) Menghitung estimasi jumlah shot dan durasi produksi*
+c) Menentukan kode warna resmi karakter
+d) Menyusun anggaran biaya software
+
+Menurut materi Pertemuan 5, animatic biasanya dilengkapi dengan...
+[single]
+a) Estimasi durasi tiap panel, dan kadang musik/dialog kasar*
+b) Kode hex warna resmi setiap karakter
+c) Daftar tools manajemen proyek yang dipakai tim
+d) Estimasi anggaran biaya produksi
+
+Berdasarkan contoh perhitungan sederhana di materi Pertemuan 5, jika ada 20 shot dan rata-rata satu shot butuh 3 hari kerja, estimasi kasar total waktu produksi untuk satu animator adalah...
+[single]
+a) 40 hari kerja
+b) 60 hari kerja*
+c) 80 hari kerja
+d) 100 hari kerja
+
+Menurut materi Pertemuan 5, shot dengan referensi visual yang jelas dari production bible dan style guide biasanya...
+[single]
+a) Dikerjakan lebih cepat karena animator tidak perlu menebak-nebak*
+b) Justru membutuhkan waktu lebih lama karena terlalu detail
+c) Tidak berpengaruh sama sekali terhadap kecepatan pengerjaan
+d) Selalu dikategorikan sebagai shot kompleksitas berat
+
+Menurut materi Pertemuan 5, shot list mengubah gambaran visual dari storyboard menjadi...
+[single]
+a) Dokumen pitch bible yang siap dipresentasikan
+b) Daftar kerja konkret yang bisa ditugaskan satu per satu ke anggota tim*
+c) Naskah lengkap dengan dialog karakter
+d) Character brief untuk tokoh utama
+
+Menurut materi Pertemuan 6, setiap tim punya jumlah animator, artist, dan editor yang terbatas — ini termasuk alasan pentingnya jadwal produksi yang disebut...
+[single]
+a) Deadline klien itu nyata
+b) Sumber daya tim terbatas*
+c) Kebutuhan software berlisensi
+d) Kebutuhan referensi visual
+
+Menurut materi Pertemuan 6, milestone "First Pass Animation Selesai" menandakan bahwa...
+[single]
+a) Seluruh shot sudah dirender dalam kualitas final
+b) Semua shot punya animasi kasar (rough) dari awal sampai akhir*
+c) Naskah dan production bible sudah disetujui
+d) File final sudah diserahkan ke klien
+
+Berdasarkan contoh breakdown tugas per departemen di materi Pertemuan 6, penyusunan storyboard lengkap untuk seluruh cerita dijadwalkan pada...
+[single]
+a) Minggu 1-2
+b) Minggu 3-4*
+c) Minggu 7-10
+d) Minggu 13-14
+
+Menurut materi Pertemuan 6, kenapa menambahkan buffer time bukan tanda tim yang malas atau kurang percaya diri?
+[single]
+a) Karena buffer time justru menandakan tim yang berpengalaman dan realistis*
+b) Karena buffer time selalu diminta oleh klien
+c) Karena buffer time mengurangi total anggaran produksi
+d) Karena buffer time membuat milestone menjadi tidak diperlukan lagi
+
+Menurut materi Pertemuan 7, kategori biaya yang mencakup perangkat keras, biaya riset, honor voice actor, dan musik berlisensi disebut...
+[single]
+a) SDM & Waktu Tim
+b) Software & Lisensi
+c) Biaya Lain-lain*
+d) Biaya Promosi Utama
+
+Menurut materi Pertemuan 7, alokasi sumber daya adalah proses menentukan anggota tim mengerjakan bagian mana berdasarkan...
+[single]
+a) Siapa yang paling rajin berbicara di rapat
+b) Kapasitas dan skill masing-masing anggota tim*
+c) Urutan absensi kehadiran
+d) Senioritas anggota tim di kampus
+
+Menurut materi Pertemuan 7, Google Sheets Pipeline Tracker paling cocok digunakan untuk...
+[single]
+a) Pipeline tracker yang butuh detail lebih rinci dibanding kanban board, terutama saat jumlah shot mulai banyak*
+b) Menggantikan seluruh fungsi production bible
+c) Menghitung otomatis anggaran akhir semester
+d) Menulis naskah dan dialog karakter
+
+Menurut materi Pertemuan 7, dokumen "Rencana Produksi Lengkap" yang disusun sebagai penutup materi sebelum UTS berfungsi sebagai...
+[single]
+a) Pengganti seluruh tugas Pertemuan 1-6
+b) Draft proposal proyek akhir semester yang menjadi rujukan utama saat menghadapi UTS*
+c) Dokumen resmi yang dikirim langsung ke investor internasional
+d) Materi tambahan yang tidak dinilai
