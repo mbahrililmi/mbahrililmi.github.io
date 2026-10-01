@@ -1,0 +1,550 @@
+— Portfolio —
+
+
+Hello, I'm M. Bahril Ilmi
+Software Developer, Data Scientist & Lecturer
+
+Crafting elegant digital experiences and meaningful technology that empowers people. Currently
+shaping the future at Digitaliz, The New You Institute, and Ruangguru — while teaching the next
+generation at Politeknik Hasnur, with over 4 years of refined craftsmanship in software development.
+                                                    ❦
+
+                                           About Me
+
+          Software Developer & Lecturer with expertise in Full-Stack Development and Data Science
+
+
+
+
+  Professional Overview
+I'm M. Bahril Ilmi, a dedicated Software Developer currently working at
+Yayasan Hasnur Centre — Unit Digitaliz, The New You Institute, and
+Ruangguru — while serving as a Lecturer at Politeknik Hasnur and Industrial
+Lecturer at Politala. Over 4 years of refined craftsmanship in full-stack
+development and data science.
+
+Currently pursuing my M.Kom degree in Digital Transformation Intelligence at
+Universitas AMIKOM Yogyakarta, I combine academic excellence with practical
+industry experience to deliver innovative technological solutions and share
+knowledge through teaching.
+
+
+  Location: Banjarmasin, Kalimantan Selatan, Indonesia
+
+
+  Origin: Desa Kota Pagatan, Kec. Kusan Hilir, Kab. Tanah Bumbu
+
+
+  Current Roles: Software Developer at YHC (Digitaliz), TNYI & Ruangguru •
+  Lecturer at Politeknik Hasnur • Industrial Lecturer at Politala
+
+
+  Experience: 4+ Years in Software Development & Education
+                      Education
+
+
+    M.Kom - Magister Informatika
+   Digital Transformation Intelligence
+    Universitas AMIKOM Yogyakarta
+    Mar 2024 - Oct 2025
+
+
+
+
+    S.Kom - Teknik Informatika
+
+    Universitas Islam Kalimantan Moch. Arsyad Al Banjari
+    Mar 2018 - Oct 2022
+                                    ❦
+
+           Professional Experience
+
+            My journey in software development and data science
+
+
+
+
+  CURRENT
+
+
+Software Developer
+The New You Institute (tnyi.co.id)
+May 2026 - Present • 5 months
+Full-time • Indonesia
+
+
+Developing innovative digital learning and human transformation
+platforms at The New You Institute. Driving full-stack engineering
+initiatives that empower personal growth, leadership development,
+and organizational excellence through technology.
+
+  Full-Stack Development            Digital Transformation
+
+  Learning Platform         React         Node.js
+  CURRENT
+
+
+Dosen Industri
+Politeknik Negeri Tanah Laut (Politala)
+Apr 2026 - Present • 6 months
+Industrial Lecturer • Pelaihari, Kalimantan Selatan
+
+
+Serving as Industrial Lecturer (Dosen Industri) at Politeknik Negeri
+Tanah Laut, bridging academic excellence with real-world
+industry practice. Sharing hands-on expertise in software
+engineering, digital transformation, and modern development
+workflows with students preparing for the tech industry.
+
+  Industrial Teaching       Software Engineering      Industry Mentoring
+
+  Curriculum Development
+ CURRENT
+
+
+Lecturer - Multimedia Engineering Technology
+Politeknik Hasnur
+Sep 2025 - Present • 1 year 1 month
+Freelancer • Banjarmasin, Kalimantan Selatan
+
+
+Teaching at the Department of Multimedia Engineering
+Technology, Politeknik Hasnur. Delivering both practical and
+theoretical knowledge across multimedia design, interactive
+media, web development, and modern software engineering
+practices to prepare students for the creative tech industry.
+
+  Multimedia Engineering        Interactive Media   Teaching
+
+  Web Development          Software Engineering
+  CURRENT
+
+
+Coding Instructor
+Ruangguru
+May 2025 - Present • 1 year 5 months
+Full-time • Jakarta, Indonesia
+
+
+Teaching coding and programming fundamentals at Indonesia's
+leading EdTech platform. Guiding students through hands-on
+learning journeys in web development, problem-solving, and
+modern software engineering — empowering the next generation
+of Indonesian developers.
+
+  Coding Education         Curriculum Design     JavaScript
+
+  Web Development          Student Mentoring
+
+
+
+
+Data Science Intern
+ID/X Partners via Rakamin Academy
+Dec 2023 - Jan 2024 • 2 months
+Internship • Remote
+
+
+Completed project-based internship program focusing on data
+science methodologies, machine learning algorithms, and data
+analysis techniques.
+
+  Data Science        Python       Machine Learning     Data Analysis
+ CURRENT
+
+
+Software Developer
+Yayasan Hasnur Centre (YHC) — Unit Digitaliz
+Feb 2022 - Present • 4 years 8 months
+Full-time • Banjarmasin, Kalimantan Selatan
+
+
+Leading full-stack development projects and implementing digital
+transformation solutions. Specializing in web development,
+system integration, and user experience design.
+
+  Full-Stack Development        HTML          JavaScript   PHP
+
+  MySQL        React
+                                               ❦
+
+                             Featured Projects
+
+                   Innovative solutions I've developed for various organizations
+
+
+
+
+                                                                                                    ★
+
+
+
+
+ ACTIVE                                                                            May 2024 - Present
+
+
+
+TNYI Assessment Culture
+Assessment New Ultimate Culture TNYI - Advanced platform for culture
+transformation and organizational development assessment.
+
+ Web Development      Culture Assessment           Full-Stack
+
+
+ Yayasan Hasnur Centre (YHC)
+
+
+
+
+                                                                                                    ★
+ ACTIVE                                                                Jan 2024 - Present
+
+
+
+TNYI Activation Culture
+Culture Activation platform designed to drive organizational culture transformation
+and employee engagement initiatives.
+
+ Culture Activation     Web Development       Employee Engagement
+
+
+
+ Y         H         C t (YHC)
+
+                                                                                        ★
+
+
+
+
+ ACTIVE                                                                Dec 2023 - Present
+
+
+
+Reinventing Organization Hasnur Group
+Leading-edge platform for strengthening innovation and collaboration in
+companies. Features Idea Basket and Project Management, connecting all
+stakeholders to contribute to problem-solving and innovation.
+
+ Innovation Platform     Project Management      Collaboration Tools
+
+
+
+ Yayasan Hasnur Centre (YHC)
+                                                                          ★
+
+
+
+
+Jan 2024
+
+
+
+Pagatan Connect
+
+
+
+
+Oct 2022 - Jun 2023                 Jun 2023 - Oct 2023
+
+
+
+Hulu Talent                         Futuca
+HR Platform based on Talent         A camera that helps us take
+Management System providing         pictures of ourselves, looking into
+integration and automation for      ourselves for knowledge we have
+digital talent measurement and      learned, understood well, and
+management, designed more           mastered as self-competence to
+"human" to provide different team   optimize career and work
+experience.                         preparation.
+
+  Web Development                     Web Development
+
+  Full-Stack Development              Self-Assessment     Career Tools
+
+  User Experience (UX)
+ Yayasan Hasnur Centre (YHC)       Yayasan Hasnur Centre (YHC)
+
+
+
+
+Apr 2023 - Jun 2023                Sep 2022 - Feb 2023
+
+
+
+Sistem Informasi Akademik          E-Recruitment Platform
+Politeknik Hasnur                  Your Best Career Development
+SIPHA - Academic Information       Place - Comprehensive recruitment
+System for Politeknik Hasnur,      platform for talent acquisition and
+comprehensive platform for         career development management.
+academic management and student
+services.                            Web Development
+
+                                     Full-Stack Development
+  Web Development
+                                     User Experience (UX)
+  Academic System     Full-Stack
+
+
+                                    Yayasan Hasnur Centre (YHC)
+ Yayasan Hasnur Centre (YHC)
+Oct 2022 - Feb 2023                    Feb 2022 - Oct 2022
+
+
+
+Veldeva - Enhance Your Digital         BaktiBersama
+Skills                                 Official Zakat Collection Unit (UPZ)
+Discover various courses designed      Bakti Bersama formed by Hasnur
+to help your business and career in    Group - Yayasan Hasnur Centre
+the digital field. Improve skills by   together with BAZNAS Kalimantan
+taking available classes and learn     Selatan.
+from professional mentors.
+                                         Web Development
+  Front-End Development
+                                         Full-Stack Development
+  E-Learning Platform
+                                         User Experience (UX)
+  Digital Education
+
+                                        Yayasan Hasnur Centre (YHC)
+ Yayasan Hasnur Centre (YHC)
+
+
+
+
+Dec 2023                               Nov 2025
+
+
+
+Kopra - Koperasi                       AI Recruitment
+Cooperative application system         AI-powered recruitment system
+designed to manage and streamline      designed to optimize hiring
+cooperative operations and             processes and enhance candidate
+member services.                       evaluation.
+
+  Web Development                        Web Development
+
+  Cooperative System                     Cooperative System
+
+  Member Management                      Member Management
+ Yayasan Hasnur Centre (YHC)     Yayasan Hasnur Centre (YHC)
+
+
+
+
+Nov 2025                         Nov 2025
+
+
+
+HG Legal                         Penilai Risiko HIV
+Legal management system          HIV Risk Assessor - A system
+designed to streamline legal     designed to evaluate and manage
+processes and enhance document   HIV risk factors effectively with ai
+management.                      integration. Predict the risk level
+                                 based on user input data.
+  Web Development
+                                   Web Development
+  Cooperative System
+                                   Cooperative System
+  Member Management
+                                   Member Management
+
+ Yayasan Hasnur Centre (YHC)
+Oct 2023 - Nov 2023
+
+
+
+E-Ticket System
+Ticket purchasing application -
+Event Organizer platform for
+seamless event management and
+ticket sales.
+
+  Event Management    E-Commerce
+
+  Ticket System
+                                      ❦
+
+                       Technical Skills
+
+                       Technologies and tools I work with
+
+
+
+
+                                                             
+
+         Programming                                  Web Technologies
+          Languages
+                                                React.js
+JavaScript
+                                                HTML/CSS
+PHP
+                                                Bootstrap
+Python
+                                                CodeIgniter
+Java
+                                                Flutter
+C++
+                
+
+         Data & Cloud
+
+MySQL
+
+Data Analysis
+
+AWS Cloud
+
+Alibaba Cloud
+
+Docker
+                                             ❦
+
+           Certifications & Achievements
+
+               Professional certifications and continuous learning achievements
+
+
+
+
+Latest Certifications - 2025
+
+
+
+    AWS Educate Introduction                                       Data Science (Fresh
+   to Generative AI                                              Graduate Academy)
+    Amazon Web Services                                            Digital Talent Scholarship
+    (AWS)                                                          Jul 2025 • ID: 19510439840-
+    Jul 2025                                                       141
+
+
+
+
+    Bisnis Digital (Micro Skill)                                   Data Analisis (Micro Skill)
+   Digital Talent Scholarship                                    Digital Talent Scholarship
+    Jun 2025 • ID: 2299820850-                                     Jun 2025 • ID: 2299818850-
+    1963                                                           4308
+
+
+
+
+    Etika dan Budaya Digital                                       Kewirausahaan Digital
+   (Micro Skill)                                                 (Micro Skill)
+    Digital Talent Scholarship                                     Digital Talent Scholarship
+    Jun 2025 • ID: 22910030850-                                    Jun 2025 • ID: 2299803850-
+    1146                                                           5887
+
+
+
+
+Professional Development - 2024
+    LPIA-EPT (English                     Docker : Pemula sampai
+   Proficiency Test)                    Mahir
+    LEMBAGA PENDIDIKAN                    Udemy
+    INDONESIA AMERIKA                     Apr 2024 • ID: UC-95d647c0-
+    Aug 2024 • Score: 497                 4034-40ba-8ad0-
+                                          36db1d4844e3
+
+
+
+    Artificial Intelligence               Database MySQL : Pemula
+   (Fresh Graduate Academy)             sampai Mahir
+    Digital Talent Scholarship            Udemy
+    Mar 2024 • Azure AI Engineer          Mar 2024
+
+
+
+
+    Belajar Dasar Visualisasi             Memulai Pemrograman
+   Data                                 dengan Python
+    Dicoding Indonesia                    Dicoding Indonesia
+    Feb 2024 - Feb 2027                   Feb 2024 - Feb 2027
+
+
+
+
+Core Professional Certifications - 2023
+
+
+
+    Programming and                       Alibaba Cloud Certified
+   Software Developer                   Associate Big Data
+    BNSP                                  Alibaba Cloud
+    Oct 2023 - Oct 2026                   Nov 2023 - Nov 2025
+
+
+
+
+    Junior Web Developer                  IT Support Google
+   (VSGA)                               Specialization
+    Digital Talent Scholarship            Coursera
+    Sep 2023                              Jul 2023
+    Belajar Membuat Aplikasi       Memulai Pemrograman
+   Flutter untuk Pemula          dengan Java
+    Dicoding Indonesia             Dicoding Indonesia
+    Dec 2023 - Dec 2026            Dec 2023 - Dec 2026
+
+
+
+
+Foundation & Early Learning
+
+
+
+    ID/X Partners Data             React Js Web Frontend
+   Scientist Internship          SanberCode
+    Rakamin Academy
+                                   Jan 2023
+    Jan 2023
+
+
+
+
+    Cloud Practitioner
+   Essentials (AWS)
+    Dicoding Indonesia
+    Jan 2023 - Jan 2026
+                                           ❦
+
+                              Get In Touch
+
+               Let's discuss your next project or collaboration opportunity
+
+
+
+
+FULL NAME                                      EMAIL ADDRESS
+
+
+
+
+SUBJECT
+
+
+
+
+MESSAGE
+
+
+
+
+                              Send Message
+
+
+
+
+                                                                         
+
+          Location                                                      Email
+Banjarmasin, Kalimantan Selatan      mbahrililmi@example.com
+          Indonesia
+
+
+
+
+                                               
+
+         WhatsApp                       Current Position
+     +62 813-5037-5976                 Software Developer
+        Klik untuk chat →         YHC Digitaliz · TNYI · Ruangguru
+
