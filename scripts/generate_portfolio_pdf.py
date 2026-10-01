@@ -4,6 +4,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle, Image, KeepTogether
+from reportlab.lib.utils import ImageReader
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'output/pdf/portfolio-m-bahril-ilmi.pdf'
@@ -47,7 +48,10 @@ story=[]
 # Cover and profile
 story += [Spacer(1,16*mm)]
 left=[P('SOFTWARE DEVELOPER  /  DATA SCIENTIST  /  LECTURER','Kicker'),P('M. Bahril Ilmi','Name'),P('Full-Stack Development, Digital Transformation & Education','Role'),P('Crafting elegant digital experiences and meaningful technology that empowers people. Currently shaping the future at Digitaliz, The New You Institute, and Ruangguru - while teaching the next generation at Politeknik Hasnur.','Lead'),Spacer(1,10),P('Banjarmasin, Kalimantan Selatan, Indonesia','Meta'),P('mbahrililmi.github.io','Meta')]
-photo=Image(str(PHOTO),width=45*mm,height=67.5*mm); photo.hAlign='CENTER'
+img_w, img_h = ImageReader(str(PHOTO)).getSize()
+photo_width = 50*mm
+photo_height = photo_width * img_h / img_w
+photo=Image(str(PHOTO),width=photo_width,height=photo_height); photo.hAlign='CENTER'
 cover=Table([[left,photo]],colWidths=[115*mm,55*mm]); cover.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0)])); story.append(cover)
 story += [Spacer(1,15*mm),P('PROFILE','Kicker'),P("A practical technologist with an educator's mindset",'H1x')]
 profile=Table([[P('PROFESSIONAL OVERVIEW','Kicker'),P('EDUCATION','Kicker')],[P("I'm M. Bahril Ilmi, a dedicated Software Developer working across full-stack development, digital transformation, and data science. I combine industry experience with teaching to build useful products and share practical knowledge."),P('M.Kom - Magister Informatika<br/><font color="#66758a">Digital Transformation Intelligence<br/>Universitas AMIKOM Yogyakarta<br/>Mar 2024 - Oct 2025</font><br/><br/>S.Kom - Teknik Informatika<br/><font color="#66758a">Universitas Islam Kalimantan Moch. Arsyad Al Banjari<br/>Mar 2018 - Oct 2022</font>')]],colWidths=[88*mm,82*mm])
