@@ -389,33 +389,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   });
 });
 
-// Download portfolio files without navigating to a PDF viewer or blank page.
-document.querySelectorAll(".direct-download").forEach((link) => {
-  link.addEventListener("click", async (event) => {
-    event.preventDefault();
-    const originalLabel = link.innerHTML;
-    link.setAttribute("aria-busy", "true");
-    try {
-      const response = await fetch(link.href);
-      if (!response.ok) throw new Error(`Download failed: ${response.status}`);
-      const blobUrl = URL.createObjectURL(await response.blob());
-      const downloadLink = document.createElement("a");
-      downloadLink.href = blobUrl;
-      downloadLink.download = link.pathname.split("/").pop() || "download.pdf";
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      downloadLink.remove();
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
-    } catch (error) {
-      // Keep a safe fallback if a browser blocks the blob download.
-      window.location.href = link.href;
-    } finally {
-      link.removeAttribute("aria-busy");
-      link.innerHTML = originalLabel;
-    }
-  });
-});
-
 // Touch swipe detection for mobile - DISABLED for natural scroll
 let startY = 0;
 let endY = 0;
