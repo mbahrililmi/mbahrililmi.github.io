@@ -387,7 +387,7 @@ a:hover { color: var(--primary-deep); }
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 0 15px;
+  padding: 88px 15px 0;
 }
 
 .hero-bg {
@@ -492,10 +492,18 @@ a:hover { color: var(--primary-deep); }
   font-size: 0.92rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 999px;
   transition: all 0.4s var(--ease-classic);
   position: relative;
   overflow: hidden;
+}
+
+/* Consistent soft-pill controls across the portfolio. */
+.btn,
+button.btn,
+input[type="submit"].btn,
+input[type="button"].btn {
+  border-radius: 999px;
 }
 
 .btn-primary {
