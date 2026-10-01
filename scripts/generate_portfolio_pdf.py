@@ -5,10 +5,12 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
 from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, PageBreak, Table, TableStyle, Image, KeepTogether
 from reportlab.lib.utils import ImageReader
+from PIL import Image as PILImage, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'output/pdf/portfolio-m-bahril-ilmi.pdf'
 PHOTO = ROOT / 'img/M.BAHRIL ILMI_18.63.0762.jpg'
+CIRCLE_PHOTO = ROOT / 'tmp/pdfs/profile-circle.png'
 NAVY = colors.HexColor('#18263b'); INK = colors.HexColor('#26364b'); MUTED = colors.HexColor('#66758a')
 GOLD = colors.HexColor('#b8893b'); PALE = colors.HexColor('#f7f4ee'); LINE = colors.HexColor('#e6e0d5')
 styles = getSampleStyleSheet()
@@ -24,6 +26,22 @@ styles.add(ParagraphStyle(name='Tag', parent=styles['Normal'], fontName='Helveti
 styles.add(ParagraphStyle(name='Quote', parent=styles['Normal'], fontName='Helvetica-Oblique', fontSize=11, leading=17, textColor=NAVY))
 
 def P(text, style='Bodyx'): return Paragraph(text, styles[style])
+
+def make_circle_photo():
+    source = PILImage.open(PHOTO).convert('RGB')
+    side = min(source.size)
+    left = (source.width - side) // 2
+    crop = source.crop((left, 0, left + side, side)).resize((1200, 1200), PILImage.Resampling.LANCZOS)
+    canvas = PILImage.new('RGBA', (1200, 1200), (255, 255, 255, 0))
+    mask = PILImage.new('L', (1200, 1200), 0)
+    draw = ImageDraw.Draw(mask)
+    draw.ellipse((18, 18, 1182, 1182), fill=255)
+    canvas.paste(crop, (0, 0), mask)
+    border = ImageDraw.Draw(canvas)
+    border.ellipse((18, 18, 1182, 1182), outline=(184, 137, 59, 255), width=14)
+    CIRCLE_PHOTO.parent.mkdir(parents=True, exist_ok=True)
+    canvas.save(CIRCLE_PHOTO)
+    return CIRCLE_PHOTO
 
 def tags(items):
     t = Table([[P(x.upper(), 'Tag') for x in items]], colWidths=[170*mm/len(items)])
@@ -48,10 +66,8 @@ story=[]
 # Cover and profile
 story += [Spacer(1,16*mm)]
 left=[P('SOFTWARE DEVELOPER  /  DATA SCIENTIST  /  LECTURER','Kicker'),P('M. Bahril Ilmi','Name'),P('Full-Stack Development, Digital Transformation & Education','Role'),P('Crafting elegant digital experiences and meaningful technology that empowers people. Currently shaping the future at Digitaliz, The New You Institute, and Ruangguru - while teaching the next generation at Politeknik Hasnur.','Lead'),Spacer(1,10),P('Banjarmasin, Kalimantan Selatan, Indonesia','Meta'),P('mbahrililmi.github.io','Meta')]
-img_w, img_h = ImageReader(str(PHOTO)).getSize()
-photo_width = 50*mm
-photo_height = photo_width * img_h / img_w
-photo=Image(str(PHOTO),width=photo_width,height=photo_height); photo.hAlign='CENTER'
+circle_photo = make_circle_photo()
+photo=Image(str(circle_photo),width=50*mm,height=50*mm); photo.hAlign='CENTER'
 cover=Table([[left,photo]],colWidths=[115*mm,55*mm]); cover.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0)])); story.append(cover)
 story += [Spacer(1,15*mm),P('PROFILE','Kicker'),P("A practical technologist with an educator's mindset",'H1x')]
 profile=Table([[P('PROFESSIONAL OVERVIEW','Kicker'),P('EDUCATION','Kicker')],[P("I'm M. Bahril Ilmi, a dedicated Software Developer working across full-stack development, digital transformation, and data science. I combine industry experience with teaching to build useful products and share practical knowledge."),P('M.Kom - Magister Informatika<br/><font color="#66758a">Digital Transformation Intelligence<br/>Universitas AMIKOM Yogyakarta<br/>Mar 2024 - Oct 2025</font><br/><br/>S.Kom - Teknik Informatika<br/><font color="#66758a">Universitas Islam Kalimantan Moch. Arsyad Al Banjari<br/>Mar 2018 - Oct 2022</font>')]],colWidths=[88*mm,82*mm])
