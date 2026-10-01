@@ -523,6 +523,23 @@ a:hover { color: var(--primary-deep); }
   border-color: var(--text-dark);
 }
 
+.btn-download {
+  color: var(--text-dark);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 20px rgba(31, 41, 55, 0.06);
+}
+
+.btn-download:hover {
+  color: var(--text-dark);
+  background: #fff;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* Keep fixed navigation from covering the first section when arriving via hash. */
+section[id] { scroll-margin-top: 88px; }
+
 .social-links { display: flex; gap: 0.8rem; }
 
 .social-link {
@@ -1950,6 +1967,8 @@ a:hover { color: var(--primary-deep); }
     font-size: 0.85rem;
   }
 
+  .btn-download { order: 3; }
+
   .social-links {
     justify-content: center;
     margin-top: 1.3rem;
@@ -2011,6 +2030,31 @@ a:hover { color: var(--primary-deep); }
   .footer-content, .footer-links { text-align: center; margin-bottom: 2rem; }
   .footer-links h5::after { left: 50%; transform: translateX(-50%); }
   .footer-social { justify-content: center; }
+}
+
+/* Print layout used by the downloadable portfolio PDF. */
+@media print {
+  @page { size: A4; margin: 14mm 15mm; }
+  html, body { background: #fff !important; color: #1f2937 !important; }
+  #loading-screen, .scroll-progress, .floating-wa, .navbar, .mobile-bottom-nav,
+  .scroll-indicator, .hero-bg, .hero-ornament, .floating-elements, .social-links,
+  .hero-buttons, footer, .modal { display: none !important; }
+  [data-aos], .aos-init { opacity: 1 !important; transform: none !important; }
+  .hero-section { min-height: auto !important; padding: 0 !important; background: #fff !important; }
+  .hero-section .row { min-height: auto !important; }
+  .hero-content, .hero-image { text-align: left !important; }
+  .hero-image { display: block !important; }
+  .profile-img { width: 150px !important; height: 150px !important; margin: 0 0 18px !important; }
+  .hero-title { font-size: 28pt !important; margin-bottom: 8pt !important; }
+  .hero-title .gradient-text { color: var(--primary-color) !important; -webkit-text-fill-color: var(--primary-color) !important; background: none !important; }
+  .hero-subtitle { font-size: 16pt !important; }
+  .hero-description { max-width: 100% !important; font-size: 10pt !important; line-height: 1.5 !important; }
+  .section-padding { padding: 18pt 0 !important; page-break-inside: avoid; }
+  .section-title { font-size: 20pt !important; }
+  .section-subtitle { font-size: 10pt !important; }
+  .container { max-width: none !important; width: 100% !important; }
+  .card, .timeline-item, .education-item, .skill-category, .certification-card { break-inside: avoid; }
+  a { color: inherit !important; text-decoration: none !important; }
 }
 
 /* Small phones */

@@ -380,7 +380,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       // Close mobile navbar if open
       const navbarCollapse = document.querySelector(".navbar-collapse");
       if (navbarCollapse && navbarCollapse.classList.contains("show")) {
-        navbarCollapse.classList.remove("show");
+        const navbarToggle = document.querySelector(".navbar-toggler");
+        const collapse = window.bootstrap?.Collapse.getOrCreateInstance(navbarCollapse);
+        collapse?.hide();
+        navbarToggle?.setAttribute("aria-expanded", "false");
       }
     }
   });

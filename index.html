@@ -132,7 +132,7 @@
     </a>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" aria-label="Navigasi utama">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#home">
           <span class="text-primary">M.</span> BAHRIL ILMI
@@ -142,6 +142,9 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Buka navigasi"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -234,6 +237,9 @@
                 </a>
                 <a href="#projects" class="btn btn-outline-light btn-lg">
                   <i class="bi bi-folder me-2"></i>View Projects
+                </a>
+                <a href="output/pdf/portfolio-m-bahril-ilmi.pdf" class="btn btn-download btn-lg" download>
+                  <i class="bi bi-file-earmark-pdf me-2"></i>Download PDF
                 </a>
               </div>
               <div class="social-links mt-4">
