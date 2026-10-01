@@ -545,6 +545,19 @@ input[type="button"].btn {
   transform: translateY(-2px);
 }
 
+.btn-cv {
+  color: #fff;
+  background: var(--text-dark);
+  border: 1px solid var(--text-dark);
+}
+
+.btn-cv:hover {
+  color: #fff;
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
 /* Keep fixed navigation from covering the first section when arriving via hash. */
 section[id] { scroll-margin-top: 88px; }
 
